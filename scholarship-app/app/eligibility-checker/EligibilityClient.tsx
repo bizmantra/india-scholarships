@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
+import Header from '@/app/components/Header';
 import { Search, CheckCircle2 } from 'lucide-react';
 
 interface FormData {
@@ -87,20 +88,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
             {/* Header */}
-            <header className="bg-white border-b sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="text-2xl font-bold text-blue-700">
-                            IndiaScholarships
-                        </a>
-                        <nav className="hidden md:flex gap-6">
-                            <a href="/" className="text-gray-700 hover:text-blue-700">Home</a>
-                            <a href="/eligibility-checker" className="text-blue-700 font-semibold">Eligibility Checker</a>
-                            <a href="/private-scholarships" className="text-gray-700 hover:text-blue-700">Private</a>
-                        </nav>
-                    </div>
-                </div>
-            </header>
+            <Header />
 
             <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {!showResults ? (
