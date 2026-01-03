@@ -66,8 +66,6 @@ export async function POST(request: NextRequest) {
             caste: JSON.parse(s.caste || '[]')
         }));
 
-        db.close();
-
         return NextResponse.json({
             scholarships: parsedScholarships,
             count: parsedScholarships.length
@@ -75,8 +73,9 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.error('Eligibility check error:', error);
+        console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
         return NextResponse.json(
-            { error: 'Failed to check eligibility' },
+            { error: 'Failed to check eligibility', details: error instanceof Error ? error.message : 'Unknown error' },
             { status: 500 }
         );
     }
