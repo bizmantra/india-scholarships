@@ -1,0 +1,328 @@
+import Database from 'better-sqlite3';
+import path from 'path';
+
+const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
+
+// Create or open database
+export function getDatabase() {
+    const db = new Database(dbPath);
+    db.pragma('journal_mode = WAL');
+    return db;
+}
+
+// Initialize database schema
+export function initializeDatabase() {
+    const db = getDatabase();
+
+    db.exec(`
+    CREATE TABLE IF NOT EXISTS scholarships (
+      id TEXT PRIMARY KEY,
+      title TEXT NOT NULL,
+      slug TEXT UNIQUE NOT NULL,
+      
+      -- Basic Info
+      provider TEXT,
+      provider_type TEXT,
+      
+      -- Taxonomy Fields (for filtering & programmatic SEO)
+      state TEXT,
+      level TEXT,
+      caste TEXT,
+      gender TEXT,
+      course_stream TEXT,
+      app_type TEXT,
+      
+      -- Amount & Financial
+      amount_annual INTEGER,
+      amount_min INTEGER,
+      amount_description TEXT,
+      benefits TEXT,
+      
+      -- Eligibility Criteria
+      income_limit INTEGER,
+      min_marks INTEGER,
+      age_limit TEXT,
+      residency_requirement TEXT,
+      
+      -- Application Details
+      docs_needed TEXT,
+      application_mode TEXT,
+      apply_url TEXT,
+      deadline TEXT,
+      deadline_description TEXT,
+      time_min INTEGER,
+      
+      -- Process & Selection
+      step_guide TEXT,
+      selection TEXT,
+      total_awards INTEGER,
+      renewal TEXT,
+      competitiveness TEXT,
+      
+      -- Trust & Verification
+      verified_status TEXT,
+      last_verified TEXT,
+      official_source TEXT,
+      helpline TEXT,
+      
+      -- SEO & Content
+      intro_seo TEXT,
+      faq_json TEXT,
+      notes_actions TEXT,
+      keywords TEXT,
+      
+      -- New: Scholarship Type & Status
+      scholarship_type TEXT DEFAULT 'Government',
+      status TEXT DEFAULT 'Active',
+      
+      -- New: Year Verification (for private scholarships)
+      verification_year INTEGER,
+      verification_date TEXT,
+      
+      -- New: Display & Ranking Logic
+      show_on_homepage INTEGER DEFAULT 0,
+      is_featured INTEGER DEFAULT 0,
+      is_popular INTEGER DEFAULT 0,
+      priority_score INTEGER DEFAULT 50,
+      
+      -- New: Enhanced Content
+      special_conditions TEXT,
+      tags TEXT,
+      thumbnail_url TEXT
+    );
+    
+    -- Indexes for filtering
+    CREATE INDEX IF NOT EXISTS idx_state ON scholarships(state);
+    CREATE INDEX IF NOT EXISTS idx_level ON scholarships(level);
+    CREATE INDEX IF NOT EXISTS idx_caste ON scholarships(caste);
+    CREATE INDEX IF NOT EXISTS idx_gender ON scholarships(gender);
+    CREATE INDEX IF NOT EXISTS idx_provider_type ON scholarships(provider_type);
+    CREATE INDEX IF NOT EXISTS idx_app_type ON scholarships(app_type);
+    CREATE INDEX IF NOT EXISTS idx_slug ON scholarships(slug);
+    CREATE INDEX IF NOT EXISTS idx_scholarship_type ON scholarships(scholarship_type);
+    CREATE INDEX IF NOT EXISTS idx_status ON scholarships(status);
+  `);
+
+    db.close();
+}
+
+// Get all scholarships
+export function getAllScholarships() {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships').all();
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get scholarship by slug
+export function getScholarshipBySlug(slug: string) {
+    const db = getDatabase();
+    const scholarship = db.prepare('SELECT * FROM scholarships WHERE slug = ?').get(slug);
+    db.close();
+    return scholarship ? parseScholarship(scholarship) : null;
+}
+
+// Get scholarships by state
+export function getScholarshipsByState(state: string) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE state = ?').all(state);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get all unique states
+export function getAllStates() {
+    const db = getDatabase();
+    const states = db.prepare('SELECT DISTINCT state FROM scholarships WHERE state IS NOT NULL ORDER BY state').all();
+    db.close();
+    return states.map((row: any) => row.state);
+}
+
+// Get all unique categories (castes)
+export function getAllCategories() {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT DISTINCT caste FROM scholarships WHERE caste IS NOT NULL').all();
+    db.close();
+
+    const categories = new Set<string>();
+    scholarships.forEach((row: any) => {
+        try {
+            const castes = JSON.parse(row.caste);
+            castes.forEach((c: string) => categories.add(c));
+        } catch {
+            // If not JSON, treat as single value
+            if (row.caste) categories.add(row.caste);
+        }
+    });
+
+    return Array.from(categories).sort();
+}
+
+// Get scholarships by category
+export function getScholarshipsByCategory(category: string) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE caste LIKE ?').all(`%${category}%`);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get all unique education levels
+export function getAllLevels() {
+    const db = getDatabase();
+    const levels = db.prepare('SELECT DISTINCT level FROM scholarships WHERE level IS NOT NULL ORDER BY level').all();
+    db.close();
+    return levels.map((row: any) => row.level);
+}
+
+// Get scholarships by education level
+export function getScholarshipsByLevel(level: string) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE level = ?').all(level);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get scholarships by income range
+export function getScholarshipsByIncomeRange(minIncome: number, maxIncome: number) {
+    const db = getDatabase();
+    const scholarships = db.prepare(
+        'SELECT * FROM scholarships WHERE income_limit >= ? AND income_limit <= ?'
+    ).all(minIncome, maxIncome);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get all income ranges with counts
+export function getIncomeRanges() {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT income_limit FROM scholarships WHERE income_limit IS NOT NULL').all();
+    db.close();
+
+    const ranges = [
+        { label: '0-1L', min: 0, max: 100000, slug: '0-1l' },
+        { label: '1-2.5L', min: 100001, max: 250000, slug: '1-2.5l' },
+        { label: '2.5-5L', min: 250001, max: 500000, slug: '2.5-5l' },
+        { label: '5L+', min: 500001, max: 10000000, slug: '5l-plus' },
+    ];
+
+    return ranges.map(range => ({
+        ...range,
+        count: scholarships.filter((s: any) => s.income_limit >= range.min && s.income_limit <= range.max).length
+    }));
+}
+
+// Get scholarships by provider type
+export function getScholarshipsByProviderType(providerType: string) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE provider_type = ?').all(providerType);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get all unique provider types
+export function getAllProviderTypes() {
+    const db = getDatabase();
+    const types = db.prepare('SELECT DISTINCT provider_type FROM scholarships WHERE provider_type IS NOT NULL ORDER BY provider_type').all();
+    db.close();
+    return types.map((row: any) => row.provider_type);
+}
+
+// Search scholarships by name, provider, or state
+export function searchScholarships(query: string) {
+    const db = getDatabase();
+    const searchTerm = `%${query}%`;
+    const scholarships = db.prepare(`
+        SELECT * FROM scholarships 
+        WHERE title LIKE ? 
+        OR provider LIKE ? 
+        OR state LIKE ?
+        ORDER BY title
+    `).all(searchTerm, searchTerm, searchTerm);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get scholarships by multiple IDs (for comparison)
+export function getScholarshipsByIds(ids: string[]) {
+    const db = getDatabase();
+    const placeholders = ids.map(() => '?').join(',');
+    const scholarships = db.prepare(`SELECT * FROM scholarships WHERE id IN (${placeholders})`).all(...ids);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get featured scholarships
+export function getFeaturedScholarships(limit: number = 6) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE is_featured = 1 ORDER BY priority_score DESC LIMIT ?').all(limit);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get scholarships by type
+export function getScholarshipsByType(type: string) {
+    const db = getDatabase();
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE scholarship_type = ?').all(type);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get global stats for pillar pages
+export function getScholarshipStats() {
+    const db = getDatabase();
+    const stats = db.prepare(`
+        SELECT 
+            COUNT(*) as total,
+            COUNT(DISTINCT state) as stateCount,
+            SUM(CASE WHEN scholarship_type = 'Government' THEN 1 ELSE 0 END) as govCount,
+            SUM(CASE WHEN scholarship_type = 'Private' OR scholarship_type = 'Corporate' THEN 1 ELSE 0 END) as privateCount
+        FROM scholarships
+    `).get() as any;
+    db.close();
+    return stats;
+}
+
+// Get scholarships by course cluster (e.g., Engineering, Medical)
+export function getScholarshipsByCourse(course: string) {
+    const db = getDatabase();
+    // Use LIKE to match the course within the course_stream JSON or text
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE course_stream LIKE ?').all(`%${course}%`);
+    db.close();
+    return scholarships.map(parseScholarship);
+}
+
+// Get predefined list of high-value courses for SEO
+export function getMajorCourses() {
+    return [
+        { name: 'Engineering', slug: 'engineering' },
+        { name: 'Medical', slug: 'medical' },
+        { name: 'Commerce', slug: 'commerce' },
+        { name: 'Science', slug: 'science' },
+        { name: 'Arts', slug: 'arts' },
+        { name: 'Nursing', slug: 'nursing' },
+        { name: 'Pharmacy', slug: 'pharmacy' },
+        { name: 'Agriculture', slug: 'agriculture' },
+        { name: 'Law', slug: 'law' },
+        { name: 'Management', slug: 'management' },
+    ];
+}
+
+// Helper to parse JSON fields
+function parseScholarship(row: any) {
+    return {
+        ...row,
+        caste: tryParseJSON(row.caste, []),
+        course_stream: tryParseJSON(row.course_stream, []),
+        docs_needed: tryParseJSON(row.docs_needed, []),
+        keywords: tryParseJSON(row.keywords, []),
+        faq_json: tryParseJSON(row.faq_json, []),
+    };
+}
+
+function tryParseJSON(value: string, fallback: any) {
+    try {
+        return JSON.parse(value);
+    } catch {
+        return fallback;
+    }
+}
