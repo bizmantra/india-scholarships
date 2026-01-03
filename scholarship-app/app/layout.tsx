@@ -1,4 +1,5 @@
 import { Inter, Lora } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
 
 const inter = Inter({
