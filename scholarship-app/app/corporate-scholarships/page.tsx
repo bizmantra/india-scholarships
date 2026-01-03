@@ -1,6 +1,5 @@
 import { getDatabase } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
-import ResultsHeader from '@/app/components/ResultsHeader';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -64,11 +63,12 @@ export default async function CorporateScholarshipsPage() {
 
             {/* Main Content */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <ResultsHeader
-                    title="Corporate CSR Scholarships"
-                    count={parsedScholarships.length}
-                    description="Scholarships funded by corporate social responsibility (CSR) programs. These combine merit and need-based criteria to support deserving students."
-                />
+                {/* Page Header */}
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Corporate CSR Scholarships</h1>
+                    <p className="text-gray-600">Scholarships funded by corporate social responsibility (CSR) programs. These combine merit and need-based criteria to support deserving students.</p>
+                    <p className="text-sm text-gray-500 mt-2">{parsedScholarships.length} scholarships found</p>
+                </div>
 
                 {/* Info Banner */}
                 <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
