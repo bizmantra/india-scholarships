@@ -7,15 +7,16 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
-                        <div className="flex flex-col gap-4 mb-6">
-                            <div className="relative w-40 h-40 overflow-hidden rounded-xl bg-white/10 p-2">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="relative w-12 h-12 overflow-hidden rounded-xl bg-white/10 p-1">
                                 <Image
-                                    src="/logo/logo.png"
-                                    alt="IndiaScholarships Logo"
+                                    src="/logo/logo-is.png"
+                                    alt="IS"
                                     fill
-                                    className="object-contain"
+                                    className="object-cover"
                                 />
                             </div>
+                            <h3 className="text-white font-bold text-xl font-serif">IndiaScholarships</h3>
                         </div>
                         <p className="text-sm leading-relaxed">
                             Empowering Indian students with verified scholarship information.

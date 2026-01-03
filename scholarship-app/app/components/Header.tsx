@@ -11,18 +11,21 @@ export default function Header() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
-            <div className="container mx-auto flex h-44 items-center justify-between px-4">
+            <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <div className="flex items-center gap-8">
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="relative w-40 h-40 overflow-hidden rounded-lg">
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-sm group-hover:shadow-md transition-shadow">
                             <Image
-                                src="/logo/logo.png"
-                                alt="IndiaScholarships Logo"
+                                src="/logo/logo-is.png"
+                                alt="IS"
                                 fill
-                                className="object-contain"
+                                className="object-cover"
                                 priority
                             />
                         </div>
+                        <span className="text-xl font-black tracking-tight text-blue-700 font-serif group-hover:text-blue-800 transition-colors">
+                            IndiaScholarships
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
