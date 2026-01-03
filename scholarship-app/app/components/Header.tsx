@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Header() {
@@ -10,10 +11,18 @@ export default function Header() {
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4">
+            <div className="container mx-auto flex h-44 items-center justify-between px-4">
                 <div className="flex items-center gap-8">
-                    <Link href="/" className="text-2xl font-black tracking-tight text-blue-700 font-serif">
-                        IndiaScholarships
+                    <Link href="/" className="flex items-center gap-2 group">
+                        <div className="relative w-40 h-40 overflow-hidden rounded-lg">
+                            <Image
+                                src="/logo/logo.png"
+                                alt="IndiaScholarships Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </div>
                     </Link>
 
                     {/* Desktop Navigation */}

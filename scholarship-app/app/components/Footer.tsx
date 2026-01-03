@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
     return (
@@ -6,7 +7,16 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
-                        <h3 className="text-white font-bold text-lg mb-4 font-serif">IndiaScholarships</h3>
+                        <div className="flex flex-col gap-4 mb-6">
+                            <div className="relative w-40 h-40 overflow-hidden rounded-xl bg-white/10 p-2">
+                                <Image
+                                    src="/logo/logo.png"
+                                    alt="IndiaScholarships Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
                         <p className="text-sm leading-relaxed">
                             Empowering Indian students with verified scholarship information.
                         </p>
