@@ -473,7 +473,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     </div>
                     <ul className="space-y-2 text-sm">
                         <li>
-                            <Link href="/government-scholarships" className="text-blue-700 hover:underline">
+                            <Link href={`/${scholarship.provider_type.toLowerCase()}-scholarships`} className="text-blue-700 hover:underline">
                                 Other scholarships by {scholarship.provider_type}
                             </Link>
                         </li>
