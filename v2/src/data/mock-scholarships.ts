@@ -1,0 +1,40 @@
+import { Scholarship } from "@/types/scholarship";
+
+export const MOCK_SCHOLARSHIPS: Scholarship[] = [
+    {
+        sc_id: "sc_001",
+        sc_title: "Karnataka Post-Matric SC Scholarship",
+        sc_slug: "karnataka-postmatric-sc",
+        sc_provider: "Government of Karnataka - Dept of Social Welfare",
+        sc_provider_type: "State Government",
+        sc_state: "Karnataka",
+        sc_caste: ["SC"],
+        sc_gender: "All",
+        sc_education_level: "Post-Matric",
+        sc_course_stream: ["All courses after Class 10"],
+        sc_amount_annual: 12000,
+        sc_amount_min: 1000,
+        sc_amount_description: "₹1,000-12,000 based on course: Engineering ₹12K, General ₹5K, Diploma ₹3K",
+        sc_income_limit: 250000,
+        sc_marks_minimum: "50%",
+        sc_age_limit: "No age limit",
+        sc_special_conditions: "75% attendance required, Karnataka domicile",
+        sc_residency_requirement: "Karnataka resident for 10+ years",
+        sc_documents_required: ["Aadhaar", "SC Certificate", "Income Certificate", "Marksheet", "Bank Details"],
+        sc_application_mode: "Online",
+        sc_application_url: "https://ssp.postmatric.karnataka.gov.in",
+        sc_deadline: "2025-09-30",
+        sc_deadline_description: "Usually September - check portal regularly",
+        sc_step_guide: "1. Register on SSP 2. Fill form 3. Upload docs 4. Submit",
+        sc_selection_criteria: "Need-based, eligibility verification, first-come-first-served",
+        sc_total_awards: "12000+",
+        sc_renewal: "Yes, renewable annually for course duration",
+        sc_disbursement: "Annual, DBT to bank account",
+        sc_difficulty_level: "Medium",
+        sc_helpline: "080-22100000, postmatric@karnataka.gov.in",
+        sc_last_verified: "2025-12-28",
+        sc_official_source: "https://sswelfare.karnataka.gov.in",
+        sc_notes_actions: "Portal opens August, apply early",
+        sc_keywords: ["karnataka", "sc", "scholarship", "postmatric", "engineering", "degree"]
+    }
+];

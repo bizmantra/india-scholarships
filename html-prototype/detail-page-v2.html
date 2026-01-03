@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Matric Scholarship for SC/ST Students - Scholarly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #ffffff;
+            color: #111827;
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .breadcrumb a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #1d4ed8;
+        }
+
+        .breadcrumb-separator {
+            color: #d1d5db;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-left {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            flex: 1;
+        }
+
+        .scholarship-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .verified-badge {
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Key Info Pills */
+        .key-info-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid;
+        }
+
+        .pill svg {
+            flex-shrink: 0;
+        }
+
+        .pill-amount {
+            background: #fff7ed;
+            border-color: #fed7aa;
+            color: #c2410c;
+        }
+
+        .pill-deadline {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: #dc2626;
+        }
+
+        .pill-mode {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #16a34a;
+        }
+
+        .pill-category {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #2563eb;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #6b7280;
+        }
+
+        .action-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+            color: #111827;
+        }
+
+        .action-btn.active {
+            background: #dbeafe;
+            border-color: #3b82f6;
+            color: #1d4ed8;
+        }
+
+        /* Collapsible Section */
+        .section {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        .section-header:hover {
+            background: #f9fafb;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .icon-blue {
+            background: #dbeafe;
+        }
+
+        .icon-green {
+            background: #d1fae5;
+        }
+
+        .icon-purple {
+            background: #e9d5ff;
+        }
+
+        .icon-orange {
+            background: #fed7aa;
+        }
+
+        .icon-red {
+            background: #fecaca;
+        }
+
+        .icon-indigo {
+            background: #e0e7ff;
+        }
+
+        .section-title {
+            flex: 1;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .section-arrow {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+            color: #6b7280;
+        }
+
+        .section.expanded .section-arrow {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .section.expanded .section-content {
+            max-height: 2000px;
+        }
+
+        .section-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Content Styles */
+        .info-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .info-row {
+            display: flex;
+            font-size: 0.9375rem;
+        }
+
+        .info-label {
+            width: 180px;
+            color: #6b7280;
+            flex-shrink: 0;
+        }
+
+        .info-value {
+            flex: 1;
+            color: #111827;
+            font-weight: 500;
+        }
+
+        .info-value a {
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .subsection {
+            margin-bottom: 1.5rem;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.75rem;
+        }
+
+        .text-content {
+            color: #374151;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        .text-content p {
+            margin-bottom: 0.75rem;
+        }
+
+        .text-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .text-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question:hover {
+            background: #f9fafb;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.expanded .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1rem 1rem;
+            color: #374151;
+            font-size: 0.9375rem;
+        }
+
+        /* Sticky Bottom CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem;
+            z-index: 40;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .sticky-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cta-btn {
+            flex: 1;
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .cta-active {
+            background: #16a34a;
+            color: white;
+        }
+
+        .cta-active:hover {
+            background: #15803d;
+        }
+
+        .cta-closed {
+            background: #f97316;
+            color: white;
+        }
+
+        .cta-closed:hover {
+            background: #ea580c;
+        }
+
+        .cta-soon {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .cta-soon:hover {
+            background: #2563eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header-top {
+                flex-direction: column;
+            }
+
+            .header-left {
+                width: 100%;
+            }
+
+            .scholarship-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .subtitle {
+                font-size: 0.875rem;
+            }
+
+            .verified-badge {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            .key-info-pills {
+                gap: 0.5rem;
+            }
+
+            .pill {
+                font-size: 0.8125rem;
+                padding: 0.4rem 0.75rem;
+            }
+
+            .pill svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            .action-buttons {
+                width: 100%;
+            }
+
+            .action-btn {
+                flex: 1;
+            }
+
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-label {
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+
+            .section-header {
+                padding: 1rem;
+            }
+
+            .section-body {
+                padding: 0 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">Scholarly</a>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="#">Home</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="#">Scholarships</a>
+        <span class="breadcrumb-separator">›</span>
+        <span>Post Matric Scholarship</span>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="header-top">
+                <div class="header-left">
+                    <div class="scholarship-icon">🎓</div>
+                    <div class="header-text">
+                        <h1>Post Matric Scholarship for SC/ST Students</h1>
+                        <p class="subtitle">Ministry of Social Justice and Empowerment, Government of India</p>
+                    </div>
+                </div>
+                <div class="verified-badge" title="Verified scholarship">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="#10b981" />
+                        <path d="M9 12l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Key Info Pills -->
+            <div class="key-info-pills">
+                <div class="pill pill-amount">
+                    <span style="font-weight: 600;">₹</span>
+                    <span>₹12,000 - ₹50,000</span>
+                </div>
+                <div class="pill pill-deadline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>Deadline: 31st October 2024</span>
+                </div>
+                <div class="pill pill-mode">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <span>Online</span>
+                </div>
+                <div class="pill pill-category">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>SC, ST</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn" id="bookmarkBtn" title="Bookmark this scholarship">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+                <button class="action-btn" id="shareBtn2" title="Share">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 1: About this Scholarship -->
+        <div class="section expanded">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-blue">📖</div>
+                <div class="section-title">About this Scholarship</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="text-content">
+                        <p>The Post Matric Scholarship for SC/ST Students is a flagship scheme by the Ministry of Social
+                            Justice and Empowerment, Government of India. This scholarship aims to provide financial
+                            assistance to students belonging to Scheduled Caste (SC) and Scheduled Tribe (ST) categories
+                            for pursuing post-matriculation or post-secondary education.</p>
+                        <p>The scheme covers a wide range of courses from Class 11 to post-doctoral research, helping
+                            students from economically weaker sections access quality education without financial
+                            constraints. The scholarship provides support for tuition fees, maintenance allowance, and
+                            other educational expenses.</p>
+                        <p>This is a centrally sponsored scheme implemented through state governments and union
+                            territory administrations, ensuring wide reach and accessibility across India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Quick Facts -->
+        <div class="section expanded">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-blue">📊</div>
+                <div class="section-title">Quick Facts</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <div class="info-label">Provider:</div>
+                            <div class="info-value">Ministry of Social Justice and Empowerment</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Provider Type:</div>
+                            <div class="info-value">Central Government</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Education Level:</div>
+                            <div class="info-value">Post Matric (Class 11 and above)</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Category:</div>
+                            <div class="info-value">SC, ST</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Gender:</div>
+                            <div class="info-value">All</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Applicable State:</div>
+                            <div class="info-value">Karnataka</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Income Limit:</div>
+                            <div class="info-value">₹2.5 Lakh/year</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Scholarship Type:</div>
+                            <div class="info-value">Merit-cum-Means</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Application Mode:</div>
+                            <div class="info-value">Online</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Official Source:</div>
+                            <div class="info-value">
+                                <a href="https://scholarships.gov.in" target="_blank">National Scholarship Portal ↗</a>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Last Verified:</div>
+                            <div class="info-value">28 December 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Benefits & Amount -->
+        <div class="section expanded">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-green">💰</div>
+                <div class="section-title">Benefits & Amount</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="subsection">
+                        <div class="subsection-title">Scholarship Amount</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Annual Amount:</div>
+                                <div class="info-value">₹12,000 - ₹50,000</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Type of Support:</div>
+                                <div class="info-value">Recurring (Annual)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">What's Covered</div>
+                        <div class="text-content">
+                            <ul>
+                                <li>Tuition fees (up to ₹50,000 per year)</li>
+                                <li>Maintenance allowance (₹12,000 per year for day scholars)</li>
+                                <li>Book allowance (₹3,000 per year)</li>
+                                <li>Study tour expenses (actual, up to ₹1,500)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Eligibility Criteria -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-purple">✅</div>
+                <div class="section-title">Eligibility Criteria</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="subsection">
+                        <div class="subsection-title">Category & Residency</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Eligible Category:</div>
+                                <div class="info-value">SC, ST</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Domicile Requirement:</div>
+                                <div class="info-value">Resident of Karnataka</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">Education</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Minimum Qualification:</div>
+                                <div class="info-value">Class 10 passed with 50% marks</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Applicable Courses:</div>
+                                <div class="info-value">All streams (Arts, Science, Commerce, Engineering, Medical,
+                                    etc.)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">Income</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Annual Family Income:</div>
+                                <div class="info-value">Less than ₹2.5 Lakh per year</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Application Process -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-orange">📝</div>
+                <div class="section-title">Application Process</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="subsection">
+                        <div class="subsection-title">How to Apply</div>
+                        <div class="text-content">
+                            <p>Applications are accepted online through the National Scholarship Portal (NSP).</p>
+                            <ol style="padding-left: 1.5rem; margin-bottom: 0.75rem;">
+                                <li style="margin-bottom: 0.5rem;">Visit the National Scholarship Portal at
+                                    scholarships.gov.in</li>
+                                <li style="margin-bottom: 0.5rem;">Register as a new applicant or login with existing
+                                    credentials</li>
+                                <li style="margin-bottom: 0.5rem;">Fill in the application form with accurate details
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">Upload required documents (see Required Documents
+                                    section)</li>
+                                <li style="margin-bottom: 0.5rem;">Submit the application and note down the application
+                                    ID</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Required Documents -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-purple">📄</div>
+                <div class="section-title">Required Documents</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="text-content">
+                        <ul>
+                            <li>Aadhaar card</li>
+                            <li>Caste certificate (SC/ST)</li>
+                            <li>Income certificate (issued within last 6 months)</li>
+                            <li>Previous year mark sheet</li>
+                            <li>Current year admission proof</li>
+                            <li>Bank account details (passbook copy)</li>
+                            <li>Passport size photograph</li>
+                            <li>Bonafide certificate from institution</li>
+                            <li>Fee receipt from institution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Selection & Renewal -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-indigo">🎯</div>
+                <div class="section-title">Selection & Renewal</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="subsection">
+                        <div class="subsection-title">Selection Criteria</div>
+                        <div class="text-content">
+                            <p>Merit-cum-Means based selection. Students are selected based on their academic
+                                performance and family income. Priority is given to students with higher marks and lower
+                                family income.</p>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">Total Awards</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Available Scholarships:</div>
+                                <div class="info-value">No fixed limit (subject to budget allocation)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">Renewal Information</div>
+                        <div class="text-content">
+                            <p>The scholarship is renewable every year subject to satisfactory academic performance
+                                (minimum 50% marks) and continued eligibility. Students must reapply each academic year
+                                through the NSP portal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Important Dates -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-red">📅</div>
+                <div class="section-title">Important Dates</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <div class="info-label">Application Start:</div>
+                            <div class="info-value">1 August 2024</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Application Deadline:</div>
+                            <div class="info-value">31 October 2024</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Verification Period:</div>
+                            <div class="info-value">November - December 2024</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Disbursement:</div>
+                            <div class="info-value">January 2025 onwards</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: FAQ -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-blue">❓</div>
+                <div class="section-title">Frequently Asked Questions</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Can I apply if I'm studying outside Karnataka?</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes, you can apply as long as you are a domicile of Karnataka. The scholarship is
+                                available for students studying anywhere in India.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is this scholarship renewable every year?</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Yes, the scholarship is renewable every year subject to satisfactory academic
+                                performance and continued eligibility.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What if my family income exceeds ₹2.5 Lakh?</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                Unfortunately, you will not be eligible for this scholarship. However, you may explore
+                                other merit-based scholarships that don't have income restrictions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: Trust & Verification -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-green">✓</div>
+                <div class="section-title">Trust & Verification</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="subsection">
+                        <div class="subsection-title">Data Verification</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Last Verified:</div>
+                                <div class="info-value">28 December 2024</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Source:</div>
+                                <div class="info-value">National Scholarship Portal (scholarships.gov.in)</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Verification Method:</div>
+                                <div class="info-value">Cross-checked with official government notifications</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subsection">
+                        <div class="subsection-title">Official Contact</div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <div class="info-label">Helpline:</div>
+                                <div class="info-value">0120-6619540 (NSP Helpdesk)</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Email:</div>
+                                <div class="info-value">helpdesk@nsp.gov.in</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11: Similar Scholarships -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-indigo">🔗</div>
+                <div class="section-title">Similar Scholarships</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="text-content">
+                        <ul>
+                            <li><a href="/government-scholarships" class="text-blue-700 hover:underline">Other
+                                    scholarships by Central Government</a></li>
+                            <li><a href="/scholarships-level/post-matric"
+                                    class="text-blue-700 hover:underline">Scholarships for Post-Matric students</a></li>
+                            <li><a href="/scholarships-for/sc" class="text-blue-700 hover:underline">Scholarships for SC
+                                    category</a></li>
+                            <li><a href="/scholarships-in/karnataka" class="text-blue-700 hover:underline">Scholarships
+                                    in Karnataka</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 12: Disclaimer -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-red">⚠️</div>
+                <div class="section-title">Disclaimer</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="text-content">
+                        <p>Scholarship details are based on publicly available information from official government
+                            sources. Eligibility criteria, benefits, deadlines, and other details may change as per
+                            official notifications from the Ministry of Social Justice and Empowerment or state
+                            governments.</p>
+                        <p>Applicants are strongly advised to verify all information on the official National
+                            Scholarship Portal (scholarships.gov.in) before applying. Scholarly is not responsible for
+                            any changes in scholarship terms or application procedures.</p>
+                        <p>This information is provided for educational purposes only and does not constitute official
+                            scholarship guidelines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13: Related Resources -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-icon icon-purple">📚</div>
+                <div class="section-title">Related Resources</div>
+                <svg class="section-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+            <div class="section-content">
+                <div class="section-body">
+                    <div class="text-content">
+                        <ul>
+                            <li><a href="#">Official Scholarship Guidelines (PDF)</a></li>
+                            <li><a href="#">NSP User Manual</a></li>
+                            <li><a href="#">How to Apply Video Tutorial</a></li>
+                            <li><a href="#">Contact Helpdesk</a></li>
+                            <li><a href="#">All Karnataka Scholarships</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Bottom CTA -->
+    <div class="sticky-cta">
+        <div class="sticky-cta-content">
+            <a href="https://scholarships.gov.in" target="_blank" class="cta-btn cta-active" id="ctaBtn">Apply Now</a>
+            <!-- Alternative state for closed applications:
+            <button class="cta-btn cta-closed" id="ctaBtn">Application Closed - Get Notified</button>
+            -->
+        </div>
+    </div>
+
+    <script>
+        // Toggle section expand/collapse
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('expanded');
+        }
+
+        // Toggle FAQ expand/collapse
+        function toggleFAQ(question) {
+            const faqItem = question.parentElement;
+            faqItem.classList.toggle('expanded');
+        }
+
+        // Copy link functionality (removed old copyBtn, now using bookmark/share)
+
+        // Bookmark functionality
+        document.getElementById('bookmarkBtn').addEventListener('click', function () {
+            this.classList.toggle('active');
+            // In production, this would save to localStorage or backend
+        });
+
+        // Share functionality
+        document.getElementById('shareBtn2').addEventListener('click', function () {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Post Matric Scholarship for SC/ST Students',
+                    text: 'Check out this scholarship opportunity',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

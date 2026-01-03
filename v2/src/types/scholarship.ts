@@ -1,0 +1,36 @@
+export interface Scholarship {
+    sc_id: string;
+    sc_title: string;
+    sc_slug: string;
+    sc_provider: string;
+    sc_provider_type: "State Government" | "Central Government" | "Private" | "Corporate";
+    sc_state: string;
+    sc_caste: string[];
+    sc_gender: "Male" | "Female" | "All";
+    sc_education_level: string;
+    sc_course_stream: string[];
+    sc_amount_annual: number;
+    sc_amount_min?: number;
+    sc_amount_description: string;
+    sc_income_limit: number;
+    sc_marks_minimum: string;
+    sc_age_limit: string;
+    sc_special_conditions: string;
+    sc_residency_requirement: string;
+    sc_documents_required: string[];
+    sc_application_mode: "Online" | "Offline" | "Both";
+    sc_application_url: string;
+    sc_deadline: string | null;
+    sc_deadline_description: string;
+    sc_step_guide: string;
+    sc_selection_criteria: string;
+    sc_total_awards: string;
+    sc_renewal: string;
+    sc_disbursement: string;
+    sc_difficulty_level: "Easy" | "Medium" | "Hard";
+    sc_helpline: string;
+    sc_last_verified: string;
+    sc_official_source: string;
+    sc_notes_actions: string;
+    sc_keywords: string[];
+}
