@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Search, CheckCircle2, ArrowRight, MapPin, Users, GraduationCap, IndianRupee, Target, ChevronDown } from 'lucide-react';
+import { Search, CheckCircle2, ArrowRight, MapPin, Users, GraduationCap, IndianRupee, Target, ChevronDown, Globe, ShieldCheck } from 'lucide-react';
 import ScholarshipCard from './components/ScholarshipCard';
 import ResultsHeader from './components/ResultsHeader';
 import Footer from './components/Footer';
@@ -189,6 +189,95 @@ export default function HomeClient({ scholarships }: HomeClientProps) {
                 </div>
             </section>
 
+            {/* Quick Browse Tiles */}
+            <section className="py-20 container mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-black mb-3 font-serif tracking-tight text-gray-900">Browse Scholarships</h2>
+                    <p className="text-gray-500 text-sm font-medium">Find opportunities that match your profile</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                    {[
+                        {
+                            icon: MapPin,
+                            title: 'By State',
+                            description: 'Find scholarships in your state',
+                            href: '/state-scholarships',
+                            color: 'blue',
+                            count: stats.totalStates
+                        },
+                        {
+                            icon: Globe,
+                            title: 'Government Scholarships',
+                            description: 'State & National level schemes',
+                            href: '/government-scholarships',
+                            color: 'emerald',
+                            count: null
+                        },
+                        {
+                            icon: Users,
+                            title: 'By Category',
+                            description: 'SC, ST, OBC, General & more',
+                            href: '/scholarships-by-category',
+                            color: 'purple',
+                            count: null
+                        },
+                        {
+                            icon: ShieldCheck,
+                            title: 'Private Scholarships',
+                            description: 'Foundation & NGO programs',
+                            href: '/private-scholarships',
+                            color: 'indigo',
+                            count: null
+                        },
+                        {
+                            icon: GraduationCap,
+                            title: 'By Education Level',
+                            description: 'School, UG, PG, PhD',
+                            href: '/scholarships-by-education',
+                            color: 'green',
+                            count: null
+                        },
+                        {
+                            icon: IndianRupee,
+                            title: 'By Income',
+                            description: 'Based on family income',
+                            href: '/scholarships-by-income',
+                            color: 'orange',
+                            count: null
+                        }
+                    ].map((tile, i) => {
+                        const Icon = tile.icon;
+                        const colorClasses = {
+                            blue: 'bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100',
+                            emerald: 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100',
+                            purple: 'bg-purple-50 text-purple-700 hover:bg-purple-100 border-purple-100',
+                            indigo: 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-indigo-100',
+                            green: 'bg-green-50 text-green-700 hover:bg-green-100 border-green-100',
+                            orange: 'bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100'
+                        };
+
+                        return (
+                            <Link
+                                key={i}
+                                href={tile.href}
+                                className={`group p-8 border-2 rounded-3xl transition-all hover:-translate-y-1 hover:shadow-xl ${colorClasses[tile.color as keyof typeof colorClasses]}`}
+                            >
+                                <div className="flex flex-col h-full">
+                                    <Icon className="h-10 w-10 mb-4" />
+                                    <h3 className="text-xl font-bold mb-2">{tile.title}</h3>
+                                    <p className="text-sm opacity-80 mb-4 flex-grow">{tile.description}</p>
+                                    {tile.count && (
+                                        <p className="text-xs font-bold opacity-60">{tile.count} states covered</p>
+                                    )}
+                                    <ArrowRight className="h-5 w-5 mt-4 group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </Link>
+                        );
+                    })}
+                </div>
+            </section>
+
             {/* Eligibility Checker CTA */}
             <section className="py-16 bg-gradient-to-br from-blue-600 to-blue-800">
                 <div className="container mx-auto px-4 text-center">
@@ -212,77 +301,6 @@ export default function HomeClient({ scholarships }: HomeClientProps) {
                             Based on 12 criteria including income, caste, state, marks, and more
                         </p>
                     </div>
-                </div>
-            </section>
-
-            {/* Quick Browse Tiles */}
-            <section className="py-20 container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-black mb-3 font-serif tracking-tight text-gray-900">Browse Scholarships</h2>
-                    <p className="text-gray-500 text-sm font-medium">Find opportunities that match your profile</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-                    {[
-                        {
-                            icon: MapPin,
-                            title: 'By State',
-                            description: 'Find scholarships in your state',
-                            href: '/state-scholarships',
-                            color: 'blue',
-                            count: stats.totalStates
-                        },
-                        {
-                            icon: Users,
-                            title: 'By Category',
-                            description: 'SC, ST, OBC, General & more',
-                            href: '/scholarships-by-category',
-                            color: 'purple',
-                            count: null
-                        },
-                        {
-                            icon: GraduationCap,
-                            title: 'By Education Level',
-                            description: 'School, UG, PG, PhD',
-                            href: '/scholarships-by-education',
-                            color: 'green',
-                            count: null
-                        },
-                        {
-                            icon: IndianRupee,
-                            title: 'By Income',
-                            description: 'Based on family income',
-                            href: '/scholarships-by-income',
-                            color: 'orange',
-                            count: null
-                        }
-                    ].map((tile, i) => {
-                        const Icon = tile.icon;
-                        const colorClasses = {
-                            blue: 'bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100',
-                            purple: 'bg-purple-50 text-purple-700 hover:bg-purple-100 border-purple-100',
-                            green: 'bg-green-50 text-green-700 hover:bg-green-100 border-green-100',
-                            orange: 'bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100'
-                        };
-
-                        return (
-                            <Link
-                                key={i}
-                                href={tile.href}
-                                className={`group p-8 border-2 rounded-3xl transition-all hover:-translate-y-1 hover:shadow-xl ${colorClasses[tile.color as keyof typeof colorClasses]}`}
-                            >
-                                <div className="flex flex-col h-full">
-                                    <Icon className="h-10 w-10 mb-4" />
-                                    <h3 className="text-xl font-bold mb-2">{tile.title}</h3>
-                                    <p className="text-sm opacity-80 mb-4 flex-grow">{tile.description}</p>
-                                    {tile.count && (
-                                        <p className="text-xs font-bold opacity-60">{tile.count} states covered</p>
-                                    )}
-                                    <ArrowRight className="h-5 w-5 mt-4 group-hover:translate-x-1 transition-transform" />
-                                </div>
-                            </Link>
-                        );
-                    })}
                 </div>
             </section>
 
