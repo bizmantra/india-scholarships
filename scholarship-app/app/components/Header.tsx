@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Header() {
     const [showScholarshipsDropdown, setShowScholarshipsDropdown] = useState(false);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
@@ -14,6 +15,8 @@ export default function Header() {
                     <Link href="/" className="text-2xl font-black tracking-tight text-blue-700 font-serif">
                         IndiaScholarships
                     </Link>
+
+                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
                         {/* Find Scholarships Dropdown */}
                         <div
@@ -21,7 +24,10 @@ export default function Header() {
                             onMouseEnter={() => setShowScholarshipsDropdown(true)}
                             onMouseLeave={() => setShowScholarshipsDropdown(false)}
                         >
-                            <button className="flex items-center gap-1 transition-colors hover:text-blue-700">
+                            <button
+                                className="flex items-center gap-1 transition-colors hover:text-blue-700"
+                                onClick={() => setShowScholarshipsDropdown(!showScholarshipsDropdown)}
+                            >
                                 Find Scholarships
                                 <ChevronDown className="h-4 w-4" />
                             </button>
@@ -62,7 +68,93 @@ export default function Header() {
                         </Link>
                     </nav>
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden p-2"
+                    onClick={() => setShowMobileMenu(!showMobileMenu)}
+                    aria-label="Toggle menu"
+                >
+                    {showMobileMenu ? (
+                        <X className="h-6 w-6 text-gray-700" />
+                    ) : (
+                        <Menu className="h-6 w-6 text-gray-700" />
+                    )}
+                </button>
             </div>
+
+            {/* Mobile Navigation */}
+            {showMobileMenu && (
+                <div className="md:hidden border-t bg-white">
+                    <nav className="container mx-auto px-4 py-4 space-y-2">
+                        <Link
+                            href="/state-scholarships"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            By State
+                        </Link>
+                        <Link
+                            href="/scholarships-by-category"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            By Category
+                        </Link>
+                        <Link
+                            href="/scholarships-by-education"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            By Education Level
+                        </Link>
+                        <Link
+                            href="/scholarships-by-income"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            By Income
+                        </Link>
+                        <div className="border-t border-gray-200 my-2"></div>
+                        <Link
+                            href="/government-scholarships"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            Government Scholarships
+                        </Link>
+                        <Link
+                            href="/private-scholarships"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            Private Scholarships
+                        </Link>
+                        <Link
+                            href="/corporate-scholarships"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            Corporate Scholarships
+                        </Link>
+                        <div className="border-t border-gray-200 my-2"></div>
+                        <Link
+                            href="/eligibility-checker"
+                            className="block py-2 text-sm font-semibold hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            Check Eligibility
+                        </Link>
+                        <Link
+                            href="/guides"
+                            className="block py-2 text-sm hover:text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            Guides
+                        </Link>
+                    </nav>
+                </div>
+            )}
         </header>
     );
 }
