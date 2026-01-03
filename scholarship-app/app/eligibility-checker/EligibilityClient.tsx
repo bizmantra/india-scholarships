@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { getDatabase } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
-import { Search, Filter, CheckCircle2 } from 'lucide-react';
+import { Search, CheckCircle2 } from 'lucide-react';
 
 interface FormData {
     state: string;
@@ -13,7 +12,11 @@ interface FormData {
     marks: string;
 }
 
-export default function EligibilityCheckerClient() {
+interface Props {
+    scholarships: any[];
+}
+
+export default function EligibilityCheckerClient({ scholarships }: Props) {
     const [formData, setFormData] = useState<FormData>({
         state: '',
         category: '',
@@ -30,21 +33,48 @@ export default function EligibilityCheckerClient() {
         e.preventDefault();
         setLoading(true);
 
-        try {
-            const response = await fetch('/api/check-eligibility', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
+        // Client-side filtering
+        let filtered = scholarships;
 
-            const data = await response.json();
-            setResults(data.scholarships);
-            setShowResults(true);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            setLoading(false);
+        // Filter by state
+        if (formData.state && formData.state !== 'All India') {
+            filtered = filtered.filter(s =>
+                s.state === formData.state || s.state === 'All India'
+            );
         }
+
+        // Filter by income
+        if (formData.income) {
+            const incomeValue = parseInt(formData.income);
+            filtered = filtered.filter(s =>
+                !s.income_limit || s.income_limit >= incomeValue
+            );
+        }
+
+        // Filter by marks
+        if (formData.marks) {
+            const marksValue = parseInt(formData.marks);
+            filtered = filtered.filter(s =>
+                !s.min_marks || s.min_marks <= marksValue
+            );
+        }
+
+        // Filter by education level
+        if (formData.level) {
+            filtered = filtered.filter(s => s.level === formData.level);
+        }
+
+        // Filter by category
+        if (formData.category) {
+            filtered = filtered.filter(s => {
+                const castes = s.caste || [];
+                return castes.includes(formData.category) || castes.includes('All');
+            });
+        }
+
+        setResults(filtered);
+        setShowResults(true);
+        setLoading(false);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
