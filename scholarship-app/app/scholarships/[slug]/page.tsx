@@ -2,7 +2,24 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getScholarshipBySlug } from '@/lib/db';
-import { ExternalLink, ChevronRight, CheckCircle, FileText, Users, Calendar, Shield } from 'lucide-react';
+import {
+    Calendar,
+    MapPin,
+    Users,
+    IndianRupee,
+    Globe,
+    CheckCircle2,
+    ExternalLink,
+    ChevronRight,
+    Info,
+    ShieldCheck,
+    Clock,
+    Award,
+    MousePointer2,
+    RefreshCcw,
+    CreditCard,
+    ArrowLeft
+} from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
@@ -48,7 +65,64 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     // Format amount
     const formatAmount = (amount: number | null) => {
         if (!amount) return 'Not specified';
-        return `₹${amount.toLocaleString('en-IN')}`;
+        if (amount >= 100000) return `₹${(amount / 100000).toFixed(1)} Lakh+`;
+        if (amount >= 1000) return `₹${(amount / 1000).toFixed(0)}k+`;
+        return `₹${amount}`;
+    };
+
+    const FormattedText = ({ text, type = 'list' }: { text: string | null, type?: 'list' | 'steps' }) => {
+        if (!text) return <p className="text-gray-400 italic">Not specified</p>;
+
+        let items: string[] = [];
+
+        if (type === 'steps' || /Step \d+:/i.test(text)) {
+            // Handle "Step 1: ... Step 2: ..." format
+            items = text.split(/Step \d+:/i).filter(s => s.trim());
+        } else {
+            // Split by sentences or common list pattern
+            // We split by dots followed by space and capital, or by labels like "Verification:", or by ";"
+            items = text
+                .split(/\.\s+(?=[A-Z])|(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
+                .map(s => s.trim())
+                .filter(s => s.length > 0 && !s.match(/^(Selection based on|Renewal conditions):$/i));
+        }
+
+        if (items.length <= 1) {
+            return <p className="text-gray-700 leading-relaxed">{text}</p>;
+        }
+
+        return (
+            <ul className={`space-y-3 ${type === 'steps' ? 'list-none' : 'list-none'}`}>
+                {items.map((item, i) => (
+                    <li key={i} className="text-gray-700 leading-relaxed">
+                        {type === 'steps' ? (
+                            <div className="flex gap-4">
+                                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
+                                    {i + 1}
+                                </span>
+                                <div className="flex-1 pt-1">
+                                    {item.includes(':') ? (
+                                        <>
+                                            <span className="font-bold text-blue-900 border-b border-blue-100 mr-2">
+                                                {item.split(':')[0]}
+                                            </span>
+                                            <p className="mt-1 text-gray-600">{item.split(':').slice(1).join(':').trim()}</p>
+                                        </>
+                                    ) : (
+                                        <p>{item.trim()}</p>
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="flex items-start gap-3">
+                                <div className="mt-1.5 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                                <p>{item.trim()}</p>
+                            </div>
+                        )}
+                    </li>
+                ))}
+            </ul>
+        );
     };
 
     return (
@@ -117,7 +191,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </div>
                         <div className="prose max-w-none text-gray-700 leading-relaxed">
                             <p>{scholarship.intro_seo}</p>
-                            {scholarship.benefits && <p className="mt-4">{scholarship.benefits}</p>}
                         </div>
                     </section>
                 )}
@@ -184,7 +257,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 <section className="mb-8">
                     <div className="p-6 bg-green-50 border border-green-100 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
-                            <Shield className="h-6 w-6 text-green-600" />
+                            <ShieldCheck className="h-6 w-6 text-green-600" />
                             <div>
                                 <h3 className="text-sm font-bold text-gray-900">Verified Listing</h3>
                                 <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">
@@ -280,42 +353,54 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 <hr className="my-8 border-gray-200" />
 
                 {/* Benefits & Financial Support */}
-                <section className="mb-8">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-6 bg-orange-600 rounded-full"></div>
+                <section className="mb-8 p-6 bg-orange-50/50 rounded-2xl border border-orange-100">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-2 bg-orange-100 rounded-lg">
+                            <IndianRupee className="w-6 h-6 text-orange-600" />
+                        </div>
                         <h2 className="text-2xl font-bold text-gray-900">Benefits & Financial Support</h2>
                     </div>
-                    <div className="space-y-2 text-sm">
-                        <div className="flex">
-                            <span className="w-40 text-gray-600">Financial Support Type:</span>
-                            <span className="flex-1">{displayValue(scholarship.amount_description)}</span>
-                        </div>
-                        <div className="flex">
-                            <span className="w-40 text-gray-600">Amount Details:</span>
-                            <span className="flex-1">
-                                {scholarship.amount_min && scholarship.amount_annual
-                                    ? `₹${scholarship.amount_min.toLocaleString('en-IN')} - ₹${scholarship.amount_annual.toLocaleString('en-IN')}`
-                                    : formatAmount(scholarship.amount_annual)
-                                }
-                            </span>
-                        </div>
-                        {scholarship.benefits && (
-                            <div className="flex">
-                                <span className="w-40 text-gray-600">What You'll Receive:</span>
-                                <span className="flex-1">{scholarship.benefits}</span>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <div>
+                                <h3 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-tight">Scholarship Amount</h3>
+                                <p className="text-3xl font-black text-orange-600">
+                                    {scholarship.amount_min && scholarship.amount_annual
+                                        ? `₹${scholarship.amount_min.toLocaleString('en-IN')} - ₹${scholarship.amount_annual.toLocaleString('en-IN')}`
+                                        : formatAmount(scholarship.amount_annual)
+                                    }
+                                </p>
+                                <p className="text-sm text-gray-600 mt-1">{displayValue(scholarship.amount_description)}</p>
                             </div>
-                        )}
-                        <div className="flex">
-                            <span className="w-40 text-gray-600">Duration:</span>
-                            <span className="flex-1">{displayValue(scholarship.renewal)}</span>
+
+                            <div className="space-y-3">
+                                <div className="flex items-center gap-2 text-sm">
+                                    <Clock className="w-4 h-4 text-gray-400" />
+                                    <span className="text-gray-600">Duration:</span>
+                                    <span className="font-semibold text-gray-900">{displayValue(scholarship.renewal)}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-sm">
+                                    <CreditCard className="w-4 h-4 text-gray-400" />
+                                    <span className="text-gray-600">Payment:</span>
+                                    <span className="font-semibold text-gray-900">Direct Benefit Transfer (DBT)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex">
-                            <span className="w-40 text-gray-600">Disbursement Method:</span>
-                            <span className="flex-1">Not specified</span>
+
+                        <div className="bg-white p-5 rounded-xl border border-orange-100 shadow-sm">
+                            <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-tight flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                                What You'll Receive
+                            </h3>
+                            <div className="text-sm">
+                                <FormattedText text={scholarship.benefits} />
+                            </div>
                         </div>
                     </div>
-                    <p className="text-xs text-gray-600 mt-4 italic">
-                        Actual scholarship amount and disbursement are subject to government notifications and may vary by academic year.
+
+                    <p className="text-xs text-gray-500 mt-6 italic bg-white/50 p-2 rounded border border-orange-50 inline-block">
+                        * Actual scholarship amount and disbursement are subject to government notifications and budget availability.
                     </p>
                 </section>
 
@@ -323,15 +408,15 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
                 {/* Application Process */}
                 <section className="mb-8">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                            <MousePointer2 className="w-6 h-6 text-blue-600" />
+                        </div>
                         <h2 className="text-2xl font-bold text-gray-900">Application Process</h2>
                     </div>
-                    <ol className="space-y-2 text-sm list-decimal list-inside">
-                        {scholarship.step_guide.split(/\d\./).filter((s: string) => s.trim()).map((step: string, i: number) => (
-                            <li key={i}>{step.trim()}</li>
-                        ))}
-                    </ol>
+                    <div className="bg-blue-50/30 p-6 rounded-2xl border border-blue-100">
+                        <FormattedText text={scholarship.step_guide} type="steps" />
+                    </div>
                 </section>
 
                 <hr className="my-8 border-gray-200" />
@@ -352,24 +437,37 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 <hr className="my-8 border-gray-200" />
 
                 {/* Selection & Renewal */}
-                <section className="mb-8">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-6 bg-green-600 rounded-full"></div>
-                        <h2 className="text-2xl font-bold text-gray-900">Selection & Renewal</h2>
+                <section className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-6 bg-green-50/50 rounded-2xl border border-green-100">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-green-100 rounded-lg">
+                                <Award className="w-5 h-5 text-green-600" />
+                            </div>
+                            <h2 className="text-xl font-bold text-gray-900">Selection Criteria</h2>
+                        </div>
+                        <div className="text-sm">
+                            <FormattedText text={scholarship.selection} />
+                        </div>
+
+                        {scholarship.total_awards && (
+                            <div className="mt-8 pt-6 border-t border-green-100">
+                                <h3 className="text-sm font-black text-gray-900 mb-1 uppercase tracking-wider">Total Awards</h3>
+                                <p className="text-2xl font-black text-green-700">{scholarship.total_awards.toLocaleString('en-IN')} scholarships</p>
+                            </div>
+                        )}
                     </div>
 
-                    <h3 className="text-sm font-bold text-gray-900 mb-2">Selection Criteria</h3>
-                    <p className="text-sm mb-4">{displayValue(scholarship.selection)}</p>
-
-                    {scholarship.total_awards && (
-                        <>
-                            <h3 className="text-sm font-bold text-gray-900 mb-2">Total Awards</h3>
-                            <p className="text-sm mb-4">{scholarship.total_awards.toLocaleString('en-IN')} scholarships available</p>
-                        </>
-                    )}
-
-                    <h3 className="text-sm font-bold text-gray-900 mb-2">Renewal Information</h3>
-                    <p className="text-sm">{displayValue(scholarship.renewal)}</p>
+                    <div className="p-6 bg-purple-50/50 rounded-2xl border border-purple-100">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-purple-100 rounded-lg">
+                                <RefreshCcw className="w-5 h-5 text-purple-600" />
+                            </div>
+                            <h2 className="text-xl font-bold text-gray-900">Renewal Info</h2>
+                        </div>
+                        <div className="text-sm">
+                            <FormattedText text={scholarship.renewal} />
+                        </div>
+                    </div>
                 </section>
 
                 <hr className="my-8 border-gray-200" />
