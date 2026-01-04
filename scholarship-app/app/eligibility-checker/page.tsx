@@ -20,10 +20,20 @@ export default async function EligibilityCheckerPage() {
     `).all();
 
     // Parse caste JSON for each scholarship
-    const parsedScholarships = scholarships.map((s: any) => ({
-        ...s,
-        caste: JSON.parse(s.caste || '[]')
-    }));
+    const parsedScholarships = scholarships.map((s: any) => {
+        let caste = [];
+        try {
+            if (s.caste && typeof s.caste === 'string' && s.caste.trim()) {
+                caste = JSON.parse(s.caste);
+            }
+        } catch (e) {
+            console.error(`Error parsing caste for scholarship ${s.id}:`, e);
+        }
+        return {
+            ...s,
+            caste
+        };
+    });
 
     // Pass scholarships to client component
     return <EligibilityCheckerClient scholarships={parsedScholarships} />;

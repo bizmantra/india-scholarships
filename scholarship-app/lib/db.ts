@@ -426,7 +426,10 @@ function parseScholarship(row: any) {
     };
 }
 
-function tryParseJSON(value: string, fallback: any) {
+function tryParseJSON(value: any, fallback: any) {
+    if (!value || typeof value !== 'string' || value.trim() === '') {
+        return fallback;
+    }
     try {
         return JSON.parse(value);
     } catch {
