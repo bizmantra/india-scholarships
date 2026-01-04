@@ -166,7 +166,93 @@ export function getScholarshipsByCategory(category: string) {
     return scholarships.map(parseScholarship);
 }
 
-// Get all unique education levels
+// Canonical mapping for education levels
+export const CANONICAL_LEVELS: Record<string, { label: string; rawLevels: string[]; description: string; icon: string }> = {
+    'class-1-10': {
+        label: 'Class 1 to 10',
+        rawLevels: [
+            'Class 1 to Class 10',
+            'Class 1 to Class 8 (Note: ONLY up to Class 8, unlike SC/ST/OBC which go to Class 10)',
+            'Class 5-10',
+            'Class 9, Class 10',
+            'Class 9-10',
+            'Pre-Matric (Class 9-10)',
+            'School (1-5)',
+            'School (9-10)'
+        ],
+        description: 'Scholarships for primary and secondary school students.',
+        icon: '🎒'
+    },
+    'class-11-12': {
+        label: 'Class 11 & 12',
+        rawLevels: [
+            'Class 11, Class 12',
+            'Class 11-12',
+            'Class 10, Class 12',
+            'Higher Secondary',
+            'Post-Matric (Class 11-12)',
+            'School (11-12)'
+        ],
+        description: 'Scholarships for Higher Secondary / Intermediate students.',
+        icon: '📖'
+    },
+    'diploma-polytechnic': {
+        label: 'Diploma / Polytechnic',
+        rawLevels: [
+            'Diploma',
+            'Diploma, Undergraduate',
+            'Diploma/Polytechnic, ITI/ITC',
+            'Diploma/Polytechnic'
+        ],
+        description: 'Professional and technical diplomas and polytechnic courses.',
+        icon: '🛠️'
+    },
+    'iti-courses': {
+        label: 'ITI Courses',
+        rawLevels: [
+            'ITI',
+            'ITI/ITC'
+        ],
+        description: 'Vocational training and industrial trade certificates.',
+        icon: '🔧'
+    },
+    'graduation-ug': {
+        label: 'Graduation (UG)',
+        rawLevels: [
+            'UG',
+            'Undergraduate',
+            'Undergraduate (UG)',
+            'Graduate',
+            'Bachelor'
+        ],
+        description: 'Bachelor\'s degrees like B.Tech, B.Com, B.Sc, B.A.',
+        icon: '🎓'
+    },
+    'post-graduation-pg': {
+        label: 'Post-Graduation (PG)',
+        rawLevels: [
+            'PG',
+            'Post-Graduate',
+            'Postgraduate (PG)',
+            'Master',
+            'Postgraduate'
+        ],
+        description: 'Master\'s degrees like M.Tech, M.Com, MBA, M.Sc.',
+        icon: '📜'
+    },
+    'phd-research': {
+        label: 'PhD & Research',
+        rawLevels: [
+            'PhD',
+            'Postdoctoral',
+            'Research'
+        ],
+        description: 'Doctoral programs and advanced research fellowships.',
+        icon: '🔬'
+    }
+};
+
+// Get all unique education levels (raw)
 export function getAllLevels() {
     const db = getDatabase();
     const levels = db.prepare('SELECT DISTINCT level FROM scholarships WHERE level IS NOT NULL ORDER BY level').all();
@@ -174,10 +260,31 @@ export function getAllLevels() {
     return levels.map((row: any) => row.level);
 }
 
-// Get scholarships by education level
-export function getScholarshipsByLevel(level: string) {
+// Get scholarships by education level (supports raw level or canonical slug)
+export function getScholarshipsByLevel(levelOrSlug: string) {
     const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE level = ?').all(level);
+
+    // Check if it's a canonical slug
+    const canonical = CANONICAL_LEVELS[levelOrSlug];
+
+    if (canonical) {
+        // Build a query for all raw levels in this bucket
+        const placeholders = canonical.rawLevels.map(() => '?').join(',');
+        const query = `
+            SELECT * FROM scholarships 
+            WHERE level IN (${placeholders})
+            OR level LIKE ?
+        `;
+
+        // Also add a broad LIKE check for safety if the level contains the label string
+        const broadLike = `%${canonical.label}%`;
+        const scholarships = db.prepare(query).all(...canonical.rawLevels, broadLike);
+        db.close();
+        return scholarships.map(parseScholarship);
+    }
+
+    // Otherwise fall back to exact match for raw level
+    const scholarships = db.prepare('SELECT * FROM scholarships WHERE level = ?').all(levelOrSlug);
     db.close();
     return scholarships.map(parseScholarship);
 }

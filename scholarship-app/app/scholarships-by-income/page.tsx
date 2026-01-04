@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { getIncomeRanges } from '@/lib/db';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 export const metadata = {
     title: 'Scholarships by Income Range - Find Based on Family Income',
@@ -11,95 +13,92 @@ export default function ScholarshipsByIncomePage() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Header */}
-            <header className="sticky top-0 z-50 w-full border-b bg-white">
-                <div className="container mx-auto flex h-14 items-center px-4">
-                    <Link href="/" className="text-xl font-bold text-blue-700">
-                        IndiaScholarships
-                    </Link>
-                </div>
-            </header>
+            <Header />
 
-            <main className="max-w-5xl mx-auto px-4 py-8">
+            <main className="max-w-5xl mx-auto px-4 py-12">
                 {/* Breadcrumbs */}
-                <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
                     <Link href="/" className="hover:text-blue-700">Home</Link>
                     <span>/</span>
-                    <span className="text-gray-900">Scholarships by Income</span>
+                    <span className="text-gray-900 font-medium">Scholarships by Income</span>
                 </nav>
 
                 {/* Page Header */}
-                <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                        Scholarships by Income Range
+                <div className="mb-12">
+                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                        Scholarships by Income 2026
                     </h1>
-                    <p className="text-lg text-gray-600">
-                        Find scholarships based on your family's annual income. Many scholarships have income eligibility criteria to support students from economically weaker sections.
+                    <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
+                        Many scholarships are reserved for students from economically weaker sections. Find opportunities based on your family's annual income.
                     </p>
                 </div>
 
                 {/* Income Ranges Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    {incomeRanges.map((range) => {
-                        return (
-                            <Link
-                                key={range.slug}
-                                href={`/scholarships-income/${range.slug}`}
-                                className="block p-6 border-2 rounded-lg hover:border-blue-700 hover:shadow-lg transition-all"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="text-4xl">💰</div>
-                                    <div className="flex-1">
-                                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                                            {range.label}
-                                        </h2>
-                                        <p className="text-gray-600 mb-3">
-                                            {range.count} scholarship{range.count !== 1 ? 's' : ''} available for families with income in this range
-                                        </p>
-                                        <span className="text-blue-700 font-medium hover:underline">
-                                            View scholarships →
-                                        </span>
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                    {incomeRanges.map((range) => (
+                        <Link
+                            key={range.slug}
+                            href={`/scholarships-income/${range.slug}`}
+                            className="group relative p-8 bg-white border border-gray-100 rounded-3xl hover:border-blue-600 hover:shadow-xl transition-all duration-300"
+                        >
+                            <div className="flex items-start gap-6">
+                                <div className="text-5xl transform group-hover:scale-110 transition-transform duration-300">💰</div>
+                                <div className="flex-1">
+                                    <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                                        {range.label}
+                                    </h2>
+                                    <p className="text-gray-600 mb-6 leading-relaxed">
+                                        {range.count} scholarship{range.count !== 1 ? 's' : ''} available for families in this income bracket.
+                                    </p>
+                                    <div className="flex items-center text-blue-700 font-bold">
+                                        <span>Browse Scholarships</span>
+                                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
                                     </div>
                                 </div>
-                            </Link>
-                        );
-                    })}
-                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </section>
 
                 {/* Info Box */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">💡 Income Verification</h3>
-                    <p className="text-sm text-gray-700">
-                        Most scholarships require income certificates issued by competent authorities. Make sure to have your family's income certificate ready when applying.
-                    </p>
+                <div className="bg-blue-50 border border-blue-100 rounded-3xl p-10 mb-20 flex flex-col md:flex-row gap-8 items-center">
+                    <div className="text-5xl">ℹ️</div>
+                    <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">Income Verification Tip</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                            Most scholarships require an **Income Certificate** issued by a competent authority (Tehsildar/Revenue Officer). Ensure your certificate is dated within the last 6-12 months for successful applications.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Related Links */}
-                <div className="border-t pt-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Explore More</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <Link href="/scholarships-by-category" className="text-blue-700 hover:underline">
-                            Browse by Category →
-                        </Link>
-                        <Link href="/state-scholarships" className="text-blue-700 hover:underline">
-                            Browse by State →
-                        </Link>
-                        <Link href="/scholarships-by-education" className="text-blue-700 hover:underline">
-                            Browse by Education Level →
-                        </Link>
-                        <Link href="/search" className="text-blue-700 hover:underline">
-                            Search Scholarships →
-                        </Link>
+                <div className="bg-gray-50 rounded-3xl p-10 border border-gray-100">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                            { label: 'By State', href: '/state-scholarships' },
+                            { label: 'By Education', href: '/scholarships-by-education' },
+                            { label: 'By Category', href: '/scholarships-by-category' },
+                            { label: 'Search All', href: '/search' }
+                        ].map((link) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all font-medium text-gray-900"
+                            >
+                                {link.label}
+                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </main>
 
-            {/* Footer */}
-            <footer className="border-t bg-gray-50 py-8 mt-12">
-                <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-                    <p>© 2025 IndiaScholarships. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

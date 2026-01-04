@@ -1,132 +1,109 @@
-import { getDatabase } from '@/lib/db';
+import Link from 'next/link';
+import { getScholarshipsByType } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
-import type { Metadata } from 'next';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
-export const metadata: Metadata = {
-    title: 'Corporate Scholarships in India | IndiaScholarships',
-    description: 'Find corporate CSR scholarships from top companies like Tata, LIC, and more. Merit-cum-need based opportunities for Indian students.',
+export const metadata = {
+    title: 'Corporate CSR Scholarships 2026 - TATA, LIC, HDFC Schemes',
+    description: 'Find scholarships funded by corporate social responsibility (CSR) programs. Merit-cum-need based financial aid from top Indian companies.',
 };
 
-interface Scholarship {
-    id: number;
-    slug: string;
-    title: string;
-    provider: string;
-    state: string;
-    caste: string;
-    amount_annual: number;
-    amount_min?: number;
-    deadline?: string;
-    application_mode: string;
-    level: string;
-    last_verified: string;
-    income_limit?: number;
-}
-
-export default async function CorporateScholarshipsPage() {
-    const db = getDatabase();
-
-    // Get all corporate scholarships
-    const scholarships = db.prepare(`
-    SELECT 
-      id, slug, title, provider, state, caste, amount_annual, amount_min,
-      deadline, application_mode, level, last_verified, income_limit
-    FROM scholarships
-    WHERE scholarship_type = 'Corporate'
-    AND status = 'Active'
-    ORDER BY priority_score DESC, title ASC
-  `).all() as Scholarship[];
-
-    // Parse caste JSON
-    const parsedScholarships = scholarships.map(s => ({
-        ...s,
-        caste: JSON.parse(s.caste || '[]')
-    }));
+export default function CorporateScholarshipsPage() {
+    const scholarships = getScholarshipsByType('Corporate');
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* Header */}
-            <header className="bg-white border-b sticky top-0 z-10">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="text-2xl font-bold text-blue-700">
-                            IndiaScholarships
-                        </a>
-                        <nav className="hidden md:flex gap-6">
-                            <a href="/" className="text-gray-700 hover:text-blue-700">Home</a>
-                            <a href="/private-scholarships" className="text-gray-700 hover:text-blue-700">Private</a>
-                            <a href="/corporate-scholarships" className="text-blue-700 font-semibold">Corporate</a>
-                        </nav>
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-screen bg-white">
+            <Header />
 
-            {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="max-w-5xl mx-auto px-4 py-8">
+                {/* Breadcrumbs */}
+                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <span>/</span>
+                    <span className="text-gray-900 font-medium">Corporate Scholarships</span>
+                </nav>
+
                 {/* Page Header */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Corporate CSR Scholarships</h1>
-                    <p className="text-gray-600">Scholarships funded by corporate social responsibility (CSR) programs. These combine merit and need-based criteria to support deserving students.</p>
-                    <p className="text-sm text-gray-500 mt-2">{parsedScholarships.length} scholarships found</p>
+                <div className="mb-10">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                        Corporate CSR Scholarships 2026
+                    </h1>
+                    <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+                        Scholarships funded by leading Indian corporations as part of their **Social Responsibility (CSR)**.
+                        Currently, we have <span className="font-bold text-blue-700">{scholarships.length} industry-backed schemes</span>.
+                    </p>
                 </div>
 
-                {/* Info Banner */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-                    <h3 className="font-semibold text-green-900 mb-2">🏢 Why Corporate Scholarships?</h3>
-                    <ul className="text-sm text-green-800 space-y-1">
-                        <li>• <strong>Generous amounts:</strong> ₹10,000 - ₹1,00,000 based on course and marks</li>
-                        <li>• <strong>Merit-cum-need:</strong> Rewards both academic excellence and financial need</li>
-                        <li>• <strong>All categories welcome:</strong> Open to General, OBC, SC, ST students</li>
-                        <li>• <strong>Easy application:</strong> Simple online process through platforms like Buddy4Study</li>
-                    </ul>
+                {/* Info Block */}
+                <div className="bg-indigo-50 rounded-[2.5rem] p-10 mb-16 border border-indigo-100 flex flex-col md:flex-row gap-10 items-center">
+                    <div className="flex-1">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4 text-indigo-900">Why Corporate CSR?</h2>
+                        <ul className="space-y-3 text-indigo-800 font-medium">
+                            <li className="flex items-center gap-3">
+                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                Focused on merit-cum-means eligibility
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                Support for professional & technical courses
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                Streamlined online application process
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-100 min-w-[200px] text-center">
+                        <span className="text-sm text-gray-500 font-medium block mb-1 uppercase tracking-tight">CSR Programs</span>
+                        <span className="text-5xl font-extrabold text-indigo-700">{scholarships.length}</span>
+                    </div>
                 </div>
 
-                {/* Scholarships Grid */}
-                {parsedScholarships.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {parsedScholarships.map((scholarship) => (
-                            <ScholarshipCard
-                                key={scholarship.id}
-                                scholarship={scholarship}
-                                viewMode="grid"
-                            />
-                        ))}
+                {/* Scholarships List */}
+                <div className="mb-20">
+                    <div className="flex items-center justify-between mb-8">
+                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Industry-Backed Grants</h2>
+                        <div className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{scholarships.length} results</div>
                     </div>
-                ) : (
-                    <div className="text-center py-12">
-                        <p className="text-gray-600">No corporate scholarships found.</p>
+                    <div className="space-y-6">
+                        {scholarships.length > 0 ? (
+                            scholarships.map((scholarship: any) => (
+                                <ScholarshipCard
+                                    key={scholarship.id}
+                                    scholarship={scholarship}
+                                    viewMode="list"
+                                />
+                            ))
+                        ) : (
+                            <div className="p-12 text-center bg-gray-50 rounded-3xl border border-dashed text-gray-500 font-medium">
+                                No corporate scholarships found in our database yet.
+                            </div>
+                        )}
                     </div>
-                )}
+                </div>
 
-                {/* Bottom CTA */}
-                <div className="mt-12 bg-gradient-to-r from-green-700 to-green-900 rounded-xl p-8 text-white text-center">
-                    <h3 className="text-2xl font-bold mb-3">Explore More Scholarship Types</h3>
-                    <p className="mb-6 text-green-100">Browse government scholarships, private university scholarships, and more</p>
-                    <div className="flex gap-4 justify-center">
-                        <a
-                            href="/"
-                            className="inline-block bg-white text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition-colors"
-                        >
-                            Government Scholarships
-                        </a>
-                        <a
-                            href="/private-scholarships"
-                            className="inline-block bg-green-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-900 transition-colors border border-green-600"
-                        >
-                            Private Scholarships
-                        </a>
+                {/* Related Links */}
+                <div className="mt-16 pt-10 border-t border-gray-100">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 font-serif">Explore More Funding</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <Link href="/government-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-blue-600">
+                            <h3 className="font-bold text-gray-900 group-hover:text-blue-700 mb-1">Government Schemes</h3>
+                            <p className="text-sm text-gray-500">Central & State funding</p>
+                        </Link>
+                        <Link href="/private-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-emerald-600">
+                            <h3 className="font-bold text-gray-900 group-hover:text-emerald-700 mb-1">Private Foundations</h3>
+                            <p className="text-sm text-gray-500">NGOs and Trusts</p>
+                        </Link>
+                        <Link href="/scholarships-by-income" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-green-600">
+                            <h3 className="font-bold text-gray-900 group-hover:text-green-700 mb-1">Needs Based</h3>
+                            <p className="text-sm text-gray-500">Filter by family income</p>
+                        </Link>
                     </div>
                 </div>
             </main>
 
-            {/* Footer */}
-            <footer className="bg-white border-t mt-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <p className="text-center text-gray-600 text-sm">
-                        © 2025 IndiaScholarships.in - Helping students find scholarships across India
-                    </p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

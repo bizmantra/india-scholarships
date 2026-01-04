@@ -1,108 +1,91 @@
 import Link from 'next/link';
-import { getAllLevels } from '@/lib/db';
-import { slugify } from '@/lib/utils';
+import { CANONICAL_LEVELS } from '@/lib/db';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 export const metadata = {
     title: 'Scholarships by Education Level - Pre-Matric, Post-Matric, UG',
-    description: 'Find scholarships by education level. Browse Pre-Matric, Post-Matric, UG, and other education level scholarships.',
+    description: 'Find scholarships by education level. Browse Pre-Matric, Post-Matric, Graduation, and PhD scholarships.',
 };
 
 export default function ScholarshipsByEducationPage() {
-    const levels = getAllLevels();
-
-    const levelInfo: Record<string, { description: string; icon: string }> = {
-        'Pre-Matric': { description: 'Scholarships for students in classes 1-10', icon: '🎒' },
-        'Post-Matric': { description: 'Scholarships for students in classes 11-12 and diploma courses', icon: '📖' },
-        'UG': { description: 'Undergraduate scholarships for degree programs', icon: '🎓' },
-        'Class 9-12': { description: 'Scholarships specifically for high school students', icon: '📚' },
-    };
+    const levels = Object.entries(CANONICAL_LEVELS);
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Header */}
-            <header className="sticky top-0 z-50 w-full border-b bg-white">
-                <div className="container mx-auto flex h-14 items-center px-4">
-                    <Link href="/" className="text-xl font-bold text-blue-700">
-                        IndiaScholarships
-                    </Link>
-                </div>
-            </header>
+            <Header />
 
-            <main className="max-w-5xl mx-auto px-4 py-8">
+            <main className="max-w-5xl mx-auto px-4 py-12">
                 {/* Breadcrumbs */}
-                <nav className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
                     <Link href="/" className="hover:text-blue-700">Home</Link>
                     <span>/</span>
-                    <span className="text-gray-900">Scholarships by Education</span>
+                    <span className="text-gray-900 font-medium">Scholarships by Education</span>
                 </nav>
 
                 {/* Page Header */}
-                <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                <div className="mb-12">
+                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
                         Scholarships by Education Level
                     </h1>
-                    <p className="text-lg text-gray-600">
-                        Find scholarships based on your current education level. From Pre-Matric to Undergraduate programs.
+                    <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
+                        Find scholarships tailored to your current academic stage—from primary school to advanced doctoral research.
                     </p>
                 </div>
 
                 {/* Education Levels Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    {levels.map((level) => {
-                        const info = levelInfo[level] || { description: `Scholarships for ${level} students`, icon: '📖' };
-                        const slug = slugify(level);
-
-                        return (
-                            <Link
-                                key={level}
-                                href={`/scholarships-level/${slug}`}
-                                className="block p-6 border-2 rounded-lg hover:border-blue-700 hover:shadow-lg transition-all"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="text-4xl">{info.icon}</div>
-                                    <div className="flex-1">
-                                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                                            {level}
-                                        </h2>
-                                        <p className="text-gray-600 mb-3">
-                                            {info.description}
-                                        </p>
-                                        <span className="text-blue-700 font-medium hover:underline">
-                                            View all {level} scholarships →
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
-                        );
-                    })}
-                </div>
+                <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                    {levels.map(([slug, info]) => (
+                        <Link
+                            key={slug}
+                            href={`/scholarships-level/${slug}`}
+                            className="group relative flex flex-col p-8 border-2 border-gray-100 rounded-2xl hover:border-blue-600 hover:shadow-xl transition-all duration-300"
+                        >
+                            <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                {info.icon}
+                            </div>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                                {info.label}
+                            </h2>
+                            <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                                {info.description}
+                            </p>
+                            <div className="flex items-center text-blue-700 font-bold">
+                                <span>Browse Scholarships</span>
+                                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </div>
+                        </Link>
+                    ))}
+                </section>
 
                 {/* Related Links */}
-                <div className="border-t pt-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">Explore More</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <Link href="/scholarships-by-category" className="text-blue-700 hover:underline">
-                            Browse by Category →
-                        </Link>
-                        <Link href="/state-scholarships" className="text-blue-700 hover:underline">
-                            Browse by State →
-                        </Link>
-                        <Link href="/scholarships-by-income" className="text-blue-700 hover:underline">
-                            Browse by Income Range →
-                        </Link>
-                        <Link href="/search" className="text-blue-700 hover:underline">
-                            Search Scholarships →
-                        </Link>
+                <div className="bg-gray-50 rounded-3xl p-10 border border-gray-100">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                            { label: 'By Category', href: '/scholarships-by-category' },
+                            { label: 'By State', href: '/state-scholarships' },
+                            { label: 'By Income', href: '/scholarships-by-income' },
+                            { label: 'Search All', href: '/search' }
+                        ].map((link) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all font-medium text-gray-900"
+                            >
+                                {link.label}
+                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </main>
 
-            {/* Footer */}
-            <footer className="border-t bg-gray-50 py-8 mt-12">
-                <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-                    <p>© 2025 IndiaScholarships. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

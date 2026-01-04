@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { slugify } from '@/lib/utils';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 // Generate static params for all states
 export function generateStaticParams() {
@@ -15,9 +17,9 @@ export function generateStaticParams() {
 // Generate metadata
 export async function generateMetadata({ params }: { params: Promise<{ state: string }> }) {
     try {
-        const resolvedParams = await params;
+        const { state: stateSlug } = await params;
         const states = getAllStates();
-        const originalState = states.find(s => slugify(s) === resolvedParams.state) || resolvedParams.state;
+        const originalState = states.find(s => slugify(s) === stateSlug) || stateSlug;
 
         return {
             title: `${originalState} Scholarships - Complete List & Eligibility`,
@@ -30,14 +32,15 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
 
 export default async function StateHubPage({ params }: { params: Promise<{ state: string }> }) {
     try {
-        const resolvedParams = await params;
-        const stateSlug = resolvedParams?.state;
+        const { state: stateSlug } = await params;
 
-        if (!stateSlug) return null;
+        if (!stateSlug) return notFound();
 
         // Resolve original state name
         const states = getAllStates();
-        const stateName = states.find(s => slugify(s) === stateSlug) || stateSlug;
+        const stateName = states.find(s => slugify(s) === stateSlug);
+
+        if (!stateName) return notFound();
 
         // Get scholarships for this state
         const scholarships = getScholarshipsByState(stateName);
@@ -48,65 +51,58 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
 
         return (
             <div className="min-h-screen bg-white">
-                {/* Header */}
-                <header className="sticky top-0 z-50 w-full border-b bg-white">
-                    <div className="container mx-auto flex h-14 items-center px-4">
-                        <Link href="/" className="text-xl font-black text-blue-700 font-serif tracking-tight">
-                            IndiaScholarships
-                        </Link>
-                    </div>
-                </header>
+                <Header />
 
                 <main className="max-w-5xl mx-auto px-4 py-8">
                     {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
+                    <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
                         <Link href="/" className="hover:text-blue-700">Home</Link>
-                        <span className="text-gray-400">/</span>
+                        <span>/</span>
                         <Link href="/state-scholarships" className="hover:text-blue-700">States</Link>
-                        <span className="text-gray-400">/</span>
+                        <span>/</span>
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
 
                     {/* Page Header */}
-                    <div className="mb-12">
-                        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight font-serif">
+                    <div className="mb-10">
+                        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
                             Scholarships in {stateName} 2026
                         </h1>
-                        <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
+                        <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             Find the latest and most comprehensive list of {stateName} state scholarships.
                             Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified opportunities</span> available for
-                            students who organic from {stateName}.
+                            students from {stateName}.
                         </p>
                     </div>
 
                     {/* Quick Stats Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                        <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+                        <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
                             <h3 className="text-blue-700 font-bold mb-1">Total Available</h3>
                             <p className="text-3xl font-extrabold text-blue-900">{scholarships.length}</p>
                             <p className="text-xs text-blue-600 mt-2">Verified schemes</p>
                         </div>
-                        <div className="bg-green-50 p-6 rounded-2xl border border-green-100">
+                        <div className="bg-green-50/50 p-6 rounded-3xl border border-green-100">
                             <h3 className="text-green-700 font-bold mb-1">Max Amount</h3>
                             <p className="text-3xl font-extrabold text-green-900">
                                 ₹{Math.max(...scholarships.map((s: any) => s.amount_annual || 0)).toLocaleString()}
                             </p>
                             <p className="text-xs text-green-600 mt-2">Per academic year</p>
                         </div>
-                        <div className="bg-purple-50 p-6 rounded-2xl border border-purple-100">
-                            <h3 className="text-purple-700 font-bold mb-1">Last Verified</h3>
-                            <p className="text-xl font-extrabold text-purple-900">January 2026</p>
-                            <p className="text-xs text-purple-600 mt-2">100% data freshness</p>
+                        <div className="bg-purple-50/50 p-6 rounded-3xl border border-purple-100">
+                            <h3 className="text-purple-700 font-bold mb-1">Data Freshness</h3>
+                            <p className="text-3xl font-extrabold text-purple-900">100%</p>
+                            <p className="text-xs text-purple-600 mt-2">Verified Jan 2026</p>
                         </div>
                     </div>
 
                     {/* Scholarships List */}
-                    <div className="mb-16">
-                        <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-3xl font-black text-gray-900 font-serif tracking-tight">Active {stateName} Scholarships</h2>
-                            <div className="text-sm font-medium text-gray-500">Showing {scholarships.length} results</div>
+                    <div className="mb-20">
+                        <div className="flex items-center justify-between mb-8">
+                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Active {stateName} Scholarships</h2>
+                            <div className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{scholarships.length} results</div>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-6">
                             {scholarships.map((scholarship: any) => (
                                 <ScholarshipCard
                                     key={scholarship.id}
@@ -118,60 +114,60 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                     </div>
 
                     {/* FAQ Section */}
-                    <div className="bg-gray-50 rounded-3xl p-8 mb-16 border">
-                        <h2 className="text-3xl font-black text-gray-900 mb-8 font-serif tracking-tight">Frequently Asked Questions</h2>
-                        <div className="space-y-6">
+                    <div className="bg-gray-50 rounded-[2.5rem] p-10 mb-20 border border-gray-100">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8 tracking-tight">Frequently Asked Questions</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                             <div>
-                                <h3 className="font-bold text-gray-900 mb-2">Who can apply for {stateName} state scholarships?</h3>
-                                <p className="text-gray-600 text-sm">
+                                <h3 className="font-bold text-gray-900 mb-2 text-lg">Who can apply for {stateName} state scholarships?</h3>
+                                <p className="text-gray-600 leading-relaxed">
                                     Generally, these scholarships are for students who are permanent residents (domicile) of {stateName}.
-                                    Some schemes may also require you to be studying within the state, while others allow out-of-state study if you have a {stateName} domicile.
+                                    Some schemes may also require you to be studying within the state.
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-gray-900 mb-2">What is the common deadline for scholarships in {stateName}?</h3>
-                                <p className="text-gray-600 text-sm">
-                                    Deadlines vary by scheme. Most government scholarships open between July and September and close by October or November.
-                                    Always check the "Last Verified" date on our listing and click through to the official portal for the exact current deadline.
+                                <h3 className="font-bold text-gray-900 mb-2 text-lg">What is the common deadline?</h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Deadlines vary by scheme. Most government scholarships open between July and September.
+                                    Always check the "Last Verified" date on our listing.
                                 </p>
                             </div>
                             <div>
-                                <h3 className="font-bold text-gray-900 mb-2">Which documents are mandatory for {stateName} scholarships?</h3>
-                                <p className="text-gray-600 text-sm">
+                                <h3 className="font-bold text-gray-900 mb-2 text-lg">Which documents are mandatory?</h3>
+                                <p className="text-gray-600 leading-relaxed">
                                     Mandatory documents usually include: 1. Aadhaar Card, 2. {stateName} Domicile Certificate,
-                                    3. Income Certificate (dated within 1 year), 4. Caste Certificate (if applicable),
-                                    5. Previous year marksheets, and 6. A bank account linked to your Aadhaar.
+                                    3. Income Certificate, and 4. Previous year marksheets.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-gray-900 mb-2 text-lg">How to apply?</h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Click on the scholarship to view the official portal link. Most {stateName} scholarships are applied through state portals or NSP.
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     {/* Related Links */}
-                    <div className="border-t pt-12">
-                        <h2 className="text-xl font-bold text-gray-900 mb-6">Explore More Scholarships</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <Link href="/state-scholarships" className="group p-4 border rounded-xl hover:border-blue-700 transition-colors">
-                                <span className="text-blue-700 font-medium group-hover:underline">← All States</span>
+                    <div className="mt-16 pt-10 border-t border-gray-100">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700">
+                                ← All States
                             </Link>
-                            <Link href="/scholarships-by-category" className="group p-4 border rounded-xl hover:border-blue-700 transition-colors">
-                                <span className="text-blue-700 font-medium group-hover:underline">By Category →</span>
+                            <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                                By Category →
                             </Link>
-                            <Link href="/scholarships-by-education" className="group p-4 border rounded-xl hover:border-blue-700 transition-colors">
-                                <span className="text-blue-700 font-medium group-hover:underline">By Education →</span>
+                            <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                                By Education →
                             </Link>
-                            <Link href="/search" className="group p-4 border rounded-xl hover:border-blue-700 transition-colors">
-                                <span className="text-blue-700 font-medium group-hover:underline">Search All →</span>
+                            <Link href="/search" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                                Search All →
                             </Link>
                         </div>
                     </div>
                 </main>
 
-                {/* Footer */}
-                <footer className="border-t bg-gray-50 py-12">
-                    <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-                        <p>© 2025 IndiaScholarships. All rights reserved.</p>
-                    </div>
-                </footer>
+                <Footer />
             </div>
         );
     } catch (error) {
