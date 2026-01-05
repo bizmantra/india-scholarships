@@ -80,8 +80,12 @@ async function syncToGoogleSheets() {
         const scholarships = db.prepare('SELECT * FROM scholarships').all();
         console.log(`✅ Found ${scholarships.length} scholarships in database\n`);
 
-        let updated = 0;
-        let added = 0;
+        let updatedCount = 0;
+        let addedCount = 0;
+        const updates = [];
+        const appends = [];
+
+        const sheetName = process.env.GOOGLE_SHEET_NAME || 'Sheet1';
 
         for (const scholarship of scholarships) {
             // Prepare row data
@@ -97,19 +101,39 @@ async function syncToGoogleSheets() {
             if (existingIds.has(scholarshipId)) {
                 // Update existing row
                 const rowIndex = existingIds.get(scholarshipId);
-                await updateSheetRow(rowIndex, rowData);
-                updated++;
+                updates.push({
+                    range: `${sheetName}!A${rowIndex}:AZ${rowIndex}`,
+                    values: rowData
+                });
+                updatedCount++;
             } else {
-                // Append new row
+                // Collect for append
+                appends.push(rowData);
+                addedCount++;
+            }
+        }
+
+        // Perform batch updates for existing rows (max 500 per request recommended, but we have ~130)
+        if (updates.length > 0) {
+            console.log(`📤 Sending ${updates.length} updates in batch...`);
+            const { batchUpdateSheetRows } = require('../lib/google-sheets');
+            await batchUpdateSheetRows(updates);
+        }
+
+        // Perform appends for new rows
+        if (appends.length > 0) {
+            console.log(`📤 Appending ${appends.length} new scholarships...`);
+            for (const rowData of appends) {
                 await appendSheetRow(rowData);
-                added++;
+                // Simple delay to avoid quota on appends if many
+                await new Promise(resolve => setTimeout(resolve, 500));
             }
         }
 
         console.log('\n==================================================');
         console.log('✅ Sync complete!');
-        console.log(`   Updated: ${updated} scholarships`);
-        console.log(`   Added: ${added} new scholarships`);
+        console.log(`   Updated: ${updatedCount} scholarships`);
+        console.log(`   Added: ${addedCount} new scholarships`);
         console.log('==================================================\n');
 
     } catch (error) {

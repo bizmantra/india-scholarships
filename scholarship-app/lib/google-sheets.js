@@ -128,7 +128,7 @@ async function batchUpdateSheetRows(data) {
                 valueInputOption: 'RAW',
                 data: data.map(item => ({
                     range: item.range,
-                    values: [[item.values]]
+                    values: [item.values]
                 }))
             },
         });
