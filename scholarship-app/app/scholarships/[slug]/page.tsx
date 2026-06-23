@@ -43,8 +43,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         };
     }
 
+    const title = scholarship.title;
+    const lowerTitle = title.toLowerCase();
+    let seoTitle = `${title} – Eligibility, Amount & How to Apply`;
+
+    if (lowerTitle.includes('e-kalyan') || lowerTitle.includes('e kalyan')) {
+        seoTitle = `e-Kalyan Portal 2026: Application Status, Login & Registration`;
+    } else if (lowerTitle.includes('mmvy') || lowerTitle.includes('medhavi vidyarthi')) {
+        seoTitle = `MMVY Portal 2026: MP Medhavi Student Login & Registration`;
+    } else if (lowerTitle.includes('svmcm') || lowerTitle.includes('vivekananda')) {
+        seoTitle = `SVMCM Portal 2026: Swami Vivekananda Scholarship Login & Status`;
+    } else if (lowerTitle.includes('nabanna')) {
+        seoTitle = `Nabanna Scholarship 2026: Application Form, Eligibility & Guide`;
+    } else if (lowerTitle.includes('egrantz') || lowerTitle.includes('e-grantz')) {
+        seoTitle = `E-Grantz Portal 2026: Kerala Student Login & Application Status`;
+    } else if (lowerTitle.includes('ssp') || lowerTitle.includes('post matric') || lowerTitle.includes('post-matric')) {
+        seoTitle = `${title} 2026: Apply Online, SSP Login & Status`;
+    }
+
     return {
-        title: `${scholarship.title} – Eligibility, Amount & How to Apply`,
+        title: seoTitle,
         description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
         openGraph: {
             title: `${scholarship.title} – Application Open (2026)`,
