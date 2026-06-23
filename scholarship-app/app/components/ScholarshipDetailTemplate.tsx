@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ExternalLink, ChevronRight, Bookmark, Share2 } from 'lucide-react';
+import { getCanonicalSlugForLevel, getCanonicalSlugForCategory, slugify, sanitizeApplyUrl } from '@/lib/utils';
 
 interface ScholarshipDetailTemplateProps {
     scholarship: any; // Will be typed properly
@@ -18,6 +19,9 @@ export default function ScholarshipDetailTemplate({
     const deadlineDate = scholarship.deadline ? new Date(scholarship.deadline) : null;
     const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
     const applicationStatus = isDeadlinePassed ? 'closed' : 'open';
+
+    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
 
     // Helper functions
     const displayValue = (value: any) => {
@@ -271,15 +275,21 @@ export default function ScholarshipDetailTemplate({
                                     </p>
 
                                     <div className="space-y-3">
-                                        <a
-                                            href={scholarship.apply_url || scholarship.official_source}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-700 font-black rounded-2xl hover:bg-blue-50 transition-all transform hover:-translate-y-1 active:translate-y-0"
-                                        >
-                                            Go to Official Portal
-                                            <ExternalLink className="w-4 h-4" />
-                                        </a>
+                                        {cleanApplyUrl ? (
+                                            <a
+                                                href={cleanApplyUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-700 font-black rounded-2xl hover:bg-blue-50 transition-all transform hover:-translate-y-1 active:translate-y-0"
+                                            >
+                                                Go to Official Portal
+                                                <ExternalLink className="w-4 h-4" />
+                                            </a>
+                                        ) : (
+                                            <div className="flex items-center justify-center gap-2 w-full py-4 bg-blue-800 text-blue-200 font-bold rounded-2xl cursor-not-allowed text-center text-sm">
+                                                Official Link Not Available
+                                            </div>
+                                        )}
                                         <button className="flex items-center justify-center gap-2 w-full py-3 bg-blue-800 text-blue-200 text-xs font-bold rounded-xl hover:bg-blue-900 transition-colors">
                                             <Bookmark className="w-3.5 h-3.5" />
                                             Save to Profile
@@ -369,9 +379,9 @@ export default function ScholarshipDetailTemplate({
                                         scholarship.scholarship_type === 'Corporate' ? "/corporate-scholarships" :
                                             "/government-scholarships"
                                 },
-                                { label: `For ${scholarship.level} students`, href: `/scholarships-level/${(scholarship.level || '').toLowerCase().replace(/\s+/g, '-')}` },
-                                { label: `For ${scholarship.caste && scholarship.caste[0] ? scholarship.caste[0] : 'All'} category`, href: `/scholarships-for/${scholarship.caste && scholarship.caste[0] ? scholarship.caste[0].toLowerCase().replace(/\s+/g, '-') : 'all-categories'}` },
-                                { label: `In ${scholarship.state || 'India'}`, href: `/scholarships-in/${scholarship.state ? scholarship.state.toLowerCase().replace(/\s+/g, '-') : 'india'}` }
+                                { label: `For ${scholarship.level} students`, href: `/scholarships-level/${getCanonicalSlugForLevel(scholarship.level)}` },
+                                { label: `For ${scholarship.caste && scholarship.caste[0] ? scholarship.caste[0] : 'All'} category`, href: `/scholarships-for/${getCanonicalSlugForCategory(scholarship.caste?.[0])}` },
+                                { label: `In ${scholarship.state || 'India'}`, href: `/scholarships-in/${scholarship.state ? slugify(scholarship.state) : 'india'}` }
                             ].map((link, i) => (
                                 <Link key={i} href={link.href} className="flex items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl hover:border-blue-700 hover:shadow-lg transition-all group">
                                     <span className="text-sm font-bold text-gray-700 group-hover:text-blue-700">{link.label}</span>
@@ -386,9 +396,9 @@ export default function ScholarshipDetailTemplate({
                         <h2 className="text-3xl font-bold text-gray-900 mb-10 font-serif leading-tight">Related Resources</h2>
                         <div className="p-8 bg-blue-50 border border-blue-100 rounded-3xl">
                             <ul className="space-y-4">
-                                {scholarship.official_source && (
+                                {cleanOfficialSource && (
                                     <li>
-                                        <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-700 font-bold hover:underline">
+                                        <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-700 font-bold hover:underline">
                                             <ExternalLink className="w-4 h-4" />
                                             Official Portal: {scholarship.provider}
                                         </a>
