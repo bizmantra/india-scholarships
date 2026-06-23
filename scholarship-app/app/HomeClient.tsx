@@ -30,9 +30,10 @@ interface HomeClientProps {
 export default function HomeClient({ scholarships }: HomeClientProps) {
     // Get featured/popular scholarships (limit to 6)
     const featuredScholarships = useMemo(() => {
-        return scholarships
-            .filter(s => s.is_popular === 1)
-            .slice(0, 6);
+        const featured = scholarships.filter(s => s.is_popular === 1);
+        if (featured.length > 0) return featured.slice(0, 6);
+        // Fallback: Show the 6 most recent scholarships if none are explicitly featured
+        return scholarships.slice(0, 6);
     }, [scholarships]);
 
     // Calculate stats for states count

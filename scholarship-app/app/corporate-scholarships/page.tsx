@@ -9,8 +9,8 @@ export const metadata = {
     description: 'Find scholarships funded by corporate social responsibility (CSR) programs. Merit-cum-need based financial aid from top Indian companies.',
 };
 
-export default function CorporateScholarshipsPage() {
-    const scholarships = getScholarshipsByType('Corporate');
+export default async function CorporateScholarshipsPage() {
+    const scholarships = await getScholarshipsByType('Corporate');
 
     return (
         <div className="min-h-screen bg-white">

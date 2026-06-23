@@ -8,8 +8,8 @@ export const metadata = {
     description: 'Browse scholarships by family income range. Find scholarships that match your family income eligibility criteria.',
 };
 
-export default function ScholarshipsByIncomePage() {
-    const incomeRanges = getIncomeRanges();
+export default async function ScholarshipsByIncomePage() {
+    const incomeRanges = await getIncomeRanges();
 
     return (
         <div className="min-h-screen bg-white">

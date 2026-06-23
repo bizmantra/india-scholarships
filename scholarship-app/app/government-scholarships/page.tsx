@@ -9,8 +9,8 @@ export const metadata = {
     description: 'Browse all government scholarships including central and state government schemes. Find eligibility, benefits, and application details for 2026-27.',
 };
 
-export default function GovernmentScholarshipsPage() {
-    const scholarships = getScholarshipsByType('Government');
+export default async function GovernmentScholarshipsPage() {
+    const scholarships = await getScholarshipsByType('Government');
 
     return (
         <div className="min-h-screen bg-white">

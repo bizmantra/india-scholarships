@@ -7,8 +7,8 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
 // Generate static params for all education levels (Canonical + Raw)
-export function generateStaticParams() {
-    const rawLevels = getAllLevels();
+export async function generateStaticParams() {
+    const rawLevels = await getAllLevels();
     const canonicalSlugs = Object.keys(CANONICAL_LEVELS);
 
     const params = [
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
         }
 
         // 2. Check if it's a raw level
-        const rawLevels = getAllLevels();
+        const rawLevels = await getAllLevels();
         const rawLevel = rawLevels.find(l => slugify(l) === levelSlug);
 
         if (rawLevel) {
@@ -65,15 +65,15 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
         if (canonical) {
             displayName = canonical.label;
             description = canonical.description;
-            scholarships = getScholarshipsByLevel(levelSlug);
+            scholarships = await getScholarshipsByLevel(levelSlug);
         } else {
-            const rawLevels = getAllLevels();
+            const rawLevels = await getAllLevels();
             const rawLevel = rawLevels.find(l => slugify(l) === levelSlug);
             if (!rawLevel) return notFound();
 
             displayName = rawLevel;
             description = `Scholarships specifically for ${rawLevel} students across India.`;
-            scholarships = getScholarshipsByLevel(rawLevel);
+            scholarships = await getScholarshipsByLevel(rawLevel);
         }
 
         if (scholarships.length === 0) {

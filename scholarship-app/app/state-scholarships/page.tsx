@@ -9,8 +9,8 @@ export const metadata = {
     description: 'Find scholarships by state. Browse state-specific scholarships across India with complete eligibility criteria and application details.',
 };
 
-export default function StateScholarshipsPage() {
-    const states = getAllStates();
+export default async function StateScholarshipsPage() {
+    const states = await getAllStates();
 
     return (
         <div className="min-h-screen bg-white">

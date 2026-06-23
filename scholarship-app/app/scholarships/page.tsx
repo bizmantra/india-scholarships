@@ -11,12 +11,13 @@ export const metadata = {
     description: 'Explore verified scholarships in India for 2026. Filter by state, category, education level, and income to find the best scholarships for you.',
 };
 
-export default function ScholarshipsPillarPage() {
-    const featured = getFeaturedScholarships(6);
-    const stats = getScholarshipStats();
+export default async function ScholarshipsPillarPage() {
+    const featured = await getFeaturedScholarships(6);
+    const stats = await getScholarshipStats();
 
     // Get top discovery items
-    const states = getAllStates().slice(0, 6);
+    const allStates = await getAllStates();
+    const states = allStates.slice(0, 6);
     const categories = ['Minority', 'SC', 'ST', 'OBC', 'General (EWS)', 'Students with Disabilities'];
     const levels = Object.entries(CANONICAL_LEVELS).slice(0, 6);
 

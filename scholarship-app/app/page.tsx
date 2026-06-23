@@ -1,8 +1,8 @@
 import { getAllScholarships } from '@/lib/db';
 import HomeClient from './HomeClient';
 
-export default function Home() {
-  const scholarships = getAllScholarships();
+export default async function Home() {
+  const scholarships = await getAllScholarships();
 
   return <HomeClient scholarships={scholarships} />;
 }

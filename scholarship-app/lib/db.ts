@@ -2,8 +2,141 @@ import Database from 'better-sqlite3';
 import path from 'path';
 
 const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
+const WP_API_URL = process.env.WORDPRESS_API_URL;
 
-// Create or open database
+// Helper to fetch from WordPress if configured
+async function wpFetch(endpoint: string, params: Record<string, string | number> = {}) {
+    if (!WP_API_URL) return null;
+
+    const url = new URL(`${WP_API_URL}${endpoint}`);
+    // Always add _embed to get taxonomy names and featured images
+    url.searchParams.append('_embed', '1');
+    url.searchParams.append('per_page', '100'); // Default to 100 for our needs
+
+    Object.entries(params).forEach(([key, value]) => {
+        url.searchParams.append(key, value.toString());
+    });
+
+    try {
+        const res = await fetch(url.toString(), {
+            next: { revalidate: 3600 } // Cache for 1 hour for better performance
+        });
+        if (!res.ok) return null;
+        return res.json();
+    } catch (error) {
+        console.error('WP Fetch Error:', error);
+        return null;
+    }
+}
+
+// Simple helper to decode basic HTML entities from WP titles
+function decodeHtmlEntities(text: string): string {
+    if (!text) return "";
+    return text
+        .replace(/&#038;/g, '&')
+        .replace(/&amp;/g, '&')
+        .replace(/&#8211;/g, '–')
+        .replace(/&#8212;/g, '—')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>');
+}
+
+
+
+/**
+ * Maps a WordPress Post (with ACF fields) to our internal Scholarship interface.
+ */
+function mapWpPostToScholarship(post: any) {
+    if (!post) return null;
+
+    const fields = post.acf || {};
+
+    // Get taxonomy names from embedded data if available
+    const getTaxonomyNames = (taxKey: string) => {
+        const embedded = post._embedded?.['wp:term'];
+        if (!embedded) return [];
+
+        // Find the collection for this taxonomy
+        const taxCollection = embedded.find((coll: any[]) =>
+            coll.some(term => term.taxonomy === taxKey)
+        );
+
+        return taxCollection ? taxCollection.map((t: any) => t.name) : [];
+    };
+
+    const states = getTaxonomyNames('scholarship_states');
+    const categories = getTaxonomyNames('scholarship_category');
+    const levels = getTaxonomyNames('scholarship_level');
+
+    // Use current year as fallback for verification if not provided
+    const currentYear = new Date().getFullYear();
+
+    return {
+        id: post.id.toString(),
+        title: decodeHtmlEntities(typeof post.title === 'object' ? post.title.rendered : post.title),
+        slug: post.slug,
+
+        // Basic Info
+        provider: fields.provider || "",
+        provider_type: fields.provider_type || "Government",
+
+        // Taxonomy Fields - Prefer ACF if set, otherwise use WordPress Taxonomies
+        state: fields.state || (states.length > 0 ? states[0] : "All India"),
+        level: fields.level || (levels.length > 0 ? levels.join(', ') : ""),
+        caste: (Array.isArray(fields.caste) && fields.caste.length > 0) ? fields.caste : (categories.length > 0 ? categories : []),
+        gender: fields.gender || "All",
+        course_stream: fields.course_stream ? (Array.isArray(fields.course_stream) ? fields.course_stream : [fields.course_stream]) : [],
+        app_type: "",
+
+        // Amount & Financial
+        amount_annual: fields.amount_annual ? Number(fields.amount_annual) : 0,
+        amount_min: fields.amount_min ? Number(fields.amount_min) : 0,
+        amount_description: fields.amount_description || "",
+        benefits: fields.benefits || "",
+
+        // Eligibility Criteria
+        income_limit: fields.income_limit ? Number(fields.income_limit) : 0,
+        min_marks: fields.min_marks ? Number(fields.min_marks) : 0,
+        age_limit: fields.age_limit || "NA",
+        residency_requirement: fields.state || (states.length > 0 ? states[0] : ""),
+
+        // Application Details
+        docs_needed: fields.docs_needed ? (Array.isArray(fields.docs_needed) ? fields.docs_needed : fields.docs_needed.split('\n').map((s: string) => s.trim())) : [],
+        application_mode: fields.application_mode || "Online",
+        apply_url: fields.apply_url || "",
+        deadline: fields.deadline || "",
+        deadline_description: fields.deadline_description || "",
+        time_min: 15,
+
+        // Process & Selection
+        step_guide: fields.application_process || fields.step_guide || "",
+        selection: fields.selection || "",
+        total_awards: fields.total_awards ? Number(fields.total_awards) : 0,
+        renewal: fields.renewal_policy || fields.renewal || "",
+        competitiveness: "High",
+
+        // Trust & Verification
+        verified_status: "Verified",
+        last_verified: post.modified || new Date().toISOString(),
+        verification_year: fields.verification_year ? Number(fields.verification_year) : currentYear,
+        official_source: fields.official_source || fields.apply_url || "",
+        helpline: fields.helpline || "",
+
+        // SEO & Content
+        intro_seo: fields.intro_seo || "",
+        faq_json: tryParseJSON(fields.faq_json, []),
+        notes_actions: "",
+        keywords: "",
+
+        // Status & Metadata
+        scholarship_type: fields.provider_type || "Government",
+        status: post.status === 'publish' ? "Active" : "Closed",
+        tags: fields.tags ? (Array.isArray(fields.tags) ? fields.tags : fields.tags.split(',').map((s: string) => s.trim())) : [],
+        thumbnail_url: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || fields.thumbnail_url || ""
+    };
+}
 export function getDatabase() {
     const db = new Database(dbPath);
     db.pragma('journal_mode = WAL');
@@ -107,7 +240,13 @@ export function initializeDatabase() {
 }
 
 // Get all scholarships
-export function getAllScholarships() {
+export async function getAllScholarships() {
+    if (WP_API_URL) {
+        const posts = await wpFetch('/scholarship?per_page=500');
+        if (posts && Array.isArray(posts)) {
+            return posts.map(mapWpPostToScholarship);
+        }
+    }
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships').all();
     db.close();
@@ -115,7 +254,13 @@ export function getAllScholarships() {
 }
 
 // Get scholarship by slug
-export function getScholarshipBySlug(slug: string) {
+export async function getScholarshipBySlug(slug: string) {
+    if (WP_API_URL) {
+        const posts = await wpFetch(`/scholarship?slug=${slug}`);
+        if (posts && Array.isArray(posts) && posts.length > 0) {
+            return mapWpPostToScholarship(posts[0]);
+        }
+    }
     const db = getDatabase();
     const scholarship = db.prepare('SELECT * FROM scholarships WHERE slug = ?').get(slug);
     db.close();
@@ -123,7 +268,19 @@ export function getScholarshipBySlug(slug: string) {
 }
 
 // Get scholarships by state
-export function getScholarshipsByState(state: string) {
+export async function getScholarshipsByState(state: string) {
+    if (WP_API_URL) {
+        // Find the term ID for the state first to ensure accurate filtering
+        const terms = await wpFetch('/scholarship_states', { slug: state.toLowerCase().replace(/\s+/g, '-') });
+        if (terms && Array.isArray(terms) && terms.length > 0) {
+            const posts = await wpFetch('/scholarship', { scholarship_states: terms[0].id });
+            if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+        }
+
+        // Fallback to search if slug lookup fails
+        const posts = await wpFetch('/scholarship', { search: state });
+        if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+    }
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE state = ?').all(state);
     db.close();
@@ -131,7 +288,14 @@ export function getScholarshipsByState(state: string) {
 }
 
 // Get all unique states
-export function getAllStates() {
+export async function getAllStates() {
+    if (WP_API_URL) {
+        // Fetch from scholarship_states taxonomy
+        const terms = await wpFetch('/scholarship_states?per_page=100');
+        if (terms && Array.isArray(terms)) {
+            return terms.map((t: any) => t.name);
+        }
+    }
     const db = getDatabase();
     const states = db.prepare('SELECT DISTINCT state FROM scholarships WHERE state IS NOT NULL ORDER BY state').all();
     db.close();
@@ -139,7 +303,14 @@ export function getAllStates() {
 }
 
 // Get all unique categories (castes)
-export function getAllCategories() {
+export async function getAllCategories() {
+    if (WP_API_URL) {
+        // Fetch from scholarship_category taxonomy
+        const terms = await wpFetch('/scholarship_category?per_page=100');
+        if (terms && Array.isArray(terms)) {
+            return terms.map((t: any) => t.name);
+        }
+    }
     const db = getDatabase();
     const scholarships = db.prepare('SELECT DISTINCT caste FROM scholarships WHERE caste IS NOT NULL').all();
     db.close();
@@ -159,7 +330,22 @@ export function getAllCategories() {
 }
 
 // Get scholarships by category
-export function getScholarshipsByCategory(category: string) {
+export async function getScholarshipsByCategory(category: string) {
+    if (WP_API_URL) {
+        // Try filtering by taxonomy term slug
+        const slug = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const terms = await wpFetch('/scholarship_category', { slug });
+        if (terms && Array.isArray(terms) && terms.length > 0) {
+            const posts = await wpFetch('/scholarship', { scholarship_category: terms[0].id });
+            if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+        }
+
+        // Fallback to search
+        const posts = await wpFetch('/scholarship', { search: category });
+        if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship).filter((s: any) =>
+            s.caste.some((c: string) => c.toLowerCase().includes(category.toLowerCase()))
+        );
+    }
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE caste LIKE ?').all(`%${category}%`);
     db.close();
@@ -252,8 +438,96 @@ export const CANONICAL_LEVELS: Record<string, { label: string; rawLevels: string
     }
 };
 
+/**
+ * Returns the canonical slug for a given raw level text.
+ * Handles messy strings like "Class 9 to 12, UG, PG" by matching the first likely category.
+ */
+export function getCanonicalSlugForLevel(levelText: any): string {
+    // Handle null, undefined, arrays, objects
+    if (!levelText) return 'graduation-ug';
+
+    // If it's an array, take the first element
+    if (Array.isArray(levelText)) {
+        levelText = levelText[0] || '';
+    }
+
+    // Convert to string if it's not already
+    const levelStr = String(levelText);
+    if (!levelStr || levelStr === 'undefined' || levelStr === 'null') return 'graduation-ug';
+
+    const lower = levelStr.toLowerCase();
+
+    // Check canonical list first
+    for (const [slug, config] of Object.entries(CANONICAL_LEVELS)) {
+        if (config.rawLevels.some(raw => raw.toLowerCase() === lower)) return slug;
+    }
+
+    // Heuristics for messy strings
+    if (lower.includes('class 9') || lower.includes('class 11') || lower.includes('class 12')) return 'class-11-12';
+    if (lower.includes('class 1') || lower.includes('class 8') || lower.includes('class 10')) return 'class-1-10';
+    if (lower.includes('ug') || lower.includes('undergraduate') || lower.includes('bachelor') || lower.includes('graduation')) return 'graduation-ug';
+    if (lower.includes('pg') || lower.includes('postgraduate') || lower.includes('master')) return 'post-graduation-pg';
+    if (lower.includes('diploma') || lower.includes('polytechnic')) return 'diploma-polytechnic';
+    if (lower.includes('iti')) return 'iti-courses';
+    if (lower.includes('phd') || lower.includes('research')) return 'phd-research';
+
+    return 'graduation-ug'; // Default fallback
+}
+
+/**
+ * Returns the canonical slug for income range based on the numeric limit.
+ */
+export function getCanonicalSlugForIncome(incomeLimit: number | null): string {
+    if (incomeLimit === null || incomeLimit === 0 || incomeLimit < 0) return 'no-income-bar';
+    if (incomeLimit <= 100000) return '0-1l';
+    if (incomeLimit <= 250000) return '1-2.5l';
+    if (incomeLimit <= 500000) return '2.5-5l';
+    return '5l-plus';
+}
+
+/**
+ * Returns a clean, URL-safe slug for a category/caste.
+ * Handles messy strings like "All (50% reservation...)"
+ */
+export function getCanonicalSlugForCategory(category: any): string {
+    // Handle null, undefined, arrays, objects
+    if (!category) return 'general';
+
+    // If it's an array, take the first element
+    if (Array.isArray(category)) {
+        category = category[0] || 'general';
+    }
+
+    // Convert to string
+    const categoryStr = String(category);
+    if (!categoryStr || categoryStr === 'undefined' || categoryStr === 'null') return 'general';
+
+    const lower = categoryStr.toLowerCase();
+
+    // Heuristics for common messy strings
+    if (lower.includes('obc')) return 'obc';
+    if (lower.includes('sc') && lower.includes('st')) return 'sc-st';
+    if (lower.includes('sc')) return 'sc';
+    if (lower.includes('st')) return 'st';
+    if (lower.includes('minority') || lower.includes('muslim') || lower.includes('christian')) return 'minority';
+    if (lower.includes('general')) return 'general';
+    if (lower.includes('all')) return 'general'; // Usually 'All students' implies General/Open
+
+    // Fallback: Clean the string of all non-alphanumeric characters
+    return lower
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
+
 // Get all unique education levels (raw)
-export function getAllLevels() {
+export async function getAllLevels() {
+    if (WP_API_URL) {
+        // Fetch from scholarship_level taxonomy
+        const terms = await wpFetch('/scholarship_level?per_page=100');
+        if (terms && Array.isArray(terms)) {
+            return terms.map((t: any) => t.name);
+        }
+    }
     const db = getDatabase();
     const levels = db.prepare('SELECT DISTINCT level FROM scholarships WHERE level IS NOT NULL ORDER BY level').all();
     db.close();
@@ -261,7 +535,19 @@ export function getAllLevels() {
 }
 
 // Get scholarships by education level (supports raw level or canonical slug)
-export function getScholarshipsByLevel(levelOrSlug: string) {
+export async function getScholarshipsByLevel(levelOrSlug: string) {
+    if (WP_API_URL) {
+        // Look up by taxonomy slug first
+        const terms = await wpFetch('/scholarship_level', { slug: levelOrSlug });
+        if (terms && Array.isArray(terms) && terms.length > 0) {
+            const posts = await wpFetch('/scholarship', { scholarship_level: terms[0].id });
+            if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+        }
+
+        // Fallback to search
+        const posts = await wpFetch('/scholarship', { search: levelOrSlug });
+        if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+    }
     const db = getDatabase();
 
     // Check if it's a canonical slug
@@ -290,23 +576,35 @@ export function getScholarshipsByLevel(levelOrSlug: string) {
 }
 
 // Get scholarships by income range
-export function getScholarshipsByIncomeRange(minIncome: number, maxIncome: number) {
+export async function getScholarshipsByIncomeRange(minIncome: number, maxIncome: number) {
     const db = getDatabase();
-    const scholarships = db.prepare(
-        'SELECT * FROM scholarships WHERE income_limit >= ? AND income_limit <= ?'
-    ).all(minIncome, maxIncome);
+
+    let scholarships;
+    if (minIncome === -1) {
+        // "No Income Bar" case: includes NULL, 0, or empty string
+        scholarships = db.prepare(
+            "SELECT * FROM scholarships WHERE (income_limit IS NULL OR income_limit = 0 OR income_limit = '')"
+        ).all();
+    } else {
+        scholarships = db.prepare(
+            'SELECT * FROM scholarships WHERE (income_limit >= ? AND income_limit <= ?)'
+        ).all(minIncome, maxIncome);
+    }
+
     db.close();
     return scholarships.map(parseScholarship);
 }
 
 // Get all income ranges with counts
-export function getIncomeRanges() {
+export async function getIncomeRanges() {
     const db = getDatabase();
-    const scholarships = db.prepare('SELECT income_limit FROM scholarships WHERE income_limit IS NOT NULL').all();
+    // Include NULLs this time
+    const scholarships = db.prepare('SELECT income_limit FROM scholarships').all();
     db.close();
 
     const ranges = [
-        { label: '0-1L', min: 0, max: 100000, slug: '0-1l' },
+        { label: 'No Income Bar', min: -1, max: 0, slug: 'no-income-bar' },
+        { label: '0-1L', min: 1, max: 100000, slug: '0-1l' },
         { label: '1-2.5L', min: 100001, max: 250000, slug: '1-2.5l' },
         { label: '2.5-5L', min: 250001, max: 500000, slug: '2.5-5l' },
         { label: '5L+', min: 500001, max: 10000000, slug: '5l-plus' },
@@ -314,12 +612,16 @@ export function getIncomeRanges() {
 
     return ranges.map(range => ({
         ...range,
-        count: scholarships.filter((s: any) => s.income_limit >= range.min && s.income_limit <= range.max).length
+        count: scholarships.filter((s: any) => {
+            const limit = s.income_limit === null || s.income_limit === "" ? 0 : Number(s.income_limit);
+            if (range.min === -1) return limit === 0;
+            return limit >= range.min && limit <= range.max;
+        }).length
     }));
 }
 
 // Get scholarships by provider type
-export function getScholarshipsByProviderType(providerType: string) {
+export async function getScholarshipsByProviderType(providerType: string) {
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE provider_type = ?').all(providerType);
     db.close();
@@ -327,7 +629,7 @@ export function getScholarshipsByProviderType(providerType: string) {
 }
 
 // Get all unique provider types
-export function getAllProviderTypes() {
+export async function getAllProviderTypes() {
     const db = getDatabase();
     const types = db.prepare('SELECT DISTINCT provider_type FROM scholarships WHERE provider_type IS NOT NULL ORDER BY provider_type').all();
     db.close();
@@ -335,7 +637,7 @@ export function getAllProviderTypes() {
 }
 
 // Search scholarships by name, provider, or state
-export function searchScholarships(query: string) {
+export async function searchScholarships(query: string) {
     const db = getDatabase();
     const searchTerm = `%${query}%`;
     const scholarships = db.prepare(`
@@ -350,7 +652,7 @@ export function searchScholarships(query: string) {
 }
 
 // Get scholarships by multiple IDs (for comparison)
-export function getScholarshipsByIds(ids: string[]) {
+export async function getScholarshipsByIds(ids: string[]) {
     const db = getDatabase();
     const placeholders = ids.map(() => '?').join(',');
     const scholarships = db.prepare(`SELECT * FROM scholarships WHERE id IN (${placeholders})`).all(...ids);
@@ -359,7 +661,14 @@ export function getScholarshipsByIds(ids: string[]) {
 }
 
 // Get featured scholarships
-export function getFeaturedScholarships(limit: number = 6) {
+export async function getFeaturedScholarships(limit: number = 6) {
+    if (WP_API_URL) {
+        // Fetch posts and filter for featured in mapping or use a specific tag if you set one up
+        // For now, let's just fetch the latest published scholarships as "featured" 
+        // Or if you added a 'featured' tag/category, we could filter by that.
+        const posts = await wpFetch('/scholarship', { per_page: limit });
+        if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
+    }
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE is_featured = 1 ORDER BY priority_score DESC LIMIT ?').all(limit);
     db.close();
@@ -367,15 +676,54 @@ export function getFeaturedScholarships(limit: number = 6) {
 }
 
 // Get scholarships by type
-export function getScholarshipsByType(type: string) {
+export async function getScholarshipsByType(type: string) {
     const db = getDatabase();
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE scholarship_type = ?').all(type);
     db.close();
     return scholarships.map(parseScholarship);
 }
 
+// Get related scholarships based on State, Level, and Category
+export async function getRelatedScholarships(currentId: string, limit: number = 3) {
+    const scholarship = (await getScholarshipsByIds([currentId]))[0];
+    if (!scholarship) return [];
+
+    const db = getDatabase();
+
+    // We try to find scholarships that match:
+    // 1. Same Level (Critical)
+    // 2. Same State (High)
+    // 3. Same Category/Caste (Medium)
+
+    const state = scholarship.state || 'All India';
+    const level = scholarship.level;
+    const category = scholarship.caste[0] || 'General';
+
+    // Step 1: Broad match by Level (most important for students)
+    // Then sort by priority_score and then by matching state/category
+    const query = `
+        SELECT * FROM scholarships 
+        WHERE id != ? 
+        AND status = 'Active'
+        AND (level = ? OR level LIKE ?)
+        ORDER BY 
+            (CASE WHEN state = ? THEN 2 ELSE 0 END) + 
+            (CASE WHEN caste LIKE ? THEN 1 ELSE 0 END) DESC,
+            priority_score DESC 
+        LIMIT ?
+    `;
+
+    const searchTerm = `%${level}%`;
+    const categorySearch = `%${category}%`;
+
+    const related = db.prepare(query).all(currentId, level, searchTerm, state, categorySearch, limit);
+    db.close();
+
+    return related.map(parseScholarship);
+}
+
 // Get global stats for pillar pages
-export function getScholarshipStats() {
+export async function getScholarshipStats() {
     const db = getDatabase();
     const stats = db.prepare(`
         SELECT 
@@ -390,7 +738,7 @@ export function getScholarshipStats() {
 }
 
 // Get scholarships by course cluster (e.g., Engineering, Medical)
-export function getScholarshipsByCourse(course: string) {
+export async function getScholarshipsByCourse(course: string) {
     const db = getDatabase();
     // Use LIKE to match the course within the course_stream JSON or text
     const scholarships = db.prepare('SELECT * FROM scholarships WHERE course_stream LIKE ?').all(`%${course}%`);

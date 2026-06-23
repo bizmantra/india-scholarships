@@ -16,6 +16,20 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: "IndiaScholarships - Find Scholarships for Indian Students",
   description: "Discover government and private scholarships for Indian students. Search by state, category, income level, and education level. Updated for 2026.",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://www.indiascholarships.in",
+    siteName: "IndiaScholarships.in",
+    title: "IndiaScholarships - Find Scholarships for Indian Students",
+    description: "Discover government and private scholarships for Indian students. Search by state, category, income level, and education level.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IndiaScholarships - Find Scholarships for Indian Students",
+    description: "Discover government and private scholarships for Indian students.",
+    creator: "@IndiaScholarships",
+  },
 };
 
 export default function RootLayout({

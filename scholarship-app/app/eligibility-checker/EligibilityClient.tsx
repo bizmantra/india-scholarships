@@ -4,6 +4,7 @@ import { useState } from 'react';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import Header from '@/app/components/Header';
 import { Search, CheckCircle2 } from 'lucide-react';
+import ShareButtons from '@/app/components/ShareButtons';
 
 interface FormData {
     state: string;
@@ -259,9 +260,15 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                     <h2 className="text-3xl font-bold text-gray-900 mb-2">
                                         Great News! You're Eligible for {results.length} Scholarship{results.length !== 1 ? 's' : ''}
                                     </h2>
-                                    <p className="text-lg text-gray-700">
+                                    <p className="text-lg text-gray-700 mb-6">
                                         Total potential value: ₹{results.reduce((sum, s) => sum + (s.amount_annual || 0), 0).toLocaleString('en-IN')}+
                                     </p>
+                                    <div className="bg-white/50 p-4 rounded-xl">
+                                        <ShareButtons
+                                            title={`I found ${results.length} scholarships worth ₹${results.reduce((sum, s) => sum + (s.amount_annual || 0), 0).toLocaleString('en-IN')}! Check your eligibility now.`}
+                                            url="https://www.indiascholarships.in/eligibility-checker"
+                                        />
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-8 mb-8">

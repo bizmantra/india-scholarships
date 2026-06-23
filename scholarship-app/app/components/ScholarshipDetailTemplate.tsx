@@ -329,18 +329,32 @@ export default function ScholarshipDetailTemplate({
                     <section>
                         <h2 className="text-3xl font-bold text-gray-900 mb-10 font-serif leading-tight">Frequently Asked Questions</h2>
                         <div className="space-y-6">
-                            {scholarship.faq_json && scholarship.faq_json.length > 0 ? (
-                                scholarship.faq_json.map((faq: any, i: number) => (
-                                    <div key={i} className="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm">
-                                        <h4 className="text-lg font-bold text-gray-900 mb-3">{faq.q || faq.question}</h4>
-                                        <p className="text-gray-600 text-sm leading-relaxed">{faq.a || faq.answer}</p>
+                            {(() => {
+                                let faqs = [];
+                                if (Array.isArray(scholarship.faq_json)) {
+                                    faqs = scholarship.faq_json;
+                                } else if (typeof scholarship.faq_json === 'string' && scholarship.faq_json.includes('Q:')) {
+                                    // Fallback for plain text format
+                                    const parts = scholarship.faq_json.split(/Q:/).filter(Boolean);
+                                    faqs = parts.map((p: string) => {
+                                        const [q, a] = p.split(/A:/);
+                                        return { q: q?.trim(), a: a?.trim() };
+                                    });
+                                }
+
+                                return faqs.length > 0 ? (
+                                    faqs.map((faq: any, i: number) => (
+                                        <div key={i} className="p-8 bg-white border border-gray-100 rounded-3xl shadow-sm">
+                                            <h4 className="text-lg font-bold text-gray-900 mb-3">{faq.q || faq.question}</h4>
+                                            <p className="text-gray-600 text-sm leading-relaxed">{faq.a || faq.answer}</p>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="p-8 bg-gray-50 border border-dashed border-gray-200 rounded-3xl text-center italic text-gray-400">
+                                        Detailed FAQs for this particular scheme are being compiled by our editorial team.
                                     </div>
-                                ))
-                            ) : (
-                                <div className="p-8 bg-gray-50 border border-dashed border-gray-200 rounded-3xl text-center italic text-gray-400">
-                                    Detailed FAQs for this particular scheme are being compiled by our editorial team.
-                                </div>
-                            )}
+                                );
+                            })()}
                         </div>
                     </section>
 
@@ -349,7 +363,12 @@ export default function ScholarshipDetailTemplate({
                         <h2 className="text-3xl font-bold text-gray-900 mb-10 font-serif leading-tight">Similar Scholarships</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
-                                { label: `Other schemes by ${scholarship.provider_type || 'Provider'}`, href: "/government-scholarships" },
+                                {
+                                    label: `Other ${scholarship.scholarship_type || 'Government'} schemes`,
+                                    href: scholarship.scholarship_type === 'Private' ? "/private-scholarships" :
+                                        scholarship.scholarship_type === 'Corporate' ? "/corporate-scholarships" :
+                                            "/government-scholarships"
+                                },
                                 { label: `For ${scholarship.level} students`, href: `/scholarships-level/${(scholarship.level || '').toLowerCase().replace(/\s+/g, '-')}` },
                                 { label: `For ${scholarship.caste && scholarship.caste[0] ? scholarship.caste[0] : 'All'} category`, href: `/scholarships-for/${scholarship.caste && scholarship.caste[0] ? scholarship.caste[0].toLowerCase().replace(/\s+/g, '-') : 'all-categories'}` },
                                 { label: `In ${scholarship.state || 'India'}`, href: `/scholarships-in/${scholarship.state ? scholarship.state.toLowerCase().replace(/\s+/g, '-') : 'india'}` }
@@ -376,9 +395,14 @@ export default function ScholarshipDetailTemplate({
                                     </li>
                                 )}
                                 <li>
-                                    <Link href="/government-scholarships" className="flex items-center gap-2 text-blue-700 font-bold hover:underline">
+                                    <Link
+                                        href={scholarship.scholarship_type === 'Private' ? "/private-scholarships" :
+                                            scholarship.scholarship_type === 'Corporate' ? "/corporate-scholarships" :
+                                                "/government-scholarships"}
+                                        className="flex items-center gap-2 text-blue-700 font-bold hover:underline"
+                                    >
                                         <ExternalLink className="w-4 h-4" />
-                                        All Government Scholarship Schemes
+                                        All {scholarship.scholarship_type || 'Government'} Scholarship Schemes
                                     </Link>
                                 </li>
                             </ul>
@@ -396,10 +420,10 @@ export default function ScholarshipDetailTemplate({
                         </p>
                     </section>
                 </div>
-            </main>
+            </main >
 
             {/* Footer */}
-            <footer className="bg-gray-900 text-gray-400 py-16">
+            < footer className="bg-gray-900 text-gray-400 py-16" >
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="col-span-1 md:col-span-2">
                         <span className="text-2xl font-black text-white font-serif mb-6 block">IndiaScholarships</span>
@@ -426,7 +450,7 @@ export default function ScholarshipDetailTemplate({
                 <div className="max-w-7xl mx-auto px-6 pt-16 mt-16 border-t border-gray-800 text-[10px] uppercase tracking-widest text-center">
                     © {currentYear} INDIASCHOLARSHIPS.ALL RIGHTS RESERVED.
                 </div>
-            </footer>
-        </div>
+            </footer >
+        </div >
     );
 }

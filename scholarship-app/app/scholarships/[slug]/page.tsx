@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getAllScholarships, getScholarshipBySlug } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory } from '@/lib/db';
 import {
     Calendar,
     MapPin,
@@ -22,10 +22,11 @@ import {
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import ShareButtons from '@/app/components/ShareButtons';
 
 // Generate static params for all scholarships
 export async function generateStaticParams() {
-    const scholarships = getAllScholarships();
+    const scholarships = await getAllScholarships();
     return scholarships.map((scholarship: any) => ({
         slug: scholarship.slug,
     }));
@@ -34,7 +35,7 @@ export async function generateStaticParams() {
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const scholarship = getScholarshipBySlug(slug);
+    const scholarship = await getScholarshipBySlug(slug);
 
     if (!scholarship) {
         return {
@@ -45,16 +46,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: `${scholarship.title} – Eligibility, Amount & How to Apply`,
         description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
+        openGraph: {
+            title: `${scholarship.title} – Application Open (2026)`,
+            description: `Apply for ${scholarship.title}. Amount: ₹${scholarship.amount_annual > 0 ? scholarship.amount_annual : 'Variable'}/year. ${scholarship.level} students in ${scholarship.state || 'India'}.`,
+            url: `https://www.indiascholarships.in/scholarships/${scholarship.slug}`,
+            type: 'article',
+            siteName: 'IndiaScholarships',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${scholarship.title}`,
+            description: `Check eligibility and apply for ${scholarship.title}.`,
+        }
     };
 }
 
 export default async function ScholarshipDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const scholarship = getScholarshipBySlug(slug);
+    const scholarship = await getScholarshipBySlug(slug);
 
     if (!scholarship) {
         notFound();
     }
+
+    const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
 
     // Helper to display value or "Not specified"
     const displayValue = (value: any) => {
@@ -63,8 +78,10 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     };
 
     // Format amount
-    const formatAmount = (amount: number | null) => {
-        if (!amount) return 'Not specified';
+    const formatAmount = (amount: number | null, description: string = '') => {
+        if (!amount || amount === 0) {
+            return description || 'Check official notification';
+        }
         if (amount >= 100000) return `₹${(amount / 100000).toFixed(1)} Lakh+`;
         if (amount >= 1000) return `₹${(amount / 1000).toFixed(0)}k+`;
         return `₹${amount}`;
@@ -139,6 +156,37 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 </nav>
             </div>
 
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Article',
+                        headline: scholarship.title,
+                        description: scholarship.intro_seo,
+                        image: 'https://www.indiascholarships.in/icon.png',
+                        datePublished: new Date().toISOString(),
+                        dateModified: new Date().toISOString(),
+                        author: {
+                            '@type': 'Organization',
+                            name: 'IndiaScholarships'
+                        },
+                        publisher: {
+                            '@type': 'Organization',
+                            name: 'IndiaScholarships',
+                            logo: {
+                                '@type': 'ImageObject',
+                                url: 'https://www.indiascholarships.in/icon.png'
+                            }
+                        },
+                        mainEntityOfPage: {
+                            '@type': 'WebPage',
+                            '@id': `https://www.indiascholarships.in/scholarships/${scholarship.slug}`
+                        }
+                    })
+                }}
+            />
+
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
@@ -204,10 +252,12 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div>
                                     <span className="text-xs font-bold uppercase tracking-widest text-amber-700 mb-1 block">Total scholarship amount</span>
                                     <div className="text-5xl font-black text-gray-900 mb-2">
-                                        {formatAmount(scholarship.amount_annual)}
+                                        {formatAmount(scholarship.amount_annual, scholarship.amount_description)}
                                     </div>
                                     <p className="text-amber-800 font-medium leading-relaxed">
-                                        {scholarship.amount_description || 'Direct financial assistance for tuition and living expenses.'}
+                                        {scholarship.amount_description && scholarship.amount_annual > 0
+                                            ? scholarship.amount_description
+                                            : (scholarship.amount_annual > 0 ? 'Direct financial assistance for tuition and living expenses.' : '')}
                                     </p>
                                 </div>
                                 <div className="bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-amber-200/50">
@@ -386,18 +436,30 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div className="space-y-4">
                                     {(() => {
                                         try {
-                                            const faqs = typeof scholarship.faq_json === 'string' ? JSON.parse(scholarship.faq_json) : scholarship.faq_json;
-                                            if (!faqs || (Array.isArray(faqs) && faqs.length === 0)) return null;
+                                            let faqs = scholarship.faq_json;
+
+                                            // Handle case where it might be a stringified JSON in some imports
+                                            if (typeof faqs === 'string') {
+                                                try { faqs = JSON.parse(faqs); } catch (e) { }
+                                            }
+
+                                            if (!faqs || (Array.isArray(faqs) && faqs.length === 0)) return (
+                                                <p className="p-6 bg-gray-50 rounded-2xl text-gray-400 italic">Detailed FAQs are being compiled for this scheme.</p>
+                                            );
 
                                             return Array.isArray(faqs) ? faqs.map((faq: any, i: number) => (
                                                 <div key={i} className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:border-blue-200 transition-colors">
                                                     <h3 className="font-bold text-gray-900 mb-3 text-lg leading-tight flex gap-3">
                                                         <span className="text-blue-600 font-black">Q.</span>
-                                                        {faq.question || faq.q}
+                                                        {faq.question || faq.q || 'Common Question'}
                                                     </h3>
-                                                    <p className="text-gray-600 leading-relaxed pl-8">{faq.answer || faq.a}</p>
+                                                    <p className="text-gray-600 leading-relaxed pl-8">{faq.answer || faq.a || 'Refer to the official portal for details.'}</p>
                                                 </div>
-                                            )) : null;
+                                            )) : (
+                                                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm">
+                                                    <p className="text-gray-600 leading-relaxed">{String(faqs)}</p>
+                                                </div>
+                                            );
                                         } catch (e) { return null; }
                                     })()}
                                 </div>
@@ -494,6 +556,11 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 </div>
                             </div>
 
+                            <ShareButtons
+                                title={scholarship.title}
+                                url={`https://www.indiascholarships.in/scholarships/${scholarship.slug}`}
+                            />
+
                             {/* Verification Stats Card (At a Glance) */}
                             <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm">
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-4">At a Glance</h3>
@@ -504,7 +571,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         </div>
                                         <div>
                                             <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-wider">Status</span>
-                                            <span className="font-bold text-emerald-700 text-sm">Active - {scholarship.verification_year}</span>
+                                            <span className="font-bold text-emerald-700 text-sm">Active - {scholarship.verification_year || (scholarship.last_verified ? new Date(scholarship.last_verified).getFullYear() : new Date().getFullYear())}</span>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-4">
@@ -549,26 +616,59 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
                             {/* Related Discovery Links (Dynamic) */}
                             <div className="space-y-4">
-                                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest pl-4">Related Categories</h3>
+                                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest pl-4">Discover More</h3>
                                 <div className="flex flex-col gap-2">
-                                    <Link href={`/scholarships-level/${scholarship.level.toLowerCase().replace(/\s+/g, '-')}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
-                                        For {scholarship.level}
+                                    <Link href={`/scholarships-level/${getCanonicalSlugForLevel(scholarship.level)}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                        For {Array.isArray(scholarship.level) ? scholarship.level[0] : (String(scholarship.level || '').split(',')[0] || 'Students')}
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                     <Link href={`/scholarships-in/${scholarship.state?.toLowerCase().replace(/\s+/g, '-') || 'all-india'}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
                                         In {scholarship.state || 'All India'}
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
-                                    <Link href={`/scholarships-for/${scholarship.caste[0]?.toLowerCase().replace(/\s+/g, '-') || 'general'}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                    <Link href={`/scholarships-for/${getCanonicalSlugForCategory(scholarship.caste[0])}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
                                         For {scholarship.caste[0] || 'All Categories'}
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
-                                    <Link href={`/${scholarship.provider_type.toLowerCase()}-scholarships`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
-                                        {scholarship.provider_type} Listings
+                                    <Link href={`/scholarships-income/${getCanonicalSlugForIncome(scholarship.income_limit)}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                        Income Coverage
+                                        <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                    <Link href={`/${scholarship.scholarship_type.toLowerCase()}-scholarships`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                        {scholarship.scholarship_type} Listings
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
                             </div>
+
+                            {/* Related Scholarships (Small Cards) */}
+                            {relatedScholarships.length > 0 && (
+                                <div className="space-y-4 pt-4 border-t border-gray-100">
+                                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest pl-4">Similar Opportunities</h3>
+                                    <div className="space-y-3">
+                                        {relatedScholarships.map((rel: any) => (
+                                            <Link key={rel.id} href={`/scholarships/${rel.slug}`} className="block p-4 bg-white border border-gray-100 rounded-2xl hover:border-blue-200 hover:shadow-md transition-all group">
+                                                <div className="flex gap-4">
+                                                    <div className="w-12 h-12 bg-gray-50 rounded-xl flex-shrink-0 flex items-center justify-center border border-gray-100 group-hover:bg-blue-50 transition-colors">
+                                                        <Award className="w-6 h-6 text-blue-600" />
+                                                    </div>
+                                                    <div className="min-w-0">
+                                                        <h4 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors line-clamp-2 leading-tight">
+                                                            {rel.title}
+                                                        </h4>
+                                                        <div className="flex items-center gap-1.5 mt-1">
+                                                            <div className="w-1 h-1 bg-gray-300 rounded-full" />
+                                                            <span className="text-[10px] font-black text-emerald-600 uppercase tracking-wider">
+                                                                Up to ₹{(rel.amount_annual / 1000).toFixed(0)}k
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

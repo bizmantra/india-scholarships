@@ -9,8 +9,8 @@ export const metadata = {
     description: 'Explore private scholarships from foundations, NGOs, and trusts. Find merit-based and need-based financial aid for Indian students.',
 };
 
-export default function PrivateScholarshipsPage() {
-    const scholarships = getScholarshipsByType('Private');
+export default async function PrivateScholarshipsPage() {
+    const scholarships = await getScholarshipsByType('Private');
 
     return (
         <div className="min-h-screen bg-white">

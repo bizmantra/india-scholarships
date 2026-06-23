@@ -9,8 +9,8 @@ export const metadata = {
     description: 'Browse scholarships by caste category. Find SC, ST, OBC, EBC, and Minority scholarships with complete eligibility and application details.',
 };
 
-export default function ScholarshipsByCategoryPage() {
-    const categories = getAllCategories();
+export default async function ScholarshipsByCategoryPage() {
+    const categories = await getAllCategories();
 
     const categoryInfo: Record<string, { description: string; icon: string }> = {
         'SC': { description: 'Scholarships for students from Scheduled Caste communities.', icon: '👥' },
@@ -45,49 +45,53 @@ export default function ScholarshipsByCategoryPage() {
 
                 {/* Category Grid */}
                 <section className="space-y-6 mb-20">
-                    {categories.map((category) => {
-                        const info = categoryInfo[category] || { description: `Verified scholarships for ${category} category students.`, icon: '📖' };
-                        const slug = slugify(category);
-                        const scholarships = getScholarshipsByCategory(category).slice(0, 3);
+                    {(await Promise.all(categories
+                        .filter(c => ['SC', 'ST', 'OBC', 'General', 'Minority', 'EBC'].includes(c) || categories.length < 15)
+                        .map(async (category) => {
+                            const info = categoryInfo[category] || { description: `Verified scholarships for ${category} category students.`, icon: '📖' };
+                            const slug = slugify(category);
+                            const scholarships = (await getScholarshipsByCategory(category)).slice(0, 3);
 
-                        return (
-                            <div key={category} className="group flex flex-col md:flex-row gap-6 p-8 bg-white border border-gray-100 rounded-3xl hover:border-blue-600 hover:shadow-xl transition-all duration-300">
-                                <div className="text-5xl md:pt-2">{info.icon}</div>
-                                <div className="flex-1">
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                        <div>
-                                            <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
-                                                {category} Category
-                                            </h2>
-                                            <p className="text-gray-600">{info.description}</p>
+                            if (scholarships.length === 0 && !categoryInfo[category]) return null;
+
+                            return (
+                                <div key={category} className="group flex flex-col md:flex-row gap-6 p-8 bg-white border border-gray-100 rounded-3xl hover:border-blue-600 hover:shadow-xl transition-all duration-300">
+                                    <div className="text-5xl md:pt-2">{info.icon}</div>
+                                    <div className="flex-1">
+                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                            <div>
+                                                <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                                                    {category} Category
+                                                </h2>
+                                                <p className="text-gray-600">{info.description}</p>
+                                            </div>
+                                            <Link
+                                                href={`/scholarships-for/${slug}`}
+                                                className="mt-4 md:mt-0 text-blue-700 font-bold flex items-center gap-1 hover:underline"
+                                            >
+                                                View All {category} <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                                            </Link>
                                         </div>
-                                        <Link
-                                            href={`/scholarships-for/${slug}`}
-                                            className="mt-4 md:mt-0 text-blue-700 font-bold flex items-center gap-1 hover:underline"
-                                        >
-                                            View All {category} <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                                        </Link>
+
+                                        {/* Top Scholarships list */}
+                                        {scholarships.length > 0 && (
+                                            <div className="grid grid-cols-1 gap-2 mt-4">
+                                                {scholarships.map((s: any) => (
+                                                    <Link
+                                                        key={s.id}
+                                                        href={`/scholarships/${s.slug}`}
+                                                        className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-200"
+                                                    >
+                                                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 shrink-0" />
+                                                        <span className="text-sm font-medium text-gray-700 truncate">{s.title}</span>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
-
-                                    {/* Top Scholarships list */}
-                                    {scholarships.length > 0 && (
-                                        <div className="grid grid-cols-1 gap-2 mt-4">
-                                            {scholarships.map((s: any) => (
-                                                <Link
-                                                    key={s.id}
-                                                    href={`/scholarships/${s.slug}`}
-                                                    className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-200"
-                                                >
-                                                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 shrink-0" />
-                                                    <span className="text-sm font-medium text-gray-700 truncate">{s.title}</span>
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    )}
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        }))).filter(Boolean)}
                 </section>
 
                 {/* Related Links */}

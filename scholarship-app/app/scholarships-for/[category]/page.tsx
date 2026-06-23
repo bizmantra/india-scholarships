@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getScholarshipsByCategory, getAllCategories } from '@/lib/db';
+import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
@@ -8,9 +8,16 @@ import Footer from '@/app/components/Footer';
 
 // Generate static params for all categories
 export async function generateStaticParams() {
-    const categories = getAllCategories();
-    return categories.map((category) => ({
-        category: slugify(category),
+    const categories = await getAllCategories();
+    const slugs = new Set<string>();
+
+    categories.forEach(c => {
+        slugs.add(slugify(c));
+        slugs.add(getCanonicalSlugForCategory(c));
+    });
+
+    return Array.from(slugs).map((slug) => ({
+        category: slug,
     }));
 }
 
@@ -35,7 +42,7 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
     try {
         const { category: categorySlug } = await params;
-        const categories = getAllCategories();
+        const categories = await getAllCategories();
         const firstMatch = categories.find(c => slugify(c) === categorySlug) || categorySlug;
         const displayName = CATEGORY_NAME_MAP[firstMatch.toLowerCase()] || firstMatch;
 
@@ -53,8 +60,10 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         const { category: categorySlug } = await params;
 
         // Resolve the original category names from the slug (could be multiple messy strings)
-        const categories = getAllCategories();
-        const matchingOriginalCategories = categories.filter(c => slugify(c) === categorySlug);
+        const categories = await getAllCategories();
+        const matchingOriginalCategories = categories.filter(c =>
+            slugify(c) === categorySlug || getCanonicalSlugForCategory(c) === categorySlug
+        );
 
         if (matchingOriginalCategories.length === 0) {
             notFound();
@@ -65,9 +74,9 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         const displayName = CATEGORY_NAME_MAP[firstMatch.toLowerCase()] || firstMatch;
 
         // Get scholarships for all matching original category strings
-        const allScholarshipsFound = matchingOriginalCategories.flatMap(category =>
+        const allScholarshipsFound = (await Promise.all(matchingOriginalCategories.map(category =>
             getScholarshipsByCategory(category)
-        );
+        ))).flat();
 
         // Deduplicate scholarships by ID
         const scholarships = Array.from(new Map(allScholarshipsFound.map(s => [s.id, s])).values());
