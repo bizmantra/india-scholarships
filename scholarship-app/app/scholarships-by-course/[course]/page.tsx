@@ -29,7 +29,7 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
     const courseName = capitalize(course);
 
     // Get scholarships for this course cluster
-    const scholarships = getScholarshipsByCourse(courseName);
+    const scholarships = await getScholarshipsByCourse(courseName);
 
     if (scholarships.length === 0 && course !== 'all') {
         notFound();

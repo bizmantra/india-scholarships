@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Scholarship Detail Pages
-    const scholarships = getAllScholarships();
+    const scholarships = await getAllScholarships();
     const scholarshipRoutes = scholarships.map(s => ({
         url: `${baseUrl}/scholarships/${s.slug}`,
         lastModified: new Date(),
@@ -43,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic State Listing Pages
-    const states = getAllStates();
+    const states = await getAllStates();
     const stateRoutes = states.map(state => ({
         url: `${baseUrl}/scholarships-in/${slugify(state)}`,
         lastModified: new Date(),
@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Category Listing Pages
-    const categories = getAllCategories();
+    const categories = await getAllCategories();
     const categoryRoutes = categories.map(cat => ({
         url: `${baseUrl}/scholarships-for/${slugify(cat)}`,
         lastModified: new Date(),
@@ -69,7 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Income Listing Pages
-    const incomeRanges = getIncomeRanges();
+    const incomeRanges = await getIncomeRanges();
     const incomeRoutes = incomeRanges.map(range => ({
         url: `${baseUrl}/scholarships-income/${range.slug}`,
         lastModified: new Date(),
