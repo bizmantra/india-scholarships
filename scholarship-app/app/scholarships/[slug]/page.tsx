@@ -45,11 +45,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     const title = scholarship.title;
     const lowerTitle = title.toLowerCase();
-    let seoTitle = `${title} – Eligibility, Amount & How to Apply`;
+    const isGov = scholarship.scholarship_type === 'Government' || 
+                  lowerTitle.includes('yojana') || 
+                  lowerTitle.includes('scheme') || 
+                  lowerTitle.includes('portal') || 
+                  lowerTitle.includes('post matric') || 
+                  lowerTitle.includes('post-matric') || 
+                  lowerTitle.includes('pre matric') || 
+                  lowerTitle.includes('pre-matric');
 
+    let seoTitle = '';
+
+    // Specific brand overrides
     if (lowerTitle.includes('e-kalyan') || lowerTitle.includes('e kalyan')) {
         seoTitle = `e-Kalyan Portal 2026: Application Status, Login & Registration`;
-    } else if (lowerTitle.includes('mmvy') || lowerTitle.includes('medhavi vidyarthi')) {
+    } else if (lowerTitle.includes('mmvy') || lowerTitle.includes('medhavi')) {
         seoTitle = `MMVY Portal 2026: MP Medhavi Student Login & Registration`;
     } else if (lowerTitle.includes('svmcm') || lowerTitle.includes('vivekananda')) {
         seoTitle = `SVMCM Portal 2026: Swami Vivekananda Scholarship Login & Status`;
@@ -57,8 +67,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = `Nabanna Scholarship 2026: Application Form, Eligibility & Guide`;
     } else if (lowerTitle.includes('egrantz') || lowerTitle.includes('e-grantz')) {
         seoTitle = `E-Grantz Portal 2026: Kerala Student Login & Application Status`;
-    } else if (lowerTitle.includes('ssp') || lowerTitle.includes('post matric') || lowerTitle.includes('post-matric')) {
-        seoTitle = `${title} 2026: Apply Online, SSP Login & Status`;
+    } else if (lowerTitle.includes('azim premji')) {
+        seoTitle = `Azim Premji Scholarship 2026: Application Process, Eligibility & Login`;
+    } else if (lowerTitle.includes('reliance foundation')) {
+        seoTitle = `Reliance Foundation Scholarship 2026: Apply Online & Selection List`;
+    } else if (lowerTitle.includes('ongc')) {
+        seoTitle = `ONGC Scholarship 2026: Application Form, Selection List & Guide`;
+    } else if (isGov) {
+        // Dynamic rule for government scholarships
+        seoTitle = `${title} 2026: Apply Online, Portal Login & Status Check`;
+    } else {
+        // Dynamic rule for private/corporate/trust scholarships
+        seoTitle = `${title} 2026: Application Form, Eligibility & Selection List`;
     }
 
     return {
