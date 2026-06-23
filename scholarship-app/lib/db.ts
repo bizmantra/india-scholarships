@@ -85,7 +85,7 @@ function mapWpPostToScholarship(post: any) {
         // Taxonomy Fields - Prefer ACF if set, otherwise use WordPress Taxonomies
         state: fields.state || (states.length > 0 ? states[0] : "All India"),
         level: fields.level || (levels.length > 0 ? levels.join(', ') : ""),
-        caste: (Array.isArray(fields.caste) && fields.caste.length > 0) ? fields.caste : (categories.length > 0 ? categories : []),
+        caste: parseCasteField(fields.caste || (categories.length > 0 ? categories : [])),
         gender: fields.gender || "All",
         course_stream: fields.course_stream ? (Array.isArray(fields.course_stream) ? fields.course_stream : [fields.course_stream]) : [],
         app_type: "",
@@ -103,7 +103,7 @@ function mapWpPostToScholarship(post: any) {
         residency_requirement: fields.state || (states.length > 0 ? states[0] : ""),
 
         // Application Details
-        docs_needed: fields.docs_needed ? (Array.isArray(fields.docs_needed) ? fields.docs_needed : fields.docs_needed.split('\n').map((s: string) => s.trim())) : [],
+        docs_needed: parseDocsField(fields.docs_needed),
         application_mode: fields.application_mode || "Online",
         apply_url: fields.apply_url || "",
         deadline: fields.deadline || "",
@@ -766,9 +766,9 @@ export function getMajorCourses() {
 function parseScholarship(row: any) {
     return {
         ...row,
-        caste: tryParseJSON(row.caste, []),
+        caste: parseCasteField(row.caste),
         course_stream: tryParseJSON(row.course_stream, []),
-        docs_needed: tryParseJSON(row.docs_needed, []),
+        docs_needed: parseDocsField(row.docs_needed),
         keywords: tryParseJSON(row.keywords, []),
         faq_json: tryParseJSON(row.faq_json, []),
     };
@@ -784,3 +784,120 @@ function tryParseJSON(value: any, fallback: any) {
         return fallback;
     }
 }
+
+
+export function parseCasteField(value: any): string[] {
+    if (!value) return [];
+    if (Array.isArray(value)) {
+        return value.map((c: any) => String(c).replace(/[\[\]"']/g, '').trim()).filter(Boolean);
+    }
+    if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (trimmed === '') return [];
+        if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+            try {
+                const parsed = JSON.parse(trimmed);
+                if (Array.isArray(parsed)) {
+                    return parsed.map((c: any) => String(c).replace(/[\[\]"']/g, '').trim()).filter(Boolean);
+                }
+            } catch {}
+        }
+        // Fallback: split by commas
+        return trimmed.split(',').map((c: string) => c.replace(/[\[\]"']/g, '').trim()).filter(Boolean);
+    }
+    return [];
+}
+
+export function parseDocsField(value: any): string[] {
+    if (!value) return [];
+    let list: string[] = [];
+    if (Array.isArray(value)) {
+        list = value;
+    } else if (typeof value === 'string') {
+        const trimmed = value.trim();
+        if (trimmed === '') return [];
+        if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+            try {
+                const parsed = JSON.parse(trimmed);
+                if (Array.isArray(parsed)) {
+                    list = parsed;
+                } else {
+                    list = [parsed];
+                }
+            } catch {
+                list = [trimmed];
+            }
+        } else {
+            list = trimmed.split('\n');
+        }
+    }
+
+    if (list.length === 1 && typeof list[0] === 'string' && list[0].includes(',')) {
+        list = list[0].split(',').map(s => s.trim()).filter(Boolean);
+    } else {
+        list = list.flatMap(item => {
+            if (typeof item === 'string') {
+                return item.split('\n').map(s => s.trim()).filter(Boolean);
+            }
+            return item;
+        });
+    }
+
+    return list.map(s => String(s).trim()).filter(Boolean);
+}
+
+export function getCleanSteps(text: string | null): string[] {
+    if (!text) return [];
+    
+    let rawItems: string[] = [];
+    const trimmed = text.trim();
+    
+    // 1. Check if it is a string representation of an array
+    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+        try {
+            // Try parsing as JSON
+            const parsed = JSON.parse(trimmed);
+            if (Array.isArray(parsed)) {
+                rawItems = parsed.map(s => String(s));
+            }
+        } catch (e) {
+            // Fallback: extract string literals from python-like list representation
+            const matches: string[] = [];
+            const regex = /'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)"/g;
+            let match;
+            while ((match = regex.exec(trimmed)) !== null) {
+                matches.push(match[1] !== undefined ? match[1] : match[2]);
+            }
+            if (matches.length > 0) {
+                rawItems = matches.map(s => s.replace(/\\'/g, "'").replace(/\\"/g, '"'));
+            }
+        }
+    }
+    
+    // 2. If it wasn't parsed as a stringified array, treat it as a single string
+    if (rawItems.length === 0) {
+        if (/Step \d+:/i.test(trimmed)) {
+            rawItems = trimmed.split(/Step \d+:/i).map(s => s.trim()).filter(Boolean);
+        } else if (/\b\d+\.\s+/.test(trimmed)) {
+            rawItems = trimmed.split(/(?=\b\d+\.\s+)/).map(s => s.trim()).filter(Boolean);
+        } else {
+            rawItems = trimmed.split('\n').map(s => s.trim()).filter(Boolean);
+        }
+    }
+    
+    // 3. Clean up each item (strip leading numbers, Step X: prefixes, etc.)
+    const cleanItems = rawItems.map(item => {
+        let cleaned = item.trim();
+        // Remove leading quote/brackets if any escaped characters remain
+        cleaned = cleaned.replace(/^['"\[\s,]+|['"\]\s,]+$/g, '');
+        // Strip leading number prefix like "1. ", "01. ", "1) "
+        cleaned = cleaned.replace(/^\b\d+[\.\)]\s*/, '');
+        // Strip leading "Step X: " prefix
+        cleaned = cleaned.replace(/^Step\s+\d+:\s*/i, '');
+        return cleaned.trim();
+    }).filter(Boolean);
+    
+    return cleanItems;
+}
+
+

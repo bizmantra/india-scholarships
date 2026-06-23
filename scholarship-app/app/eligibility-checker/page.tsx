@@ -1,4 +1,4 @@
-import { getDatabase } from '@/lib/db';
+import { getDatabase, parseCasteField } from '@/lib/db';
 import EligibilityCheckerClient from './EligibilityClient';
 import type { Metadata } from 'next';
 
@@ -19,21 +19,11 @@ export default async function EligibilityCheckerPage() {
         ORDER BY amount_annual DESC
     `).all();
 
-    // Parse caste JSON for each scholarship
-    const parsedScholarships = scholarships.map((s: any) => {
-        let caste = [];
-        try {
-            if (s.caste && typeof s.caste === 'string' && s.caste.trim()) {
-                caste = JSON.parse(s.caste);
-            }
-        } catch (e) {
-            console.error(`Error parsing caste for scholarship ${s.id}:`, e);
-        }
-        return {
-            ...s,
-            caste
-        };
-    });
+    // Parse caste for each scholarship using the central helper
+    const parsedScholarships = scholarships.map((s: any) => ({
+        ...s,
+        caste: parseCasteField(s.caste)
+    }));
 
     // Pass scholarships to client component
     return <EligibilityCheckerClient scholarships={parsedScholarships} />;

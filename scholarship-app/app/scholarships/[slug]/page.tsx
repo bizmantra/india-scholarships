@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, getCleanSteps } from '@/lib/db';
 import {
     Calendar,
     MapPin,
@@ -23,6 +23,19 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
+
+const TARGET_SLUGS = [
+    'pm-yashasvi-scholarship',
+    'sitaram-jindal-foundation-scholarship',
+    'tata-capital-pankh-scholarship',
+    'mukhyamantri-kanya-utthan-yojana-graduation',
+    'nabanna-scholarship-west-bengal',
+    'hdfc-bank-parivartan-ecss-scholarship',
+    'lic-golden-jubilee-scholarship',
+    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy',
+    'bitsat-scholarship',
+    'post-matric-scholarship-for-obcsebc-students-odisha'
+];
 
 // Generate static params for all scholarships
 export async function generateStaticParams() {
@@ -129,13 +142,11 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         if (!text) return <p className="text-gray-400 italic">Not specified</p>;
 
         let items: string[] = [];
+        let isSteps = type === 'steps';
 
-        if (type === 'steps' || /Step \d+:/i.test(text)) {
-            // Handle "Step 1: ... Step 2: ..." format
-            items = text.split(/Step \d+:/i).filter(s => s.trim());
+        if (isSteps) {
+            items = getCleanSteps(text);
         } else {
-            // Split by sentences or common list pattern
-            // We split by dots followed by space and capital, or by labels like "Verification:", or by ";"
             items = text
                 .split(/\.\s+(?=[A-Z])|(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
                 .map(s => s.trim())
@@ -147,10 +158,10 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         }
 
         return (
-            <ul className={`space-y-3 ${type === 'steps' ? 'list-none' : 'list-none'}`}>
+            <ul className="space-y-3 list-none">
                 {items.map((item, i) => (
                     <li key={i} className="text-gray-700 leading-relaxed">
-                        {type === 'steps' ? (
+                        {isSteps ? (
                             <div className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
                                     {i + 1}
@@ -599,6 +610,43 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 url={`https://www.indiascholarships.in/scholarships/${scholarship.slug}`}
                             />
 
+                            {/* Supporting Guides Quick Links Card */}
+                            {TARGET_SLUGS.includes(scholarship.slug) && (
+                                <div className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8">
+                                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-150 pb-4">Supporting Guides</h3>
+                                    <nav className="space-y-2">
+                                        <Link href={`/scholarships/${scholarship.slug}/eligibility`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Eligibility Criteria</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/income-limit`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Income Limit</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/documents-required`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Documents Required</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/last-date`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Last Date & Timelines</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/selection-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Selection Process</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/apply-online`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>How to Apply Online</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                        <Link href={`/scholarships/${scholarship.slug}/renewal-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                            <span>Renewal Process</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                                        </Link>
+                                    </nav>
+                                </div>
+                            )}
+
                             {/* Verification Stats Card (At a Glance) */}
                             <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm">
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-4">At a Glance</h3>
@@ -630,7 +678,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                             <span className="font-bold text-gray-900 text-sm uppercase">{scholarship.application_mode}</span>
                                         </div>
                                     </div>
-                                    {scholarship.total_awards && (
+                                    {scholarship.total_awards > 0 && (
                                         <div className="flex items-center gap-4">
                                             <div className="p-3 bg-purple-50 rounded-2xl">
                                                 <Award className="h-6 w-6 text-purple-600" />
