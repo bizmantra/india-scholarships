@@ -69,10 +69,11 @@ async function updateSheetRow(rowIndex, values) {
  * Append a new row to Google Sheet
  * @param {Array} values - Array of values to append
  */
-async function appendSheetRow(values) {
+async function appendSheetRow(values, customSheetName = '') {
     const sheets = authenticateGoogleSheets();
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-    const range = `${process.env.GOOGLE_SHEET_NAME || 'Sheet1'}!A:AZ`;
+    const sheetName = customSheetName || process.env.GOOGLE_SHEET_NAME || 'Sheet1';
+    const range = `${sheetName}!A:AZ`;
 
     try {
         const response = await sheets.spreadsheets.values.append({
@@ -87,6 +88,50 @@ async function appendSheetRow(values) {
         console.log(`✅ Appended new row to Google Sheets`);
         return response.data;
     } catch (error) {
+        // If the sheet doesn't exist, try creating it first
+        if (error.message && (error.message.includes('Unable to parse range') || error.message.includes('requested URL was not found'))) {
+            try {
+                console.log(`Sheet "${sheetName}" not found. Creating it...`);
+                await sheets.spreadsheets.batchUpdate({
+                    spreadsheetId,
+                    resource: {
+                        requests: [
+                            {
+                                addSheet: {
+                                    properties: {
+                                        title: sheetName,
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                });
+                
+                // Add header row to the newly created sheet
+                await sheets.spreadsheets.values.append({
+                    spreadsheetId,
+                    range: `${sheetName}!A1`,
+                    valueInputOption: 'RAW',
+                    resource: {
+                        values: [['Email', 'Scholarship Slug', 'Subscribed At']],
+                    },
+                });
+                
+                // Now retry appending the actual row
+                const response = await sheets.spreadsheets.values.append({
+                    spreadsheetId,
+                    range,
+                    valueInputOption: 'RAW',
+                    resource: {
+                        values: [values],
+                    },
+                });
+                return response.data;
+            } catch (createError) {
+                console.error(`Error creating sheet "${sheetName}":`, createError.message);
+                throw createError;
+            }
+        }
         console.error('Error appending to Google Sheets:', error.message);
         throw error;
     }

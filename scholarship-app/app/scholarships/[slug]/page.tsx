@@ -24,6 +24,8 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
+import SubscribeForm from '@/app/components/SubscribeForm';
+import MobileStickyCTA from '@/app/components/MobileStickyCTA';
 
 const TARGET_SLUGS = [
     'pm-yashasvi-scholarship',
@@ -124,6 +126,12 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
+
+    // Dynamic deadline check (relative to India's current date boundary: June 25, 2026)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const deadlineDate = scholarship.deadline ? new Date(scholarship.deadline) : null;
+    const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
 
     // Helper to display value or "Not specified"
     const displayValue = (value: any) => {
@@ -250,10 +258,17 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wider border border-blue-100">
                                     {scholarship.provider_type} Scholarship
                                 </span>
-                                <span className="flex items-center gap-1.5 text-emerald-600 text-xs font-bold uppercase tracking-wider">
-                                    <ShieldCheck className="h-4 w-4" />
-                                    Verified for 2026
-                                </span>
+                                {isDeadlinePassed ? (
+                                    <span className="flex items-center gap-1.5 text-slate-500 text-xs font-bold uppercase tracking-wider">
+                                        <Clock className="h-4 w-4" />
+                                        Previous Cycle (Closed)
+                                    </span>
+                                ) : (
+                                    <span className="flex items-center gap-1.5 text-emerald-600 text-xs font-bold uppercase tracking-wider">
+                                        <ShieldCheck className="h-4 w-4" />
+                                        Verified for 2026
+                                    </span>
+                                )}
                             </div>
 
                             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
@@ -272,11 +287,26 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-gray-400" />
                                     <span className="font-medium">
-                                        Deadline: <span className="text-red-600 font-bold">{scholarship.deadline ? new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Open Now'}</span>
+                                        Deadline: <span className={`${isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{scholarship.deadline ? new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Open Now'} {isDeadlinePassed && '(Closed)'}</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
+
+                        {isDeadlinePassed && (
+                            <div className="mb-10 p-6 bg-amber-50 border border-amber-200 rounded-3xl flex gap-4">
+                                <Info className="h-6 w-6 text-amber-600 flex-shrink-0 mt-0.5" />
+                                <div>
+                                    <p className="font-bold text-amber-900 mb-1">Status Check</p>
+                                    <p className="text-amber-800 text-sm leading-relaxed">
+                                        The previous application cycle (2025–26) closed on {new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}. The upcoming 2026–27 cycle is expected to open soon. We will update the links here as soon as the official notification is released.
+                                    </p>
+                                    <a href="#similar-opportunities" className="mt-2 inline-block text-xs font-bold text-blue-700 hover:underline">
+                                        👉 View active scholarships you can apply for today
+                                    </a>
+                                </div>
+                            </div>
+                        )}
 
                         {/* About Section */}
                         {scholarship.intro_seo && (
@@ -556,12 +586,23 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                             <Info className="h-4 w-4 text-blue-600" />
                                             Need Application Help?
                                         </h3>
-                                        <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                                            If you have trouble applying, you can join our student community or browse our application guides.
+                                        <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                                            If you have trouble applying, you can check your eligibility or browse our step-by-step application guides.
                                         </p>
-                                        <Link href="/scholarships" className="text-blue-700 font-bold text-sm hover:underline flex items-center gap-1">
-                                            Browse More Scholarships <ChevronRight className="h-4 w-4" />
-                                        </Link>
+                                        <div className="flex flex-col sm:flex-row gap-3">
+                                            <Link
+                                                href="/guides"
+                                                className="flex-1 px-4 py-3 bg-blue-600 text-white font-bold text-xs rounded-xl hover:bg-blue-700 transition-colors text-center shadow-sm font-bold"
+                                            >
+                                                Browse Application Guides
+                                            </Link>
+                                            <Link
+                                                href={`/eligibility-checker?level=${encodeURIComponent(scholarship.level || '')}&state=${encodeURIComponent(scholarship.state || '')}&caste=${encodeURIComponent(scholarship.caste?.join(',') || '')}&income=${scholarship.income_limit || ''}`}
+                                                className="flex-1 px-4 py-3 bg-white text-blue-700 border border-blue-200 font-bold text-xs rounded-xl hover:bg-blue-50 transition-colors text-center shadow-sm font-bold"
+                                            >
+                                                Check Your Eligibility
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -586,33 +627,71 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         <div className="sticky top-24 space-y-8">
 
                             {/* CTA Card */}
-                            <div className="bg-blue-700 rounded-[2.5rem] p-8 text-white shadow-xl shadow-blue-100 border-b-8 border-blue-900 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-4 opacity-10">
-                                    <Users className="w-24 h-24" />
-                                </div>
-                                <h3 className="text-xl font-extrabold mb-4 relative z-10">Ready to Apply?</h3>
-                                <p className="text-blue-100 text-sm mb-8 leading-relaxed relative z-10">
-                                    Submit your application through the official portal. Ensure all documents are scanned and ready for upload.
-                                </p>
-                                {cleanApplyUrl ? (
-                                    <a
-                                        href={cleanApplyUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-full py-4 bg-white text-blue-700 text-center font-black rounded-2xl hover:bg-blue-50 transition-all shadow-lg active:scale-95 relative z-10"
-                                    >
-                                        Visit Official Portal
-                                    </a>
-                                ) : (
-                                    <div className="block w-full py-4 bg-blue-800 text-blue-200 text-center font-black rounded-2xl cursor-not-allowed text-sm relative z-10">
-                                        Official Link Not Available
+                            {isDeadlinePassed ? (
+                                <div className="bg-slate-800 rounded-[2.5rem] p-8 text-white shadow-xl shadow-slate-100 border-b-8 border-slate-950 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10">
+                                        <Users className="w-24 h-24" />
                                     </div>
-                                )}
-                                <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-300">
-                                    <ShieldCheck className="h-3 w-3" />
-                                    Verified Secure Source
+                                    <h3 className="text-xl font-extrabold mb-4 relative z-10">Applications Closed</h3>
+                                    <p className="text-slate-300 text-sm mb-6 leading-relaxed relative z-10">
+                                        The application window has closed. You can still visit the official portal to check results, merit lists, or selection status.
+                                    </p>
+                                    {cleanApplyUrl ? (
+                                        <a
+                                            href={cleanApplyUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block w-full py-4 bg-slate-700 text-white text-center font-black rounded-2xl hover:bg-slate-600 transition-all shadow-lg active:scale-95 relative z-10 mb-6"
+                                        >
+                                            Visit Official Portal (Check Results)
+                                        </a>
+                                    ) : (
+                                        <div className="block w-full py-4 bg-slate-700 text-slate-400 text-center font-black rounded-2xl cursor-not-allowed text-sm relative z-10 mb-6">
+                                            Official Link Not Available
+                                        </div>
+                                    )}
+                                    <div className="border-t border-slate-700 pt-6 relative z-10">
+                                        <p className="text-xs font-bold text-slate-300 mb-3">Alert Me When 2026–27 Cycle Opens</p>
+                                        <SubscribeForm slug={scholarship.slug} />
+                                    </div>
+                                    <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                                        <ShieldCheck className="h-3 w-3" />
+                                        Verified Secure Source
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="bg-blue-700 rounded-[2.5rem] p-8 text-white shadow-xl shadow-blue-100 border-b-8 border-blue-900 relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10">
+                                        <Users className="w-24 h-24" />
+                                    </div>
+                                    <h3 className="text-xl font-extrabold mb-4 relative z-10">Ready to Apply?</h3>
+                                    <p className="text-blue-100 text-sm mb-8 leading-relaxed relative z-10">
+                                        Submit your application through the official portal. Ensure all documents are scanned and ready for upload.
+                                    </p>
+                                    {cleanApplyUrl ? (
+                                        <a
+                                            href={cleanApplyUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block w-full py-4 bg-white text-blue-700 text-center font-black rounded-2xl hover:bg-blue-50 transition-all shadow-lg active:scale-95 relative z-10 mb-6"
+                                        >
+                                            Visit Official Portal
+                                        </a>
+                                    ) : (
+                                        <div className="block w-full py-4 bg-blue-800 text-blue-200 text-center font-black rounded-2xl cursor-not-allowed text-sm relative z-10 mb-6">
+                                            Official Link Not Available
+                                        </div>
+                                    )}
+                                    <div className="border-t border-blue-600/50 pt-6 relative z-10">
+                                        <p className="text-xs font-bold text-blue-200 mb-3">Get Deadline & Status Alerts</p>
+                                        <SubscribeForm slug={scholarship.slug} buttonText="Get Deadline Alerts" />
+                                    </div>
+                                    <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-300">
+                                        <ShieldCheck className="h-3 w-3" />
+                                        Verified Secure Source
+                                    </div>
+                                </div>
+                            )}
 
                             <ShareButtons
                                 title={scholarship.title}
@@ -661,12 +740,18 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-50 pb-4">At a Glance</h3>
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4">
-                                        <div className="p-3 bg-emerald-50 rounded-2xl">
-                                            <ShieldCheck className="h-6 w-6 text-emerald-600" />
+                                        <div className={`p-3 rounded-2xl ${isDeadlinePassed ? 'bg-slate-100' : 'bg-emerald-50'}`}>
+                                            {isDeadlinePassed ? (
+                                                <Clock className="h-6 w-6 text-slate-500" />
+                                            ) : (
+                                                <ShieldCheck className="h-6 w-6 text-emerald-600" />
+                                            )}
                                         </div>
                                         <div>
                                             <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-wider">Status</span>
-                                            <span className="font-bold text-emerald-700 text-sm">Active - {scholarship.verification_year || (scholarship.last_verified ? new Date(scholarship.last_verified).getFullYear() : new Date().getFullYear())}</span>
+                                            <span className={`font-bold text-sm ${isDeadlinePassed ? 'text-slate-600' : 'text-emerald-700'}`}>
+                                                {isDeadlinePassed ? 'Closed (Expired)' : `Active - ${scholarship.verification_year || new Date().getFullYear()}`}
+                                            </span>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-4">
@@ -738,7 +823,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
                             {/* Related Scholarships (Small Cards) */}
                             {relatedScholarships.length > 0 && (
-                                <div className="space-y-4 pt-4 border-t border-gray-100">
+                                <div id="similar-opportunities" className="space-y-4 pt-4 border-t border-gray-100">
                                     <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest pl-4">Similar Opportunities</h3>
                                     <div className="space-y-3">
                                         {relatedScholarships.map((rel: any) => (
@@ -769,6 +854,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 </div>
             </main>
 
+            <MobileStickyCTA
+                title={scholarship.title}
+                amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
+                applyUrl={cleanApplyUrl || ''}
+                isClosed={isDeadlinePassed}
+                slug={scholarship.slug}
+            />
             <Footer />
         </div>
     );

@@ -531,6 +531,37 @@ export async function getScholarshipsByType(type: string) {
     return scholarships.map(parseScholarship);
 }
 
+// Helper to generate search patterns for levels
+function getLevelSearchPatterns(levelStr: string): string[] {
+    if (!levelStr) return ['%All Level%', '%All level%', '%All Levels%', '%All levels%'];
+    const patterns: string[] = ['%All Level%', '%All level%', '%All Levels%', '%All levels%'];
+    const lower = levelStr.toLowerCase();
+
+    if (lower.includes('ug') || lower.includes('undergrad') || lower.includes('bachelor') || lower.includes('graduate') || lower.includes('graduation')) {
+        patterns.push('%ug%', '%undergrad%', '%bachelor%', '%graduate%', '%graduation%');
+    }
+    if (lower.includes('pg') || lower.includes('postgrad') || lower.includes('master')) {
+        patterns.push('%pg%', '%postgrad%', '%master%');
+    }
+    if (lower.includes('11') || lower.includes('12') || lower.includes('higher secondary') || lower.includes('post-matric') || lower.includes('puc')) {
+        patterns.push('%11%', '%12%', '%higher secondary%', '%post-matric%', '%puc%');
+    }
+    if (lower.includes('1') || lower.includes('2') || lower.includes('3') || lower.includes('4') || lower.includes('5') || lower.includes('6') || lower.includes('7') || lower.includes('8') || lower.includes('9') || lower.includes('10') || lower.includes('school') || lower.includes('pre-matric')) {
+        patterns.push('%class 1%', '%class 2%', '%class 3%', '%class 4%', '%class 5%', '%class 6%', '%class 7%', '%class 8%', '%class 9%', '%class 10%', '%school%', '%pre-matric%');
+    }
+    if (lower.includes('diploma') || lower.includes('polytechnic')) {
+        patterns.push('%diploma%', '%polytechnic%');
+    }
+    if (lower.includes('iti') || lower.includes('vocational')) {
+        patterns.push('%iti%', '%vocational%');
+    }
+    if (lower.includes('phd') || lower.includes('ph.d') || lower.includes('research') || lower.includes('doctoral')) {
+        patterns.push('%phd%', '%ph.d%', '%research%', '%doctoral%');
+    }
+
+    return patterns;
+}
+
 // Get related scholarships based on State, Level, and Category
 export async function getRelatedScholarships(currentId: string, limit: number = 3) {
     const scholarship = (await getScholarshipsByIds([currentId]))[0];
@@ -538,22 +569,28 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
 
     const db = getDatabase();
 
-    // We try to find scholarships that match:
-    // 1. Same Level (Critical)
-    // 2. Same State (High)
-    // 3. Same Category/Caste (Medium)
-
     const state = scholarship.state || 'All India';
-    const level = scholarship.level;
+    const level = scholarship.level || '';
     const category = scholarship.caste[0] || 'General';
 
-    // Step 1: Broad match by Level (most important for students)
-    // Then sort by priority_score and then by matching state/category
+    const patterns = getLevelSearchPatterns(level);
+    const placeholders = patterns.map(() => 'level LIKE ?').join(' OR ');
+
+    // Match level keywords, filter out expired ones (deadline is empty, not a date, or >= today)
     const query = `
         SELECT * FROM scholarships 
         WHERE id != ? 
         AND status = 'Active'
-        AND (level = ? OR level LIKE ?)
+        AND (${placeholders})
+        AND (
+            deadline IS NULL 
+            OR deadline = '' 
+            OR deadline = 'Not specified'
+            OR deadline = 'Open Now'
+            OR deadline = 'Rolling'
+            OR deadline NOT LIKE '____-__-%'
+            OR deadline >= date('now')
+        )
         ORDER BY 
             (CASE WHEN state = ? THEN 2 ELSE 0 END) + 
             (CASE WHEN caste LIKE ? THEN 1 ELSE 0 END) DESC,
@@ -561,12 +598,39 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
         LIMIT ?
     `;
 
-    const searchTerm = `%${level}%`;
     const categorySearch = `%${category}%`;
+    const params = [currentId, ...patterns, state, categorySearch, limit];
 
-    const related = db.prepare(query).all(currentId, level, searchTerm, state, categorySearch, limit);
+    let related = db.prepare(query).all(...params);
+
+    // Fallback: If we got fewer than limit, relax level constraints or find any active popular scholarships
+    if (related.length < limit) {
+        const remaining = limit - related.length;
+        const excludedIds = [currentId, ...related.map((r: any) => r.id)];
+        const placeholdersExclude = excludedIds.map(() => '?').join(',');
+
+        const fallbackQuery = `
+            SELECT * FROM scholarships
+            WHERE id NOT IN (${placeholdersExclude})
+            AND status = 'Active'
+            AND (
+                deadline IS NULL 
+                OR deadline = '' 
+                OR deadline = 'Not specified'
+                OR deadline = 'Open Now'
+                OR deadline = 'Rolling'
+                OR deadline NOT LIKE '____-__-%'
+                OR deadline >= date('now')
+            )
+            ORDER BY priority_score DESC
+            LIMIT ?
+        `;
+
+        const fallbackRelated = db.prepare(fallbackQuery).all(...excludedIds, remaining);
+        related = [...related, ...fallbackRelated];
+    }
+
     db.close();
-
     return related.map(parseScholarship);
 }
 
