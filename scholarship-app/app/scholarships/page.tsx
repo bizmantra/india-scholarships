@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { getFeaturedScholarships, getScholarshipStats, getAllStates, getAllCategories, CANONICAL_LEVELS } from '@/lib/db';
+import { getFeaturedScholarships, getScholarshipStats, getAllStates, getAllCategories } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { MapPin, GraduationCap, Users, ArrowRight, ShieldCheck, Zap, BookOpen } from 'lucide-react';
-import { slugify } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 

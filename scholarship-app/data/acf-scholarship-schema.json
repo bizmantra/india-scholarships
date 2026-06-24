@@ -1,0 +1,270 @@
+[
+    {
+        "key": "group_scholarship_master",
+        "title": "Scholarship Master Data",
+        "fields": [
+            {
+                "key": "field_section_basic",
+                "label": "1. Basic Information",
+                "name": "",
+                "type": "accordion",
+                "instructions": "",
+                "required": 0,
+                "open": 1,
+                "multi_expand": 1,
+                "endpoint": 0
+            },
+            {
+                "key": "field_provider",
+                "label": "Provider Name",
+                "name": "provider",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_provider_type",
+                "label": "Provider Type",
+                "name": "provider_type",
+                "type": "select",
+                "choices": {
+                    "Government": "Government",
+                    "Corporate": "Corporate",
+                    "Private": "Private"
+                },
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_intro_seo",
+                "label": "About the Program (Intro)",
+                "name": "intro_seo",
+                "type": "wysiwyg",
+                "instructions": "The description that appears at the top of the scholarship page."
+            },
+            {
+                "key": "field_section_financial",
+                "label": "2. Benefits & Amount",
+                "name": "",
+                "type": "accordion"
+            },
+            {
+                "key": "field_amount_annual",
+                "label": "Annual Amount (Max)",
+                "name": "amount_annual",
+                "type": "number",
+                "wrapper": {
+                    "width": "33"
+                }
+            },
+            {
+                "key": "field_amount_min",
+                "label": "Minimum Amount",
+                "name": "amount_min",
+                "type": "number",
+                "wrapper": {
+                    "width": "33"
+                }
+            },
+            {
+                "key": "field_amount_description",
+                "label": "Amount Description",
+                "name": "amount_description",
+                "type": "text",
+                "instructions": "e.g. '₹2.0 Lakh for entire course duration'",
+                "wrapper": {
+                    "width": "34"
+                }
+            },
+            {
+                "key": "field_benefits",
+                "label": "Detailed Benefits",
+                "name": "benefits",
+                "type": "wysiwyg",
+                "instructions": "Full breakdown of financial support."
+            },
+            {
+                "key": "field_section_eligibility",
+                "label": "3. Eligibility Criteria",
+                "name": "",
+                "type": "accordion"
+            },
+            {
+                "key": "field_income_limit",
+                "label": "Income Limit",
+                "name": "income_limit",
+                "type": "number",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_min_marks",
+                "label": "Min Marks (%)",
+                "name": "min_marks",
+                "type": "number",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_level",
+                "label": "Education Level",
+                "name": "level",
+                "type": "checkbox",
+                "choices": {
+                    "Class 1-10": "Class 1-10",
+                    "Class 11-12": "Class 11-12",
+                    "Diploma / Polytechnic": "Diploma / Polytechnic",
+                    "ITI Courses": "ITI Courses",
+                    "Graduation (UG)": "Graduation (UG)",
+                    "Post-Graduation (PG)": "Post-Graduation (PG)",
+                    "PhD & Research": "PhD & Research"
+                }
+            },
+            {
+                "key": "field_state",
+                "label": "State",
+                "name": "state",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_gender",
+                "label": "Gender Eligibility",
+                "name": "gender",
+                "type": "select",
+                "choices": {
+                    "All": "All",
+                    "Female Only": "Female Only",
+                    "Male Only": "Male Only"
+                },
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_age_limit",
+                "label": "Age Limit",
+                "name": "age_limit",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_caste",
+                "label": "Category / Caste",
+                "name": "caste",
+                "type": "text",
+                "instructions": "e.g. SC, ST, OBC, General",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_section_process",
+                "label": "4. Process & Application",
+                "name": "",
+                "type": "accordion"
+            },
+            {
+                "key": "field_selection",
+                "label": "Selection Process",
+                "name": "selection",
+                "type": "wysiwyg"
+            },
+            {
+                "key": "field_renewal",
+                "label": "Renewal Policy",
+                "name": "renewal",
+                "type": "wysiwyg"
+            },
+            {
+                "key": "field_step_guide",
+                "label": "Application Steps",
+                "name": "step_guide",
+                "type": "wysiwyg"
+            },
+            {
+                "key": "field_docs_needed",
+                "label": "Documents Required",
+                "name": "docs_needed",
+                "type": "textarea",
+                "instructions": "Separate items with commas or new lines."
+            },
+            {
+                "key": "field_apply_url",
+                "label": "Official Apply URL",
+                "name": "apply_url",
+                "type": "url",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_deadline",
+                "label": "Deadline Date",
+                "name": "deadline",
+                "type": "date_picker",
+                "display_format": "Y-m-d",
+                "return_format": "Y-m-d",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_section_support",
+                "label": "5. Support & Metadata",
+                "name": "",
+                "type": "accordion"
+            },
+            {
+                "key": "field_helpline",
+                "label": "Helpline / Contact",
+                "name": "helpline",
+                "type": "text"
+            },
+            {
+                "key": "field_faq_json",
+                "label": "FAQs (JSON or Q:A text)",
+                "name": "faq_json",
+                "type": "textarea"
+            },
+            {
+                "key": "field_tags",
+                "label": "Tags",
+                "name": "tags",
+                "type": "text"
+            },
+            {
+                "key": "field_thumbnail_url",
+                "label": "Thumbnail / Logo URL",
+                "name": "thumbnail_url",
+                "type": "url"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "scholarship"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "seamless",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Full sync of all scholarship database fields for Headless integration.",
+        "show_in_rest": 1
+    }
+]

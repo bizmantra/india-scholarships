@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, getCleanSteps } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -119,6 +120,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     if (!scholarship) {
         notFound();
     }
+
+    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
 
@@ -591,14 +594,20 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <p className="text-blue-100 text-sm mb-8 leading-relaxed relative z-10">
                                     Submit your application through the official portal. Ensure all documents are scanned and ready for upload.
                                 </p>
-                                <a
-                                    href={scholarship.apply_url || scholarship.official_source}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full py-4 bg-white text-blue-700 text-center font-black rounded-2xl hover:bg-blue-50 transition-all shadow-lg active:scale-95 relative z-10"
-                                >
-                                    Visit Official Portal
-                                </a>
+                                {cleanApplyUrl ? (
+                                    <a
+                                        href={cleanApplyUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-full py-4 bg-white text-blue-700 text-center font-black rounded-2xl hover:bg-blue-50 transition-all shadow-lg active:scale-95 relative z-10"
+                                    >
+                                        Visit Official Portal
+                                    </a>
+                                ) : (
+                                    <div className="block w-full py-4 bg-blue-800 text-blue-200 text-center font-black rounded-2xl cursor-not-allowed text-sm relative z-10">
+                                        Official Link Not Available
+                                    </div>
+                                )}
                                 <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-300">
                                     <ShieldCheck className="h-3 w-3" />
                                     Verified Secure Source
@@ -708,7 +717,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         For {Array.isArray(scholarship.level) ? scholarship.level[0] : (String(scholarship.level || '').split(',')[0] || 'Students')}
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
-                                    <Link href={`/scholarships-in/${scholarship.state?.toLowerCase().replace(/\s+/g, '-') || 'all-india'}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                    <Link href={`/scholarships-in/${scholarship.state ? slugify(scholarship.state) : 'all-india'}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
                                         In {scholarship.state || 'All India'}
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
@@ -720,7 +729,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         Income Coverage
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>
-                                    <Link href={`/${scholarship.scholarship_type.toLowerCase()}-scholarships`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+                                    <Link href={getScholarshipTypeRoute(scholarship.scholarship_type)} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
                                         {scholarship.scholarship_type} Listings
                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </Link>

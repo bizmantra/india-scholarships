@@ -3,12 +3,11 @@ import {
     getAllScholarships,
     getAllStates,
     getAllCategories,
-    CANONICAL_LEVELS,
     getIncomeRanges,
     getMajorCourses,
     getAllProviderTypes
 } from '@/lib/db';
-import { slugify } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.indiascholarships.in';

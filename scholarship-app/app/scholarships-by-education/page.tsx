@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { CANONICAL_LEVELS } from '@/lib/db';
+import { CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 

@@ -1,0 +1,93 @@
+
+> indiascholarships@1.0.0 dev
+> next dev
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/package-lock.json
+
+   ▲ Next.js 15.5.9
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.68.104:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1672ms
+ ○ Compiling /scholarships/[slug] ...
+ ✓ Compiled /scholarships/[slug] in 1105ms (713 modules)
+ ✓ Compiled in 58ms (255 modules)
+ ⨯ TypeError: levelText.toLowerCase is not a function
+    at getCanonicalSlugForLevel (lib/db.ts:448:29)
+    at ScholarshipDetail (app/scholarships/[slug]/page.tsx:572:96)
+  446 |     if (!levelText) return 'graduation-ug';
+  447 |
+> 448 |     const lower = levelText.toLowerCase();
+      |                             ^
+  449 |
+  450 |     // Check canonical list first
+  451 |     for (const [slug, config] of Object.entries(CANONICAL_LEVELS)) { {
+  digest: '448152291'
+}
+ GET /scholarships/tata-trusts-medical-and-healthcare-scholarship 500 in 2210ms
+ ✓ Compiled in 1020ms (727 modules)
+ ⨯ TypeError: scholarship.level.split is not a function
+    at ScholarshipDetail (app/scholarships/[slug]/page.tsx:573:64)
+  571 |                                 <div className="flex flex-col gap-2">
+  572 |                                     <Link href={`/scholarships-level/${getCanonicalSlugForLevel(scholarship.level)}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm">
+> 573 |                                         For {scholarship.level.split(',')[0]}
+      |                                                                ^
+  574 |                                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+  575 |                                     </Link>
+  576 |                                     <Link href={`/scholarships-in/${scholarship.state?.toLowerCase().replace(/\s+/g, '-') || 'all-india'}`} className="px-6 py-4 bg-gray-50 rounded-2xl font-bold text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100 flex items-center justify-between group text-sm"> {
+  digest: '3273832251'
+}
+ GET /scholarships/tata-trusts-medical-and-healthcare-scholarship 500 in 320ms
+ ✓ Compiled in 633ms (727 modules)
+ GET /scholarships/tata-trusts-medical-and-healthcare-scholarship 200 in 830ms
+ GET /scholarships/tata-trusts-medical-and-healthcare-scholarship 200 in 124ms
+ ✓ Compiled /scholarships-level/[level] in 452ms (733 modules)
+ GET /scholarships-level/graduation-ug 404 in 1154ms
+ GET /scholarships-level/class-1-10 404 in 150ms
+ GET /scholarships-level/diploma-polytechnic 200 in 2761ms
+ GET /scholarships-level/diploma-polytechnic 200 in 6361ms
+ ✓ Compiled /scholarships in 422ms (717 modules)
+ GET /scholarships 200 in 947ms
+ ✓ Compiled /scholarships-for/[category] in 346ms (733 modules)
+ ✓ Compiled /scholarships-by-category in 235ms (721 modules)
+ GET /scholarships-by-category 200 in 382ms
+ GET /scholarships-for/obc 200 in 13445ms
+ GET /scholarships-for/obc 200 in 8321ms
+ GET /scholarships-for/obc 200 in 12334ms
+ ✓ Compiled /scholarships/[slug] in 200ms (475 modules)
+ GET /scholarships/mahadbt-post-matric-scholarship-maharashtra 200 in 556ms
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 362ms
+ ✓ Compiled in 1048ms (269 modules)
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 298ms
+ ✓ Compiled in 983ms (269 modules)
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 453ms
+ ✓ Compiled in 281ms (269 modules)
+ ✓ Compiled in 369ms (269 modules)
+ ✓ Compiled in 427ms (269 modules)
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 848ms
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 468ms
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 52ms
+ ✓ Compiled in 360ms (269 modules)
+ ✓ Compiled in 319ms (269 modules)
+ ✓ Compiled in 258ms (269 modules)
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 554ms
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 325ms
+ GET /scholarships/nmms-scholarship-maharashtra 200 in 103ms
+ GET /scholarships/tata-trusts-medical-and-healthcare-scholarship 200 in 645ms
+ GET /scholarships-level/graduation-ug 404 in 153ms
+ ○ Compiling /scholarships-by-education ...
+ ✓ Compiled /scholarships-by-education in 769ms (742 modules)
+ GET /scholarships-by-education 200 in 1025ms
+ GET /scholarships-by-education 200 in 24ms
+ ✓ Compiled /scholarships-level/[level] in 163ms (475 modules)
+ GET /scholarships-level/graduation-ug 200 in 306ms
+ GET /scholarships-by-education 200 in 235ms
+ GET /scholarships-level/graduation-ug 200 in 2151ms
+[?25h
