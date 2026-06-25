@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getDatabase, parseCasteField } from '@/lib/db';
 import EligibilityCheckerClient from './EligibilityClient';
 import type { Metadata } from 'next';
@@ -26,5 +27,9 @@ export default async function EligibilityCheckerPage() {
     }));
 
     // Pass scholarships to client component
-    return <EligibilityCheckerClient scholarships={parsedScholarships} />;
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center text-gray-500">Loading Checker...</div>}>
+            <EligibilityCheckerClient scholarships={parsedScholarships} />
+        </Suspense>
+    );
 }

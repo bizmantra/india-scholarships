@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import Header from '@/app/components/Header';
 import { Search, CheckCircle2 } from 'lucide-react';
@@ -26,6 +27,68 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
         income: '',
         marks: ''
     });
+
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const stateParam = searchParams.get('state') || '';
+        const categoryParam = searchParams.get('caste') || '';
+        const levelParam = searchParams.get('level') || '';
+        const incomeParam = searchParams.get('income') || '';
+
+        let matchedCategory = '';
+        const casteLower = categoryParam.toLowerCase();
+        if (casteLower.includes('general')) matchedCategory = 'General';
+        else if (casteLower.includes('obc')) matchedCategory = 'OBC';
+        else if (casteLower.includes('sc')) matchedCategory = 'SC';
+        else if (casteLower.includes('st')) matchedCategory = 'ST';
+        else if (casteLower.includes('ebc')) matchedCategory = 'EBC';
+        else if (casteLower.includes('minority')) matchedCategory = 'Minority';
+
+        let matchedLevel = '';
+        const levelLower = levelParam.toLowerCase();
+        if (levelLower.includes('ug') || levelLower.includes('undergraduate') || levelLower.includes('degree') || levelLower.includes('college')) {
+            matchedLevel = 'UG';
+        } else if (levelLower.includes('pg') || levelLower.includes('postgraduate') || levelLower.includes('master')) {
+            matchedLevel = 'PG';
+        } else if (levelLower.includes('class 9-12') || levelLower.includes('11') || levelLower.includes('12')) {
+            matchedLevel = 'Class 9-12';
+        } else if (levelLower.includes('pre-matric') || levelLower.includes('pre matric') || levelLower.includes('school') || levelLower.includes('1-10')) {
+            matchedLevel = 'Pre-Matric';
+        } else if (levelLower.includes('post-matric') || levelLower.includes('post matric') || levelLower.includes('diploma') || levelLower.includes('iti')) {
+            matchedLevel = 'Post-Matric';
+        }
+
+        let matchedIncome = '';
+        if (incomeParam) {
+            const inc = parseInt(incomeParam);
+            if (!isNaN(inc)) {
+                if (inc <= 100000) matchedIncome = '100000';
+                else if (inc <= 250000) matchedIncome = '250000';
+                else if (inc <= 350000) matchedIncome = '350000';
+                else if (inc <= 500000) matchedIncome = '500000';
+                else if (inc <= 800000) matchedIncome = '800000';
+                else matchedIncome = '1000000';
+            }
+        }
+
+        let matchedState = '';
+        const stateLower = stateParam.toLowerCase();
+        if (stateLower.includes('all') || stateLower.includes('india')) matchedState = 'All India';
+        else if (stateLower.includes('andhra')) matchedState = 'Andhra Pradesh';
+        else if (stateLower.includes('karnataka')) matchedState = 'Karnataka';
+        else if (stateLower.includes('maharashtra')) matchedState = 'Maharashtra';
+        else if (stateLower.includes('odisha') || stateLower.includes('orissa')) matchedState = 'Odisha';
+        else if (stateLower.includes('telangana')) matchedState = 'Telangana';
+
+        setFormData(prev => ({
+            ...prev,
+            state: matchedState || prev.state,
+            category: matchedCategory || prev.category,
+            level: matchedLevel || prev.level,
+            income: matchedIncome || prev.income,
+        }));
+    }, [searchParams]);
 
     const [results, setResults] = useState<any[]>([]);
     const [showResults, setShowResults] = useState(false);
