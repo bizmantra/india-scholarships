@@ -297,7 +297,16 @@ export async function getAllStates() {
         }
     }
     const db = getDatabase();
-    const states = db.prepare('SELECT DISTINCT state FROM scholarships WHERE state IS NOT NULL ORDER BY state').all();
+    const states = db.prepare(`
+        SELECT DISTINCT state FROM scholarships 
+        WHERE state IS NOT NULL 
+        AND state != '' 
+        AND state != 'All India' 
+        AND state != 'Multiple States'
+        AND state != 'Selected Cities'
+        AND state != 'Selected States'
+        ORDER BY state
+    `).all();
     db.close();
     return states.map((row: any) => row.state);
 }

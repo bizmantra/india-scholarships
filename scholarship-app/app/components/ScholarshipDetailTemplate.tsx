@@ -16,7 +16,7 @@ export default function ScholarshipDetailTemplate({
     // Check if deadline has passed
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const deadlineDate = scholarship.deadline ? new Date(scholarship.deadline) : null;
+    const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
     const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
     const applicationStatus = isDeadlinePassed ? 'closed' : 'open';
 
@@ -103,10 +103,14 @@ export default function ScholarshipDetailTemplate({
                             <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                                 <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block mb-1">Application Deadline</span>
                                 <span className="text-xl font-black text-red-600 block truncate">
-                                    {scholarship.deadline
-                                        ? new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })
-                                        : 'Open Now'
-                                    }
+                                    {(() => {
+                                        if (!scholarship.deadline) return 'Open Now';
+                                        const trimmed = scholarship.deadline.trim();
+                                        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') return 'Check Portal';
+                                        const date = new Date(trimmed);
+                                        if (isNaN(date.getTime())) return trimmed;
+                                        return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                                    })()}
                                 </span>
                             </div>
                             <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow col-span-2 md:col-span-1">

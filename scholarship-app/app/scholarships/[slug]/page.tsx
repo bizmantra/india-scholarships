@@ -24,8 +24,7 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
-import SubscribeForm from '@/app/components/SubscribeForm';
-import MobileStickyCTA from '@/app/components/MobileStickyCTA';
+
 
 const TARGET_SLUGS = [
     'pm-yashasvi-scholarship',
@@ -130,8 +129,26 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     // Dynamic deadline check (relative to India's current date boundary: June 25, 2026)
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const deadlineDate = scholarship.deadline ? new Date(scholarship.deadline) : null;
+    const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
     const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
+
+    // Helper to format deadline dates safely and avoid "Invalid Date"
+    const formatDeadlineDate = (
+        deadline: string | null | undefined, 
+        options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' },
+        fallback: string = 'Open Now'
+    ) => {
+        if (!deadline) return fallback;
+        const trimmed = deadline.trim();
+        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') {
+            return 'Check Official Portal';
+        }
+        const date = new Date(trimmed);
+        if (isNaN(date.getTime())) {
+            return trimmed;
+        }
+        return date.toLocaleDateString('en-IN', options);
+    };
 
     // Helper to display value or "Not specified"
     const displayValue = (value: any) => {
@@ -287,7 +304,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-gray-400" />
                                     <span className="font-medium">
-                                        Deadline: <span className={`${isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{scholarship.deadline ? new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Open Now'} {isDeadlinePassed && '(Closed)'}</span>
+                                        Deadline: <span className={`${isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Open Now')} {isDeadlinePassed && '(Closed)'}</span>
                                     </span>
                                 </div>
                             </div>
@@ -459,7 +476,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         <div>
                                             <p className="text-sm font-bold text-gray-500 uppercase mb-1">Application Deadline</p>
                                             <p className="text-lg font-bold text-gray-900">
-                                                {scholarship.deadline ? new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Continuous Enrollment / Check Official Portal'}
+                                                {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'Continuous Enrollment / Check Official Portal')}
                                             </p>
                                             {scholarship.deadline_description && <p className="text-sm text-gray-600 mt-1 italic">{scholarship.deadline_description}</p>}
                                         </div>
@@ -620,6 +637,44 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 Applying for a scholarship does not guarantee selection. Always verify all information on the official {scholarship.provider} website before final submission.
                             </p>
                         </section>
+
+                        {/* Related Scholarships (3-Column Grid) */}
+                        {relatedScholarships.length > 0 && (
+                            <section id="similar-opportunities" className="mt-12 pt-8 border-t border-gray-150 scroll-mt-24">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <Award className="h-5 w-5 text-blue-600" />
+                                    <h2 className="text-lg font-bold text-gray-900">Similar Opportunities You Can Apply For Today</h2>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    {relatedScholarships.map((rel: any) => (
+                                        <Link 
+                                            key={rel.id} 
+                                            href={`/scholarships/${rel.slug}`} 
+                                            className="flex flex-col p-6 bg-white border border-gray-100 rounded-3xl hover:border-blue-200 hover:shadow-lg transition-all group h-full justify-between"
+                                        >
+                                            <div>
+                                                <div className="w-12 h-12 bg-blue-50/50 rounded-2xl flex items-center justify-center border border-blue-50 mb-4 group-hover:bg-blue-50 transition-colors">
+                                                    <Award className="w-6 h-6 text-blue-600" />
+                                                </div>
+                                                <h4 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors line-clamp-2 leading-snug mb-2">
+                                                    {rel.title}
+                                                </h4>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-50">
+                                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                                                <span className="text-xs font-black text-emerald-600 uppercase tracking-wider">
+                                                    {rel.amount_annual && rel.amount_annual > 0 
+                                                        ? `Up to ₹${(rel.amount_annual / 1000).toFixed(0)}k` 
+                                                        : (rel.amount_min && rel.amount_min > 0 
+                                                            ? `Min. ₹${(rel.amount_min / 1000).toFixed(0)}k` 
+                                                            : 'Amount Varies')}
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
                     </div>
 
                     {/* Right Column: Sticky Sidebar */}
@@ -650,10 +705,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                             Official Link Not Available
                                         </div>
                                     )}
-                                    <div className="border-t border-slate-700 pt-6 relative z-10">
-                                        <p className="text-xs font-bold text-slate-300 mb-3">Alert Me When 2026–27 Cycle Opens</p>
-                                        <SubscribeForm slug={scholarship.slug} />
-                                    </div>
+
                                     <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                                         <ShieldCheck className="h-3 w-3" />
                                         Verified Secure Source
@@ -682,10 +734,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                             Official Link Not Available
                                         </div>
                                     )}
-                                    <div className="border-t border-blue-600/50 pt-6 relative z-10">
-                                        <p className="text-xs font-bold text-blue-200 mb-3">Get Deadline & Status Alerts</p>
-                                        <SubscribeForm slug={scholarship.slug} buttonText="Get Deadline Alerts" />
-                                    </div>
+
                                     <div className="mt-4 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest text-blue-300">
                                         <ShieldCheck className="h-3 w-3" />
                                         Verified Secure Source
@@ -820,47 +869,11 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     </Link>
                                 </div>
                             </div>
-
-                            {/* Related Scholarships (Small Cards) */}
-                            {relatedScholarships.length > 0 && (
-                                <div id="similar-opportunities" className="space-y-4 pt-4 border-t border-gray-100">
-                                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest pl-4">Similar Opportunities</h3>
-                                    <div className="space-y-3">
-                                        {relatedScholarships.map((rel: any) => (
-                                            <Link key={rel.id} href={`/scholarships/${rel.slug}`} className="block p-4 bg-white border border-gray-100 rounded-2xl hover:border-blue-200 hover:shadow-md transition-all group">
-                                                <div className="flex gap-4">
-                                                    <div className="w-12 h-12 bg-gray-50 rounded-xl flex-shrink-0 flex items-center justify-center border border-gray-100 group-hover:bg-blue-50 transition-colors">
-                                                        <Award className="w-6 h-6 text-blue-600" />
-                                                    </div>
-                                                    <div className="min-w-0">
-                                                        <h4 className="text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors line-clamp-2 leading-tight">
-                                                            {rel.title}
-                                                        </h4>
-                                                        <div className="flex items-center gap-1.5 mt-1">
-                                                            <div className="w-1 h-1 bg-gray-300 rounded-full" />
-                                                            <span className="text-[10px] font-black text-emerald-600 uppercase tracking-wider">
-                                                                Up to ₹{(rel.amount_annual / 1000).toFixed(0)}k
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
             </main>
 
-            <MobileStickyCTA
-                title={scholarship.title}
-                amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
-                applyUrl={cleanApplyUrl || ''}
-                isClosed={isDeadlinePassed}
-                slug={scholarship.slug}
-            />
             <Footer />
         </div>
     );

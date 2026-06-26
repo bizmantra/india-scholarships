@@ -29,6 +29,8 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
         if (!scholarship.deadline) return null;
 
         const deadlineDate = new Date(scholarship.deadline);
+        if (isNaN(deadlineDate.getTime())) return null;
+
         const today = new Date();
         const daysUntilDeadline = Math.ceil((deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
@@ -54,7 +56,15 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
     // Format deadline
     const formatDeadline = (deadline?: string) => {
         if (!deadline) return 'Check Portal';
-        return new Date(deadline).toLocaleDateString('en-IN', {
+        const trimmed = deadline.trim();
+        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') {
+            return 'Check Portal';
+        }
+        const date = new Date(trimmed);
+        if (isNaN(date.getTime())) {
+            return trimmed;
+        }
+        return date.toLocaleDateString('en-IN', {
             month: 'short',
             day: 'numeric',
             year: 'numeric'
