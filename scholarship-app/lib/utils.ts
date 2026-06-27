@@ -174,6 +174,7 @@ export function getCanonicalSlugForCategory(category: any): string {
     if (lower.includes('sc')) return 'sc';
     if (lower.includes('st')) return 'st';
     if (lower.includes('minority') || lower.includes('muslim') || lower.includes('christian')) return 'minority';
+    if (lower.includes('ews') || lower.includes('economically weaker')) return 'ews';
     if (lower.includes('general')) return 'general';
     if (lower.includes('all')) return 'general';
     return lower
@@ -209,5 +210,29 @@ export function getScholarshipTypeRoute(type: string | null | undefined): string
         return '/corporate-scholarships';
     }
     return '/government-scholarships';
+}
+
+/**
+ * Formats dynamic deadline strings safely, handling edge cases like NA, Rolling, and Open Now.
+ */
+export function formatDeadlineDate(
+    deadline: string | null | undefined,
+    options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' },
+    fallback: string = 'Open Now'
+): string {
+    if (!deadline) return fallback;
+    const trimmed = deadline.trim();
+    const lower = trimmed.toLowerCase();
+    if (lower === 'not specified' || lower === 'na' || lower === '') {
+        return 'Check Official Portal';
+    }
+    if (lower === 'open now' || lower === 'rolling') {
+        return trimmed;
+    }
+    const date = new Date(trimmed);
+    if (isNaN(date.getTime())) {
+        return trimmed;
+    }
+    return date.toLocaleDateString('en-IN', options);
 }
 

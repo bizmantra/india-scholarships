@@ -84,6 +84,17 @@ We have successfully implemented a complete quality audit system and resolved th
 
 ---
 
+#### 6. Implemented GSC & Programmatic SEO Upgrades (Completed June 2026)
+The following SEO and dynamic indexing upgrades are fully implemented:
+- **Dynamic Subpages (1,498 pages):** Static parameters are dynamically compiled for all 214 scholarships (removing the 10 target restrictions) and rendered using visual "Content Verification in Progress" fallback cards for empty DB fields to prevent thin content search penalties.
+- **Sitemap Expansion (1,839 URLs):** Dynamically loops through and indexes all 7 subpages (`eligibility`, `income-limit`, `documents-required`, `last-date`, `selection-process`, `apply-online`, `renewal-process`) for all scholarships, keeping sitemaps fresh.
+- **Title Rollover Overrides:** Implemented customized dynamic year metadata title tags (e.g. `tata-capital-pankh-scholarship`, state hubs like `odisha` / `west-bengal`) using `${year}` (resolving to `verification_year || current_year`) to avoid hardcoded year technical debt and support auto-rollovers.
+- **FAQPage & GovernmentService Schemas:** Renders dynamic schema blocks alongside standard Articles, handling multiple key formats safely.
+- **Weekly Ingestion & Deploy Cron:** Scheduled automated cron at `.github/workflows/weekly-enrichment.yml` to run database quality audits, fetch rate-limited Gemini grounding data, push SQLite DB changes, and redeploy to Vercel production.
+- **EWS mapping:** Enabled dynamic OBC/SC/ST/EWS categories list routing and mapping.
+
+---
+
 #### 6. Folder Hierarchy Map
 * `app/scholarships/[slug]/page.tsx`: Detail page layout rendering hero stats, step guides, selection metrics, and structured JSON-LD articles.
 * `app/scholarships/[slug]/[subpage]/page.tsx`: Generates child cluster pages matching GSC search queries (e.g. `/eligibility`, `/documents-required`, `/last-date`, `/selection-process`, `/apply-online`).

@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+import { formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -32,26 +33,15 @@ const SUBPAGE_METRICS: Record<string, { label: string, icon: any }> = {
     'renewal-process': { label: 'Renewal Process', icon: RefreshCcw }
 };
 
-// Generate static params for target GSC High-Traffic Scholarships
+// Generate static params dynamically for all scholarships
 export async function generateStaticParams() {
-    const targetSlugs = [
-        'pm-yashasvi-scholarship',
-        'sitaram-jindal-foundation-scholarship',
-        'tata-capital-pankh-scholarship',
-        'mukhyamantri-kanya-utthan-yojana-graduation',
-        'nabanna-scholarship-west-bengal',
-        'hdfc-bank-parivartan-ecss-scholarship',
-        'lic-golden-jubilee-scholarship',
-        'mukhyamantri-medhavi-vidyarthi-yojana-mmvy',
-        'bitsat-scholarship',
-        'post-matric-scholarship-for-obcsebc-students-odisha'
-    ];
+    const scholarships = await getAllScholarships();
     const subpages = Object.keys(SUBPAGE_METRICS);
 
     const params: Array<{ slug: string, subpage: string }> = [];
-    for (const slug of targetSlugs) {
+    for (const s of scholarships) {
         for (const subpage of subpages) {
-            params.push({ slug, subpage });
+            params.push({ slug: s.slug, subpage });
         }
     }
     return params;
@@ -122,6 +112,26 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const PageIcon = metric.icon;
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const year = scholarship.verification_year || new Date().getFullYear();
+
+    const ContentVerificationFallback = () => (
+        <div className="p-8 bg-gray-50 border border-gray-150 rounded-3xl text-center">
+            <Info className="h-10 w-10 text-gray-400 mx-auto mb-4" />
+            <h4 className="font-bold text-gray-900 mb-2">Content Verification in Progress</h4>
+            <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed mb-6">
+                The official guidelines, required documents, or step-by-step procedures for this scholarship cycle are currently being audited and verified by our editorial team.
+            </p>
+            <div className="flex justify-center gap-4">
+                <Link href={`/scholarships/${scholarship.slug}`} className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-sm">
+                    Back to Overview
+                </Link>
+                {scholarship.official_source && (
+                    <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 border border-gray-200 text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-50 transition-colors">
+                        Visit Official Portal
+                    </a>
+                )}
+            </div>
+        </div>
+    );
 
     // Helper to format text lists
     const FormattedText = ({ text }: { text: string | null }) => {
@@ -268,7 +278,6 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                 {scholarship.title} {metric.label} {year}
                             </h1>
                         </div>
-
                         {/* Specific Subpage Content Blocks */}
                         <div className="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm mb-12">
                             {subpage === 'eligibility' && (
@@ -339,16 +348,22 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                             {subpage === 'documents-required' && (
                                 <div className="space-y-6">
                                     <h3 className="font-bold text-gray-900 text-xl mb-4">Required Documents Checklist</h3>
-                                    {formatDocs(scholarship.docs_needed)}
-                                    <div className="mt-8 p-5 bg-blue-50/40 border border-blue-100 rounded-2xl">
-                                        <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
-                                            <ShieldCheck className="h-5 w-5 text-blue-700" />
-                                            DBT Bank Seeding Warning
-                                        </h4>
-                                        <p className="text-sm text-blue-950 leading-relaxed">
-                                            Your primary bank account must be active, seeded with your Aadhaar card, and mapped on the NPCI mapper. The government disbursements are made exclusively via Direct Benefit Transfer (DBT).
-                                        </p>
-                                    </div>
+                                    {!scholarship.docs_needed || (Array.isArray(scholarship.docs_needed) && scholarship.docs_needed.length === 0) || (typeof scholarship.docs_needed === 'string' && scholarship.docs_needed.trim() === '') ? (
+                                        <ContentVerificationFallback />
+                                    ) : (
+                                        <>
+                                            {formatDocs(scholarship.docs_needed)}
+                                            <div className="mt-8 p-5 bg-blue-50/40 border border-blue-100 rounded-2xl">
+                                                <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                                                    <ShieldCheck className="h-5 w-5 text-blue-700" />
+                                                    DBT Bank Seeding Warning
+                                                </h4>
+                                                <p className="text-sm text-blue-950 leading-relaxed">
+                                                    Your primary bank account must be active, seeded with your Aadhaar card, and mapped on the NPCI mapper. The government disbursements are made exclusively via Direct Benefit Transfer (DBT).
+                                                </p>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             )}
 
@@ -360,7 +375,9 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-amber-950 text-lg mb-1">Application Deadline</h3>
-                                            <p className="text-2xl font-black text-amber-800 tracking-tight">{scholarship.deadline || 'Check Official Notification'}</p>
+                                            <p className="text-2xl font-black text-amber-800 tracking-tight">
+                                                {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' })}
+                                            </p>
                                             {scholarship.deadline_description && (
                                                 <p className="text-sm text-amber-900 mt-1">{scholarship.deadline_description}</p>
                                             )}
@@ -388,58 +405,70 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                             {subpage === 'selection-process' && (
                                 <div className="space-y-6">
                                     <h3 className="font-bold text-gray-900 text-xl mb-4">How Candidates are Selected</h3>
-                                    <p className="text-gray-700 leading-relaxed mb-6">{scholarship.selection || 'Sanctioning depends on meeting all caste, income, and educational level benchmarks verified by the nodal authorities.'}</p>
-                                    <div className="border-t border-gray-100 pt-6">
-                                        <h4 className="font-bold text-gray-900 mb-4">Verification Flow</h4>
-                                        <div className="space-y-4">
-                                            <div className="flex gap-4 items-start">
-                                                <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
-                                                <div>
-                                                    <h5 className="font-bold text-gray-900">Institute Nodal Officer Verification</h5>
-                                                    <p className="text-sm text-gray-600">Your college/school checks your bonafide status, fees paid, and marks cards against the database.</p>
+                                    {!scholarship.selection || scholarship.selection.trim() === '' || scholarship.selection.toLowerCase().includes('sanctioning depends on') ? (
+                                        <ContentVerificationFallback />
+                                    ) : (
+                                        <>
+                                            <p className="text-gray-700 leading-relaxed mb-6">{scholarship.selection}</p>
+                                            <div className="border-t border-gray-100 pt-6">
+                                                <h4 className="font-bold text-gray-900 mb-4">Verification Flow</h4>
+                                                <div className="space-y-4">
+                                                    <div className="flex gap-4 items-start">
+                                                        <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
+                                                        <div>
+                                                            <h5 className="font-bold text-gray-900">Institute Nodal Officer Verification</h5>
+                                                            <p className="text-sm text-gray-600">Your college/school checks your bonafide status, fees paid, and marks cards against the database.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex gap-4 items-start">
+                                                        <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
+                                                        <div>
+                                                            <h5 className="font-bold text-gray-900">District Welfare Officer / State Board Sanction</h5>
+                                                            <p className="text-sm text-gray-600">The state/central department approves the budget release for verified records based on category quotas.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex gap-4 items-start">
+                                                        <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
+                                                        <div>
+                                                            <h5 className="font-bold text-gray-900">Fund Disbursement via DBT</h5>
+                                                            <p className="text-sm text-gray-600">The bank issues direct fund credits to Aadhaar-seeded accounts using treasury payment systems.</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-4 items-start">
-                                                <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
-                                                <div>
-                                                    <h5 className="font-bold text-gray-900">District Welfare Officer / State Board Sanction</h5>
-                                                    <p className="text-sm text-gray-600">The state/central department approves the budget release for verified records based on category quotas.</p>
-                                                </div>
-                                            </div>
-                                            <div className="flex gap-4 items-start">
-                                                <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-700 border border-blue-100 flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
-                                                <div>
-                                                    <h5 className="font-bold text-gray-900">Fund Disbursement via DBT</h5>
-                                                    <p className="text-sm text-gray-600">The bank issues direct fund credits to Aadhaar-seeded accounts using treasury payment systems.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </>
+                                    )}
                                 </div>
                             )}
 
                             {subpage === 'apply-online' && (
                                 <div className="space-y-6">
                                     <h3 className="font-bold text-gray-900 text-xl mb-4">How to Apply Online (Step-by-Step)</h3>
-                                    <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 mb-6">
-                                        <span className="block text-[10px] text-emerald-800 font-bold uppercase tracking-wider mb-1">Application Mode</span>
-                                        <span className="text-emerald-950 font-black text-lg uppercase">{scholarship.application_mode || 'Online'}</span>
-                                    </div>
-                                    
-                                    <div className="mb-8">
-                                        <FormattedText text={scholarship.step_guide} />
-                                    </div>
+                                    {!scholarship.step_guide || scholarship.step_guide.trim() === '' ? (
+                                        <ContentVerificationFallback />
+                                    ) : (
+                                        <>
+                                            <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 mb-6">
+                                                <span className="block text-[10px] text-emerald-800 font-bold uppercase tracking-wider mb-1">Application Mode</span>
+                                                <span className="text-emerald-950 font-black text-lg uppercase">{scholarship.application_mode || 'Online'}</span>
+                                            </div>
+                                            
+                                            <div className="mb-8">
+                                                <FormattedText text={scholarship.step_guide} />
+                                            </div>
 
-                                    {scholarship.apply_url && (
-                                        <div className="pt-4 flex flex-wrap gap-4">
-                                            <a href={scholarship.apply_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-sm hover:shadow transition-all">
-                                                Go to Official Portal
-                                                <ExternalLink className="h-4 w-4" />
-                                            </a>
-                                            <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 transition-colors">
-                                                View Official Guidelines
-                                            </a>
-                                        </div>
+                                            {scholarship.apply_url && (
+                                                <div className="pt-4 flex flex-wrap gap-4">
+                                                    <a href={scholarship.apply_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-sm hover:shadow transition-all">
+                                                        Go to Official Portal
+                                                        <ExternalLink className="h-4 w-4" />
+                                                    </a>
+                                                    <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 transition-colors">
+                                                        View Official Guidelines
+                                                    </a>
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </div>
                             )}
@@ -447,19 +476,25 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                             {subpage === 'renewal-process' && (
                                 <div className="space-y-6">
                                     <h3 className="font-bold text-gray-900 text-xl mb-4">Renewal Guidelines & Conditions</h3>
-                                    <p className="text-gray-700 leading-relaxed mb-6">{scholarship.renewal || 'Please refer to the official guidelines for annual renewal rules.'}</p>
-                                    
-                                    <div className="p-5 bg-amber-50/40 border border-amber-100 rounded-2xl">
-                                        <h4 className="font-bold text-amber-900 mb-2 flex items-center gap-2">
-                                            <Info className="h-5 w-5" />
-                                            Key Renewal Prerequisites
-                                        </h4>
-                                        <ul className="space-y-2 text-sm text-amber-950 leading-relaxed list-disc pl-5">
-                                            <li>Must pass the previous annual/semester examination in the first attempt.</li>
-                                            <li>No active backlogs or ATKT are permitted in most professional programs.</li>
-                                            <li>Must maintain regular class attendance (typically 75% or higher) validated by the college.</li>
-                                        </ul>
-                                    </div>
+                                    {!scholarship.renewal || scholarship.renewal.trim() === '' || scholarship.renewal.toLowerCase().includes('please refer to') ? (
+                                        <ContentVerificationFallback />
+                                    ) : (
+                                        <>
+                                            <p className="text-gray-700 leading-relaxed mb-6">{scholarship.renewal}</p>
+                                            
+                                            <div className="p-5 bg-amber-50/40 border border-amber-100 rounded-2xl">
+                                                <h4 className="font-bold text-amber-900 mb-2 flex items-center gap-2">
+                                                    <Info className="h-5 w-5" />
+                                                    Key Renewal Prerequisites
+                                                </h4>
+                                                <ul className="space-y-2 text-sm text-amber-950 leading-relaxed list-disc pl-5">
+                                                    <li>Must pass the previous annual/semester examination in the first attempt.</li>
+                                                    <li>No active backlogs or ATKT are permitted in most professional programs.</li>
+                                                    <li>Must maintain regular class attendance (typically 75% or higher) validated by the college.</li>
+                                                </ul>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             )}
                         </div>

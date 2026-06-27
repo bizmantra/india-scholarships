@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl } from '@/lib/utils';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -26,18 +26,7 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 
 
-const TARGET_SLUGS = [
-    'pm-yashasvi-scholarship',
-    'sitaram-jindal-foundation-scholarship',
-    'tata-capital-pankh-scholarship',
-    'mukhyamantri-kanya-utthan-yojana-graduation',
-    'nabanna-scholarship-west-bengal',
-    'hdfc-bank-parivartan-ecss-scholarship',
-    'lic-golden-jubilee-scholarship',
-    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy',
-    'bitsat-scholarship',
-    'post-matric-scholarship-for-obcsebc-students-odisha'
-];
+
 
 // Generate static params for all scholarships
 export async function generateStaticParams() {
@@ -69,38 +58,55 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                   lowerTitle.includes('pre matric') || 
                   lowerTitle.includes('pre-matric');
 
+    const year = scholarship.verification_year || new Date().getFullYear();
     let seoTitle = '';
 
     // Specific brand overrides
-    if (lowerTitle.includes('e-kalyan') || lowerTitle.includes('e kalyan')) {
-        seoTitle = `e-Kalyan Portal 2026: Application Status, Login & Registration`;
+    if (slug === 'tata-capital-pankh-scholarship') {
+        seoTitle = `Tata Capital Pankh Scholarship ${year}: ₹12,000 | Eligibility, Last Date & Apply`;
+    } else if (slug === 'mukhyamantri-medhavi-vidyarthi-yojana-mmvy') {
+        seoTitle = `MMVY Scholarship ${year}: MP Medhavi Last Date, Portal Login & Apply Online`;
+    } else if (slug === 'jharkhand-e-kalyan-post-matric-scholarship') {
+        seoTitle = `e-Kalyan Jharkhand Scholarship ${year}: SC/ST Apply Online, Last Date & Status`;
+    } else if (slug === 'swami-vivekananda-merit-cum-means-scholarship-svmcm') {
+        seoTitle = `SVMCM Scholarship ${year}: ₹1,000–1,500/mo | WB Apply Online & Last Date`;
+    } else if (slug === 'azim-premji-scholarship') {
+        seoTitle = `Azim Premji Scholarship ${year}: For Govt School Students | Eligibility & Apply`;
+    } else if (slug === 'hdfc-bank-parivartan-ecss-scholarship') {
+        seoTitle = `HDFC Parivartan Scholarship ${year}: ₹75,000 | ECSS Eligibility & Apply Online`;
+    } else if (slug === 'reliance-foundation-undergraduate-scholarship') {
+        seoTitle = `Reliance Foundation Scholarship ${year}: UG Apply Online, Eligibility & Selection`;
+    } else if (slug === 'e-grantz-kerala-scstoecobc-support') {
+        seoTitle = `E-Grantz Portal ${year}: Kerala SC/ST/OBC Apply Online & Application Status`;
+    } else if (lowerTitle.includes('e-kalyan') || lowerTitle.includes('e kalyan')) {
+        seoTitle = `e-Kalyan Portal ${year}: Application Status, Login & Registration`;
     } else if (lowerTitle.includes('mmvy') || lowerTitle.includes('medhavi')) {
-        seoTitle = `MMVY Portal 2026: MP Medhavi Student Login & Registration`;
+        seoTitle = `MMVY Portal ${year}: MP Medhavi Student Login & Registration`;
     } else if (lowerTitle.includes('svmcm') || lowerTitle.includes('vivekananda')) {
-        seoTitle = `SVMCM Portal 2026: Swami Vivekananda Scholarship Login & Status`;
+        seoTitle = `SVMCM Portal ${year}: Swami Vivekananda Scholarship Login & Status`;
     } else if (lowerTitle.includes('nabanna')) {
-        seoTitle = `Nabanna Scholarship 2026: Application Form, Eligibility & Guide`;
+        seoTitle = `Nabanna Scholarship ${year}: Application Form, Eligibility & Guide`;
     } else if (lowerTitle.includes('egrantz') || lowerTitle.includes('e-grantz')) {
-        seoTitle = `E-Grantz Portal 2026: Kerala Student Login & Application Status`;
+        seoTitle = `E-Grantz Portal ${year}: Kerala Student Login & Application Status`;
     } else if (lowerTitle.includes('azim premji')) {
-        seoTitle = `Azim Premji Scholarship 2026: Application Process, Eligibility & Login`;
+        seoTitle = `Azim Premji Scholarship ${year}: Application Process, Eligibility & Login`;
     } else if (lowerTitle.includes('reliance foundation')) {
-        seoTitle = `Reliance Foundation Scholarship 2026: Apply Online & Selection List`;
+        seoTitle = `Reliance Foundation Scholarship ${year}: Apply Online & Selection List`;
     } else if (lowerTitle.includes('ongc')) {
-        seoTitle = `ONGC Scholarship 2026: Application Form, Selection List & Guide`;
+        seoTitle = `ONGC Scholarship ${year}: Application Form, Selection List & Guide`;
     } else if (isGov) {
         // Dynamic rule for government scholarships
-        seoTitle = `${title} 2026: Apply Online, Portal Login & Status Check`;
+        seoTitle = `${title} ${year}: Apply Online, Portal Login & Status Check`;
     } else {
         // Dynamic rule for private/corporate/trust scholarships
-        seoTitle = `${title} 2026: Application Form, Eligibility & Selection List`;
+        seoTitle = `${title} ${year}: Application Form, Eligibility & Selection List`;
     }
 
     return {
         title: seoTitle,
         description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
         openGraph: {
-            title: `${scholarship.title} – Application Open (2026)`,
+            title: `${scholarship.title} – Application Open (${year})`,
             description: `Apply for ${scholarship.title}. Amount: ₹${scholarship.amount_annual > 0 ? scholarship.amount_annual : 'Variable'}/year. ${scholarship.level} students in ${scholarship.state || 'India'}.`,
             url: `https://www.indiascholarships.in/scholarships/${scholarship.slug}`,
             type: 'article',
@@ -132,29 +138,61 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
     const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
 
-    // Helper to format deadline dates safely and avoid "Invalid Date"
-    const formatDeadlineDate = (
-        deadline: string | null | undefined, 
-        options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' },
-        fallback: string = 'Open Now'
-    ) => {
-        if (!deadline) return fallback;
-        const trimmed = deadline.trim();
-        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') {
-            return 'Check Official Portal';
-        }
-        const date = new Date(trimmed);
-        if (isNaN(date.getTime())) {
-            return trimmed;
-        }
-        return date.toLocaleDateString('en-IN', options);
-    };
-
     // Helper to display value or "Not specified"
     const displayValue = (value: any) => {
         if (value === null || value === undefined || value === '') return 'Not specified';
         return value;
     };
+
+    const year = scholarship.verification_year || new Date().getFullYear();
+
+    // FAQPage schema
+    let faqSchema = null;
+    try {
+        const faqs = scholarship.faq_json;
+        if (Array.isArray(faqs) && faqs.length > 0) {
+            const mainEntity = faqs.map((faq: any) => ({
+                '@type': 'Question',
+                name: faq.question || faq.q || '',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: faq.answer || faq.a || ''
+                }
+            })).filter((item: any) => item.name && item.acceptedAnswer.text);
+
+            if (mainEntity.length > 0) {
+                faqSchema = {
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    mainEntity: mainEntity
+                };
+            }
+        }
+    } catch (e) {}
+
+    // GovernmentService schema
+    let govServiceSchema = null;
+    if (scholarship.scholarship_type === 'Government' || scholarship.provider_type === 'Government') {
+        govServiceSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'GovernmentService',
+            name: scholarship.title,
+            serviceType: 'Scholarship',
+            provider: {
+                '@type': 'GovernmentOrganization',
+                name: scholarship.provider || 'Government Agency'
+            },
+            areaServed: {
+                '@type': 'AdministrativeArea',
+                name: scholarship.state || 'India'
+            },
+            serviceOperator: {
+                '@type': 'GovernmentOrganization',
+                name: scholarship.provider || 'Government Agency'
+            },
+            eligibilityNote: scholarship.residency_requirement || scholarship.level || 'Refer to eligibility guidelines'
+        };
+    }
 
     // Format amount
     const formatAmount = (amount: number | null, description: string = '') => {
@@ -263,6 +301,24 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     })
                 }}
             />
+
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(faqSchema)
+                    }}
+                />
+            )}
+
+            {govServiceSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(govServiceSchema)
+                    }}
+                />
+            )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -748,41 +804,39 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             />
 
                             {/* Supporting Guides Quick Links Card */}
-                            {TARGET_SLUGS.includes(scholarship.slug) && (
-                                <div className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8">
-                                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-150 pb-4">Supporting Guides</h3>
-                                    <nav className="space-y-2">
-                                        <Link href={`/scholarships/${scholarship.slug}/eligibility`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Eligibility Criteria</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/income-limit`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Income Limit</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/documents-required`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Documents Required</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/last-date`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Last Date & Timelines</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/selection-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Selection Process</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/apply-online`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>How to Apply Online</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                        <Link href={`/scholarships/${scholarship.slug}/renewal-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
-                                            <span>Renewal Process</span>
-                                            <ChevronRight className="h-4 w-4 text-gray-400" />
-                                        </Link>
-                                    </nav>
-                                </div>
-                            )}
+                            <div className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8">
+                                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-150 pb-4">Supporting Guides</h3>
+                                <nav className="space-y-2">
+                                    <Link href={`/scholarships/${scholarship.slug}/eligibility`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Eligibility Criteria</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/income-limit`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Income Limit</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/documents-required`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Documents Required</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/last-date`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Last Date & Timelines</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/selection-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Selection Process</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/apply-online`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>How to Apply Online</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                    <Link href={`/scholarships/${scholarship.slug}/renewal-process`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">
+                                        <span>Renewal Process</span>
+                                        <ChevronRight className="h-4 w-4 text-gray-400" />
+                                    </Link>
+                                </nav>
+                            </div>
 
                             {/* Verification Stats Card (At a Glance) */}
                             <div className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm">

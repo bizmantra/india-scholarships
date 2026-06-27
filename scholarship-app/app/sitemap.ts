@@ -86,6 +86,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.5,
     }));
 
+    // Dynamic Scholarship Subpage Cluster Pages (Fix 3)
+    const subpageKeys = [
+        'eligibility',
+        'income-limit',
+        'documents-required',
+        'last-date',
+        'selection-process',
+        'apply-online',
+        'renewal-process'
+    ];
+    const subpageRoutes = [];
+    for (const s of scholarships) {
+        for (const subpage of subpageKeys) {
+            subpageRoutes.push({
+                url: `${baseUrl}/scholarships/${s.slug}/${subpage}`,
+                lastModified: new Date(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.65,
+            });
+        }
+    }
+
     return [
         ...staticRoutes,
         ...scholarshipRoutes,
@@ -94,5 +116,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...levelRoutes,
         ...incomeRoutes,
         ...courseRoutes,
+        ...subpageRoutes,
     ];
 }

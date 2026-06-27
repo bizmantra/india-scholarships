@@ -36,6 +36,7 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
     'obc': 'Other Backward Classes (OBC)',
     'ebc': 'Economically Backward Classes (EBC)',
     'minority': 'Minority Communities',
+    'ews': 'Economically Weaker Section (EWS)',
 };
 
 // Generate metadata

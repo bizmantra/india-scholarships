@@ -20,9 +20,17 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
         const { state: stateSlug } = await params;
         const states = await getAllStates();
         const originalState = states.find(s => slugify(s) === stateSlug) || stateSlug;
+        const year = new Date().getFullYear();
+
+        let titleStr = `${originalState} Scholarships - Complete List & Eligibility`;
+        if (stateSlug === 'odisha') {
+            titleStr = `Odisha Scholarships ${year}: 20+ Schemes | Post Matric, Krishi Vidya & Apply`;
+        } else if (stateSlug === 'west-bengal') {
+            titleStr = `West Bengal Scholarships ${year}: Nabanna, SVMCM, Aikyashree | Apply Online`;
+        }
 
         return {
-            title: `${originalState} Scholarships - Complete List & Eligibility`,
+            title: titleStr,
             description: `Find all scholarships in ${originalState}. Complete list with eligibility criteria, amounts, deadlines, and application process for ${originalState} students.`,
         };
     } catch (error) {

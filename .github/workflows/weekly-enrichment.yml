@@ -1,0 +1,54 @@
+name: Weekly Scholarship Data Enrichment
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Sunday midnight UTC
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Run Content Quality Audit
+        run: |
+          node scholarship-app/scripts/content-quality-audit.js
+        env:
+          NODE_ENV: production
+
+      - name: Run Gemini Grounding Enrichment
+        run: |
+          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 20
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_ENV: production
+
+      - name: Commit and push changes if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scholarship-app/data/scholarships.db scholarship-app/data/content-quality-report.md scholarship-app/data/content-quality-audit.csv
+          if git diff --staged --quiet; then
+            echo "No database changes. Skipping commit."
+          else
+            git commit -m "chore: automated weekly data enrichment & audit [skip ci]"
+            git push origin main
+          fi
+
+      - name: Trigger Vercel Redeployment
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
