@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# India Scholarships Portal (Scholarship Tracker POC)
 
-## Getting Started
+A modern Next.js web application for discovering and tracking Indian scholarships, curation pipelines, and eligibility criteria.
 
-First, run the development server:
+## 🚀 Getting Started
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Project Architecture & Stack
 
-## Learn More
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS & Vanilla CSS
+- **Database**: local SQLite database (`scholarship.db` / queried via `lib/db.ts`)
+- **Deployment**: Automatic Vercel deployment connected to GitHub main branch.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📋 Content Quality Audit System (Implemented)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We designed and executed a complete content quality audit system to scan the scholarship database and detail pages for formatting gaps, missing metadata, and critical display bugs.
 
-## Deploy on Vercel
+### 1. The Audit Engine
+- **Script**: `scripts/content-quality-audit.js`
+- **Execution**: Runs locally to parse all SQLite records:
+  ```bash
+  node scripts/content-quality-audit.js
+  ```
+- **Funnels Audited**: Missing amounts, expired deadlines, invalid dates, incomplete renewal criteria, empty step-by-step guides, missing helplines/FAQs, and raw HTML tags.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 2. Audit Reports
+- **Markdown Report**: Detailed breakdown of results at [data/content-quality-report.md](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-report.md).
+- **CSV Database Checklist**: Filterable spreadsheet exported at [data/content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🩹 Completed UI/UX Fixes & Gaps Resolved
+
+We have implemented key layout updates and bug fixes based on the audit outcomes:
+
+1. **Fixed "Up to ₹0k" Similar Opportunities Display**:
+   - Upgraded the card lists inside `page.tsx` with a fallback display chain: `amount_annual` -> `amount_min` -> `"Amount Varies"`. Zero/null values no longer display as `₹0k`.
+2. **Fixed "Invalid Date" Deadline Output**:
+   - Implemented standard date checks and parsing logic inside `ScholarshipCard.tsx`, `ScholarshipDetailTemplate.tsx`, and `page.tsx`.
+   - Fallback values such as `"Check Portal"` or `"Open Now"` are displayed if deadline data is absent, `"NA"`, or `"Not specified"`.
+3. **Redesigned Similar Opportunities Layout**:
+   - Moved the related/similar opportunities container out of the sticky right sidebar to the bottom of the main content column.
+   - Refactored it into a responsive, premium 3-column grid for desktop view.
+   - Configured `scroll-mt-24` positioning on the container to prevent occlusion from the sticky site header when clicked from Status Check alerts.
+4. **Deleted Persistent CTAs and Alert Boxes**:
+   - Fully deleted the `MobileStickyCTA` component (`app/components/MobileStickyCTA.tsx`) and references.
+   - Removed the `SubscribeForm` container and imports from detail pages to keep focus entirely on applying and official site verification.
+5. **Fixed Broken State Hub Link**:
+   - Updated the `getAllStates()` query in `lib/db.ts` to omit empty strings and placeholders (like `'All India'`, `'Multiple States'`), fixing the broken `/scholarships-in` link on the main page.
