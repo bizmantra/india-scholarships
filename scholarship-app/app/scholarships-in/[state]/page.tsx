@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
@@ -40,13 +40,13 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
         const states = await getAllStates();
         const stateName = states.find(s => slugify(s) === stateSlug);
 
-        if (!stateName) return notFound();
+        if (!stateName) return redirect('/state-scholarships');
 
         // Get scholarships for this state
         const scholarships = await getScholarshipsByState(stateName);
 
         if (scholarships.length === 0) {
-            notFound();
+            return redirect('/state-scholarships');
         }
 
         return (
@@ -160,7 +160,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
                                 By Education →
                             </Link>
-                            <Link href="/search" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
                                 Search All →
                             </Link>
                         </div>
@@ -171,6 +171,6 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
             </div>
         );
     } catch (error) {
-        notFound();
+        return redirect('/state-scholarships');
     }
 }

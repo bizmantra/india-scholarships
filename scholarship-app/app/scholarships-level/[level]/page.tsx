@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByLevel, getAllLevels } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
@@ -69,7 +69,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
         } else {
             const rawLevels = await getAllLevels();
             const rawLevel = rawLevels.find(l => slugify(l) === levelSlug);
-            if (!rawLevel) return notFound();
+            if (!rawLevel) return redirect('/scholarships-by-education');
 
             displayName = rawLevel;
             description = `Scholarships specifically for ${rawLevel} students across India.`;
@@ -77,7 +77,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
         }
 
         if (scholarships.length === 0) {
-            notFound();
+            return redirect('/scholarships-by-education');
         }
 
         return (
@@ -135,6 +135,6 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
             </div>
         );
     } catch (error) {
-        notFound();
+        return redirect('/scholarships-by-education');
     }
 }

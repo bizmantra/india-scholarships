@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory } from '@/lib/db';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
@@ -66,7 +66,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         );
 
         if (matchingOriginalCategories.length === 0) {
-            notFound();
+            return redirect('/scholarships-by-category');
         }
 
         // Use the first one for display mapping
@@ -82,7 +82,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         const scholarships = Array.from(new Map(allScholarshipsFound.map(s => [s.id, s])).values());
 
         if (scholarships.length === 0) {
-            notFound();
+            return redirect('/scholarships-by-category');
         }
 
         return (
@@ -193,7 +193,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                             <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
                                 By Education →
                             </Link>
-                            <Link href="/search" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
                                 Search All →
                             </Link>
                         </div>
@@ -204,6 +204,6 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
             </div>
         );
     } catch (error) {
-        notFound();
+        return redirect('/scholarships-by-category');
     }
 }

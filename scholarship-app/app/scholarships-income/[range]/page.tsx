@@ -114,7 +114,7 @@ export default async function IncomeRangeHubPage({ params }: { params: Promise<{
                             <div className="text-4xl mb-4">🔍</div>
                             <h3 className="text-xl font-bold text-gray-900 mb-2">No scholarships found</h3>
                             <p className="text-gray-600">We couldn't find any scholarships matching this specific income range at the moment.</p>
-                            <Link href="/search" className="mt-6 inline-block text-blue-700 font-bold hover:underline">
+                            <Link href="/scholarships" className="mt-6 inline-block text-blue-700 font-bold hover:underline">
                                 Try Search All →
                             </Link>
                         </div>

@@ -411,17 +411,17 @@ export async function getScholarshipsByLevel(levelOrSlug: string) {
     const canonical = CANONICAL_LEVELS[levelOrSlug];
 
     if (canonical) {
-        // Build a query for all raw levels in this bucket
-        const placeholders = canonical.rawLevels.map(() => '?').join(',');
+        // Build a query where level matches any of the raw levels in this bucket using LIKE
+        const likeClauses = canonical.rawLevels.map(() => 'level LIKE ?').join(' OR ');
         const query = `
             SELECT * FROM scholarships 
-            WHERE level IN (${placeholders})
+            WHERE ${likeClauses}
             OR level LIKE ?
         `;
 
-        // Also add a broad LIKE check for safety if the level contains the label string
+        const likeParams = canonical.rawLevels.map(raw => `%${raw}%`);
         const broadLike = `%${canonical.label}%`;
-        const scholarships = db.prepare(query).all(...canonical.rawLevels, broadLike);
+        const scholarships = db.prepare(query).all(...likeParams, broadLike);
         db.close();
         return scholarships.map(parseScholarship);
     }

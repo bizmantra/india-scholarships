@@ -68,7 +68,7 @@ export default function ScholarshipsByEducationPage() {
                             { label: 'By Category', href: '/scholarships-by-category' },
                             { label: 'By State', href: '/state-scholarships' },
                             { label: 'By Income', href: '/scholarships-by-income' },
-                            { label: 'Search All', href: '/search' }
+                            { label: 'Search All', href: '/scholarships' }
                         ].map((link) => (
                             <Link
                                 key={link.label}

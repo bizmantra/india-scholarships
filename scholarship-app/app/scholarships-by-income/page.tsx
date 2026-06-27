@@ -81,7 +81,7 @@ export default async function ScholarshipsByIncomePage() {
                             { label: 'By State', href: '/state-scholarships' },
                             { label: 'By Education', href: '/scholarships-by-education' },
                             { label: 'By Category', href: '/scholarships-by-category' },
-                            { label: 'Search All', href: '/search' }
+                            { label: 'Search All', href: '/scholarships' }
                         ].map((link) => (
                             <Link
                                 key={link.label}
