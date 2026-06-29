@@ -283,8 +283,24 @@ Here are the scholarships with the highest number of content quality issues:
     fs.writeFileSync(CSV_REPORT_PATH, csvRows.join('\n'));
     console.log(`✅ Saved CSV audit spreadsheet to: ${CSV_REPORT_PATH}`);
 
+    // If strict mode is enabled, exit with code 1 if there are active content issues.
+    // Excluding legacy flag issues to allow older records while securing new additions.
+    const isStrict = process.argv.includes('--strict');
+    if (isStrict) {
+        const activeIssues = auditData.filter(item => item.status === 'Active' && item.isLegacy === 'No');
+        if (activeIssues.length > 0) {
+            console.error(`\n❌ Strict Quality Check Failed: Found ${activeIssues.length} active scholarships with critical formatting issues.`);
+            console.error('Please check data/content-quality-report.md and fix empty amounts, dead links, or missing FAQs.');
+            process.exit(1);
+        } else {
+            console.log('✅ Content Quality Check Passed! (Strict mode)');
+        }
+    }
+
 } catch (err) {
     console.error('❌ Error executing content quality audit:', err);
+    process.exit(1);
 } finally {
-    db.close();
+    if (db) db.close();
 }
+

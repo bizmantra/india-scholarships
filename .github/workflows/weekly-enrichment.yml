@@ -1,9 +1,14 @@
 name: Weekly Scholarship Data Enrichment
 
 on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule:
     - cron: '0 0 * * 0' # Sunday midnight UTC
   workflow_dispatch: # Allows manual triggering from GitHub UI
+
 
 jobs:
   enrich:
@@ -26,11 +31,20 @@ jobs:
 
       - name: Run Content Quality Audit
         run: |
-          node scholarship-app/scripts/content-quality-audit.js
+          # If it is a PR or commit push, enforce strict check to block invalid database updates
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "Running strict verification check..."
+            node scholarship-app/scripts/content-quality-audit.js --strict
+          else
+            # Otherwise, just run standard audit and skip strict failures during automated cron runs
+            node scholarship-app/scripts/content-quality-audit.js
+          fi
         env:
           NODE_ENV: production
 
       - name: Run Gemini Grounding Enrichment
+        # Only run automated AI enrichment on schedule or dispatch, not on commits/PRs
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 20
         env:
@@ -38,6 +52,8 @@ jobs:
           NODE_ENV: production
 
       - name: Commit and push changes if updated
+        # Only commit back to main during cron schedules
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -50,5 +66,8 @@ jobs:
           fi
 
       - name: Trigger Vercel Redeployment
+        # Only redeploy on schedules
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+
