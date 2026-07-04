@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-06-29
+Generated on: 2026-07-04
 Total Scholarships Audited: **251**
-Scholarships with Issues: **137** (54.6%)
+Scholarships with Issues: **131** (52.2%)
 
 ---
 
@@ -15,10 +15,10 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Missing Annual Amount** | 67 | 26.7% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 43 | 17.1% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 37 | 14.7% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 86 | 34.3% | Deadline is in the past (before 2026-06-26) |
+| **Expired Deadline** | 80 | 31.9% | Deadline is in the past (before 2026-06-26) |
 | **Old Year References** | 29 | 11.6% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 12 | 4.8% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 43 | 17.1% | Missing or under 15 characters |
+| **Incomplete Selection Criteria** | 10 | 4.0% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 39 | 15.5% | Missing or under 15 characters |
 | **Incomplete Step Guide** | 18 | 7.2% | Missing or under 20 characters |
 | **Missing Documents** | 18 | 7.2% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
@@ -80,9 +80,9 @@ Here are the scholarships with the highest number of content quality issues:
 | `colgate-keep-india-smiling-scholarship` | **Colgate Keep India Smiling Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing FAQ Content |
 | `siemens-scholarship-program` | **Siemens Scholarship Program** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `young-india-fellowship-ashoka-university` | **Young India Fellowship (Ashoka University)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `andhra-pradesh-postmatric-bc` | **Andhra Pradesh Post-Matric BC Scholarship** | 3 | Expired Deadline (2025-10-31); Incomplete Selection Criteria (too short: 10 chars); Incomplete Renewal Policy (too short: 3 chars) |
-| `andhra-pradesh-minority-welfare` | **Andhra Pradesh Minority Welfare Scholarship** | 3 | Expired Deadline (2025-11-15); Incomplete Selection Criteria (too short: 10 chars); Incomplete Renewal Policy (too short: 3 chars) |
 | `post-matric-scholarship-for-st-students-karnataka` | **Post-Matric Scholarship for ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (January 15, 2026) |
 | `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka` | **Post-Matric Scholarship for Persons with Disabilities - UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (December 31, 2025) |
+| `pre-matric-st-students-karnataka` | **Pre-Matric ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (March 7, 2025 (tentative deadline for 2025-26; varies from SC scholarship; verify on portal)) |
+| `pre-matric-minorities-karnataka` | **Pre-Matric Minorities (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (November 30, 2025 (extended deadline for 2025-26; originally September 30, 2025)) |
 
-*Note: Showing top 50 rows. A complete list of all 137 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 131 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
