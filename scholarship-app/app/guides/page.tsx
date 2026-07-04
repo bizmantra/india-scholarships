@@ -82,13 +82,17 @@ export default function GuidesPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-8">Popular Scholarship Topics</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {[
-                            'Renewal Process', 'Aadhaar Seeding', 'PFMS Tracking',
-                            'Income Certificate', 'Domicile Proof', 'Bank Account Validation'
+                            { name: 'Renewal Process', link: '/guides/tracking#tracking-faqs' },
+                            { name: 'Aadhaar Seeding', link: '/guides/documents' },
+                            { name: 'PFMS Tracking', link: '/guides/tracking#pfms-tracking' },
+                            { name: 'Income Certificate', link: '/guides/documents#mandatory-documents' },
+                            { name: 'Domicile Proof', link: '/guides/documents#mandatory-documents' },
+                            { name: 'Bank Account Validation', link: '/guides/tracking#understanding-statuses' }
                         ].map((topic, i) => (
-                            <div key={i} className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100 text-gray-700 text-sm font-medium">
-                                <CheckCircle2 className="h-4 w-4 text-green-500" />
-                                {topic}
-                            </div>
+                            <Link key={i} href={topic.link} className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100 text-gray-700 text-sm font-medium hover:border-blue-500 hover:text-blue-700 transition-all hover:shadow-sm">
+                                <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />
+                                {topic.name}
+                            </Link>
                         ))}
                     </div>
                 </div>

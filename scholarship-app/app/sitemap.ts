@@ -25,6 +25,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/corporate-scholarships',
         '/eligibility-checker',
         '/guides',
+        '/guides/nsp',
+        '/guides/ssp',
+        '/guides/tracking',
+        '/guides/documents',
         '/about',
     ].map(route => ({
         url: `${baseUrl}${route}`,
