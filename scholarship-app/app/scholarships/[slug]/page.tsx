@@ -59,6 +59,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                   lowerTitle.includes('pre-matric');
 
     const year = scholarship.verification_year || new Date().getFullYear();
+    // Helper to sanitize title from duplicate year strings (e.g. "2026", "2025-26", "2026-27")
+    const cleanTitle = title.replace(/\s*(?:20\d{2}(?:-\d{2,4})?)\s*$/, '').trim();
     let seoTitle = '';
 
     // Specific brand overrides for June & July high-opportunity keywords
@@ -67,11 +69,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     } else if (slug === 'sitaram-jindal-foundation-scholarship') {
         seoTitle = `Sitaram Jindal Foundation Scholarship ${year}: Apply Online & Last Date`;
     } else if (slug === 'tata-capital-pankh-scholarship') {
-        seoTitle = `Tata Capital Pankh Scholarship ${year}: ₹12,000 | Eligibility & Selection List`;
+        seoTitle = `Tata Capital Pankh Scholarship ${year}: Up to ₹1 Lakh | Eligibility & Apply Online`;
     } else if (slug === 'mukhyamantri-medhavi-vidyarthi-yojana-mmvy') {
-        seoTitle = `MMVY Scholarship ${year}: MP Medhavi Last Date, Portal Login & Apply Online`;
+        seoTitle = `MMVY Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
     } else if (slug === 'jharkhand-e-kalyan-post-matric-scholarship') {
-        seoTitle = `e-Kalyan Jharkhand Scholarship ${year}: SC/ST Apply Online, Last Date & Status`;
+        seoTitle = `e-Kalyan Jharkhand Scholarship ${year}: Apply Online, Last Date & Amount`;
+    } else if (slug === 'swami-vivekananda-merit-cum-means-scholarship-svmcm') {
+        seoTitle = `SVMCM Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
+    } else if (slug === 'e-grantz-kerala-scstoecoobc-support') {
+        seoTitle = `e-Grantz Kerala Scholarship ${year}: Apply Online, Last Date & Amount`;
+    } else if (slug === 'bitsat-scholarship') {
+        seoTitle = `BITSAT Scholarship ${year}: Apply Online, Eligibility & Fee Waiver Details`;
     } else if (slug === 'hdfc-bank-parivartan-ecss-scholarship') {
         seoTitle = `HDFC Parivartan Scholarship ${year}: Up to ₹75,000 | Eligibility & Apply Online`;
     } else if (slug === 'reliance-foundation-undergraduate-scholarship') {
@@ -118,10 +126,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = `UP Scholarship Dashmottar ${year}: Post Matric Apply Online, Login & Status Check`;
     } else if (isGov) {
         // Dynamic rule for government scholarships
-        seoTitle = `${title} ${year}: Apply Online, Portal Login & Status Check`;
+        seoTitle = `${cleanTitle} ${year}: Apply Online, Portal Login & Status Check`;
     } else {
         // Dynamic rule for private/corporate/trust scholarships
-        seoTitle = `${title} ${year}: Application Form, Eligibility & Selection List`;
+        seoTitle = `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
     }
 
     return {
