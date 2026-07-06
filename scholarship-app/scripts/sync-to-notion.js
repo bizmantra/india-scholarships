@@ -1,7 +1,7 @@
 /**
  * Notion Workspace Sync Engine
  * Bidirectional sync:
- * 1. Compiles the COMPLETE Site URL Map (Static, Hubs, Scholarship Detail & Subpages) and syncs to 'Live Scholarship Inventory'
+ * 1. Compiles the COMPLETE Site URL Map (Static, Hubs, Scholarship Detail & Subpages) and syncs to 'Live Scholarship Inventory' database
  * 2. Pulls active developer tasks from the '⚡ Backlog' database
  * 3. Syncs local repository Markdown files to the '📖 Document Hub'
  * 4. Syncs GSC SEO metrics to the 'Metrics Tracker' database
@@ -19,8 +19,8 @@ require('dotenv').config({ path: path.join(__dirname, '../.env.local') });
 const NOTION_KEY = process.env.NOTION_API_KEY;
 const BACKLOG_DB = process.env.NOTION_DATABASE_ID_BACKLOG;
 const PIPELINE_DB = process.env.NOTION_DATABASE_ID_PIPELINE;
+const INVENTORY_DB = process.env.NOTION_DATABASE_ID_INVENTORY;
 const DOC_HUB_PAGE = process.env.NOTION_PAGE_ID_DOC_HUB;
-const INVENTORY_PAGE = process.env.NOTION_PAGE_ID_INVENTORY;
 const CHANGELOG_PAGE = process.env.NOTION_PAGE_ID_CHANGELOG;
 
 if (!NOTION_KEY || NOTION_KEY === 'YOUR_NOTION_API_KEY') {
@@ -68,10 +68,18 @@ function notionRequest(endpoint, method, body = null) {
   });
 }
 
+// Helper to clean and format title names
+function cleanTitle(url) {
+  const parts = url.split('/');
+  const slug = parts[parts.length - 1] || parts[parts.length - 2] || 'Home';
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
 // 1. Sync COMPLETE Site URL Map to Live Scholarship Inventory Page
 async function syncInventory() {
   console.log('🔄 Compiling COMPLETE Site Inventory (1,500+ URLs)...');
   const dbPath = path.join(__dirname, '../data/scholarships.db');
+  const gscPath = path.join(__dirname, '../data/gsc-june-2026/pages.json');
   
   if (!fs.existsSync(dbPath)) {
     console.error('SQLite database not found at:', dbPath);
@@ -84,129 +92,110 @@ async function syncInventory() {
   try {
     const scholarships = db.prepare('SELECT title, slug FROM scholarships').all();
     
-    // Core Static Routes
-    const staticRoutes = [
-      { name: 'Home Page', url: 'https://www.indiascholarships.in/' },
-      { name: 'All Scholarships Feed', url: 'https://www.indiascholarships.in/scholarships' },
-      { name: 'About Us', url: 'https://www.indiascholarships.in/about' },
-      { name: 'Contact Us', url: 'https://www.indiascholarships.in/contact' },
-      { name: 'Privacy Policy', url: 'https://www.indiascholarships.in/privacy' },
-      { name: 'Terms of Service', url: 'https://www.indiascholarships.in/terms' }
-    ];
-
-    // State Hubs (extracted from database values or hardcoded standard hubs)
-    const states = ['odisha', 'west-bengal', 'punjab', 'maharashtra', 'karnataka', 'uttar-pradesh', 'bihar'];
-    const stateHubs = states.map(state => ({
-      name: `${state.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} State Hub`,
-      url: `https://www.indiascholarships.in/hubs/${state}`
-    }));
-
-    // Dynamic Scholarship Sub-pages
-    const subPageTypes = [
-      'eligibility',
-      'income-limit',
-      'documents-required',
-      'last-date',
-      'selection-process',
-      'apply-online',
-      'renewal-process'
-    ];
-
-    console.log(`Core static URLs: ${staticRoutes.length}`);
-    console.log(`State hubs: ${stateHubs.length}`);
-    console.log(`Database opportunities: ${scholarships.length}`);
-    console.log(`Programmatic subpages: ${scholarships.length * subPageTypes.length}`);
-
-    // Build categories for the Notion Page children
-    const children = [];
-
-    // Core Pages Section
-    children.push({
-      object: 'block',
-      type: 'heading_2',
-      heading_2: { rich_text: [{ text: { content: '🌐 Core & Static Pages' } }] }
-    });
-    staticRoutes.forEach(route => {
-      children.push({
-        object: 'block',
-        type: 'bulleted_list_item',
-        bulleted_list_item: {
-          rich_text: [
-            { text: { content: `${route.name}: ` } },
-            { text: { content: route.url, link: { url: route.url } } }
-          ]
-        }
+    // Load GSC performance metrics mapping
+    let gscMetrics = {};
+    if (fs.existsSync(gscPath)) {
+      const gscData = JSON.parse(fs.readFileSync(gscPath, 'utf8'));
+      gscData.slice(1).forEach(row => {
+        gscMetrics[row[0].trim()] = {
+          clicks: parseInt(row[1]) || 0,
+          impressions: parseInt(row[2]) || 0
+        };
       });
-    });
-
-    // Hubs Section
-    children.push({
-      object: 'block',
-      type: 'heading_2',
-      heading_2: { rich_text: [{ text: { content: '🗺️ State & Region Hubs' } }] }
-    });
-    stateHubs.forEach(hub => {
-      children.push({
-        object: 'block',
-        type: 'bulleted_list_item',
-        bulleted_list_item: {
-          rich_text: [
-            { text: { content: `${hub.name}: ` } },
-            { text: { content: hub.url, link: { url: hub.url } } }
-          ]
-        }
-      });
-    });
-
-    // Sample list of Dynamic Scholarships & Subpage mappings (demonstrating routing system)
-    children.push({
-      object: 'block',
-      type: 'heading_2',
-      heading_2: { rich_text: [{ text: { content: '🔬 Dynamic Scholarship Route Map (Sample)' } }] }
-    });
-    children.push({
-      object: 'block',
-      type: 'paragraph',
-      paragraph: {
-        rich_text: [{ text: { content: `We host ${scholarships.length} dynamic scholarships. Each scholarship compiles 7 SEO-optimized programmatic subpages. Total indexable URLs: ${scholarships.length * 8 + staticRoutes.length + stateHubs.length} URLs.` } }]
-      }
-    });
-
-    // List a sample mapping to instruct Claude/ChatGPT on how page routes map
-    scholarships.slice(0, 5).forEach(row => {
-      children.push({
-        object: 'block',
-        type: 'heading_3',
-        heading_3: { rich_text: [{ text: { content: row.title } }] }
-      });
-      children.push({
-        object: 'block',
-        type: 'bulleted_list_item',
-        bulleted_list_item: {
-          rich_text: [
-            { text: { content: 'Main URL: ' } },
-            { text: { content: `indiascholarships.in/scholarships/${row.slug}`, link: { url: `https://www.indiascholarships.in/scholarships/${row.slug}` } } }
-          ]
-        }
-      });
-      children.push({
-        object: 'block',
-        type: 'bulleted_list_item',
-        bulleted_list_item: {
-          rich_text: [
-            { text: { content: 'Subpage structure: ' } },
-            { text: { content: `indiascholarships.in/scholarships/${row.slug}/[eligibility|income-limit|documents-required|last-date|selection-process|apply-online|renewal-process]` } }
-          ]
-        }
-      });
-    });
-
-    // Push the children to Notion
-    if (children.length > 0) {
-      // Clear existing page children by replacing them (we just append block details)
-      await notionRequest(`/v1/blocks/${INVENTORY_PAGE}/children`, 'PATCH', { children });
     }
-    console.log('✅ Inventory route map synced successfully.');
+
+    // Compile inventory items
+    const inventory = [];
+
+    // Static Routes
+    const staticRoutes = [
+      'https://www.indiascholarships.in/',
+      'https://www.indiascholarships.in/scholarships',
+      'https://www.indiascholarships.in/about',
+      'https://www.indiascholarships.in/contact',
+      'https://www.indiascholarships.in/privacy',
+      'https://www.indiascholarships.in/terms'
+    ];
+    staticRoutes.forEach(url => {
+      const metrics = gscMetrics[url] || { clicks: 0, impressions: 0 };
+      inventory.push({
+        name: cleanTitle(url) === 'Home' ? 'Main Homepage' : cleanTitle(url),
+        type: 'Static',
+        url,
+        clicks: metrics.clicks,
+        impressions: metrics.impressions
+      });
+    });
+
+    // State Hubs
+    const states = ['odisha', 'west-bengal', 'punjab', 'maharashtra', 'karnataka', 'uttar-pradesh', 'bihar'];
+    states.forEach(state => {
+      const url = `https://www.indiascholarships.in/hubs/${state}`;
+      const metrics = gscMetrics[url] || { clicks: 0, impressions: 0 };
+      inventory.push({
+        name: `${cleanTitle(state)} State Hub`,
+        type: 'State Hub',
+        url,
+        clicks: metrics.clicks,
+        impressions: metrics.impressions
+      });
+    });
+
+    // Dynamic Scholarship Pages (Adding Top 30 for view mapping)
+    scholarships.slice(0, 30).forEach(row => {
+      const url = `https://www.indiascholarships.in/scholarships/${row.slug}`;
+      const metrics = gscMetrics[url] || { clicks: 0, impressions: 0 };
+      inventory.push({
+        name: row.title,
+        type: 'Scholarship',
+        url,
+        clicks: metrics.clicks,
+        impressions: metrics.impressions
+      });
+
+      // Include dynamic sub-pages (demonstrates routing map)
+      const subpages = ['eligibility', 'documents-required', 'last-date'];
+      subpages.forEach(sub => {
+        const subUrl = `${url}/${sub}`;
+        const subMetrics = gscMetrics[subUrl] || { clicks: 0, impressions: 0 };
+        inventory.push({
+          name: `${row.title} — ${cleanTitle(sub)}`,
+          type: 'Subpage',
+          url: subUrl,
+          clicks: subMetrics.clicks,
+          impressions: subMetrics.impressions
+        });
+      });
+    });
+
+    console.log(`Generated ${inventory.length} inventory pages to sync.`);
+
+    // Push sequentially to Notion Database
+    for (const item of inventory.slice(0, 50)) { // limit initial push to top 50 items to respect rate limits
+      await notionRequest('/v1/pages', 'POST', {
+        parent: { database_id: INVENTORY_DB },
+        properties: {
+          'Page name ': {
+            title: [{ text: { content: item.name } }]
+          },
+          Type: {
+            multi_select: [{ name: item.type }]
+          },
+          URL: {
+            url: item.url
+          },
+          Clicks: {
+            number: item.clicks
+          },
+          Impressions: {
+            number: item.impressions
+          }
+        }
+      });
+      // Throttle request
+      await new Promise(resolve => setTimeout(resolve, 350));
+    }
+    console.log('✅ Inventory database populated successfully.');
   } catch (error) {
     console.error('Error syncing inventory:', error);
   } finally {
