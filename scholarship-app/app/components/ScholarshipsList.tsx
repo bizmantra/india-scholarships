@@ -24,36 +24,68 @@ export default function ScholarshipsList({
     showCategoryFilters = true
 }: ScholarshipsListProps) {
     const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedDeadlineStatus, setSelectedDeadlineStatus] = useState('All');
     const [sortBy, setSortBy] = useState('deadline');
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
-    // 1. Filter by category
+    const today = useMemo(() => {
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        return d;
+    }, []);
+
+    // 1. Filter by category & deadline status
     const filteredScholarships = useMemo(() => {
-        if (selectedCategory === 'All') return scholarships;
-
-        const lowerCategory = selectedCategory.toLowerCase();
         return scholarships.filter(s => {
-            const casteArray = s.caste || [];
-            
-            // Universal schemes open to everyone
-            const isOpenToAll = casteArray.length === 0 || casteArray.some((c: string) => {
-                const cl = c.toLowerCase();
-                return cl === 'all' || cl.includes('open to all') || cl.includes('all categories');
-            });
-            if (isOpenToAll) return true;
+            // Category Filter
+            let matchesCategory = true;
+            if (selectedCategory !== 'All') {
+                const lowerCategory = selectedCategory.toLowerCase();
+                const casteArray = s.caste || [];
+                
+                // Universal schemes open to everyone
+                const isOpenToAll = casteArray.length === 0 || casteArray.some((c: string) => {
+                    const cl = c.toLowerCase();
+                    return cl === 'all' || cl.includes('open to all') || cl.includes('all categories');
+                });
+                
+                if (!isOpenToAll) {
+                    matchesCategory = casteArray.some((c: string) => {
+                        const cLower = c.toLowerCase();
+                        if (lowerCategory === 'pwd') {
+                            return cLower.includes('pwd') || cLower.includes('disabilit');
+                        }
+                        if (lowerCategory === 'general') {
+                            return cLower.includes('general') || cLower.includes('ews') || cLower.includes('ebc');
+                        }
+                        return cLower.includes(lowerCategory);
+                    });
+                }
+            }
 
-            return casteArray.some((c: string) => {
-                const cLower = c.toLowerCase();
-                if (lowerCategory === 'pwd') {
-                    return cLower.includes('pwd') || cLower.includes('disabilit');
+            // Deadline Status Filter
+            let matchesDeadline = true;
+            if (selectedDeadlineStatus !== 'All') {
+                const isRollingOrOpen = s.deadline && (s.deadline.toLowerCase() === 'open now' || s.deadline.toLowerCase() === 'rolling');
+                const dateObj = s.deadline && s.deadline !== 'NA' && s.deadline !== 'Not specified' && !isRollingOrOpen ? new Date(s.deadline) : null;
+                const isValidDate = !!(dateObj && !isNaN(dateObj.getTime()));
+                const isExpired = !!(isValidDate && dateObj! < today);
+                const daysLeft = isValidDate ? Math.ceil((dateObj!.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)) : null;
+
+                if (selectedDeadlineStatus === 'Open') {
+                    // Exclude only explicitly expired ones
+                    matchesDeadline = !isExpired;
+                } else if (selectedDeadlineStatus === 'Closing Soon') {
+                    // Must have valid date, in the future/today, and <= 15 days remaining
+                    matchesDeadline = isValidDate && daysLeft !== null && daysLeft >= 0 && daysLeft <= 15;
+                } else if (selectedDeadlineStatus === 'Expired') {
+                    matchesDeadline = isExpired;
                 }
-                if (lowerCategory === 'general') {
-                    return cLower.includes('general') || cLower.includes('ews') || cLower.includes('ebc');
-                }
-                return cLower.includes(lowerCategory);
-            });
+            }
+
+            return matchesCategory && matchesDeadline;
         });
-    }, [scholarships, selectedCategory]);
+    }, [scholarships, selectedCategory, selectedDeadlineStatus, today]);
 
     // 2. Sort results
     const sortedScholarships = useMemo(() => {
@@ -124,29 +156,60 @@ export default function ScholarshipsList({
 
     return (
         <div>
-            {/* Category Filter Chips */}
-            {renderCategoryFilters && (
-                <div className="mb-8">
-                    <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
-                        Filter by Category
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                        {CATEGORIES.map(cat => (
-                            <button
-                                key={cat.value}
-                                onClick={() => setSelectedCategory(cat.value)}
-                                className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all cursor-pointer ${
-                                    selectedCategory === cat.value
-                                        ? 'bg-blue-700 text-white shadow-md shadow-blue-100'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                }`}
-                            >
-                                {cat.label}
-                            </button>
-                        ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {/* Category Filter Chips */}
+                {renderCategoryFilters && (
+                    <div>
+                        <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                            Filter by Category
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                            {CATEGORIES.map(cat => (
+                                <button
+                                    key={cat.value}
+                                    onClick={() => setSelectedCategory(cat.value)}
+                                    className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                                        selectedCategory === cat.value
+                                            ? 'bg-blue-700 text-white shadow-md shadow-blue-100'
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    {cat.label}
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+
+                {/* Deadline Status Filter Chips */}
+                {scholarships.length >= 3 && (
+                    <div>
+                        <span className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                            Deadline Status
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                            {[
+                                { value: 'All', label: 'All Opportunities' },
+                                { value: 'Open', label: 'Open & Ongoing' },
+                                { value: 'Closing Soon', label: '🔥 Closing Soon' },
+                                { value: 'Expired', label: 'Closed' }
+                            ].map(status => (
+                                <button
+                                    key={status.value}
+                                    onClick={() => setSelectedDeadlineStatus(status.value)}
+                                    className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                                        selectedDeadlineStatus === status.value
+                                            ? 'bg-blue-700 text-white shadow-md shadow-blue-100'
+                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    }`}
+                                >
+                                    {status.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
 
             {/* Results Header (Sort & View Toggles) */}
             {showSortingControl ? (
@@ -183,7 +246,10 @@ export default function ScholarshipsList({
                     <div className="text-4xl mb-3">🔍</div>
                     <p className="mb-4">No scholarships found matching this filter.</p>
                     <button
-                        onClick={() => setSelectedCategory('All')}
+                        onClick={() => {
+                            setSelectedCategory('All');
+                            setSelectedDeadlineStatus('All');
+                        }}
                         className="px-6 py-2.5 bg-blue-700 text-white font-bold rounded-xl hover:bg-blue-800 transition-colors cursor-pointer text-sm"
                     >
                         Reset Filters

@@ -58,6 +58,9 @@ export default function Header() {
                                         <Link href="/scholarships-by-income" className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
                                             By Income
                                         </Link>
+                                        <Link href="/scholarships/deadlines" className="block px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-50/50 transition-colors">
+                                            🔥 Deadline Tracker
+                                        </Link>
                                         <div className="border-t border-gray-100 my-2"></div>
                                         <Link href="/government-scholarships" className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
                                             Government Scholarships
@@ -129,6 +132,13 @@ export default function Header() {
                             onClick={() => setShowMobileMenu(false)}
                         >
                             By Income
+                        </Link>
+                        <Link
+                            href="/scholarships/deadlines"
+                            className="block py-2 text-sm font-bold text-blue-700"
+                            onClick={() => setShowMobileMenu(false)}
+                        >
+                            🔥 Deadline Tracker
                         </Link>
                         <div className="border-t border-gray-200 my-2"></div>
                         <Link
