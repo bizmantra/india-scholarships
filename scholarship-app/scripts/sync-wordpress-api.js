@@ -1,31 +1,28 @@
-// scripts/sync-targeted-wp.js
+// sync-wordpress-api.js
+// Automated database synchronizer for WordPress REST API.
+// Uses Application Passwords for secure REST updates.
+// Run: node scripts/sync-wordpress-api.js
+
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env.local') });
 const Database = require('better-sqlite3');
 
 const WP_URL = 'https://mediumpurple-sparrow-753119.hostingersite.com';
 const USERNAME = process.env.WORDPRESS_USERNAME;
-const APP_PASSWORD = process.env.WORDPRESS_APP_PASSWORD;
+const APP_PASSWORD = process.env.WORDPRESS_APP_PASSWORD; // Generated in WordPress Profile settings
 
 if (!USERNAME || !APP_PASSWORD) {
   console.error('❌ Error: WORDPRESS_USERNAME and WORDPRESS_APP_PASSWORD must be defined in your .env.local file.');
+  console.log('To generate an Application Password:');
+  console.log('1. Go to your WordPress Dashboard -> Users -> Profile.');
+  console.log('2. Scroll down to Application Passwords and add a new key (e.g., "Scholarship Sync Script").');
+  console.log('3. Copy the password and add it to your .env.local file.');
   process.exit(1);
 }
 
 const authHeader = 'Basic ' + Buffer.from(`${USERNAME}:${APP_PASSWORD}`).toString('base64');
 const dbPath = path.join(__dirname, '..', 'data', 'scholarships.db');
 const db = new Database(dbPath);
-
-const slugsToSync = [
-  'research-guidance-phd-fellowship-for-backward-classes-karnataka',
-  'mphil-phd-fellowship-for-minority-students-karnataka',
-  'national-overseas-scholarship-for-minority-communities-karnataka',
-  'cm-raitha-vidya-nidhi-farmers-children-scholarship-karnataka',
-  'samagra-shikshana-karnataka-fellowship',
-  'incentive-for-sslc-2nd-puc-students-minorities-karnataka',
-  'labour-department-scheme-for-unorganized-workers-children-karnataka',
-  'andaman-nicobar-administration-merit-scholarship'
-];
 
 // Helper to try parsing JSON arrays safely
 function parseJsonSafe(val, fallback = []) {
@@ -37,11 +34,9 @@ function parseJsonSafe(val, fallback = []) {
   }
 }
 
-async function syncTargeted() {
-  console.log(`🔄 Loading targeted ${slugsToSync.length} scholarships from SQLite...`);
-  
-  const placeholders = slugsToSync.map(() => '?').join(',');
-  const rows = db.prepare(`SELECT * FROM scholarships WHERE slug IN (${placeholders})`).all(...slugsToSync);
+async function syncAll() {
+  console.log('🔄 Loading local scholarships from SQLite...');
+  const rows = db.prepare('SELECT * FROM scholarships').all();
   console.log(`Loaded ${rows.length} scholarships to sync.`);
 
   for (const row of rows) {
@@ -70,18 +65,23 @@ async function syncTargeted() {
       const val = String(levelStr).toLowerCase();
       const output = new Set();
 
+      // Check for School options
       if (val.includes('class 1') || val.includes('class 5') || val.includes('class 6') || val.includes('class 8') || val.includes('class 9') || val.includes('class 10') || val.includes('school') || val.includes('pre-matric')) {
         output.add('Class 1-10');
       }
       if (val.includes('class 11') || val.includes('class 12') || val.includes('higher secondary') || val.includes('post-matric') || val.includes('puc')) {
         output.add('Class 11-12');
       }
+
+      // Check for Vocational/Diploma options
       if (val.includes('diploma') || val.includes('polytechnic')) {
         output.add('Diploma / Polytechnic');
       }
       if (val.includes('iti') || val.includes('itc')) {
         output.add('ITI Courses');
       }
+
+      // Check for Higher Education options
       if (val.includes('undergraduate') || val.includes('graduation') || val.includes('ug') || val.includes('b.sc') || val.includes('btech') || val.includes('mbbs')) {
         output.add('Graduation (UG)');
       }
@@ -95,21 +95,25 @@ async function syncTargeted() {
       return Array.from(output);
     };
 
+
+    // Helper to format array values into clean comma-separated strings for WordPress
     const formatStringField = (val) => {
       if (!val) return '';
       const list = parseJsonSafe(val, [val]);
       return Array.isArray(list) ? list.join(', ') : String(val);
     };
 
+    // Helper to translate provider_type to match WordPress strict select options
     const mapProviderType = (typeStr) => {
       if (!typeStr) return 'Government';
       const val = String(typeStr).trim().toLowerCase();
       if (val.includes('government') || val.includes('state') || val.includes('central')) return 'Government';
       if (val.includes('corporate') || val.includes('company')) return 'Corporate';
       if (val.includes('private') || val.includes('trust') || val.includes('foundation')) return 'Private';
-      return 'Government';
+      return 'Government'; // default fallback
     };
 
+    // Helper to translate gender to match WordPress strict select options
     const mapGender = (genderStr) => {
       if (!genderStr) return 'All';
       const val = String(genderStr).trim().toLowerCase();
@@ -118,6 +122,7 @@ async function syncTargeted() {
       return 'All';
     };
 
+    // 2. Prepare post body (title, slug, status, and custom ACF metadata)
     const postData = {
       title: row.title,
       slug: row.slug,
@@ -151,6 +156,8 @@ async function syncTargeted() {
       }
     };
 
+
+    // 3. Trigger REST API Create or Update
     try {
       let endpoint = `${WP_URL}/wp-json/wp/v2/scholarship`;
       let method = 'POST';
@@ -182,8 +189,8 @@ async function syncTargeted() {
     }
   }
 
-  console.log('\n🏁 Targeted synchronization complete!');
+  console.log('\n🏁 Database synchronization complete!');
   db.close();
 }
 
-syncTargeted().catch(console.error);
+syncAll();
