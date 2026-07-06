@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>250 → 500 Scholarships: Consolidated, Verified Picture</title>
+<style>
+  :root{
+    --ink:#1a2b23; --sub:#5b6b62; --bg:#f7f6f2; --card:#ffffff;
+    --accent:#1f7a4d; --accent-light:#e6f2ea; --warn:#b8791a; --warn-light:#fbf0de;
+    --risk:#a83c3c; --risk-light:#fbe8e8; --line:#e4e1d8; --dead:#8a8a8a; --dead-light:#ececec;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px;}
+  h1{font-size:26px;margin:0 0 4px;}
+  .sub{color:var(--sub);font-size:14px;margin-bottom:24px;}
+  h2{font-size:18px;margin:40px 0 12px;border-left:4px solid var(--accent);padding-left:10px;display:flex;align-items:center;gap:8px;}
+  h3{font-size:14.5px;margin:18px 0 6px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;}
+  .panel.dead{opacity:0.6;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;}
+  .card .label{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;}
+  .card .val{font-size:21px;font-weight:700;margin-top:3px;}
+  .card .sub2{font-size:11px;color:var(--accent);margin-top:2px;font-weight:600;}
+  .flag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;white-space:nowrap;}
+  .flag.risk{background:var(--risk-light);color:var(--risk);}
+  .flag.warn{background:var(--warn-light);color:var(--warn);}
+  .flag.good{background:var(--accent-light);color:var(--accent);}
+  .flag.dead{background:var(--dead-light);color:var(--dead);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{text-align:left;padding:7px 9px;border-bottom:2px solid var(--line);color:var(--sub);font-weight:600;font-size:11px;text-transform:uppercase;}
+  td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr.total td{font-weight:700;border-top:2px solid var(--ink);border-bottom:none;}
+  tr:hover td{background:#fafaf7;}
+  tr.total:hover td{background:var(--card);}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .note{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:8px;}
+  .scrollbox{max-height:480px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;}
+  .scrollbox table{margin-top:0;}
+  .scrollbox th{position:sticky;top:0;background:var(--card);z-index:1;}
+  ul.actions{list-style:none;padding:0;margin:0;}
+  ul.actions li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);}
+  ul.actions li:last-child{border-bottom:none;}
+  ul.actions input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+  .actions .txt b{display:block;font-size:13.5px;}
+  .actions .txt span{font-size:12px;color:var(--sub);}
+  .timeline{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+  .tl-item{margin-bottom:14px;position:relative;}
+  .tl-item::before{content:"";position:absolute;left:-21px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--accent);}
+  .tl-item .date{font-size:11px;color:var(--sub);font-weight:700;}
+  .tl-item .txt{font-size:13px;margin-top:2px;}
+  .src{font-size:10.5px;color:var(--sub);font-style:italic;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>250 → 500 Scholarships: The Full, Verified Picture</h1>
+  <div class="sub">v3 — consolidates everything checked so far. Marks each number/claim as verified, debunked, or unverified, so nothing here needs to be taken on faith.</div>
+
+  <h2>🗑️ What's officially retired</h2>
+  <div class="panel dead">
+    <table>
+      <tr><th>Claim</th><th>Status</th><th>Why</th></tr>
+      <tr><td>"342-row master lead sheet, 213 remaining leads"</td><td><span class="flag dead">Retired</span></td><td>File isn't in your actual Antigravity project — likely a one-off upload from an earlier chat, not part of your real working system. Can't verify anyone can act on it.</td></tr>
+      <tr><td>"213 leads in the pipeline, ready to enrich"</td><td><span class="flag dead">Retired</span></td><td>Depended entirely on the file above. No longer usable as a planning number.</td></tr>
+    </table>
+    <div class="note">Nothing from these two rows should inform decisions going forward. Full stop.</div>
+  </div>
+
+  <h2>✅ What's verified and safe to build on</h2>
+  <div class="panel">
+    <div class="cards">
+      <div class="card"><div class="label">Live scholarships</div><div class="val">266</div><div class="sub2">Antigravity export, Jul 5</div></div>
+      <div class="card"><div class="label">Target</div><div class="val">500</div></div>
+      <div class="card"><div class="label">Real gap</div><div class="val">234</div></div>
+      <div class="card"><div class="label">Live crawlable pages</div><div class="val">2,225</div><div class="sub2">8 subpages × 266 + hubs</div></div>
+    </div>
+    <p class="note" style="margin-top:0;">Source: <code>scholarships_inventory.xlsx</code> you uploaded directly. Cross-checked against your live GSC data in an earlier step — page and query counts were consistent with this being the real, current site.</p>
+  </div>
+
+  <h2>Full state breakdown (live only — this is your real starting point)</h2>
+  <div class="panel">
+    <div class="scrollbox">
+    <table>
+      <tr><th>State</th><th class="num">Live now</th></tr>
+      <tr><td>All India</td><td class="num">71</td></tr>
+      <tr><td>Odisha</td><td class="num">21</td></tr>
+      <tr><td>Karnataka</td><td class="num">19 <span class="flag warn">+14 unmerged, see below</span></td></tr>
+      <tr><td>West Bengal</td><td class="num">14</td></tr>
+      <tr><td>Maharashtra</td><td class="num">12</td></tr>
+      <tr><td>Tamil Nadu</td><td class="num">10</td></tr>
+      <tr><td>Madhya Pradesh</td><td class="num">9</td></tr>
+      <tr><td>Kerala</td><td class="num">8</td></tr>
+      <tr><td>Andhra Pradesh</td><td class="num">7</td></tr>
+      <tr><td>Bihar</td><td class="num">7</td></tr>
+      <tr><td>Chhattisgarh</td><td class="num">7</td></tr>
+      <tr><td>Gujarat</td><td class="num">7</td></tr>
+      <tr><td>Rajasthan</td><td class="num">7</td></tr>
+      <tr><td>Telangana</td><td class="num">7</td></tr>
+      <tr><td>Haryana</td><td class="num">6</td></tr>
+      <tr><td>Punjab</td><td class="num">5</td></tr>
+      <tr><td>Delhi</td><td class="num">5</td></tr>
+      <tr><td>Selected States</td><td class="num">4</td></tr>
+      <tr><td><b>Uttar Pradesh</b></td><td class="num"><b>4</b> <span class="flag risk">thinnest major state</span></td></tr>
+      <tr><td>Assam</td><td class="num">3</td></tr>
+      <tr><td>Jharkhand</td><td class="num">3</td></tr>
+      <tr><td>Arunachal Pradesh, Sikkim, Multiple States, Uttarakhand, Ladakh, Tripura, Himachal Pradesh, Manipur, Goa, Meghalaya</td><td class="num">2 each</td></tr>
+      <tr><td>Nagaland, both A&N Islands spellings, both Dadra & Nagar Haveli spellings, Chandigarh, Puducherry, Mizoram, both J&K spellings, Lakshadweep, Selected Cities</td><td class="num">1 each</td></tr>
+      <tr class="total"><td>TOTAL</td><td class="num">266</td></tr>
+    </table>
+    </div>
+    <div class="note">Same duplicate-spelling issue flagged last time (A&N Islands, J&K, Dadra & Nagar Haveli each stored two ways) — still unresolved, still a 5-minute fix worth doing.</div>
+  </div>
+
+  <h2>📌 One real, verified quick win: Karnataka</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">Found in your actual Notion Backlog (not the retired CSV) — a task titled <i>"Karnataka data reconciliation (14 missing scholarships)"</i>, status "Later," impact "Medium." It says:</p>
+    <table>
+      <tr><td><b>What to do</b></td><td>14 Karnataka scholarships were researched but never made it into the main database. They're sitting in <code>Karnataka_high_level_research.md</code> (confirmed — this file is genuinely in your project).</td></tr>
+      <tr><td><b>Why it matters</b></td><td>Karnataka gets 12,470 impressions of state-level search demand with only partial coverage live.</td></tr>
+    </table>
+    <p class="note">I opened that file directly. It names specific, real schemes — Vidyasiri Scholarship, CM Raitha Vidya Nidhi (farmers' children), Merit-Cum-Means Scholarship for Minorities, National Overseas Scholarship for Minority Students, UDID Disability Scholarship, Karnataka State Brahmin Development Board Scheme, and others — organized in batches of 5 with a research methodology already applied (12-department portal structure documented).</p>
+    <p class="note"><b>This is the one number in this whole plan I'd call close to fully trustworthy:</b> it's small, it's named, it's sitting in a real file, and the research legwork is reportedly already done — it just needs reconciling into the main sheet. Karnataka is at 19 live now; if even 10-12 of the 14 are genuinely new (not already counted), that alone could push it to 29-31.</p>
+  </div>
+
+  <h2>🧭 The real discovery process (from your own Atlas doc)</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">Your Notion has a page called <b>Atlas</b> — a running "what works / what doesn't" log. It documents an actual operating cycle already in place:</p>
+    <div class="timeline">
+      <div class="tl-item"><div class="date">DISCOVER</div><div class="txt">GSC data — high-impression search queries with no matching page yet — plus a content audit for data gaps.</div></div>
+      <div class="tl-item"><div class="date">RESEARCH</div><div class="txt">Gemini + Google Search Grounding → Google Sheets → 30-field records. (Not a static list — an active enrichment step.)</div></div>
+      <div class="tl-item"><div class="date">VERIFY</div><div class="txt">Human review of all AI-generated content before anything publishes. Cross-check deadline + amount + income limit against the official source.</div></div>
+      <div class="tl-item"><div class="date">PUBLISH → MAINTAIN</div><div class="txt">A GitHub Actions cron already runs weekly (Sunday midnight UTC) and enriches up to 20 scholarships automatically, then redeploys.</div></div>
+    </div>
+    <p class="note"><b>This matters a lot for "what's the pipeline":</b> there isn't supposed to be a static name-list at all. New scholarships are meant to come from mining your own search-demand data, not from a spreadsheet someone filled in months ago. That's a better system than what I was assuming — we should use it rather than route around it.</p>
+    <h3>What this means practically</h3>
+    <p class="note" style="margin-top:0;">The GSC Queries.csv from earlier in this conversation is exactly the input this process wants. I haven't yet run a proper "high impressions, no matching page" gap analysis against your live inventory — that's the correct next step, not reviving any old list.</p>
+  </div>
+
+  <h2>📊 Your own current KPIs (from Atlas, more current than my earlier GSC read)</h2>
+  <div class="panel">
+    <table>
+      <tr><th>KPI</th><th class="num">Now (Jun 2026)</th><th class="num">Target (Sep 2026)</th></tr>
+      <tr><td>Monthly clicks</td><td class="num">44,925</td><td class="num">80,000</td></tr>
+      <tr><td>Avg CTR</td><td class="num">1.73%</td><td class="num">3.0%</td></tr>
+      <tr><td>Avg position</td><td class="num">5.8</td><td class="num">4.5</td></tr>
+      <tr><td>PM Yashasvi % of clicks</td><td class="num">40%</td><td class="num">&lt;20%</td></tr>
+      <tr><td>Subpages indexed</td><td class="num">700</td><td class="num">1,400+</td></tr>
+      <tr><td>Expired deadlines live</td><td class="num">127</td><td class="num">0</td></tr>
+      <tr><td>Email subscribers</td><td class="num">0</td><td class="num">500+/month</td></tr>
+    </table>
+    <div class="note">These are your own tracked numbers, dated slightly before the GSC export I analyzed (hence small differences — 44,925 vs the ~61,733 June figure from GSC, likely just different date windows). Worth noting: <b>127 expired deadlines currently live</b> is a real, specific, fixable problem I hadn't seen mentioned elsewhere — probably worth its own look given "Verified for 2026 on an expired page destroys trust" is literally called out as a core risk in your own Atlas doc.</div>
+  </div>
+
+  <h2>Revised action list</h2>
+  <div class="panel">
+    <ul class="actions">
+      <li><input type="checkbox"><div class="txt"><b>Reconcile the 14 Karnataka scholarships</b><span>Real, named, already-researched. Highest-confidence item in this whole plan.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Run a proper GSC gap-mining pass</b><span>High impressions + no matching page, using the Queries.csv already in this conversation — this is your own documented "Discover" step, not a new invention.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Fix the 127 expired deadlines</b><span>Surfaced from Atlas, not something I'd flagged before. Directly threatens the "Verified for 2026" trust signal your own docs call out as core differentiation.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>UP discovery sprint</b><span>Still the thinnest major state (4 live). The brief from last message (Backward Classes + Minority Welfare Dept schemes as the confirmed starting point) still stands — it didn't depend on the retired CSV.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Standardize duplicate state spellings</b><span>A&N Islands, J&K, Dadra & Nagar Haveli — still unfixed from last time.</span></div></li>
+    </ul>
+    <div class="note">Deliberately not restating a "266 + X + Y = 500" math table this time — the honest answer is that the 234-scholarship gap doesn't have a pre-built source anymore, and manufacturing one would repeat the exact mistake we just corrected. Karnataka's 14 and a real GSC gap-mining pass are the two next concrete moves; the rest of the path to 500 should be built from what those two turn up, not projected in advance.</div>
+  </div>
+
+</div>
+</body>
+</html>

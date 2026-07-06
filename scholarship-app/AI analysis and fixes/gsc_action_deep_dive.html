@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Deep Dive: 5 GSC Action Items</title>
+<style>
+  :root{
+    --ink:#1a2b23; --sub:#5b6b62; --bg:#f7f6f2; --card:#ffffff;
+    --accent:#1f7a4d; --accent-light:#e6f2ea; --warn:#b8791a; --warn-light:#fbf0de;
+    --risk:#a83c3c; --risk-light:#fbe8e8; --line:#e4e1d8; --verified:#2563a8; --verified-light:#e8f0fa;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px;}
+  h1{font-size:26px;margin:0 0 4px;}
+  .sub{color:var(--sub);font-size:14px;margin-bottom:8px;}
+  h2{font-size:19px;margin:44px 0 4px;display:flex;align-items:center;gap:10px;}
+  h2 .num{background:var(--accent);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  h3{font-size:15px;margin:22px 0 8px;color:var(--ink);}
+  .impact{color:var(--sub);font-size:13px;margin-bottom:18px;padding-left:36px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;}
+  .flag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+  .flag.risk{background:var(--risk-light);color:var(--risk);}
+  .flag.warn{background:var(--warn-light);color:var(--warn);}
+  .flag.good{background:var(--accent-light);color:var(--accent);}
+  .flag.verified{background:var(--verified-light);color:var(--verified);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{text-align:left;padding:7px 9px;border-bottom:2px solid var(--line);color:var(--sub);font-weight:600;font-size:11px;text-transform:uppercase;}
+  td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:hover td{background:#fafaf7;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .titlebox{background:#fafaf7;border:1px dashed var(--line);border-radius:6px;padding:8px 10px;font-size:12.5px;margin:4px 0;font-family:Georgia,serif;}
+  .titlebox.before{border-color:#d8b3b3;}
+  .titlebox.after{border-color:#9cc9ac;}
+  .label{font-size:10px;text-transform:uppercase;color:var(--sub);font-weight:700;letter-spacing:.05em;margin-bottom:2px;}
+  .note{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:8px;}
+  ul.actions{list-style:none;padding:0;margin:0;}
+  ul.actions li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);}
+  ul.actions li:last-child{border-bottom:none;}
+  ul.actions input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+  .actions .txt b{display:block;font-size:13.5px;}
+  .actions .txt span{font-size:12px;color:var(--sub);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+  .stepnum{background:var(--accent-light);color:var(--accent);border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0;}
+  .step{display:flex;align-items:flex-start;gap:0;margin:6px 0;font-size:13px;}
+  .divider{border-top:1px solid var(--line);margin:16px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Deep Dive: The 5 Action Items</h1>
+  <div class="sub">Built off the same GSC export. Where I checked the actual live page (via search), it's marked <span class="flag verified">VERIFIED</span>. Where I'm inferring from query patterns without confirming your current copy, it's marked <span class="flag warn">CHECK IN CMS</span> — worth 2 minutes to confirm before you rewrite anything.</div>
+
+  <h2><span class="num">1</span> Rewrite titles/meta for the CTR outliers</h2>
+  <div class="impact">Est. upside: largest single lever on the report — no new content, no ranking work needed, just copy changes in your WordPress CMS fields.</div>
+
+  <div class="panel">
+    <h3>What I found by actually checking three of these pages</h3>
+    <p class="note" style="margin-top:0;">There's a real, repeatable pattern here — not a vague "improve your titles" note. Three schemes on your underperformer list are known primarily by an <b>abbreviation</b> (e-Kalyan, MMVY, SVMCM), and in every case I checked, your title leads with the long official name and buries the abbreviation in parentheses. Meanwhile the dominant search query is just the bare abbreviation. Google shows your page fine (positions 4–4.5) — people just don't recognize it as the answer fast enough to click.</p>
+
+    <div class="divider"></div>
+    <b>Jharkhand e-Kalyan</b> <span class="flag verified">VERIFIED</span>
+    <div class="note" style="margin:4px 0 8px;">Dominant query "e kalyan" alone = <b>93,262 impressions, position 4.17, but only 0.11% CTR</b> (100 clicks). That's the single biggest CTR gap on your whole site in absolute impression terms.</div>
+    <div class="label">Current title</div>
+    <div class="titlebox before">Jharkhand e-Kalyan Post-Matric Scholarship – Application Open (2026)</div>
+    <div class="label">Try instead</div>
+    <div class="titlebox after">e-Kalyan Jharkhand Scholarship 2026: Apply Online, Last Date & Amount</div>
+    <div class="note">Leads with the exact term people type, adds "2026" + "apply online" + "last date" which are the phrases converting at 2–6% CTR everywhere else on your site (see Nabanna/Kanya Utthan below). Also: three dedicated competitor sites (ekalyanscholarship.in, ekalyanjharkhand.info) are winning this click purely on name-match trust — your title needs to look at least as directly relevant at a glance.</div>
+
+    <div class="divider"></div>
+    <b>MMVY (Madhya Pradesh)</b> <span class="flag verified">VERIFIED</span>
+    <div class="note" style="margin:4px 0 8px;">Bare "mmvy" = 93,364 impressions, position 4.44, 0.39% CTR. "mmvy portal" ranks a strong 3.36 but still only 1.31% CTR.</div>
+    <div class="label">Current title</div>
+    <div class="titlebox before">Mukhyamantri Medhavi Vidyarthi Yojana (MMVY) – Application Open (2026)</div>
+    <div class="label">Try instead</div>
+    <div class="titlebox after">MMVY Scholarship 2026: Apply Online, Eligibility, Last Date & Amount</div>
+    <div class="note">Same fix — MMVY-first, not buried after the Hindi scheme name. Your direct competitor ranking well for this ("MMVY Scholarship 2025 – Apply Online, Eligibility & Benefits" on Buddy4Study) already leads with the abbreviation.</div>
+
+    <div class="divider"></div>
+    <b>SVMCM (West Bengal)</b> <span class="flag warn">CHECK IN CMS</span>
+    <div class="note" style="margin:4px 0 8px;">Bare "svmcm" = 37,170 impressions at position 5.75 but a startling <b>0.04% CTR</b> — only 15 clicks off 37K impressions. I didn't verify this title directly, but given the identical pattern on the two above, I'd bet it's the same issue: "Swami Vivekananda Merit-cum-Means Scholarship" leading, "SVMCM" buried.</div>
+    <div class="label">Try instead (confirm current title first)</div>
+    <div class="titlebox after">SVMCM Scholarship 2026: Apply Online, Eligibility, Last Date & Amount</div>
+
+    <div class="divider"></div>
+    <b>e-Grantz (Kerala)</b> <span class="flag warn">CHECK IN CMS</span>
+    <div class="note" style="margin:4px 0 8px;">"e grantz" + "egrantz" combined ≈ 54,000 impressions, both under 0.2% CTR. Same likely cause. Note people also search "e grantz 3.0" (10,383 impressions) — Kerala's portal has version-numbered releases, so if your title doesn't say which version, that's a second reason for hesitation.</div>
+    <div class="label">Try instead (confirm current title first)</div>
+    <div class="titlebox after">e-Grantz Kerala Scholarship 2026: Apply Online, Last Date & Amount</div>
+
+    <div class="divider"></div>
+    <b>bitsat-scholarship</b> <span class="flag warn">CHECK IN CMS</span>
+    <div class="note" style="margin:4px 0 8px;">This one's different — it ranks at <b>3.71</b>, better than PM Yashasvi, but converts at only 0.58%. Not an abbreviation problem (query is already "bitsat scholarship" in full). More likely: the title/snippet doesn't signal "this is the scholarship page" clearly enough against BITSAT-exam-focused results (BITSAT is mainly known as an entrance exam, not a scholarship — you may be getting impressions from exam-intent searchers who bounce off a scholarship-framed title). Worth checking what else ranks around you for this term before rewriting blind.</div>
+
+    <div class="divider"></div>
+    <h3>The formula that's already working for you</h3>
+    <p class="note" style="margin-top:0;">You don't need to guess at a new formula — you already have proof of what converts, sitting in your own query data:</p>
+    <table>
+      <tr><th>Query variant</th><th class="num">CTR</th><th class="num">Position</th></tr>
+      <tr><td>nabanna scholarship <b>online apply</b></td><td class="num">5.85%</td><td class="num">3.91</td></tr>
+      <tr><td>nabanna scholarship <b>2026</b></td><td class="num">5.46%</td><td class="num">4.05</td></tr>
+      <tr><td>hdfc parivartan scholarship <b>2026-27</b></td><td class="num">4.69%</td><td class="num">3.40</td></tr>
+      <tr><td>mukhyamantri kanya utthan yojana <b>2025</b></td><td class="num">6.00%</td><td class="num">5.08</td></tr>
+      <tr><td>kanya utthan yojana <b>graduation</b></td><td class="num">5.39%</td><td class="num">5.02</td></tr>
+    </table>
+    <div class="note">Every one of these beats your site average (1.78%) by 2–3×. The pattern: specific year + specific action word ("apply", "online") + sometimes the specific sub-category (graduation, 2025-26). Bake this combination into titles across the board, not just the five above.</div>
+  </div>
+
+  <h2><span class="num">2</span> Audit tata-capital-pankh-scholarship specifically</h2>
+  <div class="impact">Biggest single opportunity by raw impressions (556K) — but the fix here is different from #1.</div>
+
+  <div class="panel">
+    <h3>I checked this one — the title is actually already good</h3>
+    <div class="label">Current title (verified)</div>
+    <div class="titlebox before">Tata Capital Pankh Scholarship 2026: ₹12,000 | Eligibility, Last Date & Apply</div>
+    <p class="note">This already has 2026, an amount, eligibility, last date, apply — the exact formula from #1. Yet CTR is 1.45%, well below what that formula usually earns you. Two things stand out from what I found:</p>
+
+    <h3 style="margin-top:16px;">Issue A: The amount in your title may look wrong</h3>
+    <p class="note" style="margin-top:0;">Your title says <b>₹12,000</b>, but your own page body (per the search snippet) says <b>"Amount: ₹100000/year"</b>. A student scanning results sees a low headline number, and if they've already seen other listings quoting "up to ₹1 Lakh" (which most competitors do — Leverage Edu, ScholarshipsX, Sakshi Education all lead with the ₹1,00,000 figure), your ₹12,000 headline looks like the weakest offer in the results, even though it's really describing the lower end of a tiered amount. This is a trust/attractiveness issue, not a ranking one.</p>
+    <div class="label">Try instead</div>
+    <div class="titlebox after">Tata Capital Pankh Scholarship 2026: Up to ₹1 Lakh | Eligibility & Last Date</div>
+
+    <h3 style="margin-top:16px;">Issue B: You're in an unusually crowded SERP</h3>
+    <p class="note" style="margin-top:0;">This scholarship has at least 8 dedicated competitor articles ranking (Buddy4Study, WeMakeScholars, LeverageEdu, ScholarshipsX, CIGMAPedia, Sakshi, Sarsa Education, Saiket) — most with near-identical "2026: Apply Online, Eligibility, Last Date & Documents" titles. When everyone's title looks the same, CTR splits thin regardless of position. Your differentiator (29-field verified data) isn't visible in the SERP at all right now — nothing in the title or meta signals "this one is more accurate/complete than the other 8."</p>
+    <div class="note"><b>Also worth knowing:</b> multiple sources note the last application deadline already expired (mentioned Feb 28, 2026), yet the query volume for "last date" variants is still active. If your page doesn't clearly say "2025-26 cycle closed — here's when the next cycle typically opens" students searching for status will bounce straight back to Google, which can quietly hurt your ranking over time even if impressions stay high.</div>
+
+    <ul class="actions" style="margin-top:14px;">
+      <li><input type="checkbox"><div class="txt"><b>Fix the title amount inconsistency (₹12,000 → ₹1 Lakh, or clarify tiers)</b><span>5-minute CMS edit, directly addresses a trust gap visible in the SERP snippet itself.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Add a visible "Verified 29-field / last-checked [date]" trust signal to the meta description</b><span>Your actual differentiator vs. the 8 competing listings — right now it's invisible to searchers.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Add explicit cycle-status messaging if the current round is closed</b><span>"Applications for 2025-26 closed Feb 28 — 2026-27 cycle typically opens [month]" keeps status-checkers on page instead of pogo-sticking back to Google.</span></div></li>
+    </ul>
+  </div>
+
+  <h2><span class="num">3</span> Build 2-3 more "anchor" pages deliberately</h2>
+  <div class="impact">This is the highest-effort, highest-payoff item — treat it as the one "big" task in your 5-slot WIP.</div>
+
+  <div class="panel">
+    <h3>What makes PM Yashasvi and Sitaram Jindal different isn't just the base query</h3>
+    <p class="note" style="margin-top:0;">Look at how many <i>variant</i> queries each anchor page captures at near-top position — this is the real signature of an anchor page, and it's measurable:</p>
+    <table>
+      <tr><th>Query</th><th class="num">Position</th><th class="num">CTR</th></tr>
+      <tr><td>pm yashasvi scholarship apply online 2026</td><td class="num">1.81</td><td class="num">17.56%</td></tr>
+      <tr><td>pm yashasvi scholarship 2026 last date</td><td class="num">1.77</td><td class="num">13.21%</td></tr>
+      <tr><td>sitaram jindal scholarship apply online 2026</td><td class="num">3.13</td><td class="num">12.14%</td></tr>
+      <tr><td>sitaram jindal scholarship 2026</td><td class="num">3.04</td><td class="num">14.58%</td></tr>
+    </table>
+    <p class="note">Both pages rank at <b>position 1.5–3</b> for a whole cluster of long-tail variants, not just the base term. That's what a strong single page with comprehensive on-page content, internal links, and (likely) some external citations/backlinks looks like. It's not luck — it's what happens when a page is treated as the definitive answer for that scholarship rather than one of many.</p>
+
+    <h3>Good news: you already have two more pages showing early anchor behavior</h3>
+    <p class="note" style="margin-top:0;"><b>Nabanna</b> (West Bengal) and <b>Kanya Utthan</b> (Bihar) both already rank position 3–5 for "2026", "last date", and "apply online" variants — they're not full anchors yet, but they're the closest thing you have to a "next PM Yashasvi." That makes them your best investment target, not a totally new page.</p>
+
+    <div class="grid2" style="margin-top:10px;">
+      <div>
+        <h3 style="margin-top:0;">Recommended sequence (pick 2, not all 4)</h3>
+        <div class="step"><span class="stepnum">1</span> <b>Nabanna</b> — 226K impressions, already showing anchor-pattern variants. Push it over the line first.</div>
+        <div class="step"><span class="stepnum">2</span> <b>Kanya Utthan</b> — 210K impressions, same early pattern, Bihar's a priority state on your roadmap anyway.</div>
+        <div class="step"><span class="stepnum">3</span> Tata Capital Pankh — highest impression ceiling (556K) but crowded SERP means more work for less certain payoff.</div>
+        <div class="step"><span class="stepnum">4</span> HDFC Parivartan — decent signal (4.69% CTR on the "2026-27" variant) but lower total volume.</div>
+      </div>
+      <div>
+        <h3 style="margin-top:0;">What "anchor treatment" concretely means</h3>
+        <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--sub);line-height:1.6;">
+          <li>Expand the page to explicitly answer every high-volume variant as its own section/FAQ (last date, apply online, amount, eligibility, status check)</li>
+          <li>Add a visible "last updated" date and update it when anything changes — freshness signals matter for scholarship content</li>
+          <li>Internal-link to it from 3-4 related pages (state hub, category page, similar scholarships) using varied anchor text matching the query variants</li>
+          <li>If you have any legitimate citation opportunity (a forum answer, a resource list, a partner mention), point it here first</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="num">4</span> Strengthen NSP/central-scheme content before new states</h2>
+  <div class="impact">Confirmed by data: demand exists, your current coverage isn't capturing it.</div>
+
+  <div class="panel">
+    <table>
+      <tr><th>Term cluster</th><th class="num">Impressions</th><th class="num">Clicks</th><th class="num">Implied CTR</th></tr>
+      <tr><td>NSP (National Scholarship Portal) variants</td><td class="num">14,267</td><td class="num">84</td><td class="num">0.59%</td></tr>
+      <tr><td>"national scholarship portal" (exact)</td><td class="num">353</td><td class="num">24</td><td class="num">6.8%</td></tr>
+      <tr><td>"central government scholarship"</td><td class="num">847</td><td class="num">13</td><td class="num">1.5%</td></tr>
+    </table>
+    <p class="note">The exact-phrase "national scholarship portal" query actually converts fine (6.8%) — it's the broader NSP-branded traffic (14K impressions, near-zero clicks) that's the gap. That reads like thin or scattered content: bits of NSP information exist across various state pages but there's no single strong "NSP explained" hub page competing for the abbreviation-level searches, the same abbreviation-first-title issue as #1, but at the content-structure level rather than just the title.</p>
+    <ul class="actions">
+      <li><input type="checkbox"><div class="txt"><b>Build one dedicated NSP hub page</b> (if you don't already have one) covering registration, renewal, common errors, deadline tracking across schemes<span>Structurally the same idea as an anchor page (#3), but for a portal/concept rather than a single scholarship</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Audit whatever currently ranks for "central government scholarship"</b><span>Only 847 impressions total is suspiciously low for a phrase this broad — check whether a page targeting this exists at all, or whether it's an indexing/coverage gap</span></div></li>
+    </ul>
+  </div>
+
+  <h2><span class="num">5</span> Watch the July run-rate</h2>
+  <div class="impact">No action needed yet — this is a monitoring checkpoint, not a task.</div>
+  <div class="panel">
+    <table>
+      <tr><th>Month</th><th class="num">Clicks</th><th class="num">MoM growth</th></tr>
+      <tr><td>May</td><td class="num">37,595</td><td class="num">+73%</td></tr>
+      <tr><td>June</td><td class="num">61,733</td><td class="num">+64%</td></tr>
+      <tr><td>July (1-3 only)</td><td class="num">10,909</td><td class="num">extrapolates to ~112,700 (+83% vs June) or flat, depending how the rest of the month goes</td></tr>
+    </table>
+    <p class="note">Growth rate has been decelerating slightly each month even as absolute numbers climb (73% → 64%), which is completely normal — you can't sustain 60-150% MoM forever off a fixed page count. The 3-day extrapolation is too noisy to read yet.</p>
+    <div class="step" style="margin-top:10px;"><span class="stepnum">📅</span> <b>Check again around July 20:</b> if clicks-per-day for the first 20 days track meaningfully below June's daily average (~2,058/day), that's your first real signal of a slowdown worth investigating. If it tracks at or above, you're still compounding.</div>
+  </div>
+
+</div>
+</body>
+</html>

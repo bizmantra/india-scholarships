@@ -1,0 +1,786 @@
+[
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/central government-scholarships",
+    "pathname": "/central%20government-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/higher-secondary,-undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/higher-secondary,-undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"higher-secondary,-undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/pre-matric-(class-9-10)",
+    "pathname": "/scholarships-level/pre-matric-(class-9-10)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"pre-matric-(class-9-10)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/1st-year-undergraduate-(ug)",
+    "pathname": "/scholarships-level/1st-year-undergraduate-(ug)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"1st-year-undergraduate-(ug)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/school,-undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/school,-undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"school,-undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-undergraduate",
+    "pathname": "/scholarships-level/class-11,-class-12,-undergraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11,-class-12,-undergraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic",
+    "pathname": "/scholarships-level/post-matric-(class-11-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/diploma/polytechnic,-iti/itc",
+    "pathname": "/scholarships-level/diploma/polytechnic,-iti/itc",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"diploma/polytechnic,-iti/itc\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/state/ut-scholarships",
+    "pathname": "/state/ut-scholarships",
+    "type": "legacy-state-route",
+    "exists": false,
+    "dbMatchDetails": "Legacy path. State not found in DB.",
+    "actionItem": "Redirect to /state-scholarships."
+  },
+  {
+    "url": "https://www.indiascholarships.in/central-scholarships",
+    "pathname": "/central-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/school-(9-10),-school-(11-12)",
+    "pathname": "/scholarships-level/school-(9-10),-school-(11-12)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"school-(9-10),-school-(11-12)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/postgraduate-(pg)",
+    "pathname": "/scholarships-level/postgraduate-(pg)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"postgraduate-(pg)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/school-(6-12),-diploma/polytechnic,-iti/itc",
+    "pathname": "/scholarships-level/school-(6-12),-diploma/polytechnic,-iti/itc",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"school-(6-12),-diploma/polytechnic,-iti/itc\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/minority-communities:-muslim",
+    "pathname": "/scholarships-for/minority-communities:-muslim",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/all-categories-(sc/st/obc/minority/general)---must-possess-valid-unique-disability-id-(udid)-card-issued-by-department-for-empowerment-of-persons-with-disabilities",
+    "pathname": "/scholarships-for/all-categories-(sc/st/obc/minority/general)---must-possess-valid-unique-disability-id-(udid)-card-issued-by-department-for-empowerment-of-persons-with-disabilities",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-diploma,-phd",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate,-diploma,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate,-diploma,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc,-phd",
+    "pathname": "/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/postgraduate-(pg),-phd",
+    "pathname": "/scholarships-level/postgraduate-(pg),-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"postgraduate-(pg),-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/search",
+    "pathname": "/search",
+    "type": "other-route",
+    "exists": true,
+    "dbMatchDetails": "Static or standard route.",
+    "actionItem": "Check if page component exists in project and is deployed correctly."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-phd",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/all-levels-(school-to-ph.d.)",
+    "pathname": "/scholarships-level/all-levels-(school-to-ph.d.)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"all-levels-(school-to-ph.d.)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs.",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs.",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs.\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic",
+    "pathname": "/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(classes-11/puc-onwards-including-diploma,-iti,-general-degree,-professional-courses,-ug,-pg)",
+    "pathname": "/scholarships-level/post-matric-(classes-11/puc-onwards-including-diploma,-iti,-general-degree,-professional-courses,-ug,-pg)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(classes-11/puc-onwards-including-diploma,-iti,-general-degree,-professional-courses,-ug,-pg)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-to-pg)",
+    "pathname": "/scholarships-level/post-matric-(class-11-to-pg)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-to-pg)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/diploma,-undergraduate,-postgraduate,-phd",
+    "pathname": "/scholarships-level/diploma,-undergraduate,-postgraduate,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"diploma,-undergraduate,-postgraduate,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(ug)",
+    "pathname": "/scholarships-level/undergraduate-(ug)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(ug)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/other-backward-classes-(obc)---categories-1",
+    "pathname": "/scholarships-for/other-backward-classes-(obc)---categories-1",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-diploma",
+    "pathname": "/scholarships-level/class-11,-class-12,-diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11,-class-12,-diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination.",
+    "pathname": "/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination.",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination.\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/general-category---economically-weaker-section-(ews).-includes:-children-of-defense-personnel-(sc/st-parents-in-army/navy/airforce",
+    "pathname": "/scholarships-for/general-category---economically-weaker-section-(ews).-includes:-children-of-defense-personnel-(sc/st-parents-in-army/navy/airforce",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-9-to-12,-ug,-pg,-medical,-iit,-iim",
+    "pathname": "/scholarships-level/class-9-to-12,-ug,-pg,-medical,-iit,-iim",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-9-to-12,-ug,-pg,-medical,-iit,-iim\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination",
+    "pathname": "/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/ut-scholarships",
+    "pathname": "/ut-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/postgraduate,-phd,-research",
+    "pathname": "/scholarships-level/postgraduate,-phd,-research",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"postgraduate,-phd,-research\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/diploma,-undergraduate",
+    "pathname": "/scholarships-level/diploma,-undergraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"diploma,-undergraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/scheduled-castes-(sc)",
+    "pathname": "/scholarships-for/scheduled-castes-(sc)",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/ews-/-merit",
+    "pathname": "/scholarships-for/ews-/-merit",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-1-to-class-8-(note:-only-up-to-class-8,-unlike-sc/st/obc-which-go-to-class-10)",
+    "pathname": "/scholarships-level/class-1-to-class-8-(note:-only-up-to-class-8,-unlike-sc/st/obc-which-go-to-class-10)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-1-to-class-8-(note:-only-up-to-class-8,-unlike-sc/st/obc-which-go-to-class-10)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards)",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-undergraduate,-postgraduate,-phd",
+    "pathname": "/scholarships-level/class-11,-class-12,-undergraduate,-postgraduate,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11,-class-12,-undergraduate,-postgraduate,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(arts,-science,-commerce)",
+    "pathname": "/scholarships-level/undergraduate-(arts,-science,-commerce)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(arts,-science,-commerce)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/central/state focus-scholarships",
+    "pathname": "/central/state%20focus-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/state government - maharashtra-scholarships",
+    "pathname": "/state%20government%20-%20maharashtra-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-diploma,-iti,-professional",
+    "pathname": "/scholarships-level/undergraduate,-diploma,-iti,-professional",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-diploma,-iti,-professional\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/school-(1-5),-school-(6-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc",
+    "pathname": "/scholarships-level/school-(1-5),-school-(6-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"school-(1-5),-school-(6-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-9,-class-10",
+    "pathname": "/scholarships-level/class-9,-class-10",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-9,-class-10\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/postgraduation-(pg)---india-or-abroad",
+    "pathname": "/scholarships-level/postgraduation-(pg)---india-or-abroad",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"postgraduation-(pg)---india-or-abroad\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/scheduled-caste-(sc)",
+    "pathname": "/scholarships-for/scheduled-caste-(sc)",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/private university-scholarships",
+    "pathname": "/private%20university-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11-12,-iti,-diploma,-ug,-pg",
+    "pathname": "/scholarships-level/class-11-12,-iti,-diploma,-ug,-pg",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11-12,-iti,-diploma,-ug,-pg\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-ug,-pg,-professional-courses)",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-ug,-pg,-professional-courses)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards-including-puc,-iti,-diploma,-ug,-pg,-professional-courses)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-9,-class-10,-class-11,-class-12",
+    "pathname": "/scholarships-level/class-9,-class-10,-class-11,-class-12",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-9,-class-10,-class-11,-class-12\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-phd,-professional",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate,-phd,-professional",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate,-phd,-professional\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/other-backward-classes-(obc)---category-1",
+    "pathname": "/scholarships-for/other-backward-classes-(obc)---category-1",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-dual-degree,-ug,-pg,-professional-courses)",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-dual-degree,-ug,-pg,-professional-courses)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-dual-degree,-ug,-pg,-professional-courses)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/ug,-pg,-or-professional-coaching",
+    "pathname": "/scholarships-level/ug,-pg,-or-professional-coaching",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"ug,-pg,-or-professional-coaching\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-professional",
+    "pathname": "/scholarships-level/undergraduate,-professional",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-professional\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-diploma",
+    "pathname": "/scholarships-level/undergraduate,-diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/postgraduate,-phd",
+    "pathname": "/scholarships-level/postgraduate,-phd",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"postgraduate,-phd\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "\"https://www.indiascholarships.in/central government (ministry of minority",
+    "pathname": "\"/central government (ministry of minority",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "affairs) state government (karnataka directorate of minorities)-scholarships\"",
+    "pathname": "affairs) state government (karnataka directorate of minorities)-scholarships\"",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "https://www.indiascholarships.in/private company - csr-scholarships",
+    "pathname": "/private%20company%20-%20csr-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11-12,-undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/class-11-12,-undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11-12,-undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-10-to-pg,-professional",
+    "pathname": "/scholarships-level/class-10-to-pg,-professional",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-10-to-pg,-professional\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/foundation-scholarships",
+    "pathname": "/foundation-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date.",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date.",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date.\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11-12,ug,diploma",
+    "pathname": "/scholarships-level/class-11-12,ug,diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11-12,ug,diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-1-12,-diploma,-iti,-polytechnic,-ug,-pg",
+    "pathname": "/scholarships-level/class-1-12,-diploma,-iti,-polytechnic,-ug,-pg",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-1-12,-diploma,-iti,-polytechnic,-ug,-pg\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/central/ut focus-scholarships",
+    "pathname": "/central/ut%20focus-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman-and-diu",
+    "pathname": "/scholarships-in/dadra-and-nagar-haveli-and-daman-and-diu",
+    "type": "state",
+    "exists": false,
+    "dbMatchDetails": "No matching state in DB.",
+    "actionItem": "Invalid state slug. Redirect to /state-scholarships."
+  },
+  {
+    "url": "https://www.indiascholarships.in/state government-scholarships",
+    "pathname": "/state%20government-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/ug,diploma",
+    "pathname": "/scholarships-level/ug,diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"ug,diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg)",
+    "pathname": "/scholarships-level/undergraduate-(ug),-postgraduate-(pg)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(ug),-postgraduate-(pg)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/current-medical-students-(2nd-year-onwards)",
+    "pathname": "/scholarships-level/current-medical-students-(2nd-year-onwards)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"current-medical-students-(2nd-year-onwards)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/scheduled-tribes-(st)",
+    "pathname": "/scholarships-for/scheduled-tribes-(st)",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs",
+    "pathname": "/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-1-to-phd,-professional,-iti,-diploma",
+    "pathname": "/scholarships-level/class-1-to-phd,-professional,-iti,-diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-1-to-phd,-professional,-iti,-diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/state-specific-scholarships",
+    "pathname": "/state-specific-scholarships",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Messy / old navigation route.",
+    "actionItem": "Legacy or incorrect provider-type layout. Redirect to correct directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/favicon.ico",
+    "pathname": "/favicon.ico",
+    "type": "other-route",
+    "exists": true,
+    "dbMatchDetails": "Static or standard route.",
+    "actionItem": "Check if page component exists in project and is deployed correctly."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11,-class-12",
+    "pathname": "/scholarships-level/class-11,-class-12",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11,-class-12\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/class-11,-class-12,-undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-11,-class-12,-undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/diploma,-iti,-undergraduate,-postgraduate",
+    "pathname": "/scholarships-level/diploma,-iti,-undergraduate,-postgraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"diploma,-iti,-undergraduate,-postgraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate-(engineering,-medical)",
+    "pathname": "/scholarships-level/undergraduate-(engineering,-medical)",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate-(engineering,-medical)\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-professional",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate,-professional",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate,-professional\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-6,-undergraduate",
+    "pathname": "/scholarships-level/class-6,-undergraduate",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-6,-undergraduate\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "\"https://www.indiascholarships.in/scholarships/MANDATORY TWO PORTALS:",
+    "pathname": "\"/scholarships/MANDATORY TWO PORTALS:",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "PRIMARY: https://scholarships.gov.in (NSP). SECONDARY:",
+    "pathname": " https://scholarships.gov.in (NSP). SECONDARY:",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "https://ssp.postmatric.karnataka.gov.in (SSP)\"",
+    "pathname": "https://ssp.postmatric.karnataka.gov.in (SSP)\"",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "https://www.indiascholarships.in/guides/documents",
+    "pathname": "/guides/documents",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-diploma",
+    "pathname": "/scholarships-level/undergraduate,-postgraduate,-diploma",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"undergraduate,-postgraduate,-diploma\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/iti-courses",
+    "pathname": "/scholarships-level/iti-courses",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Canonical level \"ITI Courses\". Active scholarships count: 0",
+    "actionItem": "Canonical page exists but has 0 active scholarships (returns 404)."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/students-with-disabilities-(persons-with-disabilities---pwd)-with-valid-udid",
+    "pathname": "/scholarships-for/students-with-disabilities-(persons-with-disabilities---pwd)-with-valid-udid",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-for/scheduled-tribe-(st)",
+    "pathname": "/scholarships-for/scheduled-tribe-(st)",
+    "type": "category-caste",
+    "exists": false,
+    "dbMatchDetails": "No matching category in DB.",
+    "actionItem": "Malformed category slug. Check category mapper or redirect to /scholarships-by-category."
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-level/class-10,-class-12",
+    "pathname": "/scholarships-level/class-10,-class-12",
+    "type": "education-level",
+    "exists": false,
+    "dbMatchDetails": "Invalid level slug \"class-10,-class-12\".",
+    "actionItem": "Malformed or non-existent level. Redirect to homepage or main education directory."
+  },
+  {
+    "url": "https://www.indiascholarships.in/guides/tracking",
+    "pathname": "/guides/tracking",
+    "type": "other-route",
+    "exists": false,
+    "dbMatchDetails": "Completely unknown path.",
+    "actionItem": "Invalid URL. Redirect to homepage."
+  }
+]

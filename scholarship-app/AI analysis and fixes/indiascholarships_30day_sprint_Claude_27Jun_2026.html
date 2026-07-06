@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndiaScholarships.in — 30-Day Growth Sprint</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0F172A;
+    --ink-mid: #475569;
+    --ink-soft: #94A3B8;
+    --teal: #0D9488;
+    --teal-light: #CCFBF1;
+    --teal-dark: #0F766E;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --red: #DC2626;
+    --red-light: #FEE2E2;
+    --blue: #2563EB;
+    --blue-light: #DBEAFE;
+    --surface: #F8FAFC;
+    --border: #E2E8F0;
+    --white: #FFFFFF;
+    --radius: 8px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  body {
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--surface);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    color: white;
+    padding: 28px 40px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .header-left h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .date-badge {
+    background: rgba(13,148,136,0.2);
+    border: 1px solid rgba(13,148,136,0.4);
+    color: #5EEAD4;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .header-right .subtitle {
+    font-size: 12px;
+    color: #64748B;
+    margin-top: 6px;
+  }
+
+  /* ── METRICS BAR ── */
+  .metrics-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .metric-cell {
+    padding: 16px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .metric-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .metric-delta {
+    font-size: 11px;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .metric-delta.warn { color: var(--amber); }
+
+  /* ── TABS ── */
+  .tab-nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .tab-btn {
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 13px 20px 11px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active {
+    color: var(--teal-dark);
+    border-bottom-color: var(--teal);
+    font-weight: 600;
+  }
+
+  /* ── CONTENT ── */
+  .tab-panel { display: none; padding: 32px 40px 60px; max-width: 960px; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+    margin-top: 32px;
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  /* ── PROBLEM CARDS ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .problem-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    border-top: 3px solid var(--red);
+  }
+  .problem-card.amber { border-top-color: var(--amber); }
+  .problem-card.blue { border-top-color: var(--blue); }
+  .problem-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .problem-card:not(.amber):not(.blue) .problem-num { color: var(--red); }
+  .problem-card.amber .problem-num { color: var(--amber); }
+  .problem-card.blue .problem-num { color: var(--blue); }
+  .problem-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .problem-card p {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  .problem-stat {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 8px 0 2px;
+  }
+  .problem-card:not(.amber):not(.blue) .problem-stat { color: var(--red); }
+  .problem-card.amber .problem-stat { color: var(--amber); }
+  .problem-card.blue .problem-stat { color: var(--blue); }
+
+  /* ── OPPORTUNITY TABLE ── */
+  .opp-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-size: 12px;
+    margin-bottom: 28px;
+  }
+  .opp-table thead tr { background: var(--ink); }
+  .opp-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #94A3B8;
+  }
+  .opp-table thead th:not(:first-child) { text-align: right; }
+  .opp-table tbody tr { border-top: 1px solid var(--border); }
+  .opp-table tbody tr:hover { background: var(--surface); }
+  .opp-table td { padding: 10px 14px; vertical-align: middle; }
+  .opp-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  .page-name { font-weight: 600; color: var(--ink); max-width: 260px; }
+  .page-sub { font-size: 11px; color: var(--ink-soft); }
+  .ctr-bar-wrap { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .ctr-bar { height: 6px; background: var(--border); border-radius: 3px; width: 60px; overflow: hidden; flex-shrink: 0; }
+  .ctr-bar-fill { height: 100%; border-radius: 3px; background: var(--teal); }
+  .ctr-val { font-weight: 700; min-width: 36px; text-align: right; }
+  .ctr-val.critical { color: var(--red); }
+  .ctr-val.warning { color: var(--amber); }
+  .ctr-val.ok { color: var(--teal-dark); }
+  .gain-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+  }
+  .severity-dot {
+    width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+  }
+
+  /* ── SPRINT TASKS ── */
+  .week-block { margin-bottom: 36px; }
+  .week-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-label {
+    background: var(--ink);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+  .week-label.week2 { background: var(--teal-dark); }
+  .week-label.week3 { background: var(--blue); }
+  .week-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+  .task-list { display: flex; flex-direction: column; gap: 10px; }
+  .task-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .task-card:hover { border-color: #CBD5E1; }
+  .task-card.done { opacity: 0.55; }
+  .task-card.done .task-title { text-decoration: line-through; color: var(--ink-soft); }
+  .task-check-col {
+    width: 48px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 18px;
+    flex-shrink: 0;
+  }
+  .task-check {
+    width: 18px; height: 18px; border: 2px solid #CBD5E1;
+    border-radius: 4px; cursor: pointer; appearance: none;
+    background: white;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .task-check:checked {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .task-check:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px; top: 1px;
+    width: 6px; height: 10px;
+    border: 2px solid white;
+    border-top: none; border-left: none;
+    transform: rotate(45deg);
+  }
+  .task-body { padding: 14px 18px; flex: 1; min-width: 0; }
+  .task-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+  .task-title { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+  .task-badges { display: flex; gap: 6px; flex-shrink: 0; }
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .badge-impact-critical { background: #FEE2E2; color: #B91C1C; }
+  .badge-impact-high { background: #FEF3C7; color: #92400E; }
+  .badge-impact-medium { background: var(--blue-light); color: #1D4ED8; }
+  .badge-effort-low { background: #F0FDF4; color: #166534; }
+  .badge-effort-med { background: #F8FAFC; color: #475569; border: 1px solid var(--border); }
+  .task-what {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .task-why {
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .task-why strong { color: var(--teal-dark); font-style: normal; }
+  .task-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    margin-right: 4px;
+  }
+
+  /* ── DEEP DIVE ── */
+  .deep-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .deep-header {
+    padding: 16px 22px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .deep-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .deep-toggle {
+    font-size: 18px;
+    color: var(--ink-soft);
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .deep-content {
+    padding: 20px 22px;
+    display: none;
+  }
+  .deep-content.open { display: block; }
+  .deep-content p { font-size: 13px; color: var(--ink-mid); line-height: 1.6; margin-bottom: 12px; }
+  .deep-content p:last-child { margin-bottom: 0; }
+  .title-rewrite {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 10px 0;
+  }
+  .title-rewrite .tr-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+  .title-rewrite .tr-before {
+    font-size: 12px;
+    color: var(--red);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+  }
+  .title-rewrite .tr-after {
+    font-size: 12px;
+    color: var(--teal-dark);
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+  .code-block {
+    background: var(--ink);
+    color: #E2E8F0;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 10px 0;
+    overflow-x: auto;
+  }
+  .code-block .comment { color: #64748B; }
+  .code-block .key { color: #93C5FD; }
+  .code-block .val { color: #86EFAC; }
+  .inline-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .stat-box .sv { font-size: 16px; font-weight: 800; color: var(--ink); }
+  .stat-box .sl { font-size: 10px; color: var(--ink-soft); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  .callout {
+    background: var(--teal-light);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 12px;
+    color: var(--teal-dark);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .callout.warn { background: var(--amber-light); border-left-color: var(--amber); color: #92400E; }
+  .callout.danger { background: var(--red-light); border-left-color: var(--red); color: #991B1B; }
+
+  /* progress bar */
+  .progress-wrap { margin: 16px 0 8px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-soft); margin-bottom: 4px; }
+  .progress-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; background: var(--teal); transition: width 0.5s; }
+
+  /* footer */
+  .doc-footer {
+    background: var(--ink);
+    color: #475569;
+    padding: 16px 40px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-footer a { color: var(--teal); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">IndiaScholarships.in</div>
+    <h1>30-Day Growth Sprint</h1>
+  </div>
+  <div class="header-right">
+    <div class="date-badge">Sprint starts June 2026</div>
+    <div class="subtitle">Based on GSC data + architectural review</div>
+  </div>
+</div>
+
+<!-- METRICS BAR -->
+<div class="metrics-bar">
+  <div class="metric-cell">
+    <div class="metric-label">6-month clicks</div>
+    <div class="metric-value">1,21,755</div>
+    <div class="metric-delta">↑ 24× from Jan → Jun</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">Impressions</div>
+    <div class="metric-value">70.4L</div>
+    <div class="metric-delta">↑ 7.3× from Jan → Jun</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">Avg CTR</div>
+    <div class="metric-value">1.73%</div>
+    <div class="metric-delta warn">⚠ Industry target: 3–5%</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-label">Avg position</div>
+    <div class="metric-value">5.8</div>
+    <div class="metric-delta warn">⚠ Target: position ≤ 3</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('analysis', this)">Analysis</button>
+  <button class="tab-btn" onclick="showTab('sprint', this)">30-Day Sprint</button>
+  <button class="tab-btn" onclick="showTab('deepdive', this)">Deep Dive</button>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━ TAB: ANALYSIS ━━━━━━━━━━━━━━━━ -->
+<div id="tab-analysis" class="tab-panel active">
+
+  <div class="section-title">3 structural problems blocking growth</div>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="problem-num">Problem 01 · Critical</div>
+      <h3>Single-page concentration risk</h3>
+      <div class="problem-stat">40%</div>
+      <p>PM Yashasvi alone drives 49,694 of 1,21,755 clicks. One ranking drop halves the site overnight.</p>
+    </div>
+    <div class="problem-card amber">
+      <div class="problem-num">Problem 02 · High</div>
+      <h3>CTR is leaving 50,000+ clicks on the table monthly</h3>
+      <div class="problem-stat">1.73%</div>
+      <p>7M+ impressions but only 1.73% CTR. At 3% (still conservative), that's 60,000+ monthly clicks vs 44,000 now.</p>
+    </div>
+    <div class="problem-card blue">
+      <div class="problem-num">Problem 03 · High</div>
+      <h3>The subpage architecture isn't working</h3>
+      <div class="problem-stat">28</div>
+      <p>Only 28 subpages are indexed out of hundreds possible. The long-tail intent traffic (last date, documents, eligibility) is going to competitors.</p>
+    </div>
+  </div>
+
+  <div class="section-title">High-impression pages with broken CTR — your immediate opportunity</div>
+  <table class="opp-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Impressions</th>
+        <th>Position</th>
+        <th>Actual CTR</th>
+        <th>Est. gain at 3%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="page-name">MMVY (Medhavi Vidyarthi Yojana, MP)</div>
+          <div class="page-sub">"mmvy" query alone = 88,303 imps @ 0.40% CTR</div>
+        </td>
+        <td>3,05,348</td>
+        <td>5.3</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:4%"></div></div><span class="ctr-val critical">0.64%</span></div></td>
+        <td><span class="gain-badge">+7,100 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">Tata Capital Pankh Scholarship</div>
+          <div class="page-sub">Largest impression page after PM Yashasvi</div>
+        </td>
+        <td>5,33,170</td>
+        <td>5.4</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:9%"></div></div><span class="ctr-val critical">1.33%</span></div></td>
+        <td><span class="gain-badge">+8,900 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">Jharkhand e-Kalyan (Post Matric)</div>
+          <div class="page-sub">"e kalyan" query = 79,014 imps @ 0.09% CTR</div>
+        </td>
+        <td>1,19,213</td>
+        <td>4.7</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:1%"></div></div><span class="ctr-val critical">0.16%</span></div></td>
+        <td><span class="gain-badge">+3,400 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">SVMCM (Swami Vivekananda, WB)</div>
+          <div class="page-sub">"svmcm" query = 37,095 imps @ 0.04% CTR</div>
+        </td>
+        <td>1,09,612</td>
+        <td>6.8</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:1%"></div></div><span class="ctr-val critical">0.13%</span></div></td>
+        <td><span class="gain-badge">+3,200 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">Azim Premji Scholarship</div>
+          <div class="page-sub">High brand trust, low content depth</div>
+        </td>
+        <td>1,17,087</td>
+        <td>5.9</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:2%"></div></div><span class="ctr-val critical">0.34%</span></div></td>
+        <td><span class="gain-badge">+3,100 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">HDFC Parivartan Scholarship</div>
+          <div class="page-sub">Strong national brand, weak page content</div>
+        </td>
+        <td>2,15,958</td>
+        <td>6.2</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:8%"></div></div><span class="ctr-val warning">1.15%</span></div></td>
+        <td><span class="gain-badge">+4,100 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">Reliance Foundation UG Scholarship</div>
+          <div class="page-sub">All-India, high-trust brand</div>
+        </td>
+        <td>1,18,301</td>
+        <td>5.5</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:4%"></div></div><span class="ctr-val critical">0.62%</span></div></td>
+        <td><span class="gain-badge">+2,800 clicks</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="page-name">e-Grantz (Kerala SC/ST/OBC)</div>
+          <div class="page-sub">"egrantz" / "e grantz" queries have 50K imps combined</div>
+        </td>
+        <td>1,28,138</td>
+        <td>6.3</td>
+        <td><div class="ctr-bar-wrap"><div class="ctr-bar"><div class="ctr-bar-fill" style="width:4%"></div></div><span class="ctr-val critical">0.55%</span></div></td>
+        <td><span class="gain-badge">+3,200 clicks</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">2 things the architecture docs flag that the traffic data confirms</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px;">
+    <div style="background:white; border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px;">
+      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); margin-bottom:8px;">Pipeline bottleneck</div>
+      <p style="font-size:13px; color:var(--ink); font-weight:700; margin-bottom:6px;">Content update is 5 manual steps</p>
+      <p style="font-size:12px; color:var(--ink-mid); line-height:1.5;">Google Sheets → SQLite → Gemini enrichment → WP All Import → Vercel rebuild. Every CTR fix goes through this. Automating it with GitHub Actions is the single highest leverage infra task.</p>
+    </div>
+    <div style="background:white; border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px;">
+      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--red); margin-bottom:8px;">Brand trust risk</div>
+      <p style="font-size:13px; color:var(--ink); font-weight:700; margin-bottom:6px;">Deadlines are calculated at build-time</p>
+      <p style="font-size:12px; color:var(--ink-mid); line-height:1.5;">A page can show "Apply Now" for a scheme whose deadline passed weeks ago. For a site built on verified accuracy, this is a silent trust-killer. Needs a client-side JS fix.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>The bottom line:</strong> You have 70 lakh+ impressions but only 1.73% CTR. Before acquiring a single new keyword or page, fixing CTR on existing high-impression pages could add <strong>35,000–50,000 monthly clicks</strong> — purely by being more convincing in search results.
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━ TAB: SPRINT ━━━━━━━━━━━━━━━━ -->
+<div id="tab-sprint" class="tab-panel">
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+    <div>
+      <div style="font-size:14px; font-weight:700; color:var(--ink);">14 actions · 30 days · zero new content budget needed</div>
+      <div style="font-size:12px; color:var(--ink-mid); margin-top:3px;">Check items off as you go. Focus on sequence — each week unlocks the next.</div>
+    </div>
+    <div id="progress-summary" style="font-size:13px; color:var(--teal-dark); font-weight:700;">0 / 14 done</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="main-progress" style="width:0%"></div></div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-block" style="margin-top:28px;">
+    <div class="week-header">
+      <div class="week-label">Week 1 · Days 1–7</div>
+      <div class="week-desc">Foundation — fix the pipeline and the trust layer. Everything else depends on this.</div>
+    </div>
+    <div class="task-list">
+
+      <div class="task-card" id="task-1">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-1', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">01</span> Set up GitHub Actions cron for automated enrichment pipeline</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-med">Dev needed</span>
+            </div>
+          </div>
+          <div class="task-what">Create a weekly GitHub Actions workflow that: (1) runs content-quality-audit.js to flag stale/low-CTR pages, (2) triggers enrich-all-low-ctr-gemini.js for flagged records, (3) commits the updated scholarships.db back to the repo, (4) triggers a Vercel redeploy. Schedule it every Sunday at midnight.</div>
+          <div class="task-why">Why first: <strong>Every other task in this sprint requires updating content.</strong> Right now that's a 5-step manual process. Without this, a single enrichment cycle takes a day. With it, it runs while you sleep.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-2">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-2', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">02</span> Add client-side deadline validator</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-low">Quick fix</span>
+            </div>
+          </div>
+          <div class="task-what">In the scholarship detail page component, add a JS check that compares today's date against the stored deadline field. If the deadline has passed, replace the "Apply Now" CTA with a "Deadline Passed — Check Official Portal" banner. Takes 1–2 hours of dev time.</div>
+          <div class="task-why">Why now: <strong>Brand trust is your #1 stated metric.</strong> A student who clicks through to an expired deadline bounces and never returns. This also protects your GSC quality signals.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-3">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-3', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">03</span> Deploy FAQPage JSON-LD schema on top 50 pages by impressions</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-low">Quick fix</span>
+            </div>
+          </div>
+          <div class="task-what">In app/scholarships/[slug]/page.tsx, replace the generic Article JSON-LD with FAQPage schema using the existing faq_json database field. The data is already there — this is a schema template change, not a content task. Deploy to the top 50 pages first using the is_popular flag or a priority_score filter.</div>
+          <div class="task-why">Why now: <strong>You have zero rich snippets in GSC.</strong> FAQPage schema produces accordion-style results that take up 2–3× more SERP space, directly improving CTR without any ranking change. Fastest click-gain available.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-4">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-4', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">04</span> Fix the BITSAT page — reframe or redirect</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-high">High impact</span>
+              <span class="badge badge-effort-low">Quick fix</span>
+            </div>
+          </div>
+          <div class="task-what">The BITSAT page has 2,40,361 impressions at 0.59% CTR. BITSAT is an entrance exam, not a scholarship. Reframe the page title and content as "Scholarships for BITSAT Qualifiers / BITS Pilani Students" and link to actual scholarship schemes available to BITS students. Alternatively, add a prominent redirect banner to the BITS Pilani merit scholarships page.</div>
+          <div class="task-why">Why now: <strong>240K impressions going to a page with a content mismatch.</strong> Even getting CTR to 2% adds 3,400 clicks monthly.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-label week2">Week 2 · Days 8–14</div>
+      <div class="week-desc">CTR Sprint — rewrite the titles and enrich the broken pages. Highest direct traffic impact.</div>
+    </div>
+    <div class="task-list">
+
+      <div class="task-card" id="task-5">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-5', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">05</span> Run Gemini enrichment on the 5 "broken" pages</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-low">1 pipeline run</span>
+            </div>
+          </div>
+          <div class="task-what">Priority order: (1) Jharkhand e-Kalyan — 0.16% CTR, (2) SVMCM West Bengal — 0.13% CTR, (3) MMVY Madhya Pradesh — 0.64% CTR, (4) Azim Premji — 0.34% CTR, (5) e-Grantz Kerala — 0.55% CTR. For each: run enrich-all-low-ctr-gemini.js, verify the 2026–27 deadline, apply URL, income limit, and helpline number pulled via Google Search Grounding. Human-review output before pushing to WordPress.</div>
+          <div class="task-why">Why these five: <strong>Combined they have 6,69,150 impressions at under 0.5% CTR.</strong> Content is clearly thin or stale. Fresh, accurate content is prerequisite for the title rewrites in Task 06.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-6">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-6', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">06</span> Rewrite title tags for top 10 high-impression pages</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-low">Content task</span>
+            </div>
+          </div>
+          <div class="task-what">Use this formula: <strong>[Scheme Name + Known Acronym] [Year]: [₹Amount] | [Top intent keyword] & [Apply/Last Date]</strong>. See Deep Dive tab for exact rewrites per page. Priority pages: MMVY, Tata Pankh, e-Kalyan, SVMCM, Azim Premji, HDFC Parivartan, Reliance Foundation UG, e-Grantz Kerala, Nabanna (WB hub), Odisha hub.</div>
+          <div class="task-why">Why now: <strong>Title is the single biggest CTR lever without any ranking change needed.</strong> Students scan titles for: the scholarship name they recognise, the year (freshness signal), and an action word (apply/last date). Most current titles are missing 1–2 of these.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-7">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-7', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">07</span> Rewrite the 3 state hub pages — Odisha, West Bengal, Karnataka</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-high">High impact</span>
+              <span class="badge badge-effort-low">Content task</span>
+            </div>
+          </div>
+          <div class="task-what">The Odisha hub has 2,07,088 impressions at 0.71% CTR at position 6.37. Rewrite its title to: "Odisha Scholarships 2026: 20+ Government Schemes | Eligibility & Apply Online". Update the meta description to list the top 4 scheme names explicitly (Post Matric SC, ST, OBC, Krishi Vidya Nidhi). Same treatment for West Bengal (Nabanna, SVMCM, Aikyashree) and Karnataka (Post Matric SC/OBC, Rajiv Gandhi) hub pages.</div>
+          <div class="task-why">Why these states: <strong>Odisha alone has 2.5 lakh impressions from state-specific queries</strong> — 10× the next state. Students searching for "Odisha scholarships" expect a page that instantly tells them what's available.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-8">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-8', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">08</span> Fix CATEGORY_SLUG_MAP brittleness in utils.ts</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-high">High impact</span>
+              <span class="badge badge-effort-med">Dev needed</span>
+            </div>
+          </div>
+          <div class="task-what">The hardcoded caste/category string maps in lib/utils.ts are a silent failure risk. The OBC hub has 56,288 impressions — if a slug mapping breaks, that traffic disappears without an error. Refactor these mappings into the SQLite database as a lookup table with a migration script. Add a build-time validation check that fails the Vercel build if any category slug is unmapped.</div>
+          <div class="task-why">Why now: <strong>You're about to add 100+ subpages in Week 3.</strong> Doing it on a brittle taxonomy foundation is risky. Fix the foundation before scaling.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WEEK 3–4 -->
+  <div class="week-block">
+    <div class="week-header">
+      <div class="week-label week3">Weeks 3–4 · Days 15–30</div>
+      <div class="week-desc">Scale & depth — activate the subpage architecture, capture long-tail intent, start the conversion funnel.</div>
+    </div>
+    <div class="task-list">
+
+      <div class="task-card" id="task-9">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-9', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">09</span> Generate /last-date and /documents-required subpages for top 20 scholarships</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-critical">Critical impact</span>
+              <span class="badge badge-effort-med">Dev + content</span>
+            </div>
+          </div>
+          <div class="task-what">Run your existing generateStaticParams() for the /last-date and /documents-required subpages across the 20 highest-impression scholarships. Confirm the deadline and docs_needed fields are populated in SQLite for all 20 (use content-quality-audit.js to check). Push via WordPress and trigger Vercel rebuild. Target list: PM Yashasvi, Sitaram Jindal, Tata Pankh, MMVY, HDFC, Nabanna, LIC, MKUY Graduation, Odisha Post Matric SC/ST/OBC, e-Grantz, SVMCM, Reliance UG, Azim Premji, e-Kalyan, NMMS, Infosys STEM Stars, LIC Golden Jubilee, ONGC CSR.</div>
+          <div class="task-why">Why these two subpages first: <strong>"[Scholarship] last date" and "documents required for [scholarship]" are the two highest-volume transactional query patterns in your GSC data.</strong> These are students who have already decided — they just need the information to act.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-10">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-10', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">10</span> Generate /apply-online and /eligibility subpages for the same 20</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-high">High impact</span>
+              <span class="badge badge-effort-low">Same pipeline as 09</span>
+            </div>
+          </div>
+          <div class="task-what">Once Task 09 is done, extend the same build to /apply-online and /eligibility. These require the step_guide and caste/income eligibility fields to be populated. "Sitaram Jindal scholarship apply online 2026" already has 8,643 impressions at position 3.19 with no dedicated page to land on. "pm yashasvi scholarship apply online 2026" has 24,431 impressions. These queries are converting at 17% when a good page exists — the data from PM Yashasvi proves it.</div>
+          <div class="task-why">Why these: <strong>Apply-online queries convert at 10–20% CTR</strong> (your own data shows this for PM Yashasvi variants). Every apply-online subpage created is a high-CTR traffic capture point.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-11">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-11', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">11</span> Add email capture to the eligibility checker results screen</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-high">High impact</span>
+              <span class="badge badge-effort-med">Dev needed</span>
+            </div>
+          </div>
+          <div class="task-what">After the checker returns a personalised eligible scholarship list, show a single-field email capture: "Get notified when application windows open for your matched scholarships." Store to Google Sheets via your existing API endpoint. Segment by state + caste + level (already captured from the checker inputs) so future emails are hyper-relevant. No pop-up — inline after results.</div>
+          <div class="task-why">Why now: <strong>With 1,00,000+ monthly visitors, even 0.5% conversion = 500 segmented email subscribers per month.</strong> This is the future moat: a list of students segmented by eligibility profile that you can monetise through edtech, coaching institute, or loan affiliate partnerships.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-12">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-12', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">12</span> Add a "Related Resources" cross-sell block to top 5 pages</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-medium">Medium impact</span>
+              <span class="badge badge-effort-low">Content + dev</span>
+            </div>
+          </div>
+          <div class="task-what">Below the main content on PM Yashasvi, Sitaram Jindal, Tata Pankh, MMVY, and HDFC pages, add a "Students also looked for" block linking to: (a) relevant state hub pages, (b) your /guides/ssp page (already has 33,721 impressions), (c) the eligibility checker with pre-filled parameters. This improves session depth (a Google quality signal) and reduces bounce rate.</div>
+          <div class="task-why">Why cross-sell: <strong>Google's quality signals include session depth and pages-per-visit.</strong> Currently most visitors hit one page and leave. Internal linking that actually makes sense to the user improves both engagement metrics and internal PageRank flow to hub pages.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-13">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-13', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">13</span> Upgrade Article schema to GovernmentService for government scheme pages</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-medium">Medium impact</span>
+              <span class="badge badge-effort-low">Quick fix</span>
+            </div>
+          </div>
+          <div class="task-what">For pages where provider_type = 'Government', replace the Article JSON-LD with GovernmentService schema. Include: serviceType: "Scholarship", areaServed: [state], provider: { @type: "GovernmentOrganization", name: [provider] }, and eligibilityNote. This is more semantically accurate for government schemes and may unlock different rich result formats in Search.</div>
+          <div class="task-why">Why this matters: <strong>Schema type accuracy signals topical relevance to Google's knowledge graph.</strong> GovernmentService is indexed differently from Article — it connects to entity knowledge panels for schemes like PM Yashasvi.</div>
+        </div>
+      </div>
+
+      <div class="task-card" id="task-14">
+        <div class="task-check-col">
+          <input type="checkbox" class="task-check" onchange="toggleTask('task-14', this)">
+        </div>
+        <div class="task-body">
+          <div class="task-header">
+            <div class="task-title"><span class="task-num">14</span> Create a /scholarships-for/ews and /scholarships-income/2.5-5l hub page</div>
+            <div class="task-badges">
+              <span class="badge badge-impact-medium">Medium impact</span>
+              <span class="badge badge-effort-low">Content task</span>
+            </div>
+          </div>
+          <div class="task-what">Your taxonomy hubs cover OBC (1,047 clicks, 56,288 imps) but EWS and income-bracket hubs are missing or thin. EWS scholarships are a fast-growing search category post-103rd Amendment. Build these hub pages using your existing /scholarships-for/[category] routing. Also check if /scholarships-income/2.5-5l and /scholarships-income/5-8l are indexed — the architecture supports them but they may not be generating static pages.</div>
+          <div class="task-why">Why EWS: <strong>Post-2019 reservation policy created a new search category that competitors haven't fully addressed yet.</strong> Early hub ownership here compounds over time.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━ TAB: DEEP DIVE ━━━━━━━━━━━━━━━━ -->
+<div id="tab-deepdive" class="tab-panel">
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>Title tag rewrites — exact formulas for 10 pages</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <p>Use this formula consistently: <strong>[Name + Acronym] [Year]: ₹[Amount] | [Intent Keyword 1] & [Intent Keyword 2]</strong>. Keep under 60 characters. The amount creates urgency. The intent keywords capture multiple search variants.</p>
+
+      <div class="title-rewrite">
+        <div class="tr-label">MMVY</div>
+        <div class="tr-before">Mukhyamantri Medhavi Vidyarthi Yojana Scholarship</div>
+        <div class="tr-after">MMVY Scholarship 2026: ₹1.5L | MP Medhavi Last Date & Apply Online</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">Tata Capital Pankh</div>
+        <div class="tr-before">Tata Capital Pankh Scholarship Program</div>
+        <div class="tr-after">Tata Capital Pankh Scholarship 2026: ₹12,000 | Eligibility, Last Date & Apply</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">Jharkhand e-Kalyan</div>
+        <div class="tr-before">Jharkhand e-Kalyan Post Matric Scholarship</div>
+        <div class="tr-after">e-Kalyan Jharkhand Scholarship 2026: SC/ST Apply Online, Last Date & Status</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">SVMCM (West Bengal)</div>
+        <div class="tr-before">Swami Vivekananda Merit Cum Means Scholarship</div>
+        <div class="tr-after">SVMCM Scholarship 2026: ₹1,000–1,500/mo | WB Apply Online & Last Date</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">Azim Premji Scholarship</div>
+        <div class="tr-before">Azim Premji Foundation Scholarship Program</div>
+        <div class="tr-after">Azim Premji Scholarship 2026: For Govt School Students | Eligibility & Apply</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">HDFC Parivartan</div>
+        <div class="tr-before">HDFC Bank Parivartan's ECSS Scholarship</div>
+        <div class="tr-after">HDFC Parivartan Scholarship 2026: ₹75,000 | ECSS Apply Online & Last Date</div>
+      </div>
+
+      <div class="title-rewrite">
+        <div class="tr-label">Odisha Hub</div>
+        <div class="tr-before">Scholarships in Odisha</div>
+        <div class="tr-after">Odisha Scholarships 2026: 20+ Schemes | Post Matric, Krishi Vidya & More</div>
+      </div>
+
+      <div class="callout">
+        Rule of thumb: if a student types the acronym (MMVY, SVMCM, HDFC) into Google and your title doesn't start with that acronym, you're losing them to whoever does.
+      </div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>FAQPage schema — implementation spec</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <p>Your faq_json field already stores exactly 3 Q&A pairs per scholarship. The implementation is a direct mapping into FAQPage JSON-LD. Replace the existing Article script block in app/scholarships/[slug]/page.tsx:</p>
+      <div class="code-block">
+<span class="comment">// Replace this in generateMetadata or in the page component</span>
+<span class="key">const</span> faqSchema = {
+  <span class="key">"@context"</span>: <span class="val">"https://schema.org"</span>,
+  <span class="key">"@type"</span>: <span class="val">"FAQPage"</span>,
+  <span class="key">"mainEntity"</span>: JSON.parse(scholarship.faq_json).map(faq => ({
+    <span class="key">"@type"</span>: <span class="val">"Question"</span>,
+    <span class="key">"name"</span>: faq.question,
+    <span class="key">"acceptedAnswer"</span>: {
+      <span class="key">"@type"</span>: <span class="val">"Answer"</span>,
+      <span class="key">"text"</span>: faq.answer
+    }
+  }))
+};
+      </div>
+      <p>Add this alongside (not replacing) the Article schema — Google supports multiple schema types on the same page. Validate with Google's Rich Results Test before deploying. After deployment, check GSC's Search Appearance tab — FAQ rich results typically appear in 2–4 weeks if the content passes quality checks.</p>
+      <div class="callout">FAQs must be genuine Q&As, not marketing copy. Google rejects FAQ schema where answers are vague or promotional. Your Gemini-enriched FAQs should already meet this bar since they're pulled from official sources via grounding.</div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>The Odisha opportunity — why it deserves its own focus</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <div class="stat-row">
+        <div class="stat-box"><div class="sv" style="color:var(--red)">2,51,125</div><div class="sl">Odisha impressions</div></div>
+        <div class="stat-box"><div class="sv">24,349</div><div class="sl">MP impressions</div></div>
+        <div class="stat-box"><div class="sv">12,470</div><div class="sl">Karnataka impressions</div></div>
+        <div class="stat-box"><div class="sv">6,034</div><div class="sl">WB impressions</div></div>
+      </div>
+      <p>Odisha generates more scholarship search impressions than the next 6 states combined. This is likely because Odisha has one of the most active state scholarship ecosystems — Post Matric SC, ST, OBC/SEBC, e-Medhabruti, Krishi Vidya Nidhi, BOC Nirman Shramik, and the Odisha State Scholarship portal — and students from Odisha are active searchers.</p>
+      <p>You already have strong Odisha pages, but the /scholarships-in/odisha hub is sitting at 0.71% CTR with 2 lakh+ impressions. The title needs to be rewritten and the page should prominently feature: (1) scheme name list with amounts, (2) a quick eligibility filter pre-set for Odisha domicile, (3) direct apply links with deadlines.</p>
+      <p>Subpages are especially valuable here. "post matric scholarship odisha last date" has 14,426 impressions. "odisha state scholarship portal" has 17,549 impressions. "scholarship odisha" has 22,190 impressions. None of these have a dedicated subpage capturing them.</p>
+      <div class="callout">Think of Odisha as your first "state vertical." If you can own Odisha scholarship search the way you own PM Yashasvi nationally, that's a 2+ lakh impression base that compounds every year.</div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>The subpage architecture — what the data tells you vs. what the code promises</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <p>Your architecture docs describe a full subpage system: /eligibility, /income-limit, /documents-required, /last-date, /selection-process, /apply-online, /renewal-process. The code supports all of these. But GSC shows only 28 subpages indexed, almost all for PM Yashasvi only.</p>
+      <p>The reason is almost certainly that these pages aren't being generated at build time for most scholarships — either the database fields required (step_guide, docs_needed, deadline) aren't populated for most records, or the generateStaticParams() call is filtering them out.</p>
+      <p>The proof that subpages work is in your own data. Look at the PM Yashasvi apply-online subpage: it has only 362 impressions but converts at 1.93% CTR — far higher than the main page's 4.14% CTR at much higher volume. And the "pm yashasvi scholarship apply online 2026" query has 24,431 impressions at 17.57% CTR — that's students who found a dedicated apply-online subpage and clicked at 4× the rate of the main page.</p>
+      <div class="callout warn">Before generating 120 subpages, run content-quality-audit.js and confirm that step_guide and docs_needed are populated for your target 20 scholarships. A subpage with empty fields is worse than no subpage — it's a thin content penalty risk.</div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>GitHub Actions cron — the pipeline automation spec</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <p>This is the highest leverage infrastructure task in the sprint. Without it, every content update is a manual 5-step process. With it, the pipeline runs automatically and you only need to human-review the Google Sheets output before it goes live.</p>
+      <div class="code-block">
+<span class="comment"># .github/workflows/weekly-enrichment.yml</span>
+<span class="key">name:</span> <span class="val">Weekly Content Enrichment</span>
+<span class="key">on:</span>
+  <span class="key">schedule:</span>
+    - <span class="key">cron:</span> <span class="val">'0 0 * * 0'</span>  <span class="comment"># Every Sunday midnight UTC</span>
+  <span class="key">workflow_dispatch:</span>  <span class="comment"># Also allow manual trigger</span>
+<span class="key">jobs:</span>
+  <span class="key">enrich:</span>
+    <span class="key">runs-on:</span> <span class="val">ubuntu-latest</span>
+    <span class="key">steps:</span>
+      - <span class="key">uses:</span> <span class="val">actions/checkout@v4</span>
+      - <span class="key">name:</span> <span class="val">Run quality audit</span>
+        <span class="key">run:</span> <span class="val">node scripts/content-quality-audit.js</span>
+      - <span class="key">name:</span> <span class="val">Run Gemini enrichment</span>
+        <span class="key">run:</span> <span class="val">node scripts/enrich-all-low-ctr-gemini.js</span>
+        <span class="key">env:</span>
+          <span class="key">GEMINI_API_KEY:</span> <span class="val">${{ secrets.GEMINI_API_KEY }}</span>
+      - <span class="key">name:</span> <span class="val">Commit updated database</span>
+        <span class="key">run:</span> |
+          git config user.email "bot@indiascholarships.in"
+          git add data/scholarships.db
+          git commit -m "chore: weekly content enrichment $(date +%Y-%m-%d)"
+          git push
+      - <span class="key">name:</span> <span class="val">Trigger Vercel redeploy</span>
+        <span class="key">run:</span> <span class="val">curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"</span>
+      </div>
+      <div class="callout">Add a Slack or email notification step so you get alerted when the cron runs. Review the Google Sheets output before the WordPress sync step if you want a human checkpoint — you can make that step manual-trigger only.</div>
+    </div>
+  </div>
+
+  <div class="deep-section">
+    <div class="deep-header" onclick="toggleDeep(this)">
+      <h3>Monetisation — what your current traffic already supports</h3>
+      <div class="deep-toggle">+</div>
+    </div>
+    <div class="deep-content">
+      <p>At 44,000+ clicks/month and growing, you're crossing the threshold where monetisation becomes meaningful. Three paths that fit your audience and architecture:</p>
+      <p><strong>1. Google AdSense (immediate, low effort).</strong> Scholarship sites in India run at ₹80–150 RPM (revenue per 1,000 pageviews) for AdSense. At 1,00,000 monthly sessions, that's ₹8,000–15,000/month. Not life-changing but zero work once set up. Place ads below the fold on detail pages — never between the eligibility checker and the results.</p>
+      <p><strong>2. Education loan affiliate (medium effort, higher value).</strong> Students who find a scholarship often need a backup plan — an education loan. Partners like Credila, Avanse, and HDFC Credila pay ₹2,000–5,000 per qualified lead. A single "Didn't qualify? Here's how to fund your education" CTA on the eligibility checker results page could generate meaningful revenue. Your architecture docs mention financial products as a high-CPM niche — this is how you access it without building a new site.</p>
+      <p><strong>3. Email list monetisation (high effort, highest long-term value).</strong> Once Task 11 (email capture on eligibility checker) builds a list, you have a segmented database of students by state, caste, income bracket, and education level. Coaching institutes, laptop brands, and edtech platforms targeting this cohort will pay for email placements. At 500 subscribers/month, you have a meaningful list within 6 months.</p>
+      <div class="callout warn">Don't run ads on the eligibility checker or between application steps. The checker is your trust-building and differentiation asset — ad clutter there directly undermines the brand trust metric that the entire architecture is built around.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div>IndiaScholarships.in · 30-Day Growth Sprint · June 2026</div>
+  <div>Data: GSC Last 6 Months · <a href="https://www.indiascholarships.in" target="_blank">indiascholarships.in ↗</a></div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleTask(id, cb) {
+  const card = document.getElementById(id);
+  if (cb.checked) card.classList.add('done');
+  else card.classList.remove('done');
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.task-check').length;
+  const done = document.querySelectorAll('.task-check:checked').length;
+  document.getElementById('progress-summary').textContent = done + ' / ' + total + ' done';
+  document.getElementById('main-progress').style.width = Math.round(done/total*100) + '%';
+}
+
+function toggleDeep(header) {
+  const content = header.nextElementSibling;
+  const toggle = header.querySelector('.deep-toggle');
+  const isOpen = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '+' : '−';
+}
+</script>
+
+</body>
+</html>

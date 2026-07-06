@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UP Scholarships: Deep Dive</title>
+<style>
+  :root{
+    --ink:#1a2b23; --sub:#5b6b62; --bg:#f7f6f2; --card:#ffffff;
+    --accent:#1f7a4d; --accent-light:#e6f2ea; --warn:#b8791a; --warn-light:#fbf0de;
+    --risk:#a83c3c; --risk-light:#fbe8e8; --line:#e4e1d8;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px;}
+  h1{font-size:26px;margin:0 0 4px;}
+  .sub{color:var(--sub);font-size:14px;margin-bottom:24px;}
+  h2{font-size:18px;margin:40px 0 12px;border-left:4px solid var(--accent);padding-left:10px;}
+  h3{font-size:14.5px;margin:18px 0 6px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;}
+  .card .label{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;}
+  .card .val{font-size:21px;font-weight:700;margin-top:3px;}
+  .card .sub2{font-size:11px;color:var(--accent);margin-top:2px;font-weight:600;}
+  .flag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;white-space:nowrap;}
+  .flag.risk{background:var(--risk-light);color:var(--risk);}
+  .flag.warn{background:var(--warn-light);color:var(--warn);}
+  .flag.good{background:var(--accent-light);color:var(--accent);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{text-align:left;padding:7px 9px;border-bottom:2px solid var(--line);color:var(--sub);font-weight:600;font-size:11px;text-transform:uppercase;}
+  td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:hover td{background:#fafaf7;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .note{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:8px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  @media(max-width:800px){.grid3{grid-template-columns:1fr;}}
+  .dept-card{background:#fafaf7;border:1px solid var(--line);border-radius:8px;padding:12px;}
+  .dept-card b{font-size:13px;}
+  .dept-card ul{margin:6px 0 0;padding-left:16px;font-size:12px;color:var(--sub);line-height:1.6;}
+  ul.actions{list-style:none;padding:0;margin:0;}
+  ul.actions li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);}
+  ul.actions li:last-child{border-bottom:none;}
+  ul.actions input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+  .actions .txt b{display:block;font-size:13.5px;}
+  .actions .txt span{font-size:12px;color:var(--sub);}
+  .src{font-size:10.5px;color:var(--sub);font-style:italic;margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>UP Scholarships: Deep Dive</h1>
+  <div class="sub">Fresh discovery research, done live for this — not pulled from the retired lead sheet. Verified against multiple sources; conflicts and unverified items are flagged rather than smoothed over.</div>
+
+  <div class="cards">
+    <div class="card"><div class="label">Live now</div><div class="val">4</div></div>
+    <div class="card"><div class="label">Departments running schemes</div><div class="val">4</div><div class="sub2">only 2 currently represented</div></div>
+    <div class="card"><div class="label">Applications/year (UP scheme)</div><div class="val">~85 lakh</div><div class="sub2">one of India's largest state programs</div></div>
+    <div class="card"><div class="label">Get actually paid</div><div class="val">~22%</div><div class="sub2">worth knowing for content angle</div></div>
+  </div>
+
+  <h2>The headline finding: your 4 live entries may be structured wrong, not just "too few"</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">Here's what's actually live right now:</p>
+    <table>
+      <tr><th>Title</th><th>Department (as tagged)</th><th>Category</th></tr>
+      <tr><td>UP Pre-Matric Scholarship</td><td>Social Welfare</td><td>General, OBC, SC, ST, EWS <span class="flag risk">all combined</span></td></tr>
+      <tr><td>UP Post-Matric Intermediate Scholarship</td><td>Social Welfare</td><td>General, OBC, SC, ST, EWS <span class="flag risk">all combined</span></td></tr>
+      <tr><td>UP Post-Matric Scholarship (Dashmottar)</td><td>Social Welfare</td><td>General, OBC, SC, ST, EWS <span class="flag risk">all combined</span></td></tr>
+      <tr><td>Mukhyamantri Kanya Sumangala Yojana</td><td>Women &amp; Child Development</td><td><span class="flag good">correctly separate</span></td></tr>
+    </table>
+    <p class="note">But UP scholarships are actually administered by <b>three separate welfare departments</b>, each running their own version of Pre-Matric / Post-Matric / Dashmottar with different rules — confirmed across multiple independent sources, not just one:</p>
+    <div class="grid3">
+      <div class="dept-card"><b>Social Welfare Dept</b><ul><li>General &amp; SC/ST students</li><li>This is what your 3 live entries actually represent</li><li>Already live, correctly or not</li></ul></div>
+      <div class="dept-card"><b>Backward Classes Welfare Dept</b><ul><li>OBC students specifically</li><li><span class="flag risk">Not separately researched yet</span></li><li>Own application track on the same portal</li></ul></div>
+      <div class="dept-card"><b>Minority Welfare Dept</b><ul><li>Muslim, Christian, Sikh, Buddhist, Parsi, Jain students</li><li><span class="flag risk">Not separately researched yet</span></li><li>Own application track, separate from your live "Begum Hazrat Mahal" central scheme</li></ul></div>
+    </div>
+    <p class="note"><b>Why this matters more than just scholarship count:</b> your own Atlas doc's Decision Log has an entry from March 2026 — <i>"Split SC/ST/OBC post matric into separate entries — students search by their category"</i> — and you already did this for other states. UP's current entries lumping "General, OBC, SC, ST, EWS" together into one page per level looks like it's not following your own rule. Splitting these correctly by department would likely take UP from 4 pages to potentially 9-12 (3 categories × 3-4 levels), each more precisely matched to how a specific student actually searches ("OBC scholarship UP" vs a generic page covering five categories at once) — which is also a CTR fix, not just a volume one.</p>
+  </div>
+
+  <h2>The 4 categories each department runs (confirmed across sources)</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Category</th><th>Covers</th><th>Notes</th></tr>
+      <tr><td>Pre-Matric</td><td>Class 9-10</td><td>Opens earliest in the application cycle (typically July)</td></tr>
+      <tr><td>Post-Matric (Intermediate)</td><td>Class 11-12</td><td></td></tr>
+      <tr><td>Post-Matric (Other than Intermediate)</td><td>Graduation, PG, diploma, ITI, professional courses</td><td>This is likely what your current "Dashmottar" entry is mapped to — worth double-checking the label</td></tr>
+      <tr><td>Post-Matric (Other State) / Dashmottar</td><td>UP residents studying <i>outside</i> UP</td><td><span class="flag warn">Possible naming mix-up</span> — some sources use "Dashmottar" for this specific outside-state category, others use it as a general term for all post-matric. Worth confirming which one your live page actually is before assuming it's covered.</td></tr>
+    </table>
+    <div class="note">If your current "Dashmottar" entry is actually the general post-matric scheme rather than the outside-state one, that's a distinct 4th category still missing — worth checking directly against the portal rather than assuming either way.</div>
+  </div>
+
+  <h2>Income limits — sources disagree, do not publish without checking the portal directly</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Source</th><th>Pre-Matric</th><th>Post-Matric General/OBC</th><th>Post-Matric SC/ST</th></tr>
+      <tr><td>Super Tutor (aggregator)</td><td>₹1,00,000</td><td>₹2,00,000</td><td>₹2,50,000</td></tr>
+      <tr><td>Buddy4Study (aggregator)</td><td>—</td><td>₹2,50,000</td><td>₹2,00,000</td></tr>
+    </table>
+    <p class="note">Notice these two sources <b>flip which category has the higher limit</b> for post-matric. This is exactly the kind of discrepancy your zero-hallucination policy exists for — worth resolving directly against scholarship.up.gov.in before any of this goes into a page, rather than picking whichever number sounds more plausible.</p>
+  </div>
+
+  <h2>⚠️ A trap worth knowing about: "Kanya Vidya Dhan Yojana"</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">This name shows up repeatedly across scholarship blogs as an active 2026 UP scheme (₹20,000-30,000 for girls after Class 12). Worth flagging clearly: <b>one credible source states this scheme was launched under a previous UP government (Akhilesh Yadav) and was not continued by the current government, which runs Kanya Sumangala Yojana instead</b> — the scheme you already correctly have live. Most of the pages still promoting "Kanya Vidya Dhan" as active appear to be low-quality SEO content recycling old information without checking current status, several with no verifiable government source and inconsistent amounts (₹20,000 vs ₹30,000 vs one very old 2017-dated figure).</p>
+    <p class="note"><b>Recommendation: do not add this without a direct, current, official confirmation.</b> It's a good real-world example of exactly the trust risk your own Atlas notes call out — publishing this if it's actually defunct would be a "Verified for 2026" badge sitting on a dead scheme, which is worse than not having the page at all.</p>
+  </div>
+
+  <h2>One more unverified name, flagged rather than assumed</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;"><b>"Rani Laxmi Bai Scholarship"</b> for SC/ST girl students came up in one aggregator's list, but I found no independent confirmation. Worth a direct check before treating it as real — I'm not including it as a recommended addition, just noting it exists as a name to verify or discard.</p>
+  </div>
+
+  <h2>Suggested first research batch</h2>
+  <div class="panel">
+    <ul class="actions">
+      <li><input type="checkbox"><div class="txt"><b>Verify your current 3 "Social Welfare" entries against the official portal</b><span>Confirm they're actually General/SC/ST-only (not OBC as currently tagged), and resolve the income-limit discrepancy above.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Research the Backward Classes Welfare Dept's OBC-specific Pre/Post-Matric/Dashmottar schemes</b><span>Confirmed to exist, not yet researched. Likely 3-4 new entries.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Research the Minority Welfare Dept's equivalent schemes</b><span>Same structure, confirmed to exist, not yet researched. Likely 3-4 new entries.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Confirm whether "Post-Matric Other State" is already covered by your live Dashmottar page or is a distinct missing entry</b><span>Naming ambiguity across sources — needs a direct portal check, not an assumption.</span></div></li>
+      <li><input type="checkbox"><div class="txt"><b>Do NOT add Kanya Vidya Dhan Yojana without direct confirmation it's currently active</b><span>Likely defunct, superseded by Kanya Sumangala Yojana. Flagged as a trap, not a to-do.</span></div></li>
+    </ul>
+    <div class="note">Realistic outcome if the first two research items pan out: UP goes from 4 correctly-scoped entries to somewhere around 10-12 — closing most of the way to parity with your other mid-tier states (Bihar, Telangana, AP are all at 7) without needing to invent scheme names that don't exist.</div>
+  </div>
+
+</div>
+</body>
+</html>

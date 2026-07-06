@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>250 → 500 Scholarships: Scaling Plan</title>
+<style>
+  :root{
+    --ink:#1a2b23; --sub:#5b6b62; --bg:#f7f6f2; --card:#ffffff;
+    --accent:#1f7a4d; --accent-light:#e6f2ea; --warn:#b8791a; --warn-light:#fbf0de;
+    --risk:#a83c3c; --risk-light:#fbe8e8; --line:#e4e1d8; --verified:#2563a8; --verified-light:#e8f0fa;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px;}
+  h1{font-size:26px;margin:0 0 4px;}
+  .sub{color:var(--sub);font-size:14px;margin-bottom:24px;}
+  h2{font-size:18px;margin:40px 0 12px;border-left:4px solid var(--accent);padding-left:10px;}
+  h3{font-size:14.5px;margin:18px 0 6px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:14px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;}
+  .card .label{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;}
+  .card .val{font-size:21px;font-weight:700;margin-top:3px;}
+  .card .sub2{font-size:11px;color:var(--accent);margin-top:2px;font-weight:600;}
+  .flag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+  .flag.risk{background:var(--risk-light);color:var(--risk);}
+  .flag.warn{background:var(--warn-light);color:var(--warn);}
+  .flag.good{background:var(--accent-light);color:var(--accent);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{text-align:left;padding:7px 9px;border-bottom:2px solid var(--line);color:var(--sub);font-weight:600;font-size:11px;text-transform:uppercase;}
+  td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:hover td{background:#fafaf7;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .note{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:8px;}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-light);color:var(--accent);margin-right:4px;}
+  .pill.low{background:#eee;color:var(--sub);}
+  ul.actions{list-style:none;padding:0;margin:0;}
+  ul.actions li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);}
+  ul.actions li:last-child{border-bottom:none;}
+  ul.actions input{margin-top:3px;width:16px;height:16px;accent-color:var(--accent);flex-shrink:0;}
+  .actions .txt b{display:block;font-size:13.5px;}
+  .actions .txt span{font-size:12px;color:var(--sub);}
+  .phase{display:flex;gap:12px;margin-bottom:14px;}
+  .phase .dot{background:var(--accent);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+  .phase .body b{font-size:14px;}
+  .phase .body .meta{font-size:11.5px;color:var(--sub);font-weight:600;margin-top:1px;}
+  .phase .body .desc{font-size:12.5px;color:var(--sub);margin-top:4px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Scaling Plan: 250 → 500 Scholarships</h1>
+  <div class="sub">Grounded in your master lead sheet (342 rows) + current GSC performance data, not a generic content-scaling template.</div>
+
+  <h2>Reality check on the numbers</h2>
+  <div class="cards">
+    <div class="card"><div class="label">Current live (per you)</div><div class="val">250+</div></div>
+    <div class="card"><div class="label">Master lead sheet</div><div class="val">342</div><div class="sub2">rows total</div></div>
+    <div class="card"><div class="label">Genuinely untouched</div><div class="val">~328</div><div class="sub2">est., after removing name matches to known-live pages</div></div>
+    <div class="card"><div class="label">Near-fully-enriched</div><div class="val">13</div><div class="sub2">of 342 — rest are 15-16/30 field stubs</div></div>
+  </div>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">The lead sheet isn't a live-content mirror — Sitaram Jindal, HDFC, Reliance Foundation, Tata Capital Pankh, ONGC all sit in it as 16-field stubs despite being fully live and some of your best performers. So it's not reliable for exact "how many are actually live" math, but it <b>is</b> a solid, mostly-untouched sourcing pool of ~328 names to pull the next 250 from — you don't need fresh discovery research for most of this, just the enrichment pass. One task worth doing before anything else: <b>a quick pass to flag which of the 342 rows are already published</b>, so your Notion Backlog reflects a clean "to-do" count instead of a mixed one. 15 minutes, saves everyone downstream confusion.</p>
+  </div>
+
+  <h2>Where the 250 should come from — prioritized</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Tier</th><th>Source</th><th class="num"># Available</th><th>Why this order</th></tr>
+      <tr>
+        <td><span class="pill">1</span></td>
+        <td><b>All India — Central + CSR/Private</b></td>
+        <td class="num">29</td>
+        <td>Directly fixes the NSP/central-scheme gap your GSC data already confirmed (14K impressions, 84 clicks). Includes Chevening, Rhodes, JN Tata, Aditya Birla, AICTE Pragati/Saksham/Swanath, PM Scholarship (Railways/CAPFs) — high trust, high search intent, no state restriction so broadest possible audience.</td>
+      </tr>
+      <tr>
+        <td><span class="pill">2</span></td>
+        <td><b>Bihar + Maharashtra + Telangana + AP</b></td>
+        <td class="num">~35</td>
+        <td>These are your confirmed <i>zero-impression</i> priority states from the GSC review — but unlike UP, discovery research is basically already done here (7-11 stub names each). This is pure enrichment work, not fresh research. Fastest path to closing a confirmed traffic gap.</td>
+      </tr>
+      <tr>
+        <td><span class="pill">3</span></td>
+        <td><b>Uttar Pradesh</b></td>
+        <td class="num">1 <span class="flag risk">gap</span></td>
+        <td>India's most populous state and a confirmed zero-impression gap, but the lead sheet has only 1 name for it. This needs a fresh discovery pass (like the Karnataka/Odisha kickoffs) before enrichment can even start — budget it as its own mini-project, not a quick add.</td>
+      </tr>
+      <tr>
+        <td><span class="pill">4</span></td>
+        <td><b>Remaining high-population states</b> (MP, Rajasthan, Gujarat, WB)</td>
+        <td class="num">~40</td>
+        <td>Solid population, solid stub coverage, not flagged as urgent by GSC but still worth filling out for breadth/authority.</td>
+      </tr>
+      <tr>
+        <td><span class="pill low">5</span></td>
+        <td><b>Smaller states/UTs</b> (NE states, Goa, J&K, Ladakh, A&N Islands, etc.)</td>
+        <td class="num">~150</td>
+        <td>Well-stocked in the lead sheet (10-12 each) but low population = low search volume. Good for completeness/authority claims ("we cover every state") but shouldn't be where your enrichment hours go first.</td>
+      </tr>
+    </table>
+    <div class="note">Tiers 1-3 alone (~65 scholarships) would cover both of your confirmed GSC content gaps (central schemes + 3 of 4 priority states) and could realistically move the needle on traffic within a month or two. Tiers 4-5 are what get you from ~315 to 500 — good for the "we cover everything" authority story, not the near-term growth story.</div>
+  </div>
+
+  <h2>Throughput &amp; timeline — two scenarios</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Scenario</th><th class="num">Rate</th><th class="num">Time to +250</th><th>Notes</th></tr>
+      <tr><td><b>Solo, part-time</b> (current mode)</td><td class="num">~15-20/week</td><td class="num">~13-16 weeks</td><td>Matches your documented 15-25 min/scholarship rate and 20/week target — roughly 3-4 months of consistent effort, on top of everything else on your plate.</td></tr>
+      <tr><td><b>Solo, focused sprints</b></td><td class="num">~30-40/week</td><td class="num">~6-8 weeks</td><td>Achievable in short bursts (batch same-state/same-portal schemes together, as your own workflow docs recommend) but hard to sustain alongside PM day job + other site work.</td></tr>
+      <tr><td><b>+1 part-time researcher</b> (₹15K/mo, already in your Q3 plan)</td><td class="num">~35-45/week combined</td><td class="num">~6-7 weeks</td><td>This is the plan you already wrote for yourself in the strategy doc — this scaling push is the natural trigger to actually pull it forward.</td></tr>
+    </table>
+    <div class="note">Your own enrichment guide already sets the benchmark: 20/week, 15-25 min each, ~100 hours for the full 342-row backlog. The math isn't new — the useful part is the <i>sequencing</i> above, so the hours go to Tier 1-3 first.</div>
+  </div>
+
+  <h2>The trap to avoid: volume that hurts CTR instead of helping it</h2>
+  <div class="panel">
+    <p class="note" style="margin-top:0;">Your own GSC data already showed this pattern once: Odisha (55 pages, fully enriched) out-converts Karnataka (71 pages, less enriched) despite fewer pages, and several of your current underperformers (MMVY, e-Kalyan, SVMCM) look exactly like pages published at the "stub" completeness level this lead sheet is full of — technically live, ranking fine, but converting at 0.1-0.4% CTR because the title/content formula wasn't applied. Scaling to 500 by publishing 250 more pages at that same thin level would hit the number and quietly drag your average CTR down at the same time.</p>
+    <h3>Minimum bar for anything you publish going forward</h3>
+    <ul style="margin:0;padding-left:18px;font-size:12.5px;color:var(--sub);line-height:1.7;">
+      <li>Title leads with whatever term students actually search (abbreviation-first where one exists) + year + "Apply Online" + "Last Date" — the exact formula validated in the CTR audit, baked in at creation instead of fixed later</li>
+      <li>Amount stated consistently in title and body (the Tata Pankh ₹12K vs ₹1L mismatch is the cautionary example — don't repeat it)</li>
+      <li>No guessed fields — "Check portal" is fine, a wrong number isn't (this is already your rule, just worth re-stating as a scaling-era guardrail)</li>
+      <li>Internal link from the relevant state hub page + at least one related scholarship, from day one — don't let new pages launch as orphans</li>
+    </ul>
+  </div>
+
+  <h2>How this feeds monetization</h2>
+  <div class="panel">
+    <table>
+      <tr><th>Lever</th><th>How added volume helps</th></tr>
+      <tr><td>Freemium filters/alerts</td><td>Value of "premium filtering" scales directly with how many scholarships there are to filter — 250 items barely needs a filter, 500+ starts to genuinely save a student time, which is what you'd charge for.</td></tr>
+      <tr><td>Application assistance (future, ₹1,999-4,999/application)</td><td>The Tier 1 "All India" private/CSR names you're about to add (Aditya Birla, JN Tata, Narotam Sekhsaria, Inlaks Shivdasani, Chevening, Rhodes) are exactly the high-value, complex-application scholarships where paid assistance is most plausible — low-value state welfare schemes are not.</td></tr>
+      <tr><td>SEO surface / long-tail impressions</td><td>Your own query data shows ~45% of clicks already come from long-tail queries outside your top 1000 tracked terms — more enriched pages directly means more of that long tail to capture, which is the actual growth engine, not the top-line page count.</td></tr>
+      <tr><td>Authority / trust signal</td><td>"500+ verified scholarships, 29 fields each" is a stronger positioning claim than "250+" for partnerships (NGOs, institutions) — but only holds up if the added 250 meet the same bar as the first 250, not a diluted one.</td></tr>
+    </table>
+  </div>
+
+  <h2>Suggested phasing (fits your 5-task WIP limit)</h2>
+  <div class="panel">
+    <div class="phase">
+      <div class="dot">1</div>
+      <div class="body"><b>Audit the lead sheet against live site</b> <span class="meta">~30-45 min, do first</span>
+        <div class="desc">Flag which of the 342 rows are already published so the backlog reflects a real to-do list, not a mixed one. Removes the ambiguity this whole plan had to work around.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="dot">2</div>
+      <div class="body"><b>Enrich the 29 "All India" central/CSR names</b> <span class="meta">~7-10 hours at 15-20 min each</span>
+        <div class="desc">Highest-trust, zero-state-restriction, directly plugs the confirmed NSP/central gap. Do this batch first — it's also the batch most likely to double as anchor-page candidates (Chevening, Rhodes, JN Tata are well-known enough to attract real search volume).</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="dot">3</div>
+      <div class="body"><b>Enrich Bihar + Maharashtra + Telangana + AP stubs</b> <span class="meta">~9-12 hours for ~35 scholarships</span>
+        <div class="desc">Closes 3 of your 4 confirmed zero-impression priority states using research that's already 80% done.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="dot">4</div>
+      <div class="body"><b>Fresh discovery research for Uttar Pradesh</b> <span class="meta">Budget as its own mini-project, ~3-4 hrs discovery + enrichment per batch of 10</span>
+        <div class="desc">The one state that can't shortcut through the existing lead sheet. Worth doing given it's India's most populous state and currently at zero.</div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="dot">5</div>
+      <div class="body"><b>Decide on the ₹15K/mo researcher hire now vs. later</b> <span class="meta">Decision point, not a task itself</span>
+        <div class="desc">Already in your Q3 plan. This scaling push is a reasonable trigger to pull it forward if steps 1-4 feel too slow solo — worth revisiting once you see how steps 2-3 actually go time-wise.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
