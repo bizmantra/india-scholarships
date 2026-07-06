@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-06
-Total Scholarships Audited: **299**
-Scholarships with Issues: **133** (44.5%)
+Total Scholarships Audited: **298**
+Scholarships with Issues: **133** (44.6%)
 
 ---
 
@@ -12,18 +12,18 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 67 | 22.4% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Annual Amount** | 66 | 22.1% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 43 | 14.4% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 37 | 12.4% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 82 | 27.4% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 29 | 9.7% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 10 | 3.3% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 39 | 13.0% | Missing or under 15 characters |
+| **Missing Deadline Date** | 36 | 12.1% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 85 | 28.5% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 28 | 9.4% | Mentions 2024, 2025, or earlier cycles |
+| **Incomplete Selection Criteria** | 10 | 3.4% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 39 | 13.1% | Missing or under 15 characters |
 | **Incomplete Step Guide** | 18 | 6.0% | Missing or under 20 characters |
 | **Missing Documents** | 18 | 6.0% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 33 | 11.0% | Helpline is empty, "Not Specified", or generic |
-| **Missing FAQs** | 9 | 3.0% | FAQ block is empty or missing |
+| **Missing Helpline** | 33 | 11.1% | Helpline is empty, "Not Specified", or generic |
+| **Missing FAQs** | 8 | 2.7% | FAQ block is empty or missing |
 | **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 
 ---
@@ -64,7 +64,6 @@ Here are the scholarships with the highest number of content quality issues:
 | `pm-scholarship-scheme-railways` | **PM Scholarship Scheme (Railways)** | 4 | Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents |
 | `sanchi-honnamma-scholarship-karnataka` | **Sanchi Honnamma Scholarship (Karnataka)** | 4 | Expired Deadline (2026-01-06); Old Year Reference (e.g. 2024 or 2025 in title or description); Incomplete/Missing Step Guide (empty); Missing Required Documents |
 | `foundation-for-excellence-ffe-scholarship` | **Foundation for Excellence (FFE) Scholarship** | 4 | Expired Deadline (2026-01-31); Old Year Reference (e.g. 2024 or 2025 in title or description); Incomplete/Missing Step Guide (empty); Missing Required Documents |
-| `pre-matric-post-matric-scholarships-ssp` | **Pre-Matric & Post-Matric Scholarships (SSP)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing FAQ Content |
 | `minority-scholarship-pre-matric` | **Minority Scholarship (Pre-Matric)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `post-matric-scholarship-for-differently-abled` | **Post-Matric Scholarship for Differently Abled** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `pragyan-bharati-scheme` | **Pragyan Bharati Scheme** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Missing Helpline Contact Details |
@@ -82,7 +81,8 @@ Here are the scholarships with the highest number of content quality issues:
 | `young-india-fellowship-ashoka-university` | **Young India Fellowship (Ashoka University)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `post-matric-scholarship-for-st-students-karnataka` | **Post-Matric Scholarship for ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (January 15, 2026) |
 | `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka` | **Post-Matric Scholarship for Persons with Disabilities - UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (December 31, 2025) |
-| `pre-matric-st-students-karnataka` | **Pre-Matric ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (March 7, 2025 (tentative deadline for 2025-26; varies from SC scholarship; verify on portal)) |
+| `pre-matric-st-students-karnataka` | **Pre-Matric ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-01-15) |
 | `pre-matric-minorities-karnataka` | **Pre-Matric Minorities (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (November 30, 2025 (extended deadline for 2025-26; originally September 30, 2025)) |
+| `pre-matric-pwdudid-karnataka` | **Pre-Matric PWD/UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (December 31, 2025 (Disability Welfare Department typically has extended deadline)) |
 
 *Note: Showing top 50 rows. A complete list of all 133 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*

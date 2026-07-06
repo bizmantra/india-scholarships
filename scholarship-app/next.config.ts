@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
         destination: '/scholarships',
         permanent: true,
       },
+      // Duplicate SSP Karnataka card redirect (IS-43)
+      {
+        source: '/scholarships/pre-matric-post-matric-scholarships-ssp',
+        destination: '/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka',
+        permanent: true,
+      },
       // 2. Legacy State Route Pattern
       {
         source: '/state/:state',
