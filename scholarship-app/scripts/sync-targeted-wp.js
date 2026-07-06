@@ -17,14 +17,25 @@ const dbPath = path.join(__dirname, '..', 'data', 'scholarships.db');
 const db = new Database(dbPath);
 
 const slugsToSync = [
-  'research-guidance-phd-fellowship-for-backward-classes-karnataka',
-  'mphil-phd-fellowship-for-minority-students-karnataka',
-  'national-overseas-scholarship-for-minority-communities-karnataka',
-  'cm-raitha-vidya-nidhi-farmers-children-scholarship-karnataka',
-  'samagra-shikshana-karnataka-fellowship',
-  'incentive-for-sslc-2nd-puc-students-minorities-karnataka',
-  'labour-department-scheme-for-unorganized-workers-children-karnataka',
-  'andaman-nicobar-administration-merit-scholarship'
+  'bits-pilani-tuition-blind-admission-scholarship',
+  'bits-pilani-institute-merit-mcn-awards',
+  'bits-pilani-board-topper-alumni-scholarships',
+  'iit-bombay-merit-cum-means-scholarship',
+  'iit-bombay-free-messing-facility',
+  'iit-bombay-tuition-fee-remission',
+  'iit-delhi-merit-cum-means-scholarship',
+  'iit-delhi-free-studentship-fee-remission',
+  'iit-delhi-donor-endowed-scholarships',
+  'iit-madras-merit-cum-means-alumni-tuition-support',
+  'iit-madras-institute-tuition-fee-waiver',
+  'iit-kharagpur-merit-cum-means-scholarship',
+  'iit-kharagpur-endowment-donor-scholarships',
+  'iit-kharagpur-free-studentship-fee-remission',
+  'nit-trichy-tuition-fee-remission',
+  'nit-trichy-recal-foundation-scholarships',
+  'nit-surathkal-merit-cum-means-scholarships',
+  'nit-surathkal-tuition-fee-remission',
+  'nit-surathkal-garrett-memorial-scholarships'
 ];
 
 // Helper to try parsing JSON arrays safely

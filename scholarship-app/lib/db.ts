@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import { UNIVERSITIES } from './universities';
 
 const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
 const WP_API_URL = process.env.WORDPRESS_API_URL;
@@ -820,5 +821,69 @@ export function getCleanSteps(text: string | null): string[] {
     
     return cleanItems;
 }
+
+// Get scholarships by university (Option 1 matching)
+export async function getScholarshipsByUniversity(slug: string) {
+    const uni = UNIVERSITIES.find(u => u.slug === slug);
+    if (!uni) return { specific: [], general: [] };
+
+    const db = getDatabase();
+
+    // 1. Get university-specific scholarships matching keywords
+    const likeClauses = uni.keywords.map(() => '(title LIKE ? OR provider LIKE ? OR tags LIKE ? OR special_conditions LIKE ?)').join(' OR ');
+    const querySpecific = `
+        SELECT * FROM scholarships 
+        WHERE status = 'Active' 
+        AND (${likeClauses})
+    `;
+    const paramsSpecific = uni.keywords.flatMap(kw => [`%${kw}%`, `%${kw}%`, `%${kw}%`, `%${kw}%`]);
+    const specificRows = db.prepare(querySpecific).all(...paramsSpecific);
+
+    // 2. Get general national scholarships for college/university students
+    let generalRows: any[] = [];
+    if (uni.nationalEligible) {
+        const queryGeneral = `
+            SELECT * FROM scholarships 
+            WHERE status = 'Active' 
+            AND (level LIKE '%Graduation%' OR level LIKE '%Post-Graduation%' OR level LIKE '%PhD%')
+            AND (state = 'All India' OR state IS NULL OR state = '')
+            AND (provider_type = 'Corporate' OR provider_type = 'Private' OR scholarship_type = 'Government')
+            -- Exclude specific matches to avoid duplicates
+            AND NOT (${likeClauses})
+            ORDER BY priority_score DESC 
+            LIMIT 10
+        `;
+        generalRows = db.prepare(queryGeneral).all(...paramsSpecific);
+    }
+
+    db.close();
+
+    return {
+        specific: specificRows.map(parseScholarship),
+        general: generalRows.map(parseScholarship)
+    };
+}
+
+// Get all universities with active counts
+export async function getAllUniversitiesWithCounts() {
+    const db = getDatabase();
+    const result = UNIVERSITIES.map(uni => {
+        const likeClauses = uni.keywords.map(() => '(title LIKE ? OR provider LIKE ? OR tags LIKE ? OR special_conditions LIKE ?)').join(' OR ');
+        const queryCount = `
+            SELECT COUNT(*) as count FROM scholarships 
+            WHERE status = 'Active' 
+            AND (${likeClauses})
+        `;
+        const params = uni.keywords.flatMap(kw => [`%${kw}%`, `%${kw}%`, `%${kw}%`, `%${kw}%`]);
+        const row = db.prepare(queryCount).get(...params) as { count: number };
+        return {
+            ...uni,
+            count: row.count
+        };
+    });
+    db.close();
+    return result;
+}
+
 
 

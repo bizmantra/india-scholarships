@@ -369,7 +369,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 ) : (
                                     <span className="flex items-center gap-1.5 text-emerald-600 text-xs font-bold uppercase tracking-wider">
                                         <ShieldCheck className="h-4 w-4" />
-                                        Verified for 2026
+                                        Verified for {year}
                                     </span>
                                 )}
                             </div>

@@ -8,6 +8,7 @@ import {
     getAllProviderTypes
 } from '@/lib/db';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
+import { UNIVERSITIES } from '@/lib/universities';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.indiascholarships.in';
@@ -30,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/guides/tracking',
         '/guides/documents',
         '/about',
+        '/scholarships-by-university',
     ].map(route => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
@@ -112,6 +114,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
+    // Dynamic University Listing Pages
+    const universityRoutes = UNIVERSITIES.map(uni => ({
+        url: `${baseUrl}/scholarships-by-university/${uni.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+    }));
+
     return [
         ...staticRoutes,
         ...scholarshipRoutes,
@@ -121,5 +131,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...incomeRoutes,
         ...courseRoutes,
         ...subpageRoutes,
+        ...universityRoutes,
     ];
 }
