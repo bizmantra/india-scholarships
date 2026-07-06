@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const staticRoutes = [
         '',
         '/scholarships',
+        '/scholarships/deadlines',
         '/state-scholarships',
         '/scholarships-by-category',
         '/scholarships-by-education',
