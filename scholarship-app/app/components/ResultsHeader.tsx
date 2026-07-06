@@ -40,8 +40,7 @@ export default function ResultsHeader({
                     >
                         <option value="deadline">Deadline (Soonest)</option>
                         <option value="amount">Amount (Highest)</option>
-                        <option value="recent">Recently Added</option>
-                        <option value="relevance">Relevance</option>
+                        <option value="newest">Recently Added</option>
                     </select>
                 </div>
 

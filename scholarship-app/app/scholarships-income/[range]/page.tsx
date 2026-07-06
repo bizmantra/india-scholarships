@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByIncomeRange, getIncomeRanges } from '@/lib/db';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
@@ -95,30 +95,8 @@ export default async function IncomeRangeHubPage({ params }: { params: Promise<{
 
                 {/* Scholarships List */}
                 <div className="mb-20">
-                    <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Matching Scholarships</h2>
-                        <div className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{scholarships.length} results</div>
-                    </div>
-                    {scholarships.length > 0 ? (
-                        <div className="space-y-6">
-                            {scholarships.map((scholarship: any) => (
-                                <ScholarshipCard
-                                    key={scholarship.id}
-                                    scholarship={scholarship}
-                                    viewMode="list"
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="bg-gray-50 rounded-3xl p-12 text-center border border-dashed border-gray-200">
-                            <div className="text-4xl mb-4">🔍</div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">No scholarships found</h3>
-                            <p className="text-gray-600">We couldn't find any scholarships matching this specific income range at the moment.</p>
-                            <Link href="/scholarships" className="mt-6 inline-block text-blue-700 font-bold hover:underline">
-                                Try Search All →
-                            </Link>
-                        </div>
-                    )}
+                    <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Matching Scholarships</h2>
+                    <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                 </div>
 
                 {/* Internal Linking */}

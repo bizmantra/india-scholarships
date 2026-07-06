@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getScholarshipsByType } from '@/lib/db';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
@@ -62,25 +62,8 @@ export default async function CorporateScholarshipsPage() {
 
                 {/* Scholarships List */}
                 <div className="mb-20">
-                    <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Industry-Backed Grants</h2>
-                        <div className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{scholarships.length} results</div>
-                    </div>
-                    <div className="space-y-6">
-                        {scholarships.length > 0 ? (
-                            scholarships.map((scholarship: any) => (
-                                <ScholarshipCard
-                                    key={scholarship.id}
-                                    scholarship={scholarship}
-                                    viewMode="list"
-                                />
-                            ))
-                        ) : (
-                            <div className="p-12 text-center bg-gray-50 rounded-3xl border border-dashed text-gray-500 font-medium">
-                                No corporate scholarships found in our database yet.
-                            </div>
-                        )}
-                    </div>
+                    <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Industry-Backed Grants</h2>
+                    <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                 </div>
 
                 {/* Related Links */}

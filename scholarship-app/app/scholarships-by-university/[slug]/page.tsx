@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByUniversity } from '@/lib/db';
 import { UNIVERSITIES } from '@/lib/universities';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
@@ -138,15 +138,7 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                     </div>
 
                     {specific.length > 0 ? (
-                        <div className="space-y-6">
-                            {specific.map((scholarship) => (
-                                <ScholarshipCard
-                                    key={scholarship.id}
-                                    scholarship={scholarship}
-                                    viewMode="list"
-                                />
-                            ))}
-                        </div>
+                        <ScholarshipsList scholarships={specific} showCategoryFilters={true} />
                     ) : (
                         <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100 text-center">
                             <p className="text-gray-600 font-medium">
@@ -170,15 +162,7 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                                 {general.length} Schemes
                             </div>
                         </div>
-                        <div className="space-y-6">
-                            {general.map((scholarship) => (
-                                <ScholarshipCard
-                                    key={scholarship.id}
-                                    scholarship={scholarship}
-                                    viewMode="list"
-                                />
-                            ))}
-                        </div>
+                        <ScholarshipsList scholarships={general} showCategoryFilters={true} />
                     </section>
                 )}
 

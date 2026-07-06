@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByCourse, getMajorCourses } from '@/lib/db';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { GraduationCap, BookOpen, Clock, Info } from 'lucide-react';
 
 // Help helper for capitalized names
@@ -99,21 +99,8 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
 
                 {/* Scholarships List */}
                 <div className="mb-16">
-                    <div className="flex items-center justify-between mb-8 border-b pb-4">
-                        <h2 className="text-2xl font-bold text-gray-900">Recommended Schemes</h2>
-                        <span className="text-sm font-semibold px-3 py-1 bg-gray-100 rounded-full text-gray-600">
-                            {scholarships.length} Schemes Found
-                        </span>
-                    </div>
-                    <div className="space-y-4">
-                        {scholarships.map((scholarship: any) => (
-                            <ScholarshipCard
-                                key={scholarship.id}
-                                scholarship={scholarship}
-                                viewMode="list"
-                            />
-                        ))}
-                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-8">Recommended Schemes</h2>
+                    <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                 </div>
 
                 {/* FAQs for Courses */}

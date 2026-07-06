@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory } from '@/lib/db';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -132,19 +132,8 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
 
                     {/* Scholarships List */}
                     <div className="mb-20">
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Active {displayName} Scholarships</h2>
-                            <div className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{scholarships.length} results</div>
-                        </div>
-                        <div className="space-y-6">
-                            {scholarships.map((scholarship: any) => (
-                                <ScholarshipCard
-                                    key={scholarship.id}
-                                    scholarship={scholarship}
-                                    viewMode="list"
-                                />
-                            ))}
-                        </div>
+                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {displayName} Scholarships</h2>
+                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
                     </div>
 
                     {/* Category-Specific FAQ */}

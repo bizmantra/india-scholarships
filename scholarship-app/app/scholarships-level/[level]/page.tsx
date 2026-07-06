@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByLevel, getAllLevels } from '@/lib/db';
-import ScholarshipCard from '@/app/components/ScholarshipCard';
+import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -105,14 +105,8 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                     </div>
 
                     {/* Scholarships List */}
-                    <div className="space-y-6">
-                        {scholarships.map((scholarship: any) => (
-                            <ScholarshipCard
-                                key={scholarship.id}
-                                scholarship={scholarship}
-                                viewMode="list"
-                            />
-                        ))}
+                    <div className="mb-20">
+                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
 
                     <div className="mt-16 pt-10 border-t border-gray-100">
