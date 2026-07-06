@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-06
 Total Scholarships Audited: **298**
-Scholarships with Issues: **133** (44.6%)
+Scholarships with Issues: **137** (46.0%)
 
 ---
 
@@ -15,7 +15,7 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Missing Annual Amount** | 66 | 22.1% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 43 | 14.4% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 36 | 12.1% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 85 | 28.5% | Deadline is in the past (before 2026-06-26) |
+| **Expired Deadline** | 89 | 29.9% | Deadline is in the past (before 2026-06-26) |
 | **Old Year References** | 28 | 9.4% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 10 | 3.4% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 39 | 13.1% | Missing or under 15 characters |
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `pre-matric-minorities-karnataka` | **Pre-Matric Minorities (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (November 30, 2025 (extended deadline for 2025-26; originally September 30, 2025)) |
 | `pre-matric-pwdudid-karnataka` | **Pre-Matric PWD/UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (December 31, 2025 (Disability Welfare Department typically has extended deadline)) |
 
-*Note: Showing top 50 rows. A complete list of all 133 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 137 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
