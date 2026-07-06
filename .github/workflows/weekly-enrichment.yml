@@ -65,6 +65,18 @@ jobs:
             git push origin main
           fi
 
+      - name: Sync Codebase & Metrics to Notion
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scholarship-app/scripts/sync-to-notion.js
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID_BACKLOG: "ca53d5c3-40bb-4453-aa02-1c0618ec585d"
+          NOTION_DATABASE_ID_PIPELINE: "3952e0a0-3f1e-80bb-bd0b-ebc25b27b00f"
+          NOTION_PAGE_ID_DOC_HUB: "3952e0a0-3f1e-8173-a5d4-cb28b549a1fc"
+          NOTION_PAGE_ID_INVENTORY: "3952e0a0-3f1e-8177-b4ba-fca40195b1b8"
+          NOTION_PAGE_ID_CHANGELOG: "3952e0a0-3f1e-81c5-8279-ecd3058c2c82"
+
       - name: Trigger Vercel Redeployment
         # Only redeploy on schedules
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
