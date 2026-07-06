@@ -57,6 +57,16 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
             return redirect('/state-scholarships');
         }
 
+        // Compute how many scholarships have a future (or unknown) deadline.
+        // Used for the 'Open Now' stat card — more accurate than a hardcoded freshness badge.
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const openCount = scholarships.filter((s: any) => {
+            if (!s.deadline) return true; // no deadline = assume open
+            const d = new Date(s.deadline);
+            return isNaN(d.getTime()) || d >= today; // unparseable = assume open
+        }).length;
+
         return (
             <div className="min-h-screen bg-white">
                 <Header />
@@ -98,9 +108,9 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             <p className="text-xs text-green-600 mt-2">Per academic year</p>
                         </div>
                         <div className="bg-purple-50/50 p-6 rounded-3xl border border-purple-100">
-                            <h3 className="text-purple-700 font-bold mb-1">Data Freshness</h3>
-                            <p className="text-3xl font-extrabold text-purple-900">100%</p>
-                            <p className="text-xs text-purple-600 mt-2">Verified Jan 2026</p>
+                            <h3 className="text-purple-700 font-bold mb-1">Open Now</h3>
+                            <p className="text-3xl font-extrabold text-purple-900">{openCount}</p>
+                            <p className="text-xs text-purple-600 mt-2">Active schemes</p>
                         </div>
                     </div>
 

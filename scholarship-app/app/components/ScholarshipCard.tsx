@@ -24,22 +24,32 @@ interface ScholarshipCardProps {
 }
 
 export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: ScholarshipCardProps) {
-    // Calculate status badges
+    // Calculate status badges — mirrors logic in ScholarshipDetailTemplate
     const getStatusBadge = () => {
         if (!scholarship.deadline) return null;
 
-        const deadlineDate = new Date(scholarship.deadline);
-        if (isNaN(deadlineDate.getTime())) return null;
+        // Null-safe parse: same pattern as ScholarshipDetailTemplate lines 17-21
+        const deadlineDate = !isNaN(new Date(scholarship.deadline).getTime())
+            ? new Date(scholarship.deadline)
+            : null;
+        if (!deadlineDate) return null;
 
         const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // Closed — deadline has already passed (highest priority)
+        if (deadlineDate < today) {
+            return { text: 'Closed', color: 'bg-gray-100 text-gray-500 border-gray-200' };
+        }
+
         const daysUntilDeadline = Math.ceil((deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
-        // Closing Soon - within 7 days
-        if (daysUntilDeadline > 0 && daysUntilDeadline <= 7) {
+        // Closing Soon — within 7 days
+        if (daysUntilDeadline <= 7) {
             return { text: 'Closing Soon', color: 'bg-red-50 text-red-700 border-red-200' };
         }
 
-        // New - created within last 14 days (using created_at field)
+        // New — created within last 14 days
         if (scholarship.created_at) {
             const createdDate = new Date(scholarship.created_at);
             const daysSinceCreated = Math.ceil((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
@@ -53,22 +63,35 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
 
     const statusBadge = getStatusBadge();
 
-    // Format deadline
+    // Format deadline — sanitises leaked research notes before display
     const formatDeadline = (deadline?: string) => {
         if (!deadline) return 'Check Portal';
         const trimmed = deadline.trim();
-        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') {
+
+        // Catch empty / explicit placeholders
+        if (trimmed === '' || trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na') {
             return 'Check Portal';
         }
-        const date = new Date(trimmed);
-        if (isNaN(date.getTime())) {
-            return trimmed;
+
+        // Catch editorial research notes that were accidentally stored in the deadline field.
+        // These contain hedging language that should never be shown verbatim to visitors.
+        const researchNotePattern = /VERIFY|tentative|some sources|verify on/i;
+        if (researchNotePattern.test(trimmed)) {
+            return 'Check Portal';
         }
-        return date.toLocaleDateString('en-IN', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        });
+
+        // Try parsing as a proper date
+        const date = new Date(trimmed);
+        if (!isNaN(date.getTime())) {
+            return date.toLocaleDateString('en-IN', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        // Short unparseable strings (e.g. "January 2026") — return as-is
+        return trimmed;
     };
 
     // Format amount
