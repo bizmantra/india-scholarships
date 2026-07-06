@@ -141,8 +141,8 @@ async function syncInventory() {
       });
     });
 
-    // Dynamic Scholarship Pages (Adding Top 30 for view mapping)
-    scholarships.slice(0, 30).forEach(row => {
+    // Dynamic Scholarship Pages (Adding ALL 280)
+    scholarships.forEach(row => {
       const url = `https://www.indiascholarships.in/scholarships/${row.slug}`;
       const metrics = gscMetrics[url] || { clicks: 0, impressions: 0 };
       inventory.push({
@@ -153,8 +153,8 @@ async function syncInventory() {
         impressions: metrics.impressions
       });
 
-      // Include dynamic sub-pages (demonstrates routing map)
-      const subpages = ['eligibility', 'documents-required', 'last-date'];
+      // Include all dynamic sub-pages (7 per scholarship = 1,960 additional URLs)
+      const subpages = ['eligibility', 'documents-required', 'last-date', 'selection-process', 'apply-online', 'renewal-process', 'income-limit'];
       subpages.forEach(sub => {
         const subUrl = `${url}/${sub}`;
         const subMetrics = gscMetrics[subUrl] || { clicks: 0, impressions: 0 };
@@ -168,31 +168,41 @@ async function syncInventory() {
       });
     });
 
-    console.log(`Generated ${inventory.length} inventory pages to sync.`);
+    console.log(`Generated ${inventory.length} total inventory pages to sync.`);
 
-    // Push sequentially to Notion Database
-    for (const item of inventory.slice(0, 50)) { // limit initial push to top 50 items to respect rate limits
-      await notionRequest('/v1/pages', 'POST', {
-        parent: { database_id: INVENTORY_DB },
-        properties: {
-          'Page name ': {
-            title: [{ text: { content: item.name } }]
-          },
-          Type: {
-            multi_select: [{ name: item.type }]
-          },
-          URL: {
-            url: item.url
-          },
-          Clicks: {
-            number: item.clicks
-          },
-          Impressions: {
-            number: item.impressions
+    // Sync all compiled pages in throttled sequential requests
+    let count = 0;
+    for (const item of inventory) {
+      try {
+        await notionRequest('/v1/pages', 'POST', {
+          parent: { database_id: INVENTORY_DB },
+          properties: {
+            'Page name ': {
+              title: [{ text: { content: item.name } }]
+            },
+            Type: {
+              multi_select: [{ name: item.type }]
+            },
+            URL: {
+              url: item.url
+            },
+            Clicks: {
+              number: item.clicks
+            },
+            Impressions: {
+              number: item.impressions
+            }
           }
+        });
+        count++;
+        if (count % 50 === 0) {
+          console.log(`Synced ${count} / ${inventory.length} pages...`);
         }
-      });
-      // Throttle request
+      } catch (err) {
+        // Log error and continue rather than crashing the whole run
+        console.error(`Failed to sync item: ${item.name}`, err.message || err);
+      }
+      // Throttle strictly to 3 requests per second to avoid Notion 429 rate limit errors
       await new Promise(resolve => setTimeout(resolve, 350));
     }
     console.log('✅ Inventory database populated successfully.');
