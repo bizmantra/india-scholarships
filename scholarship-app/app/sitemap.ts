@@ -115,6 +115,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
+    // Dynamic State Hub Subpage Pages
+    const stateSubpageRoutes = [];
+    for (const state of states) {
+        const stateSlug = slugify(state);
+        for (const subpage of subpageKeys) {
+            stateSubpageRoutes.push({
+                url: `${baseUrl}/scholarships-in/${stateSlug}/${subpage}`,
+                lastModified: new Date(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.6,
+            });
+        }
+    }
+
     // Dynamic University Listing Pages
     const universityRoutes = UNIVERSITIES.map(uni => ({
         url: `${baseUrl}/scholarships-by-university/${uni.slug}`,
@@ -132,6 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...incomeRoutes,
         ...courseRoutes,
         ...subpageRoutes,
+        ...stateSubpageRoutes,
         ...universityRoutes,
     ];
 }

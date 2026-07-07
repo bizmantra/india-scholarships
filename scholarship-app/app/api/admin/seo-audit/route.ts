@@ -139,6 +139,34 @@ export async function GET(request: Request) {
                 verifiedStatus: 'Dynamic',
                 completeness: count > 0 ? 'Active content' : 'Empty hub warning'
             });
+
+            // Subpages for State Hub
+            const stateSubpageKeys = [
+                { key: 'eligibility', name: 'Eligibility Criteria' },
+                { key: 'income-limit', name: 'Income Limit Rules' },
+                { key: 'documents-required', name: 'Documents Required' },
+                { key: 'last-date', name: 'Last Dates & Deadlines' },
+                { key: 'selection-process', name: 'Selection Process' },
+                { key: 'apply-online', name: 'Apply Online step-guide' },
+                { key: 'renewal-process', name: 'Renewal Process' }
+            ];
+
+            stateSubpageKeys.forEach(sub => {
+                const subPath = `/scholarships-in/${slug}/${sub.key}`;
+                pagesList.push({
+                    path: subPath,
+                    absoluteUrl: `${BASE_URL}${subPath}`,
+                    pageClass: `State Hub Subpage (${sub.key})`,
+                    templateFile: 'app/scholarships-in/[state]/[subpage]/page.tsx',
+                    title: `${stateName} Scholarships ${sub.name} 2026`,
+                    variable: `${stateName} - ${sub.name}`,
+                    dbId: 'N/A',
+                    itemCount: count,
+                    priority: '0.6',
+                    verifiedStatus: 'Dynamic',
+                    completeness: count > 0 ? 'Active content (Dynamic Cluster)' : 'Empty hub warning'
+                });
+            });
         });
 
         // 4. Dynamic Category listing pages
