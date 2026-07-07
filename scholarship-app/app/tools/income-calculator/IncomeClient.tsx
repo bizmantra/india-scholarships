@@ -175,13 +175,13 @@ export default function IncomeClient({ scholarships }: Props) {
                     <div className="max-w-7xl mx-auto text-center relative z-10">
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold mb-4">
                             <Coins className="w-3.5 h-3.5" />
-                            <span>Family Income Verification Tool</span>
+                            <span>Check Scholarship Eligibility</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
-                            Scholarship Family Income Limit Calculator
+                            Check Scholarship by Family Income
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Compare your annual household income against official criteria caps across central government, state government, and private corporate schemes.
+                            Check if your family income matches the limits for government and private scholarships.
                         </p>
                     </div>
                 </section>
@@ -201,10 +201,10 @@ export default function IncomeClient({ scholarships }: Props) {
                         <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                             <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                                 <Coins className="w-5 h-5 text-amber-500" />
-                                <span>Adjust Your Income</span>
+                                <span>Select Your Family Income</span>
                             </h2>
                             <p className="text-gray-500 text-xs leading-relaxed mb-6">
-                                Drag the slider to set your gross annual household income, then click the calculate button to compute eligible schemes.
+                                Move the slider to select your family's annual income, then click the button.
                             </p>
 
                             <form onSubmit={handleCalculate} className="space-y-6">
@@ -269,10 +269,10 @@ export default function IncomeClient({ scholarships }: Props) {
                                         {calculating ? (
                                             <>
                                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                                <span>Calculating Schemes...</span>
+                                                <span>Checking scholarships...</span>
                                             </>
                                         ) : (
-                                            <span>Calculate Eligible Scholarships →</span>
+                                            <span>Check Eligible Scholarships →</span>
                                         )}
                                     </button>
 
@@ -304,9 +304,9 @@ export default function IncomeClient({ scholarships }: Props) {
                                         <div className="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-4">
                                             <Coins className="w-8 h-8" />
                                         </div>
-                                        <h3 className="font-extrabold text-lg text-gray-900 mb-1">Awaiting Calculation</h3>
+                                        <h3 className="font-extrabold text-lg text-gray-900 mb-1">Select income to see scholarships</h3>
                                         <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
-                                            Adjust the household income slider on the left and click "Calculate" to view your qualifying eligibility report.
+                                            Choose your family income on the left and click the button.
                                         </p>
                                     </div>
                                 ) : (
@@ -314,8 +314,8 @@ export default function IncomeClient({ scholarships }: Props) {
                                         <div>
                                             <div className="flex items-center justify-between mb-6 border-b pb-4">
                                                 <div>
-                                                    <h3 className="font-extrabold text-base text-gray-900">Your Income Eligibility Report</h3>
-                                                    <p className="text-[11px] text-gray-500 mt-0.5">Showing qualifying scholarships for family income of ₹{income.toLocaleString('en-IN')}</p>
+                                                    <h3 className="font-extrabold text-base text-gray-900">Your Scholarship Report</h3>
+                                                    <p className="text-[11px] text-gray-500 mt-0.5">Scholarships you can apply for with income of ₹{income.toLocaleString('en-IN')}</p>
                                                 </div>
                                                 <span className="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-extrabold rounded-full">
                                                     {matches.length} Total Matches

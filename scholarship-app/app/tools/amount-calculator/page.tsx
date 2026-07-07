@@ -13,7 +13,7 @@ export default async function AmountCalculatorPage() {
     
     // Fetch all active scholarships
     const scholarships = db.prepare(`
-        SELECT id, slug, title, provider, amount_annual, amount_min, level, caste, course_stream, state
+        SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, level, caste, course_stream, state
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
