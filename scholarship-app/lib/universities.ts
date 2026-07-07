@@ -130,14 +130,14 @@ export const UNIVERSITIES: University[] = [
     name: "Ashoka University",
     slug: "ashoka-university",
     description: "Ashoka University, Sonipat, operates a need-blind admission policy with extensive need-based financial aid waivers up to 100% and merit-based aptitude scholarships.",
-    keywords: ["ashoka-university"],
+    keywords: ["ashoka", "ashoka-university"],
     nationalEligible: true
   },
   {
     name: "Vellore Institute of Technology",
     slug: "vellore-institute-of-technology",
     description: "Vellore Institute of Technology (VIT) runs the STARS scheme for rural students and the GVSDP merit-based tuition fee waiver programme based on VITEEE ranks.",
-    keywords: ["vellore-institute-of-technology", "vit-vellore"],
+    keywords: ["vit", "vellore", "vellore-institute-of-technology", "vit-vellore"],
     nationalEligible: true
   },
   {

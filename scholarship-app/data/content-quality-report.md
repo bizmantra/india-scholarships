@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-07
 Total Scholarships Audited: **319**
-Scholarships with Issues: **138** (43.3%)
+Scholarships with Issues: **137** (42.9%)
 
 ---
 
@@ -12,11 +12,11 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 66 | 20.7% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 43 | 13.5% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 36 | 11.3% | Deadline is empty or "Not specified" |
+| **Missing Annual Amount** | 65 | 20.4% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 42 | 13.2% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 35 | 11.0% | Deadline is empty or "Not specified" |
 | **Expired Deadline** | 90 | 28.2% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 28 | 8.8% | Mentions 2024, 2025, or earlier cycles |
+| **Old Year References** | 27 | 8.5% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 10 | 3.1% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 39 | 12.2% | Missing or under 15 characters |
 | **Incomplete Step Guide** | 18 | 5.6% | Missing or under 20 characters |
@@ -78,11 +78,11 @@ Here are the scholarships with the highest number of content quality issues:
 | `reliance-foundation-phd-scholarship` | **Reliance Foundation PhD Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
 | `colgate-keep-india-smiling-scholarship` | **Colgate Keep India Smiling Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing FAQ Content |
 | `siemens-scholarship-program` | **Siemens Scholarship Program** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `young-india-fellowship-ashoka-university` | **Young India Fellowship (Ashoka University)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `post-matric-scholarship-for-st-students-karnataka` | **Post-Matric Scholarship for ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-01-15) |
 | `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka` | **Post-Matric Scholarship for Persons with Disabilities - UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-31) |
 | `pre-matric-st-students-karnataka` | **Pre-Matric ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-01-15) |
 | `pre-matric-minorities-karnataka` | **Pre-Matric Minorities (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-11-30) |
 | `pre-matric-pwdudid-karnataka` | **Pre-Matric PWD/UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-31) |
+| `kc-mahindra-scholarship-for-post-graduate-studies-abroad` | **KC Mahindra Scholarship for Post-Graduate Studies Abroad** | 3 | Expired Deadline (2026-03-31); Old Year Reference (e.g. 2024 or 2025 in title or description); Incomplete Renewal Policy (too short: 14 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 138 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 137 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
