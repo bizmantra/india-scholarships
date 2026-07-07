@@ -1,13 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X, Search } from 'lucide-react';
+import SearchModal from './SearchModal';
 
 export default function Header() {
     const [showScholarshipsDropdown, setShowScholarshipsDropdown] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+
+    // Global keyboard shortcut listener (Cmd+K / Ctrl+K)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                setShowSearch(prev => !prev);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
@@ -87,18 +101,41 @@ export default function Header() {
                     </nav>
                 </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden p-2"
-                    onClick={() => setShowMobileMenu(!showMobileMenu)}
-                    aria-label="Toggle menu"
-                >
-                    {showMobileMenu ? (
-                        <X className="h-6 w-6 text-gray-700" />
-                    ) : (
-                        <Menu className="h-6 w-6 text-gray-700" />
-                    )}
-                </button>
+                <div className="flex items-center gap-2">
+                    {/* Desktop Search Button */}
+                    <button
+                        onClick={() => setShowSearch(true)}
+                        className="hidden md:flex items-center gap-2 px-3.5 py-1.5 bg-gray-50 border border-gray-100 hover:bg-gray-100 hover:border-gray-200 rounded-2xl text-xs text-gray-400 font-bold transition-all shadow-xs cursor-pointer select-none"
+                    >
+                        <Search className="h-4 w-4 text-gray-500" />
+                        <span>Search...</span>
+                        <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-white border border-gray-200 rounded-md text-[10px] font-extrabold text-gray-400 shadow-2xs">
+                            ⌘K
+                        </kbd>
+                    </button>
+
+                    {/* Mobile Search Button */}
+                    <button
+                        onClick={() => setShowSearch(true)}
+                        className="md:hidden p-2 text-gray-600 hover:text-blue-700 transition-colors"
+                        aria-label="Search"
+                    >
+                        <Search className="h-6 w-6" />
+                    </button>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden p-2"
+                        onClick={() => setShowMobileMenu(!showMobileMenu)}
+                        aria-label="Toggle menu"
+                    >
+                        {showMobileMenu ? (
+                            <X className="h-6 w-6 text-gray-700" />
+                        ) : (
+                            <Menu className="h-6 w-6 text-gray-700" />
+                        )}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Navigation */}
@@ -187,6 +224,9 @@ export default function Header() {
                     </nav>
                 </div>
             )}
+
+            {/* Global Search Dialog Modal */}
+            <SearchModal isOpen={showSearch} onClose={() => setShowSearch(false)} />
         </header>
     );
 }

@@ -883,6 +883,7 @@ export async function getAllUniversitiesWithCounts() {
     });
     db.close();
     return result;
+}
 
 
 // Get all international scholarships for the hub/tracker page
