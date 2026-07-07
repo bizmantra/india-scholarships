@@ -89,8 +89,8 @@ export default function Header() {
                                 </div>
                             )}
                         </div>
-                        <Link href="/eligibility-checker" className="transition-colors hover:text-blue-700">
-                            Check Eligibility
+                        <Link href="/tools" className="transition-colors hover:text-blue-700">
+                            Tools
                         </Link>
                         <Link href="/guides" className="transition-colors hover:text-blue-700">
                             Guides
@@ -201,11 +201,11 @@ export default function Header() {
                         </Link>
                         <div className="border-t border-gray-200 my-2"></div>
                         <Link
-                            href="/eligibility-checker"
+                            href="/tools"
                             className="block py-2 text-sm font-semibold hover:text-blue-700"
                             onClick={() => setShowMobileMenu(false)}
                         >
-                            Check Eligibility
+                            Tools
                         </Link>
                         <Link
                             href="/guides"
