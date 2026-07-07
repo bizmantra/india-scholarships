@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db';
+import fs from 'fs';
+import path from 'path';
 
 export async function GET() {
     try {
+        // Explicitly check for the database file at runtime to force Next.js file-tracing
+        const dbFile = path.join(process.cwd(), 'data', 'scholarships.db');
+        if (fs.existsSync(dbFile)) {
+            // Keep dummy reference to avoid compiler optimizations discarding the statement
+            const _size = fs.statSync(dbFile).size;
+        }
+
         const db = getDatabase();
         
         // Fetch only lightweight columns required for search matching and presentation in the autocomplete list

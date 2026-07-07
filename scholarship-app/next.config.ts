@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   serverExternalPackages: ["better-sqlite3"],
+  outputFileTracingIncludes: {
+    '/api/**/*': ['./data/scholarships.db'],
+  },
   async redirects() {
     return [
       // 1. Broken Search Route
