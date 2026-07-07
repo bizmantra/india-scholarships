@@ -173,10 +173,10 @@ export default function EmiClient({ scholarships }: Props) {
                             <span>Check Student Loan EMIs & Subsidies</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
-                            Education Loan Monthly Payment (EMI) Calculator
+                            Education Loan EMI Calculator
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Calculate your monthly payments, see interest accumulated during college, and find ways to reduce your debt.
+                            Use the IndiaScholarships Education Loan EMI Calculator to calculate your monthly payments, see interest accumulated during college, and check if you qualify for government interest subsidy schemes (CSIS).
                         </p>
                     </div>
                 </section>

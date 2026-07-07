@@ -37,9 +37,9 @@ const TOOLS: ToolItem[] = [
     {
         id: 'eligibility-checker',
         title: 'Scholarship Eligibility Checker',
-        description: 'Verify your eligibility for hundreds of government & private schemes instantly based on your profile details.',
+        description: 'Verify your eligibility instantly with the IndiaScholarships Scholarship Eligibility Checker to scan government & private schemes.',
         icon: ShieldCheck,
-        href: '/tools/eligibility-checker',
+        href: '/eligibility-checker',
         badge: 'Popular',
         category: 'matching',
         gradient: 'from-blue-600 to-indigo-600'
@@ -47,44 +47,44 @@ const TOOLS: ToolItem[] = [
     {
         id: 'finder-wizard',
         title: 'Scholarship Finder Wizard',
-        description: 'Guided multi-step diagnostic profile builder to find, narrow down, and recommend matching scholarships.',
+        description: 'Use the IndiaScholarships Scholarship Finder Wizard, a guided multi-step profile builder, to find and match relevant scholarships.',
         icon: Sparkles,
-        href: '/tools/finder-wizard',
+        href: '/tools/scholarship-finder-wizard',
         badge: 'Recommended',
         category: 'matching',
         gradient: 'from-purple-600 to-pink-600'
     },
     {
         id: 'cgpa-calculator',
-        title: 'CGPA ↔ Percentage Converter',
-        description: 'Convert your university CGPA (out of 10 or 4) to exact percentage and verify matching cutoffs instantly.',
+        title: 'CGPA to Percentage Converter',
+        description: 'Convert your academic grades using the IndiaScholarships CGPA to Percentage Converter to check criteria cutoffs.',
         icon: Calculator,
-        href: '/tools/cgpa-calculator',
+        href: '/tools/cgpa-percentage-converter',
         category: 'academic',
         gradient: 'from-emerald-600 to-teal-600'
     },
     {
         id: 'income-calculator',
-        title: 'Family Income Eligibility Tool',
-        description: 'Check if your household income fits under the cap rules for state and central government scholarship schemes.',
+        title: 'Family Income Calculator',
+        description: 'Check your eligibility rules using the IndiaScholarships Family Income Calculator to verify household income caps.',
         icon: Coins,
-        href: '/tools/income-calculator',
+        href: '/tools/family-income-calculator',
         category: 'financial',
         gradient: 'from-amber-500 to-orange-600'
     },
     {
         id: 'amount-calculator',
-        title: 'Scholarship Benefit Estimator',
-        description: 'Estimate your prospective disbursement amount based on educational streams, colleges, and castes.',
+        title: 'Scholarship Amount Calculator',
+        description: 'Estimate your benefits using the IndiaScholarships Scholarship Amount Calculator based on level, course stream, and caste.',
         icon: GraduationCap,
-        href: '/tools/amount-calculator',
+        href: '/tools/scholarship-amount-calculator',
         category: 'financial',
         gradient: 'from-violet-600 to-fuchsia-600'
     },
     {
         id: 'study-cost-calculator',
-        title: 'Study Cost & Gap Calculator',
-        description: 'Plan your higher education expenses (tuition, hostel, books) and discover the exact scholarship funding gap.',
+        title: 'Study Cost Calculator',
+        description: 'Plan educational budgets with the IndiaScholarships Study Cost Calculator to estimate tuition fees and living expenses.',
         icon: BookOpen,
         href: '/tools/study-cost-calculator',
         category: 'financial',
@@ -93,18 +93,18 @@ const TOOLS: ToolItem[] = [
     {
         id: 'loan-emi-calculator',
         title: 'Education Loan EMI Calculator',
-        description: 'Determine your monthly EMI, total interest, and plan repayments with a custom moratorium calendar.',
+        description: 'Determine your student loan repayment metrics with the IndiaScholarships Education Loan EMI Calculator.',
         icon: Calculator,
-        href: '/tools/loan-emi-calculator',
+        href: '/tools/education-loan-emi-calculator',
         category: 'financial',
         gradient: 'from-rose-600 to-red-600'
     },
     {
         id: 'compare',
         title: 'Scholarship Compare Tool',
-        description: 'Select and place multiple scholarship opportunities side-by-side to review rules, criteria, and amounts.',
+        description: 'Review different schemes side-by-side using the IndiaScholarships Scholarship Compare Tool.',
         icon: ArrowLeftRight,
-        href: '/tools/compare',
+        href: '/tools/scholarship-compare-tool',
         badge: 'New',
         category: 'matching',
         gradient: 'from-sky-600 to-indigo-600'

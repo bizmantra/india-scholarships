@@ -178,10 +178,10 @@ export default function IncomeClient({ scholarships }: Props) {
                             <span>Check Scholarship Eligibility</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
-                            Check Scholarship by Family Income
+                            Family Income Calculator
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Check if your family income matches the limits for government and private scholarships.
+                            Use the IndiaScholarships Family Income Calculator to check if your family income matches the limits for government and private scholarships.
                         </p>
                     </div>
                 </section>

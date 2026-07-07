@@ -167,7 +167,7 @@ export default function AmountClient({ scholarships }: Props) {
     };
 
     const handleCopyResults = () => {
-        const text = `I calculated my scholarship benefits for ${level} (${stream}) on IndiaScholarships. Estimated Average Payout: ₹${stats.avg.toLocaleString('en-IN')}/year! Calculate yours: https://www.indiascholarships.in/tools/amount-calculator`;
+        const text = `I calculated my scholarship benefits for ${level} (${stream}) on IndiaScholarships. Estimated Average Payout: ₹${stats.avg.toLocaleString('en-IN')}/year! Calculate yours: https://www.indiascholarships.in/tools/scholarship-amount-calculator`;
         navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
@@ -235,10 +235,10 @@ export default function AmountClient({ scholarships }: Props) {
                             <span>Check Scholarship Money</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
-                            Check Scholarship Amount
+                            Scholarship Amount Calculator
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Find out how much money you can get in scholarships based on your class, category, and stream.
+                            Use the IndiaScholarships Scholarship Amount Calculator to find out how much money you can get in scholarships based on your class, category, and stream.
                         </p>
                     </div>
                 </section>

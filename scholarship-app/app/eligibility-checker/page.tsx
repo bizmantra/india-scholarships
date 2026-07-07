@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { getDatabase, parseCasteField } from '@/lib/db';
-import EligibilityCheckerClient from './EligibilityClient';
+import EligibilityCheckerClient from '../tools/scholarship-eligibility-checker/EligibilityClient';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

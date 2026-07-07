@@ -4,8 +4,8 @@ import IncomeClient from './IncomeClient';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Family Income Eligibility Calculator | IndiaScholarships',
-    description: 'Check your family income eligibility for Indian scholarships. Filter schemes based on your household income caps (e.g. ₹1 lakh, ₹2.5 lakhs, ₹8 lakhs limit).',
+    title: 'Family Income Calculator | IndiaScholarships',
+    description: 'Check your family income eligibility for Indian scholarships using the IndiaScholarships Family Income Calculator.',
 };
 
 export default async function IncomeCalculatorPage() {

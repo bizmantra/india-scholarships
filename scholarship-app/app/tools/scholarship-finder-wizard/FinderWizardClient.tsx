@@ -201,7 +201,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                             Scholarship Finder Wizard
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Build your student profile step-by-step to find matching scholarships to cover your fees and study costs.
+                            Use the IndiaScholarships Scholarship Finder Wizard to build your student profile step-by-step and find matching scholarships to cover your fees.
                         </p>
                     </div>
                 </section>
@@ -477,7 +477,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                         <span className="text-xs text-gray-500 font-bold">Share results:</span>
                                         <ShareButtons 
                                             title={`I found ${results.length} scholarships matching my profile on IndiaScholarships! Try the finder wizard.`}
-                                            url="https://www.indiascholarships.in/tools/finder-wizard"
+                                            url="https://www.indiascholarships.in/tools/scholarship-finder-wizard"
                                         />
                                     </div>
                                 )}

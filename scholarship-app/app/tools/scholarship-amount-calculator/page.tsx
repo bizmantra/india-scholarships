@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Scholarship Amount Calculator | IndiaScholarships',
-    description: 'Calculate and estimate your prospective scholarship disbursement based on education level, stream, and category.',
+    description: 'Calculate and estimate your prospective scholarship disbursement using the IndiaScholarships Scholarship Amount Calculator.',
 };
 
 export default async function AmountCalculatorPage() {

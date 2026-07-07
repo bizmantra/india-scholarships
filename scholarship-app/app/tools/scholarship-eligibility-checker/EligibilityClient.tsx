@@ -258,7 +258,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                             Scholarship Eligibility Checker
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Answer 5 simple questions to instantly check which government and private scholarships you qualify to apply for.
+                            Use the IndiaScholarships Scholarship Eligibility Checker to enter your details and instantly check your eligibility for matching government and private scholarships.
                         </p>
                     </div>
                 </section>
