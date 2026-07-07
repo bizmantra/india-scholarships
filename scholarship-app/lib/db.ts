@@ -139,9 +139,21 @@ function mapWpPostToScholarship(post: any) {
     };
 }
 export function getDatabase() {
-    const db = new Database(dbPath);
-    db.pragma('journal_mode = WAL');
-    return db;
+    try {
+        // Try opening the database in read-write mode (default)
+        const db = new Database(dbPath);
+        try {
+            db.pragma('journal_mode = WAL');
+        } catch (pragmaError) {
+            console.warn('Could not set journal_mode = WAL, continuing:', pragmaError);
+        }
+        return db;
+    } catch (error) {
+        console.warn('Failed to open database in read-write mode, falling back to readonly:', error);
+        // Fallback to read-only mode for serverless environments (e.g., Vercel)
+        const db = new Database(dbPath, { readonly: true });
+        return db;
+    }
 }
 
 // Initialize database schema
