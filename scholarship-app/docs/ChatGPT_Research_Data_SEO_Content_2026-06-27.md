@@ -36,6 +36,8 @@ The database uses a single, denormalized table: `scholarships`. There are no for
 | `last_verified` | TEXT | ISO timestamp of the last verification review. |
 | `is_popular` | INTEGER | Boolean flag (`1` or `0`) forcing display in popular list. |
 | `priority_score` | INTEGER | Sorting weight (`0-100`) used to rank cards. |
+| `scholarship_scope` | TEXT | Scope indicator (`domestic` default, `international` for study-abroad programs). Added July 2026 for CNT-14. |
+| `country_of_study` | TEXT | Destination country for international scholarships (e.g., `United Kingdom`, `United States`). Added July 2026. |
 
 ### Architectural Rationale for Denormalization
 A single-table denormalized model was selected for the following reasons:
@@ -62,6 +64,7 @@ Clean, descriptive, search-intent matched URLs:
 * Domicile Directory: `/scholarships-in/[state]` (e.g., `/scholarships-in/odisha`).
 * Caste Directory: `/scholarships-for/[category]` (e.g., `/scholarships-for/sc-students`).
 * Education level Directory: `/scholarships-level/[level]` (e.g., `/scholarships-level/graduation-ug`).
+* International Scholarships Live Status Tracker Hub: `/scholarships/international` (Tracks verified deadlines, live open/closed status, and eligibility requirements for study-abroad scholarships). Added July 2026 for CNT-14.
 
 ### Metadata Generation
 SEO metadata is generated programmatically in `app/scholarships/[slug]/page.tsx` based on provider type and title heuristics:
