@@ -13,7 +13,7 @@ export default async function FinderWizardPage() {
     
     // Fetch active scholarships
     const scholarships = db.prepare(`
-        SELECT id, slug, title, provider, amount_annual, amount_min, caste, state, level, income_limit, min_marks
+        SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, caste, state, level, income_limit, min_marks
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
