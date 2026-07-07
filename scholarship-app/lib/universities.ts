@@ -55,6 +55,13 @@ export const UNIVERSITIES: University[] = [
     description: "National Institute of Technology Karnataka (NITK) Surathkal coordinates multiple state and national scholarships, alongside institutional fee concessions for category and low-income students.",
     keywords: ["nit surathkal", "nitk"],
     nationalEligible: true
+  },
+  {
+    name: "Delhi University",
+    slug: "delhi-university",
+    description: "Official financial support schemes, merit scholarships, and book grants for undergraduate and postgraduate students at the University of Delhi (DU).",
+    keywords: ["delhi university", "du ", "dean students welfare", "dsw.du.ac.in", "vice chancellor financial support"],
+    nationalEligible: true
   }
 ];
 
