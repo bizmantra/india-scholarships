@@ -90,6 +90,30 @@ try {
         const isLegacy = s.title.startsWith('[LEGACY]') || s.slug.startsWith('legacy-');
         if (isLegacy) stats.legacyCount++;
 
+        // For international scholarships, bypass standard domestic fields checks
+        if (s.scholarship_scope === 'international') {
+            // Check for minimal metadata completeness instead
+            if (!s.deadline || s.deadline.trim() === '') {
+                issues.push('Missing Deadline Date');
+                stats.missingDeadline++;
+            }
+            if (!s.apply_url || s.apply_url.trim() === '') {
+                issues.push('Missing / Bad Apply Link');
+                stats.missingApplyUrl++;
+            }
+            if (issues.length > 0) {
+                stats.totalIssues += issues.length;
+                auditData.push({
+                    id: s.id,
+                    slug: s.slug,
+                    title: s.title,
+                    issuesCount: issues.length,
+                    issuesList: issues.join('; ')
+                });
+            }
+            return;
+        }
+
         // 1. Check Amount
         const amountAnnual = s.amount_annual !== null ? Number(s.amount_annual) : null;
         const amountMin = s.amount_min !== null ? Number(s.amount_min) : null;

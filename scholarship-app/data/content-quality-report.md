@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-07
-Total Scholarships Audited: **317**
-Scholarships with Issues: **134** (42.3%)
+Total Scholarships Audited: **320**
+Scholarships with Issues: **129** (40.3%)
 
 ---
 
@@ -12,17 +12,17 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 61 | 19.2% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 41 | 12.9% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 34 | 10.7% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 89 | 28.1% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 25 | 7.9% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 8 | 2.5% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 37 | 11.7% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 16 | 5.0% | Missing or under 20 characters |
-| **Missing Documents** | 16 | 5.0% | No required documents listed |
+| **Missing Annual Amount** | 57 | 17.8% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 37 | 11.6% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 30 | 9.4% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 88 | 27.5% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 24 | 7.5% | Mentions 2024, 2025, or earlier cycles |
+| **Incomplete Selection Criteria** | 7 | 2.2% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 36 | 11.3% | Missing or under 15 characters |
+| **Incomplete Step Guide** | 15 | 4.7% | Missing or under 20 characters |
+| **Missing Documents** | 15 | 4.7% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 30 | 9.5% | Helpline is empty, "Not Specified", or generic |
+| **Missing Helpline** | 29 | 9.1% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 8 | 2.5% | FAQ block is empty or missing |
 | **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 
@@ -37,7 +37,6 @@ Here are the scholarships with the highest number of content quality issues:
 | `kotak-shiksha-nidhi-scholarship` | **Kotak Shiksha Nidhi Scholarship** | 8 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-03-31); Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents; Missing Helpline Contact Details |
 | `mahadbt-post-matric-scholarship-maharashtra` | **MahaDBT Post-Matric Scholarship (Maharashtra)** | 8 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-11-30); Old Year Reference (e.g. 2024 or 2025 in title or description); Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents; Missing Helpline Contact Details |
 | `legacy-nabanna-scholarship` | **[LEGACY] Nabanna Scholarship** | 7 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents; Missing Helpline Contact Details |
-| `rhodes-scholarship-india` | **Rhodes Scholarship (India)** | 7 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents |
 | `nec-merit-scholarship` | **NEC Merit Scholarship** | 6 | Missing Annual Amount (causes "upto 0k" display); Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents; Missing Helpline Contact Details |
 | `lila-poonawalla-foundation-scholarship` | **Lila Poonawalla Foundation Scholarship** | 6 | Expired Deadline (2026-01-31); Incomplete Selection Criteria (empty); Incomplete Renewal Policy (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents; Missing Helpline Contact Details |
 | `godrej-scholarship-csr-initiatives` | **Godrej Scholarship (CSR Initiatives)** | 6 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Incomplete Renewal Policy (too short: 13 chars); Missing Helpline Contact Details; Missing FAQ Content |
@@ -47,7 +46,6 @@ Here are the scholarships with the highest number of content quality issues:
 | `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-03-15); Incomplete/Missing Step Guide (empty); Missing Required Documents |
 | `central-sector-scholarship-kerala-applicants-via-dce` | **Central Sector Scholarship (Kerala applicants via DCE)** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
 | `tripura-state-merit-scholarship` | **Tripura State Merit Scholarship** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
-| `inlaks-shivdasani-foundation-scholarship` | **Inlaks Shivdasani Foundation Scholarship** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
 | `mahindra-all-india-talent-scholarship` | **Mahindra All India Talent Scholarship** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details; Missing FAQ Content |
 | `op-jindal-engineering-management-scholarship` | **OP Jindal Engineering & Management Scholarship** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details; Missing FAQ Content |
 | `teach-for-india-fellowship` | **Teach For India Fellowship** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details; Missing FAQ Content |
@@ -84,5 +82,7 @@ Here are the scholarships with the highest number of content quality issues:
 | `uchcha-shiksha-protsahan-chhatravriti-yojana` | **Uchcha Shiksha Protsahan Chhatravriti Yojana** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-12-24); Incomplete Renewal Policy (too short: 6 chars) |
 | `dr-ambedkar-medhavi-chattervriti-yojana` | **Dr. Ambedkar Medhavi Chattervriti Yojana** | 3 | Missing Min Amount; Expired Deadline (2025-12-24); Incomplete Renewal Policy (too short: 6 chars) |
 | `prime-minister-special-scholarship-scheme-sssjkl` | **Prime Minister Special Scholarship Scheme (SSSJKL)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-15) |
+| `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
+| `chief-minister-cm-scholarship-sikkim` | **Chief Minister (CM) Scholarship Sikkim** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 134 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 129 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*

@@ -883,7 +883,22 @@ export async function getAllUniversitiesWithCounts() {
     });
     db.close();
     return result;
+
+
+// Get all international scholarships for the hub/tracker page
+export async function getInternationalScholarships() {
+    const db = getDatabase();
+    const rows = db.prepare(`
+        SELECT * FROM scholarships
+        WHERE scholarship_scope = 'international'
+        ORDER BY
+            CASE
+                WHEN deadline IS NULL OR deadline = 'Not specified' OR deadline = 'NA' THEN 2
+                WHEN deadline < date('now') THEN 1
+                ELSE 0
+            END ASC,
+            deadline ASC
+    `).all();
+    db.close();
+    return rows.map(parseScholarship);
 }
-
-
-
