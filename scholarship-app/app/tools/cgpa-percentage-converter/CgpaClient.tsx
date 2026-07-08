@@ -1,22 +1,41 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
-import { Calculator, HelpCircle, GraduationCap, Percent, Share2 } from 'lucide-react';
+import { 
+    Calculator, 
+    Percent, 
+    Sparkles, 
+    ShieldCheck, 
+    HelpCircle, 
+    Coins, 
+    Landmark, 
+    Building2, 
+    Globe, 
+    GraduationCap, 
+    CheckCircle2 
+} from 'lucide-react';
 import ShareButtons from '@/app/components/ShareButtons';
 
 interface Props {
     scholarships: any[];
 }
 
+type TabType = 'government' | 'private' | 'international' | 'all';
+
 export default function CgpaClient({ scholarships }: Props) {
     const [cgpa, setCgpa] = useState<string>('8.0');
     const [scale, setScale] = useState<'10' | '4'>('10');
-    const [formula, setFormula] = useState<'9.5' | '10' | 'us'>('9.5');
+    const [formula, setFormula] = useState<'9.5' | '10'>('9.5');
     const [percentage, setPercentage] = useState<number>(76);
     const [matches, setMatches] = useState<any[]>([]);
+    const [activeTab, setActiveTab] = useState<TabType>('government');
+    const [hasCalculated, setHasCalculated] = useState<boolean>(false);
+    const [calculating, setCalculating] = useState<boolean>(false);
+    const resultsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const val = parseFloat(cgpa);
@@ -34,10 +53,14 @@ export default function CgpaClient({ scholarships }: Props) {
             }
         } else {
             // 4.0 scale conversion
-            // Standard linear conversion: (GPA / 4) * 100
             pct = Math.min(100, (val / 4) * 100);
         }
         setPercentage(parseFloat(pct.toFixed(2)));
+    }, [cgpa, scale, formula]);
+
+    useEffect(() => {
+        // Reset calculation state when inputs change
+        setHasCalculated(false);
     }, [cgpa, scale, formula]);
 
     useEffect(() => {
@@ -46,64 +69,179 @@ export default function CgpaClient({ scholarships }: Props) {
         setMatches(eligible);
     }, [percentage, scholarships]);
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setCalculating(true);
+        setTimeout(() => {
+            setCalculating(false);
+            setHasCalculated(true);
+            setTimeout(() => {
+                resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }, 600);
+    };
+
+    // Helper to dynamically categorize scholarships
+    const getScholarshipCategory = (s: any): TabType => {
+        const titleLower = s.title.toLowerCase();
+        const providerLower = (s.provider || '').toLowerCase();
+        const providerTypeLower = (s.provider_type || '').toLowerCase();
+        const amt = s.amount_annual || s.amount_min || 0;
+
+        if (
+            amt >= 500000 || 
+            titleLower.includes('uk') || 
+            titleLower.includes('us') || 
+            titleLower.includes('cambridge') || 
+            titleLower.includes('fulbright') || 
+            titleLower.includes('commonwealth') || 
+            titleLower.includes('abroad') || 
+            titleLower.includes('foreign') ||
+            providerLower.includes('foreign') ||
+            providerLower.includes('embassy') ||
+            providerTypeLower.includes('international')
+        ) {
+            return 'international';
+        }
+
+        if (
+            providerTypeLower.includes('government') || 
+            providerTypeLower.includes('central') || 
+            providerTypeLower.includes('state') || 
+            providerTypeLower.includes('ut') ||
+            providerTypeLower.includes('ministry') ||
+            providerTypeLower.includes('department') ||
+            providerTypeLower.includes('implementing')
+        ) {
+            return 'government';
+        }
+
+        return 'private';
+    };
+
+    // Filter results by tab
+    const tabFilteredMatches = matches.filter(s => {
+        if (activeTab === 'all') return true;
+        return getScholarshipCategory(s) === activeTab;
+    });
+
+    const getCountForTab = (tab: TabType) => {
+        if (tab === 'all') return matches.length;
+        return matches.filter(s => getScholarshipCategory(s) === tab).length;
+    };
+
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Why do scholarship applications require percentage instead of CGPA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most national and state scholarship portals (such as National Scholarship Portal - NSP, and SSP Karnataka) use standardized percentage cutoffs to evaluate academic merit uniformly across different boards and universities. Converting your CGPA ensures fair ranking."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How is CGPA converted to percentage under the CBSE/AICTE guidelines?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Under CBSE and AICTE guidelines, CGPA is converted to percentage by multiplying the CGPA score by 9.5. For example, a CGPA of 8.0 translates to 8.0 × 9.5 = 76.0%."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I use this tool for a 4.0 scale GPA conversion?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. This converter supports the standard 4.0 scale (common in US universities and select Indian private colleges) by calculating the ratio (GPA / 4) × 100 to yield the corresponding percentage."
+                }
+            }
+        ]
+    };
+
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
+        <div className="min-h-screen bg-gray-50 flex flex-col justify-between font-sans">
+            {/* SEO Schema Injection */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+
             <div>
                 <Header />
-                <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+                {/* Hero Section */}
+                <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-indigo-950 text-white py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.1),transparent)] pointer-events-none" />
+                    <div className="max-w-7xl mx-auto text-center relative z-10">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
+                            <Calculator className="w-3.5 h-3.5" />
+                            <span>Grade Converter Tool</span>
+                        </div>
+                        <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
+                            CGPA to Percentage Converter
+                        </h1>
+                        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                            Use the IndiaScholarships CGPA to Percentage Converter to convert your academic scores into standard percentages and instantly match scholarship eligibility requirements.
+                        </p>
+                    </div>
+                </section>
+
+                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                     {/* Breadcrumbs */}
-                    <div className="text-sm text-gray-500 mb-6">
-                        <a href="/tools" className="hover:text-blue-700 font-medium">Tools</a>
+                    <div className="text-sm text-gray-500 mb-8">
+                        <Link href="/tools" className="hover:text-blue-700 font-medium">Tools</Link>
                         <span className="mx-2">/</span>
                         <span className="text-gray-900 font-semibold">CGPA to Percentage Converter</span>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+                        
                         {/* Calculator Card */}
-                        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs">
-                            <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl mb-6">
-                                <Calculator className="w-6 h-6" />
-                            </div>
-                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                                CGPA ↔ Percentage
-                            </h1>
-                            <p className="text-gray-600 text-sm mb-6">
-                                Quick grade conversion tools for university score requirements.
-                            </p>
-
-                            <div className="space-y-6">
+                        <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
+                            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                <Percent className="w-5 h-5 text-emerald-600" />
+                                <span>Input Your Scores</span>
+                            </h2>
+                            <p className="text-gray-500 text-xs leading-relaxed mb-6">
+                                Choose your scale, type your current CGPA, and select the formula multiplier.
+                            </p>                            <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Grading Scale */}
                                 <div>
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
+                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
                                         Grading Scale
                                     </label>
                                     <div className="grid grid-cols-2 gap-2">
                                         <button
+                                            type="button"
                                             onClick={() => { setScale('10'); setCgpa('8.0'); }}
                                             className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                 scale === '10'
-                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-xs'
+                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/20'
                                                     : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                             }`}
                                         >
-                                            10.0 Scale
+                                            10.0 Scale (Indian Univ/Boards)
                                         </button>
                                         <button
+                                            type="button"
                                             onClick={() => { setScale('4'); setCgpa('3.2'); }}
                                             className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                 scale === '4'
-                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-xs'
+                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/20'
                                                     : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                             }`}
                                         >
-                                            4.0 Scale
+                                            4.0 Scale (US / Abroad)
                                         </button>
                                     </div>
                                 </div>
 
                                 {/* CGPA Value */}
                                 <div>
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
+                                    <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
                                         Enter CGPA / GPA
                                     </label>
                                     <div className="relative">
@@ -125,26 +263,28 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {/* Conversion Formula */}
                                 {scale === '10' && (
                                     <div>
-                                        <label className="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
-                                            Conversion Formula
+                                        <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
+                                            Formula Multiplier
                                         </label>
                                         <div className="grid grid-cols-2 gap-2">
                                             <button
+                                                type="button"
                                                 onClick={() => setFormula('9.5')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '9.5'
-                                                        ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-                                                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-800'
+                                                        : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
                                                 CBSE / AICTE (× 9.5)
                                             </button>
                                             <button
+                                                type="button"
                                                 onClick={() => setFormula('10')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '10'
-                                                        ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
-                                                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-800'
+                                                        : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
                                                 Standard (× 10.0)
@@ -153,79 +293,178 @@ export default function CgpaClient({ scholarships }: Props) {
                                     </div>
                                 )}
 
-                                {/* Output Display */}
-                                <div className="mt-8 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl p-6 text-center shadow-lg shadow-emerald-500/20 relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 p-4 opacity-10">
-                                        <Percent className="w-20 h-20" />
-                                    </div>
-                                    <span className="text-xs uppercase tracking-wider font-extrabold opacity-95 block mb-1">Calculated Percentage</span>
-                                    <span className="text-4xl font-black">{percentage}%</span>
-                                    <p className="text-xs mt-3 text-emerald-100 font-medium">
-                                        {scale === '10' 
-                                            ? `Formula: CGPA (${cgpa}) × ${formula} multiplier` 
-                                            : `Formula: (GPA ${cgpa} / 4) × 100`}
-                                    </p>
-                                </div>
+                                {/* Action Buttons */}
+                                {!hasCalculated && !calculating && (
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3.5 text-xs font-bold transition-all shadow-md shadow-emerald-500/20 flex items-center justify-center gap-1.5 cursor-pointer mt-4"
+                                    >
+                                        <span>Convert CGPA to Percentage →</span>
+                                    </button>
+                                )}
 
-                                <div className="pt-4 border-t">
-                                    <ShareButtons 
-                                        title={`I converted my CGPA of ${cgpa}/${scale} to ${percentage}% on IndiaScholarships! Check yours now.`}
-                                        url="https://www.indiascholarships.in/tools/cgpa-calculator"
-                                    />
-                                </div>
-                            </div>
+                                {calculating && (
+                                    <button
+                                        disabled
+                                        className="w-full bg-emerald-600/80 text-white rounded-xl py-3.5 text-xs font-bold flex items-center justify-center gap-2 cursor-wait mt-4"
+                                    >
+                                        <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                                        </svg>
+                                        <span>Converting Grade Profile...</span>
+                                    </button>
+                                )}
+
+                                {/* Output Display */}
+                                {hasCalculated && (
+                                    <div className="space-y-6">
+                                        <div className="mt-8 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-6 text-center shadow-lg shadow-emerald-500/20 relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 p-4 opacity-10">
+                                                <Percent className="w-20 h-20" />
+                                            </div>
+                                            <span className="text-[10px] uppercase tracking-wider font-extrabold opacity-90 block mb-1">Calculated Percentage</span>
+                                            <span className="text-4xl font-black">{percentage}%</span>
+                                            <p className="text-xs mt-3 text-emerald-100 font-medium">
+                                                {scale === '10' 
+                                                    ? `Formula: CGPA (${cgpa}) × ${formula} multiplier` 
+                                                    : `Formula: (GPA ${cgpa} / 4) × 100`}
+                                            </p>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            className="w-full py-2.5 border border-emerald-200 hover:border-emerald-300 text-emerald-700 font-bold rounded-xl text-xs bg-emerald-50/50 hover:bg-emerald-50 transition-all flex items-center justify-center gap-1 cursor-pointer"
+                                        >
+                                            <span>Recalculate Percentage →</span>
+                                        </button>
+
+                                        <div className="pt-4 border-t border-gray-100">
+                                            <ShareButtons 
+                                                title={`I converted my CGPA of ${cgpa}/${scale} to ${percentage}% on IndiaScholarships! Check yours.`}
+                                                url="https://www.indiascholarships.in/tools/cgpa-percentage-converter"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+                            </form>
                         </div>
 
                         {/* Recommendation Panel */}
-                        <div className="lg:col-span-7 space-y-6">
-                            <div className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-xs">
-                                <div className="flex items-center justify-between mb-6">
-                                    <div>
-                                        <h2 className="text-xl font-bold text-gray-900">Recommended Scholarships</h2>
-                                        <p className="text-gray-500 text-xs mt-1">Based on minimum academic marks criteria of {percentage}%</p>
+                        <div className="lg:col-span-7 space-y-6" ref={resultsRef}>
+                            {hasCalculated ? (
+                                <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                                        <div>
+                                            <h2 className="text-xl font-bold text-gray-900 font-serif">Recommended Scholarships</h2>
+                                            <p className="text-gray-500 text-xs mt-1">Matched schemes requiring a score of ≤ {percentage}%</p>
+                                        </div>
+                                        <span className="self-start sm:self-center px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-bold rounded-full">
+                                            {matches.length} Matches Found
+                                        </span>
                                     </div>
-                                    <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-bold rounded-full">
-                                        {matches.length} Matches
-                                    </span>
-                                </div>
 
-                                {matches.length > 0 ? (
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        {matches.slice(0, 4).map((s) => (
-                                            <div key={s.id} className="border border-gray-100 rounded-xl p-4 hover:border-emerald-500 transition-all bg-slate-50/50 flex flex-col justify-between">
-                                                <div>
-                                                    <span className="text-[10px] font-extrabold uppercase text-emerald-700 tracking-wider">Requires ≥ {s.min_marks}% Marks</span>
-                                                    <h4 className="font-bold text-sm text-gray-900 mt-1 line-clamp-2 leading-snug">{s.title}</h4>
-                                                    <p className="text-xs text-gray-500 mt-2">Amount: ₹{(s.amount_annual || s.amount_min || 0).toLocaleString('en-IN')}</p>
-                                                </div>
-                                                <a 
-                                                    href={`/scholarships/${s.slug}`}
-                                                    className="inline-block mt-4 text-xs font-bold text-emerald-600 hover:text-emerald-700"
+                                    {/* Category Tabs */}
+                                    <div className="flex border-b border-gray-200 mb-6 gap-1 overflow-x-auto pb-1">
+                                        {[
+                                            { id: 'government', label: 'Government', icon: Landmark },
+                                            { id: 'private', label: 'Private & Corporate', icon: Building2 },
+                                            { id: 'international', label: 'Study Abroad', icon: Globe },
+                                            { id: 'all', label: 'Show All', icon: Coins }
+                                        ].map((tab) => {
+                                            const Icon = tab.icon;
+                                            const count = getCountForTab(tab.id as TabType);
+                                            return (
+                                                <button
+                                                    key={tab.id}
+                                                    type="button"
+                                                    onClick={() => setActiveTab(tab.id as TabType)}
+                                                    className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
+                                                        activeTab === tab.id
+                                                            ? 'border-emerald-600 text-emerald-700 bg-emerald-50/50'
+                                                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                                    }`}
                                                 >
-                                                    View Details →
-                                                </a>
-                                            </div>
-                                        ))}
+                                                    <Icon className="w-3.5 h-3.5" />
+                                                    <span>{tab.label}</span>
+                                                    <span className={`px-1.5 py-0.5 rounded-full text-[9px] ${
+                                                        activeTab === tab.id
+                                                            ? 'bg-emerald-600 text-white font-extrabold'
+                                                            : 'bg-gray-100 text-gray-600'
+                                                    }`}>
+                                                        {count}
+                                                    </span>
+                                                </button>
+                                            );
+                                        })}
                                     </div>
-                                ) : (
-                                    <div className="text-center py-12 border border-dashed border-gray-200 rounded-xl">
-                                        <p className="text-gray-500 font-semibold mb-2">No scholarships found requiring {percentage}% marks</p>
-                                        <p className="text-xs text-gray-400">Try adjusting your score to see matching opportunities.</p>
-                                    </div>
-                                )}
 
-                                {matches.length > 4 && (
-                                    <div className="text-center mt-6">
-                                        <a 
-                                            href={`/eligibility-checker?marks=${percentage}`}
-                                            className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-xl hover:bg-emerald-100 transition-colors"
-                                        >
-                                            <span>View All {matches.length} Schemes</span>
-                                        </a>
-                                    </div>
-                                )}
+                                    {tabFilteredMatches.length > 0 ? (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {tabFilteredMatches.slice(0, 6).map((s) => (
+                                                <ScholarshipCard
+                                                    key={s.id}
+                                                    scholarship={s}
+                                                    viewMode="grid"
+                                                />
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="text-center py-12 border border-dashed border-gray-200 rounded-xl">
+                                            <p className="text-gray-500 font-semibold mb-2">No matching scholarships in this category</p>
+                                            <p className="text-xs text-gray-400">Try selecting standard multipliers or checking other tabs.</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs text-center py-16 flex flex-col items-center justify-center">
+                                    <GraduationCap className="w-16 h-16 text-gray-300 mb-4 animate-pulse" />
+                                    <h3 className="text-lg font-bold text-gray-900 font-serif mb-2">Find Matching Scholarships</h3>
+                                    <p className="text-gray-500 text-xs max-w-sm mx-auto leading-relaxed">
+                                        Enter your CGPA and click "Convert CGPA to Percentage" to instantly scan and display qualifying government and private scholarships.
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+
+                    </div>
+
+                    {/* Educational / Content Sections */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-16">
+                        
+                        {/* Why This Matters */}
+                        <div className="space-y-4">
+                            <h3 className="text-2xl font-black text-gray-900 font-serif">Why This Converter Matters</h3>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                                Most state and central government scholarship portals in India (such as the National Scholarship Portal - NSP, and State SSP portals) request academic marks strictly in percentages during registration. 
+                            </p>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                                However, most universities and high schools grade students using Cumulative Grade Point Average (CGPA). Not converting your grades correctly or entering the wrong percentage can result in your application being rejected during document verification by nodal officers.
+                            </p>
+                        </div>
+
+                        {/* How it Helps & Examples */}
+                        <div className="space-y-4">
+                            <h3 className="text-2xl font-black text-gray-900 font-serif">How to Calculate: Real Examples</h3>
+                            <div className="bg-slate-50 border border-gray-200 rounded-2xl p-6 space-y-4">
+                                <div className="border-b pb-3">
+                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario A: CBSE Board Class 10/12</span>
+                                    <p className="text-gray-700 font-semibold text-sm">CGPA: 8.4</p>
+                                    <p className="text-gray-500 text-xs mt-1">Calculation: 8.4 × 9.5 = <strong className="text-gray-800">79.8%</strong></p>
+                                </div>
+                                <div className="border-b pb-3">
+                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario B: University AICTE Standard</span>
+                                    <p className="text-gray-700 font-semibold text-sm">CGPA: 7.5</p>
+                                    <p className="text-gray-500 text-xs mt-1">Calculation: 7.5 × 10 = <strong className="text-gray-800">75.0%</strong></p>
+                                </div>
+                                <div>
+                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario C: International GPA Scale</span>
+                                    <p className="text-gray-700 font-semibold text-sm">GPA: 3.6 / 4.0</p>
+                                    <p className="text-gray-500 text-xs mt-1">Calculation: (3.6 / 4) × 100 = <strong className="text-gray-800">90.0%</strong></p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </main>
             </div>

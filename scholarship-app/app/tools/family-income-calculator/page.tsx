@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDatabase } from '@/lib/db';
+import { getDatabase, parseCasteField } from '@/lib/db';
 import IncomeClient from './IncomeClient';
 import type { Metadata } from 'next';
 
@@ -13,7 +13,7 @@ export default async function IncomeCalculatorPage() {
     
     // Fetch all active scholarships
     const scholarships = db.prepare(`
-        SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, income_limit, deadline, level, state
+        SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, caste, income_limit, deadline, level, state
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
@@ -21,9 +21,14 @@ export default async function IncomeCalculatorPage() {
 
     db.close();
 
+    const parsedScholarships = scholarships.map((s: any) => ({
+        ...s,
+        caste: parseCasteField(s.caste)
+    }));
+
     return (
         <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center text-gray-500">Loading Income Calculator...</div>}>
-            <IncomeClient scholarships={scholarships} />
+            <IncomeClient scholarships={parsedScholarships} />
         </Suspense>
     );
 }
