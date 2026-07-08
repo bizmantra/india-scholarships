@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Scholarship Finder Wizard | IndiaScholarships',
-    description: 'Use the guided step-by-step IndiaScholarships Scholarship Finder Wizard to build your student profile and find matching Indian scholarships.',
+    description: 'Guided step-by-step interactive questionnaire to build your student profile and find matching Indian scholarships.',
 };
 
 export default async function FinderWizardPage() {
@@ -13,7 +13,7 @@ export default async function FinderWizardPage() {
     
     // Fetch active scholarships
     const scholarships = db.prepare(`
-        SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, caste, state, level, income_limit, min_marks
+        SELECT id, slug, title, provider, amount_annual, amount_min, caste, state, level, income_limit, min_marks
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC

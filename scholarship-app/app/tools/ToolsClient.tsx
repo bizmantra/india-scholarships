@@ -47,9 +47,9 @@ const TOOLS: ToolItem[] = [
     {
         id: 'finder-wizard',
         title: 'Scholarship Finder Wizard',
-        description: 'Use the IndiaScholarships Scholarship Finder Wizard, a guided multi-step profile builder, to find and match relevant scholarships.',
+        description: 'Guided multi-step diagnostic profile builder to find, narrow down, and recommend matching scholarships.',
         icon: Sparkles,
-        href: '/tools/scholarship-finder-wizard',
+        href: '/tools/finder-wizard',
         badge: 'Recommended',
         category: 'matching',
         gradient: 'from-purple-600 to-pink-600'
