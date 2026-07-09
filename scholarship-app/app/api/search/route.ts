@@ -58,8 +58,21 @@ export async function GET() {
 
     } catch (error) {
         console.error('Search index fetch error:', error);
+        
+        // Return diagnostics in the error details to see candidate paths at runtime
+        const diagnostics = {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            cwd: process.cwd(),
+            candidatesExist: {
+                cwd_data: fs.existsSync(path.join(process.cwd(), 'data', 'scholarships.db')),
+                cwd_next_server: fs.existsSync(path.join(process.cwd(), '.next', 'server', 'data', 'scholarships.db')),
+                var_task_data: fs.existsSync(path.join('/var/task', 'data', 'scholarships.db')),
+                var_task_sub_data: fs.existsSync(path.join('/var/task', 'scholarship-app', 'data', 'scholarships.db')),
+            }
+        };
+
         return NextResponse.json(
-            { error: 'Failed to fetch search index', details: error instanceof Error ? error.message : 'Unknown error' },
+            { error: 'Failed to fetch search index', details: diagnostics },
             { status: 500 }
         );
     }

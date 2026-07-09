@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
   },
   serverExternalPackages: ["better-sqlite3"],
   outputFileTracingIncludes: {
-    '/**/*': ['./data/scholarships.db'],
+    '/*': ['./data/scholarships.db'],
+    '/api/search': ['./data/scholarships.db'],
   },
   async redirects() {
     return [
