@@ -4,8 +4,9 @@ const Database = require('better-sqlite3');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-if (!GEMINI_API_KEY) {
-    console.error("❌ Error: GEMINI_API_KEY is not defined in .env.local");
+const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
+if (!GEMINI_API_KEY && !PERPLEXITY_API_KEY) {
+    console.error("❌ Error: Neither GEMINI_API_KEY nor PERPLEXITY_API_KEY is defined in .env.local");
     process.exit(1);
 }
 
@@ -63,6 +64,72 @@ const batch = targets.slice(offset, offset + limit);
 console.log(`👉 Processing batch of ${batch.length} scholarships (Offset: ${offset}, Limit: ${limit})...\n`);
 
 async function callGemini(title, provider) {
+    if (PERPLEXITY_API_KEY) {
+        const prompt = `Research the official details for the "${title}" scholarship by ${provider} in India for the academic year 2025-26 or 2026.
+Generate structured content targeting student and parent intent.
+You MUST search the web to find the accurate, current values.
+
+You must respond with a single, valid JSON object matching the following schema. Do NOT wrap it in markdown code blocks.
+JSON Schema:
+{
+  "amount_annual": integer (Estimated or exact highest annual amount in INR. 0 if variable/unknown),
+  "amount_min": integer (Minimum annual amount in INR. 0 if unknown),
+  "amount_description": string (Describe the amount, payment schedule, and Direct Benefit Transfer (DBT) to Aadhaar-seeded accounts details),
+  "min_marks": integer (Minimum percentage marks required. 0 if none/unknown),
+  "selection": string (Clear description of how candidates are selected),
+  "renewal": string (Clear conditions for annual renewal and the process),
+  "helpline": string (Official support phone numbers and email address, comma-separated),
+  "official_source": string (Official department/provider URL),
+  "apply_url": string (Official direct application form/portal link URL),
+  "step_guide": string (Markdown instructions detailing how to register, apply, and track status online),
+  "faq_json": [
+    {
+      "question": string (FAQ question),
+      "answer": string (FAQ answer)
+    }
+  ] (Exactly 3 critical FAQ questions and answers solving parent/student anxieties)
+}
+
+Provide ONLY the raw JSON object.`;
+
+        const url = 'https://api.perplexity.ai/chat/completions';
+        const payload = {
+            model: "sonar",
+            messages: [
+                {
+                    role: "system",
+                    content: "You are a helpful assistant that performs thorough web searches and always outputs valid JSON matching the requested schema. Return only raw JSON, no markdown formatting."
+                },
+                {
+                    role: "user",
+                    content: prompt
+                }
+            ],
+            response_format: {
+                type: "json_object"
+            }
+        };
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Perplexity API error: ${response.status} - ${errorText}`);
+        }
+
+        const data = await response.json();
+        const contentText = data.choices[0].message.content;
+        return JSON.parse(contentText.trim());
+    }
+
+    // Fall back to Gemini
     const prompt = `Research the official details for the "${title}" scholarship by ${provider} in India for the academic year 2025-26 or 2026.
 Generate structured content targeting student and parent intent (e.g. disbursement details, selection criteria, renewal conditions, status tracking guides, and critical FAQs).
 You must search Google to find the accurate, current values.`;

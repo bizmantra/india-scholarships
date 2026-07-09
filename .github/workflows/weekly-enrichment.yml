@@ -42,13 +42,14 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Run Gemini Grounding Enrichment
+      - name: Run Grounding Enrichment (Gemini / Perplexity)
         # Only run automated AI enrichment on schedule or dispatch, not on commits/PRs
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 20
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
           NODE_ENV: production
 
       - name: Commit and push changes if updated
