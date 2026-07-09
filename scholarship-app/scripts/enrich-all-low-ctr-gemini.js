@@ -106,7 +106,7 @@ Provide ONLY the raw JSON object.`;
                 }
             ],
             response_format: {
-                type: "json_object"
+                type: "text"
             }
         };
 
