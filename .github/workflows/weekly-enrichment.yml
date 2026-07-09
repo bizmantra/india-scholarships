@@ -46,7 +46,7 @@ jobs:
         # Only run automated AI enrichment on schedule or dispatch, not on commits/PRs
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 20
+          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 50
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}

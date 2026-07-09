@@ -37,27 +37,57 @@ const pageList = pages.slice(1).map(p => ({
     pos: Number(p[4] || 0)
 }));
 
-// Identify all low CTR detail pages (Impressions > 5,000, CTR < 2.0%)
-const lowCtrDetails = pageList.filter(p => p.url.startsWith('/scholarships/') && p.impressions > 5000 && parseFloat(p.ctr) < 2.0);
-console.log(`📊 Found ${lowCtrDetails.length} total low-CTR pages in GSC data.`);
+// 1. Identify Top 25 Low-CTR pages (Impressions > 5,000, CTR < 2.0%) sorted by impressions
+const lowCtrCandidates = pageList
+    .filter(p => p.url.startsWith('/scholarships/') && p.impressions > 5000 && parseFloat(p.ctr) < 2.0)
+    .sort((a, b) => b.impressions - a.impressions);
 
-// Resolve slugs that exist in the database
-const targets = [];
-lowCtrDetails.forEach(page => {
+const lowCtrTargets = [];
+for (const page of lowCtrCandidates) {
+    if (lowCtrTargets.length >= 25) break;
     const slug = page.url.replace('/scholarships/', '');
     const row = db.prepare('SELECT id, title, provider FROM scholarships WHERE slug = ?').get(slug);
     if (row) {
-        targets.push({
+        lowCtrTargets.push({
             slug: slug,
             title: row.title,
             provider: row.provider || 'State/Central Government',
             impressions: page.impressions,
-            ctr: page.ctr
+            ctr: page.ctr,
+            reason: 'Low-CTR Improvement'
         });
     }
-});
+}
 
-console.log(`🎯 ${targets.length} targets match existing database records.`);
+// 2. Identify Top 25 High-Traffic pages (regardless of CTR) sorted by impressions, avoiding duplicates
+const highTrafficCandidates = pageList
+    .filter(p => p.url.startsWith('/scholarships/'))
+    .sort((a, b) => b.impressions - a.impressions);
+
+const highTrafficTargets = [];
+for (const page of highTrafficCandidates) {
+    if (highTrafficTargets.length >= 25) break;
+    const slug = page.url.replace('/scholarships/', '');
+    if (lowCtrTargets.some(t => t.slug === slug)) continue;
+
+    const row = db.prepare('SELECT id, title, provider FROM scholarships WHERE slug = ?').get(slug);
+    if (row) {
+        highTrafficTargets.push({
+            slug: slug,
+            title: row.title,
+            provider: row.provider || 'State/Central Government',
+            impressions: page.impressions,
+            ctr: page.ctr,
+            reason: 'High-Traffic Freshness Check'
+        });
+    }
+}
+
+const targets = [...lowCtrTargets, ...highTrafficTargets];
+console.log(`📊 GSC Target Selection:`);
+console.log(`   - Top Low-CTR targets selected: ${lowCtrTargets.length}`);
+console.log(`   - Top High-Traffic targets selected: ${highTrafficTargets.length}`);
+console.log(`   - Total unique targets: ${targets.length}`);
 
 // Slice to batch limit/offset
 const batch = targets.slice(offset, offset + limit);
@@ -239,11 +269,11 @@ async function runEnrichment() {
     for (let i = 0; i < batch.length; i++) {
         const item = batch[i];
         console.log(`[${i + 1}/${batch.length}] 🔍 Researching: "${item.title}" (${item.slug})`);
-        console.log(`   - GSC: ${item.impressions.toLocaleString()} imps | ${item.ctr} CTR`);
+        console.log(`   - GSC: ${item.impressions.toLocaleString()} imps | ${item.ctr} CTR | Reason: ${item.reason}`);
         
         try {
             const data = await callGemini(item.title, item.provider);
-            console.log(`   ✅ Research fetched via Gemini Grounding.`);
+            console.log(`   ✅ Research fetched successfully.`);
             console.log(`      • Amount: ₹${data.amount_annual} (Min: ₹${data.amount_min})`);
             console.log(`      • Marks: ${data.min_marks}%`);
             console.log(`      • Source: ${data.official_source}`);
