@@ -4,8 +4,6 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
-
 export async function generateMetadata() {
     const currentMonth = new Date().toLocaleString('en-IN', { month: 'long' });
     const currentYear = new Date().getFullYear();
