@@ -18,6 +18,8 @@ For a deep-dive technical overview of the platform, data schema, SEO strategy, a
 * **[Platform Generalization Proposal](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Platform_Generalization_2026-06-27.md)**: Redesign strategy for transforming the site into a multi-tenant generic directory platform (Colleges, Schemes, Jobs, Finance) using polymorphic schemas.
 * **[ChatGPT Onboarding Advice](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_ChatGPT_Onboarding_Advice_2026-06-27.md)**: Instructions, pitfalls (write-locks, build memory), reservation taxonomy specifics, and developer onboarding pointers.
 * **[Claude Onboarding Brief](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Claude_Onboarding_Brief_2026-06-27.md)**: Copy-pasteable system context prompt specifically designed to bootstrap Claude (or a fresh ChatGPT thread) with the full project context.
+* **[Local Backlog & Kanban Board Guide](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/backlog-system.md)**: Explains the offline JSON/Markdown tracking files, Next.js interactive Kanban interface, and local MCP server configuration.
+* **[Decision Log (ADRs)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/decision-log/)**: Log of Architectural Decision Records, including the transition to local tracking (ADR-006).
 
 ## Running the Active Project
 

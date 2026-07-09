@@ -1,0 +1,138 @@
+[
+  {
+    "id": "CNT-2",
+    "title": "University scholarship Hubs",
+    "description": "",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-3",
+    "title": "Research & add top 5 UP State Scholarships",
+    "description": "Context / Why it matters:\nUttar Pradesh state scholarships (like Pre-Matric, Post-Matric, and Dashmesh-Uttar) have massive search volumes in GSC, but our database currently has thin coverage.\n\nPlan / What to do:\nResearch and enrich the top 5 UP State Scholarships with complete 29-field details and structured FAQs. Sync to WordPress.",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-17",
+    "title": "State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)",
+    "description": "",
+    "impact": "Critical",
+    "status": "In Progress",
+    "type": ""
+  },
+  {
+    "id": "CNT-4",
+    "title": "Delhi University (DU) Hub & Scholarship Research",
+    "description": "Research official DU internal fee waivers, college-specific awards, and build the DU scholarship hub landing page.",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-5",
+    "title": "Category B University Hubs & Research (JNU, BHU, AMU, JMI, UoH)",
+    "description": "Research official internal schemes and build scholarship hubs for JNU, BHU, AMU, JMI, and Hyderabad University (UoH).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-6",
+    "title": "Category C & D University Hubs & Research (Anna Uni, VTU, SPPU, AKTU, Ashoka, VIT, MAHE)",
+    "description": "Research official internal schemes and build scholarship hubs for state technical universities (Anna University, VTU, SPPU, AKTU) and private universities (Ashoka, VIT, Manipal).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-16",
+    "title": "Fix leaked internal verification notes appearing in public deadline fields (Karnataka)",
+    "description": "",
+    "impact": "High",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-15",
+    "title": "Fix \"31 Dec 2099\" placeholder date leaking into public deadline field (Odisha)",
+    "description": "",
+    "impact": "High",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-7",
+    "title": "BHU & AMU Hubs & Research",
+    "description": "Research official internal schemes and build scholarship hubs for Banaras Hindu University (BHU) and Aligarh Muslim University (AMU).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-8",
+    "title": "JNU & Jamia Millia Islamia (JMI) Hubs & Research",
+    "description": "Research official internal schemes and build scholarship hubs for Jawaharlal Nehru University (JNU) and Jamia Millia Islamia (JMI).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-9",
+    "title": "University of Hyderabad (UoH) Hub & Research",
+    "description": "Research official internal schemes and build scholarship hub for University of Hyderabad (UoH).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-10",
+    "title": "Anna University & VTU Hubs & Research",
+    "description": "Research official internal schemes and build scholarship hubs for Anna University (TN) and Visvesvaraya Technological University (VTU, Karnataka).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-11",
+    "title": "SPPU (Pune) & AKTU (UP) Hubs & Research",
+    "description": "Research official internal schemes and build scholarship hubs for Savitribai Phule Pune University (SPPU) and Dr. A.P.J. Abdul Kalam Technical University (AKTU, UP).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-12",
+    "title": "Ashoka, VIT & Manipal (MAHE) Hubs & Research",
+    "description": "Research official internal schemes and build scholarship hubs for Ashoka University, Vellore Institute of Technology (VIT), and Manipal Academy of Higher Education (MAHE).",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-13",
+    "title": "Enrich High-Value Private/Corporate Scholarships (Tata Pankh, Aditya Birla, FAEA, Reliance)",
+    "description": "Perform deep research, consolidate FAEA entries, update amounts/docs/FAQs, and sync to live WordPress site.",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-14",
+    "title": "Research & scope International High-Value Scholarships (study-abroad content track)",
+    "description": "GOAL: Explore a new content track — international/study-abroad scholarships for Indian students — as a Phase 2 expansion beyond the 251 domestic scholarships. Use Antigravity to continue research + population once scoped.\n\nCANDIDATE LIST (from initial research):\n- Fulbright-Nehru (USA) — $35-45K/yr, fully funded\n- Chevening (UK) — £50K+, ~8-10% acceptance for Indians\n- DAAD (Germany) — €992-1200/mo, free public-uni tuition\n- Erasmus Mundus (EU) — ~€1000-1400/mo, no central portal (fragmented by consortium)\n- Commonwealth Master's (UK) — fully funded, <1% acceptance\n- Inlaks Shivdasani — up to $100K, excludes most engineering/CS\n- JN Tata Endowment — loan up to ₹20L, repayable 7 yrs\n- Rhodes / Gates Cambridge (UK) — fully funded, very low volume\n- MEXT (Japan) — fully funded, less saturated content space\n\nKEY FINDINGS / CAUTIONS FROM SCOPING DISCUSSION:\n1. RPM logic check: RPM is driven by visitor geography at click time, not topic — writing about study-abroad scholarships does NOT automatically raise RPM since readers are still browsing from India. Real RPM lever is content adjacency to high-CPC verticals (education loans, forex cards, IELTS/GRE prep, visa/consultancy services) — build these as connective content around scholarship pages, not instead of them.\n2. Competitive reality: Buddy4Study, LeapScholar, upGrad, GyanDhan, Leverage Edu already dominate SERPs for every major international scholarship name (Chevening, Fulbright-Nehru, DAAD, etc.) with much larger DA/backlink profiles. Standalone \"[Scholarship] eligibility\" pages are a weak differentiation play here — our 29-field/verified-decision-engine moat doesn't transfer topical authority from domestic to this new lane (Google evaluates by topical cluster, not domain-wide).\n3. Keyword reality: no meaningful search volume exists for a generic \"international scholarship tracker\" query. Real demand pattern is per-scholarship: \"[Scholarship Name] + last date to apply / eligibility / 2026-27\" — same modifier pattern already proven on our domestic deadline tracker (live: http://indiascholarships.in/scholarships/deadlines) and used site-wide by Buddy4Study.\n4. Where a genuine opening exists: a live, verified \"which international scholarships are open right now\" status page — nobody maintains this well for the international set (smaller competitor DesiUtils does something similar). This plays directly to our verification-first positioning and reuses the same deadline-tracker pattern we just shipped domestically.\n5. Natural bridge asset already in DB: Odisha's Videsh Siksha Bruti (up to ₹25L for SC/ST students going abroad) — cross-link candidate between domestic and international content once this track exists.\n\nSCHEMA NOTE: international scholarships need their own lighter data structure vs. the 29-field domestic template — currency conversion, cycle-based (not fixed annual) deadlines, no income/caste eligibility fields, consortium-level fragmentation (e.g. Erasmus Mundus has no single portal).\n\nNEXT STEPS: scope with Antigravity — pilot with a small subset (5-8 scholarships) styled as a status tracker + individual pages only where a genuinely differentiated angle exists (e.g. MEXT, Erasmus Mundus fragmentation), rather than competing head-on on saturated terms like Chevening/Fulbright.",
+    "impact": "",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "CNT-18",
+    "title": "PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)",
+    "description": "",
+    "impact": "Critical",
+    "status": "In Progress",
+    "type": ""
+  }
+]
