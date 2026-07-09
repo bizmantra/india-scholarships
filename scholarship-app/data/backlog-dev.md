@@ -37,14 +37,14 @@
     Trigger:
     NOW tasks complete
 
-- [ ] **IS-13**: Add GitHub secrets — GEMINI_API_KEY + VERCEL_DEPLOY_HOOK
+- [ ] **IS-13**: Add GitHub secrets — PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK
   - **Impact**: Medium
   - **Description**:
     Context / Why it matters:
     The GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.
     
     Plan / What to do:
-    Go to GitHub repo → Settings → Secrets → Actions. Add GEMINI_API_KEY (from Google AI Studio) and VERCEL_DEPLOY_HOOK (Vercel → Project Settings → Git → Deploy Hooks → create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.
+    Go to GitHub repo → Settings → Secrets → Actions. Add PERPLEXITY_API_KEY (or GEMINI_API_KEY) and VERCEL_DEPLOY_HOOK (Vercel → Project Settings → Git → Deploy Hooks → create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.
 
 - [ ] **IS-14**: Education loan affiliate — HDFC Credila or Avanse
   - **Impact**: High

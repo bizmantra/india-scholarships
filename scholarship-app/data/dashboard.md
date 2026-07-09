@@ -1,7 +1,7 @@
 # 📊 IndiaScholarships — Project Dashboard
 
 > 🌐 **Live**: https://www.indiascholarships.in | **GitHub**: bizmantra/india-scholarships | **Hosting**: Vercel
-> 🕐 **Last Refreshed**: Thursday, 9 July 2026 at 12:55 pm IST
+> 🕐 **Last Refreshed**: Thursday, 9 July 2026 at 1:29 pm IST
 
 ## 📊 Key Metrics
 
@@ -37,7 +37,7 @@
 ## 📋 Backlog — Up Next (Dev)
 
 - IS-4 — Email capture on eligibility checker results screen
-- IS-13 — Add GitHub secrets — GEMINI_API_KEY + VERCEL_DEPLOY_HOOK
+- IS-13 — Add GitHub secrets — PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK
 - IS-14 — Education loan affiliate — HDFC Credila or Avanse
 - IS-15 — Apply to Ezoic for premium ad monetisation
 - IS-16 — WhatsApp alert subscription (MSG91/Twilio)

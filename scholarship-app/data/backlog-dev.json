@@ -97,8 +97,8 @@
   },
   {
     "id": "IS-13",
-    "title": "Add GitHub secrets \u2014 GEMINI_API_KEY + VERCEL_DEPLOY_HOOK",
-    "description": "Context / Why it matters:\nThe GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.\n\nPlan / What to do:\nGo to GitHub repo \u2192 Settings \u2192 Secrets \u2192 Actions. Add GEMINI_API_KEY (from Google AI Studio) and VERCEL_DEPLOY_HOOK (Vercel \u2192 Project Settings \u2192 Git \u2192 Deploy Hooks \u2192 create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.",
+    "title": "Add GitHub secrets — PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK",
+    "description": "Context / Why it matters:\nThe GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.\n\nPlan / What to do:\nGo to GitHub repo → Settings → Secrets → Actions. Add PERPLEXITY_API_KEY (or GEMINI_API_KEY) and VERCEL_DEPLOY_HOOK (Vercel → Project Settings → Git → Deploy Hooks → create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.",
     "impact": "Medium",
     "status": "Backlog",
     "type": ""
