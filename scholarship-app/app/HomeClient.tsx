@@ -104,128 +104,93 @@ export default function HomeClient({
                 </section>
 
                 {/* Browse Section */}
-                <section className="py-12 container mx-auto px-6">
+                <section className="py-10 container mx-auto px-6 max-w-5xl">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-black mb-2 font-serif tracking-tight text-gray-900">Find Scholarships Based on Your Need</h2>
-                        <p className="text-gray-500 text-base font-medium">Browse opportunities by category, state, and eligibility</p>
+                        <h2 className="text-2xl font-black mb-2 font-serif tracking-tight text-gray-900">Find Scholarships Based on Your Need</h2>
+                        <p className="text-gray-500 text-sm font-medium">Browse opportunities by category, state, and eligibility</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                         {[
                             {
                                 icon: MapPin,
-                                title: 'State-wise Scholarships in India',
-                                description: 'Find scholarships in your state',
+                                title: 'State-wise Schemes',
                                 href: '/state-scholarships',
-                                color: 'blue',
-                                count: totalStates
+                                color: 'blue'
                             },
                             {
                                 icon: Globe,
-                                title: 'Government Scholarships',
-                                description: 'State & National level schemes',
+                                title: 'Government Portals',
                                 href: '/government-scholarships',
-                                color: 'emerald',
-                                count: null
+                                color: 'emerald'
                             },
                             {
                                 icon: Users,
-                                title: 'Scholarships for SC / ST / OBC / Minority Students',
-                                description: 'Category-specific programs',
+                                title: 'Caste & Categories',
                                 href: '/scholarships-by-category',
-                                color: 'purple',
-                                count: null
+                                color: 'purple'
                             },
                             {
                                 icon: ShieldCheck,
-                                title: 'Private Scholarships',
-                                description: 'Foundation & NGO programs',
+                                title: 'Private Trust / NGO',
                                 href: '/private-scholarships',
-                                color: 'indigo',
-                                count: null
+                                color: 'indigo'
+                            },
+                            {
+                                icon: Target,
+                                title: 'Corporate CSR Grants',
+                                href: '/corporate-scholarships',
+                                color: 'pink'
                             },
                             {
                                 icon: GraduationCap,
-                                title: 'Scholarships After 10th / 12th',
-                                description: 'School & Higher Secondary',
+                                title: 'By Education Level',
                                 href: '/scholarships-by-education',
-                                color: 'green',
-                                count: null
+                                color: 'green'
                             },
                             {
                                 icon: IndianRupee,
-                                title: 'Scholarships for Low Income Families',
-                                description: 'Based on family income',
+                                title: 'Low Income Families',
                                 href: '/scholarships-by-income',
-                                color: 'orange',
-                                count: null
+                                color: 'orange'
+                            },
+                            {
+                                icon: CheckCircle2,
+                                title: 'Scholarships for Girls',
+                                href: '/scholarships-for/girls',
+                                color: 'teal'
                             }
                         ].map((tile, i) => {
                             const Icon = tile.icon;
                             const colorClasses = {
-                                blue: 'bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100 shadow-blue-100/50',
-                                emerald: 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100 shadow-emerald-100/50',
-                                purple: 'bg-purple-50 text-purple-700 hover:bg-purple-100 border-purple-100 shadow-purple-100/50',
-                                indigo: 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-indigo-100 shadow-indigo-100/50',
-                                green: 'bg-green-50 text-green-700 hover:bg-green-100 border-green-100 shadow-green-100/50',
-                                orange: 'bg-orange-50 text-orange-700 hover:bg-orange-100 border-orange-100 shadow-orange-100/50'
+                                blue: 'bg-blue-50/50 hover:bg-blue-50 border-blue-100/50 hover:border-blue-200 text-blue-700',
+                                emerald: 'bg-emerald-50/50 hover:bg-emerald-50 border-emerald-100/50 hover:border-emerald-200 text-emerald-700',
+                                purple: 'bg-purple-50/50 hover:bg-purple-50 border-purple-100/50 hover:border-purple-200 text-purple-700',
+                                indigo: 'bg-indigo-50/50 hover:bg-indigo-50 border-indigo-100/50 hover:border-indigo-200 text-indigo-700',
+                                pink: 'bg-pink-50/50 hover:bg-pink-50 border-pink-100/50 hover:border-pink-200 text-pink-700',
+                                green: 'bg-green-50/50 hover:bg-green-50 border-green-100/50 hover:border-green-200 text-green-700',
+                                orange: 'bg-orange-50/50 hover:bg-orange-50 border-orange-100/50 hover:border-orange-200 text-orange-700',
+                                teal: 'bg-teal-50/50 hover:bg-teal-50 border-teal-100/50 hover:border-teal-200 text-teal-700'
                             };
 
                             return (
                                 <Link
                                     key={i}
                                     href={tile.href}
-                                    className={`group p-8 border-2 rounded-[2.5rem] transition-all hover:-translate-y-2 hover:shadow-2xl ${colorClasses[tile.color as keyof typeof colorClasses]}`}
+                                    className={`group flex items-center gap-3 p-4 border rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-md ${colorClasses[tile.color as keyof typeof colorClasses]}`}
                                 >
-                                    <div className="flex flex-col h-full">
-                                        <Icon className="h-12 w-12 mb-6" />
-                                        <h3 className="text-xl font-black mb-3 leading-tight">{tile.title}</h3>
-                                        <p className="text-sm opacity-80 mb-6 flex-grow font-medium leading-relaxed">{tile.description}</p>
-                                        {tile.count && (
-                                            <p className="text-xs font-black uppercase tracking-widest opacity-60 mb-4">{tile.count} states covered</p>
-                                        )}
-                                        <div className="flex items-center gap-2 font-bold text-sm">
-                                            View Opportunities <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                                        </div>
+                                    <div className="p-2.5 rounded-xl bg-white shadow-sm shrink-0">
+                                        <Icon className="h-5 w-5 text-current" />
                                     </div>
+                                    <div className="flex-grow min-w-0">
+                                        <h3 className="font-bold text-sm text-gray-900 leading-tight group-hover:text-blue-700 transition-colors truncate">
+                                            {tile.title}
+                                        </h3>
+                                    </div>
+                                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-blue-700 shrink-0 animate-in fade-in slide-in-from-left-1 duration-200" />
                                 </Link>
                             );
                         })}
-                    </div>
-
-                    <div className="max-w-4xl mx-auto bg-gray-50 rounded-[3rem] p-8 md:p-12 border border-gray-100">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <ul className="space-y-4">
-                                {[
-                                    { label: "Scholarships After 10th Class", href: "/scholarships-level/class-1-10" },
-                                    { label: "Scholarships After 12th Class", href: "/scholarships-level/class-11-12" },
-                                    { label: "Undergraduate (UG) Scholarships", href: "/scholarships-level/graduation-ug" },
-                                    { label: "Postgraduate (PG) Scholarships", href: "/scholarships-level/post-graduation-pg" }
-                                ].map((item, i) => (
-                                    <li key={i}>
-                                        <Link href={item.href} className="flex items-center gap-3 font-bold text-gray-700 hover:text-blue-700 transition-colors">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                            <ul className="space-y-4">
-                                {[
-                                    { label: "Scholarships for Girl Students", href: "/scholarships?gender=Female" },
-                                    { label: "For SC / ST / OBC Students", href: "/scholarships-by-category" },
-                                    { label: "For Low Income Families", href: "/scholarships-by-income" },
-                                    { label: "More State Scholarships", href: "/state-scholarships" }
-                                ].map((item, i) => (
-                                    <li key={i}>
-                                        <Link href={item.href} className="flex items-center gap-3 font-bold text-gray-700 hover:text-blue-700 transition-colors">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
                     </div>
                 </section>
 
