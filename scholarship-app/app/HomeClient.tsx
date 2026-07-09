@@ -24,25 +24,21 @@ interface Scholarship {
 }
 
 interface HomeClientProps {
-    scholarships: Scholarship[];
+    recentlyAdded: Scholarship[];
+    closingSoon: Scholarship[];
+    trending: Scholarship[];
+    totalStates: number;
+    totalScholarships: number;
 }
 
-export default function HomeClient({ scholarships }: HomeClientProps) {
-    // Get featured/popular scholarships (limit to 6)
-    const featuredScholarships = useMemo(() => {
-        const featured = scholarships.filter(s => s.is_popular === 1);
-        if (featured.length > 0) return featured.slice(0, 6);
-        // Fallback: Show the 6 most recent scholarships if none are explicitly featured
-        return scholarships.slice(0, 6);
-    }, [scholarships]);
+export default function HomeClient({ 
+    recentlyAdded, 
+    closingSoon, 
+    trending, 
+    totalStates,
+    totalScholarships 
+}: HomeClientProps) {
 
-    // Calculate stats for states count
-    const stats = useMemo(() => {
-        const uniqueStates = new Set(scholarships.map(s => s.state).filter(Boolean));
-        return {
-            totalStates: uniqueStates.size,
-        };
-    }, [scholarships]);
 
     return (
         <div className="min-h-screen bg-white">
@@ -122,7 +118,7 @@ export default function HomeClient({ scholarships }: HomeClientProps) {
                                 description: 'Find scholarships in your state',
                                 href: '/state-scholarships',
                                 color: 'blue',
-                                count: stats.totalStates
+                                count: totalStates
                             },
                             {
                                 icon: Globe,
@@ -233,32 +229,85 @@ export default function HomeClient({ scholarships }: HomeClientProps) {
                     </div>
                 </section>
 
-                {/* Featured Scholarships Section */}
-                <section className="py-24 container mx-auto px-6 bg-gray-50 rounded-[4rem] mb-24">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-black mb-3 font-serif tracking-tight text-gray-900">Featured Scholarships</h2>
-                        <p className="text-gray-500 text-lg font-medium">Most searched and high-impact opportunities</p>
-                    </div>
+                {/* Dynamic Scholarship Board */}
+                <section className="py-24 bg-gray-50 rounded-[4rem] mb-24 overflow-hidden">
+                    <div className="container mx-auto px-6">
+                        <div className="text-center mb-16">
+                            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-black uppercase tracking-widest mb-4 border border-blue-100">
+                                <span className="h-2 w-2 rounded-full bg-blue-700 animate-pulse" /> Live Pulse
+                            </span>
+                            <h2 className="text-4xl md:text-5xl font-black mb-3 font-serif tracking-tight text-gray-900">
+                                Fresh Scholarship Opportunities
+                            </h2>
+                            <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
+                                Tracking {totalScholarships}+ active scholarships across India. Updated automatically every day.
+                            </p>
+                        </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                        {featuredScholarships.map((scholarship) => (
-                            <ScholarshipCard
-                                key={scholarship.id}
-                                scholarship={scholarship}
-                                viewMode="grid"
-                            />
-                        ))}
-                    </div>
+                        <div className="space-y-24">
+                            {/* 1. Added Recently */}
+                            <div>
+                                <div className="flex justify-between items-end mb-8 border-b pb-4 border-gray-200/60">
+                                    <div>
+                                        <h3 className="text-2xl md:text-3xl font-black font-serif text-gray-900 flex items-center gap-2">
+                                            🚀 Just Added & Verified
+                                        </h3>
+                                        <p className="text-sm text-gray-500 font-medium">New programs opened or verified within the last few days</p>
+                                    </div>
+                                    <Link href="/scholarships/recently-added" className="font-bold text-sm text-blue-700 hover:text-blue-800 flex items-center gap-1 transition-colors">
+                                        View All New <ArrowRight className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {recentlyAdded.map((scholarship) => (
+                                        <ScholarshipCard key={scholarship.id} scholarship={scholarship} viewMode="grid" />
+                                    ))}
+                                </div>
+                            </div>
 
-                    <div className="text-center">
-                        <Link
-                            href="/scholarships"
-                            className="inline-flex items-center gap-2 px-10 py-5 bg-gray-900 text-white font-black rounded-2xl hover:bg-gray-800 transition-all shadow-xl active:scale-95"
-                        >
-                            View All Scholarships <ArrowRight className="h-5 w-5" />
-                        </Link>
+                            {/* 2. Closing Soon */}
+                            <div>
+                                <div className="flex justify-between items-end mb-8 border-b pb-4 border-gray-200/60">
+                                    <div>
+                                        <h3 className="text-2xl md:text-3xl font-black font-serif text-gray-900 flex items-center gap-2">
+                                            ⏰ Closing Soon
+                                        </h3>
+                                        <p className="text-sm text-gray-500 font-medium">Upcoming deadlines — apply before portals close</p>
+                                    </div>
+                                    <Link href="/scholarships/closing-soon" className="font-bold text-sm text-red-700 hover:text-red-800 flex items-center gap-1 transition-colors">
+                                        View All Closing Soon <ArrowRight className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {closingSoon.map((scholarship) => (
+                                        <ScholarshipCard key={scholarship.id} scholarship={scholarship} viewMode="grid" />
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* 3. Trending Leaderboard */}
+                            <div>
+                                <div className="flex justify-between items-end mb-8 border-b pb-4 border-gray-200/60">
+                                    <div>
+                                        <h3 className="text-2xl md:text-3xl font-black font-serif text-gray-900 flex items-center gap-2">
+                                            🔥 Trending This Week
+                                        </h3>
+                                        <p className="text-sm text-gray-500 font-medium">Most viewed and popular scholarship programs in India</p>
+                                    </div>
+                                    <Link href="/scholarships/trending" className="font-bold text-sm text-purple-700 hover:text-purple-800 flex items-center gap-1 transition-colors">
+                                        View All Trending <ArrowRight className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {trending.map((scholarship) => (
+                                        <ScholarshipCard key={scholarship.id} scholarship={scholarship} viewMode="grid" />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
+
 
                 {/* Eligibility Checker CTA */}
                 <section className="py-24 bg-gradient-to-br from-blue-700 to-blue-900 text-white relative overflow-hidden">

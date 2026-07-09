@@ -1,7 +1,7 @@
 # 📊 IndiaScholarships — Project Dashboard
 
 > 🌐 **Live**: https://www.indiascholarships.in | **GitHub**: bizmantra/india-scholarships | **Hosting**: Vercel
-> 🕐 **Last Refreshed**: Thursday, 9 July 2026 at 9:45 am IST
+> 🕐 **Last Refreshed**: Thursday, 9 July 2026 at 10:23 am IST
 
 ## 📊 Key Metrics
 
@@ -15,7 +15,7 @@
 
 - **[Dev] IS-50 - Integrate Google Keyword Planner API for keyword research**
 - **[Dev] IS-63 - BUG: Site search live issues**
-- **[Content] CNT-17 - State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)**
+- **[Content] CNT-16 - Fix leaked internal verification notes a**
 - **[Content] CNT-18 - PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)**
 
 ## 🛠 Live Tools (7)
@@ -57,7 +57,7 @@
 
 - CNT-2 — University scholarship Hubs
 - CNT-3 — Research & add top 5 UP State Scholarships
+- CNT-17 — State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)
 - CNT-4 — Delhi University (DU) Hub & Scholarship Research
 - CNT-5 — Category B University Hubs & Research (JNU, BHU, AMU, JMI, UoH)
-- CNT-6 — Category C & D University Hubs & Research (Anna Uni, VTU, SPPU, AKTU, Ashoka, VIT, MAHE)
 

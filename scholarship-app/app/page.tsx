@@ -1,8 +1,27 @@
-import { getAllScholarships } from '@/lib/db';
+import { 
+  getRecentlyAddedScholarships, 
+  getClosingSoonScholarships, 
+  getTrendingScholarships,
+  getScholarshipStats
+} from '@/lib/db';
 import HomeClient from './HomeClient';
 
 export default async function Home() {
-  const scholarships = await getAllScholarships();
+  const [recentlyAdded, closingSoon, trending, stats] = await Promise.all([
+    getRecentlyAddedScholarships(6),
+    getClosingSoonScholarships(6),
+    getTrendingScholarships(6),
+    getScholarshipStats()
+  ]);
 
-  return <HomeClient scholarships={scholarships} />;
+  return (
+    <HomeClient 
+      recentlyAdded={recentlyAdded} 
+      closingSoon={closingSoon} 
+      trending={trending}
+      totalStates={stats.stateCount}
+      totalScholarships={stats.total}
+    />
+  );
 }
+

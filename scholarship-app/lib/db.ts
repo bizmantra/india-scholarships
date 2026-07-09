@@ -1,8 +1,25 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 import { UNIVERSITIES } from './universities';
 
-const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
+function resolveDbPath() {
+    const candidates = [
+        path.join(process.cwd(), 'data', 'scholarships.db'),
+        path.join(process.cwd(), '.next', 'server', 'data', 'scholarships.db'),
+        path.join('/var/task', 'data', 'scholarships.db'),
+        path.join('/var/task', 'scholarship-app', 'data', 'scholarships.db'),
+    ];
+
+    for (const c of candidates) {
+        if (fs.existsSync(c)) {
+            return c;
+        }
+    }
+    return path.join(process.cwd(), 'data', 'scholarships.db');
+}
+
+const dbPath = resolveDbPath();
 const WP_API_URL = process.env.WORDPRESS_API_URL;
 
 // Helper to fetch from WordPress if configured
@@ -915,3 +932,51 @@ export async function getInternationalScholarships() {
     db.close();
     return rows.map(parseScholarship);
 }
+
+// Get recently added/verified scholarships
+export async function getRecentlyAddedScholarships(limit: number = 6) {
+    const db = getDatabase();
+    const rows = db.prepare(`
+        SELECT * FROM scholarships 
+        WHERE status = 'Active' 
+        ORDER BY created_at DESC, last_verified DESC, id DESC
+        LIMIT ?
+    `).all(limit);
+    db.close();
+    return rows.map(parseScholarship);
+}
+
+// Get scholarships closing soon
+export async function getClosingSoonScholarships(limit: number = 6) {
+    const db = getDatabase();
+    // Filter active scholarships where deadline is a parseable date in the future
+    const rows = db.prepare(`
+        SELECT * FROM scholarships 
+        WHERE status = 'Active' 
+        AND deadline IS NOT NULL 
+        AND deadline != '' 
+        AND deadline NOT LIKE '%VERIFY%'
+        AND deadline NOT LIKE '%tentative%'
+        AND deadline NOT LIKE '%some sources%'
+        AND deadline NOT LIKE '%verify on%'
+        AND deadline >= date('now')
+        ORDER BY deadline ASC, priority_score DESC, id DESC
+        LIMIT ?
+    `).all(limit);
+    db.close();
+    return rows.map(parseScholarship);
+}
+
+// Get trending scholarships based on priority score and popularity
+export async function getTrendingScholarships(limit: number = 6) {
+    const db = getDatabase();
+    const rows = db.prepare(`
+        SELECT * FROM scholarships 
+        WHERE status = 'Active' 
+        ORDER BY priority_score DESC, is_popular DESC, id DESC
+        LIMIT ?
+    `).all(limit);
+    db.close();
+    return rows.map(parseScholarship);
+}
+
