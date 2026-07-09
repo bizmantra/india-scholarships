@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { Calendar, Search, MapPin, Award, Clock, ArrowRight, RotateCcw, ShieldCheck, Flame, Infinity } from 'lucide-react';
+import { Calendar, Search, MapPin, Award, Clock, ArrowRight, RotateCcw, ShieldCheck, Flame, Infinity as InfinityIcon } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { formatDeadlineDate } from '@/lib/utils';
@@ -354,7 +354,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                                                         </span>
                                                     ) : s.isRollingOrOpen ? (
                                                         <span className="px-2.5 py-0.5 bg-blue-50 text-blue-700 rounded-full text-2xs font-extrabold uppercase tracking-wider flex items-center gap-1">
-                                                            <Infinity className="h-3 w-3" /> Rolling / Open
+                                                            <InfinityIcon className="h-3 w-3" /> Rolling / Open
                                                         </span>
                                                     ) : s.daysLeft !== null && s.daysLeft <= 15 ? (
                                                         <span className="px-2.5 py-0.5 bg-red-50 text-red-600 rounded-full text-2xs font-extrabold uppercase tracking-wider flex items-center gap-1">

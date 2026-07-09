@@ -19,7 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/scholarships',
         '/scholarships/deadlines',
         '/scholarships/recently-added',
-        '/scholarships/closing-soon',
         '/scholarships/trending',
         '/state-scholarships',
         '/scholarships-by-category',

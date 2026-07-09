@@ -6,6 +6,8 @@ import {
 } from '@/lib/db';
 import HomeClient from './HomeClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const [recentlyAdded, closingSoon, trending, stats] = await Promise.all([
     getRecentlyAddedScholarships(6),

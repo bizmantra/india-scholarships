@@ -46,19 +46,19 @@ export default function HomeClient({
 
             <main>
                 {/* Hero Section */}
-                <section className="relative bg-white pt-20 pb-16 md:pt-32 md:pb-24 border-b border-gray-100 overflow-hidden text-center">
+                <section className="relative bg-white pt-10 pb-8 md:pt-14 md:pb-10 border-b border-gray-100 overflow-hidden text-center">
                     <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-                        <h1 className="text-4xl md:text-7xl font-black text-gray-900 tracking-tight mb-8 font-serif leading-[1.1]">
+                        <h1 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight mb-4 font-serif leading-[1.1]">
                             Scholarships in India – Find Verified & Updated Opportunities
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed">
+                        <p className="text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
                             Discover government and private scholarships in India for school, college, and higher education students. <span className="text-blue-700 font-bold italic">Search by class, state, category, income, and more — all in one place.</span>
                         </p>
 
                         <div className="flex justify-center">
                             <Link
                                 href="/scholarships"
-                                className="inline-flex items-center justify-center px-10 py-5 bg-blue-700 text-white rounded-2xl font-black text-lg hover:bg-blue-800 transition-all shadow-xl shadow-blue-100 active:scale-95"
+                                className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white rounded-xl font-black text-base hover:bg-blue-800 transition-all shadow-xl shadow-blue-100 active:scale-95"
                             >
                                 Find Scholarships Now
                             </Link>
@@ -67,21 +67,21 @@ export default function HomeClient({
                 </section>
 
                 {/* Feature Cards Section */}
-                <section className="py-12 bg-gray-50/50 border-b border-gray-100">
+                <section className="py-6 bg-gray-50/50 border-b border-gray-100">
                     <div className="container mx-auto px-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
                             {[
                                 { title: `Verified Scholarships`, desc: 'Dated stamps & multi-source verified' },
                                 { title: 'Smart Matching', desc: 'Based on income, caste, and grades' },
                                 { title: 'Actionable Guides', desc: 'Step-by-step application support' }
                             ].map((feature, i) => (
-                                <div key={i} className="flex gap-4 group p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                                    <div className="bg-green-100 p-3 rounded-2xl h-fit shrink-0 group-hover:bg-green-200 transition-colors">
-                                        <CheckCircle2 className="h-6 w-6 text-green-700" />
+                                <div key={i} className="flex gap-3 group p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                                    <div className="bg-green-100 p-2.5 rounded-xl h-fit shrink-0 group-hover:bg-green-200 transition-colors">
+                                        <CheckCircle2 className="h-5 w-5 text-green-700" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-gray-900 mb-1 text-lg">{feature.title}</h3>
-                                        <p className="text-sm text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
+                                        <h3 className="font-bold text-gray-900 mb-0.5 text-base">{feature.title}</h3>
+                                        <p className="text-xs text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -90,13 +90,13 @@ export default function HomeClient({
                 </section>
 
                 {/* Intro Section */}
-                <section className="py-20 bg-white border-b border-gray-100">
+                <section className="py-8 bg-white border-b border-gray-100">
                     <div className="container mx-auto px-6 max-w-4xl text-center md:text-left">
-                        <div className="space-y-8">
-                            <p className="text-xl md:text-3xl text-gray-800 font-medium leading-relaxed font-serif">
+                        <div className="space-y-4">
+                            <p className="text-lg md:text-xl text-gray-800 font-medium leading-relaxed font-serif">
                                 IndiaScholarships.in helps students and parents easily find legitimate scholarships in India without confusion, false promises, or outdated information.
                             </p>
-                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                                 We track scholarships from central government, state governments, private organizations, trusts, and foundations, and link directly to official application portals.
                             </p>
                         </div>
@@ -104,13 +104,13 @@ export default function HomeClient({
                 </section>
 
                 {/* Browse Section */}
-                <section className="py-24 container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-black mb-3 font-serif tracking-tight text-gray-900">Find Scholarships Based on Your Need</h2>
-                        <p className="text-gray-500 text-lg font-medium">Browse opportunities by category, state, and eligibility</p>
+                <section className="py-12 container mx-auto px-6">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-black mb-2 font-serif tracking-tight text-gray-900">Find Scholarships Based on Your Need</h2>
+                        <p className="text-gray-500 text-base font-medium">Browse opportunities by category, state, and eligibility</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
                         {[
                             {
                                 icon: MapPin,
@@ -274,7 +274,7 @@ export default function HomeClient({
                                         </h3>
                                         <p className="text-sm text-gray-500 font-medium">Upcoming deadlines — apply before portals close</p>
                                     </div>
-                                    <Link href="/scholarships/closing-soon" className="font-bold text-sm text-red-700 hover:text-red-800 flex items-center gap-1 transition-colors">
+                                    <Link href="/scholarships/deadlines" className="font-bold text-sm text-red-700 hover:text-red-800 flex items-center gap-1 transition-colors">
                                         View All Closing Soon <ArrowRight className="h-4 w-4" />
                                     </Link>
                                 </div>
