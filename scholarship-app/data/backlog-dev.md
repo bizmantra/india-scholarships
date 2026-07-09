@@ -1,6 +1,6 @@
 # IndiaScholarships Dev Backlog
 
-## In Progress (2)
+## In Progress (3)
 
 - [ ] **IS-50**: Integrate Google Keyword Planner API for keyword research
   - **Impact**: Low
@@ -12,6 +12,16 @@
   - **Type**: Bug
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
+
+- [ ] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
+  - **Impact**: Critical
+  - **Type**: Bug
+  - **Description**:
+    SQLite file-based database queries using native C++ compilation bindings (better-sqlite3) crash at request time inside Vercel's ephemeral, read-only serverless Lambda runtime, triggering a 500 server exception screen.
+    * **Actions Taken:** Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
+    * **Next Actions to be Taken:**
+      1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
+      2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
 ## Backlog (35)
 
@@ -329,12 +339,6 @@
   - **Type**: Bug
   - **Description**:
     Found in IS-37 QA. 7 rows in the scholarships DB have raw editorial research notes stored in the deadline field (e.g. 'September 30, 2025 (tentative - some sources indicate November 30, 2025). VERIFY on official NSP...'). IDs: 23, 24, 27, 28, 29, 30, 31 (all Karnataka). IS-37 fixes the display layer, but the underlying DB values should be resolved to clean ISO dates or 'Not specified' via the enrichment pipeline. Run targeted enrichment on these 7 rows against NSP/SSP portals.
-
-- [ ] **IS-49**: Scholarship News Feature
-  - **Impact**: Medium
-  - **Type**: Feature
-  - **Description**:
-    Build a Scholarship news section or hub. Validate if there is potential for this. ANd this should be dynamic and not static and fully automated. Source from ChatGPT
 
 - [ ] **IS-51**: Run Google Keyword Planner script for target scholarship keywords
   - **Impact**: Medium
@@ -691,7 +695,13 @@
   - **Description**:
     Redesign and optimize the central /tools landing page to serve as a high-value entry directory. Includes real-time database stats, optimized visual categorization, and search.
 
-## Parked (10)
+## Parked (11)
+
+- [ ] **IS-49**: Scholarship Deadline & Results Pages (SEO)
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Narrowed from original "Scholarship News Feature" concept. Not a newsroom/browsing product — pure SEO play: auto-generate lightweight, individually-indexable pages/sections for scholarship deadline extensions and result publications on top-N high-traffic scholarships, sourced from existing DB field changes. Gated by Phase 0 search-volume validation before any build. Full PRD: IS-49_Scholarship_Event_Pages_PRD.docx. Parked until Phase 0 validation is prioritized.
 
 - [ ] **IS-5**: Printable document checklist on /documents-required subpages
   - **Impact**: Medium
