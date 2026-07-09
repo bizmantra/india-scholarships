@@ -1,19 +1,25 @@
 # IndiaScholarships Dev Backlog
 
-## In Progress (3)
+## In Progress (4)
+
+- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
+  - **Impact**: High
+  - **Description**:
+    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
+    * **Current Status:** JavaScript and Ads.txt integration completed and deployed live. Currently under Ezoic's manual review phase (Status: In Progress). If not approved, we may need to remove the scripts.
 
 - [ ] **IS-50**: Integrate Google Keyword Planner API for keyword research
   - **Impact**: Low
   - **Description**:
     Set up Google Ads API connection and integrate Google Keyword Planner for automated or script-based keyword research on scholarships. Includes obtaining a Manager Account, developer token, client ID, client secret, and generating a refresh token to perform queries.
 
-- [ ] **IS-63**: BUG: Site search live issues
+- [x] **IS-63**: BUG: Site search live issues
   - **Impact**: High
   - **Type**: Bug
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-- [ ] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
+- [x] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
   - **Impact**: Critical
   - **Type**: Bug
   - **Description**:
@@ -23,7 +29,7 @@
       1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
       2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
-## Backlog (35)
+## Backlog (34)
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High
@@ -57,15 +63,6 @@
     
     Trigger:
     After 80K clicks/month · Month 3
-
-- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
-  - **Impact**: High
-  - **Description**:
-    Context / Why it matters:
-    At current traffic, ₹8,000–15,000/month potential. Better than plain AdSense — dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.
-    
-    Plan / What to do:
-    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
 
 - [ ] **IS-16**: WhatsApp alert subscription (MSG91/Twilio)
   - **Impact**: High
@@ -361,7 +358,7 @@
   - **Description**:
     Analyse keywords from Google keyword planner and Ubersuggest and come up with a plan to execute them
 
-- [ ] **IS-60**: Dynamic Homepage / Scholarship Pulse
+- [x] **IS-60**: Dynamic Homepage / Scholarship Pulse
   - **Impact**: High
   - **Type**: Feature
   - **Description**:
@@ -840,4 +837,14 @@
   - **Type**: Feature
   - **Description**:
     Future feature request to be assesed. IS-48 already implemented a site search on 7th Jul 2026
+
+- [ ] **IS-85**: Scheduled Tasks Setup: Link Checker, Database Backup, & Indexing API Pinger
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Set up prioritized scheduled tasks using either GitHub Actions or Antigravity's local scheduler:
+    1. Auto-verify external application links (via scripts/check_404s.js) to prevent SEO/UX errors.
+    2. Local/remote automated database backups to secure data/scholarships.db.
+    3. Integrate Google Indexing API to ping Google as soon as scholarship details change.
+
 

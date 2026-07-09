@@ -116,7 +116,7 @@
     "title": "Apply to Ezoic for premium ad monetisation",
     "description": "Context / Why it matters:\nAt current traffic, \u20b98,000\u201315,000/month potential. Better than plain AdSense \u2014 dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.\n\nPlan / What to do:\nGo to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection \u2014 don't let ad scripts slow mobile load times.",
     "impact": "High",
-    "status": "Backlog",
+    "status": "In Progress",
     "type": ""
   },
   {
@@ -590,5 +590,14 @@
     "impact": "Critical",
     "status": "In Progress",
     "type": "Bug"
+  },
+  {
+    "id": "IS-85",
+    "title": "Scheduled Tasks Setup: Link Checker, Database Backup, & Indexing API Pinger",
+    "description": "Set up prioritized scheduled tasks using either GitHub Actions or Antigravity's local scheduler:\n1. Auto-verify external application links (via scripts/check_404s.js) to prevent SEO/UX errors.\n2. Local/remote automated database backups to secure data/scholarships.db.\n3. Integrate Google Indexing API to ping Google as soon as scholarship details change.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
   }
 ]
+
