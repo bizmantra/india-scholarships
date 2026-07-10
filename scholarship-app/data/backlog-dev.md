@@ -2,34 +2,34 @@
 
 ## In Progress (4)
 
-- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
-  - **Impact**: High
-  - **Description**:
-    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
-    * **Current Status:** JavaScript and Ads.txt integration completed and deployed live. Currently under Ezoic's manual review phase (Status: In Progress). If not approved, we may need to remove the scripts.
+## In Progress (3)
 
 - [ ] **IS-50**: Integrate Google Keyword Planner API for keyword research
   - **Impact**: Low
   - **Description**:
     Set up Google Ads API connection and integrate Google Keyword Planner for automated or script-based keyword research on scholarships. Includes obtaining a Manager Account, developer token, client ID, client secret, and generating a refresh token to perform queries.
 
-- [x] **IS-63**: BUG: Site search live issues
+- [ ] **IS-63**: BUG: Site search live issues
   - **Impact**: High
   - **Type**: Bug
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-- [x] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
+- [ ] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
   - **Impact**: Critical
   - **Type**: Bug
   - **Description**:
+    Context / Why it matters:
     SQLite file-based database queries using native C++ compilation bindings (better-sqlite3) crash at request time inside Vercel's ephemeral, read-only serverless Lambda runtime, triggering a 500 server exception screen.
-    * **Actions Taken:** Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
-    * **Next Actions to be Taken:**
-      1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
-      2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
+    
+    Actions Taken:
+    Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
+    
+    Next Actions to be Taken:
+    1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
+    2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
-## Backlog (34)
+## Backlog (35)
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High
@@ -358,7 +358,7 @@
   - **Description**:
     Analyse keywords from Google keyword planner and Ubersuggest and come up with a plan to execute them
 
-- [x] **IS-60**: Dynamic Homepage / Scholarship Pulse
+- [ ] **IS-60**: Dynamic Homepage / Scholarship Pulse
   - **Impact**: High
   - **Type**: Feature
   - **Description**:
@@ -448,11 +448,11 @@
     
     All three should follow the existing tool template (problem statement, calculator, scenario examples, FAQ + JSON-LD schema) and be added to the Tools Hub with Coming Soon cards until implemented.
 
-- [ ] **IS-78**: Feature: Telegram Alerts 
+- [ ] **IS-78**: Implement Telegram Bot API broadcast integration
   - **Impact**: Critical
   - **Type**: Feature
   - **Description**:
-    Build subscription alerts to Telegram. To increase traffic and distribiution
+    Connect a Telegram Bot using TELEGRAM_BOT_TOKEN and broadcast new scholarship additions or status activations to a public channel (e.g., @IndiaScholarships) inside the sync script (scripts/sync-wordpress-api.js).
 
 - [ ] **IS-79**: Feature-Whatsapp alerts
   - **Impact**: Critical
@@ -479,6 +479,21 @@
   - **Type**: Feature
   - **Description**:
     How do we enable automatic verification (for internal use) and how do we keep the page fresh. Can users subscirbe to alerts and changes on this page?
+
+- [ ] **IS-85**: Scheduled Tasks Setup: Link Checker, Database Backup, & Indexing API Pinger
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Set up prioritized scheduled tasks using either GitHub Actions or Antigravity's local scheduler:
+    1. Auto-verify external application links (via scripts/check_404s.js) to prevent SEO/UX errors.
+    2. Local/remote automated database backups to secure data/scholarships.db.
+    3. Integrate Google Indexing API to ping Google as soon as scholarship details change.
+
+- [ ] **IS-86**: Add Telegram Alert Channel banner/card components to the Next.js frontend
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Add Telegram Alert Channel banner/card components to the Next.js frontend. Placements: 1. Homepage sticky banner/header. 2. Scholarship detail pages (near the Deadline/Apply sections). 3. Scholarship tools results screen (e.g., Eligibility Checker and Income Calculator output).
 
 ## Done (26)
 
@@ -692,13 +707,13 @@
   - **Description**:
     Redesign and optimize the central /tools landing page to serve as a high-value entry directory. Includes real-time database stats, optimized visual categorization, and search.
 
-## Parked (11)
+## Parked (13)
 
-- [ ] **IS-49**: Scholarship Deadline & Results Pages (SEO)
-  - **Impact**: Medium
-  - **Type**: Feature
+- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
+  - **Impact**: High
   - **Description**:
-    Narrowed from original "Scholarship News Feature" concept. Not a newsroom/browsing product — pure SEO play: auto-generate lightweight, individually-indexable pages/sections for scholarship deadline extensions and result publications on top-N high-traffic scholarships, sourced from existing DB field changes. Gated by Phase 0 search-volume validation before any build. Full PRD: IS-49_Scholarship_Event_Pages_PRD.docx. Parked until Phase 0 validation is prioritized.
+    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
+    * **Current Status:** JavaScript and Ads.txt integration were rolled back on Jul 10, 2026, as Ezoic rejected the application.
 
 - [ ] **IS-5**: Printable document checklist on /documents-required subpages
   - **Impact**: Medium
@@ -826,6 +841,12 @@
     Trigger:
     Chatgpt
 
+- [ ] **IS-49**: Scholarship Deadline & Results Pages (SEO)
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Narrowed from original "Scholarship News Feature" concept. Not a newsroom/browsing product — pure SEO play: auto-generate lightweight, individually-indexable pages/sections for scholarship deadline extensions and result publications on top-N high-traffic scholarships, sourced from existing DB field changes. Gated by Phase 0 search-volume validation before any build. Full PRD: IS-49_Scholarship_Event_Pages_PRD.docx. Parked until Phase 0 validation is prioritized.
+
 - [ ] **IS-58**: Research & scope International High-Value Scholarships (study-abroad content track)
   - **Impact**: Medium
   - **Type**: Content Task
@@ -838,13 +859,9 @@
   - **Description**:
     Future feature request to be assesed. IS-48 already implemented a site search on 7th Jul 2026
 
-- [ ] **IS-85**: Scheduled Tasks Setup: Link Checker, Database Backup, & Indexing API Pinger
-  - **Impact**: High
+- [ ] **IS-87**: Option 2 — Personalized Telegram Bot Alerts
+  - **Impact**: Medium
   - **Type**: Feature
   - **Description**:
-    Set up prioritized scheduled tasks using either GitHub Actions or Antigravity's local scheduler:
-    1. Auto-verify external application links (via scripts/check_404s.js) to prevent SEO/UX errors.
-    2. Local/remote automated database backups to secure data/scholarships.db.
-    3. Integrate Google Indexing API to ping Google as soon as scholarship details change.
-
+    User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.
 

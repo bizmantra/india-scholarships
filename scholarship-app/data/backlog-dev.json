@@ -116,7 +116,7 @@
     "title": "Apply to Ezoic for premium ad monetisation",
     "description": "Context / Why it matters:\nAt current traffic, \u20b98,000\u201315,000/month potential. Better than plain AdSense \u2014 dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.\n\nPlan / What to do:\nGo to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection \u2014 don't let ad scripts slow mobile load times.",
     "impact": "High",
-    "status": "In Progress",
+    "status": "Parked",
     "type": ""
   },
   {
@@ -537,8 +537,8 @@
   },
   {
     "id": "IS-78",
-    "title": "Feature: Telegram Alerts ",
-    "description": "Build subscription alerts to Telegram. To increase traffic and distribiution",
+    "title": "Implement Telegram Bot API broadcast integration",
+    "description": "Connect a Telegram Bot using TELEGRAM_BOT_TOKEN and broadcast new scholarship additions or status activations to a public channel (e.g., @IndiaScholarships) inside the sync script (scripts/sync-wordpress-api.js).",
     "impact": "Critical",
     "status": "Backlog",
     "type": "Feature"
@@ -597,6 +597,22 @@
     "description": "Set up prioritized scheduled tasks using either GitHub Actions or Antigravity's local scheduler:\n1. Auto-verify external application links (via scripts/check_404s.js) to prevent SEO/UX errors.\n2. Local/remote automated database backups to secure data/scholarships.db.\n3. Integrate Google Indexing API to ping Google as soon as scholarship details change.",
     "impact": "High",
     "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-86",
+    "title": "Add Telegram Alert Channel banner/card components to the Next.js frontend",
+    "description": "Add Telegram Alert Channel banner/card components to the Next.js frontend. Placements: 1. Homepage sticky banner/header. 2. Scholarship detail pages (near the Deadline/Apply sections). 3. Scholarship tools results screen (e.g., Eligibility Checker and Income Calculator output).",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-87",
+    "title": "Option 2 — Personalized Telegram Bot Alerts",
+    "description": "User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.",
+    "impact": "Medium",
+    "status": "Parked",
     "type": "Feature"
   }
 ]
