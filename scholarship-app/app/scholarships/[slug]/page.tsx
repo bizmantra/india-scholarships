@@ -411,6 +411,37 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         )}
 
+                        {/* PM-YASASVI Cross-linking Callout Box */}
+                        {['pm-yashasvi-scholarship', 'pm-yasasvi-top-class-education', 'pm-yasasvi-jk-obc'].includes(slug) && (
+                            <div className="mb-10 p-6 bg-blue-50 border border-blue-200 rounded-3xl flex gap-4">
+                                <Info className="h-6 w-6 text-blue-700 flex-shrink-0 mt-0.5" />
+                                <div>
+                                    <p className="font-bold text-blue-900 mb-1">Important: PM-YASASVI Program Variations</p>
+                                    {slug === 'pm-yashasvi-scholarship' && (
+                                        <div className="text-blue-800 text-sm leading-relaxed">
+                                            This is the general national program. If you belong to specialized categories or regions, please see the specific branches:
+                                            <span className="block mt-2">
+                                                • Studying at an elite empanelled national college (like an IIT, NIT, or top-tier boarding school)? See the <Link href="/scholarships/pm-yasasvi-top-class-education" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Top Class Education Scheme</Link>.
+                                            </span>
+                                            <span className="block mt-1">
+                                                • Resident of Jammu & Kashmir? See the <Link href="/scholarships/pm-yasasvi-jk-obc" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI J&K OBC/EBC/DNT Scheme</Link>.
+                                            </span>
+                                        </div>
+                                    )}
+                                    {slug === 'pm-yasasvi-top-class-education' && (
+                                        <p className="text-blue-800 text-sm leading-relaxed">
+                                            This is a specialized branch for students enrolled in notified empanelled institutions of excellence. If you are not studying in a notified top-class school/college, please refer to the general <Link href="/scholarships/pm-yashasvi-scholarship" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Scholarship</Link> or the <Link href="/scholarships/pm-yasasvi-jk-obc" className="font-bold underline text-blue-900 hover:text-blue-700">J&K resident-specific scheme</Link>.
+                                        </p>
+                                    )}
+                                    {slug === 'pm-yasasvi-jk-obc' && (
+                                        <p className="text-blue-800 text-sm leading-relaxed">
+                                            This is the UT-administered branch specifically for residents of Jammu & Kashmir. If you reside outside J&K, please refer to the general <Link href="/scholarships/pm-yashasvi-scholarship" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Scholarship</Link> or the <Link href="/scholarships/pm-yasasvi-top-class-education" className="font-bold underline text-blue-900 hover:text-blue-700">Top Class Education Scheme</Link>.
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
                         {/* About Section */}
                         {scholarship.intro_seo && (
                             <section className="mb-12">
