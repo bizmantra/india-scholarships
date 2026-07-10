@@ -11,12 +11,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Ezoic Ads.txt redirection
-      {
-        source: '/ads.txt',
-        destination: 'https://srv.adstxtmanager.com/19390/indiascholarships.in',
-        permanent: true,
-      },
       // 1. Broken Search Route
       {
         source: '/search',
