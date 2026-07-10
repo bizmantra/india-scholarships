@@ -2,15 +2,118 @@
 
 ## In Progress (2)
 
-- [ ] **CNT-17**: State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)
-  - **Impact**: Critical
+- [ ] **CNT-16**: Fix leaked internal verification notes a
+  - **Impact**: High
+  - **Type**: bug
+  - **Description**:
+    Fix leaked internal verification notes appearing in public deadline fields (Karnataka)
 
 - [ ] **CNT-18**: PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)
   - **Impact**: Critical
 
-## Backlog (0)
+## Backlog (12)
 
-*No tasks in this section.*
+- [ ] **CNT-19**: Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Build once, generate across inventory using existing schema fields. Validated demand pattern (per GSC keyword research: "[Name] + last date + year").
+    Pages: (1) [Scholarship Name] last date to apply 2026 — deadline field, ~266 pages, P0; (2) Scholarships under ₹1L/₹2.5L/₹5L/₹8L income — income field, ~4 hubs x states, P0; (3) Top scholarships for [Category] in [State] — category+state fields, P0; (4) Scholarships for girls/women in [state/course] — gender field, P1; (5) Scholarships for [Course/Stream] students — course field, P1; (6) Renewable scholarships hub — renewal field, P1; (7) Scholarship deadlines calendar (monthly), wraps existing /scholarships/deadlines, P1.
+    Full outlines for items 1 & 2 in reference doc.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-20**: Phase 2 — Hand-written scholarship-core articles
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Central government scholarships list (NSP-linked) 2026 [High demand, improves conversion on existing high-impression/low-conversion NSP traffic]; Scholarships that don't require entrance exam or merit; Highest-paying scholarships in India (₹50K+); Government vs private scholarships — which is easier to get; How scholarship selection actually works (merit vs need-based); Scholarships for differently-abled students.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-21**: Phase 3a — Education loan explainer articles (leadgen priority)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Highest leadgen priority — direct tie-in to EMI calculator and Phase 4 loan/B2B roadmap. Articles: How education loans work in India; Collateral vs non-collateral education loans explained; What is CSIS interest subsidy and who qualifies; Education loan documents checklist; Scholarship vs education loan — which to apply for first; Can I get a scholarship and a loan together.
+    Full outline for "Scholarship vs education loan" in reference doc.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-22**: Phase 3b — DBT / student banking articles (leadgen priority)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Articles: Why scholarship money isn't credited — common DBT issues; How to link Aadhaar to your bank account for scholarships; Best zero-balance student bank accounts (bank referral potential).
+    Full outline for "Why scholarship money isn't credited" in reference doc.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-23**: Phase 3c — Document/process utility content (state-wise templates)
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Scales across full state inventory with minimal marginal effort once templated. Articles: Income certificate application process (state-wise); Caste certificate application process (state-wise); Common reasons scholarship applications get rejected.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-24**: Phase 3d — Lifecycle/retention content
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Underserved because most competitor sites are discovery-only, not lifecycle-aware. Articles: What to do if your scholarship is delayed; Scholarship renewal — how it works, what can go wrong; Income certificate expiry and renewal.
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-25**: Phase 3e — Lower-priority fill-in content
+  - **Impact**: Low
+  - **Type**: content
+  - **Description**:
+    Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).
+    Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
+
+- [ ] **CNT-26**: Research and add J&K state scholarships (ST, OBC/EBC/DNT, SC, and Ladli Beti)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following J&K schemes following the standard workflow:
+    - Umbrella Scheme for ST Students
+    - Pre-Matric & Post-Matric for OBC/EBC/DNT (under PM-YASASVI)
+    - Pre-Matric & Post-Matric for SC Students
+    - Ladli Beti Scheme (J&K social security maturity fund)
+
+- [ ] **CNT-27**: Research and add Himachal Pradesh state scholarships (Mukhya Mantri Protsahan, Pre-Matric SC/ST)
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Research and add the following HP schemes following the standard workflow:
+    - Mukhya Mantri Protsahan Yojana (HP)
+    - Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)
+
+- [ ] **CNT-28**: Research and add National/Central Government fellowships (NFOBC, Top Class ST, National Overseas OBC/EBC/DNT)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following central schemes following the standard workflow:
+    - National Fellowship for OBC Students (NFOBC)
+    - Top Class Education Scheme for ST Students
+    - National Overseas Scholarship for OBC/EBC/DNT Students
+
+- [ ] **CNT-29**: Research and add Corporate/Private scholarships (Generation Google, Amazon Future Engineer, JSW Udaan)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following corporate schemes following the standard workflow:
+    - Generation Google Scholarship (APAC-India)
+    - Amazon Future Engineer Scholarship (India)
+    - JSW Udaan Scholarship
+    Note: Vedanta and P&G Shiksha have been reviewed and excluded/noted as restricted.
+
+- [ ] **CNT-30**: Research and scope International study-abroad scholarships (DAAD Germany, GKS Korea, Australia Awards, Swiss Govt, Clarendon, GREAT)
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Research and scope the following international study-abroad scholarships as a pilot track:
+    - DAAD Scholarships (Germany)
+    - Global Korea Scholarship (GKS)
+    - Australia Awards Scholarships
+    - Swiss Government Excellence Scholarship
+    - Clarendon Scholarship (Oxford, UK)
+    - GREAT Scholarships (UK)
 
 ## Done (15)
 
@@ -24,6 +127,9 @@
     Plan / What to do:
     Research and enrich the top 5 UP State Scholarships with complete 29-field details and structured FAQs. Sync to WordPress.
 
+- [x] **CNT-17**: State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)
+  - **Impact**: Critical
+
 - [x] **CNT-4**: Delhi University (DU) Hub & Scholarship Research
   - **Description**:
     Research official DU internal fee waivers, college-specific awards, and build the DU scholarship hub landing page.
@@ -35,9 +141,6 @@
 - [x] **CNT-6**: Category C & D University Hubs & Research (Anna Uni, VTU, SPPU, AKTU, Ashoka, VIT, MAHE)
   - **Description**:
     Research official internal schemes and build scholarship hubs for state technical universities (Anna University, VTU, SPPU, AKTU) and private universities (Ashoka, VIT, Manipal).
-
-- [x] **CNT-16**: Fix leaked internal verification notes appearing in public deadline fields (Karnataka)
-  - **Impact**: High
 
 - [x] **CNT-15**: Fix "31 Dec 2099" placeholder date leaking into public deadline field (Odisha)
   - **Impact**: High

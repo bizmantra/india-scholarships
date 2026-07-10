@@ -20,7 +20,7 @@
     "title": "State hub QA: leaked verification notes + expired deadlines on Karnataka page (likely site-wide pattern)",
     "description": "",
     "impact": "Critical",
-    "status": "In Progress",
+    "status": "Done",
     "type": ""
   },
   {
@@ -49,11 +49,11 @@
   },
   {
     "id": "CNT-16",
-    "title": "Fix leaked internal verification notes appearing in public deadline fields (Karnataka)",
-    "description": "",
+    "title": "Fix leaked internal verification notes a",
+    "description": "Fix leaked internal verification notes appearing in public deadline fields (Karnataka)",
     "impact": "High",
-    "status": "Done",
-    "type": ""
+    "status": "In Progress",
+    "type": "bug"
   },
   {
     "id": "CNT-15",
@@ -134,5 +134,101 @@
     "impact": "Critical",
     "status": "In Progress",
     "type": ""
+  },
+  {
+    "id": "CNT-19",
+    "title": "Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)",
+    "description": "Build once, generate across inventory using existing schema fields. Validated demand pattern (per GSC keyword research: \"[Name] + last date + year\").\nPages: (1) [Scholarship Name] last date to apply 2026 — deadline field, ~266 pages, P0; (2) Scholarships under ₹1L/₹2.5L/₹5L/₹8L income — income field, ~4 hubs x states, P0; (3) Top scholarships for [Category] in [State] — category+state fields, P0; (4) Scholarships for girls/women in [state/course] — gender field, P1; (5) Scholarships for [Course/Stream] students — course field, P1; (6) Renewable scholarships hub — renewal field, P1; (7) Scholarship deadlines calendar (monthly), wraps existing /scholarships/deadlines, P1.\nFull outlines for items 1 & 2 in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-20",
+    "title": "Phase 2 — Hand-written scholarship-core articles",
+    "description": "Central government scholarships list (NSP-linked) 2026 [High demand, improves conversion on existing high-impression/low-conversion NSP traffic]; Scholarships that don't require entrance exam or merit; Highest-paying scholarships in India (₹50K+); Government vs private scholarships — which is easier to get; How scholarship selection actually works (merit vs need-based); Scholarships for differently-abled students.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-21",
+    "title": "Phase 3a — Education loan explainer articles (leadgen priority)",
+    "description": "Highest leadgen priority — direct tie-in to EMI calculator and Phase 4 loan/B2B roadmap. Articles: How education loans work in India; Collateral vs non-collateral education loans explained; What is CSIS interest subsidy and who qualifies; Education loan documents checklist; Scholarship vs education loan — which to apply for first; Can I get a scholarship and a loan together.\nFull outline for \"Scholarship vs education loan\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-22",
+    "title": "Phase 3b — DBT / student banking articles (leadgen priority)",
+    "description": "Articles: Why scholarship money isn't credited — common DBT issues; How to link Aadhaar to your bank account for scholarships; Best zero-balance student bank accounts (bank referral potential).\nFull outline for \"Why scholarship money isn't credited\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-23",
+    "title": "Phase 3c — Document/process utility content (state-wise templates)",
+    "description": "Scales across full state inventory with minimal marginal effort once templated. Articles: Income certificate application process (state-wise); Caste certificate application process (state-wise); Common reasons scholarship applications get rejected.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-24",
+    "title": "Phase 3d — Lifecycle/retention content",
+    "description": "Underserved because most competitor sites are discovery-only, not lifecycle-aware. Articles: What to do if your scholarship is delayed; Scholarship renewal — how it works, what can go wrong; Income certificate expiry and renewal.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-25",
+    "title": "Phase 3e — Lower-priority fill-in content",
+    "description": "Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "impact": "Low",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-26",
+    "title": "Research and add J&K state scholarships (ST, OBC/EBC/DNT, SC, and Ladli Beti)",
+    "description": "Research and add the following J&K schemes following the standard workflow:\n- Umbrella Scheme for ST Students\n- Pre-Matric & Post-Matric for OBC/EBC/DNT (under PM-YASASVI)\n- Pre-Matric & Post-Matric for SC Students\n- Ladli Beti Scheme (J&K social security maturity fund)",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-27",
+    "title": "Research and add Himachal Pradesh state scholarships (Mukhya Mantri Protsahan, Pre-Matric SC/ST)",
+    "description": "Research and add the following HP schemes following the standard workflow:\n- Mukhya Mantri Protsahan Yojana (HP)\n- Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-28",
+    "title": "Research and add National/Central Government fellowships (NFOBC, Top Class ST, National Overseas OBC/EBC/DNT)",
+    "description": "Research and add the following central schemes following the standard workflow:\n- National Fellowship for OBC Students (NFOBC)\n- Top Class Education Scheme for ST Students\n- National Overseas Scholarship for OBC/EBC/DNT Students",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-29",
+    "title": "Research and add Corporate/Private scholarships (Generation Google, Amazon Future Engineer, JSW Udaan)",
+    "description": "Research and add the following corporate schemes following the standard workflow:\n- Generation Google Scholarship (APAC-India)\n- Amazon Future Engineer Scholarship (India)\n- JSW Udaan Scholarship\nNote: Vedanta and P&G Shiksha have been reviewed and excluded/noted as restricted.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-30",
+    "title": "Research and scope International study-abroad scholarships (DAAD Germany, GKS Korea, Australia Awards, Swiss Govt, Clarendon, GREAT)",
+    "description": "Research and scope the following international study-abroad scholarships as a pilot track:\n- DAAD Scholarships (Germany)\n- Global Korea Scholarship (GKS)\n- Australia Awards Scholarships\n- Swiss Government Excellence Scholarship\n- Clarendon Scholarship (Oxford, UK)\n- GREAT Scholarships (UK)",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "content"
   }
 ]
