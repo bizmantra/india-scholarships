@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-10
-Total Scholarships Audited: **329**
-Scholarships with Issues: **129** (39.2%)
+Total Scholarships Audited: **331**
+Scholarships with Issues: **128** (38.7%)
 
 ---
 
@@ -12,15 +12,15 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 57 | 17.3% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Annual Amount** | 57 | 17.2% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 37 | 11.2% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 30 | 9.1% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 88 | 26.7% | Deadline is in the past (before 2026-06-26) |
+| **Expired Deadline** | 87 | 26.3% | Deadline is in the past (before 2026-06-26) |
 | **Old Year References** | 24 | 7.3% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 7 | 2.1% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 36 | 10.9% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 15 | 4.6% | Missing or under 20 characters |
-| **Missing Documents** | 15 | 4.6% | No required documents listed |
+| **Incomplete Step Guide** | 15 | 4.5% | Missing or under 20 characters |
+| **Missing Documents** | 15 | 4.5% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
 | **Missing Helpline** | 29 | 8.8% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 8 | 2.4% | FAQ block is empty or missing |
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 | `chief-minister-cm-scholarship-sikkim` | **Chief Minister (CM) Scholarship Sikkim** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 129 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 128 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
