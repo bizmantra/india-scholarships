@@ -1,18 +1,19 @@
 # 📊 IndiaScholarships — Project Dashboard
 
 > 🌐 **Live**: https://www.indiascholarships.in | **GitHub**: bizmantra/india-scholarships | **Hosting**: Vercel
-> 🕐 **Last Refreshed**: Thursday, 9 July 2026 at 1:29 pm IST
+> 🕐 **Last Refreshed**: Saturday, 11 July 2026 at 12:28 am IST
 
 ## 📊 Key Metrics
 
-- **Scholarships Indexed**: 317+ active schemes
-- **Total Scholarship Value**: ₹7Cr+
+- **Scholarships Indexed**: 333+ active schemes
+- **Total Scholarship Value**: ₹9Cr+
 - **Live Tools**: 7
-- **Dev Tasks**: 26 completed, 3 in progress, 34 in backlog
-- **Content Tasks**: 15 completed, 2 in progress, 0 in backlog
+- **Dev Tasks**: 26 completed, 4 in progress, 34 in backlog
+- **Content Tasks**: 20 completed, 2 in progress, 7 in backlog
 
 ## ⚡ Currently In Progress
 
+- **[Dev] IS-15 - Apply to Ezoic for premium ad monetisation**
 - **[Dev] IS-50 - Integrate Google Keyword Planner API for keyword research**
 - **[Dev] IS-63 - BUG: Site search live issues**
 - **[Dev] IS-84 - BUG: Vercel Serverless Runtime SQLite Failures**
@@ -39,12 +40,16 @@
 - IS-4 — Email capture on eligibility checker results screen
 - IS-13 — Add GitHub secrets — PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK
 - IS-14 — Education loan affiliate — HDFC Credila or Avanse
-- IS-15 — Apply to Ezoic for premium ad monetisation
 - IS-16 — WhatsApp alert subscription (MSG91/Twilio)
+- IS-18 — Question: When does the eligibility checker email capture go live?
 
 ## 📋 Backlog — Up Next (Content)
 
-*Backlog is empty.*
+- CNT-19 — Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)
+- CNT-20 — Phase 2 — Hand-written scholarship-core articles
+- CNT-21 — Phase 3a — Education loan explainer articles (leadgen priority)
+- CNT-22 — Phase 3b — DBT / student banking articles (leadgen priority)
+- CNT-23 — Phase 3c — Document/process utility content (state-wise templates)
 
 ## ✅ Recently Completed (Dev - Last 5)
 

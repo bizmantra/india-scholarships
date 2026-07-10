@@ -196,7 +196,7 @@
     "title": "Research and add J&K state scholarships (ST, OBC/EBC/DNT, SC, and Ladli Beti)",
     "description": "Research and add the following J&K schemes following the standard workflow:\n- Umbrella Scheme for ST Students\n- Pre-Matric & Post-Matric for OBC/EBC/DNT (under PM-YASASVI)\n- Pre-Matric & Post-Matric for SC Students\n- Ladli Beti Scheme (J&K social security maturity fund)",
     "impact": "High",
-    "status": "Backlog",
+    "status": "Done",
     "type": "content"
   },
   {
@@ -204,7 +204,7 @@
     "title": "Research and add Himachal Pradesh state scholarships (Mukhya Mantri Protsahan, Pre-Matric SC/ST)",
     "description": "Research and add the following HP schemes following the standard workflow:\n- Mukhya Mantri Protsahan Yojana (HP)\n- Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)",
     "impact": "Medium",
-    "status": "Backlog",
+    "status": "Done",
     "type": "content"
   },
   {
@@ -212,7 +212,7 @@
     "title": "Research and add National/Central Government fellowships (NFOBC, Top Class ST, National Overseas OBC/EBC/DNT)",
     "description": "Research and add the following central schemes following the standard workflow:\n- National Fellowship for OBC Students (NFOBC)\n- Top Class Education Scheme for ST Students\n- National Overseas Scholarship for OBC/EBC/DNT Students",
     "impact": "High",
-    "status": "Backlog",
+    "status": "Done",
     "type": "content"
   },
   {
@@ -220,7 +220,7 @@
     "title": "Research and add Corporate/Private scholarships (Generation Google, Amazon Future Engineer, JSW Udaan)",
     "description": "Research and add the following corporate schemes following the standard workflow:\n- Generation Google Scholarship (APAC-India)\n- Amazon Future Engineer Scholarship (India)\n- JSW Udaan Scholarship\nNote: Vedanta and P&G Shiksha have been reviewed and excluded/noted as restricted.",
     "impact": "High",
-    "status": "Backlog",
+    "status": "Done",
     "type": "content"
   },
   {
@@ -228,7 +228,7 @@
     "title": "Research and scope International study-abroad scholarships (DAAD Germany, GKS Korea, Australia Awards, Swiss Govt, Clarendon, GREAT)",
     "description": "Research and scope the following international study-abroad scholarships as a pilot track:\n- DAAD Scholarships (Germany)\n- Global Korea Scholarship (GKS)\n- Australia Awards Scholarships\n- Swiss Government Excellence Scholarship\n- Clarendon Scholarship (Oxford, UK)\n- GREAT Scholarships (UK)",
     "impact": "Medium",
-    "status": "Backlog",
+    "status": "Done",
     "type": "content"
   }
 ]

@@ -11,7 +11,7 @@
 - [ ] **CNT-18**: PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)
   - **Impact**: Critical
 
-## Backlog (12)
+## Backlog (7)
 
 - [ ] **CNT-19**: Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)
   - **Impact**: High
@@ -66,56 +66,7 @@
     Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).
     Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
 
-- [ ] **CNT-26**: Research and add J&K state scholarships (ST, OBC/EBC/DNT, SC, and Ladli Beti)
-  - **Impact**: High
-  - **Type**: content
-  - **Description**:
-    Research and add the following J&K schemes following the standard workflow:
-    - Umbrella Scheme for ST Students
-    - Pre-Matric & Post-Matric for OBC/EBC/DNT (under PM-YASASVI)
-    - Pre-Matric & Post-Matric for SC Students
-    - Ladli Beti Scheme (J&K social security maturity fund)
-
-- [ ] **CNT-27**: Research and add Himachal Pradesh state scholarships (Mukhya Mantri Protsahan, Pre-Matric SC/ST)
-  - **Impact**: Medium
-  - **Type**: content
-  - **Description**:
-    Research and add the following HP schemes following the standard workflow:
-    - Mukhya Mantri Protsahan Yojana (HP)
-    - Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)
-
-- [ ] **CNT-28**: Research and add National/Central Government fellowships (NFOBC, Top Class ST, National Overseas OBC/EBC/DNT)
-  - **Impact**: High
-  - **Type**: content
-  - **Description**:
-    Research and add the following central schemes following the standard workflow:
-    - National Fellowship for OBC Students (NFOBC)
-    - Top Class Education Scheme for ST Students
-    - National Overseas Scholarship for OBC/EBC/DNT Students
-
-- [ ] **CNT-29**: Research and add Corporate/Private scholarships (Generation Google, Amazon Future Engineer, JSW Udaan)
-  - **Impact**: High
-  - **Type**: content
-  - **Description**:
-    Research and add the following corporate schemes following the standard workflow:
-    - Generation Google Scholarship (APAC-India)
-    - Amazon Future Engineer Scholarship (India)
-    - JSW Udaan Scholarship
-    Note: Vedanta and P&G Shiksha have been reviewed and excluded/noted as restricted.
-
-- [ ] **CNT-30**: Research and scope International study-abroad scholarships (DAAD Germany, GKS Korea, Australia Awards, Swiss Govt, Clarendon, GREAT)
-  - **Impact**: Medium
-  - **Type**: content
-  - **Description**:
-    Research and scope the following international study-abroad scholarships as a pilot track:
-    - DAAD Scholarships (Germany)
-    - Global Korea Scholarship (GKS)
-    - Australia Awards Scholarships
-    - Swiss Government Excellence Scholarship
-    - Clarendon Scholarship (Oxford, UK)
-    - GREAT Scholarships (UK)
-
-## Done (15)
+## Done (20)
 
 - [x] **CNT-2**: University scholarship Hubs
 
@@ -198,6 +149,55 @@
     SCHEMA NOTE: international scholarships need their own lighter data structure vs. the 29-field domestic template — currency conversion, cycle-based (not fixed annual) deadlines, no income/caste eligibility fields, consortium-level fragmentation (e.g. Erasmus Mundus has no single portal).
     
     NEXT STEPS: scope with Antigravity — pilot with a small subset (5-8 scholarships) styled as a status tracker + individual pages only where a genuinely differentiated angle exists (e.g. MEXT, Erasmus Mundus fragmentation), rather than competing head-on on saturated terms like Chevening/Fulbright.
+
+- [x] **CNT-26**: Research and add J&K state scholarships (ST, OBC/EBC/DNT, SC, and Ladli Beti)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following J&K schemes following the standard workflow:
+    - Umbrella Scheme for ST Students
+    - Pre-Matric & Post-Matric for OBC/EBC/DNT (under PM-YASASVI)
+    - Pre-Matric & Post-Matric for SC Students
+    - Ladli Beti Scheme (J&K social security maturity fund)
+
+- [x] **CNT-27**: Research and add Himachal Pradesh state scholarships (Mukhya Mantri Protsahan, Pre-Matric SC/ST)
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Research and add the following HP schemes following the standard workflow:
+    - Mukhya Mantri Protsahan Yojana (HP)
+    - Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)
+
+- [x] **CNT-28**: Research and add National/Central Government fellowships (NFOBC, Top Class ST, National Overseas OBC/EBC/DNT)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following central schemes following the standard workflow:
+    - National Fellowship for OBC Students (NFOBC)
+    - Top Class Education Scheme for ST Students
+    - National Overseas Scholarship for OBC/EBC/DNT Students
+
+- [x] **CNT-29**: Research and add Corporate/Private scholarships (Generation Google, Amazon Future Engineer, JSW Udaan)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Research and add the following corporate schemes following the standard workflow:
+    - Generation Google Scholarship (APAC-India)
+    - Amazon Future Engineer Scholarship (India)
+    - JSW Udaan Scholarship
+    Note: Vedanta and P&G Shiksha have been reviewed and excluded/noted as restricted.
+
+- [x] **CNT-30**: Research and scope International study-abroad scholarships (DAAD Germany, GKS Korea, Australia Awards, Swiss Govt, Clarendon, GREAT)
+  - **Impact**: Medium
+  - **Type**: content
+  - **Description**:
+    Research and scope the following international study-abroad scholarships as a pilot track:
+    - DAAD Scholarships (Germany)
+    - Global Korea Scholarship (GKS)
+    - Australia Awards Scholarships
+    - Swiss Government Excellence Scholarship
+    - Clarendon Scholarship (Oxford, UK)
+    - GREAT Scholarships (UK)
 
 ## Parked (0)
 
