@@ -66,7 +66,7 @@
     Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).
     Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
 
-## Done (20)
+## Done (21)
 
 - [x] **CNT-2**: University scholarship Hubs
 
@@ -198,6 +198,12 @@
     - Swiss Government Excellence Scholarship
     - Clarendon Scholarship (Oxford, UK)
     - GREAT Scholarships (UK)
+
+- [x] **CNT-31**: Prevent SEO cannibalization across PM-YASASVI program variations via cross-linking
+  - **Impact**: High
+  - **Type**: seo
+  - **Description**:
+    Implement a Hub-and-Spoke cross-linking callout structure on the main PM-YASASVI page, Top Class Education page, and J&K UT page to guide users and clarify contextual relationships for search engine crawlers.
 
 ## Parked (0)
 

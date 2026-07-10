@@ -230,5 +230,13 @@
     "impact": "Medium",
     "status": "Done",
     "type": "content"
+  },
+  {
+    "id": "CNT-31",
+    "title": "Prevent SEO cannibalization across PM-YASASVI program variations via cross-linking",
+    "description": "Implement a Hub-and-Spoke cross-linking callout structure on the main PM-YASASVI page, Top Class Education page, and J&K UT page to guide users and clarify contextual relationships for search engine crawlers.",
+    "impact": "High",
+    "status": "Done",
+    "type": "seo"
   }
 ]
