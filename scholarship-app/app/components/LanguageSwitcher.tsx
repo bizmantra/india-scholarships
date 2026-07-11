@@ -10,7 +10,8 @@ const LANGUAGES = [
     { code: 'bn', name: 'বাংলা (Bengali)' },
     { code: 'ta', name: 'தமிழ் (Tamil)' },
     { code: 'te', name: 'తెలుగు (Telugu)' },
-    { code: 'or', name: 'ଓଡ଼ିଆ (Odia)' }
+    { code: 'or', name: 'ଓଡ଼ିଆ (Odia)' },
+    { code: 'kn', name: 'ಕನ್ನಡ (Kannada)' }
 ];
 
 export default function LanguageSwitcher() {

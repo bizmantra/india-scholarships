@@ -17,7 +17,8 @@ const locales = [
     { code: 'bn', name: 'Bengali' },
     { code: 'ta', name: 'Tamil' },
     { code: 'te', name: 'Telugu' },
-    { code: 'or', name: 'Odia' }
+    { code: 'or', name: 'Odia' },
+    { code: 'kn', name: 'Kannada' }
 ];
 
 // Helper to delay execution (respect RPM limits of Free Tier)

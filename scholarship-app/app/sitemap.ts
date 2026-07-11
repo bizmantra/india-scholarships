@@ -140,7 +140,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Localized Scholarship Details and Subpage Cluster Pages
-    const locales = ['hi', 'bn', 'ta', 'te', 'or'];
+    const locales = ['hi', 'bn', 'ta', 'te', 'or', 'kn'];
     const localizedScholarshipRoutes: any[] = [];
     const localizedSubpageRoutes: any[] = [];
 

@@ -31,7 +31,7 @@ import ShareButtons from '@/app/components/ShareButtons';
 // Generate static params for all scholarships across the 5 localized languages
 export async function generateStaticParams() {
     const scholarships = await getAllScholarships();
-    const locales = ['hi', 'bn', 'ta', 'te', 'or'];
+    const locales = ['hi', 'bn', 'ta', 'te', 'or', 'kn'];
     const paramsList: any[] = [];
     for (const s of scholarships) {
         for (const l of locales) {
@@ -150,6 +150,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                 'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}`,
                 'te': `https://www.indiascholarships.in/te/scholarships/${slug}`,
                 'or': `https://www.indiascholarships.in/or/scholarships/${slug}`,
+                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}`,
             }
         },
         openGraph: {
@@ -317,6 +318,18 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     <ChevronRight className="h-4 w-4" />
                     <span className="text-gray-900 font-medium truncate">{scholarship.title}</span>
                 </nav>
+            </div>
+
+            <div className="bg-blue-50 border-b border-blue-100 py-2.5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-blue-700">
+                    <Info className="h-4 w-4 flex-shrink-0" />
+                    <span>
+                        This page has been translated automatically by AI for your convenience. In case of any discrepancy, the official English guidelines remain canonical. 
+                        <Link href={`/scholarships/${scholarship.slug}`} className="underline ml-1.5 font-bold hover:text-blue-900">
+                            Read English Version
+                        </Link>
+                    </span>
+                </div>
             </div>
 
             <script

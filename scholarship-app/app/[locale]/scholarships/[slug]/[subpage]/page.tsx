@@ -37,7 +37,7 @@ const SUBPAGE_METRICS: Record<string, { label: string, icon: any }> = {
 export async function generateStaticParams() {
     const scholarships = await getAllScholarships();
     const subpages = Object.keys(SUBPAGE_METRICS);
-    const locales = ['hi', 'bn', 'ta', 'te', 'or'];
+    const locales = ['hi', 'bn', 'ta', 'te', 'or', 'kn'];
 
     const paramsList: Array<{ slug: string, subpage: string, locale: string }> = [];
     for (const s of scholarships) {
@@ -110,6 +110,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                 'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}/${subpage}`,
                 'te': `https://www.indiascholarships.in/te/scholarships/${slug}/${subpage}`,
                 'or': `https://www.indiascholarships.in/or/scholarships/${slug}/${subpage}`,
+                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}/${subpage}`,
             }
         }
     };
@@ -238,6 +239,18 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                     <ChevronRight className="h-4 w-4" />
                     <span className="text-gray-900 font-medium truncate">{metric.label}</span>
                 </nav>
+            </div>
+
+            <div className="bg-blue-50 border-b border-blue-100 py-2.5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs text-blue-700">
+                    <Info className="h-4 w-4 flex-shrink-0" />
+                    <span>
+                        This page has been translated automatically by AI for your convenience. In case of any discrepancy, the official English guidelines remain canonical. 
+                        <Link href={`/scholarships/${scholarship.slug}`} className="underline ml-1.5 font-bold hover:text-blue-900">
+                            Read English Version
+                        </Link>
+                    </span>
+                </div>
             </div>
 
             {/* JSON-LD Schema */}
