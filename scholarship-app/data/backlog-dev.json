@@ -658,9 +658,9 @@
   {
     "id": "IS-93",
     "title": "Automate Telegram Channel Broadcasts via Bot API",
-    "description": "Create a Node.js automation script (scripts/post-to-telegram.js) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. Integrate this script into the database synchronization pipeline so that newly added or updated scholarships are automatically published to Telegram.",
+    "description": "Create a Node.js automation script (scripts/post-to-telegram.js) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. For complete setup design and workflow guide, see docs/telegram-alerts-automation.md.",
     "impact": "High",
-    "status": "Backlog",
+    "status": "Done",
     "type": "Feature"
   }
 ]

@@ -913,11 +913,11 @@
   - **Description**:
     Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.
 
-- [ ] **IS-93**: Automate Telegram Channel Broadcasts via Bot API
+- [x] **IS-93**: Automate Telegram Channel Broadcasts via Bot API
   - **Impact**: High
   - **Type**: Feature
   - **Description**:
-    Create a Node.js automation script (`scripts/post-to-telegram.js`) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. Integrate this script into the database synchronization pipeline so that newly added or updated scholarships are automatically published to Telegram.
+    Create a Node.js automation script (`scripts/post-to-telegram.js`) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. For complete design setup and workflow, see [telegram-alerts-automation.md](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/telegram-alerts-automation.md).
 
 
 
