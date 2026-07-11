@@ -112,8 +112,16 @@ async function run() {
         const idx = args.indexOf('--limit');
         limit = parseInt(args[idx + 1], 10);
     }
+    const fast = args.includes('--fast');
+    const delayMs = fast ? 50 : 4500;
 
     console.log('🏁 Starting Database Multilingual Translation Script...');
+    if (fast) {
+        console.log('⚡ Running in FAST mode (Paid Tier / High Rate Limits)');
+    } else {
+        console.log('🐌 Running in THROTTLED mode (Free Tier / 15 RPM)');
+    }
+
     const scholarships = db.prepare("SELECT * FROM scholarships WHERE status = 'Active'").all();
     console.log(`Found ${scholarships.length} active scholarships in the main database.`);
 
@@ -141,8 +149,8 @@ async function run() {
 
             console.log(`✍️  Translating "${s.title}" (${s.id}) into ${loc.name} (${loc.code})...`);
             
-            // Respect Free Tier limits: Sleep 4.5 seconds to limit rate to ~13 requests per minute
-            await delay(4500);
+            // Wait based on rate mode
+            await delay(delayMs);
 
             const result = await translateText(s, loc);
             if (result) {
