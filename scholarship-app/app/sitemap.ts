@@ -35,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/guides/documents',
         '/about',
         '/scholarships-by-university',
-    ].map(route => ({
+    ].map((route: string) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: 'daily' as const,
@@ -44,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Dynamic Scholarship Detail Pages
     const scholarships = await getAllScholarships();
-    const scholarshipRoutes = scholarships.map(s => ({
+    const scholarshipRoutes = scholarships.map((s: any) => ({
         url: `${baseUrl}/scholarships/${s.slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Dynamic State Listing Pages
     const states = await getAllStates();
-    const stateRoutes = states.map(state => ({
+    const stateRoutes = states.map((state: any) => ({
         url: `${baseUrl}/scholarships-in/${slugify(state)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
@@ -62,7 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Dynamic Category Listing Pages
     const categories = await getAllCategories();
-    const categoryRoutes = categories.map(cat => ({
+    const categoryRoutes = categories.map((cat: any) => ({
         url: `${baseUrl}/scholarships-for/${slugify(cat)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
@@ -70,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     // Dynamic Education Level Listing Pages
-    const levelRoutes = Object.keys(CANONICAL_LEVELS).map(level => ({
+    const levelRoutes = Object.keys(CANONICAL_LEVELS).map((level: string) => ({
         url: `${baseUrl}/scholarships-level/${level}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
@@ -79,7 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Dynamic Income Listing Pages
     const incomeRanges = await getIncomeRanges();
-    const incomeRoutes = incomeRanges.map(range => ({
+    const incomeRoutes = incomeRanges.map((range: any) => ({
         url: `${baseUrl}/scholarships-income/${range.slug}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
@@ -88,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Dynamic Course Listing Pages
     const courses = getMajorCourses();
-    const courseRoutes = courses.map(course => ({
+    const courseRoutes = courses.map((course: any) => ({
         url: `${baseUrl}/scholarships-by-course/${course.slug}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
@@ -132,7 +132,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     // Dynamic University Listing Pages
-    const universityRoutes = UNIVERSITIES.map(uni => ({
+    const universityRoutes = UNIVERSITIES.map((uni: any) => ({
         url: `${baseUrl}/scholarships-by-university/${uni.slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
