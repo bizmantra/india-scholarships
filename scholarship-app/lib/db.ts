@@ -307,7 +307,10 @@ export async function getLocalizedScholarshipBySlug(slug: string, locale?: strin
     if (!base) return null;
     
     const db = getDatabase();
-    const translation = db.prepare('SELECT * FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?').get(base.id, locale) as any;
+    const sqliteRow = db.prepare('SELECT id FROM scholarships WHERE slug = ?').get(slug) as any;
+    const sqliteId = sqliteRow ? sqliteRow.id : base.id;
+    
+    const translation = db.prepare('SELECT * FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?').get(sqliteId, locale) as any;
     db.close();
     
     if (translation) {
