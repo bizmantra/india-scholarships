@@ -139,6 +139,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
+    // Dynamic Localized Scholarship Details and Subpage Cluster Pages
+    const locales = ['hi', 'bn', 'ta', 'te', 'or'];
+    const localizedScholarshipRoutes: any[] = [];
+    const localizedSubpageRoutes: any[] = [];
+
+    for (const locale of locales) {
+        for (const s of scholarships) {
+            localizedScholarshipRoutes.push({
+                url: `${baseUrl}/${locale}/scholarships/${s.slug}`,
+                lastModified: new Date(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.65,
+            });
+
+            for (const subpage of subpageKeys) {
+                localizedSubpageRoutes.push({
+                    url: `${baseUrl}/${locale}/scholarships/${s.slug}/${subpage}`,
+                    lastModified: new Date(),
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.6,
+                });
+            }
+        }
+    }
+
     return [
         ...staticRoutes,
         ...scholarshipRoutes,
@@ -150,5 +175,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...subpageRoutes,
         ...stateSubpageRoutes,
         ...universityRoutes,
+        ...localizedScholarshipRoutes,
+        ...localizedSubpageRoutes,
     ];
 }

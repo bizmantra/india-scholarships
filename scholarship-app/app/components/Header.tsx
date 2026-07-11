@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, Menu, X, Search } from 'lucide-react';
 import SearchModal from './SearchModal';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
     const [showScholarshipsDropdown, setShowScholarshipsDropdown] = useState(false);
@@ -102,6 +103,8 @@ export default function Header() {
                 </div>
 
                 <div className="flex items-center gap-2">
+                    <LanguageSwitcher />
+                    
                     {/* Desktop Search Button */}
                     <button
                         onClick={() => setShowSearch(true)}

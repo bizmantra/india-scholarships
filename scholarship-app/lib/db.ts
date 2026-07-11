@@ -297,6 +297,36 @@ export async function getScholarshipBySlug(slug: string) {
     return scholarship ? parseScholarship(scholarship) : null;
 }
 
+// Get localized scholarship by slug
+export async function getLocalizedScholarshipBySlug(slug: string, locale?: string) {
+    if (!locale || locale === 'en') {
+        return getScholarshipBySlug(slug);
+    }
+    
+    const base = await getScholarshipBySlug(slug);
+    if (!base) return null;
+    
+    const db = getDatabase();
+    const translation = db.prepare('SELECT * FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?').get(base.id, locale) as any;
+    db.close();
+    
+    if (translation) {
+        return {
+            ...base,
+            title: translation.title || base.title,
+            amount_description: translation.amount_description || base.amount_description,
+            benefits: translation.benefits || base.benefits,
+            selection: translation.selection || base.selection,
+            renewal: translation.renewal || base.renewal,
+            step_guide: translation.step_guide || base.step_guide,
+            faq_json: translation.faq_json || base.faq_json,
+            intro_seo: translation.intro_seo || base.intro_seo
+        };
+    }
+    
+    return base;
+}
+
 // Get scholarships by state
 export async function getScholarshipsByState(state: string) {
     if (WP_API_URL) {
