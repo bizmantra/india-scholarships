@@ -40,9 +40,11 @@ export default function Footer() {
                             <li><Link href="/government-scholarships" className="hover:text-white transition-colors">Government Scholarships</Link></li>
                             <li><Link href="/private-scholarships" className="hover:text-white transition-colors">Private Scholarships</Link></li>
                             <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                            <li><a href="https://t.me/IndiaScholarships1" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-bold transition-colors flex items-center gap-1">Telegram Channel ⚡</a></li>
                         </ul>
                     </div>
                 </div>
+
                 <div className="border-t border-gray-800 pt-8 text-center text-sm">
                     <p>© 2026 IndiaScholarships. All rights reserved.</p>
                 </div>

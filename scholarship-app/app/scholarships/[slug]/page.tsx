@@ -865,8 +865,36 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 url={`https://www.indiascholarships.in/scholarships/${scholarship.slug}`}
                             />
 
+                            {/* Telegram Alert Box */}
+                            <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-[2rem] relative overflow-hidden shadow-sm">
+                                <div className="absolute right-0 top-0 -mr-8 -mt-8 w-24 h-24 bg-blue-500/10 rounded-full blur-xl pointer-events-none"></div>
+                                <div className="flex items-start gap-4">
+                                    <div className="w-10 h-10 shrink-0 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-100">
+                                        <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15.82-.77 4.47-1.08 6.16-.13.72-.4 1.15-.65 1.17-.56.05-1.03-.45-1.52-.77-.77-.5-1.21-.81-1.95-1.3-.86-.56-.3-.87.19-1.38.13-.13 2.33-2.14 2.37-2.33.01-.02.01-.11-.04-.16-.05-.05-.12-.03-.18-.02-.07.01-1.25.79-3.53 2.33-.33.23-.64.34-.91.33-.3-.01-.88-.17-1.31-.31-.53-.17-.95-.26-.91-.56.02-.15.22-.31.62-.48 2.43-1.06 4.05-1.76 4.86-2.1 2.31-.97 2.79-1.14 3.1-.14.07.03.22.18.23.28.01.12.01.25 0 .39z"/>
+                                        </svg>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h4 className="text-sm font-bold text-gray-900 leading-tight">Instant Telegram Alerts</h4>
+                                        <p className="text-xs text-gray-600 leading-relaxed">
+                                            Deadlines change quickly. Join our Telegram channel to receive instant alerts when this scholarship opens or updates.
+                                        </p>
+                                        <a 
+                                            href="https://t.me/IndiaScholarships1"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 transition-colors pt-1"
+                                        >
+                                            Join Channel
+                                            <ChevronRight className="w-3.5 h-3.5" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                             {/* Supporting Guides Quick Links Card */}
                             <div className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8">
+
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b border-gray-150 pb-4">Supporting Guides</h3>
                                 <nav className="space-y-2">
                                     <Link href={`/scholarships/${scholarship.slug}/eligibility`} className="flex items-center justify-between px-4 py-3 bg-white rounded-2xl border border-gray-100/50 text-gray-700 hover:text-blue-700 font-bold text-sm shadow-sm transition-all hover:border-blue-100">

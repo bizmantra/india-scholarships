@@ -359,8 +359,46 @@ export default function HomeClient({
                     </div>
                 </section>
 
+                {/* Telegram Alert Banner */}
+                <section className="py-12 bg-gray-50 border-t border-b border-gray-100">
+                    <div className="container mx-auto px-6 max-w-4xl">
+                        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-indigo-700 p-8 md:p-12 text-white shadow-xl">
+                            {/* Decorative background circle */}
+                            <div className="absolute right-0 top-0 -mr-20 -mt-20 h-64 w-64 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
+                            
+                            <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                                <div className="space-y-4 max-w-xl">
+                                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-blue-100 backdrop-blur-sm border border-white/10 uppercase tracking-wider">
+                                        ⚡ Instant Updates
+                                    </span>
+                                    <h2 className="text-2xl md:text-3xl font-black font-serif tracking-tight leading-tight">
+                                        Never Miss another Scholarship Deadline
+                                    </h2>
+                                    <p className="text-blue-100/90 text-sm md:text-base leading-relaxed">
+                                        Join our official Telegram Channel to get instant notifications when new scholarships open, closing soon alerts, and step-by-step guides direct to your phone.
+                                    </p>
+                                </div>
+                                <div className="shrink-0">
+                                    <a
+                                        href="https://t.me/IndiaScholarships1"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-3 px-6 py-4 bg-white text-blue-700 font-bold rounded-2xl hover:bg-blue-50 transition-all shadow-lg active:scale-95 text-base"
+                                    >
+                                        <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15.82-.77 4.47-1.08 6.16-.13.72-.4 1.15-.65 1.17-.56.05-1.03-.45-1.52-.77-.77-.5-1.21-.81-1.95-1.3-.86-.56-.3-.87.19-1.38.13-.13 2.33-2.14 2.37-2.33.01-.02.01-.11-.04-.16-.05-.05-.12-.03-.18-.02-.07.01-1.25.79-3.53 2.33-.33.23-.64.34-.91.33-.3-.01-.88-.17-1.31-.31-.53-.17-.95-.26-.91-.56.02-.15.22-.31.62-.48 2.43-1.06 4.05-1.76 4.86-2.1 2.31-.97 2.79-1.14 3.1-.14.07.03.22.18.23.28.01.12.01.25 0 .39z"/>
+                                        </svg>
+                                        Join Channel on Telegram
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* FAQ Section */}
                 <section className="py-24 md:py-32 container mx-auto px-6 max-w-4xl">
+
                     <h2 className="text-4xl font-black text-gray-900 mb-16 text-center font-serif tracking-tight">
                         Frequently Asked Questions
                     </h2>
