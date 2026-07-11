@@ -12,7 +12,8 @@ export default function Header() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
 
-    // Global keyboard shortcut listener (Cmd+K / Ctrl+K)
+    // Global keyboard shortcut listener disabled (search rolled back)
+    /*
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -23,6 +24,7 @@ export default function Header() {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
+    */
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
@@ -105,26 +107,7 @@ export default function Header() {
                 <div className="flex items-center gap-2">
                     <LanguageSwitcher />
                     
-                    {/* Desktop Search Button */}
-                    <button
-                        onClick={() => setShowSearch(true)}
-                        className="hidden md:flex items-center gap-2 px-3.5 py-1.5 bg-gray-50 border border-gray-100 hover:bg-gray-100 hover:border-gray-200 rounded-2xl text-xs text-gray-400 font-bold transition-all shadow-xs cursor-pointer select-none"
-                    >
-                        <Search className="h-4 w-4 text-gray-500" />
-                        <span>Search...</span>
-                        <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 bg-white border border-gray-200 rounded-md text-[10px] font-extrabold text-gray-400 shadow-2xs">
-                            ⌘K
-                        </kbd>
-                    </button>
-
-                    {/* Mobile Search Button */}
-                    <button
-                        onClick={() => setShowSearch(true)}
-                        className="md:hidden p-2 text-gray-600 hover:text-blue-700 transition-colors"
-                        aria-label="Search"
-                    >
-                        <Search className="h-6 w-6" />
-                    </button>
+                    {/* Search Buttons temporarily disabled (search rolled back) */}
 
                     {/* Mobile Menu Button */}
                     <button
@@ -228,8 +211,8 @@ export default function Header() {
                 </div>
             )}
 
-            {/* Global Search Dialog Modal */}
-            <SearchModal isOpen={showSearch} onClose={() => setShowSearch(false)} />
+            {/* Global Search Dialog Modal temporarily disabled (search rolled back) */}
+            {/* <SearchModal isOpen={showSearch} onClose={() => setShowSearch(false)} /> */}
         </header>
     );
 }
