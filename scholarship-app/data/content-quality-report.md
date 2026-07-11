@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-07-10
-Total Scholarships Audited: **336**
-Scholarships with Issues: **128** (38.1%)
+Generated on: 2026-07-11
+Total Scholarships Audited: **338**
+Scholarships with Issues: **128** (37.9%)
 
 ---
 
@@ -12,15 +12,15 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 57 | 17.0% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 37 | 11.0% | Missing/0 minimum amount |
+| **Missing Annual Amount** | 57 | 16.9% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 37 | 10.9% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 30 | 8.9% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 87 | 25.9% | Deadline is in the past (before 2026-06-26) |
+| **Expired Deadline** | 87 | 25.7% | Deadline is in the past (before 2026-06-26) |
 | **Old Year References** | 24 | 7.1% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 7 | 2.1% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 36 | 10.7% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 15 | 4.5% | Missing or under 20 characters |
-| **Missing Documents** | 15 | 4.5% | No required documents listed |
+| **Incomplete Step Guide** | 15 | 4.4% | Missing or under 20 characters |
+| **Missing Documents** | 15 | 4.4% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
 | **Missing Helpline** | 29 | 8.6% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 8 | 2.4% | FAQ block is empty or missing |
