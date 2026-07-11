@@ -15,7 +15,7 @@
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-- [ ] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
+- [x] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
   - **Impact**: Critical
   - **Type**: Bug
   - **Description**:
@@ -23,11 +23,11 @@
     SQLite file-based database queries using native C++ compilation bindings (better-sqlite3) crash at request time inside Vercel's ephemeral, read-only serverless Lambda runtime, triggering a 500 server exception screen.
     
     Actions Taken:
-    Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
+    1. Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
+    2. Migrated SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
     
     Next Actions to be Taken:
     1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
-    2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
 ## Backlog (39)
 

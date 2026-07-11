@@ -1,22 +1,20 @@
 # 📊 IndiaScholarships — Project Dashboard
 
 > 🌐 **Live**: https://www.indiascholarships.in | **GitHub**: bizmantra/india-scholarships | **Hosting**: Vercel
-> 🕐 **Last Refreshed**: Saturday, 11 July 2026 at 1:11 am IST
+> 🕐 **Last Refreshed**: Sunday, 12 July 2026 at 2:42 am IST
 
 ## 📊 Key Metrics
 
-- **Scholarships Indexed**: 333+ active schemes
+- **Scholarships Indexed**: 337+ active schemes
 - **Total Scholarship Value**: ₹9Cr+
 - **Live Tools**: 7
-- **Dev Tasks**: 26 completed, 4 in progress, 35 in backlog
-- **Content Tasks**: 21 completed, 2 in progress, 7 in backlog
+- **Dev Tasks**: 29 completed, 2 in progress, 39 in backlog
+- **Content Tasks**: 22 completed, 2 in progress, 7 in backlog
 
 ## ⚡ Currently In Progress
 
-- **[Dev] IS-15 - Apply to Ezoic for premium ad monetisation**
 - **[Dev] IS-50 - Integrate Google Keyword Planner API for keyword research**
 - **[Dev] IS-63 - BUG: Site search live issues**
-- **[Dev] IS-84 - BUG: Vercel Serverless Runtime SQLite Failures**
 - **[Content] CNT-16 - Fix leaked internal verification notes a**
 - **[Content] CNT-18 - PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)**
 
