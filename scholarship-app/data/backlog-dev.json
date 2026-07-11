@@ -617,8 +617,40 @@
   },
   {
     "id": "IS-88",
-    "title": "Implement WhatsApp Alert Channel Integration & Exit-Intent Popup on Frontend",
-    "description": "Add WhatsApp subscribe banner to the footer/sidebar and implement an exit-intent popup on scholarship detail pages triggering for users who spent >30 seconds, prompting them to subscribe for updates. Inspired by Buddy4Study competitor benchmarking.",
+    "title": "Buddy4Study Competitor Benchmarking Analysis",
+    "description": "Performed competitor benchmarking of Buddy4Study covering subdomains, localization strategy, marketing channels, and onboarding registration funnel. Compiled findings in buddy4study_benchmarking_report.md.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Task"
+  },
+  {
+    "id": "IS-89",
+    "title": "Localization Investigation & Multi-language Next-intl Setup",
+    "description": "Investigate and implement multi-language support (specifically Hindi /hi/ or subdomains) using next-intl in the Next.js frontend, based on Buddy4Study's localization findings.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-90",
+    "title": "Implement WhatsApp Alert Channel Integration",
+    "description": "Add a highly visible WhatsApp Channel subscription component or floating badge in the site footer and sidebar layouts to capture user leads.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-91",
+    "title": "Implement Exit-Intent Alert Popup",
+    "description": "Build an exit-intent alert popup component that triggers for users attempting to leave/scroll past a certain point, prompting them to subscribe to WhatsApp/Telegram alerts.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-92",
+    "title": "User Onboarding & Dynamic Recommendations Flow",
+    "description": "Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.",
     "impact": "High",
     "status": "Backlog",
     "type": "Feature"

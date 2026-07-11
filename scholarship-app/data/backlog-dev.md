@@ -29,7 +29,7 @@
     1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
     2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
-## Backlog (35)
+## Backlog (38)
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High
@@ -495,7 +495,13 @@
   - **Description**:
     Add Telegram Alert Channel banner/card components to the Next.js frontend. Placements: 1. Homepage sticky banner/header. 2. Scholarship detail pages (near the Deadline/Apply sections). 3. Scholarship tools results screen (e.g., Eligibility Checker and Income Calculator output).
 
-## Done (26)
+## Done (27)
+
+- [x] **IS-88**: Buddy4Study Competitor Benchmarking Analysis
+  - **Impact**: High
+  - **Type**: Task
+  - **Description**:
+    Performed competitor benchmarking of Buddy4Study covering subdomains, localization strategy, marketing channels, and onboarding registration funnel. Compiled findings in buddy4study_benchmarking_report.md.
 
 - [x] **IS-1**: Fix Verified for 2026 hardcode → dynamic year (line 342)
   - **Impact**: Medium
@@ -865,10 +871,29 @@
   - **Description**:
     User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.
 
-- [ ] **IS-88**: Implement WhatsApp Alert Channel Integration & Exit-Intent Popup on Frontend
+- [ ] **IS-89**: Localization Investigation & Multi-language Next-intl Setup
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Investigate and implement multi-language support (specifically Hindi /hi/ or subdomains) using next-intl in the Next.js frontend, based on Buddy4Study's localization findings.
+
+- [ ] **IS-90**: Implement WhatsApp Alert Channel Integration
   - **Impact**: High
   - **Type**: Feature
   - **Description**:
-    Add WhatsApp subscribe banner to the footer/sidebar and implement an exit-intent popup on scholarship detail pages triggering for users who spent >30 seconds, prompting them to subscribe for updates. Inspired by Buddy4Study competitor benchmarking.
+    Add a highly visible WhatsApp Channel subscription component or floating badge in the site footer and sidebar layouts to capture user leads.
+
+- [ ] **IS-91**: Implement Exit-Intent Alert Popup
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Build an exit-intent alert popup component that triggers for users attempting to leave/scroll past a certain point, prompting them to subscribe to WhatsApp/Telegram alerts.
+
+- [ ] **IS-92**: User Onboarding & Dynamic Recommendations Flow
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.
+
 
 
