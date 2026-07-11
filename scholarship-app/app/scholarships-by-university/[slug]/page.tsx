@@ -42,8 +42,8 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
 
     const allSchemesCount = specific.length + general.length;
     const maxAmount = specific.length > 0 
-        ? Math.max(...specific.map(s => s.amount_annual || 0)) 
-        : (general.length > 0 ? Math.max(...general.map(s => s.amount_annual || 0)) : 0);
+        ? Math.max(...specific.map((s: any) => s.amount_annual || 0)) 
+        : (general.length > 0 ? Math.max(...general.map((s: any) => s.amount_annual || 0)) : 0);
 
     // Structure dynamic FAQs
     const faqs = [

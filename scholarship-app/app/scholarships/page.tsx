@@ -70,7 +70,7 @@ export default async function ScholarshipsPillarPage() {
                                 <h2 className="text-2xl font-bold tracking-tight">By State</h2>
                             </div>
                             <div className="flex flex-col gap-3 flex-1">
-                                {states.map(state => (
+                                {states.map((state: string) => (
                                     <Link key={state} href={`/scholarships-in/${slugify(state)}`} className="px-5 py-4 bg-gray-50 rounded-2xl font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all border border-transparent hover:border-blue-100">
                                         Scholarships in {state}
                                     </Link>
@@ -136,7 +136,7 @@ export default async function ScholarshipsPillarPage() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {featured.map(s => (
+                            {featured.map((s: any) => (
                                 <ScholarshipCard key={s.id} scholarship={s} viewMode="grid" />
                             ))}
                         </div>

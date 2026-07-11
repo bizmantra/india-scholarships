@@ -1,25 +1,23 @@
-import Database from 'better-sqlite3';
+import { createClient } from '@libsql/client';
 import path from 'path';
 import fs from 'fs';
 import { UNIVERSITIES } from './universities';
 
-function resolveDbPath() {
-    const candidates = [
-        path.join(process.cwd(), 'data', 'scholarships.db'),
-        path.join(process.cwd(), '.next', 'server', 'data', 'scholarships.db'),
-        path.join('/var/task', 'data', 'scholarships.db'),
-        path.join('/var/task', 'scholarship-app', 'data', 'scholarships.db'),
-    ];
+const dbUrl = process.env.TURSO_DATABASE_URL || 'file:data/scholarships.db';
+const dbToken = process.env.TURSO_AUTH_TOKEN;
 
-    for (const c of candidates) {
-        if (fs.existsSync(c)) {
-            return c;
-        }
+let clientInstance: any = null;
+
+export function getClient() {
+    if (!clientInstance) {
+        clientInstance = createClient({
+            url: dbUrl,
+            authToken: dbToken,
+        });
     }
-    return path.join(process.cwd(), 'data', 'scholarships.db');
+    return clientInstance;
 }
 
-const dbPath = resolveDbPath();
 const WP_API_URL = process.env.WORDPRESS_API_URL;
 
 // Helper to fetch from WordPress if configured
@@ -27,9 +25,8 @@ async function wpFetch(endpoint: string, params: Record<string, string | number>
     if (!WP_API_URL) return null;
 
     const url = new URL(`${WP_API_URL}${endpoint}`);
-    // Always add _embed to get taxonomy names and featured images
     url.searchParams.append('_embed', '1');
-    url.searchParams.append('per_page', '100'); // Default to 100 for our needs
+    url.searchParams.append('per_page', '100');
 
     Object.entries(params).forEach(([key, value]) => {
         url.searchParams.append(key, value.toString());
@@ -37,7 +34,7 @@ async function wpFetch(endpoint: string, params: Record<string, string | number>
 
     try {
         const res = await fetch(url.toString(), {
-            next: { revalidate: 3600 } // Cache for 1 hour for better performance
+            next: { revalidate: 3600 }
         });
         if (!res.ok) return null;
         return res.json();
@@ -61,8 +58,6 @@ function decodeHtmlEntities(text: string): string {
         .replace(/&gt;/g, '>');
 }
 
-
-
 /**
  * Maps a WordPress Post (with ACF fields) to our internal Scholarship interface.
  */
@@ -71,12 +66,10 @@ function mapWpPostToScholarship(post: any) {
 
     const fields = post.acf || {};
 
-    // Get taxonomy names from embedded data if available
     const getTaxonomyNames = (taxKey: string) => {
         const embedded = post._embedded?.['wp:term'];
         if (!embedded) return [];
 
-        // Find the collection for this taxonomy
         const taxCollection = embedded.find((coll: any[]) =>
             coll.some(term => term.taxonomy === taxKey)
         );
@@ -88,191 +81,53 @@ function mapWpPostToScholarship(post: any) {
     const categories = getTaxonomyNames('scholarship_category');
     const levels = getTaxonomyNames('scholarship_level');
 
-    // Use current year as fallback for verification if not provided
     const currentYear = new Date().getFullYear();
 
     return {
         id: post.id.toString(),
         title: decodeHtmlEntities(typeof post.title === 'object' ? post.title.rendered : post.title),
         slug: post.slug,
-
-        // Basic Info
         provider: fields.provider || "",
         provider_type: fields.provider_type || "Government",
-
-        // Taxonomy Fields - Prefer ACF if set, otherwise use WordPress Taxonomies
         state: fields.state || (states.length > 0 ? states[0] : "All India"),
         level: fields.level || (levels.length > 0 ? levels.join(', ') : ""),
         caste: parseCasteField(fields.caste || (categories.length > 0 ? categories : [])),
         gender: fields.gender || "All",
         course_stream: fields.course_stream ? (Array.isArray(fields.course_stream) ? fields.course_stream : [fields.course_stream]) : [],
         app_type: "",
-
-        // Amount & Financial
         amount_annual: fields.amount_annual ? Number(fields.amount_annual) : 0,
         amount_min: fields.amount_min ? Number(fields.amount_min) : 0,
         amount_description: fields.amount_description || "",
         benefits: fields.benefits || "",
-
-        // Eligibility Criteria
         income_limit: fields.income_limit ? Number(fields.income_limit) : 0,
         min_marks: fields.min_marks ? Number(fields.min_marks) : 0,
         age_limit: fields.age_limit || "NA",
         residency_requirement: fields.state || (states.length > 0 ? states[0] : ""),
-
-        // Application Details
         docs_needed: parseDocsField(fields.docs_needed),
         application_mode: fields.application_mode || "Online",
         apply_url: fields.apply_url || "",
         deadline: fields.deadline || "",
         deadline_description: fields.deadline_description || "",
         time_min: 15,
-
-        // Process & Selection
         step_guide: fields.application_process || fields.step_guide || "",
         selection: fields.selection || "",
         total_awards: fields.total_awards ? Number(fields.total_awards) : 0,
         renewal: fields.renewal_policy || fields.renewal || "",
         competitiveness: "High",
-
-        // Trust & Verification
         verified_status: "Verified",
         last_verified: post.modified || new Date().toISOString(),
         verification_year: fields.verification_year ? Number(fields.verification_year) : currentYear,
         official_source: fields.official_source || fields.apply_url || "",
         helpline: fields.helpline || "",
-
-        // SEO & Content
         intro_seo: fields.intro_seo || "",
         faq_json: tryParseJSON(fields.faq_json, []),
         notes_actions: "",
         keywords: "",
-
-        // Status & Metadata
         scholarship_type: fields.provider_type || "Government",
         status: post.status === 'publish' ? "Active" : "Closed",
         tags: fields.tags ? (Array.isArray(fields.tags) ? fields.tags : fields.tags.split(',').map((s: string) => s.trim())) : [],
         thumbnail_url: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || fields.thumbnail_url || ""
     };
-}
-export function getDatabase() {
-    try {
-        // If running in a Vercel serverless environment, open in readonly mode immediately
-        // to avoid any attempts to write or lock, preventing SQLITE_CANTOPEN/SQLITE_BUSY errors
-        if (process.env.VERCEL) {
-            return new Database(dbPath, { readonly: true });
-        }
-
-        // Try opening the database in read-write mode (default)
-        const db = new Database(dbPath);
-        try {
-            db.pragma('journal_mode = DELETE');
-        } catch (pragmaError) {
-            console.warn('Could not set journal_mode = DELETE, continuing:', pragmaError);
-        }
-        return db;
-    } catch (error) {
-        console.warn('Failed to open database in read-write mode, falling back to readonly:', error);
-        // Fallback to read-only mode for serverless environments (e.g., Vercel)
-        const db = new Database(dbPath, { readonly: true });
-        return db;
-    }
-}
-
-// Initialize database schema
-export function initializeDatabase() {
-    const db = getDatabase();
-
-    db.exec(`
-    CREATE TABLE IF NOT EXISTS scholarships (
-      id TEXT PRIMARY KEY,
-      title TEXT NOT NULL,
-      slug TEXT UNIQUE NOT NULL,
-      
-      -- Basic Info
-      provider TEXT,
-      provider_type TEXT,
-      
-      -- Taxonomy Fields (for filtering & programmatic SEO)
-      state TEXT,
-      level TEXT,
-      caste TEXT,
-      gender TEXT,
-      course_stream TEXT,
-      app_type TEXT,
-      
-      -- Amount & Financial
-      amount_annual INTEGER,
-      amount_min INTEGER,
-      amount_description TEXT,
-      benefits TEXT,
-      
-      -- Eligibility Criteria
-      income_limit INTEGER,
-      min_marks INTEGER,
-      age_limit TEXT,
-      residency_requirement TEXT,
-      
-      -- Application Details
-      docs_needed TEXT,
-      application_mode TEXT,
-      apply_url TEXT,
-      deadline TEXT,
-      deadline_description TEXT,
-      time_min INTEGER,
-      
-      -- Process & Selection
-      step_guide TEXT,
-      selection TEXT,
-      total_awards INTEGER,
-      renewal TEXT,
-      competitiveness TEXT,
-      
-      -- Trust & Verification
-      verified_status TEXT,
-      last_verified TEXT,
-      official_source TEXT,
-      helpline TEXT,
-      
-      -- SEO & Content
-      intro_seo TEXT,
-      faq_json TEXT,
-      notes_actions TEXT,
-      keywords TEXT,
-      
-      -- New: Scholarship Type & Status
-      scholarship_type TEXT DEFAULT 'Government',
-      status TEXT DEFAULT 'Active',
-      
-      -- New: Year Verification (for private scholarships)
-      verification_year INTEGER,
-      verification_date TEXT,
-      
-      -- New: Display & Ranking Logic
-      show_on_homepage INTEGER DEFAULT 0,
-      is_featured INTEGER DEFAULT 0,
-      is_popular INTEGER DEFAULT 0,
-      priority_score INTEGER DEFAULT 50,
-      
-      -- New: Enhanced Content
-      special_conditions TEXT,
-      tags TEXT,
-      thumbnail_url TEXT
-    );
-    
-    -- Indexes for filtering
-    CREATE INDEX IF NOT EXISTS idx_state ON scholarships(state);
-    CREATE INDEX IF NOT EXISTS idx_level ON scholarships(level);
-    CREATE INDEX IF NOT EXISTS idx_caste ON scholarships(caste);
-    CREATE INDEX IF NOT EXISTS idx_gender ON scholarships(gender);
-    CREATE INDEX IF NOT EXISTS idx_provider_type ON scholarships(provider_type);
-    CREATE INDEX IF NOT EXISTS idx_app_type ON scholarships(app_type);
-    CREATE INDEX IF NOT EXISTS idx_slug ON scholarships(slug);
-    CREATE INDEX IF NOT EXISTS idx_scholarship_type ON scholarships(scholarship_type);
-    CREATE INDEX IF NOT EXISTS idx_status ON scholarships(status);
-  `);
-
-    db.close();
 }
 
 // Get all scholarships
@@ -283,10 +138,9 @@ export async function getAllScholarships() {
             return posts.map(mapWpPostToScholarship);
         }
     }
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships').all();
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute('SELECT * FROM scholarships');
+    return res.rows.map(parseScholarship);
 }
 
 // Get scholarship by slug
@@ -297,9 +151,12 @@ export async function getScholarshipBySlug(slug: string) {
             return mapWpPostToScholarship(posts[0]);
         }
     }
-    const db = getDatabase();
-    const scholarship = db.prepare('SELECT * FROM scholarships WHERE slug = ?').get(slug);
-    db.close();
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE slug = ?',
+        args: [slug]
+    });
+    const scholarship = res.rows[0];
     return scholarship ? parseScholarship(scholarship) : null;
 }
 
@@ -312,12 +169,19 @@ export async function getLocalizedScholarshipBySlug(slug: string, locale?: strin
     const base = await getScholarshipBySlug(slug);
     if (!base) return null;
     
-    const db = getDatabase();
-    const sqliteRow = db.prepare('SELECT id FROM scholarships WHERE slug = ?').get(slug) as any;
-    const sqliteId = sqliteRow ? sqliteRow.id : base.id;
+    const client = getClient();
+    const sqliteRowRes = await client.execute({
+        sql: 'SELECT id FROM scholarships WHERE slug = ?',
+        args: [slug]
+    });
+    const sqliteRow = sqliteRowRes.rows[0];
+    const sqliteId = sqliteRow ? String(sqliteRow.id) : base.id;
     
-    const translation = db.prepare('SELECT * FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?').get(sqliteId, locale) as any;
-    db.close();
+    const translationRes = await client.execute({
+        sql: 'SELECT * FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?',
+        args: [sqliteId, locale]
+    });
+    const translation = translationRes.rows[0];
     
     if (translation) {
         return {
@@ -328,7 +192,7 @@ export async function getLocalizedScholarshipBySlug(slug: string, locale?: strin
             selection: translation.selection || base.selection,
             renewal: translation.renewal || base.renewal,
             step_guide: translation.step_guide || base.step_guide,
-            faq_json: translation.faq_json || base.faq_json,
+            faq_json: tryParseJSON(translation.faq_json, []),
             intro_seo: translation.intro_seo || base.intro_seo
         };
     }
@@ -339,34 +203,33 @@ export async function getLocalizedScholarshipBySlug(slug: string, locale?: strin
 // Get scholarships by state
 export async function getScholarshipsByState(state: string) {
     if (WP_API_URL) {
-        // Find the term ID for the state first to ensure accurate filtering
         const terms = await wpFetch('/scholarship_states', { slug: state.toLowerCase().replace(/\s+/g, '-') });
         if (terms && Array.isArray(terms) && terms.length > 0) {
             const posts = await wpFetch('/scholarship', { scholarship_states: terms[0].id });
             if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
         }
 
-        // Fallback to search if slug lookup fails
         const posts = await wpFetch('/scholarship', { search: state });
         if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
     }
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE state = ?').all(state);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE state = ?',
+        args: [state]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get all unique states
 export async function getAllStates() {
     if (WP_API_URL) {
-        // Fetch from scholarship_states taxonomy
         const terms = await wpFetch('/scholarship_states?per_page=100');
         if (terms && Array.isArray(terms)) {
             return terms.map((t: any) => t.name);
         }
     }
-    const db = getDatabase();
-    const states = db.prepare(`
+    const client = getClient();
+    const res = await client.execute(`
         SELECT DISTINCT state FROM scholarships 
         WHERE state IS NOT NULL 
         AND state != '' 
@@ -375,31 +238,27 @@ export async function getAllStates() {
         AND state != 'Selected Cities'
         AND state != 'Selected States'
         ORDER BY state
-    `).all();
-    db.close();
-    return states.map((row: any) => row.state);
+    `);
+    return res.rows.map((row: any) => row.state);
 }
 
 // Get all unique categories (castes)
 export async function getAllCategories() {
     if (WP_API_URL) {
-        // Fetch from scholarship_category taxonomy
         const terms = await wpFetch('/scholarship_category?per_page=100');
         if (terms && Array.isArray(terms)) {
             return terms.map((t: any) => t.name);
         }
     }
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT DISTINCT caste FROM scholarships WHERE caste IS NOT NULL').all();
-    db.close();
+    const client = getClient();
+    const res = await client.execute('SELECT DISTINCT caste FROM scholarships WHERE caste IS NOT NULL');
 
     const categories = new Set<string>();
-    scholarships.forEach((row: any) => {
+    res.rows.forEach((row: any) => {
         try {
             const castes = JSON.parse(row.caste);
             castes.forEach((c: string) => categories.add(c));
         } catch {
-            // If not JSON, treat as single value
             if (row.caste) categories.add(row.caste);
         }
     });
@@ -410,7 +269,6 @@ export async function getAllCategories() {
 // Get scholarships by category
 export async function getScholarshipsByCategory(category: string) {
     if (WP_API_URL) {
-        // Try filtering by taxonomy term slug
         const slug = category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         const terms = await wpFetch('/scholarship_category', { slug });
         if (terms && Array.isArray(terms) && terms.length > 0) {
@@ -418,16 +276,17 @@ export async function getScholarshipsByCategory(category: string) {
             if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
         }
 
-        // Fallback to search
         const posts = await wpFetch('/scholarship', { search: category });
         if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship).filter((s: any) =>
             s.caste.some((c: string) => c.toLowerCase().includes(category.toLowerCase()))
         );
     }
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE caste LIKE ?').all(`%${category}%`);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE caste LIKE ?',
+        args: [`%${category}%`]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Re-export canonical levels and mapping helpers from utils.ts
@@ -448,39 +307,34 @@ export {
 // Get all unique education levels (raw)
 export async function getAllLevels() {
     if (WP_API_URL) {
-        // Fetch from scholarship_level taxonomy
         const terms = await wpFetch('/scholarship_level?per_page=100');
         if (terms && Array.isArray(terms)) {
             return terms.map((t: any) => t.name);
         }
     }
-    const db = getDatabase();
-    const levels = db.prepare('SELECT DISTINCT level FROM scholarships WHERE level IS NOT NULL ORDER BY level').all();
-    db.close();
-    return levels.map((row: any) => row.level);
+    const client = getClient();
+    const res = await client.execute('SELECT DISTINCT level FROM scholarships WHERE level IS NOT NULL ORDER BY level');
+    return res.rows.map((row: any) => row.level);
 }
 
 // Get scholarships by education level (supports raw level or canonical slug)
 export async function getScholarshipsByLevel(levelOrSlug: string) {
     if (WP_API_URL) {
-        // Look up by taxonomy slug first
         const terms = await wpFetch('/scholarship_level', { slug: levelOrSlug });
         if (terms && Array.isArray(terms) && terms.length > 0) {
             const posts = await wpFetch('/scholarship', { scholarship_level: terms[0].id });
             if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
         }
 
-        // Fallback to search
         const posts = await wpFetch('/scholarship', { search: levelOrSlug });
         if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
     }
-    const db = getDatabase();
-
+    
     // Check if it's a canonical slug
     const canonical = CANONICAL_LEVELS[levelOrSlug];
+    const client = getClient();
 
     if (canonical) {
-        // Build a query where level matches any of the raw levels in this bucket using LIKE
         const likeClauses = canonical.rawLevels.map(() => 'level LIKE ?').join(' OR ');
         const query = `
             SELECT * FROM scholarships 
@@ -490,43 +344,43 @@ export async function getScholarshipsByLevel(levelOrSlug: string) {
 
         const likeParams = canonical.rawLevels.map(raw => `%${raw}%`);
         const broadLike = `%${canonical.label}%`;
-        const scholarships = db.prepare(query).all(...likeParams, broadLike);
-        db.close();
-        return scholarships.map(parseScholarship);
+        const res = await client.execute({
+            sql: query,
+            args: [...likeParams, broadLike]
+        });
+        return res.rows.map(parseScholarship);
     }
 
-    // Otherwise fall back to exact match for raw level
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE level = ?').all(levelOrSlug);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE level = ?',
+        args: [levelOrSlug]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get scholarships by income range
 export async function getScholarshipsByIncomeRange(minIncome: number, maxIncome: number) {
-    const db = getDatabase();
+    const client = getClient();
 
-    let scholarships;
+    let res;
     if (minIncome === -1) {
-        // "No Income Bar" case: includes NULL, 0, or empty string
-        scholarships = db.prepare(
+        res = await client.execute(
             "SELECT * FROM scholarships WHERE (income_limit IS NULL OR income_limit = 0 OR income_limit = '')"
-        ).all();
+        );
     } else {
-        scholarships = db.prepare(
-            'SELECT * FROM scholarships WHERE (income_limit >= ? AND income_limit <= ?)'
-        ).all(minIncome, maxIncome);
+        res = await client.execute({
+            sql: 'SELECT * FROM scholarships WHERE (income_limit >= ? AND income_limit <= ?)',
+            args: [minIncome, maxIncome]
+        });
     }
 
-    db.close();
-    return scholarships.map(parseScholarship);
+    return res.rows.map(parseScholarship);
 }
 
 // Get all income ranges with counts
 export async function getIncomeRanges() {
-    const db = getDatabase();
-    // Include NULLs this time
-    const scholarships = db.prepare('SELECT income_limit FROM scholarships').all();
-    db.close();
+    const client = getClient();
+    const res = await client.execute('SELECT income_limit FROM scholarships');
 
     const ranges = [
         { label: 'No Income Bar', min: -1, max: 0, slug: 'no-income-bar' },
@@ -538,7 +392,7 @@ export async function getIncomeRanges() {
 
     return ranges.map(range => ({
         ...range,
-        count: scholarships.filter((s: any) => {
+        count: res.rows.filter((s: any) => {
             const limit = s.income_limit === null || s.income_limit === "" ? 0 : Number(s.income_limit);
             if (range.min === -1) return limit === 0;
             return limit >= range.min && limit <= range.max;
@@ -548,65 +402,72 @@ export async function getIncomeRanges() {
 
 // Get scholarships by provider type
 export async function getScholarshipsByProviderType(providerType: string) {
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE provider_type = ?').all(providerType);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE provider_type = ?',
+        args: [providerType]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get all unique provider types
 export async function getAllProviderTypes() {
-    const db = getDatabase();
-    const types = db.prepare('SELECT DISTINCT provider_type FROM scholarships WHERE provider_type IS NOT NULL ORDER BY provider_type').all();
-    db.close();
-    return types.map((row: any) => row.provider_type);
+    const client = getClient();
+    const res = await client.execute('SELECT DISTINCT provider_type FROM scholarships WHERE provider_type IS NOT NULL ORDER BY provider_type');
+    return res.rows.map((row: any) => row.provider_type);
 }
 
 // Search scholarships by name, provider, or state
 export async function searchScholarships(query: string) {
-    const db = getDatabase();
+    const client = getClient();
     const searchTerm = `%${query}%`;
-    const scholarships = db.prepare(`
-        SELECT * FROM scholarships 
-        WHERE title LIKE ? 
-        OR provider LIKE ? 
-        OR state LIKE ?
-        ORDER BY title
-    `).all(searchTerm, searchTerm, searchTerm);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE title LIKE ? 
+            OR provider LIKE ? 
+            OR state LIKE ?
+            ORDER BY title
+        `,
+        args: [searchTerm, searchTerm, searchTerm]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get scholarships by multiple IDs (for comparison)
 export async function getScholarshipsByIds(ids: string[]) {
-    const db = getDatabase();
+    if (ids.length === 0) return [];
+    const client = getClient();
     const placeholders = ids.map(() => '?').join(',');
-    const scholarships = db.prepare(`SELECT * FROM scholarships WHERE id IN (${placeholders})`).all(...ids);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const res = await client.execute({
+        sql: `SELECT * FROM scholarships WHERE id IN (${placeholders})`,
+        args: ids
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get featured scholarships
 export async function getFeaturedScholarships(limit: number = 6) {
     if (WP_API_URL) {
-        // Fetch posts and filter for featured in mapping or use a specific tag if you set one up
-        // For now, let's just fetch the latest published scholarships as "featured" 
-        // Or if you added a 'featured' tag/category, we could filter by that.
         const posts = await wpFetch('/scholarship', { per_page: limit });
         if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
     }
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE is_featured = 1 ORDER BY priority_score DESC LIMIT ?').all(limit);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE is_featured = 1 ORDER BY priority_score DESC LIMIT ?',
+        args: [limit]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get scholarships by type
 export async function getScholarshipsByType(type: string) {
-    const db = getDatabase();
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE scholarship_type = ?').all(type);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE scholarship_type = ?',
+        args: [type]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Helper to generate search patterns for levels
@@ -645,7 +506,7 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
     const scholarship = (await getScholarshipsByIds([currentId]))[0];
     if (!scholarship) return [];
 
-    const db = getDatabase();
+    const client = getClient();
 
     const state = scholarship.state || 'All India';
     const level = scholarship.level || '';
@@ -654,7 +515,6 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
     const patterns = getLevelSearchPatterns(level);
     const placeholders = patterns.map(() => 'level LIKE ?').join(' OR ');
 
-    // Match level keywords, filter out expired ones (deadline is empty, not a date, or >= today)
     const query = `
         SELECT * FROM scholarships 
         WHERE id != ? 
@@ -680,9 +540,9 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
     const categorySearch = `%${category}%`;
     const params = [currentId, ...patterns, state, categorySearch, limit];
 
-    let related = db.prepare(query).all(...params);
+    const res = await client.execute({ sql: query, args: params });
+    let related = [...res.rows];
 
-    // Fallback: If we got fewer than limit, relax level constraints or find any active popular scholarships
     if (related.length < limit) {
         const remaining = limit - related.length;
         const excludedIds = [currentId, ...related.map((r: any) => r.id)];
@@ -706,36 +566,38 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
             LIMIT ?
         `;
 
-        const fallbackRelated = db.prepare(fallbackQuery).all(...excludedIds, remaining);
-        related = [...related, ...fallbackRelated];
+        const fallbackRes = await client.execute({
+            sql: fallbackQuery,
+            args: [...excludedIds, remaining]
+        });
+        related = [...related, ...fallbackRes.rows];
     }
 
-    db.close();
     return related.map(parseScholarship);
 }
 
 // Get global stats for pillar pages
 export async function getScholarshipStats() {
-    const db = getDatabase();
-    const stats = db.prepare(`
+    const client = getClient();
+    const res = await client.execute(`
         SELECT 
             COUNT(*) as total,
             COUNT(DISTINCT state) as stateCount,
             SUM(CASE WHEN scholarship_type = 'Government' THEN 1 ELSE 0 END) as govCount,
             SUM(CASE WHEN scholarship_type = 'Private' OR scholarship_type = 'Corporate' THEN 1 ELSE 0 END) as privateCount
         FROM scholarships
-    `).get() as any;
-    db.close();
-    return stats;
+    `);
+    return res.rows[0];
 }
 
 // Get scholarships by course cluster (e.g., Engineering, Medical)
 export async function getScholarshipsByCourse(course: string) {
-    const db = getDatabase();
-    // Use LIKE to match the course within the course_stream JSON or text
-    const scholarships = db.prepare('SELECT * FROM scholarships WHERE course_stream LIKE ?').all(`%${course}%`);
-    db.close();
-    return scholarships.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE course_stream LIKE ?',
+        args: [`%${course}%`]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get predefined list of high-value courses for SEO
@@ -777,7 +639,6 @@ function tryParseJSON(value: any, fallback: any) {
     }
 }
 
-
 export function parseCasteField(value: any): string[] {
     if (!value) return [];
     if (Array.isArray(value)) {
@@ -794,7 +655,6 @@ export function parseCasteField(value: any): string[] {
                 }
             } catch {}
         }
-        // Fallback: split by commas
         return trimmed.split(',').map((c: string) => c.replace(/[\[\]"']/g, '').trim()).filter(Boolean);
     }
     return [];
@@ -844,16 +704,13 @@ export function getCleanSteps(text: string | null): string[] {
     let rawItems: string[] = [];
     const trimmed = text.trim();
     
-    // 1. Check if it is a string representation of an array
     if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
         try {
-            // Try parsing as JSON
             const parsed = JSON.parse(trimmed);
             if (Array.isArray(parsed)) {
                 rawItems = parsed.map(s => String(s));
             }
         } catch (e) {
-            // Fallback: extract string literals from python-like list representation
             const matches: string[] = [];
             const regex = /'((?:[^'\\]|\\.)*)'|"((?:[^"\\]|\\.)*)"/g;
             let match;
@@ -866,7 +723,6 @@ export function getCleanSteps(text: string | null): string[] {
         }
     }
     
-    // 2. If it wasn't parsed as a stringified array, treat it as a single string
     if (rawItems.length === 0) {
         if (/Step \d+:/i.test(trimmed)) {
             rawItems = trimmed.split(/Step \d+:/i).map(s => s.trim()).filter(Boolean);
@@ -877,14 +733,10 @@ export function getCleanSteps(text: string | null): string[] {
         }
     }
     
-    // 3. Clean up each item (strip leading numbers, Step X: prefixes, etc.)
     const cleanItems = rawItems.map(item => {
         let cleaned = item.trim();
-        // Remove leading quote/brackets if any escaped characters remain
         cleaned = cleaned.replace(/^['"\[\s,]+|['"\]\s,]+$/g, '');
-        // Strip leading number prefix like "1. ", "01. ", "1) "
         cleaned = cleaned.replace(/^\b\d+[\.\)]\s*/, '');
-        // Strip leading "Step X: " prefix
         cleaned = cleaned.replace(/^Step\s+\d+:\s*/i, '');
         return cleaned.trim();
     }).filter(Boolean);
@@ -897,9 +749,8 @@ export async function getScholarshipsByUniversity(slug: string) {
     const uni = UNIVERSITIES.find(u => u.slug === slug);
     if (!uni) return { specific: [], general: [] };
 
-    const db = getDatabase();
+    const client = getClient();
 
-    // 1. Get university-specific scholarships matching keywords
     const likeClauses = uni.keywords.map(() => '(title LIKE ? OR provider LIKE ? OR tags LIKE ? OR special_conditions LIKE ?)').join(' OR ');
     const querySpecific = `
         SELECT * FROM scholarships 
@@ -907,9 +758,8 @@ export async function getScholarshipsByUniversity(slug: string) {
         AND (${likeClauses})
     `;
     const paramsSpecific = uni.keywords.flatMap(kw => [`%${kw}%`, `%${kw}%`, `%${kw}%`, `%${kw}%`]);
-    const specificRows = db.prepare(querySpecific).all(...paramsSpecific);
+    const resSpecific = await client.execute({ sql: querySpecific, args: paramsSpecific });
 
-    // 2. Get general national scholarships for college/university students
     let generalRows: any[] = [];
     if (uni.nationalEligible) {
         const queryGeneral = `
@@ -918,26 +768,25 @@ export async function getScholarshipsByUniversity(slug: string) {
             AND (level LIKE '%Graduation%' OR level LIKE '%Post-Graduation%' OR level LIKE '%PhD%')
             AND (state = 'All India' OR state IS NULL OR state = '')
             AND (provider_type = 'Corporate' OR provider_type = 'Private' OR scholarship_type = 'Government')
-            -- Exclude specific matches to avoid duplicates
             AND NOT (${likeClauses})
             ORDER BY priority_score DESC 
             LIMIT 10
         `;
-        generalRows = db.prepare(queryGeneral).all(...paramsSpecific);
+        const resGeneral = await client.execute({ sql: queryGeneral, args: paramsSpecific });
+        generalRows = resGeneral.rows;
     }
 
-    db.close();
-
     return {
-        specific: specificRows.map(parseScholarship),
+        specific: resSpecific.rows.map(parseScholarship),
         general: generalRows.map(parseScholarship)
     };
 }
 
 // Get all universities with active counts
 export async function getAllUniversitiesWithCounts() {
-    const db = getDatabase();
-    const result = UNIVERSITIES.map(uni => {
+    const client = getClient();
+    const result = [];
+    for (const uni of UNIVERSITIES) {
         const likeClauses = uni.keywords.map(() => '(title LIKE ? OR provider LIKE ? OR tags LIKE ? OR special_conditions LIKE ?)').join(' OR ');
         const queryCount = `
             SELECT COUNT(*) as count FROM scholarships 
@@ -945,21 +794,20 @@ export async function getAllUniversitiesWithCounts() {
             AND (${likeClauses})
         `;
         const params = uni.keywords.flatMap(kw => [`%${kw}%`, `%${kw}%`, `%${kw}%`, `%${kw}%`]);
-        const row = db.prepare(queryCount).get(...params) as { count: number };
-        return {
+        const res = await client.execute({ sql: queryCount, args: params });
+        const countVal = Number(res.rows[0]?.count || 0);
+        result.push({
             ...uni,
-            count: row.count
-        };
-    });
-    db.close();
+            count: countVal
+        });
+    }
     return result;
 }
 
-
 // Get all international scholarships for the hub/tracker page
 export async function getInternationalScholarships() {
-    const db = getDatabase();
-    const rows = db.prepare(`
+    const client = getClient();
+    const res = await client.execute(`
         SELECT * FROM scholarships
         WHERE scholarship_scope = 'international'
         ORDER BY
@@ -969,56 +817,59 @@ export async function getInternationalScholarships() {
                 ELSE 0
             END ASC,
             deadline ASC
-    `).all();
-    db.close();
-    return rows.map(parseScholarship);
+    `);
+    return res.rows.map(parseScholarship);
 }
 
 // Get recently added/verified scholarships
 export async function getRecentlyAddedScholarships(limit: number = 6) {
-    const db = getDatabase();
-    const rows = db.prepare(`
-        SELECT * FROM scholarships 
-        WHERE status = 'Active' 
-        ORDER BY created_at DESC, last_verified DESC, id DESC
-        LIMIT ?
-    `).all(limit);
-    db.close();
-    return rows.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE status = 'Active' 
+            ORDER BY created_at DESC, last_verified DESC, id DESC
+            LIMIT ?
+        `,
+        args: [limit]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get scholarships closing soon
 export async function getClosingSoonScholarships(limit: number = 6) {
-    const db = getDatabase();
-    // Filter active scholarships where deadline is a parseable date in the future
-    const rows = db.prepare(`
-        SELECT * FROM scholarships 
-        WHERE status = 'Active' 
-        AND (always_open IS NULL OR always_open = 0)
-        AND deadline IS NOT NULL 
-        AND deadline != '' 
-        AND deadline NOT LIKE '%VERIFY%'
-        AND deadline NOT LIKE '%tentative%'
-        AND deadline NOT LIKE '%some sources%'
-        AND deadline NOT LIKE '%verify on%'
-        AND deadline >= date('now')
-        ORDER BY deadline ASC, priority_score DESC, id DESC
-        LIMIT ?
-    `).all(limit);
-    db.close();
-    return rows.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE status = 'Active' 
+            AND (always_open IS NULL OR always_open = 0)
+            AND deadline IS NOT NULL 
+            AND deadline != '' 
+            AND deadline NOT LIKE '%VERIFY%'
+            AND deadline NOT LIKE '%tentative%'
+            AND deadline NOT LIKE '%some sources%'
+            AND deadline NOT LIKE '%verify on%'
+            AND deadline >= date('now')
+            ORDER BY deadline ASC, priority_score DESC, id DESC
+            LIMIT ?
+        `,
+        args: [limit]
+    });
+    return res.rows.map(parseScholarship);
 }
 
 // Get trending scholarships based on priority score and popularity
 export async function getTrendingScholarships(limit: number = 6) {
-    const db = getDatabase();
-    const rows = db.prepare(`
-        SELECT * FROM scholarships 
-        WHERE status = 'Active' 
-        ORDER BY priority_score DESC, is_popular DESC, id DESC
-        LIMIT ?
-    `).all(limit);
-    db.close();
-    return rows.map(parseScholarship);
+    const client = getClient();
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE status = 'Active' 
+            ORDER BY priority_score DESC, is_popular DESC, id DESC
+            LIMIT ?
+        `,
+        args: [limit]
+    });
+    return res.rows.map(parseScholarship);
 }
-

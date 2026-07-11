@@ -9,7 +9,7 @@ import Footer from '@/app/components/Footer';
 // Generate static params for all states
 export async function generateStaticParams() {
     const states = await getAllStates();
-    return states.map((state) => ({
+    return states.map((state: string) => ({
         state: slugify(state),
     }));
 }
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
     try {
         const { state: stateSlug } = await params;
         const states = await getAllStates();
-        const originalState = states.find(s => slugify(s) === stateSlug) || stateSlug;
+        const originalState = states.find((s: string) => slugify(s) === stateSlug) || stateSlug;
         const year = new Date().getFullYear();
 
         let titleStr = `${originalState} Scholarships - Complete List & Eligibility`;
@@ -46,7 +46,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
 
         // Resolve original state name
         const states = await getAllStates();
-        const stateName = states.find(s => slugify(s) === stateSlug);
+        const stateName = states.find((s: string) => slugify(s) === stateSlug);
 
         if (!stateName) return redirect('/state-scholarships');
 

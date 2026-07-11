@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDatabase } from '@/lib/db';
+import { getClient } from '@/lib/db';
 import CostClient from './CostClient';
 import type { Metadata } from 'next';
 
@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 };
 
 export default async function StudyCostCalculatorPage() {
-    const db = getDatabase();
+    const client = getClient();
     
     // Fetch all active scholarships
-    const scholarships = db.prepare(`
+    const res = await client.execute(`
         SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, level, caste, state
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
-    `).all();
+    `);
 
-    db.close();
+    const scholarships = res.rows;
 
     return (
         <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center text-gray-500">Loading Cost Calculator...</div>}>

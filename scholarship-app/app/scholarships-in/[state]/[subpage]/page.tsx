@@ -93,7 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
     try {
         const { state: stateSlug, subpage } = await params;
         const states = await getAllStates();
-        const originalState = states.find(s => slugify(s) === stateSlug) || stateSlug;
+        const originalState = states.find((s: string) => slugify(s) === stateSlug) || stateSlug;
         const abbrev = getStateAbbreviation(stateSlug, originalState);
         const year = new Date().getFullYear();
 
@@ -152,7 +152,7 @@ export default async function StateHubSubpage({ params }: { params: Promise<{ st
     }
 
     const states = await getAllStates();
-    const stateName = states.find(s => slugify(s) === stateSlug);
+    const stateName = states.find((s: string) => slugify(s) === stateSlug);
 
     if (!stateName) {
         return redirect('/state-scholarships');
@@ -264,7 +264,7 @@ export default async function StateHubSubpage({ params }: { params: Promise<{ st
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100 text-sm text-gray-700">
-                                    {displayInfoList.map((item) => (
+                                    {displayInfoList.map((item: any) => (
                                         <tr key={item.id} className="hover:bg-gray-50/50 transition-colors">
                                             <td className="p-5 pl-8 font-semibold text-gray-900 max-w-xs">
                                                 <Link href={`/scholarships/${item.slug}`} className="hover:text-blue-700 transition-colors">

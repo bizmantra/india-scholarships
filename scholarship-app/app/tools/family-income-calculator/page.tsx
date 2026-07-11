@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDatabase, parseCasteField } from '@/lib/db';
+import { getClient, parseCasteField } from '@/lib/db';
 import IncomeClient from './IncomeClient';
 import type { Metadata } from 'next';
 
@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 };
 
 export default async function IncomeCalculatorPage() {
-    const db = getDatabase();
+    const client = getClient();
     
     // Fetch all active scholarships
-    const scholarships = db.prepare(`
+    const res = await client.execute(`
         SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, caste, income_limit, deadline, level, state
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
-    `).all();
+    `);
 
-    db.close();
+    const scholarships = res.rows;
 
     const parsedScholarships = scholarships.map((s: any) => ({
         ...s,

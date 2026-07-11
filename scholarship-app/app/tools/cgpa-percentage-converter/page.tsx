@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDatabase } from '@/lib/db';
+import { getClient } from '@/lib/db';
 import CgpaClient from './CgpaClient';
 import type { Metadata } from 'next';
 
@@ -23,17 +23,17 @@ function parseCasteField(value: any): string[] {
 }
 
 export default async function CgpaCalculatorPage() {
-    const db = getDatabase();
+    const client = getClient();
     
     // Fetch scholarships with marks criteria to match dynamically
-    const scholarships = db.prepare(`
+    const res = await client.execute(`
         SELECT id, slug, title, provider, provider_type, amount_annual, amount_min, caste, min_marks, deadline, level, state
         FROM scholarships
         WHERE status = 'Active' AND min_marks > 0
         ORDER BY min_marks DESC, amount_annual DESC
-    `).all();
+    `);
 
-    db.close();
+    const scholarships = res.rows;
 
     const parsedScholarships = scholarships.map((s: any) => ({
         ...s,

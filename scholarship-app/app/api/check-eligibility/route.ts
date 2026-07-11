@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getDatabase } from '@/lib/db';
+import { getClient } from '@/lib/db';
 
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
         const { state, category, level, income, marks } = body;
 
-        const db = getDatabase();
+        const client = getClient();
 
         // Build dynamic query based on filters
         let query = `
@@ -45,7 +45,8 @@ export async function POST(request: NextRequest) {
 
         query += ` ORDER BY amount_annual DESC`;
 
-        const scholarships = db.prepare(query).all(...params);
+        const res = await client.execute({ sql: query, args: params });
+        const scholarships = res.rows;
 
         // Filter by category (caste) - needs JSON parsing
         let filteredScholarships = scholarships;

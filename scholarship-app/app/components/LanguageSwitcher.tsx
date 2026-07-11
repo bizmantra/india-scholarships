@@ -41,23 +41,38 @@ export default function LanguageSwitcher() {
         setIsOpen(false);
         if (localeCode === currentLocale) return;
 
-        let newPath = '';
-        const currentLocaleIsDefault = currentLocale === 'en';
         const targetLocaleIsDefault = localeCode === 'en';
         const pathSegments = segments.filter(seg => seg !== '');
 
-        if (currentLocaleIsDefault) {
-            if (targetLocaleIsDefault) {
-                newPath = pathname;
+        // Detect if the current path is localizable (homepage or scholarship details/subpages)
+        const isHomepage = pathSegments.length === 0 || (pathSegments.length === 1 && LANGUAGES.some(lang => lang.code === pathSegments[0]));
+        const isScholarshipDetail = pathSegments.includes('scholarships') && (
+            (pathSegments.length === 2 && pathSegments[0] === 'scholarships') || 
+            (pathSegments.length === 3 && LANGUAGES.some(lang => lang.code === pathSegments[0]) && pathSegments[1] === 'scholarships') ||
+            (pathSegments.length === 3 && pathSegments[0] === 'scholarships') || 
+            (pathSegments.length === 4 && LANGUAGES.some(lang => lang.code === pathSegments[0]) && pathSegments[1] === 'scholarships')
+        );
+
+        let newPath = '';
+        if (isHomepage) {
+            newPath = targetLocaleIsDefault ? '/' : `/${localeCode}`;
+        } else if (isScholarshipDetail) {
+            const slugIndex = pathSegments.indexOf('scholarships') + 1;
+            const slug = pathSegments[slugIndex];
+            const subpage = pathSegments[slugIndex + 1];
+            
+            if (subpage) {
+                newPath = targetLocaleIsDefault 
+                    ? `/scholarships/${slug}/${subpage}` 
+                    : `/${localeCode}/scholarships/${slug}/${subpage}`;
             } else {
-                newPath = `/${localeCode}/${pathSegments.join('/')}`;
+                newPath = targetLocaleIsDefault 
+                    ? `/scholarships/${slug}` 
+                    : `/${localeCode}/scholarships/${slug}`;
             }
         } else {
-            if (targetLocaleIsDefault) {
-                newPath = `/${pathSegments.slice(1).join('/')}`;
-            } else {
-                newPath = `/${localeCode}/${pathSegments.slice(1).join('/')}`;
-            }
+            // Non-localizable route (e.g. /tools, /state-scholarships) -> fallback to localized homepage
+            newPath = targetLocaleIsDefault ? '/' : `/${localeCode}`;
         }
 
         router.push(newPath);

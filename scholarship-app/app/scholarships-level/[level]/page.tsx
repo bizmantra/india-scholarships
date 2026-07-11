@@ -12,8 +12,8 @@ export async function generateStaticParams() {
     const canonicalSlugs = Object.keys(CANONICAL_LEVELS);
 
     const params = [
-        ...canonicalSlugs.map(slug => ({ level: slug })),
-        ...rawLevels.map(level => ({ level: slugify(level) }))
+        ...canonicalSlugs.map((slug: string) => ({ level: slug })),
+        ...rawLevels.map((level: string) => ({ level: slugify(level) }))
     ];
 
     return params;
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
 
         // 2. Check if it's a raw level
         const rawLevels = await getAllLevels();
-        const rawLevel = rawLevels.find(l => slugify(l) === levelSlug);
+        const rawLevel = rawLevels.find((l: string) => slugify(l) === levelSlug);
 
         if (rawLevel) {
             return {
@@ -68,7 +68,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
             scholarships = await getScholarshipsByLevel(levelSlug);
         } else {
             const rawLevels = await getAllLevels();
-            const rawLevel = rawLevels.find(l => slugify(l) === levelSlug);
+            const rawLevel = rawLevels.find((l: string) => slugify(l) === levelSlug);
             if (!rawLevel) return redirect('/scholarships-by-education');
 
             displayName = rawLevel;

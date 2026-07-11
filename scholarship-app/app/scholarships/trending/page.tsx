@@ -58,7 +58,7 @@ export default async function TrendingPage() {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {scholarships.map(s => (
+                            {scholarships.map((s: any) => (
                                 <ScholarshipCard key={s.id} scholarship={s} viewMode="grid" />
                             ))}
                         </div>

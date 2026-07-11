@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { getDatabase, parseCasteField } from '@/lib/db';
+import { getClient, parseCasteField } from '@/lib/db';
 import CompareClient from './CompareClient';
 import type { Metadata } from 'next';
 
@@ -9,19 +9,19 @@ export const metadata: Metadata = {
 };
 
 export default async function ComparePage() {
-    const db = getDatabase();
+    const client = getClient();
     
     // Fetch all active scholarships
-    const scholarships = db.prepare(`
+    const res = await client.execute(`
         SELECT 
             id, slug, title, provider, amount_annual, amount_min, level, caste, state,
             income_limit, min_marks, application_mode, deadline, provider_type
         FROM scholarships
         WHERE status = 'Active'
         ORDER BY amount_annual DESC
-    `).all();
+    `);
 
-    db.close();
+    const scholarships = res.rows;
 
     // Map parsed caste fields
     const parsedScholarships = scholarships.map((s: any) => ({

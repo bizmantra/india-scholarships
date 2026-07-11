@@ -223,10 +223,10 @@ export default function CostClient({ scholarships }: Props) {
                             <span>Check College Expenses & Gap</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
-                            College Expense Planner
+                            Study Cost Calculator
                         </h1>
                         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Calculate your total college costs (fees, hostel, books) and see how much extra money you need to arrange.
+                            Use the IndiaScholarships Study Cost Calculator to plan your college budget, calculate fees and hostel expenses, and estimate your remaining funding gap.
                         </p>
                     </div>
                 </section>
