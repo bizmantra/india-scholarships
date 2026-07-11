@@ -157,12 +157,18 @@ function mapWpPostToScholarship(post: any) {
 }
 export function getDatabase() {
     try {
+        // If running in a Vercel serverless environment, open in readonly mode immediately
+        // to avoid any attempts to write or lock, preventing SQLITE_CANTOPEN/SQLITE_BUSY errors
+        if (process.env.VERCEL) {
+            return new Database(dbPath, { readonly: true });
+        }
+
         // Try opening the database in read-write mode (default)
         const db = new Database(dbPath);
         try {
-            db.pragma('journal_mode = WAL');
+            db.pragma('journal_mode = DELETE');
         } catch (pragmaError) {
-            console.warn('Could not set journal_mode = WAL, continuing:', pragmaError);
+            console.warn('Could not set journal_mode = DELETE, continuing:', pragmaError);
         }
         return db;
     } catch (error) {
