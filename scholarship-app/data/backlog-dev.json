@@ -614,6 +614,14 @@
     "impact": "Medium",
     "status": "Parked",
     "type": "Feature"
+  },
+  {
+    "id": "IS-88",
+    "title": "Implement WhatsApp Alert Channel Integration & Exit-Intent Popup on Frontend",
+    "description": "Add WhatsApp subscribe banner to the footer/sidebar and implement an exit-intent popup on scholarship detail pages triggering for users who spent >30 seconds, prompting them to subscribe for updates. Inspired by Buddy4Study competitor benchmarking.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
   }
 ]
 

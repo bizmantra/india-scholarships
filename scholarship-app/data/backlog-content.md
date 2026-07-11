@@ -205,6 +205,12 @@
   - **Description**:
     Implement a Hub-and-Spoke cross-linking callout structure on the main PM-YASASVI page, Top Class Education page, and J&K UT page to guide users and clarify contextual relationships for search engine crawlers.
 
+- [x] **CNT-32**: Research and add Amazon Future Engineer Scholarship (India) 2026 & Generation Google Scholarship (APAC) 2026
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Added Amazon Future Engineer Scholarship (India) 2026 and Generation Google Scholarship (APAC) 2026 to the SQLite database and synced to WordPress API to enrich corporate scholarship gaps.
+
 ## Parked (0)
 
 *No tasks in this section.*

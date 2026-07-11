@@ -865,3 +865,10 @@
   - **Description**:
     User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.
 
+- [ ] **IS-88**: Implement WhatsApp Alert Channel Integration & Exit-Intent Popup on Frontend
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Add WhatsApp subscribe banner to the footer/sidebar and implement an exit-intent popup on scholarship detail pages triggering for users who spent >30 seconds, prompting them to subscribe for updates. Inspired by Buddy4Study competitor benchmarking.
+
+

@@ -238,5 +238,13 @@
     "impact": "High",
     "status": "Done",
     "type": "seo"
+  },
+  {
+    "id": "CNT-32",
+    "title": "Research and add Amazon Future Engineer Scholarship (India) 2026 & Generation Google Scholarship (APAC) 2026",
+    "description": "Added Amazon Future Engineer Scholarship (India) 2026 and Generation Google Scholarship (APAC) 2026 to the SQLite database and synced to WordPress API to enrich corporate scholarship gaps.",
+    "impact": "High",
+    "status": "Done",
+    "type": "content"
   }
 ]
