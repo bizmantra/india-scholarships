@@ -29,7 +29,13 @@
     1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
     2. Migrate SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
 
-## Backlog (38)
+## Backlog (39)
+
+- [ ] **IS-91**: Implement exit-intent modal popup for Telegram/WhatsApp subscriptions
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Create a lightweight exit-intent detection script on the Next.js frontend (triggering when cursor leaves viewport) to display a modal offering students direct links to join our Telegram/WhatsApp alert channels to avoid missing deadlines.
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High
@@ -495,7 +501,19 @@
   - **Description**:
     Add Telegram Alert Channel banner/card components to the Next.js frontend. Placements: 1. Homepage sticky banner/header. 2. Scholarship detail pages (near the Deadline/Apply sections). 3. Scholarship tools results screen (e.g., Eligibility Checker and Income Calculator output).
 
-## Done (27)
+## Done (29)
+
+- [x] **IS-89**: Database Additions & Enrichment (LIC HFL, Rolls-Royce, Tata AIA Paras)
+  - **Impact**: High
+  - **Type**: Content/DB
+  - **Description**:
+    Added LIC HFL Vidyadhan and Rolls-Royce Wings4Her to the SQLite database and enriched TATA AIA Paras with updated professional streams and apply URLs. Synced all to WordPress REST API and verified builds.
+
+- [x] **IS-90**: Implement Always Open / Rolling Scholarship Support
+  - **Impact**: High
+  - **Type**: Schema/Feature
+  - **Description**:
+    Added always_open schema field to SQLite, modified backend search queries to bypass date checks for rolling listings, updated page details and subpages templates for rolling rendering, and added a checks & balances verification rule in the content audit script.
 
 - [x] **IS-88**: Buddy4Study Competitor Benchmarking Analysis
   - **Impact**: High
