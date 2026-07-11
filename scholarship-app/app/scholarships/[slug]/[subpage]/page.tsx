@@ -376,7 +376,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                         <div>
                                             <h3 className="font-bold text-amber-950 text-lg mb-1">Application Deadline</h3>
                                             <p className="text-2xl font-black text-amber-800 tracking-tight">
-                                                {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' })}
+                                                {scholarship.always_open === 1 ? 'Open Year-Round (Continuous Enrollment)' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' })}
                                             </p>
                                             {scholarship.deadline_description && (
                                                 <p className="text-sm text-amber-900 mt-1">{scholarship.deadline_description}</p>

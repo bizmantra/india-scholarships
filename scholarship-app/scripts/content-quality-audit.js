@@ -127,16 +127,35 @@ try {
         }
 
         // 2. Check Deadline / Dates
+        const isAlwaysOpen = s.always_open === 1;
         const deadlineVal = s.deadline ? s.deadline.trim() : '';
-        if (!deadlineVal || deadlineVal.toLowerCase() === 'not specified' || deadlineVal.toLowerCase() === 'na') {
-            issues.push('Missing Deadline Date');
-            stats.missingDeadline++;
+        
+        if (isAlwaysOpen) {
+            // Checks & Balances: Ensure rolling/continuous verification keywords exist in descriptions
+            const contentToScan = [
+                s.deadline_description || '',
+                s.amount_description || '',
+                s.selection || '',
+                s.benefits || ''
+            ].join(' ').toLowerCase();
+            
+            const rollingVerifyKeywords = ['rolling', 'continuous', 'year-round', 'round the year', 'throughout the year', 'always open', 'open year-round', 'any time'];
+            const hasVerifyText = rollingVerifyKeywords.some(kw => contentToScan.includes(kw));
+            
+            if (!hasVerifyText) {
+                issues.push('Always Open marked but rolling/continuous verification text is missing in descriptions');
+            }
         } else {
-            // Check if deadline is a past date
-            const dlDate = new Date(deadlineVal);
-            if (!isNaN(dlDate.getTime()) && dlDate < today) {
-                issues.push(`Expired Deadline (${deadlineVal})`);
-                stats.expiredDeadline++;
+            if (!deadlineVal || deadlineVal.toLowerCase() === 'not specified' || deadlineVal.toLowerCase() === 'na') {
+                issues.push('Missing Deadline Date');
+                stats.missingDeadline++;
+            } else {
+                // Check if deadline is a past date
+                const dlDate = new Date(deadlineVal);
+                if (!isNaN(dlDate.getTime()) && dlDate < today) {
+                    issues.push(`Expired Deadline (${deadlineVal})`);
+                    stats.expiredDeadline++;
+                }
             }
         }
 

@@ -166,7 +166,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
-    const isDeadlinePassed = deadlineDate ? deadlineDate < today : false;
+    const isAlwaysOpen = scholarship.always_open === 1;
+    const isDeadlinePassed = isAlwaysOpen ? false : (deadlineDate ? deadlineDate < today : false);
 
     // Helper to display value or "Not specified"
     const displayValue = (value: any) => {
@@ -390,7 +391,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div className="flex items-center gap-2">
                                     <Calendar className="h-5 w-5 text-gray-400" />
                                     <span className="font-medium">
-                                        Deadline: <span className={`${isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Open Now')} {isDeadlinePassed && '(Closed)'}</span>
+                                        Deadline: <span className={`${isAlwaysOpen ? 'text-emerald-700 font-bold' : isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{isAlwaysOpen ? 'Open Year-Round (Continuous)' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Open Now')} {isDeadlinePassed && '(Closed)'}</span>
                                     </span>
                                 </div>
                             </div>
@@ -593,7 +594,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         <div>
                                             <p className="text-sm font-bold text-gray-500 uppercase mb-1">Application Deadline</p>
                                             <p className="text-lg font-bold text-gray-900">
-                                                {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'Continuous Enrollment / Check Official Portal')}
+                                                {isAlwaysOpen ? 'Open Year-Round (Continuous Enrollment)' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'Continuous Enrollment / Check Official Portal')}
                                             </p>
                                             {scholarship.deadline_description && <p className="text-sm text-gray-600 mt-1 italic">{scholarship.deadline_description}</p>}
                                         </div>

@@ -622,7 +622,8 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
         AND status = 'Active'
         AND (${placeholders})
         AND (
-            deadline IS NULL 
+            always_open = 1
+            OR deadline IS NULL 
             OR deadline = '' 
             OR deadline = 'Not specified'
             OR deadline = 'Open Now'
@@ -653,7 +654,8 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
             WHERE id NOT IN (${placeholdersExclude})
             AND status = 'Active'
             AND (
-                deadline IS NULL 
+                always_open = 1
+                OR deadline IS NULL 
                 OR deadline = '' 
                 OR deadline = 'Not specified'
                 OR deadline = 'Open Now'
@@ -953,6 +955,7 @@ export async function getClosingSoonScholarships(limit: number = 6) {
     const rows = db.prepare(`
         SELECT * FROM scholarships 
         WHERE status = 'Active' 
+        AND (always_open IS NULL OR always_open = 0)
         AND deadline IS NOT NULL 
         AND deadline != '' 
         AND deadline NOT LIKE '%VERIFY%'

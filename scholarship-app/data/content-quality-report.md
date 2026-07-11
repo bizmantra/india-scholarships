@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-11
 Total Scholarships Audited: **340**
-Scholarships with Issues: **128** (37.6%)
+Scholarships with Issues: **129** (37.9%)
 
 ---
 
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 | `chief-minister-cm-scholarship-sikkim` | **Chief Minister (CM) Scholarship Sikkim** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 128 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 129 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
