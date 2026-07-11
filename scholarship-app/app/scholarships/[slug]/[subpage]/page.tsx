@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import LanguageDetector from '@/app/components/LanguageDetector';
 
 const SUBPAGE_METRICS: Record<string, { label: string, icon: any }> = {
     'eligibility': { label: 'Eligibility Criteria', icon: CheckCircle2 },
@@ -224,6 +225,8 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                     <span className="text-gray-900 font-medium truncate">{metric.label}</span>
                 </nav>
             </div>
+
+            <LanguageDetector slug={scholarship.slug} />
 
             {/* JSON-LD Schema */}
             <script

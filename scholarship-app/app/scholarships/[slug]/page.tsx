@@ -24,6 +24,7 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
+import LanguageDetector from '@/app/components/LanguageDetector';
 
 
 
@@ -301,6 +302,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     <span className="text-gray-900 font-medium truncate">{scholarship.title}</span>
                 </nav>
             </div>
+
+            <LanguageDetector slug={scholarship.slug} />
 
             <script
                 type="application/ld+json"
