@@ -27,7 +27,6 @@ async function run() {
         console.log("🗑️  Dropping old tables on Turso...");
         await turso.execute("DROP TABLE IF EXISTS scholarship_translations;");
         await turso.execute("DROP TABLE IF EXISTS scholarship_changelog;");
-        await turso.execute("DROP TABLE IF EXISTS sqlite_sequence;");
         await turso.execute("DROP TABLE IF EXISTS scholarships;");
 
         // --- 2. Recreate schemas on Turso ---
