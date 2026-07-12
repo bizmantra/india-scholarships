@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-12
 Total Scholarships Audited: **443**
-Scholarships with Issues: **194** (43.8%)
+Scholarships with Issues: **195** (44.0%)
 
 ---
 
@@ -13,7 +13,7 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.2% | Marked with `[LEGACY]` in title or slug |
 | **Missing Annual Amount** | 57 | 12.9% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 89 | 20.1% | Missing/0 minimum amount |
+| **Missing Min Amount** | 90 | 20.3% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 48 | 10.8% | Deadline is empty or "Not specified" |
 | **Expired Deadline** | 94 | 21.2% | Deadline is in the past (before 2026-06-26) |
 | **Old Year References** | 27 | 6.1% | Mentions 2024, 2025, or earlier cycles |
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `prime-minister-special-scholarship-scheme-sssjkl` | **Prime Minister Special Scholarship Scheme (SSSJKL)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-15) |
 | `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 194 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 195 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
