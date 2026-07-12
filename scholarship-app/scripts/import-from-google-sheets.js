@@ -231,6 +231,15 @@ async function importFromGoogleSheets() {
         console.log(`   Skipped: ${skipped} scholarships (not "Ready for Production")`);
         console.log('==================================================\n');
 
+        // Automatically trigger Telegram broadcasts for new verified entries
+        console.log('🔄 Triggering automated Telegram channel updates for new scholarships...');
+        try {
+            const { execSync } = require('child_process');
+            execSync('node scripts/post-new-to-telegram.js', { stdio: 'inherit', cwd: path.resolve(__dirname, '..') });
+        } catch (e) {
+            console.error('⚠️ Warning: Automated Telegram channel update failed:', e.message);
+        }
+
     } catch (error) {
         console.error('❌ Import failed:', error.message);
         console.error(error.stack);

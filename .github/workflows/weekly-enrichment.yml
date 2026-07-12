@@ -68,6 +68,15 @@ jobs:
             git push origin main
           fi
 
+      - name: Broadcast New Entries to Telegram
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scholarship-app/scripts/post-new-to-telegram.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          NODE_ENV: production
+
       - name: Push Database to Turso
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
