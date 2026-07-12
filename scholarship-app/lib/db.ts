@@ -34,7 +34,7 @@ async function wpFetch(endpoint: string, params: Record<string, string | number>
 
     try {
         const res = await fetch(url.toString(), {
-            next: { revalidate: 3600 }
+            cache: 'no-store'
         });
         if (!res.ok) return null;
         return res.json();
