@@ -105,7 +105,7 @@ export default function Header() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <LanguageSwitcher />
+                    {/* <LanguageSwitcher /> */}
                     
                     {/* Search Buttons temporarily disabled (search rolled back) */}
 

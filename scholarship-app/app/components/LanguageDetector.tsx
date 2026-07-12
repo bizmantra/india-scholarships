@@ -14,6 +14,7 @@ const LOCALE_PROMPTS: Record<string, { label: string, btnText: string, pathPrefi
 };
 
 export default function LanguageDetector({ slug }: { slug: string }) {
+    return null;
     const [prompt, setPrompt] = useState<{ label: string, btnText: string, pathPrefix: string } | null>(null);
     const [dismissed, setDismissed] = useState(false);
 

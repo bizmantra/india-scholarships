@@ -191,7 +191,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...subpageRoutes,
         ...stateSubpageRoutes,
         ...universityRoutes,
-        ...localizedScholarshipRoutes,
-        ...localizedSubpageRoutes,
+        // ...localizedScholarshipRoutes,
+        // ...localizedSubpageRoutes,
     ];
 }

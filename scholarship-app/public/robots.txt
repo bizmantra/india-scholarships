@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /hi/
+Disallow: /bn/
+Disallow: /ta/
+Disallow: /te/
+Disallow: /or/
+Disallow: /kn/
 
 Sitemap: https://www.indiascholarships.in/sitemap.xml
