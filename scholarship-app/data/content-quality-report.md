@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
 Generated on: 2026-07-12
 Total Scholarships Audited: **443**
-Scholarships with Issues: **232** (52.4%)
+Scholarships with Issues: **194** (43.8%)
 
 ---
 
@@ -14,9 +14,9 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Legacy Flagged** | 1 | 0.2% | Marked with `[LEGACY]` in title or slug |
 | **Missing Annual Amount** | 57 | 12.9% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 89 | 20.1% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 133 | 30.0% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 87 | 19.6% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 24 | 5.4% | Mentions 2024, 2025, or earlier cycles |
+| **Missing Deadline Date** | 48 | 10.8% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 94 | 21.2% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 27 | 6.1% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 7 | 1.6% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 36 | 8.1% | Missing or under 15 characters |
 | **Incomplete Step Guide** | 15 | 3.4% | Missing or under 20 characters |
@@ -73,6 +73,7 @@ Here are the scholarships with the highest number of content quality issues:
 | `andaman-nicobar-administration-merit-scholarship` | **Andaman & Nicobar Administration Merit Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `colgate-keep-india-smiling-scholarship` | **Colgate Keep India Smiling Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing FAQ Content |
 | `siemens-scholarship-program` | **Siemens Scholarship Program** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `holland-scholarship` | **Holland Scholarship** | 4 | Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Invalid Apply URL format: "Applications are made directly through the website of the chosen participating Dutch higher education institution. There is no single central application portal for the NL Scholarship. Always check the institution's official website for specific application instructions and deadlines." |
 | `post-matric-scholarship-for-st-students-karnataka` | **Post-Matric Scholarship for ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-01-15) |
 | `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka` | **Post-Matric Scholarship for Persons with Disabilities - UDID (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-31) |
 | `pre-matric-st-students-karnataka` | **Pre-Matric ST Students (Karnataka)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-01-15) |
@@ -83,6 +84,5 @@ Here are the scholarships with the highest number of content quality issues:
 | `dr-ambedkar-medhavi-chattervriti-yojana` | **Dr. Ambedkar Medhavi Chattervriti Yojana** | 3 | Missing Min Amount; Expired Deadline (2025-12-24); Incomplete Renewal Policy (too short: 6 chars) |
 | `prime-minister-special-scholarship-scheme-sssjkl` | **Prime Minister Special Scholarship Scheme (SSSJKL)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-15) |
 | `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
-| `chief-minister-cm-scholarship-sikkim` | **Chief Minister (CM) Scholarship Sikkim** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 232 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 194 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
