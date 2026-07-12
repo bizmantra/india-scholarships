@@ -253,15 +253,29 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
             // Strip leading bullet point followed by space (e.g. "- ", "* ", "1. ", "• ")
             let cleaned = rawItem.replace(/^([-•–\*]|\d+\.)\s+/, '').trim();
             
-            // If it's a step
-            if (isStepIndex !== undefined) {
-                // Strip step numbers or prefixes if they are still at the start
-                cleaned = cleaned.replace(/^\b\d+[\.\)]\s*/, '').replace(/^Step\s+\d+:\s*/i, '').trim();
-                
-                const colonIndex = cleaned.indexOf(':');
-                if (colonIndex > -1 && colonIndex < 35 && !cleaned.substring(0, colonIndex).includes('**')) {
-                    const key = cleaned.substring(0, colonIndex).replace(/\*\*/g, '').trim();
-                    const value = cleaned.substring(colonIndex + 1).trim();
+            // Resolve bold boundaries (e.g. **Key:** Value or **Key**: Value)
+            const colonIndex = cleaned.indexOf(':');
+            if (colonIndex > -1 && colonIndex < 45) {
+                let key = cleaned.substring(0, colonIndex).trim();
+                let value = cleaned.substring(colonIndex + 1).trim();
+
+                // If key starts with ** and value starts with ** (e.g. **Key:** **Value)
+                if (key.startsWith('**') && value.startsWith('**')) {
+                    key = key.replace(/^\*\*/, '');
+                    value = value.replace(/^\*\*/, '');
+                } else if (key.startsWith('**') && key.endsWith('**')) {
+                    key = key.substring(2, key.length - 2);
+                } else {
+                    key = key.replace(/\*\*/g, '');
+                    value = value.replace(/^\*\*/, '');
+                }
+
+                // Final cleanup of residual asterisks or colons in key
+                key = key.replace(/\*\*$/, '').replace(/:$/, '').trim();
+                value = value.trim();
+
+                if (isStepIndex !== undefined) {
+                    key = key.replace(/^\b\d+[\.\)]\s*/, '').replace(/^Step\s+\d+:\s*/i, '').trim();
                     return (
                         <div className="flex gap-4">
                             <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
@@ -276,7 +290,21 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </div>
                     );
                 }
-                
+
+                return (
+                    <div className="flex items-start gap-3">
+                        <div className="mt-2 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                        <p className="text-gray-700">
+                            <span className="font-bold text-blue-900 mr-1.5">{key}:</span>
+                            {renderMarkdown(value)}
+                        </p>
+                    </div>
+                );
+            }
+            
+            // Standard formatting with no colon-based key
+            if (isStepIndex !== undefined) {
+                cleaned = cleaned.replace(/^\b\d+[\.\)]\s*/, '').replace(/^Step\s+\d+:\s*/i, '').trim();
                 return (
                     <div className="flex gap-4">
                         <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
@@ -285,22 +313,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         <div className="flex-1 pt-1">
                             <p className="text-gray-700">{renderMarkdown(cleaned)}</p>
                         </div>
-                    </div>
-                );
-            }
-            
-            // If it's a standard list item
-            const colonIndex = cleaned.indexOf(':');
-            if (colonIndex > -1 && colonIndex < 35) {
-                const key = cleaned.substring(0, colonIndex).replace(/\*\*/g, '').trim();
-                const value = cleaned.substring(colonIndex + 1).trim();
-                return (
-                    <div className="flex items-start gap-3">
-                        <div className="mt-2 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
-                        <p className="text-gray-700">
-                            <span className="font-bold text-blue-900 mr-1.5">{key}:</span>
-                            {renderMarkdown(value)}
-                        </p>
                     </div>
                 );
             }
@@ -534,6 +546,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     <p className="text-amber-800 font-medium leading-relaxed">
                                         {scholarship.amount_description && scholarship.amount_annual > 0
                                             ? scholarship.amount_description
+                                                .replace(/['"]?amount_annual_inr['"]?/g, 'annual amount')
+                                                .replace(/['"]?amount_min_inr['"]?/g, 'minimum stipend')
                                             : (scholarship.amount_annual > 0 ? 'Direct financial assistance for tuition and living expenses.' : '')}
                                     </p>
                                 </div>
