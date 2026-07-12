@@ -294,10 +294,12 @@ export default async function InternationalScholarshipsPage() {
                             <Globe className="h-5 w-5 text-blue-700" />
                             Browse Scholarships by Country & Level
                         </h2>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
                             {[
                                 {
                                     country: 'UK',
+                                    slug: 'uk',
                                     flag: '🇬🇧',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/uk' },
@@ -307,6 +309,7 @@ export default async function InternationalScholarshipsPage() {
                                 },
                                 {
                                     country: 'USA',
+                                    slug: 'usa',
                                     flag: '🇺🇸',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/usa' },
@@ -315,6 +318,7 @@ export default async function InternationalScholarshipsPage() {
                                 },
                                 {
                                     country: 'Canada',
+                                    slug: 'canada',
                                     flag: '🇨🇦',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/canada' },
@@ -324,6 +328,7 @@ export default async function InternationalScholarshipsPage() {
                                 },
                                 {
                                     country: 'Germany',
+                                    slug: 'germany',
                                     flag: '🇩🇪',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/germany' },
@@ -332,6 +337,7 @@ export default async function InternationalScholarshipsPage() {
                                 },
                                 {
                                     country: 'Australia',
+                                    slug: 'australia',
                                     flag: '🇦🇺',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/australia' },
@@ -340,6 +346,7 @@ export default async function InternationalScholarshipsPage() {
                                 },
                                 {
                                     country: 'Europe',
+                                    slug: 'europe',
                                     flag: '🇪🇺',
                                     links: [
                                         { label: 'PhD', href: '/scholarships-for/phd/in/europe' },
@@ -347,11 +354,14 @@ export default async function InternationalScholarshipsPage() {
                                     ]
                                 }
                             ].map((item, idx) => (
-                                <div key={idx} className="border border-gray-100 rounded-2xl p-4 bg-gray-50 flex flex-col justify-between">
-                                    <div className="flex items-center gap-1.5 mb-3 font-extrabold text-gray-900 text-sm">
+                                <div key={idx} className="border border-gray-100 rounded-2xl p-4 bg-gray-50 flex flex-col justify-between hover:border-blue-100 hover:shadow-sm transition-all">
+                                    <Link 
+                                        href={`/scholarships-for/in/${item.slug}`}
+                                        className="flex items-center gap-1.5 mb-3 font-extrabold text-gray-900 text-sm hover:text-blue-700 hover:underline"
+                                    >
                                         <span>{item.flag}</span>
                                         <span>{item.country}</span>
-                                    </div>
+                                    </Link>
                                     <div className="flex flex-col gap-1.5">
                                         {item.links.map((lnk, lIdx) => (
                                             <Link 
@@ -366,6 +376,27 @@ export default async function InternationalScholarshipsPage() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+
+                        {/* Or search by Level Globally */}
+                        <div className="bg-gray-50/50 border border-gray-100 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <span className="text-sm font-bold text-gray-600">Explore global study-abroad scholarships by level:</span>
+                            <div className="flex flex-wrap gap-2">
+                                {[
+                                    { label: 'PhD Scholarships', href: '/scholarships-for/phd' },
+                                    { label: 'MBA Scholarships', href: '/scholarships-for/mba' },
+                                    { label: 'Masters / PG', href: '/scholarships-for/masters' },
+                                    { label: 'Undergraduate', href: '/scholarships-for/undergraduate' }
+                                ].map((btn, bIdx) => (
+                                    <Link 
+                                        key={bIdx}
+                                        href={btn.href}
+                                        className="px-3.5 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:text-blue-700 hover:border-blue-300 hover:shadow-sm transition-all"
+                                    >
+                                        {btn.label}
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </section>
 

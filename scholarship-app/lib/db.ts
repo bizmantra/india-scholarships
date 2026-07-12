@@ -910,3 +910,42 @@ export async function getScholarshipsByLevelAndCountry(levelSlug: string, countr
     return res.rows.map(parseScholarship);
 }
 
+// Get international scholarships by level only (across all countries)
+export async function getInternationalScholarshipsByLevel(levelSlug: string) {
+    const client = getClient();
+    let levelPattern = `%${levelSlug}%`;
+    if (levelSlug === 'phd') levelPattern = '%PhD%';
+    else if (levelSlug === 'mba') levelPattern = '%MBA%';
+    else if (levelSlug === 'masters') levelPattern = '%Master%';
+    else if (levelSlug === 'undergraduate') levelPattern = '%Undergraduate%';
+    
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE LOWER(scholarship_scope) = 'international'
+              AND (level LIKE ? OR course_stream LIKE ? OR title LIKE ?)
+        `,
+        args: [levelPattern, levelPattern, levelPattern]
+    });
+    return res.rows.map(parseScholarship);
+}
+
+// Get international scholarships by country only (across all levels)
+export async function getInternationalScholarshipsByCountry(countrySlug: string) {
+    const client = getClient();
+    let countryPattern = `%${countrySlug}%`;
+    if (countrySlug === 'usa') countryPattern = '%United States%';
+    else if (countrySlug === 'uk') countryPattern = '%United Kingdom%';
+    else if (countrySlug === 'europe') countryPattern = '%Europe%';
+    
+    const res = await client.execute({
+        sql: `
+            SELECT * FROM scholarships 
+            WHERE LOWER(scholarship_scope) = 'international'
+              AND (country_of_study LIKE ? OR country_of_study = 'Any Country')
+        `,
+        args: [countryPattern]
+    });
+    return res.rows.map(parseScholarship);
+}
+

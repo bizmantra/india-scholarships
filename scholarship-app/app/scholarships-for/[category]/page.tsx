@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
-import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory } from '@/lib/db';
+import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory, getInternationalScholarshipsByLevel } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
@@ -15,6 +15,12 @@ export async function generateStaticParams() {
         slugs.add(slugify(c));
         slugs.add(getCanonicalSlugForCategory(c));
     });
+
+    // Add study-abroad levels
+    slugs.add('phd');
+    slugs.add('mba');
+    slugs.add('masters');
+    slugs.add('undergraduate');
 
     return Array.from(slugs).map((slug) => ({
         category: slug,
@@ -39,10 +45,28 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
     'ews': 'Economically Weaker Section (EWS)',
 };
 
+const STUDY_ABROAD_LEVELS: Record<string, string> = {
+    'phd': 'PhD / Doctoral',
+    'mba': 'MBA',
+    'masters': 'Masters / PG',
+    'undergraduate': 'Undergraduate / Bachelors'
+};
+
 // Generate metadata
 export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
     try {
         const { category: categorySlug } = await params;
+        const currentYear = new Date().getFullYear();
+        const nextYear = currentYear + 1;
+
+        if (STUDY_ABROAD_LEVELS[categorySlug.toLowerCase()]) {
+            const levelLabel = STUDY_ABROAD_LEVELS[categorySlug.toLowerCase()];
+            return {
+                title: `Best ${levelLabel} Scholarships for Indian Students ${currentYear} - ${nextYear} (Study Abroad)`,
+                description: `Find top fully funded and university-specific ${levelLabel} scholarships for Indian students to study abroad. Get application guide, deadlines, and portals.`,
+            };
+        }
+
         const categories = await getAllCategories();
         const firstMatch = categories.find(c => slugify(c) === categorySlug) || categorySlug;
         const displayName = CATEGORY_NAME_MAP[firstMatch.toLowerCase()] || firstMatch;
@@ -59,6 +83,48 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
 export default async function CategoryHubPage({ params }: { params: Promise<{ category: string }> }) {
     try {
         const { category: categorySlug } = await params;
+        const currentYear = new Date().getFullYear();
+        const nextYear = currentYear + 1;
+
+        // If this is a study-abroad education level slug (e.g. phd, mba)
+        if (STUDY_ABROAD_LEVELS[categorySlug.toLowerCase()]) {
+            const levelLabel = STUDY_ABROAD_LEVELS[categorySlug.toLowerCase()];
+            const scholarships = await getInternationalScholarshipsByLevel(categorySlug.toLowerCase());
+
+            return (
+                <div className="min-h-screen bg-white">
+                    <Header />
+
+                    <main className="max-w-5xl mx-auto px-4 py-8">
+                        {/* Breadcrumbs */}
+                        <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                            <Link href="/" className="hover:text-blue-700">Home</Link>
+                            <span>/</span>
+                            <Link href="/scholarships/international" className="hover:text-blue-700">International</Link>
+                            <span>/</span>
+                            <span className="text-gray-900 font-medium">{levelLabel}</span>
+                        </nav>
+
+                        {/* Page Header */}
+                        <div className="mb-10">
+                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight animate-fade-in">
+                                Best {levelLabel} Scholarships for Indian Students {currentYear} - {nextYear}
+                            </h1>
+                            <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+                                Explore fully funded and university-specific <span className="font-semibold text-blue-700">{levelLabel}</span> scholarships to study abroad. Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified schemes</span>.
+                            </p>
+                        </div>
+
+                        {/* Scholarships List */}
+                        <div className="mb-20">
+                            <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
+                        </div>
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        }
 
         // Resolve the original category names from the slug (could be multiple messy strings)
         const categories = await getAllCategories();
