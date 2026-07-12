@@ -239,6 +239,80 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const FormattedText = ({ text, type = 'list' }: { text: string | null, type?: 'list' | 'steps' }) => {
         if (!text) return <p className="text-gray-400 italic">Not specified</p>;
 
+        const renderMarkdown = (txt: string) => {
+            const parts = txt.split(/\*\*([\s\S]*?)\*\*/g);
+            return parts.map((part, index) => {
+                if (index % 2 === 1) {
+                    return <strong key={index} className="font-bold text-gray-900">{part}</strong>;
+                }
+                return part;
+            });
+        };
+
+        const renderListItem = (rawItem: string, isStepIndex?: number) => {
+            // Strip leading bullet point followed by space (e.g. "- ", "* ", "1. ", "• ")
+            let cleaned = rawItem.replace(/^([-•–\*]|\d+\.)\s+/, '').trim();
+            
+            // If it's a step
+            if (isStepIndex !== undefined) {
+                // Strip step numbers or prefixes if they are still at the start
+                cleaned = cleaned.replace(/^\b\d+[\.\)]\s*/, '').replace(/^Step\s+\d+:\s*/i, '').trim();
+                
+                const colonIndex = cleaned.indexOf(':');
+                if (colonIndex > -1 && colonIndex < 35 && !cleaned.substring(0, colonIndex).includes('**')) {
+                    const key = cleaned.substring(0, colonIndex).replace(/\*\*/g, '').trim();
+                    const value = cleaned.substring(colonIndex + 1).trim();
+                    return (
+                        <div className="flex gap-4">
+                            <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
+                                {isStepIndex + 1}
+                            </span>
+                            <div className="flex-1 pt-1">
+                                <span className="font-bold text-blue-900 border-b border-blue-100 mr-2">
+                                    {key}
+                                </span>
+                                <p className="mt-1 text-gray-600">{renderMarkdown(value)}</p>
+                            </div>
+                        </div>
+                    );
+                }
+                
+                return (
+                    <div className="flex gap-4">
+                        <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
+                            {isStepIndex + 1}
+                        </span>
+                        <div className="flex-1 pt-1">
+                            <p className="text-gray-700">{renderMarkdown(cleaned)}</p>
+                        </div>
+                    </div>
+                );
+            }
+            
+            // If it's a standard list item
+            const colonIndex = cleaned.indexOf(':');
+            if (colonIndex > -1 && colonIndex < 35) {
+                const key = cleaned.substring(0, colonIndex).replace(/\*\*/g, '').trim();
+                const value = cleaned.substring(colonIndex + 1).trim();
+                return (
+                    <div className="flex items-start gap-3">
+                        <div className="mt-2 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                        <p className="text-gray-700">
+                            <span className="font-bold text-blue-900 mr-1.5">{key}:</span>
+                            {renderMarkdown(value)}
+                        </p>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="flex items-start gap-3">
+                    <div className="mt-2 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                    <p className="text-gray-700">{renderMarkdown(cleaned)}</p>
+                </div>
+            );
+        };
+
         let items: string[] = [];
         let isSteps = type === 'steps';
 
@@ -257,43 +331,17 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         }
 
         if (items.length <= 1) {
-            const cleanedText = text.replace(/^[-•–\*\s]+/, '').trim();
-            return <p className="text-gray-700 leading-relaxed">{cleanedText}</p>;
+            const cleanedText = text.replace(/^([-•–\*]|\d+\.)\s+/, '').trim();
+            return <p className="text-gray-700 leading-relaxed">{renderMarkdown(cleanedText)}</p>;
         }
 
         return (
             <ul className="space-y-3 list-none">
-                {items.map((item, i) => {
-                    const cleanedItem = item.replace(/^[-•–\*\s]+/, '').trim();
-                    return (
-                        <li key={i} className="text-gray-700 leading-relaxed">
-                            {isSteps ? (
-                                <div className="flex gap-4">
-                                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
-                                        {i + 1}
-                                    </span>
-                                    <div className="flex-1 pt-1">
-                                        {cleanedItem.includes(':') && !cleanedItem.startsWith('**') ? (
-                                            <>
-                                                <span className="font-bold text-blue-900 border-b border-blue-100 mr-2">
-                                                    {cleanedItem.split(':')[0]}
-                                                </span>
-                                                <p className="mt-1 text-gray-600">{cleanedItem.split(':').slice(1).join(':').trim()}</p>
-                                            </>
-                                        ) : (
-                                            <p>{cleanedItem}</p>
-                                        )}
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="flex items-start gap-3">
-                                    <div className="mt-1.5 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
-                                    <p>{cleanedItem}</p>
-                                </div>
-                            )}
-                        </li>
-                    );
-                })}
+                {items.map((item, i) => (
+                    <li key={i} className="text-gray-700 leading-relaxed">
+                        {renderListItem(item, isSteps ? i : undefined)}
+                    </li>
+                ))}
             </ul>
         );
     };
