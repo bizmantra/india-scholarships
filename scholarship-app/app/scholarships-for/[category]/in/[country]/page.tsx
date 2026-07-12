@@ -25,18 +25,18 @@ const LEVELS = [
 ];
 
 export async function generateStaticParams() {
-    const params: { level: string; country: string }[] = [];
+    const params: { category: string; country: string }[] = [];
     for (const lvl of LEVELS) {
         for (const cnt of COUNTRIES) {
-            params.push({ level: lvl.slug, country: cnt.slug });
+            params.push({ category: lvl.slug, country: cnt.slug });
         }
     }
     return params;
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ level: string; country: string }> }) {
-    const { level: levelSlug, country: countrySlug } = await params;
-    const level = LEVELS.find(l => l.slug === levelSlug)?.label || levelSlug.toUpperCase();
+export async function generateMetadata({ params }: { params: Promise<{ category: string; country: string }> }) {
+    const { category: categorySlug, country: countrySlug } = await params;
+    const level = LEVELS.find(l => l.slug === categorySlug)?.label || categorySlug.toUpperCase();
     const country = COUNTRIES.find(c => c.slug === countrySlug)?.label || countrySlug.toUpperCase();
     
     const currentYear = new Date().getFullYear();
@@ -51,10 +51,10 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
     };
 }
 
-export default async function LevelCountryHubPage({ params }: { params: Promise<{ level: string; country: string }> }) {
-    const { level: levelSlug, country: countrySlug } = await params;
+export default async function LevelCountryHubPage({ params }: { params: Promise<{ category: string; country: string }> }) {
+    const { category: categorySlug, country: countrySlug } = await params;
 
-    const lvlObj = LEVELS.find(l => l.slug === levelSlug);
+    const lvlObj = LEVELS.find(l => l.slug === categorySlug);
     const cntObj = COUNTRIES.find(c => c.slug === countrySlug);
 
     if (!lvlObj || !cntObj) {
@@ -64,7 +64,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
     const levelName = lvlObj.label;
     const countryName = cntObj.label;
 
-    const scholarships = await getScholarshipsByLevelAndCountry(levelSlug, countrySlug);
+    const scholarships = await getScholarshipsByLevelAndCountry(categorySlug, countrySlug);
     
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
