@@ -1,4 +1,4 @@
-const Database = require('better-sqlite3');
+const { createClient } = require('@libsql/client');
 const path = require('path');
 const fs = require('fs');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
@@ -9,8 +9,13 @@ if (!GEMINI_API_KEY) {
     process.exit(1);
 }
 
-const DB_PATH = path.join(__dirname, '..', 'data', 'scholarships.db');
-const db = new Database(DB_PATH);
+const dbUrl = process.env.TURSO_DATABASE_URL || 'file:data/scholarships.db';
+const dbToken = process.env.TURSO_AUTH_TOKEN;
+
+const client = createClient({
+    url: dbUrl,
+    authToken: dbToken,
+});
 
 const locales = [
     { code: 'hi', name: 'Hindi' },
@@ -123,15 +128,9 @@ async function run() {
         console.log('🐌 Running in THROTTLED mode (Free Tier / 15 RPM)');
     }
 
-    const scholarships = db.prepare("SELECT * FROM scholarships WHERE status = 'Active'").all();
+    const res = await client.execute("SELECT * FROM scholarships WHERE status = 'Active'");
+    const scholarships = res.rows;
     console.log(`Found ${scholarships.length} active scholarships in the main database.`);
-
-    const checkStmt = db.prepare("SELECT id FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?");
-    const insertStmt = db.prepare(`
-        INSERT OR REPLACE INTO scholarship_translations (
-            scholarship_id, locale, title, amount_description, benefits, selection, renewal, step_guide, faq_json, intro_seo
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
 
     let translatedCount = 0;
     
@@ -143,7 +142,11 @@ async function run() {
 
         for (const loc of locales) {
             // Check if translation already exists
-            const existing = checkStmt.get(s.id, loc.code);
+            const checkRes = await client.execute({
+                sql: "SELECT id FROM scholarship_translations WHERE scholarship_id = ? AND locale = ?",
+                args: [String(s.id), loc.code]
+            });
+            const existing = checkRes.rows[0];
             if (existing) {
                 continue;
             }
@@ -156,18 +159,23 @@ async function run() {
             const result = await translateText(s, loc);
             if (result) {
                 try {
-                    insertStmt.run(
-                        s.id,
-                        loc.code,
-                        result.title,
-                        result.amount_description,
-                        result.benefits,
-                        result.selection,
-                        result.renewal,
-                        result.step_guide,
-                        JSON.stringify(result.faq_json || []),
-                        result.intro_seo
-                    );
+                    await client.execute({
+                        sql: `INSERT OR REPLACE INTO scholarship_translations (
+                            scholarship_id, locale, title, amount_description, benefits, selection, renewal, step_guide, faq_json, intro_seo
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                        args: [
+                            String(s.id),
+                            loc.code,
+                            result.title,
+                            result.amount_description,
+                            result.benefits,
+                            result.selection,
+                            result.renewal,
+                            result.step_guide,
+                            JSON.stringify(result.faq_json || []),
+                            result.intro_seo
+                        ]
+                    });
                     console.log(`✅ Saved ${loc.name} translation.`);
                     translatedCount++;
                 } catch (dbErr) {
@@ -177,7 +185,6 @@ async function run() {
         }
     }
 
-    db.close();
     console.log(`🎉 Translation job complete! Localized ${translatedCount} items.`);
 }
 
