@@ -123,7 +123,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                         {COUNTRIES.filter(c => c.slug !== countrySlug).slice(0, 4).map(c => (
                             <Link 
                                 key={c.slug}
-                                href={`/scholarships-for/${levelSlug}/in/${c.slug}`} 
+                                href={`/scholarships-for/${categorySlug}/in/${c.slug}`} 
                                 className="flex flex-col items-center justify-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all font-medium text-blue-700 text-center shadow-sm hover:shadow-md"
                             >
                                 <span className="text-xs text-gray-400 uppercase tracking-wider mb-1">{lvlObj.slug.toUpperCase()}</span>
