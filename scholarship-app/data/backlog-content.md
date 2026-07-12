@@ -66,7 +66,7 @@
     Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).
     Reference: data/content-expansion-backlog.md and data/content-expansion-plan.md
 
-## Done (21)
+## Done (22)
 
 - [x] **CNT-2**: University scholarship Hubs
 
@@ -210,6 +210,12 @@
   - **Type**: content
   - **Description**:
     Added Amazon Future Engineer Scholarship (India) 2026 and Generation Google Scholarship (APAC) 2026 to the SQLite database and synced to WordPress API to enrich corporate scholarship gaps.
+
+- [x] **CNT-33**: Research and add LIC HFL Vidyadhan & Rolls-Royce Wings4Her, and enrich TATA AIA Paras details
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Added LIC HFL Vidyadhan (linked to ScholarsBox) and Rolls-Royce Wings4Her (linked to Buddy4Study portal) to the database, and enriched TATA AIA Paras with updated professional streams and specific apply URLs. Synced all to WordPress REST API and verified Next.js static builds.
 
 ## Parked (0)
 

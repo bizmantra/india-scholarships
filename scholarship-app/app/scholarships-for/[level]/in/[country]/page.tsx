@@ -38,9 +38,12 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
     const { level: levelSlug, country: countrySlug } = await params;
     const level = LEVELS.find(l => l.slug === levelSlug)?.label || levelSlug.toUpperCase();
     const country = COUNTRIES.find(c => c.slug === countrySlug)?.label || countrySlug.toUpperCase();
+    
+    const currentYear = new Date().getFullYear();
+    const nextYear = currentYear + 1;
 
     return {
-        title: `Best ${level} Scholarships in ${country} 2026 - 2027 (Fully Funded)`,
+        title: `Best ${level} Scholarships in ${country} ${currentYear} - ${nextYear} (Fully Funded)`,
         description: `Find top verified ${level} scholarships to study in ${country}. Get direct application links, eligibility requirements, stipend amounts, and step-by-step application instructions.`,
     };
 }
@@ -59,6 +62,9 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
     const countryName = cntObj.label;
 
     const scholarships = await getScholarshipsByLevelAndCountry(levelSlug, countrySlug);
+    
+    const currentYear = new Date().getFullYear();
+    const nextYear = currentYear + 1;
 
     return (
         <div className="min-h-screen bg-white">
@@ -77,7 +83,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                 {/* Page Header */}
                 <div className="mb-10">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                        {levelName} Scholarships in {countryName} 2026 - 2027
+                        {levelName} Scholarships in {countryName} {currentYear} - {nextYear}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Explore fully funded and merit-based global scholarships for <span className="font-semibold text-blue-700">{levelName}</span> programs in <span className="font-semibold text-blue-700">{countryName}</span>. Find application guides, deadlines, and portals.
