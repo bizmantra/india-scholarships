@@ -77,6 +77,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
     }));
 
+    // Dynamic Level x Country Listing Pages
+    const targetLevels = ['phd', 'mba', 'masters', 'undergraduate'];
+    const targetCountries = ['usa', 'uk', 'canada', 'australia', 'germany', 'europe', 'japan', 'singapore'];
+    const levelCountryRoutes: any[] = [];
+    for (const lvl of targetLevels) {
+        for (const cnt of targetCountries) {
+            levelCountryRoutes.push({
+                url: `${baseUrl}/scholarships-for/${lvl}/in/${cnt}`,
+                lastModified: new Date(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.6,
+            });
+        }
+    }
+
     // Dynamic Income Listing Pages
     const incomeRanges = await getIncomeRanges();
     const incomeRoutes = incomeRanges.map((range: any) => ({
@@ -170,6 +185,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ...stateRoutes,
         ...categoryRoutes,
         ...levelRoutes,
+        ...levelCountryRoutes,
         ...incomeRoutes,
         ...courseRoutes,
         ...subpageRoutes,

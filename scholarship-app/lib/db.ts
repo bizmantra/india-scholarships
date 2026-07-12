@@ -873,3 +873,36 @@ export async function getTrendingScholarships(limit: number = 6) {
     });
     return res.rows.map(parseScholarship);
 }
+
+// Get scholarships by combination of level and country
+export async function getScholarshipsByLevelAndCountry(levelSlug: string, countrySlug: string) {
+    const client = getClient();
+    
+    // 1. Map country slug to database patterns
+    let countryPattern = `%${countrySlug}%`;
+    if (countrySlug === 'usa') countryPattern = '%United States%';
+    else if (countrySlug === 'uk') countryPattern = '%United Kingdom%';
+    else if (countrySlug === 'europe') countryPattern = '%Europe%';
+    
+    // 2. Map level slug to database pattern
+    let levelPattern = `%${levelSlug}%`;
+    if (levelSlug === 'phd') levelPattern = '%PhD%';
+    else if (levelSlug === 'mba') levelPattern = '%MBA%';
+    else if (levelSlug === 'masters') levelPattern = '%Master%';
+    else if (levelSlug === 'undergraduate') levelPattern = '%Undergraduate%';
+    else if (levelSlug === 'postgraduate') levelPattern = '%Postgraduate%';
+
+    const query = `
+        SELECT * FROM scholarships 
+        WHERE (level LIKE ? OR course_stream LIKE ? OR title LIKE ?)
+          AND (country_of_study LIKE ? OR country_of_study = 'Any Country')
+    `;
+
+    const res = await client.execute({
+        sql: query,
+        args: [levelPattern, levelPattern, levelPattern, countryPattern]
+    });
+    
+    return res.rows.map(parseScholarship);
+}
+

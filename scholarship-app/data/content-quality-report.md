@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-07-11
-Total Scholarships Audited: **340**
-Scholarships with Issues: **129** (37.9%)
+Generated on: 2026-07-12
+Total Scholarships Audited: **374**
+Scholarships with Issues: **163** (43.6%)
 
 ---
 
@@ -12,18 +12,18 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.3% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 57 | 16.8% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 37 | 10.9% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 30 | 8.8% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 87 | 25.6% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 24 | 7.1% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 7 | 2.1% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 36 | 10.6% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 15 | 4.4% | Missing or under 20 characters |
-| **Missing Documents** | 15 | 4.4% | No required documents listed |
+| **Missing Annual Amount** | 57 | 15.2% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 58 | 15.5% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 64 | 17.1% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 87 | 23.3% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 24 | 6.4% | Mentions 2024, 2025, or earlier cycles |
+| **Incomplete Selection Criteria** | 7 | 1.9% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 36 | 9.6% | Missing or under 15 characters |
+| **Incomplete Step Guide** | 15 | 4.0% | Missing or under 20 characters |
+| **Missing Documents** | 15 | 4.0% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 29 | 8.5% | Helpline is empty, "Not Specified", or generic |
-| **Missing FAQs** | 8 | 2.4% | FAQ block is empty or missing |
+| **Missing Helpline** | 29 | 7.8% | Helpline is empty, "Not Specified", or generic |
+| **Missing FAQs** | 8 | 2.1% | FAQ block is empty or missing |
 | **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 
 ---
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `dorjee-khandu-merit-scholarship` | **Dorjee Khandu Merit Scholarship** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 | `chief-minister-cm-scholarship-sikkim` | **Chief Minister (CM) Scholarship Sikkim** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-10-31); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 129 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 163 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
