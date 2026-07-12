@@ -42,8 +42,11 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
 
+    // Append 'for Indian Students' if the destination is outside India
+    const audienceModifier = countrySlug !== 'india' ? ' for Indian Students' : '';
+
     return {
-        title: `Best ${level} Scholarships in ${country} ${currentYear} - ${nextYear} (Fully Funded)`,
+        title: `Best ${level} Scholarships in ${country}${audienceModifier} ${currentYear} - ${nextYear} (Fully Funded)`,
         description: `Find top verified ${level} scholarships to study in ${country}. Get direct application links, eligibility requirements, stipend amounts, and step-by-step application instructions.`,
     };
 }
@@ -83,7 +86,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                 {/* Page Header */}
                 <div className="mb-10">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                        {levelName} Scholarships in {countryName} {currentYear} - {nextYear}
+                        {levelName} Scholarships in {countryName}{countrySlug !== 'india' ? ' for Indian Students' : ''} {currentYear} - {nextYear}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Explore fully funded and merit-based global scholarships for <span className="font-semibold text-blue-700">{levelName}</span> programs in <span className="font-semibold text-blue-700">{countryName}</span>. Find application guides, deadlines, and portals.
