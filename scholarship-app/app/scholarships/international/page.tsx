@@ -288,6 +288,87 @@ export default async function InternationalScholarshipsPage() {
 
                 <div className="container mx-auto px-4 max-w-5xl py-12 md:py-16">
 
+                    {/* ── Browse by Destination & Level (pSEO Hubs) ── */}
+                    <section className="mb-14">
+                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                            <Globe className="h-5 w-5 text-blue-700" />
+                            Browse Scholarships by Country & Level
+                        </h2>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                            {[
+                                {
+                                    country: 'UK',
+                                    flag: '🇬🇧',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/uk' },
+                                        { label: 'MBA', href: '/scholarships-for/mba/in/uk' },
+                                        { label: 'Masters', href: '/scholarships-for/masters/in/uk' }
+                                    ]
+                                },
+                                {
+                                    country: 'USA',
+                                    flag: '🇺🇸',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/usa' },
+                                        { label: 'MBA', href: '/scholarships-for/mba/in/usa' }
+                                    ]
+                                },
+                                {
+                                    country: 'Canada',
+                                    flag: '🇨🇦',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/canada' },
+                                        { label: 'Masters', href: '/scholarships-for/masters/in/canada' },
+                                        { label: 'UG', href: '/scholarships-for/undergraduate/in/canada' }
+                                    ]
+                                },
+                                {
+                                    country: 'Germany',
+                                    flag: '🇩🇪',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/germany' },
+                                        { label: 'MBA', href: '/scholarships-for/mba/in/germany' }
+                                    ]
+                                },
+                                {
+                                    country: 'Australia',
+                                    flag: '🇦🇺',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/australia' },
+                                        { label: 'MBA', href: '/scholarships-for/mba/in/australia' }
+                                    ]
+                                },
+                                {
+                                    country: 'Europe',
+                                    flag: '🇪🇺',
+                                    links: [
+                                        { label: 'PhD', href: '/scholarships-for/phd/in/europe' },
+                                        { label: 'Masters', href: '/scholarships-for/masters/in/europe' }
+                                    ]
+                                }
+                            ].map((item, idx) => (
+                                <div key={idx} className="border border-gray-100 rounded-2xl p-4 bg-gray-50 flex flex-col justify-between">
+                                    <div className="flex items-center gap-1.5 mb-3 font-extrabold text-gray-900 text-sm">
+                                        <span>{item.flag}</span>
+                                        <span>{item.country}</span>
+                                    </div>
+                                    <div className="flex flex-col gap-1.5">
+                                        {item.links.map((lnk, lIdx) => (
+                                            <Link 
+                                                key={lIdx} 
+                                                href={lnk.href}
+                                                className="text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center justify-between group"
+                                            >
+                                                <span>{lnk.label}</span>
+                                                <ChevronRight className="h-3 w-3 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     {/* ── Open Now Section ── */}
                     {openNow.length > 0 && (
                         <section className="mb-14">
