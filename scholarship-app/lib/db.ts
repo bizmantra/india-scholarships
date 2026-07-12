@@ -726,11 +726,15 @@ export function getCleanSteps(text: string | null): string[] {
     if (rawItems.length === 0) {
         if (/Step \d+:/i.test(trimmed)) {
             rawItems = trimmed.split(/Step \d+:/i).map(s => s.trim()).filter(Boolean);
-        } else if (/\b\d+\.\s+/.test(trimmed)) {
-            rawItems = trimmed.split(/(?=\b\d+\.\s+)/).map(s => s.trim()).filter(Boolean);
+        } else if (/\b\d{1,2}\.\s+/.test(trimmed)) {
+            rawItems = trimmed.split(/(?=\b\d{1,2}\.\s+)/).map(s => s.trim()).filter(Boolean);
         } else {
             rawItems = trimmed.split('\n').map(s => s.trim()).filter(Boolean);
         }
+    }
+    
+    if (rawItems.length > 1 && !/^\s*(\d+|Step)/i.test(rawItems[0])) {
+        rawItems.shift();
     }
     
     const cleanItems = rawItems.map(item => {
@@ -809,7 +813,7 @@ export async function getInternationalScholarships() {
     const client = getClient();
     const res = await client.execute(`
         SELECT * FROM scholarships
-        WHERE scholarship_scope = 'international'
+        WHERE LOWER(scholarship_scope) = 'international'
         ORDER BY
             CASE
                 WHEN deadline IS NULL OR deadline = 'Not specified' OR deadline = 'NA' THEN 2

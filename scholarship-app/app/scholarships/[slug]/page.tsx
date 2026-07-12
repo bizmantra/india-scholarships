@@ -245,46 +245,55 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         if (isSteps) {
             items = getCleanSteps(text);
         } else {
-            items = text
-                .split(/\.\s+(?=[A-Z])|(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
-                .map(s => s.trim())
-                .filter(s => s.length > 0 && !s.match(/^(Selection based on|Renewal conditions):$/i));
+            const trimmedText = text.trim();
+            if (trimmedText.includes('\n')) {
+                items = trimmedText.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+            } else {
+                items = trimmedText
+                    .split(/(?<!\b[A-Z])\.\s+(?=[A-Z])|(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
+                    .map(s => s.trim())
+                    .filter(s => s.length > 0 && !s.match(/^(Selection based on|Renewal conditions):$/i));
+            }
         }
 
         if (items.length <= 1) {
-            return <p className="text-gray-700 leading-relaxed">{text}</p>;
+            const cleanedText = text.replace(/^[-•–\*\s]+/, '').trim();
+            return <p className="text-gray-700 leading-relaxed">{cleanedText}</p>;
         }
 
         return (
             <ul className="space-y-3 list-none">
-                {items.map((item, i) => (
-                    <li key={i} className="text-gray-700 leading-relaxed">
-                        {isSteps ? (
-                            <div className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
-                                    {i + 1}
-                                </span>
-                                <div className="flex-1 pt-1">
-                                    {item.includes(':') ? (
-                                        <>
-                                            <span className="font-bold text-blue-900 border-b border-blue-100 mr-2">
-                                                {item.split(':')[0]}
-                                            </span>
-                                            <p className="mt-1 text-gray-600">{item.split(':').slice(1).join(':').trim()}</p>
-                                        </>
-                                    ) : (
-                                        <p>{item.trim()}</p>
-                                    )}
+                {items.map((item, i) => {
+                    const cleanedItem = item.replace(/^[-•–\*\s]+/, '').trim();
+                    return (
+                        <li key={i} className="text-gray-700 leading-relaxed">
+                            {isSteps ? (
+                                <div className="flex gap-4">
+                                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center text-sm font-bold shadow-sm">
+                                        {i + 1}
+                                    </span>
+                                    <div className="flex-1 pt-1">
+                                        {cleanedItem.includes(':') && !cleanedItem.startsWith('**') ? (
+                                            <>
+                                                <span className="font-bold text-blue-900 border-b border-blue-100 mr-2">
+                                                    {cleanedItem.split(':')[0]}
+                                                </span>
+                                                <p className="mt-1 text-gray-600">{cleanedItem.split(':').slice(1).join(':').trim()}</p>
+                                            </>
+                                        ) : (
+                                            <p>{cleanedItem}</p>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div className="flex items-start gap-3">
-                                <div className="mt-1.5 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
-                                <p>{item.trim()}</p>
-                            </div>
-                        )}
-                    </li>
-                ))}
+                            ) : (
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1.5 w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0" />
+                                    <p>{cleanedItem}</p>
+                                </div>
+                            )}
+                        </li>
+                    );
+                })}
             </ul>
         );
     };
