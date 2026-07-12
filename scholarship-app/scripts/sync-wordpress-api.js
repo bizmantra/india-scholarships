@@ -105,12 +105,13 @@ async function syncAll() {
 
     // Helper to translate provider_type to match WordPress strict select options
     const mapProviderType = (typeStr) => {
-      if (!typeStr) return 'Government';
+      if (!typeStr) return 'Private';
       const val = String(typeStr).trim().toLowerCase();
       if (val.includes('government') || val.includes('state') || val.includes('central')) return 'Government';
       if (val.includes('corporate') || val.includes('company')) return 'Corporate';
       if (val.includes('private') || val.includes('trust') || val.includes('foundation')) return 'Private';
-      return 'Government'; // default fallback
+      if (val.includes('university') || val.includes('college') || val.includes('school') || val.includes('institute') || val.includes('nus')) return 'University';
+      return 'Private'; // safer default fallback
     };
 
     // Helper to translate gender to match WordPress strict select options

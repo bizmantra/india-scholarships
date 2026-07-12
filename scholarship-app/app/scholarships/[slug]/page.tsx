@@ -231,9 +231,34 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         if (!amount || amount === 0) {
             return description || 'Check official notification';
         }
-        if (amount >= 100000) return `₹${(amount / 100000).toFixed(1)} Lakh+`;
-        if (amount >= 1000) return `₹${(amount / 1000).toFixed(0)}k+`;
-        return `₹${amount}`;
+
+        let foreignAmountStr = '';
+        const scope = scholarship.scholarship_scope || '';
+        const isInternational = scope.toLowerCase() === 'international' || scope.toLowerCase() === 'study-abroad' || (scholarship.country_of_study && scholarship.country_of_study.toLowerCase() !== 'india');
+        
+        if (isInternational && description) {
+            // Find patterns like: S$3,000, $4,800, £10,000, €15,000, SGD 3,000, USD 5,000
+            const match = description.match(/(?:S\$|SGD|USD|\$|£|€|EUR|GBP|CAD|C\$|AUD|A\$)\s*[\d,]+(?:\s*(?:to|-)\s*(?:S\$|SGD|USD|\$|£|€|EUR|GBP|CAD|C\$|AUD|A\$)?\s*[\d,]+)?/i);
+            if (match) {
+                foreignAmountStr = match[0].trim();
+                // If it's a monthly amount, append /mo for clarity
+                const lowerDesc = description.toLowerCase();
+                if (lowerDesc.includes('/month') || lowerDesc.includes('monthly') || lowerDesc.includes('per month')) {
+                    if (!foreignAmountStr.includes('/mo') && !foreignAmountStr.includes('month')) {
+                        foreignAmountStr += '/mo';
+                    }
+                }
+            }
+        }
+
+        const inrFormatted = amount >= 100000 
+            ? `₹${(amount / 100000).toFixed(1)} Lakh+` 
+            : (amount >= 1000 ? `₹${(amount / 1000).toFixed(0)}k+` : `₹${amount}`);
+
+        if (foreignAmountStr) {
+            return `${foreignAmountStr} (approx. ${inrFormatted})`;
+        }
+        return inrFormatted;
     };
 
     const FormattedText = ({ text, type = 'list' }: { text: string | null, type?: 'list' | 'steps' }) => {
