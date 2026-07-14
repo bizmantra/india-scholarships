@@ -43,18 +43,20 @@ export default function RootLayout({
         className={`${inter.variable} ${lora.variable} font-sans antialiased`}
       >
         {children}
-        <Script
+        <script
+          async
           src="https://www.googletagmanager.com/gtag/js?id=G-DE8V5ECQZX"
-          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DE8V5ECQZX');
-          `}
-        </Script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-DE8V5ECQZX');
+            `
+          }}
+        />
         <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-3403005071423697"}`}
