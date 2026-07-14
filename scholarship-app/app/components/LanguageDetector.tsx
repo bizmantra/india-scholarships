@@ -48,13 +48,13 @@ export default function LanguageDetector({ slug }: { slug: string }) {
                 <div className="flex items-center gap-2.5 text-sm text-blue-800">
                     <Info className="h-5 w-5 text-blue-600 flex-shrink-0" />
                     <span className="font-medium">
-                        {prompt.label}
+                        {prompt?.label}
                     </span>
                     <Link
-                        href={`/${prompt.pathPrefix}/scholarships/${slug}`}
+                        href={`/${prompt?.pathPrefix}/scholarships/${slug}`}
                         className="ml-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg transition-colors shadow-xs"
                     >
-                        {prompt.btnText}
+                        {prompt?.btnText}
                     </Link>
                 </div>
                 <button
