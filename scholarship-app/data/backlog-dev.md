@@ -1,8 +1,6 @@
 # IndiaScholarships Dev Backlog
 
-## In Progress (4)
-
-## In Progress (3)
+## In Progress (2)
 
 - [ ] **IS-50**: Integrate Google Keyword Planner API for keyword research
   - **Impact**: Low
@@ -15,27 +13,7 @@
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-- [x] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
-  - **Impact**: Critical
-  - **Type**: Bug
-  - **Description**:
-    Context / Why it matters:
-    SQLite file-based database queries using native C++ compilation bindings (better-sqlite3) crash at request time inside Vercel's ephemeral, read-only serverless Lambda runtime, triggering a 500 server exception screen.
-    
-    Actions Taken:
-    1. Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
-    2. Migrated SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
-    
-    Next Actions to be Taken:
-    1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
-
 ## Backlog (39)
-
-- [ ] **IS-91**: Implement exit-intent modal popup for Telegram/WhatsApp subscriptions
-  - **Impact**: Medium
-  - **Type**: Feature
-  - **Description**:
-    Create a lightweight exit-intent detection script on the Next.js frontend (triggering when cursor leaves viewport) to display a modal offering students direct links to join our Telegram/WhatsApp alert channels to avoid missing deadlines.
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High
@@ -501,25 +479,31 @@
   - **Description**:
     Add Telegram Alert Channel banner/card components to the Next.js frontend. Placements: 1. Homepage sticky banner/header. 2. Scholarship detail pages (near the Deadline/Apply sections). 3. Scholarship tools results screen (e.g., Eligibility Checker and Income Calculator output).
 
-## Done (29)
-
-- [x] **IS-89**: Database Additions & Enrichment (LIC HFL, Rolls-Royce, Tata AIA Paras)
-  - **Impact**: High
-  - **Type**: Content/DB
+- [ ] **IS-89**: Localization Investigation & Multi-language Next-intl Setup
+  - **Impact**: Medium
+  - **Type**: Feature
   - **Description**:
-    Added LIC HFL Vidyadhan and Rolls-Royce Wings4Her to the SQLite database and enriched TATA AIA Paras with updated professional streams and apply URLs. Synced all to WordPress REST API and verified builds.
+    Investigate and implement multi-language support (specifically Hindi /hi/ or subdomains) using next-intl in the Next.js frontend, based on Buddy4Study's localization findings.
 
-- [x] **IS-90**: Implement Always Open / Rolling Scholarship Support
+- [ ] **IS-90**: Implement WhatsApp Alert Channel Integration
   - **Impact**: High
-  - **Type**: Schema/Feature
+  - **Type**: Feature
   - **Description**:
-    Added always_open schema field to SQLite, modified backend search queries to bypass date checks for rolling listings, updated page details and subpages templates for rolling rendering, and added a checks & balances verification rule in the content audit script.
+    Add a highly visible WhatsApp Channel subscription component or floating badge in the site footer and sidebar layouts to capture user leads.
 
-- [x] **IS-88**: Buddy4Study Competitor Benchmarking Analysis
+- [ ] **IS-91**: Implement Exit-Intent Alert Popup
   - **Impact**: High
-  - **Type**: Task
+  - **Type**: Feature
   - **Description**:
-    Performed competitor benchmarking of Buddy4Study covering subdomains, localization strategy, marketing channels, and onboarding registration funnel. Compiled findings in buddy4study_benchmarking_report.md.
+    Build an exit-intent alert popup component that triggers for users attempting to leave/scroll past a certain point, prompting them to subscribe to WhatsApp/Telegram alerts.
+
+- [ ] **IS-92**: User Onboarding & Dynamic Recommendations Flow
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.
+
+## Done (30)
 
 - [x] **IS-1**: Fix Verified for 2026 hardcode → dynamic year (line 342)
   - **Impact**: Medium
@@ -731,13 +715,45 @@
   - **Description**:
     Redesign and optimize the central /tools landing page to serve as a high-value entry directory. Includes real-time database stats, optimized visual categorization, and search.
 
-## Parked (13)
-
-- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
-  - **Impact**: High
+- [x] **IS-84**: BUG: Vercel Serverless Runtime SQLite Failures
+  - **Impact**: Critical
+  - **Type**: Bug
   - **Description**:
-    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
-    * **Current Status:** JavaScript and Ads.txt integration were rolled back on Jul 10, 2026, as Ezoic rejected the application.
+    Context / Why it matters:
+    SQLite file-based database queries using native C++ compilation bindings (better-sqlite3) crash at request time inside Vercel's ephemeral, read-only serverless Lambda runtime, triggering a 500 server exception screen.
+    
+    Actions Taken:
+    1. Converted the homepage, deadlines, recently added, and trending pages to static routes (SSG) to build during compile-time and serve from CDN edge.
+    2. Migrated SQLite database backend to Turso (SQLite over HTTP) to enable safe request-time serverless database connections.
+    
+    Next Actions to be Taken:
+    1. Configure branch-based Vercel Preview Deployments to review runtime changes before merging to main.
+
+- [x] **IS-88**: Buddy4Study Competitor Benchmarking Analysis
+  - **Impact**: High
+  - **Type**: Task
+  - **Description**:
+    Performed competitor benchmarking of Buddy4Study covering subdomains, localization strategy, marketing channels, and onboarding registration funnel. Compiled findings in buddy4study_benchmarking_report.md.
+
+- [x] **IS-93**: Automate Telegram Channel Broadcasts via Bot API
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Create a Node.js automation script (scripts/post-to-telegram.js) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. For complete setup design and workflow guide, see docs/telegram-alerts-automation.md.
+
+- [x] **IS-94**: BUG: AdSense compatibility warnings and data-nscript attribute conflicts
+  - **Impact**: Critical
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    Compatibility conflict between Next.js Script wrapper component and Google AdSense library caused data-nscript validation warnings in the console, contributing to AdSense revenue drops and rendering inconsistencies. Additionally, verified domain nameservers are pointed back to Vercel (bypassing Ezoic proxying).
+    
+    Actions Taken:
+    1. Replaced all Next.js Script wrapper components in app/layout.tsx with standard HTML async script tags to completely eliminate the data-nscript attribute.
+    2. Fixed a TypeScript compile error on LanguageDetector.tsx to enable successful Vercel builds.
+    3. Verified the changes are live on production and verified console errors are gone.
+
+## Parked (13)
 
 - [ ] **IS-5**: Printable document checklist on /documents-required subpages
   - **Impact**: Medium
@@ -795,6 +811,15 @@
     
     Trigger:
     Title overrides already deployed in code
+
+- [ ] **IS-15**: Apply to Ezoic for premium ad monetisation
+  - **Impact**: High
+  - **Description**:
+    Context / Why it matters:
+    At current traffic, ₹8,000–15,000/month potential. Better than plain AdSense — dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.
+    
+    Plan / What to do:
+    Go to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.
 
 - [ ] **IS-17**: B2B school counselor dashboard
   - **Impact**: High
@@ -888,36 +913,4 @@
   - **Type**: Feature
   - **Description**:
     User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.
-
-- [ ] **IS-89**: Localization Investigation & Multi-language Next-intl Setup
-  - **Impact**: Medium
-  - **Type**: Feature
-  - **Description**:
-    Investigate and implement multi-language support (specifically Hindi /hi/ or subdomains) using next-intl in the Next.js frontend, based on Buddy4Study's localization findings.
-
-- [ ] **IS-90**: Implement WhatsApp Alert Channel Integration
-  - **Impact**: High
-  - **Type**: Feature
-  - **Description**:
-    Add a highly visible WhatsApp Channel subscription component or floating badge in the site footer and sidebar layouts to capture user leads.
-
-- [ ] **IS-91**: Implement Exit-Intent Alert Popup
-  - **Impact**: High
-  - **Type**: Feature
-  - **Description**:
-    Build an exit-intent alert popup component that triggers for users attempting to leave/scroll past a certain point, prompting them to subscribe to WhatsApp/Telegram alerts.
-
-- [ ] **IS-92**: User Onboarding & Dynamic Recommendations Flow
-  - **Impact**: High
-  - **Type**: Feature
-  - **Description**:
-    Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.
-
-- [x] **IS-93**: Automate Telegram Channel Broadcasts via Bot API
-  - **Impact**: High
-  - **Type**: Feature
-  - **Description**:
-    Create a Node.js automation script (`scripts/post-to-telegram.js`) that uses the official Telegram Bot API to broadcast scholarship alerts to the Telegram channel. For complete design setup and workflow, see [telegram-alerts-automation.md](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/telegram-alerts-automation.md).
-
-
 
