@@ -18,7 +18,8 @@ export function getClient() {
     return clientInstance;
 }
 
-const WP_API_URL = process.env.WORDPRESS_API_URL;
+// Bypassed to make Turso DB the main source of truth; WordPress remains a backup/secondary target.
+const WP_API_URL = null; // process.env.WORDPRESS_API_URL;
 
 // Helper to fetch from WordPress if configured
 async function wpFetch(endpoint: string, params: Record<string, string | number> = {}) {

@@ -26,7 +26,15 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import LanguageDetector from '@/app/components/LanguageDetector';
 
-
+const SUBPAGE_METRICS = {
+    'eligibility': 'Eligibility',
+    'income-limit': 'Income Limit',
+    'documents-required': 'Documents',
+    'last-date': 'Last Date',
+    'selection-process': 'Selection',
+    'apply-online': 'How to Apply',
+    'renewal-process': 'Renewal'
+};
 
 
 // Generate static params for all scholarships
@@ -449,6 +457,24 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
             )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                {/* Mobile Navigation Tabs (visible only on mobile) */}
+                <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                    <span 
+                        className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
+                    >
+                        Overview
+                    </span>
+                    {Object.entries(SUBPAGE_METRICS).map(([key, label]) => (
+                        <Link 
+                            key={key} 
+                            href={`/scholarships/${scholarship.slug}/${key}`}
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            {label}
+                        </Link>
+                    ))}
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
                     {/* Left Column: Main Content */}

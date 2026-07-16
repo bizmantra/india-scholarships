@@ -34,6 +34,58 @@ const SUBPAGE_METRICS: Record<string, { label: string, icon: any }> = {
     'renewal-process': { label: 'Renewal Process', icon: RefreshCcw }
 };
 
+function getDynamicIntro(subpage: string, scholarship: any, year: number): string {
+    const title = scholarship.title || 'this scholarship';
+    const provider = scholarship.provider || 'the scholarship provider';
+    const state = scholarship.state || 'India';
+    const amount = scholarship.amount_annual > 0 
+        ? `up to ₹${scholarship.amount_annual.toLocaleString('en-IN')} annually` 
+        : 'financial assistance';
+
+    switch (subpage) {
+        case 'eligibility':
+            return `To qualify for the ${title} ${year} program, candidates must satisfy the eligibility criteria set by ${provider}. This includes academic benchmarks, category-specific requirements, and gender limits for students residing in ${state}.`;
+        case 'income-limit':
+            return `The family income threshold is a critical selection parameter for the ${title} ${year}. This guide details the maximum annual income limit, parent/guardian occupation parameters, and the official verification rules required for students in ${state}.`;
+        case 'documents-required':
+            return `Applicants for the ${title} ${year} must prepare and upload a specific set of official documents. Having these certificates, marksheets, and identity cards ready in the correct formats ensures a smooth application verification process.`;
+        case 'last-date':
+            return `Staying updated on key timelines and deadlines for the ${title} ${year} cycle is crucial to avoid application rejection. Below are the official opening dates, last dates for online submission, and verification schedules.`;
+        case 'selection-process':
+            return `Candidates for the ${title} ${year} are evaluated and ranked based on pre-defined parameters. Understand how merit lists are generated, income verification priorities, and the final disbursement flow of the ${amount} benefit.`;
+        case 'apply-online':
+            return `The official application process for the ${title} ${year} is conducted online. Follow this step-by-step registration guide to create an account, fill out the application details, upload documents, and submit your form.`;
+        case 'renewal-process':
+            return `If you are a past beneficiary of the ${title}, you can renew your scholarship to continue receiving benefits. Learn about the academic performance benchmarks, minimum attendance criteria, and renewal application portals.`;
+        default:
+            return '';
+    }
+}
+
+function getFilteredFaqs(faqs: any[], subpage: string): any[] {
+    const keywords: Record<string, string[]> = {
+        'eligibility': ['eligibility', 'eligible', 'who can', 'marks', 'percentage', 'qualification', 'gender', 'caste', 'income', 'domicile', 'resident', 'qualify'],
+        'income-limit': ['income', 'salary', 'annual income', 'certificate', 'family income', 'limit', 'bar'],
+        'documents-required': ['document', 'certificate', 'upload', 'aadhaar', 'marksheet', 'bank', 'passbook', 'domicile', 'photo', 'income certificate', 'docs', 'required'],
+        'last-date': ['date', 'deadline', 'last date', 'when', 'timeline', 'extend', 'close', 'open'],
+        'selection-process': ['selection', 'select', 'merit', 'rank', 'verify', 'verification', 'list', 'shortlist', 'disburse', 'fund'],
+        'apply-online': ['apply', 'online', 'register', 'how to', 'link', 'portal', 'website', 'form', 'submit', 'login', 'apply online'],
+        'renewal-process': ['renewal', 'renew', 'continue', 'next year', 'second year', 'maintain', 'cgpa', 'attendance']
+    };
+
+    const subpageKeywords = keywords[subpage] || [];
+    const filtered = faqs.filter(faq => {
+        const qText = (faq.question || faq.q || '').toLowerCase();
+        const aText = (faq.answer || faq.a || '').toLowerCase();
+        return subpageKeywords.some(kw => qText.includes(kw) || aText.includes(kw));
+    });
+
+    if (filtered.length === 0) {
+        return faqs.slice(0, 2);
+    }
+    return filtered;
+}
+
 // Generate static params dynamically for all scholarships
 export async function generateStaticParams() {
     const scholarships = await getAllScholarships();
@@ -113,6 +165,54 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const PageIcon = metric.icon;
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const year = scholarship.verification_year || new Date().getFullYear();
+
+    // FAQPage schema for subpage
+    let faqSchema: any = null;
+    try {
+        let faqs = scholarship.faq_json;
+        if (typeof faqs === 'string') {
+            try { faqs = JSON.parse(faqs); } catch (e) {}
+        }
+        if (Array.isArray(faqs) && faqs.length > 0) {
+            const filteredFaqs = getFilteredFaqs(faqs, subpage);
+            const mainEntity = filteredFaqs.map((faq: any) => ({
+                '@type': 'Question',
+                name: faq.question || faq.q || '',
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: faq.answer || faq.a || ''
+                }
+            })).filter((item: any) => item.name && item.acceptedAnswer.text);
+
+            if (mainEntity.length > 0) {
+                faqSchema = {
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    mainEntity: mainEntity
+                };
+            }
+        }
+    } catch (e) {}
+
+    // HowTo schema for apply-online
+    let howToSchema: any = null;
+    if (subpage === 'apply-online' && scholarship.step_guide) {
+        try {
+            const steps = getCleanSteps(scholarship.step_guide);
+            if (steps && steps.length > 0) {
+                howToSchema = {
+                    '@context': 'https://schema.org',
+                    '@type': 'HowTo',
+                    'name': `How to Apply Online for ${scholarship.title} ${year}`,
+                    'step': steps.map((step: string, idx: number) => ({
+                        '@type': 'HowToStep',
+                        'position': idx + 1,
+                        'text': step
+                    }))
+                };
+            }
+        } catch (e) {}
+    }
 
     const ContentVerificationFallback = () => (
         <div className="p-8 bg-gray-50 border border-gray-150 rounded-3xl text-center">
@@ -249,6 +349,18 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                     })
                 }}
             />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
+            {howToSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+                />
+            )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Back to Parent Banner */}
@@ -257,6 +369,32 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         <ArrowLeft className="h-4 w-4" />
                         Back to Full {scholarship.title} Overview
                     </Link>
+                </div>
+
+                {/* Mobile Navigation Tabs (visible only on mobile) */}
+                <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                    <Link 
+                        href={`/scholarships/${scholarship.slug}`}
+                        className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
+                    >
+                        Overview
+                    </Link>
+                    {Object.entries(SUBPAGE_METRICS).map(([key, value]) => {
+                        const isActive = key === subpage;
+                        return (
+                            <Link 
+                                key={key} 
+                                href={`/scholarships/${scholarship.slug}/${key}`}
+                                className={`flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs whitespace-nowrap transition-all ${
+                                    isActive 
+                                        ? 'bg-blue-600 text-white shadow-sm' 
+                                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                }`}
+                            >
+                                {value.label}
+                            </Link>
+                        );
+                    })}
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -283,6 +421,11 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         </div>
                         {/* Specific Subpage Content Blocks */}
                         <div className="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-sm mb-12">
+                            {/* Dynamic Semantic Intro Paragraph */}
+                            <p className="text-gray-600 leading-relaxed mb-8 text-base border-l-4 border-blue-600 pl-4 italic bg-blue-50/20 py-3.5 pr-4 rounded-r-2xl">
+                                {getDynamicIntro(subpage, scholarship, year)}
+                            </p>
+
                             {subpage === 'eligibility' && (
                                 <div className="space-y-8">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -503,22 +646,25 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         </div>
 
                         {/* FAQs Section */}
-                        {scholarship.faq_json && (
-                            <section className="mb-12">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
-                                    <div className="w-2 h-8 bg-blue-600 rounded-full" />
-                                    FAQs for {scholarship.title}
-                                </h2>
-                                <div className="space-y-4">
-                                    {(() => {
-                                        try {
-                                            let faqs = scholarship.faq_json;
-                                            if (typeof faqs === 'string') {
-                                                try { faqs = JSON.parse(faqs); } catch (e) { }
-                                            }
-                                            if (!faqs || (Array.isArray(faqs) && faqs.length === 0)) return null;
+                        {(() => {
+                            try {
+                                let faqs = scholarship.faq_json;
+                                if (typeof faqs === 'string') {
+                                    try { faqs = JSON.parse(faqs); } catch (e) { }
+                                }
+                                if (!faqs || (Array.isArray(faqs) && faqs.length === 0)) return null;
 
-                                            return Array.isArray(faqs) ? faqs.map((faq: any, i: number) => (
+                                const filteredFaqs = getFilteredFaqs(faqs, subpage);
+                                if (filteredFaqs.length === 0) return null;
+
+                                return (
+                                    <section className="mb-12">
+                                        <h2 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
+                                            <div className="w-2 h-8 bg-blue-600 rounded-full" />
+                                            FAQs for {scholarship.title} ({metric.label})
+                                        </h2>
+                                        <div className="space-y-4">
+                                            {filteredFaqs.map((faq: any, i: number) => (
                                                 <div key={i} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm">
                                                     <h3 className="font-bold text-gray-900 mb-2 text-md flex gap-2">
                                                         <span className="text-blue-600">Q.</span>
@@ -526,12 +672,12 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                                     </h3>
                                                     <p className="text-gray-600 text-sm pl-6">{faq.answer || faq.a}</p>
                                                 </div>
-                                            )) : null;
-                                        } catch (e) { return null; }
-                                    })()}
-                                </div>
-                            </section>
-                        )}
+                                            ))}
+                                        </div>
+                                    </section>
+                                );
+                            } catch (e) { return null; }
+                        })()}
                     </div>
 
                     {/* Right Column: Sidebar Navigation & Related */}
