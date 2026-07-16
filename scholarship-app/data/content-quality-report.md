@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-07-12
-Total Scholarships Audited: **443**
-Scholarships with Issues: **201** (45.4%)
+Generated on: 2026-07-16
+Total Scholarships Audited: **457**
+Scholarships with Issues: **201** (44.0%)
 
 ---
 
@@ -12,17 +12,17 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.2% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 57 | 12.9% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 96 | 21.7% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 48 | 10.8% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 94 | 21.2% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 27 | 6.1% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 10 | 2.3% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 39 | 8.8% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 18 | 4.1% | Missing or under 20 characters |
-| **Missing Documents** | 19 | 4.3% | No required documents listed |
+| **Missing Annual Amount** | 57 | 12.5% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 96 | 21.0% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 48 | 10.5% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 94 | 20.6% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 27 | 5.9% | Mentions 2024, 2025, or earlier cycles |
+| **Incomplete Selection Criteria** | 10 | 2.2% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 39 | 8.5% | Missing or under 15 characters |
+| **Incomplete Step Guide** | 18 | 3.9% | Missing or under 20 characters |
+| **Missing Documents** | 19 | 4.2% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 33 | 7.4% | Helpline is empty, "Not Specified", or generic |
+| **Missing Helpline** | 33 | 7.2% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 8 | 1.8% | FAQ block is empty or missing |
 | **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 

@@ -19,6 +19,7 @@ export default async function ScholarshipsByCategoryPage() {
         'EBC': { description: 'Economically Backward Classes scholarships.', icon: '💰' },
         'Minority': { description: 'Scholarships for minority community students.', icon: '🕌' },
         'General': { description: 'Scholarships open to all categories without caste restrictions.', icon: '🌟' },
+        'Sports': { description: 'Scholarships and support programs for student-athletes.', icon: '🏆' },
     };
 
     return (
@@ -46,7 +47,7 @@ export default async function ScholarshipsByCategoryPage() {
                 {/* Category Grid */}
                 <section className="space-y-6 mb-20">
                     {(await Promise.all(categories
-                        .filter(c => ['SC', 'ST', 'OBC', 'General', 'Minority', 'EBC'].includes(c) || categories.length < 15)
+                        .filter(c => ['SC', 'ST', 'OBC', 'General', 'Minority', 'EBC', 'Sports'].includes(c) || categories.length < 15)
                         .map(async (category) => {
                             const info = categoryInfo[category] || { description: `Verified scholarships for ${category} category students.`, icon: '📖' };
                             const slug = slugify(category);

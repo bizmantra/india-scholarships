@@ -43,6 +43,7 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
     'ebc': 'Economically Backward Classes (EBC)',
     'minority': 'Minority Communities',
     'ews': 'Economically Weaker Section (EWS)',
+    'sports': 'Sports & Athletes',
 };
 
 const STUDY_ABROAD_LEVELS: Record<string, string> = {
