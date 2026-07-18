@@ -13,7 +13,19 @@
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-## Backlog (39)
+## Backlog (40)
+
+- [ ] **IS-95**: Manual CMS Expansion: Visual Create New Scholarship & Scraping Interface
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Allows the admin to add completely custom scholarships manually from scratch or paste arbitrary URLs to scrape, scrape-clean, and directly edit content outside of automated SEO/Ubersuggest gap reports.
+    
+    Plan / What to do:
+    1. Add a 'Create New Scholarship' button on the Content Manager interface that triggers the edit modal with a blank form schema.
+    2. Create a generic scraper integration/dashboard tool to crawl and pre-fill details from custom inputs.
+    3. Implement corresponding POST backend API routes in Next.js content handlers.
 
 - [ ] **IS-4**: Email capture on eligibility checker results screen
   - **Impact**: High

@@ -670,5 +670,13 @@
     "impact": "Critical",
     "status": "Done",
     "type": "Bug"
+  },
+  {
+    "id": "IS-95",
+    "title": "Manual CMS Expansion: Visual Create New Scholarship & Scraping Interface",
+    "description": "Context / Why it matters:\nAllows the admin to add completely custom scholarships manually from scratch or paste arbitrary URLs to scrape, scrape-clean, and directly edit content outside of automated SEO/Ubersuggest gap reports.\n\nPlan / What to do:\n1. Add a 'Create New Scholarship' button on the Content Manager interface that triggers the edit modal with a blank form schema.\n2. Create a generic scraper integration/dashboard tool to crawl and pre-fill details from custom inputs.\n3. Implement corresponding POST backend API routes in Next.js content handlers.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
   }
 ]
