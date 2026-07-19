@@ -48,8 +48,10 @@ export async function middleware(request: NextRequest) {
             url.searchParams.set('error', 'Session invalid or expired. Please sign in again.');
             
             const response = NextResponse.redirect(url);
+            const isProd = process.env.NODE_ENV === 'production';
             response.cookies.set('admin_session', '', {
                 path: '/',
+                domain: isProd ? '.indiascholarships.in' : undefined,
                 maxAge: 0
             });
             return response;

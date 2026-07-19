@@ -7,11 +7,13 @@ export async function GET(request: Request) {
     try {
         const cookieStore = await cookies();
         // Remove session cookie
+        const isProd = process.env.NODE_ENV === 'production';
         cookieStore.set('admin_session', '', {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            secure: isProd,
+            sameSite: 'lax',
             path: '/',
+            domain: isProd ? '.indiascholarships.in' : undefined,
             maxAge: 0 // Expire instantly
         });
     } catch (e) {

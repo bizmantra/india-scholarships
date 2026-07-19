@@ -77,11 +77,13 @@ export async function GET(request: Request) {
 
         // Write secure HTTP-Only cookie
         const cookieStore = await cookies();
+        const isProd = process.env.NODE_ENV === 'production';
         cookieStore.set('admin_session', jwt, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            secure: isProd,
+            sameSite: 'lax',
             path: '/',
+            domain: isProd ? '.indiascholarships.in' : undefined,
             maxAge: 7 * 24 * 60 * 60 // 7 days
         });
 
