@@ -17,8 +17,8 @@ const isDryRun = process.argv.includes('--dry-run');
 const isInitOnly = process.argv.includes('--init');
 
 if (!TOKEN || !CHANNEL_ID) {
-    console.error('❌ Error: TELEGRAM_BOT_TOKEN and TELEGRAM_CHANNEL_ID must be defined in your .env.local file.');
-    process.exit(1);
+    console.warn('⚠️ Warning: TELEGRAM_BOT_TOKEN or TELEGRAM_CHANNEL_ID is not defined. Skipping Telegram broadcast.');
+    process.exit(0);
 }
 
 // Ensure database exists
