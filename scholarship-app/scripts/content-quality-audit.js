@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
+const { execSync } = require('child_process');
 
 const DB_PATH = path.join(__dirname, '..', 'data', 'scholarships.db');
 const MD_REPORT_PATH = path.join(__dirname, '..', 'data', 'content-quality-report.md');
@@ -57,6 +58,48 @@ function parseArrayField(value) {
         return trimmed.split('\n').map(s => s.trim()).filter(Boolean);
     }
     return trimmed.split(',').map(s => s.trim()).filter(Boolean);
+}
+
+// Check for deleted or renamed slugs by comparing with git HEAD version of the database
+function checkDeletedSlugs() {
+    try {
+        const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
+        const dbRepoPath = path.relative(gitRoot, DB_PATH).replace(/\\/g, '/');
+        const tempGitDbPath = path.join(path.dirname(DB_PATH), 'scholarships.db.git-base');
+        
+        try {
+            const fileBuffer = execSync(`git show HEAD:${dbRepoPath}`, { maxBuffer: 100 * 1024 * 1024 });
+            fs.writeFileSync(tempGitDbPath, fileBuffer);
+        } catch (gitErr) {
+            console.log('ℹ️ No git history found or could not read database from HEAD, skipping slug deletion check.');
+            return;
+        }
+
+        if (fs.existsSync(tempGitDbPath)) {
+            const oldDb = new Database(tempGitDbPath);
+            const oldSlugs = oldDb.prepare('SELECT slug FROM scholarships').all().map(r => r.slug);
+            oldDb.close();
+            fs.unlinkSync(tempGitDbPath); // Cleanup
+
+            const currentDb = new Database(DB_PATH);
+            const currentSlugs = new Set(currentDb.prepare('SELECT slug FROM scholarships').all().map(r => r.slug));
+            currentDb.close();
+
+            const missingSlugs = oldSlugs.filter(slug => !currentSlugs.has(slug));
+
+            if (missingSlugs.length > 0) {
+                console.warn('\n⚠️  WARNING: The following slugs existed in the previous version of the database but are missing in the current version:');
+                missingSlugs.forEach(slug => {
+                    console.warn(`   - ${slug}`);
+                });
+                console.warn('Ensure you have defined corresponding redirect rules in next.config.ts for these slugs or their subpages!\n');
+            } else {
+                console.log('✅ No active slugs were deleted or renamed.');
+            }
+        }
+    } catch (err) {
+        console.error('❌ Failed to run slug deletion check:', err.message);
+    }
 }
 
 try {
@@ -325,6 +368,9 @@ Here are the scholarships with the highest number of content quality issues:
 
     fs.writeFileSync(CSV_REPORT_PATH, csvRows.join('\n'));
     console.log(`✅ Saved CSV audit spreadsheet to: ${CSV_REPORT_PATH}`);
+
+    // Run the slug deletion/deprecation check
+    checkDeletedSlugs();
 
     // If strict mode is enabled, exit with code 1 if there are active content issues.
     // Excluding legacy flag issues to allow older records while securing new additions.
