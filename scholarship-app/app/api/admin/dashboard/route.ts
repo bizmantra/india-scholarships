@@ -45,9 +45,6 @@ const CANONICAL_LEVELS = [
 ];
 
 export async function GET() {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized. Dashboard is only available in development mode.' }, { status: 403 });
-    }
 
     const client = getClient();
 

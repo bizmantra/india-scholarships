@@ -2,9 +2,6 @@ import { NextResponse } from 'next/server';
 import { getClient } from '@/lib/db';
 
 function checkAuth() {
-  if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-    return false;
-  }
   return true;
 }
 

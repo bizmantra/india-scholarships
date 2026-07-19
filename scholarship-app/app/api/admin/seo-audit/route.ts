@@ -49,12 +49,7 @@ const CANONICAL_LEVELS = {
 };
 
 const BASE_URL = 'https://www.indiascholarships.in';
-
 export async function GET(request: Request) {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
-
     const { searchParams } = new URL(request.url);
     const downloadCsv = searchParams.get('download') === 'true';
 

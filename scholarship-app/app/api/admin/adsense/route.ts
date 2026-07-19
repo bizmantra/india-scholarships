@@ -2,9 +2,6 @@ import { NextResponse } from 'next/server';
 import { getAdSenseClient } from '@/lib/google-auth';
 
 export async function GET() {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
 
     const clientId = process.env.GOOGLE_ADSENSE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_ADSENSE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET;

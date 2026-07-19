@@ -4,9 +4,6 @@ import path from 'path';
 import fs from 'fs';
 
 export async function GET() {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
 
     const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
     if (!fs.existsSync(dbPath)) {

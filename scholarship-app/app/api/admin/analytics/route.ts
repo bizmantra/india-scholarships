@@ -2,9 +2,6 @@ import { NextResponse } from 'next/server';
 import { getAnalyticsClient } from '@/lib/google-auth';
 
 export async function GET() {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
 
     const email = process.env.GOOGLE_SERVICES_CLIENT_EMAIL || process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
     const privateKey = process.env.GOOGLE_SERVICES_PRIVATE_KEY || process.env.GOOGLE_SHEETS_PRIVATE_KEY;

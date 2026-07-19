@@ -1,12 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getClient } from '@/lib/db';
 import { execSync } from 'child_process';
-
 export async function POST(request: Request) {
-    if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
-
     try {
         const body = await request.json();
         const {
