@@ -5,7 +5,8 @@ import {
     getAllCategories,
     getIncomeRanges,
     getMajorCourses,
-    getAllProviderTypes
+    getAllProviderTypes,
+    getScholarshipsByState
 } from '@/lib/db';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
@@ -132,17 +133,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
-    // Dynamic State Hub Subpage Pages
+    // Dynamic State Hub Subpage Pages (Filter thin states with < 3 scholarships)
     const stateSubpageRoutes = [];
     for (const state of states) {
         const stateSlug = slugify(state);
-        for (const subpage of subpageKeys) {
-            stateSubpageRoutes.push({
-                url: `${baseUrl}/scholarships-in/${stateSlug}/${subpage}`,
-                lastModified: new Date(),
-                changeFrequency: 'weekly' as const,
-                priority: 0.6,
-            });
+        const stateScholarships = await getScholarshipsByState(state);
+        if (stateScholarships.length >= 3) {
+            for (const subpage of subpageKeys) {
+                stateSubpageRoutes.push({
+                    url: `${baseUrl}/scholarships-in/${stateSlug}/${subpage}`,
+                    lastModified: new Date(),
+                    changeFrequency: 'weekly' as const,
+                    priority: 0.6,
+                });
+            }
         }
     }
 

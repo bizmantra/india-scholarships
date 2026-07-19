@@ -18,41 +18,48 @@ import {
     CheckCircle
 } from 'lucide-react';
 
-const SUBPAGE_METRICS: Record<string, { label: string, icon: any, description: string }> = {
+const SUBPAGE_METRICS: Record<string, { label: string, icon: any, description: string, shortLabel: string }> = {
     'eligibility': { 
         label: 'Eligibility Criteria', 
         icon: CheckCircle2,
-        description: 'Detailed qualifying requirements, minimum academic percentages, domicile rules, and community category restrictions.'
+        description: 'Detailed qualifying requirements, minimum academic percentages, domicile rules, and community category restrictions.',
+        shortLabel: 'Eligibility'
     },
     'income-limit': { 
         label: 'Income Limit Rules', 
         icon: IndianRupee,
-        description: 'Maximum annual family income caps and necessary certification requirements for scholarship approval.'
+        description: 'Maximum annual family income caps and necessary certification requirements for scholarship approval.',
+        shortLabel: 'Income Limit'
     },
     'documents-required': { 
         label: 'Documents Required', 
         icon: ShieldCheck,
-        description: 'Checklist of certificates, marksheets, identification cards, and verification files needed for a successful application.'
+        description: 'Checklist of certificates, marksheets, identification cards, and verification files needed for a successful application.',
+        shortLabel: 'Documents'
     },
     'last-date': { 
         label: 'Last Dates & Deadlines', 
         icon: Calendar,
-        description: 'Official schedule timelines, last date extensions, online portal status windows, and scheme dates.'
+        description: 'Official schedule timelines, last date extensions, online portal status windows, and scheme dates.',
+        shortLabel: 'Last Date'
     },
     'selection-process': { 
         label: 'Selection Process', 
         icon: Award,
-        description: 'How scholars are selected, merit-cum-means selection weights, ranking parameters, and list verifications.'
+        description: 'How scholars are selected, merit-cum-means selection weights, ranking parameters, and list verifications.',
+        shortLabel: 'Selection'
     },
     'apply-online': { 
         label: 'Apply Online step-guide', 
         icon: Globe,
-        description: 'Step-by-step registration guidelines, official portal web link redirection, and application status checks.'
+        description: 'Step-by-step registration guidelines, official portal web link redirection, and application status checks.',
+        shortLabel: 'How to Apply'
     },
     'renewal-process': { 
         label: 'Renewal Process', 
         icon: RefreshCcw,
-        description: 'Requirements to maintain continuous eligibility, academic minimum pass marks, and renewal application guides.'
+        description: 'Requirements to maintain continuous eligibility, academic minimum pass marks, and renewal application guides.',
+        shortLabel: 'Renewal'
     }
 };
 
@@ -81,8 +88,11 @@ export async function generateStaticParams() {
     const params: Array<{ state: string, subpage: string }> = [];
     for (const state of states) {
         const stateSlug = slugify(state);
-        for (const subpage of subpages) {
-            params.push({ state: stateSlug, subpage });
+        const scholarships = await getScholarshipsByState(state);
+        if (scholarships.length >= 3) {
+            for (const subpage of subpages) {
+                params.push({ state: stateSlug, subpage });
+            }
         }
     }
     return params;
@@ -164,8 +174,8 @@ export default async function StateHubSubpage({ params }: { params: Promise<{ st
 
     const scholarships = await getScholarshipsByState(stateName);
 
-    if (scholarships.length === 0) {
-        return redirect('/state-scholarships');
+    if (scholarships.length < 3) {
+        return redirect(`/scholarships-in/${stateSlug}`);
     }
 
     const metric = SUBPAGE_METRICS[subpage];
@@ -229,6 +239,32 @@ export default async function StateHubSubpage({ params }: { params: Promise<{ st
                     <span>/</span>
                     <span className="text-gray-900 font-medium">{metric.label}</span>
                 </nav>
+
+                {/* Mobile Navigation Tabs (visible only on mobile) */}
+                <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                    <Link 
+                        href={`/scholarships-in/${stateSlug}`}
+                        className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
+                    >
+                        Overview
+                    </Link>
+                    {Object.entries(SUBPAGE_METRICS).map(([key, val]) => {
+                        const isActive = key === subpage;
+                        return (
+                            <Link 
+                                key={key} 
+                                href={`/scholarships-in/${stateSlug}/${key}`}
+                                className={`flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs whitespace-nowrap transition-all ${
+                                    isActive 
+                                        ? 'bg-blue-600 text-white shadow-sm' 
+                                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                }`}
+                            >
+                                {val.shortLabel}
+                            </Link>
+                        );
+                    })}
+                </div>
 
                 {/* Subpage Hero Section */}
                 <div className="bg-gradient-to-r from-blue-900 to-indigo-950 rounded-[2.5rem] p-8 md:p-12 text-white mb-12 shadow-xl border border-indigo-900/40 relative overflow-hidden">

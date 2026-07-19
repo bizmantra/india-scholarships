@@ -6,6 +6,16 @@ import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 
+const SUBPAGE_METRICS = {
+    'eligibility': 'Eligibility',
+    'income-limit': 'Income Limit',
+    'documents-required': 'Documents',
+    'last-date': 'Last Date',
+    'selection-process': 'Selection',
+    'apply-online': 'How to Apply',
+    'renewal-process': 'Renewal'
+};
+
 // Generate static params for all states
 export async function generateStaticParams() {
     const states = await getAllStates();
@@ -84,6 +94,26 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         <span>/</span>
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
+
+                    {/* Mobile Navigation Tabs (visible only on mobile and only if state has >= 3 schemes) */}
+                    {scholarships.length >= 3 && (
+                        <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                            <span 
+                                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
+                            >
+                                Overview
+                            </span>
+                            {Object.entries(SUBPAGE_METRICS).map(([key, label]) => (
+                                <Link 
+                                    key={key} 
+                                    href={`/scholarships-in/${stateSlug}/${key}`}
+                                    className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
+                                >
+                                    {label}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Page Header */}
                     <div className="mb-10">
