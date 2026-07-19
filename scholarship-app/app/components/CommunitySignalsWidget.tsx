@@ -106,7 +106,6 @@ export default function CommunitySignalsWidget({
 
     // Track analytics events
     const logAnalytics = async (eventName: 'widget_view' | 'cta_click' | 'submission_started' | 'submission_completed') => {
-        // Prevent duplicate logging of the same event in a single component lifecycle
         if (analyticsLogged[eventName]) return;
         setAnalyticsLogged(prev => ({ ...prev, [eventName]: true }));
 
@@ -117,7 +116,6 @@ export default function CommunitySignalsWidget({
                 body: JSON.stringify({ eventName, scholarshipId })
             });
 
-            // Also fire Google Analytics gtag event if initialized
             if (typeof window !== 'undefined' && (window as any).gtag) {
                 (window as any).gtag('event', eventName, {
                     scholarship_id: scholarshipId,
@@ -151,8 +149,6 @@ export default function CommunitySignalsWidget({
     useEffect(() => {
         if (step === 3 && isModalOpen && turnstileContainerRef.current) {
             const container = turnstileContainerRef.current;
-            
-            // Clean container
             container.innerHTML = '';
             
             const renderWidget = () => {
@@ -216,7 +212,6 @@ export default function CommunitySignalsWidget({
 
     const handleNextStep2 = () => {
         setError(null);
-        // Date checks
         if (!dateValue) {
             setError('Please select a date.');
             return;
@@ -237,13 +232,11 @@ export default function CommunitySignalsWidget({
             return;
         }
 
-        // Verification checks
         if (status === 'Verification' && !verificationStage) {
             setError('Please select a verification stage.');
             return;
         }
 
-        // Payment checks
         if (status === 'Paid') {
             const num = Number(paymentAmount);
             if (!paymentAmount || isNaN(num) || num <= 0 || !Number.isInteger(num)) {
@@ -273,7 +266,6 @@ export default function CommunitySignalsWidget({
         setLoading(true);
         setError(null);
 
-        // Mappings
         let eventType = '';
         let mappedStage = '';
         if (status === 'Applied') {
@@ -315,7 +307,6 @@ export default function CommunitySignalsWidget({
             setSuccessMessage(data.message);
             setStep(4);
 
-            // Fetch fresh aggregates to show updated values on close
             const freshRes = await fetch(`/api/community-events/${scholarshipId}`);
             if (freshRes.ok) {
                 const freshData = await freshRes.json();
@@ -344,110 +335,153 @@ export default function CommunitySignalsWidget({
 
     return (
         <section className="mb-12 border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm bg-gradient-to-b from-white to-gray-50/50">
+            {/* Header section with description and CTA */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-6">
                 <div>
                     <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2.5">
                         <Users className="h-6 w-6 text-blue-600" />
                         Community Updates
                     </h2>
-                    <p className="text-sm text-gray-600 mt-1 font-medium">
-                        Help other students by sharing your application progress.
+                    <p className="text-xs text-gray-500 mt-2 font-bold leading-relaxed">
+                        Official scholarship information above.<br />
+                        Real student application progress below.
                     </p>
                 </div>
-                <button
-                    onClick={handleOpenModal}
-                    className="flex-shrink-0 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-2xl shadow-lg shadow-blue-500/10 active:scale-98 transition-all"
-                >
-                    Update My Application
-                </button>
-            </div>
-
-            {aggregate.total_events === 0 ? (
-                // Beautiful Empty State
-                <div className="py-10 text-center bg-white border border-gray-100 rounded-3xl p-6 shadow-sm">
-                    <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-blue-50">
-                        <Clock className="w-7 h-7" />
-                    </div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-1">No community updates yet</h4>
-                    <p className="text-sm text-gray-500 max-w-sm mx-auto mb-6">
-                        Be the first to share your timeline. Your contribution helps hundreds of students tracking this scholarship!
-                    </p>
+                <div className="flex flex-col items-stretch sm:items-end gap-2.5">
                     <button
                         onClick={handleOpenModal}
-                        className="px-5 py-2.5 bg-white border border-blue-200 text-blue-700 font-bold text-xs rounded-xl hover:bg-blue-50/50 transition-colors shadow-sm"
+                        className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-2xl shadow-lg shadow-blue-500/10 active:scale-98 transition-all"
                     >
-                        Share Your Status
+                        Share My Progress
                     </button>
+                    {/* Header trust indicators */}
+                    <div className="hidden sm:flex items-center gap-2 text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">
+                        <span>✓ Anonymous</span>
+                        <span className="text-gray-300">•</span>
+                        <span>✓ &lt; 15 seconds</span>
+                        <span className="text-gray-300">•</span>
+                        <span>✓ No login</span>
+                    </div>
                 </div>
-            ) : (
-                // 4-Card statistics display
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {/* Card 1: Community Activity */}
-                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Activity</span>
-                            <span className="text-3xl font-black text-gray-900 block leading-tight">{aggregate.total_events} updates</span>
+            </div>
+
+            {/* Empty state alert banner when total updates is 0 */}
+            {aggregate.total_events === 0 && (
+                <div className="mb-8 p-6 bg-blue-50/35 border border-blue-100/50 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex items-center gap-4 text-left">
+                        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0 border border-blue-100">
+                            <Clock className="w-6 h-6" />
                         </div>
-                        <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-50 text-xs text-gray-500 font-medium">
-                            <Clock className="w-4 h-4 text-gray-400" />
-                            <span>Last update: {formatRelativeTime(aggregate.last_activity)}</span>
+                        <div>
+                            <h4 className="font-extrabold text-gray-900 text-sm">No student has shared their progress yet</h4>
+                            <p className="text-xs text-gray-500 mt-1 font-medium leading-relaxed">
+                                Help future applicants by sharing your application status.<br />
+                                It takes less than 15 seconds and no login is required.
+                            </p>
                         </div>
                     </div>
-
-                    {/* Card 2: Application Progress */}
-                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all sm:col-span-2 flex flex-col justify-between">
-                        <div>
-                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Application Progress</span>
-                            <div className="space-y-3.5">
-                                {[
-                                    { label: 'Applied', count: aggregate.application_count, color: 'bg-blue-500' },
-                                    { label: 'Verification', count: aggregate.verification_count, color: 'bg-purple-500' },
-                                    { label: 'Selected', count: aggregate.selected_count, color: 'bg-amber-500' },
-                                    { label: 'Paid', count: aggregate.payment_count, color: 'bg-emerald-500' }
-                                ].map((item, idx) => {
-                                    const pct = totalProgressCount > 0 ? (item.count / totalProgressCount) * 100 : 0;
-                                    return (
-                                        <div key={idx}>
-                                            <div className="flex justify-between text-xs font-bold text-gray-700 mb-1">
-                                                <span>{item.label}</span>
-                                                <span className="text-gray-900">{item.count}</span>
-                                            </div>
-                                            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div className={`h-full ${item.color} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Card 3: Common Issues */}
-                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                        <div>
-                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Common Issues</span>
-                            {topIssues.length === 0 ? (
-                                <p className="text-xs text-gray-500 italic mt-2">No issues reported yet.</p>
-                            ) : (
-                                <div className="space-y-3">
-                                    {topIssues.map((issue, idx) => (
-                                        <div key={idx} className="flex justify-between items-center text-xs">
-                                            <span className="font-bold text-gray-700 truncate mr-2">{issue.name}</span>
-                                            <span className="px-2 py-0.5 bg-red-50 text-red-600 font-black rounded-lg text-[10px]">
-                                                {issue.percentage}%
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                        <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-50 text-[10px] text-gray-400 font-bold uppercase">
-                            <ShieldAlert className="w-3.5 h-3.5" />
-                            <span>Community Sourced</span>
+                    <div className="flex flex-col items-center md:items-end gap-2 shrink-0">
+                        <button
+                            onClick={handleOpenModal}
+                            className="px-5 py-2.5 bg-white border border-blue-200 text-blue-700 font-bold text-xs rounded-xl hover:bg-blue-50/50 transition-colors shadow-sm"
+                        >
+                            Share My Progress
+                        </button>
+                        {/* Banner trust indicators */}
+                        <div className="flex items-center gap-2 text-[9px] text-gray-400 font-black uppercase tracking-wider mt-1.5">
+                            <span>✓ Anonymous</span>
+                            <span className="text-gray-300">•</span>
+                            <span>✓ &lt; 15 seconds</span>
+                            <span className="text-gray-300">•</span>
+                            <span>✓ No login</span>
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* Always render the structure users will eventually see */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Card 1: Community Updates */}
+                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Updates</span>
+                        <span className="text-3xl font-black text-gray-900 block leading-tight">
+                            {aggregate.total_events}
+                        </span>
+                        <span className="text-xs text-gray-500 font-bold mt-1.5 block">
+                            {aggregate.total_events === 1 ? 'student has shared updates' : 'students have shared updates'}
+                        </span>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-50">
+                        <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Last community update</span>
+                        <span className="text-xs font-bold text-gray-700 mt-1 block">
+                            {aggregate.total_events === 0 ? (
+                                <span className="text-gray-405 italic font-medium">No updates yet</span>
+                            ) : (
+                                formatRelativeTime(aggregate.last_activity)
+                            )}
+                        </span>
+                    </div>
+                </div>
+
+                {/* Card 2: Community Progress */}
+                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all sm:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Progress</span>
+                        <div className="space-y-3.5">
+                            {[
+                                { label: 'Applied', count: aggregate.application_count, color: 'bg-blue-500' },
+                                { label: 'Verification', count: aggregate.verification_count, color: 'bg-purple-500' },
+                                { label: 'Selected', count: aggregate.selected_count, color: 'bg-amber-500' },
+                                { label: 'Payment Received', count: aggregate.payment_count, color: 'bg-emerald-500' }
+                            ].map((item, idx) => {
+                                const pct = totalProgressCount > 0 ? (item.count / totalProgressCount) * 100 : 0;
+                                return (
+                                    <div key={idx}>
+                                        <div className="flex justify-between text-xs font-bold text-gray-700 mb-1">
+                                            <span>{item.label}</span>
+                                            <span className="text-gray-900">
+                                                {aggregate.total_events === 0 ? '—' : item.count}
+                                            </span>
+                                        </div>
+                                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                            <div 
+                                                className={`h-full ${item.color} rounded-full transition-all duration-500`} 
+                                                style={{ width: aggregate.total_events === 0 ? '0%' : `${pct}%` }} 
+                                            />
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Card 3: Common Issues */}
+                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Common Issues</span>
+                        {aggregate.total_events === 0 || topIssues.length === 0 ? (
+                            <p className="text-xs text-gray-400 italic mt-2 font-medium">No issues reported yet.</p>
+                        ) : (
+                            <div className="space-y-3">
+                                {topIssues.map((issue, idx) => (
+                                    <div key={idx} className="flex justify-between items-center text-xs">
+                                        <span className="font-bold text-gray-700 truncate mr-2">{issue.name}</span>
+                                        <span className="px-2 py-0.5 bg-red-50 text-red-650 font-black rounded-lg text-[10px]">
+                                            {issue.percentage}%
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-50 text-[10px] text-gray-400 font-bold uppercase">
+                        <ShieldAlert className="w-3.5 h-3.5 text-gray-450" />
+                        <span>Community Sourced</span>
+                    </div>
+                </div>
+            </div>
 
             {/* Submission Modal */}
             {isModalOpen && (
@@ -468,32 +502,46 @@ export default function CommunitySignalsWidget({
                                 <h3 className="text-xl font-black text-gray-900 mt-1 leading-tight">{scholarshipTitle}</h3>
                             </div>
 
-                            {/* Progress pill bar */}
+                            {/* Progress pill bar & labeled steps */}
                             {step < 4 && (
-                                <div className="flex items-center gap-2 mb-8">
-                                    {[1, 2, 3].map((s) => (
-                                        <div 
-                                            key={s} 
-                                            className={`h-1.5 flex-1 rounded-full transition-all ${
-                                                step >= s ? 'bg-blue-600' : 'bg-gray-100'
-                                            }`}
-                                        />
-                                    ))}
+                                <div className="mb-8">
+                                    <div className="flex justify-between items-end mb-2.5">
+                                        <div>
+                                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block">
+                                                Step {step} of 3
+                                            </span>
+                                            <span className="text-sm font-extrabold text-gray-900 block mt-0.5">
+                                                {step === 1 && 'Application Status'}
+                                                {step === 2 && 'Application Details'}
+                                                {step === 3 && 'Issues (Optional)'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        {[1, 2, 3].map((s) => (
+                                            <div 
+                                                key={s} 
+                                                className={`h-1.5 flex-1 rounded-full transition-all ${
+                                                    step >= s ? 'bg-blue-600' : 'bg-gray-100'
+                                                }`}
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
                             {error && (
                                 <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-700 text-xs font-bold rounded-2xl flex gap-2 items-start">
                                     <AlertCircle className="w-4.5 h-4.5 shrink-0 mt-0.5" />
-                                    <span>{error}</span>
+                                    <span className="whitespace-pre-line leading-relaxed">{error}</span>
                                 </div>
                             )}
 
                             {/* Step 1: Status selection */}
                             {step === 1 && (
                                 <div>
-                                    <h4 className="font-bold text-gray-900 text-base mb-4">
-                                        What best describes your current application status?
+                                    <h4 className="font-extrabold text-gray-900 text-base mb-4">
+                                        Where are you in your scholarship journey?
                                     </h4>
                                     <div className="grid grid-cols-1 gap-3">
                                         {[
@@ -548,7 +596,7 @@ export default function CommunitySignalsWidget({
                                                             onClick={() => setVerificationStage(stg)}
                                                             className={`py-3.5 px-4 rounded-xl text-xs font-bold text-center border transition-all ${
                                                                 verificationStage === stg
-                                                                    ? 'bg-purple-655 border-purple-500 text-purple-700 font-black'
+                                                                    ? 'bg-purple-50 border-purple-500 text-purple-700 font-black'
                                                                     : 'bg-white border-gray-150 text-gray-600 hover:border-gray-300'
                                                             }`}
                                                             style={verificationStage === stg ? { backgroundColor: 'rgba(147, 51, 234, 0.08)' } : {}}
@@ -635,10 +683,10 @@ export default function CommunitySignalsWidget({
                             {step === 3 && (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div>
-                                        <h4 className="font-bold text-gray-900 text-base mb-2">
-                                            Did you face any issues?
+                                        <h4 className="font-bold text-gray-900 text-base mb-1">
+                                            Did you face any of these issues?
                                         </h4>
-                                        <p className="text-xs text-gray-500 mb-4 font-medium">Optional - select all that apply.</p>
+                                        <p className="text-xs text-gray-500 mb-4 font-semibold">Optional – Select all that apply.</p>
                                         
                                         <div className="grid grid-cols-2 gap-2">
                                             {[
@@ -657,7 +705,7 @@ export default function CommunitySignalsWidget({
                                                         onClick={() => handleToggleIssue(issue)}
                                                         className={`p-3.5 rounded-xl text-left border text-xs font-bold transition-all ${
                                                             isSelected
-                                                                ? 'bg-red-50 border-red-300 text-red-700 font-black'
+                                                                ? 'bg-red-50 border-red-300 text-red-705 font-black'
                                                                 : 'bg-white border-gray-150 text-gray-600 hover:border-gray-300'
                                                         }`}
                                                     >
@@ -716,9 +764,12 @@ export default function CommunitySignalsWidget({
                                     <div className="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-emerald-100">
                                         <ThumbsUp className="w-6 h-6" />
                                     </div>
-                                    <h4 className="font-extrabold text-gray-900 text-lg mb-2">Thank you!</h4>
+                                    <h4 className="font-extrabold text-gray-900 text-lg mb-2">Thank you for helping other students!</h4>
                                     <p className="text-sm text-gray-650 font-medium max-w-sm mx-auto leading-relaxed">
-                                        {successMessage || 'Your update helps other students understand application timelines.'}
+                                        Your update has been recorded and will appear after moderation.
+                                    </p>
+                                    <p className="text-xs text-gray-400 mt-2 font-medium max-w-xs mx-auto leading-relaxed">
+                                        Every contribution helps future applicants understand the scholarship process.
                                     </p>
                                     <button
                                         type="button"

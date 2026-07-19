@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
 
         if (Number(rateLimitRes.rows[0].count) > 0) {
             return NextResponse.json(
-                { error: 'You have already submitted an update for this scholarship in the last 24 hours.' },
+                { error: "You've already shared an update for this scholarship today.\n\nYou can submit another update tomorrow if your application status changes." },
                 { status: 429 }
             );
         }
