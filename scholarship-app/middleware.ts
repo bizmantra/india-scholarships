@@ -5,7 +5,12 @@ import { verifyToken } from './lib/token';
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Redirect logged-in users away from the login page
+    // 1. Bypass authentication endpoints so users can log in
+    if (pathname.startsWith('/api/admin/auth')) {
+        return NextResponse.next();
+    }
+
+    // 2. Redirect logged-in users away from the login page
     if (pathname === '/admin/login') {
         const sessionCookie = request.cookies.get('admin_session')?.value;
         const jwtSecret = process.env.ADMIN_JWT_SECRET;
@@ -19,12 +24,15 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    // Guard all admin routes, except the login gate page
-    if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    // 3. Guard all other admin views and API endpoints
+    if ((pathname.startsWith('/admin') && pathname !== '/admin/login') || pathname.startsWith('/api/admin')) {
         const sessionCookie = request.cookies.get('admin_session')?.value;
         const jwtSecret = process.env.ADMIN_JWT_SECRET;
 
         if (!sessionCookie || !jwtSecret) {
+            if (pathname.startsWith('/api/')) {
+                return NextResponse.json({ error: 'Unauthorized: Session missing.' }, { status: 401 });
+            }
             const url = request.nextUrl.clone();
             url.pathname = '/admin/login';
             return NextResponse.redirect(url);
@@ -32,6 +40,9 @@ export async function middleware(request: NextRequest) {
 
         const decoded = await verifyToken(sessionCookie, jwtSecret);
         if (!decoded) {
+            if (pathname.startsWith('/api/')) {
+                return NextResponse.json({ error: 'Unauthorized: Session expired.' }, { status: 401 });
+            }
             const url = request.nextUrl.clone();
             url.pathname = '/admin/login';
             url.searchParams.set('error', 'Session invalid or expired. Please sign in again.');
@@ -49,5 +60,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/admin/:path*'],
+    matcher: ['/admin/:path*', '/api/admin/:path*'],
 };

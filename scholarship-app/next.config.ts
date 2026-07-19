@@ -10,123 +10,91 @@ const nextConfig: NextConfig = {
     '/api/search': ['./data/scholarships.db'],
   },
   async redirects() {
+    const mappings = [
+      { from: 'legacy-foundation-for-excellence-scholarship', to: 'foundation-for-excellence-ffe-scholarship' },
+      { from: 'legacy-ssp-post-matric-scholarship-state-scholarship-portal', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
+      { from: 'legacy-ssp-pre-matric-scholarship-state-scholarship-portal', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
+      { from: 'legacy-government-of-india-post-matric-scholarship-via-mahadbt', to: 'mahadbt-post-matric-scholarship-maharashtra' },
+      { from: 'legacy-moovalur-ramamirtham-ammaiyar-higher-education-assurance-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
+      { from: 'legacy-pudhumai-penn-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
+      { from: 'legacy-sanchi-honnamma-scholarship', to: 'sanchi-honnamma-scholarship-karnataka' },
+      { from: 'post-matric-scholarship-adi-dravidar-tribal-welfare-dept', to: 'pre-matric-scholarship-adi-dravidar-tribal-welfare-dept' },
+      { from: 'narotam-sekhsaria-foundation-scholarship', to: 'narotam-sekhsaria-postgraduate-scholarship' },
+      { from: 'sbi-platinum-jubilee-asha-scholarship-2025-26', to: 'sbi-platinum-jubilee-asha-scholarship' },
+      { from: 'jagananna-vidya-deevena-fees-reimbursement', to: 'jagananna-vidya-deevena-ap' },
+      { from: 'jagananna-vasathi-deevena', to: 'jagananna-vasathi-deevena-ap' },
+      { from: 'andhra-pradesh-jagananna-vidya-deevena', to: 'jagananna-vidya-deevena-ap' },
+      { from: 'faea-scholarship-for-undergraduate-studies', to: 'faea-scholarship' },
+    ];
+
+    const stateMappings = [
+      { from: 'legacy-post-matric-tuition-fee-examination-fee-freeship', to: 'maharashtra' },
+      { from: 'mp-taas-post-matric-scholarship-scstobc', to: 'madhya-pradesh' },
+      { from: 'rajasthan-post-matric-scholarship-scst', to: 'rajasthan' },
+      { from: 'gujarat-post-matric-scholarship-for-scst', to: 'gujarat' },
+      { from: 'west-bengal-post-matric-scholarship-for-scstobc', to: 'west-bengal' },
+      { from: 'punjab-post-matric-scholarship-for-scbc-students', to: 'punjab' },
+      { from: 'aikyashree-scholarship-west-bengal-minority', to: 'west-bengal' },
+    ];
+
+    const genericMappings = [
+      { from: 'punjab-educational-endowment-fund-peef', to: 'scholarships' },
+      { from: 'cm-education-promotion-scheme', to: 'scholarships' },
+    ];
+
+    const generatedRedirects: any[] = [];
+
+    // 1. Specific scholarship redirects (preserving subpages)
+    for (const m of mappings) {
+      // English
+      generatedRedirects.push({
+        source: `/scholarships/${m.from}/:subpage*`,
+        destination: `/scholarships/${m.to}/:subpage*`,
+        permanent: true,
+      });
+      // Localized
+      generatedRedirects.push({
+        source: `/:locale(hi|bn|ta|te|or|kn)/scholarships/${m.from}/:subpage*`,
+        destination: `/:locale/scholarships/${m.to}/:subpage*`,
+        permanent: true,
+      });
+    }
+
+    // 2. State redirects (discarding subpage to avoid thin content state hubs)
+    for (const m of stateMappings) {
+      // English
+      generatedRedirects.push({
+        source: `/scholarships/${m.from}/:subpage*`,
+        destination: `/scholarships-in/${m.to}`,
+        permanent: true,
+      });
+      // Localized
+      generatedRedirects.push({
+        source: `/:locale(hi|bn|ta|te|or|kn)/scholarships/${m.from}/:subpage*`,
+        destination: `/:locale/scholarships-in/${m.to}`,
+        permanent: true,
+      });
+    }
+
+    // 3. Generic redirects
+    for (const m of genericMappings) {
+      // English
+      generatedRedirects.push({
+        source: `/scholarships/${m.from}/:subpage*`,
+        destination: `/${m.to}`,
+        permanent: true,
+      });
+      // Localized
+      generatedRedirects.push({
+        source: `/:locale(hi|bn|ta|te|or|kn)/scholarships/${m.from}/:subpage*`,
+        destination: `/:locale/${m.to}`,
+        permanent: true,
+      });
+    }
+
     return [
-      // Redirects for legacy and renamed scholarships (including subpages and locales)
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-foundation-for-excellence-scholarship/:subpage*',
-        destination: '/:locale?/scholarships/foundation-for-excellence-ffe-scholarship/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-ssp-post-matric-scholarship-state-scholarship-portal/:subpage*',
-        destination: '/:locale?/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-ssp-pre-matric-scholarship-state-scholarship-portal/:subpage*',
-        destination: '/:locale?/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-government-of-india-post-matric-scholarship-via-mahadbt/:subpage*',
-        destination: '/:locale?/scholarships/mahadbt-post-matric-scholarship-maharashtra/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-moovalur-ramamirtham-ammaiyar-higher-education-assurance-scheme/:subpage*',
-        destination: '/:locale?/scholarships/pudhumai-penn-scheme-tamil-nadu/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-pudhumai-penn-scheme/:subpage*',
-        destination: '/:locale?/scholarships/pudhumai-penn-scheme-tamil-nadu/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-sanchi-honnamma-scholarship/:subpage*',
-        destination: '/:locale?/scholarships/sanchi-honnamma-scholarship-karnataka/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/legacy-post-matric-tuition-fee-examination-fee-freeship/:subpage*',
-        destination: '/:locale?/scholarships-in/maharashtra',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/mp-taas-post-matric-scholarship-scstobc/:subpage*',
-        destination: '/:locale?/scholarships-in/madhya-pradesh',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/rajasthan-post-matric-scholarship-scst/:subpage*',
-        destination: '/:locale?/scholarships-in/rajasthan',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/gujarat-post-matric-scholarship-for-scst/:subpage*',
-        destination: '/:locale?/scholarships-in/gujarat',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/west-bengal-post-matric-scholarship-for-scstobc/:subpage*',
-        destination: '/:locale?/scholarships-in/west-bengal',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/punjab-post-matric-scholarship-for-scbc-students/:subpage*',
-        destination: '/:locale?/scholarships-in/punjab',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/punjab-educational-endowment-fund-peef/:subpage*',
-        destination: '/:locale?/scholarships',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/cm-education-promotion-scheme/:subpage*',
-        destination: '/:locale?/scholarships',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/post-matric-scholarship-adi-dravidar-tribal-welfare-dept/:subpage*',
-        destination: '/:locale?/scholarships/pre-matric-scholarship-adi-dravidar-tribal-welfare-dept/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/narotam-sekhsaria-foundation-scholarship/:subpage*',
-        destination: '/:locale?/scholarships/narotam-sekhsaria-postgraduate-scholarship/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/sbi-platinum-jubilee-asha-scholarship-2025-26/:subpage*',
-        destination: '/:locale?/scholarships/sbi-platinum-jubilee-asha-scholarship/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/jagananna-vidya-deevena-fees-reimbursement/:subpage*',
-        destination: '/:locale?/scholarships/jagananna-vidya-deevena-ap/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/jagananna-vasathi-deevena/:subpage*',
-        destination: '/:locale?/scholarships/jagananna-vasathi-deevena-ap/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/andhra-pradesh-jagananna-vidya-deevena/:subpage*',
-        destination: '/:locale?/scholarships/jagananna-vidya-deevena-ap/:subpage*',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/aikyashree-scholarship-west-bengal-minority/:subpage*',
-        destination: '/:locale?/scholarships-in/west-bengal',
-        permanent: true,
-      },
-      {
-        source: '/:locale(hi|bn|ta|te|or|kn)?/scholarships/faea-scholarship-for-undergraduate-studies/:subpage*',
-        destination: '/:locale?/scholarships/faea-scholarship/:subpage*',
-        permanent: true,
-      },
+      ...generatedRedirects,
+
 
       // 1. Broken Search Route
       {
