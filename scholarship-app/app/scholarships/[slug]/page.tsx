@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps, getClient } from '@/lib/db';
+import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -184,6 +185,24 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
+
+    // Fetch pre-computed community signals aggregates for the scholarship
+    const dbClient = getClient();
+    const aggregateRes = await dbClient.execute({
+        sql: 'SELECT * FROM community_signals_aggregates WHERE scholarship_id = ?',
+        args: [scholarship.id]
+    });
+    const initialAggregate = aggregateRes.rows[0] ? {
+        scholarship_id: String(aggregateRes.rows[0].scholarship_id),
+        total_events: Number(aggregateRes.rows[0].total_events),
+        application_count: Number(aggregateRes.rows[0].application_count),
+        verification_count: Number(aggregateRes.rows[0].verification_count),
+        selected_count: Number(aggregateRes.rows[0].selected_count),
+        payment_count: Number(aggregateRes.rows[0].payment_count),
+        average_payment: Number(aggregateRes.rows[0].average_payment),
+        last_activity: aggregateRes.rows[0].last_activity ? String(aggregateRes.rows[0].last_activity) : null,
+        common_issues_json: String(aggregateRes.rows[0].common_issues_json || '{}')
+    } : undefined;
 
     // Dynamic deadline check (relative to India's current date boundary: June 25, 2026)
     const today = new Date();
@@ -781,6 +800,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 </div>
                             </div>
                         </section>
+
+                        {/* Community Signals Widget */}
+                        <CommunitySignalsWidget 
+                            scholarshipId={scholarship.id}
+                            scholarshipTitle={scholarship.title}
+                            initialAggregate={initialAggregate}
+                        />
 
                         {/* FAQs */}
                         {scholarship.faq_json && (

@@ -141,6 +141,46 @@ async function run() {
             );
         `);
 
+        // Recreate community tables if not exists (never drop them!)
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS community_events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                scholarship_id TEXT NOT NULL,
+                event_type TEXT NOT NULL,
+                metadata_json TEXT NOT NULL,
+                session_hash TEXT NOT NULL,
+                moderation_status TEXT DEFAULT 'pending',
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_events_scholarship_id ON community_events(scholarship_id);");
+        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_events_moderation_status ON community_events(moderation_status);");
+
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS community_signals_aggregates (
+                scholarship_id TEXT PRIMARY KEY,
+                total_events INTEGER DEFAULT 0,
+                application_count INTEGER DEFAULT 0,
+                verification_count INTEGER DEFAULT 0,
+                selected_count INTEGER DEFAULT 0,
+                payment_count INTEGER DEFAULT 0,
+                average_payment INTEGER DEFAULT 0,
+                last_activity TEXT,
+                common_issues_json TEXT
+            );
+        `);
+
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS community_analytics (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                event_name TEXT NOT NULL,
+                scholarship_id TEXT NOT NULL,
+                session_hash TEXT NOT NULL,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_analytics_event_name ON community_analytics(event_name);");
+
         // --- 3. Read data from local SQLite and insert into Turso ---
         
         // A. Scholarships
