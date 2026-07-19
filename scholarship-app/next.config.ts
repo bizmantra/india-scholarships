@@ -35,6 +35,8 @@ const nextConfig: NextConfig = {
       { from: 'west-bengal-post-matric-scholarship-for-scstobc', to: 'west-bengal' },
       { from: 'punjab-post-matric-scholarship-for-scbc-students', to: 'punjab' },
       { from: 'aikyashree-scholarship-west-bengal-minority', to: 'west-bengal' },
+      { from: 'chhattisgarh-post-matric-scholarship-scstobc', to: 'chhattisgarh' },
+      { from: 'up-post-matric-scholarship-dashmottar', to: 'uttar-pradesh' },
     ];
 
     const genericMappings = [
