@@ -1,5 +1,5 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-07-18
+Generated on: 2026-07-19
 Total Scholarships Audited: **466**
 Scholarships with Issues: **204** (43.8%)
 
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `kc-mahindra-scholarship-for-post-graduate-studies-abroad` | **KC Mahindra Scholarship for Post-Graduate Studies Abroad** | 3 | Expired Deadline (2026-03-31); Old Year Reference (e.g. 2024 or 2025 in title or description); Incomplete Renewal Policy (too short: 14 chars) |
 | `uchcha-shiksha-protsahan-chhatravriti-yojana` | **Uchcha Shiksha Protsahan Chhatravriti Yojana** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-12-24); Incomplete Renewal Policy (too short: 6 chars) |
 
-*Note: Showing top 50 rows. A complete list of all 204 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 204 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
