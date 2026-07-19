@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Scholarship Eligibility Checker | IndiaScholarships',
     description: 'Check your eligibility for scholarships in India. Find scholarships based on your state, category, income, and education level.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/scholarship-eligibility-checker',
+    }
 };
+
 
 export default async function EligibilityCheckerPage() {
     const client = getClient();

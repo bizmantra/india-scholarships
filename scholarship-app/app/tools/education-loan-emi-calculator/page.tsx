@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Education Loan EMI Calculator | IndiaScholarships',
     description: 'Calculate monthly EMI, interest accumulation, and amortization plans for Indian student study loans using the IndiaScholarships Education Loan EMI Calculator.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/education-loan-emi-calculator',
+    }
 };
+
 
 export default async function LoanEmiCalculatorPage() {
     const client = getClient();

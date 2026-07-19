@@ -65,6 +65,9 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
             return {
                 title: `Best ${levelLabel} Scholarships for Indian Students ${currentYear} - ${nextYear} (Study Abroad)`,
                 description: `Find top fully funded and university-specific ${levelLabel} scholarships for Indian students to study abroad. Get application guide, deadlines, and portals.`,
+                alternates: {
+                    canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}`,
+                }
             };
         }
 
@@ -75,7 +78,11 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
         return {
             title: `${displayName} Scholarships - Complete List & Eligibility`,
             description: `Browse all scholarships for ${displayName} category in India. Find eligibility criteria, scholarship amounts, and application deadlines for 2026.`,
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}`,
+            }
         };
+
     } catch (error) {
         return { title: 'Scholarships - Not Found' };
     }

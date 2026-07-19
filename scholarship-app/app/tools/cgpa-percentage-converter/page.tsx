@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'CGPA to Percentage Converter | IndiaScholarships',
     description: 'Convert your academic CGPA (out of 10 or 4) to percentage using standard CBSE, AICTE, and university conversion formulas with the IndiaScholarships CGPA to Percentage Converter.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/cgpa-percentage-converter',
+    }
 };
+
 
 function parseCasteField(value: any): string[] {
     if (!value) return [];

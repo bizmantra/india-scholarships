@@ -7,7 +7,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Government Scholarships 2026 - Central & State Schemes',
     description: 'Browse all government scholarships including central and state government schemes. Find eligibility, benefits, and application details for 2026-27.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/government-scholarships',
+    }
 };
+
 
 export default async function GovernmentScholarshipsPage() {
     const scholarships = await getScholarshipsByType('Government');

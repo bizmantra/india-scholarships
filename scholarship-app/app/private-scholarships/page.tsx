@@ -7,7 +7,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Private Scholarships 2026 - Foundations & NGO Schemes',
     description: 'Explore private scholarships from foundations, NGOs, and trusts. Find merit-based and need-based financial aid for Indian students.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/private-scholarships',
+    }
 };
+
 
 export default async function PrivateScholarshipsPage() {
     const scholarships = await getScholarshipsByType('Private');

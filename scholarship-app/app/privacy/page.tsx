@@ -5,7 +5,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Privacy Policy - IndiaScholarships',
     description: 'Privacy Policy for IndiaScholarships. Learn about how we handle user data, cookie usage, and our Google AdSense advertising disclosures.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/privacy',
+    }
 };
+
 
 export default function PrivacyPage() {
     return (

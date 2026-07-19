@@ -23,13 +23,20 @@ export async function generateMetadata({ params }: { params: Promise<{ range: st
         if (!rangeData) {
             return {
                 title: 'Scholarships by Income - Not Found',
+                alternates: {
+                    canonical: `https://www.indiascholarships.in/scholarships-income/${range}`,
+                }
             };
         }
 
         return {
             title: `Scholarships for Income ${rangeData.label} - Complete List`,
             description: `Find all scholarships for families with income ${rangeData.label}. Complete list with eligibility criteria, amounts, and application process.`,
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-income/${range}`,
+            }
         };
+
     } catch (error) {
         return { title: 'Scholarships - Not Found' };
     }

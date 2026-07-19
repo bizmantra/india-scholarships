@@ -48,7 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     return {
         title: `Best ${level} Scholarships in ${country}${audienceModifier} ${currentYear} - ${nextYear} (Fully Funded)`,
         description: `Find top verified ${level} scholarships to study in ${country}. Get direct application links, eligibility requirements, stipend amounts, and step-by-step application instructions.`,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}/in/${countrySlug}`,
+        }
     };
+
 }
 
 export default async function LevelCountryHubPage({ params }: { params: Promise<{ category: string; country: string }> }) {

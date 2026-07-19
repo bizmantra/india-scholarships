@@ -32,7 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
         return {
             title: titleStr,
             description: `Find all scholarships in ${originalState}. Complete list with eligibility criteria, amounts, deadlines, and application process for ${originalState} students.`,
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-in/${stateSlug}`,
+            }
         };
+
     } catch (error) {
         return { title: 'Scholarships - Not Found' };
     }

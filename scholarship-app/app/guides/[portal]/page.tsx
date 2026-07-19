@@ -47,12 +47,21 @@ const portals: Record<string, any> = {
 export async function generateMetadata({ params }: { params: Promise<{ portal: string }> }) {
     const { portal } = await params;
     const data = portals[portal.toLowerCase()];
-    if (!data) return { title: 'Guide Not Found' };
+    if (!data) return { 
+        title: 'Guide Not Found',
+        alternates: {
+            canonical: `https://www.indiascholarships.in/guides/${portal}`,
+        }
+    };
 
     return {
         title: `${data.name} - Application Guide 2026 | IndiaScholarships`,
         description: `Step-by-step guide to applying on the ${data.name}. Learn about documents needed, registration process, and common status tracking tips.`,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/guides/${portal}`,
+        }
     };
+
 }
 
 export default async function PortalGuidePage({ params }: { params: Promise<{ portal: string }> }) {

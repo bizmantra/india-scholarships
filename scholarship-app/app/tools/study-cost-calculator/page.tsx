@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Study Cost & Gap Calculator | IndiaScholarships',
     description: 'Calculate the total cost of your college education (tuition, hostel, books, living expenses) and analyze your scholarship funding gap.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/study-cost-calculator',
+    }
 };
+
 
 export default async function StudyCostCalculatorPage() {
     const client = getClient();

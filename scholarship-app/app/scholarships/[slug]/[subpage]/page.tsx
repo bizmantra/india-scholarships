@@ -150,7 +150,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: seoTitle,
         description: seoDesc,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/scholarships/${slug}/${subpage}`,
+            languages: {
+                'x-default': `https://www.indiascholarships.in/scholarships/${slug}/${subpage}`,
+                'en': `https://www.indiascholarships.in/scholarships/${slug}/${subpage}`,
+                'hi': `https://www.indiascholarships.in/hi/scholarships/${slug}/${subpage}`,
+                'bn': `https://www.indiascholarships.in/bn/scholarships/${slug}/${subpage}`,
+                'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}/${subpage}`,
+                'te': `https://www.indiascholarships.in/te/scholarships/${slug}/${subpage}`,
+                'or': `https://www.indiascholarships.in/or/scholarships/${slug}/${subpage}`,
+                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}/${subpage}`,
+            }
+        }
     };
+
 }
 
 export default async function ScholarshipSubpage({ params }: { params: Promise<{ slug: string, subpage: string }> }) {

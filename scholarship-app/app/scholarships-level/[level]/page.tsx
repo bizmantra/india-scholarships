@@ -30,6 +30,9 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
             return {
                 title: `${canonical.label} Scholarships - Complete List & Eligibility`,
                 description: `Find all ${canonical.label} scholarships in India. Complete list with eligibility criteria, amounts, deadlines, and application process.`,
+                alternates: {
+                    canonical: `https://www.indiascholarships.in/scholarships-level/${levelSlug}`,
+                }
             };
         }
 
@@ -41,10 +44,19 @@ export async function generateMetadata({ params }: { params: Promise<{ level: st
             return {
                 title: `${rawLevel} Scholarships - Complete List`,
                 description: `Browse scholarships for ${rawLevel} students in India.`,
+                alternates: {
+                    canonical: `https://www.indiascholarships.in/scholarships-level/${levelSlug}`,
+                }
             };
         }
 
-        return { title: 'Scholarships - India' };
+        return { 
+            title: 'Scholarships - India',
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-level/${levelSlug}`,
+            }
+        };
+
     } catch (error) {
         return { title: 'Scholarships - Not Found' };
     }

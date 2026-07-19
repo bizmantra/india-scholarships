@@ -18,14 +18,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     try {
         const { slug } = await params;
         const uni = UNIVERSITIES.find(u => u.slug === slug);
-        if (!uni) return { title: 'University Hub - Not Found' };
+        if (!uni) return { 
+            title: 'University Hub - Not Found',
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-by-university/${slug}`,
+            }
+        };
 
         const year = new Date().getFullYear();
 
         return {
             title: `${uni.name} Scholarships ${year} - Internal Aid & Eligibility`,
             description: `Complete guide to official scholarships and financial assistance programs at ${uni.name}. Learn about merit-cum-means waivers, eligibility rules, and deadlines.`,
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-by-university/${slug}`,
+            }
         };
+
     } catch (error) {
         return { title: 'University Hub - Not Found' };
     }

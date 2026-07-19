@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Scholarship Finder Wizard | IndiaScholarships',
     description: 'Guided step-by-step interactive questionnaire to build your student profile and find matching Indian scholarships.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/finder-wizard',
+    }
 };
+
 
 export default async function FinderWizardPage() {
     const client = getClient();

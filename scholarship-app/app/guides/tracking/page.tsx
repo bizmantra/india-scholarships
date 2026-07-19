@@ -4,7 +4,11 @@ import { ArrowLeft, CheckCircle2, AlertCircle, Info, ExternalLink, ShieldCheck, 
 export const metadata = {
     title: 'Scholarship Application Status Tracking Guide 2026 | IndiaScholarships',
     description: 'Learn how to track your scholarship application status online. Master PFMS tracking, understand statuses like "Sent to PFMS", "Institute Verified", and solve payment failures.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/guides/tracking',
+    }
 };
+
 
 export default function StatusTrackingGuide() {
     const statuses = [

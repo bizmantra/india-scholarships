@@ -6,7 +6,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Scholarships by Education Level - Pre-Matric, Post-Matric, UG',
     description: 'Find scholarships by education level. Browse Pre-Matric, Post-Matric, Graduation, and PhD scholarships.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships-by-education',
+    }
 };
+
 
 export default function ScholarshipsByEducationPage() {
     const levels = Object.entries(CANONICAL_LEVELS);

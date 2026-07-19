@@ -4,7 +4,11 @@ import { BookOpen, Search, ArrowRight, CheckCircle2, FileText, Bell, MapPin } fr
 export const metadata = {
     title: 'Scholarship Guides & Resources 2026 | IndiaScholarships',
     description: 'Complete list of scholarship guides. Learn how to apply for NSP, SSP, and other state portals. Find document checklists and status tracking tips.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/guides',
+    }
 };
+
 
 export default function GuidesPage() {
     const guides = [

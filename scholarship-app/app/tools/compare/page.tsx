@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Scholarship Compare Tool | IndiaScholarships',
     description: 'Select and compare multiple Indian government & private scholarships side-by-side. Review eligibility, amounts, and deadines.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/compare',
+    }
 };
+
 
 export default async function ComparePage() {
     const client = getClient();

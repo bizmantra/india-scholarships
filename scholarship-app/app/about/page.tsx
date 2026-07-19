@@ -5,7 +5,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'About Us - IndiaScholarships',
     description: 'Learn about IndiaScholarships, our mission to democratize education funding for Indian students, our verification process, and how we help students discover and secure scholarships.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/about',
+    }
 };
+
 
 export default function AboutPage() {
     return (

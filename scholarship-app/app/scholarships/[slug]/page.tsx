@@ -144,6 +144,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
         title: seoTitle,
         description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/scholarships/${slug}`,
+            languages: {
+                'x-default': `https://www.indiascholarships.in/scholarships/${slug}`,
+                'en': `https://www.indiascholarships.in/scholarships/${slug}`,
+                'hi': `https://www.indiascholarships.in/hi/scholarships/${slug}`,
+                'bn': `https://www.indiascholarships.in/bn/scholarships/${slug}`,
+                'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}`,
+                'te': `https://www.indiascholarships.in/te/scholarships/${slug}`,
+                'or': `https://www.indiascholarships.in/or/scholarships/${slug}`,
+                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}`,
+            }
+        },
         openGraph: {
             title: `${scholarship.title} – Application Open (${year})`,
             description: `Apply for ${scholarship.title}. Amount: ₹${scholarship.amount_annual > 0 ? scholarship.amount_annual : 'Variable'}/year. ${scholarship.level} students in ${scholarship.state || 'India'}.`,
@@ -157,6 +170,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: `Check eligibility and apply for ${scholarship.title}.`,
         }
     };
+
 }
 
 export default async function ScholarshipDetail({ params }: { params: Promise<{ slug: string }> }) {

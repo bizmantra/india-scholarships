@@ -4,7 +4,11 @@ import { ArrowLeft, CheckCircle2, AlertCircle, Info, ShieldCheck, FileText, Chec
 export const metadata = {
     title: 'Essential Scholarship Documents Checklist 2026 | IndiaScholarships',
     description: 'Complete documents checklist for Indian scholarship applications. Learn about mandatory certificates (Income, Domicile, Caste), Aadhaar mapping, and upload specifications.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/guides/documents',
+    }
 };
+
 
 export default function DocumentsChecklistGuide() {
     const coreDocuments = [

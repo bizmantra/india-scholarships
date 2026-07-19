@@ -7,7 +7,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'State Scholarships - Browse by State | IndiaScholarships',
     description: 'Find scholarships by state. Browse state-specific scholarships across India with complete eligibility criteria and application details.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/state-scholarships',
+    }
 };
+
 
 export default async function StateScholarshipsPage() {
     const states = await getAllStates();

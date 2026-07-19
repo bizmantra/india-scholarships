@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Scholarship Amount Calculator | IndiaScholarships',
     description: 'Calculate and estimate your prospective scholarship disbursement using the IndiaScholarships Scholarship Amount Calculator.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/scholarship-amount-calculator',
+    }
 };
+
 
 export default async function AmountCalculatorPage() {
     const client = getClient();

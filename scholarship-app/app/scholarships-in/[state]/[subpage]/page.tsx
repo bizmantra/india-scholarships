@@ -138,7 +138,11 @@ export async function generateMetadata({ params }: { params: Promise<{ state: st
         return {
             title: seoTitle,
             description: seoDesc,
+            alternates: {
+                canonical: `https://www.indiascholarships.in/scholarships-in/${stateSlug}/${subpage}`,
+            }
         };
+
     } catch (error) {
         return { title: 'Scholarships Hub - Not Found' };
     }

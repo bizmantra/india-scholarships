@@ -6,7 +6,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Family Income Calculator | IndiaScholarships',
     description: 'Check your family income eligibility for Indian scholarships using the IndiaScholarships Family Income Calculator.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools/family-income-calculator',
+    }
 };
+
 
 export default async function IncomeCalculatorPage() {
     const client = getClient();

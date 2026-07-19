@@ -10,8 +10,12 @@ export async function generateMetadata() {
     return {
         title: `Newly Added & Verified Scholarships (${currentMonth} ${currentYear}) | IndiaScholarships`,
         description: `Explore the newest scholarships in India added and verified in ${currentMonth} ${currentYear}. Apply for newly active central government, state, and private CSR scholarships.`,
+        alternates: {
+            canonical: 'https://www.indiascholarships.in/scholarships/recently-added',
+        }
     };
 }
+
 
 export default async function RecentlyAddedPage() {
     const scholarships = await getRecentlyAddedScholarships(30);

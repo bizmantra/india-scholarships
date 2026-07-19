@@ -6,7 +6,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Scholarships by Income Range - Find Based on Family Income',
     description: 'Browse scholarships by family income range. Find scholarships that match your family income eligibility criteria.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships-by-income',
+    }
 };
+
 
 export default async function ScholarshipsByIncomePage() {
     const incomeRanges = await getIncomeRanges();

@@ -9,7 +9,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Scholarships in India 2026 - Find, Filter & Apply | IndiaScholarships',
     description: 'Explore verified scholarships in India for 2026. Filter by state, category, education level, and income to find the best scholarships for you.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships',
+    }
 };
+
 
 export default async function ScholarshipsPillarPage() {
     const featured = await getFeaturedScholarships(6);

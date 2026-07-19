@@ -21,7 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ course: s
     return {
         title: `${courseName} Scholarships 2026 - Find Funding for ${courseName} Students`,
         description: `Explore verified scholarships for ${courseName} students in India. Find eligibility criteria, amounts, and step-by-step application guides for ${courseName} courses.`,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/scholarships-by-course/${course}`,
+        }
     };
+
 }
 
 export default async function CourseHubPage({ params }: { params: Promise<{ course: string }> }) {

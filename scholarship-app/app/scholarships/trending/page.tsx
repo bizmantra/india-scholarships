@@ -10,8 +10,12 @@ export async function generateMetadata() {
     return {
         title: `Trending & Popular Scholarships (${currentMonth} ${currentYear}) | IndiaScholarships`,
         description: `Explore the most viewed and clicked scholarships in India for ${currentMonth} ${currentYear}. Find high-value private, corporate, and government programs that students are applying to.`,
+        alternates: {
+            canonical: 'https://www.indiascholarships.in/scholarships/trending',
+        }
     };
 }
+
 
 export default async function TrendingPage() {
     const scholarships = await getTrendingScholarships(30);

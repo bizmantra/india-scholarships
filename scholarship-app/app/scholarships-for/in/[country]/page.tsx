@@ -35,7 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     return {
         title: `Best Scholarships in ${country}${audienceModifier} ${currentYear} - ${nextYear} (Fully Funded)`,
         description: `Find top verified international and university scholarships to study in ${country}. Get direct application links, eligibility requirements, stipend amounts, and step-by-step application instructions.`,
+        alternates: {
+            canonical: `https://www.indiascholarships.in/scholarships-for/in/${countrySlug}`,
+        }
     };
+
 }
 
 export default async function CountryHubPage({ params }: { params: Promise<{ country: string }> }) {

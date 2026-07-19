@@ -5,7 +5,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Terms of Service - IndiaScholarships',
     description: 'Terms of Service for IndiaScholarships. Learn about the rules, guidelines, and terms governing the use of our educational directory.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/terms',
+    }
 };
+
 
 export default function TermsPage() {
     return (

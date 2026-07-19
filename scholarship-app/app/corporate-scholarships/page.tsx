@@ -7,7 +7,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Corporate CSR Scholarships 2026 - TATA, LIC, HDFC Schemes',
     description: 'Find scholarships funded by corporate social responsibility (CSR) programs. Merit-cum-need based financial aid from top Indian companies.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/corporate-scholarships',
+    }
 };
+
 
 export default async function CorporateScholarshipsPage() {
     const scholarships = await getScholarshipsByType('Corporate');

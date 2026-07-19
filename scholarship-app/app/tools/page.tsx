@@ -6,6 +6,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Free Scholarship Tools & Calculators for Indian Students | IndiaScholarships',
     description: 'Use free IndiaScholarships tools to check scholarship eligibility, convert CGPA to percentage, calculate family income limits, estimate scholarship amounts, plan education budgets, and compare EMI for student loans.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/tools',
+    },
     openGraph: {
         title: 'Free Scholarship Calculators & Tools | IndiaScholarships',
         description: 'India\'s most complete suite of free scholarship tools — eligibility checker, CGPA converter, income calculator, amount estimator, study cost planner, and EMI calculator.',
@@ -13,6 +16,7 @@ export const metadata: Metadata = {
         type: 'website',
     },
 };
+
 
 const faqSchema = {
     '@context': 'https://schema.org',

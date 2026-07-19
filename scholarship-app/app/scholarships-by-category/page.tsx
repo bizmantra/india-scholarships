@@ -7,7 +7,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Scholarships by Category - SC, ST, OBC, EBC, Minority',
     description: 'Browse scholarships by caste category. Find SC, ST, OBC, EBC, and Minority scholarships with complete eligibility and application details.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships-by-category',
+    }
 };
+
 
 export default async function ScholarshipsByCategoryPage() {
     const categories = await getAllCategories();

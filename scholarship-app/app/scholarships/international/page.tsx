@@ -21,12 +21,16 @@ import {
 export const metadata: Metadata = {
     title: 'International Scholarships for Indian Students 2026-27 — Tracker & Guide | IndiaScholarships',
     description: 'Track which international scholarships are open now for Indian students in 2026-27. Live status, deadlines, and eligibility for Fulbright-Nehru, Chevening, DAAD, MEXT, Erasmus Mundus, Rhodes, Gates Cambridge, Inlaks & more.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships/international',
+    },
     openGraph: {
         title: 'International Scholarships for Indian Students 2026-27 — Live Tracker',
         description: 'See which fully funded international scholarships are open right now for Indian students. Verified deadlines, eligibility, and application guides.',
         url: 'https://www.indiascholarships.in/scholarships/international',
     },
 };
+
 
 // Country flag emojis for display
 const COUNTRY_FLAGS: Record<string, string> = {

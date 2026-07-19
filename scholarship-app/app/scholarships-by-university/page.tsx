@@ -6,7 +6,11 @@ import Footer from '@/app/components/Footer';
 export const metadata = {
     title: 'Scholarships by University - Browse Premier Indian Institutes | IndiaScholarships',
     description: 'Find scholarships by university. Browse official financial aid programs and scholarship options for DU, BITS Pilani, IITs, and other premier institutes in India.',
+    alternates: {
+        canonical: 'https://www.indiascholarships.in/scholarships-by-university',
+    }
 };
+
 
 export default async function UniversityScholarshipsPage() {
     const universities = await getAllUniversitiesWithCounts();
