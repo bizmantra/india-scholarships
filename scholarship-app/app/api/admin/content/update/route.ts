@@ -1,17 +1,10 @@
 import { NextResponse } from 'next/server';
-import Database from 'better-sqlite3';
-import path from 'path';
-import fs from 'fs';
+import { getClient } from '@/lib/db';
 import { execSync } from 'child_process';
 
 export async function POST(request: Request) {
     if (process.env.NODE_ENV === 'production' && process.env.ENABLE_ADMIN_DASHBOARD !== 'true') {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
-
-    const dbPath = path.join(process.cwd(), 'data', 'scholarships.db');
-    if (!fs.existsSync(dbPath)) {
-        return NextResponse.json({ error: 'Database file not found.' }, { status: 500 });
     }
 
     try {
@@ -33,10 +26,10 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing scholarship ID.' }, { status: 400 });
         }
 
-        const db = new Database(dbPath);
+        const client = getClient();
 
         // Ensure changelog table exists
-        db.prepare(`
+        await client.execute(`
             CREATE TABLE IF NOT EXISTS scholarship_changelog (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 scholarship_id TEXT NOT NULL,
@@ -45,12 +38,16 @@ export async function POST(request: Request) {
                 details TEXT,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
             )
-        `).run();
+        `);
 
         // Get existing entry to compute diff
-        const existing: any = db.prepare('SELECT * FROM scholarships WHERE id = ?').get(id);
+        const existingRes = await client.execute({
+            sql: 'SELECT * FROM scholarships WHERE id = ?',
+            args: [id]
+        });
+        
+        const existing = existingRes.rows[0];
         if (!existing) {
-            db.close();
             return NextResponse.json({ error: 'Scholarship not found in database.' }, { status: 404 });
         }
 
@@ -59,35 +56,36 @@ export async function POST(request: Request) {
         const faqJsonStr = typeof faq_json === 'string' ? faq_json : JSON.stringify(faq_json || []);
 
         // Prepare UPDATE statement
-        const statement = db.prepare(`
-            UPDATE scholarships 
-            SET 
-                verified_status = ?,
-                amount_annual = ?,
-                deadline = ?,
-                docs_needed = ?,
-                helpline = ?,
-                faq_json = ?,
-                selection = ?,
-                step_guide = ?,
-                renewal = ?
-            WHERE id = ?
-        `);
+        const result = await client.execute({
+            sql: `
+                UPDATE scholarships 
+                SET 
+                    verified_status = ?,
+                    amount_annual = ?,
+                    deadline = ?,
+                    docs_needed = ?,
+                    helpline = ?,
+                    faq_json = ?,
+                    selection = ?,
+                    step_guide = ?,
+                    renewal = ?
+                WHERE id = ?
+            `,
+            args: [
+                verified_status || 'Draft',
+                amount_annual !== undefined ? Number(amount_annual) : 0,
+                deadline || '',
+                docsNeededStr,
+                helpline || '',
+                faqJsonStr,
+                selection || '',
+                step_guide || '',
+                renewal || '',
+                id
+            ]
+        });
 
-        const result = statement.run(
-            verified_status || 'Draft',
-            amount_annual !== undefined ? Number(amount_annual) : 0,
-            deadline || '',
-            docsNeededStr,
-            helpline || '',
-            faqJsonStr,
-            selection || '',
-            step_guide || '',
-            renewal || '',
-            id
-        );
-
-        if (result.changes > 0) {
+        if (result.rowsAffected > 0) {
             // Compute diff changes list
             const changesList: string[] = [];
             
@@ -129,27 +127,26 @@ export async function POST(request: Request) {
 
             // Log change to database if differences exist
             if (changesList.length > 0) {
-                db.prepare(`
-                    INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details)
-                    VALUES (?, ?, ?, ?)
-                `).run(id, existing.title, actionType, changesList.join(', '));
+                await client.execute({
+                    sql: `
+                        INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details)
+                        VALUES (?, ?, ?, ?)
+                    `,
+                    args: [id, String(existing.title), actionType, changesList.join(', ')]
+                });
             }
         }
 
-        db.close();
-
-        // Run background quality audits and wordpress export synchronizations
-        console.log('🔄 Saving changes complete. Synchronizing content quality audits & exports...');
-        try {
-            execSync('node scripts/content-quality-audit.js', { cwd: process.cwd() });
-            execSync('node scripts/export-for-wp-bulk.js', { cwd: process.cwd() });
-            console.log('✅ Synchronization complete.');
-        } catch (e: any) {
-            console.error('Error running synchronization scripts in admin API:', e.message);
-            return NextResponse.json({ 
-                success: true, 
-                warning: 'Saved successfully but sitemap synchronization scripts failed. Details: ' + e.message 
-            });
+        // Run background quality audits and wordpress export synchronizations locally only (skip on read-only serverless production)
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('🔄 Saving changes complete. Synchronizing content quality audits & exports...');
+            try {
+                execSync('node scripts/content-quality-audit.js', { cwd: process.cwd() });
+                execSync('node scripts/export-for-wp-bulk.js', { cwd: process.cwd() });
+                console.log('✅ Synchronization complete.');
+            } catch (e: any) {
+                console.error('Error running synchronization scripts in admin API:', e.message);
+            }
         }
 
         return NextResponse.json({ success: true });

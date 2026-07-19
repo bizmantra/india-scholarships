@@ -15,7 +15,9 @@ import {
     Eye,
     Globe,
     Layers,
-    ShieldAlert
+    ShieldAlert,
+    Users,
+    DollarSign
 } from 'lucide-react';
 
 interface Stats {
@@ -27,6 +29,8 @@ interface Stats {
     gscClicks: number;
     gscImpressions: number;
     auditCoverage: number;
+    activeUsers: number;
+    todayEarnings: number;
 }
 
 interface TemplateHealth {
@@ -184,38 +188,64 @@ export default function AdminDashboard() {
 
             {/* Macro Stats Cards */}
             {stats && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-6 relative overflow-hidden group hover:border-blue-500/50 transition-all shadow-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-blue-500/50 transition-all shadow-sm">
                         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <Globe className="h-20 w-20 text-blue-500" />
+                            <Globe className="h-16 w-16 text-blue-500" />
                         </div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Total Crawlable URLs</span>
-                        <span className="text-3xl font-extrabold text-white block mt-2">{stats.totalUrls.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 block mt-2">Static, hubs, details & clusters</span>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Total Crawlable URLs</span>
+                        <span className="text-2xl font-black text-white block mt-1">{stats.totalUrls.toLocaleString()}</span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">Static, hubs, details & clusters</span>
                     </div>
-                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-6 relative overflow-hidden group hover:border-amber-500/50 transition-all shadow-sm">
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-amber-500/50 transition-all shadow-sm">
                         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <AlertTriangle className="h-20 w-20 text-amber-500" />
+                            <AlertTriangle className="h-16 w-16 text-amber-500" />
                         </div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Quality Warnings</span>
-                        <span className="text-3xl font-extrabold text-amber-500 block mt-2">{stats.qualityWarnings.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 block mt-2">Audit issues flagged in database</span>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Quality Warnings</span>
+                        <span className="text-2xl font-black text-amber-500 block mt-1">{stats.qualityWarnings.toLocaleString()}</span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">Audit issues flagged in database</span>
                     </div>
-                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-6 relative overflow-hidden group hover:border-emerald-500/50 transition-all shadow-sm">
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-indigo-500/50 transition-all shadow-sm">
                         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <TrendingUp className="h-20 w-20 text-emerald-500" />
+                            <TrendingUp className="h-16 w-16 text-indigo-500" />
                         </div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">GSC clicks (June)</span>
-                        <span className="text-3xl font-extrabold text-emerald-400 block mt-2">{stats.gscClicks.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 block mt-2">Active organic search volume</span>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Organic Clicks</span>
+                        <span className="text-2xl font-black text-emerald-400 block mt-1">{stats.gscClicks.toLocaleString()}</span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">30-day Google clicks total</span>
                     </div>
-                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-6 relative overflow-hidden group hover:border-purple-500/50 transition-all shadow-sm">
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-purple-500/50 transition-all shadow-sm">
                         <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <CheckCircle className="h-20 w-20 text-purple-500" />
+                            <CheckCircle className="h-16 w-16 text-purple-500" />
                         </div>
-                        <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Audit Coverage %</span>
-                        <span className="text-3xl font-extrabold text-purple-400 block mt-2">{stats.auditCoverage}%</span>
-                        <span className="text-xs text-gray-500 block mt-2">{stats.verifiedScholarships} of {stats.totalScholarships} verified</span>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Audit Coverage</span>
+                        <span className="text-2xl font-black text-purple-400 block mt-1">{stats.auditCoverage}%</span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">{stats.verifiedScholarships} of {stats.totalScholarships} verified</span>
+                    </div>
+                    
+                    {/* Live Concurrent Active Users */}
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-emerald-500/50 transition-all shadow-sm">
+                        <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <Users className="h-16 w-16 text-emerald-500" />
+                        </div>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Live Active Users</span>
+                        <span className="text-2xl font-black text-emerald-400 block mt-1 flex items-center gap-1.5">
+                            {stats.activeUsers}
+                            <span className="flex h-2 w-2 relative">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                            </span>
+                        </span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">Live GA4 active visitors now</span>
+                    </div>
+
+                    {/* AdSense Revenue */}
+                    <div className="bg-[#0e1629] border border-gray-800/80 rounded-2xl p-5 relative overflow-hidden group hover:border-amber-500/50 transition-all shadow-sm">
+                        <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <DollarSign className="h-16 w-16 text-amber-500" />
+                        </div>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Today Estimated</span>
+                        <span className="text-2xl font-black text-amber-400 block mt-1">₹{stats.todayEarnings.toLocaleString()}</span>
+                        <span className="text-[10px] text-gray-500 block mt-1.5 truncate">Estimated daily AdSense revenue</span>
                     </div>
                 </div>
             )}

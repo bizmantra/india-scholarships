@@ -1,0 +1,586 @@
+[
+  {
+    "id": "IS-1",
+    "title": "Fix Verified for 2026 hardcode → dynamic year (line 342)",
+    "description": "Context / Why it matters:\nMinor bug flagged during Claude Code validation. Will show wrong in January 2027 if not fixed. 5-minute fix.\n\nPlan / What to do:\nIn app/scholarships/[slug]/page.tsx line 342, change 'Verified for 2026' to 'Verified for ${year}'. The year variable is already defined at line 147.\n\nTrigger:\nQuick fix, any dev session",
+    "impact": "Medium",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-2",
+    "title": "Submit updated sitemap.xml in Google Search Console",
+    "description": "Context / Why it matters:\n700 subpages are live but Google won't discover them efficiently without sitemap submission. Every day without this is indexing delay.\n\nPlan / What to do:\nGSC → Sitemaps → submit https://www.indiascholarships.in/sitemap.xml. This triggers efficient crawl of the 700 new subpages generated in the Antigravity sprint.",
+    "impact": "Critical",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-3",
+    "title": "Run Gemini enrichment on 5 broken pages",
+    "description": "Context / Why it matters:\nCombined 669K impressions at under 0.5% CTR. These pages are ranking but failing to convert. Content is clearly thin or stale.\n\nPlan / What to do:\nRun: node scripts/enrich-all-low-ctr-gemini.js --limit 5. Target pages: Jharkhand e-Kalyan (0.16% CTR), SVMCM WB (0.13%), MMVY MP (0.64%), Azim Premji (0.34%), e-Grantz Kerala (0.55%). Human-review Google Sheets output before WP sync.",
+    "impact": "Critical",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-4",
+    "title": "Email capture on eligibility checker results screen",
+    "description": "Context / Why it matters:\nAt 100K+ monthly visitors, 0.5% conversion = 500 segmented subscribers/month. Future monetisation foundation.\n\nPlan / What to do:\nAfter checker returns eligible scholarships, show inline email field: 'Get notified when applications open for your matched scholarships.' POST to /api/subscribe. Pre-populate hidden fields with state, caste, level, income from checker inputs.\n\nTrigger:\nNOW tasks complete",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-5",
+    "title": "Printable document checklist on /documents-required subpages",
+    "description": "Context / Why it matters:\nServes the Rajesh Uncle persona — parent, limited tech comfort, wants physical verification before sending child to apply.\n\nPlan / What to do:\nAdd 'Download Printable Checklist' button on every /documents-required subpage. window.print() + print-optimised CSS class, or simple PDF of docs_needed array. High-contrast, clean layout.\n\nTrigger:\nHelpline subpage done first",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-6",
+    "title": "Add /helpline-contact as 8th subpage type",
+    "description": "Context / Why it matters:\nQueries like 'how to contact e-Kalyan' and 'Sitaram Jindal helpline number' are uncompetitive. Zero manual effort — data already in database.\n\nPlan / What to do:\nClaude Code prompt: In app/scholarships/[slug]/[subpage]/page.tsx, add 'helpline-contact' as the 8th subpage key. Render the helpline field with contact details, official email, and link. Add to sitemap.ts. ~165 scholarships have helpline data populated.",
+    "impact": "High",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-7",
+    "title": "Karnataka data reconciliation (14 missing scholarships)",
+    "description": "Context / Why it matters:\nKarnataka has 12,470 impressions of state-level demand but partial coverage.\n\nPlan / What to do:\n14 Karnataka scholarships were researched but are not in the main CSV/database. Reconcile Karnataka_high_level_research.md data into main Google Sheet. Note: Karnataka has 12-department structure, more complex than Odisha.\n\nTrigger:\nAfter NOW + NEXT complete",
+    "impact": "Medium",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-8",
+    "title": "BITSAT page — reframe as Scholarships for BITSAT Qualifiers",
+    "description": "Context / Why it matters:\n240K impressions at 0.59% CTR — content mismatch. Even 2% CTR = +3,400 clicks/month.\n\nPlan / What to do:\nBITSAT is an entrance exam not a scholarship. Reframe page title and intro as 'Scholarships for BITSAT Qualifiers / BITS Pilani Students'. Add actual scholarship schemes available to BITS students. Update slug if needed.\n\nTrigger:\nReview after enrichment batch",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-9",
+    "title": "Run enrichment batch on 127 expired deadline records",
+    "description": "Context / Why it matters:\n127 of 214 scholarships show 'Applications Closed'. Deadline validator works correctly — the data is stale. Fixing this protects brand trust.\n\nPlan / What to do:\nRun node scripts/enrich-all-low-ctr-gemini.js --limit 30 four times across the week. Check content-quality-report.md after each run to track progress. Human review before WP sync each time.\n\nTrigger:\nAfter Week 1 broken pages done",
+    "impact": "Critical",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-10",
+    "title": "Sitemap splitting into sub-sitemaps",
+    "description": "Context / Why it matters:\nNext.js limit is 50,000 URLs per sitemap. Currently well under. Set reminder at 40,000.\n\nPlan / What to do:\nRefactor app/sitemap.ts to export a sitemap index file referencing split sitemaps: /sitemap-states.xml, /sitemap-subpages-1.xml, /sitemap-subpages-2.xml. Currently at ~1,800 URLs — not needed yet.\n\nTrigger:\nOnly when total URLs approach 40,000",
+    "impact": "Low",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-11",
+    "title": "Rewrite Odisha + West Bengal hub page content in WordPress",
+    "description": "Context / Why it matters:\nOdisha hub has 207K impressions at 0.71% CTR. Title overrides deployed — now the content needs to match what students expect to find.\n\nPlan / What to do:\nOdisha hub: update intro paragraph to list top 4 schemes by name with amounts. WB hub: feature Nabanna, SVMCM, Aikyashree with eligibility summaries. Add quick eligibility filter links pre-set for each state.\n\nTrigger:\nTitle overrides already deployed in code",
+    "impact": "High",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-12",
+    "title": "West Bengal deep coverage (Nabanna, SVMCM, Aikyashree)",
+    "description": "Context / Why it matters:\nWB has 6,034 impressions currently but demand is growing. Nabanna + SVMCM are both high-search scholarships.\n\nPlan / What to do:\nResearch all WB state scholarships using the Odisha methodology. Build full 29-field records for Nabanna, SVMCM, Aikyashree, Ektashree, Oasis. Treat WB as the second state vertical after Odisha.\n\nTrigger:\nAfter Odisha model proven at scale",
+    "impact": "Medium",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-13",
+    "title": "Add GitHub secrets — GEMINI_API_KEY + VERCEL_DEPLOY_HOOK",
+    "description": "Context / Why it matters:\nThe GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.\n\nPlan / What to do:\nGo to GitHub repo → Settings → Secrets → Actions. Add GEMINI_API_KEY (from Google AI Studio) and VERCEL_DEPLOY_HOOK (Vercel → Project Settings → Git → Deploy Hooks → create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-14",
+    "title": "Education loan affiliate — HDFC Credila or Avanse",
+    "description": "Context / Why it matters:\nHigh-intent placement — students who need more than scholarship covers are warm leads for education loans.\n\nPlan / What to do:\nPartner with HDFC Credila or Avanse (pay ₹2,000–5,000 per qualified lead). Place native widget on /scholarships-by-course/engineering and /medical pages. Trigger: student matches scholarship covering only partial tuition.\n\nTrigger:\nAfter 80K clicks/month · Month 3",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-15",
+    "title": "Apply to Ezoic for premium ad monetisation",
+    "description": "Context / Why it matters:\nAt current traffic, ₹8,000–15,000/month potential. Better than plain AdSense — dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.\n\nPlan / What to do:\nGo to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-16",
+    "title": "WhatsApp alert subscription (MSG91/Twilio)",
+    "description": "Context / Why it matters:\nPriya and Rajesh Uncle live on WhatsApp not email. Higher open rates. But API approval takes time — do email first.\n\nPlan / What to do:\nIntegrate MSG91 (better for India) WhatsApp Business API. Capture verified phone numbers alongside email. Send deadline alerts: 'The PM Yashasvi deadline closes in 48 hours. Apply here.' Needs WhatsApp Business API approval first.\n\nTrigger:\nAfter email capture proven · Month 2",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-17",
+    "title": "B2B school counselor dashboard",
+    "description": "Context / Why it matters:\nMrs. Sharma persona — power user managing hundreds of students. High-value B2B segment.\n\nPlan / What to do:\nAllow school counselors to upload student Excel sheet and export PDF eligibility matrix. Charge premium subscription. Need email list of 500+ school counselors first to validate demand before building.\n\nTrigger:\nMonth 4-5 · needs email list of counselors first",
+    "impact": "High",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-18",
+    "title": "Question: When does the eligibility checker email capture go live?",
+    "description": "Context / Why it matters:\nAt current traffic, 0.5% conversion = 500 segmented subscribers/month. This is the future monetisation foundation and should come before WhatsApp.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-19",
+    "title": "Question: Which state gets deep coverage after Odisha?",
+    "description": "West Bengal (Nabanna + SVMCM demand) vs MP (MMVY dominant) vs Punjab (third highest impressions at 12,871). Use Odisha methodology.\n\nContext / Why it matters:\nWest Bengal (Nabanna + SVMCM demand) vs MP (MMVY dominant) vs Punjab (third highest impressions at 12,871). Use Odisha methodology.",
+    "impact": "High",
+    "status": "Done",
+    "type": ""
+  },
+  {
+    "id": "IS-20",
+    "title": "Feature: Lead Gen Email Capture",
+    "description": "WhatsApp has higher open rates for Priya/Rajesh Uncle personas but needs Business API approval (weeks). Email is immediate. Decision: email first, then WhatsApp in Month 2.\n\nContext / Why it matters:\nWhatsApp has higher open rates for Priya/Rajesh Uncle personas but needs Business API approval (weeks). Email is immediate. Decision: email first, then WhatsApp in Month 2.",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-21",
+    "title": "Operating Model for Notion",
+    "description": "I think we can make it significantly more useful by turning it into a true operating system rather than a collection of notes.\nInstead of one page, I'd create sections like:\n• 📋 Master Backlog (prioritized tasks)\n\n• 🎯 Current Sprint (this week's work)\n\n• 🔍 Scholarship Intelligence (new scholarships to research)\n\n• 📈 SEO Opportunities (GSC-driven quick wins)\n\n• 👀 Competitor Watch (what others published this week)\n\n• 🤖 AI Agents (living instructions for each Antigravity agent)\n\n• 💡 Product Ideas (features, calculators, UX improvements)\n\n• 📊 Monthly Reviews (traffic, rankings, completed work)\n\nThis would become the central operating hub for the project, with clear separation between strategy, execution, and ongoing research. I think it would make Antigravity much more effective because each agent would have a well-defined area of responsibility rather than a single long document.\n\nContext / Why it matters:\nHelps cover everything to do with the site \n\nPlan / What to do:\nCreate operating model (Notion) instead of just backlog etc\n\nTrigger:\nChatGPT",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": ""
+  },
+  {
+    "id": "IS-22",
+    "title": "Grow Organic Traffic",
+    "description": "Priority 1 — Grow Organic Traffic (Highest ROI) ⭐⭐⭐⭐⭐\nObjective: Expand what is already working.\nActions\n• \nResearch and publish 10–15 new scholarships every week.\n\n• \nPrioritize newly announced scholarships.\n\n• \nPublish scholarships with low competition and high demand.\n\n• \nMaintain a Scholarship Opportunity Tracker.\n\nSuccess Metric\n• \n10–15 new scholarship pages/week.\n\n\nContext / Why it matters:\nEssential for the site \n\nPlan / What to do:\nGrow organic traffic\n\nTrigger:\nChatGPT",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-24",
+    "title": "Competitor tracker ",
+    "description": "Every month I'll tell you\"Competitor X just added 14 new scholarships.\"\nor\"Buddy4Study has created a calculator.\"\nor\"Careers360 added scholarship filters.\"\nThis helps us stay ahead rather than react.\n\nTrigger:\nchatgpt",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-25",
+    "title": "Scholarship Micro tools",
+    "description": "I want IndiaScholarships.in to become a decision engine.\nImagine tools like:\n• \n🎯 Scholarship Eligibility Checker\n\n• \n💰 Scholarship Amount Calculator\n\n• \n📅 Deadline Calendar\n\n• \n📊 Scholarship Success Probability\n\n• \n🧾 Document Readiness Checklist\n\n• \n🔔 Deadline Alerts\n\n• \n📍 State Scholarship Finder\n\n• \n🎓 College Scholarship Finder\n\n• \n🏛 Government Scheme Finder\n\n• \n🤖 AI Scholarship Recommender\n\nTrigger:\nchatgpt",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-27",
+    "title": "Expand top pages",
+    "description": "Your GSC already told us what Google likes.\nStart with:\n• \nPM YASASVI\n\n• \nSitaram Jindal\n\n• \nAny page with 500+ clicks/month\n\nFor each one create supporting pages like:\n• \nEligibility\n\n• \nApply Online\n\n• \nDocuments Required\n\n• \nLast Date\n\n• \nRenewal\n\n• \nLogin\n\n• \nStatus Check\n\n• \nFAQs\n\nThink of these as intent pages, not duplicate content.\n\n\nTrigger:\nchatgpt",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-28",
+    "title": "Improve ranking positions from 8-20",
+    "description": "his is probably your fastest SEO win.\nEvery month I'll identify pages like:Position 11Position 14Position 18\nOften these need:\n• \nBetter introduction\n\n• \nUpdated eligibility\n\n• \nFAQs\n\n• \nInternal links\n\n• \nBetter title\n\nMoving from #12 to #5 can bring far more traffic than publishing a new page.\n\nTrigger:\nchatgpt",
+    "impact": "High",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-30",
+    "title": "Monthly GSC and analytics review ",
+    "description": "",
+    "impact": "",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-31",
+    "title": "Create multiple agents ",
+    "description": "I think we can make this much more powerful by evolving it into an AI Operating Manual rather than just a backlog. For example:\n• Role: Scholarship Research Agent\n\n    ◦ \nFind newly announced scholarships.\n\n    ◦ \nVerify eligibility, deadlines, official sources.\n\n    ◦ \nFlag duplicates.\n\n• Role: SEO Agent\n\n    ◦ \nAnalyze GSC.\n\n    ◦ \nFind pages ranking #8–20.\n\n    ◦ \nSuggest title/H1/FAQ improvements.\n\n• Role: Content QA Agent\n\n    ◦ \nEnsure every scholarship page has required sections.\n\n    ◦ \nCheck for outdated dates.\n\n    ◦ \nValidate internal links.\n\n• Role: Product Agent\n\n    ◦ \nRecommend new tools and features.\n\n    ◦ \nIdentify UX improvements.\n\n• Role: Competitor Intelligence Agent\n\n    ◦ \nTrack new scholarships, content, and features added by competitors.\n\nThis would allow Antigravity to run with much more autonomy while giving you actionable outputs instead of generic suggestions. I think that kind of operating manual will become one of the most valuable assets for this project, and we can keep refining it as your platform grows. \n\nTrigger:\nchatgpt",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-33",
+    "title": "Build public-facing Deadline Tracker page",
+    "description": "Context / Why it matters:\nHigh search volume for upcoming scholarship deadlines. Provides students with a single, consolidated timeline of closing dates.\n\nPlan / What to do:\nCreate a new route /scholarships/deadlines. Fetch active scholarships sorted chronologically by deadline. Render a clean table/timeline showing scholarship titles, closing dates, days remaining counters, and quick filter options.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature, Strategy"
+  },
+  {
+    "id": "IS-61",
+    "title": "Scholarship News tracker ",
+    "description": "Whenever a scholarship\n• \nopens\n\n• \ncloses\n\n• \nextends deadline\n\n• \nchanges eligibility\n\n• \nincreases amount\n\nwe update the page immediately.\n\nTrigger:\nChatgpt",
+    "impact": "High",
+    "status": "Parked",
+    "type": "Strategy"
+  },
+  {
+    "id": "IS-34",
+    "title": "Optimize Similar Opportunities relevance algorithm",
+    "description": "Context / Why it matters:\nThe similar opportunities recommendation grid at the bottom of scholarship detail templates is currently using a very basic fallback chain. Optimizing this increases user session depth and GSC click-throughs.\n\nPlan / What to do:\nUpdate the query logic in Next.js to match and sort similar opportunities prioritizing:\n1. Same State (e.g. WB student sees WB scholarships)\n2. Same Stream (e.g. Engineering student sees engineering)\n3. Same Education Level.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Analysis, Content Task"
+  },
+  {
+    "id": "IS-35",
+    "title": "Integrate Google Indexing API into sync pipeline",
+    "description": "Context / Why it matters:\nNewly added or updated scholarships take weeks to be naturally crawled by Google. Google Indexing API allows requesting instant indexing for GovernmentService and JobPosting schema pages, which speeds up search presence (often indexed in <24 hours).\n\nPlan / What to do:\nAdd Google Indexing API integration into scripts/sync-wordpress-api.js to send crawl/refresh requests automatically whenever a page is synced.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": ""
+  },
+  {
+    "id": "IS-36",
+    "title": "CTR Improvement: title/meta rewrites across 129 opportunity pages (~85K upside clicks/mo)",
+    "description": "",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-43",
+    "title": "State hub: merge duplicate SSP Karnataka entries into one canonical card",
+    "description": "Found in IS-37 QA. 'SSP Pre-Matric & Post-Matric Scholarship (Karnataka)' (id: ssp-pre-matric-post-matric-scholarship-karnataka, enriched, deadline 2026-01-15) and 'Pre-Matric & Post-Matric Scholarships (SSP)' (id: pre-matric-post-matric-scholarships-ssp, thin entry, deadline 'Not specified') appear to be the same underlying scheme listed twice. Merge into one canonical entry and redirect the duplicate slug. DB editorial decision required before code change.",
+    "impact": "Low",
+    "status": "Done",
+    "type": "Content Task, Feature"
+  },
+  {
+    "id": "IS-44",
+    "title": "State hubs: add SC/ST/OBC/Minority/General/PWD category filter chips",
+    "description": "Found in IS-37 QA. State hub pages (e.g. /scholarships-in/karnataka) show a flat list of 26 cards with no way to filter by SC/ST/OBC/Minority/General/PWD. 82% of traffic is mobile. Add category filter chips above the scholarship list so users can drill down without scrolling the full list. Affects all state hub pages.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Content Task, Feature"
+  },
+  {
+    "id": "IS-45",
+    "title": "State hubs: sort cards by deadline urgency (soonest open first, expired last)",
+    "description": "Found in IS-37 QA. State hub card order is arbitrary. Sort cards by: (1) deadline urgency — soonest non-expired first, (2) expired/no-deadline pushed to bottom. Secondary: highest amount_annual. This helps mobile users identify the most time-sensitive opportunities immediately. Also applies to the main /scholarships listing. Consider making sort user-selectable (deadline / amount / newest).",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Content Task, Feature"
+  },
+  {
+    "id": "IS-46",
+    "title": "State hubs: fix misleading 'Max Amount' stat — add Typical Range or relabel",
+    "description": "Found in IS-37 QA. The 'Max Amount' stat card on state hubs (e.g. Karnataka shows '₹30,00,000') is misleading — this is a rare PG/overseas scholarship, not representative of the typical ₹3,000–₹60,000 range. Options: (1) Add a 'Typical Range' stat computed from percentile (P25–P75) of amount_annual, (2) Label the max amount as 'Highest Available' more explicitly, (3) Replace with median amount. Prevents users feeling baited by an outlier figure.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-47",
+    "title": "DB cleanup: resolve 7 Karnataka deadline fields with leaked research notes to clean ISO dates",
+    "description": "Found in IS-37 QA. 7 rows in the scholarships DB have raw editorial research notes stored in the deadline field (e.g. 'September 30, 2025 (tentative - some sources indicate November 30, 2025). VERIFY on official NSP...'). IDs: 23, 24, 27, 28, 29, 30, 31 (all Karnataka). IS-37 fixes the display layer, but the underlying DB values should be resolved to clean ISO dates or 'Not specified' via the enrichment pipeline. Run targeted enrichment on these 7 rows against NSP/SSP portals.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-48",
+    "title": "Site Search Feature",
+    "description": "Need to implement a dynamic search for the website. Currently doesnt have any search capability. What are the best ways to deploy a search so information is quick and accurate to find ",
+    "impact": "Critical",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-49",
+    "title": "Scholarship News Feature",
+    "description": "Build a Scholarship news section or hub. Validate if there is potential for this. ANd this should be dynamic and not static and fully automated. Source from ChatGPT",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-50",
+    "title": "Integrate Google Keyword Planner API for keyword research",
+    "description": "Set up Google Ads API connection and integrate Google Keyword Planner for automated or script-based keyword research on scholarships. Includes obtaining a Manager Account, developer token, client ID, client secret, and generating a refresh token to perform queries.",
+    "impact": "Low",
+    "status": "In Progress",
+    "type": ""
+  },
+  {
+    "id": "IS-51",
+    "title": "Run Google Keyword Planner script for target scholarship keywords",
+    "description": "Develop and run a Python script using the google-ads SDK to query search volumes, competition rates, and bid estimates directly from Google Keyword Planner for key scholarship queries. Save results to CSV files.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-52",
+    "title": "Analyze and expand keyword research for broad term 'scholarships' (India)",
+    "description": "Conduct keyword research for the broad term 'scholarships' in the Indian market. Analyze user-provided Google Keyword Planner export data, combine it with programmatic/web search volume research, cluster by search intent, and identify high-value/low-competition keyword opportunities to expand content targeting.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-53",
+    "title": "Keyword Research & Intent Clustering (Ubersuggest + Google Ads Planner)",
+    "description": "Completed keyword research using Google Keyword Planner and Ubersuggest. Consolidates raw exports (ubersuggest_UP,_NSP_6Jul2026.csv and Keyword Stats) and compiled the clustered analysis report highlighting high-intent opportunities for private and state scholarships.\n\nReference Files:\n1. Ubersuggest Raw Data: scholarship-app/Keyword research/ubersuggest_UP,_NSP_6Jul2026.csv\n2. Google Ads Raw Data: scholarship-app/Keyword research/Keyword Stats 2026-07-06 at 23_19_35.csv\n3. Compiled Analysis Report: scholarship-app/scripts/analyze_keywords.py -> keyword_analysis_report.md",
+    "impact": "High",
+    "status": "Done",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-54",
+    "title": "Perform Content Gap Audit & Prioritization based on Keyword Report",
+    "description": "Perform a content gap analysis between the existing SQLite database (scholarship.db) and the high-volume search terms retrieved in the keyword research report. Map out missing opportunities (e.g. Tata Pankh, Aditya Birla, FAEA) and create a prioritized queue of entry additions.\n\nReference:\n- Analysis Report: scholarship-app/Keyword research/keyword_analysis_report.md\n- Active DB: scholarship-app/scholarship.db",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-55",
+    "title": "Content Feature: State sub-pages",
+    "description": "Optimize Next.js route structures and titles for state hub subpages (e.g. /apply-online, /last-date, /eligibility) to capture localized high-intent search volumes (like UP Scholarship, Aikyashree WB, SSP Karnataka). Focus on dynamically resolving year titles and expanding sitemap inclusion.\n\nReference:\n- Hub Routes: scholarship-app/app/scholarships/[slug]/page.tsx\n- State Hub Config: scholarship-app/lib/db.ts -> getAllStates()",
+    "impact": "High",
+    "status": "Done",
+    "type": "Content Task, Feature"
+  },
+  {
+    "id": "IS-56",
+    "title": "Research & Enrich High-Value Private/Corporate Scholarships",
+    "description": "Perform deep research and enrich database entries for top-tier private and corporate scholarships (e.g. Tata Pankh, Aditya Birla, FAEA, Reliance) using the standard 5-step checklist (research, data entry, quality audit, WP export, WP API sync). Ensure FAQ arrays and tags are correctly populated.\n\nReference:\n- Checklist Workflow: Workspace Rules (AGENTS.md)\n- Export Script: scholarship-app/scripts/export-for-wp-bulk.js\n- Sync Script: scholarship-app/scripts/sync-wordpress-api.js",
+    "impact": "High",
+    "status": "Done",
+    "type": "Content Task"
+  },
+  {
+    "id": "IS-57",
+    "title": "Content Gap Audit (Prioritized Missing & Partial Targets)",
+    "description": "Consolidates the completed Content Gap Audit (IS-54). Evaluated 2,548 keywords against the 298 active database scholarships, creating a prioritized list of missing targets (like maha dbt and regional UP query hubs) and optimization opportunities (like FAEA, ACC Vidyasaarathi, and Tata Pankh).\n\nReference:\n- Gap Report: scholarship-app/data/content-gap-report.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-58",
+    "title": "Research & scope International High-Value Scholarships (study-abroad content track)",
+    "description": "Moved to ✍️ Content Backlog — this is research/content-population work, not dev. See: Research & scope International High-Value Scholarships (study-abroad content track) (https://app.notion.com/p/Research-scope-International-High-Value-Scholarships-study-abroad-content-track-3962e0a03f1e8193bc7cf5ef80df1cb5?pvs=21)",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": "Content Task"
+  },
+  {
+    "id": "IS-59",
+    "title": "Keyword research analysis",
+    "description": "Analyse keywords from Google keyword planner and Ubersuggest and come up with a plan to execute them",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Analysis"
+  },
+  {
+    "id": "IS-60",
+    "title": "Dynamic Homepage / Scholarship Pulse",
+    "description": "Transform the homepage into a live dashboard. Sections: New Scholarships Today, Closing Soon, Trending Scholarships, Recently Updated, Scholarship of the Day, Scholarships by Month, Recently Expired, Government/Private/International feeds, and a chronological Scholarship Pulse activity feed. Design using simple SQLite queries so the homepage feels alive and encourages repeat visits. This should become the foundation for future personalization, email digests, and notification features.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-62",
+    "title": "AI / Conversational Search",
+    "description": "Future feature request to be assesed. IS-48 already implemented a site search on 7th Jul 2026",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-63",
+    "title": "BUG: Site search live issues",
+    "description": "Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.",
+    "impact": "High",
+    "status": "In Progress",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-64",
+    "title": "Scholarship Tools",
+    "description": "Creation of multiple scholarship related tools to increase traffic, virality and enagement. this came from chatGPT https://chatgpt.com/share/6a4d480f-a15c-83ee-b767-4fb8c2517109",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-65",
+    "title": "Implement Phase 1: 8 Scholarship Micro-Tools and Hub Page",
+    "description": "Develop and deploy the central /tools directory along with 8 calculators and utilities to drive organic traffic and user engagement.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-66",
+    "title": "Implement Tool: Family Income Eligibility Calculator",
+    "description": "Create a comprehensive Family Income Eligibility Calculator to filter scholarships based on household income caps. Includes problem explanation, practical example, and interactive sliders.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-67",
+    "title": "Implement Tool: Scholarship Amount Calculator",
+    "description": "Create a robust Scholarship Amount Calculator to estimate payout tiers based on education levels, streams, and categories. Includes detailed case study examples and clear financial mapping.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-68",
+    "title": "Implement Tool: Study Cost Calculator",
+    "description": "Create an interactive Study Cost & Gap Calculator to help students plan expenses (tuition, living costs, books) and visualize funding coverage ratios. Includes case examples and problem breakdowns.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-69",
+    "title": "Implement Tool: Education Loan EMI Calculator",
+    "description": "Create a comprehensive Education Loan EMI Calculator with moratorium grace period simulation, interest accumulation breakdown, and debt-offsetting recommendations. Includes problem context and examples.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-70",
+    "title": "Redesign and Integrate Existing Scholarship Eligibility Checker",
+    "description": "Create a redesigned, highly intuitive Scholarship Eligibility Checker with comprehensive criteria checks and custom matches.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-71",
+    "title": "Implement Tool: Scholarship Finder Wizard",
+    "description": "Create a multi-step guided Scholarship Finder Wizard with progress indicators, smooth transitions, and high-converting results recommendations.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-72",
+    "title": "Implement Tool: CGPA to Percentage Converter",
+    "description": "Create a clean and comprehensive CGPA to Percentage Converter with standard CBSE, AICTE, and university conversion factors and eligibility mappings.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-73",
+    "title": "Implement Tool: Scholarship Compare Tool",
+    "description": "Create a robust Scholarship Compare Tool offering a side-by-side eligibility and benefit matrix for selected opportunities.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-74",
+    "title": "Optimize and Redesign Tool Hub Page (/tools)",
+    "description": "Redesign and optimize the central /tools landing page to serve as a high-value entry directory. Includes real-time database stats, optimized visual categorization, and search.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-75",
+    "title": "Integrate Tools into Scholarship Detail Pages (Deep Links)",
+    "description": "GOAL: Drive tool usage and reduce friction on scholarship detail pages by surfacing relevant tools contextually — at the exact moment a student is reading eligibility criteria, income limits, or academic cutoffs.\n\nCONTEXT: Right now tools (/tools) and scholarship detail pages (/scholarships/[slug]) are completely siloed. A student reading about a scholarship has to navigate away to use a calculator, which kills momentum.\n\nAPPROACH (Phase 1 — Deep Links, ship fast):\nAdd contextual tool CTAs directly on the detail page at relevant sections:\n• Near 'Eligibility Criteria' → Scholarship Eligibility Checker CTA: 'Check if you qualify →'\n• Near 'Income Limit' field → Family Income Calculator CTA: 'Verify your household income →'\n• Near 'Minimum Marks / CGPA' field → CGPA to Percentage Converter CTA: 'Convert your CGPA →'\n• Near 'Benefits / Amount' section → Scholarship Amount Calculator CTA: 'Estimate your benefit →'\n• Bottom of page → 'Explore similar tools' strip (passive, links to /tools)\n\nIMPLEMENTATION NOTES:\n• Start with deep links only (buttons/cards that open the standalone tool page). No inline widgets yet.\n• Links can be pre-parameterised if the tool supports URL params (e.g. pre-select category/level based on the scholarship record).\n• Use conditional rendering: only show a tool CTA if the relevant DB field is populated (e.g. only show Income Calculator CTA if income_limit field is non-null).\n• Target file: app/scholarships/[slug]/page.tsx and relevant subpage components.\n\nPHASE 2 (future, separate ticket): Embed inline mini-widgets on the detail page so students never leave the page.\n\nSUCCESS METRIC: Track clicks on tool CTAs from detail pages. Goal is >5% CTR from detail page to tool.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-76",
+    "title": "Lead Capture via Scholarship Tools",
+    "description": "GOAL: Capture student contact details at the highest-intent moment on the site — immediately after they complete a tool and see their results (e.g. Eligibility Checker shows 5 matching scholarships).\n\nCONTEXT: Parked as of July 2026 until two decisions are made:\n1. What do we offer the student in exchange for their contact? (the 'exchange value')\n2. What infrastructure will send the follow-up? (email service, WhatsApp API, etc.)\n\nOPTIONS TO DECIDE BETWEEN (for discussion when picking this up):\nOption A — 'Email me my results': Zero-friction. Student enters email to receive their eligibility results or tool output. Requires: transactional email service (e.g. Resend, Mailchimp, SendGrid). Easiest to ship.\nOption B — 'Get notified when applications open': Student opts in to deadline alerts for matched scholarships. Higher intent, higher value to student. Requires: email service + scheduled job to send alerts when scholarship status changes.\nOption C — WhatsApp opt-in: 'Get alerts on WhatsApp'. Higher conversion rate in India. Requires: WhatsApp Business API setup (via Twilio, Interakt, or WATI). More complex setup.\n\nWHERE TO INSERT THE FORM:\n• End of Eligibility Checker results (highest intent — student just saw their matches)\n• End of CGPA Converter results (after seeing their converted % + matched scholarships)\n• End of Family Income Calculator results (after seeing income band + matched schemes)\n• Scholarship detail page 'Alert me when this opens' CTA\n\nPRE-REQUISITES BEFORE BUILDING:\n• Decide on Option A / B / C above\n• Set up chosen email/WhatsApp service and obtain API keys\n• Decide on data storage: where leads are stored (a simple DB table, Airtable, Google Sheets, CRM)\n• Define the first follow-up sequence (what does the student receive after opt-in?)\n\nNOTE: Do NOT add a generic popup or modal. The opt-in must feel like a natural next step after the tool gives them value.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Strategy"
+  },
+  {
+    "id": "IS-77",
+    "title": "Scholarship Tools Expansion — Phase 2 (Document Checklist, Merit Checker, Stipend vs Loan)",
+    "description": "Phase 2 expansion of the IndiaScholarships tool suite. Three tools identified for future consideration:\n\n1. DOCUMENT CHECKLIST GENERATOR\nStudent enters their profile (category, scholarship type, education level) and gets a personalised list of documents they need to apply. High utility — most students lose applications due to missing paperwork. Data already exists in our DB via the documents_required field. Low effort, no external dependencies. Suggested slug: /tools/document-checklist-generator\n\n2. MERIT / RANK CUTOFF CHECKER\nStudent enters their board/competitive exam rank or percentage and sees which merit-based scholarships they qualify for (e.g. Central Sector Scholarship, Inspire, state merit schemes). Good SEO angle — targets queries like 'JEE rank scholarship eligibility' and 'NEET score scholarship'. Medium effort — requires mapping rank/score thresholds to scholarship eligibility in the DB. Suggested slug: /tools/merit-rank-cutoff-checker\n\n3. STIPEND VS LOAN CALCULATOR\nSide-by-side comparison tool: 'Should I take this scholarship stipend or an education loan?' Shows the long-term financial difference including interest cost, repayment burden, and net benefit of the scholarship over time. Useful for higher education students choosing between scholarship + partial loan vs full loan. Medium effort. Suggested slug: /tools/stipend-vs-loan-calculator\n\nAll three should follow the existing tool template (problem statement, calculator, scenario examples, FAQ + JSON-LD schema) and be added to the Tools Hub with Coming Soon cards until implemented.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-78",
+    "title": "Feature: Telegram Alerts ",
+    "description": "Build subscription alerts to Telegram. To increase traffic and distribiution",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-79",
+    "title": "Feature-Whatsapp alerts",
+    "description": "Send alerts via Whatsapp. For traffic and distribution",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-80",
+    "title": "Feature: Twitter Distribution",
+    "description": "Distribute (auto-update Twitter) for traffic, distribution and branding ",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-81",
+    "title": "Feature: Monetization strategies",
+    "description": "How do we go beyond adsense?",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-82",
+    "title": "Feature: Lead Capture in scholarship detail pages ",
+    "description": "",
+    "impact": "",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-83",
+    "title": "Feature: Auto refresh scholarships",
+    "description": "How do we enable automatic verification (for internal use) and how do we keep the page fresh. Can users subscirbe to alerts and changes on this page?",
+    "impact": "",
+    "status": "Backlog",
+    "type": "Feature"
+  }
+]

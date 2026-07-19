@@ -27,6 +27,7 @@ async function run() {
         console.log("🗑️  Dropping old tables on Turso...");
         await turso.execute("DROP TABLE IF EXISTS scholarship_translations;");
         await turso.execute("DROP TABLE IF EXISTS scholarship_changelog;");
+        await turso.execute("DROP TABLE IF EXISTS backlog_tasks;");
         await turso.execute("DROP TABLE IF EXISTS scholarships;");
 
         // --- 2. Recreate schemas on Turso ---
@@ -128,6 +129,18 @@ async function run() {
         `);
         await turso.execute("CREATE INDEX idx_trans_lookup ON scholarship_translations(scholarship_id, locale);");
 
+        await turso.execute(`
+            CREATE TABLE backlog_tasks (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                description TEXT,
+                impact TEXT,
+                status TEXT,
+                type TEXT,
+                category TEXT
+            );
+        `);
+
         // --- 3. Read data from local SQLite and insert into Turso ---
         
         // A. Scholarships
@@ -204,6 +217,31 @@ async function run() {
                 });
                 await turso.batch(statements);
                 console.log(`  Uploaded ${i + chunk.length} / ${changelogs.length} changelogs...`);
+            }
+        }
+
+        // D. Backlog Tasks
+        console.log("📦 Reading local backlog tasks...");
+        const backlogTasks = localDb.prepare("SELECT * FROM backlog_tasks").all();
+        console.log(`Found ${backlogTasks.length} backlog tasks.`);
+
+        if (backlogTasks.length > 0) {
+            console.log("📤 Uploading backlog tasks to Turso...");
+            const chunkSize = 50;
+            for (let i = 0; i < backlogTasks.length; i += chunkSize) {
+                const chunk = backlogTasks.slice(i, i + chunkSize);
+                const statements = chunk.map(t => {
+                    const keys = Object.keys(t);
+                    const columns = keys.join(', ');
+                    const placeholders = keys.map(() => '?').join(', ');
+                    const values = keys.map(k => t[k]);
+                    return {
+                        sql: `INSERT INTO backlog_tasks (${columns}) VALUES (${placeholders})`,
+                        args: values
+                    };
+                });
+                await turso.batch(statements);
+                console.log(`  Uploaded ${i + chunk.length} / ${backlogTasks.length} backlog tasks...`);
             }
         }
 

@@ -1,109 +1,97 @@
-const fs = require('fs');
+const Database = require('better-sqlite3');
 const path = require('path');
-const { parse } = require('csv-parse/sync');
+const fs = require('fs');
 
-// Paths
-const DEV_CSV = path.join(__dirname, '../Notion-Tracker/extracted/dev-backlog/Private & Shared/IS Dev Backlog ca53d5c340bb4453aa021c0618ec585d_all.csv');
-const CONTENT_CSV = path.join(__dirname, '../Notion-Tracker/extracted/content-backlog/Private & Shared/IS Content Backlog 3952e0a03f1e81e8924cd53fc9668f32_all.csv');
+const dbPath = path.join(__dirname, '..', 'data', 'scholarships.db');
+const devJsonPath = path.join(__dirname, '..', 'data', 'backlog-dev.json');
+const contentJsonPath = path.join(__dirname, '..', 'data', 'backlog-content.json');
 
-const DATA_DIR = path.join(__dirname, '../data');
+console.log('🏁 Starting Backlog Database Migration...\n');
+console.log(`Connecting to database at: ${dbPath}`);
 
-function mapStatus(notionStatus) {
-  if (!notionStatus) return 'Backlog';
-  const clean = notionStatus.trim().toLowerCase();
-  if (clean.includes('done') || clean.includes('completed') || clean.includes('✅')) {
-    return 'Done';
-  }
-  if (clean.includes('now') || clean.includes('progress') || clean.includes('⏳') || clean.includes('in progress')) {
-    return 'In Progress';
-  }
-  if (clean.includes('deferred') || clean.includes('parked') || clean.includes('cancelled')) {
-    return 'Parked';
-  }
-  return 'Backlog';
+if (!fs.existsSync(dbPath)) {
+    console.error('❌ Database file not found. Run database initialization first.');
+    process.exit(1);
 }
 
-function generateMarkdown(title, tasks) {
-  let md = `# ${title}\n\n`;
-  
-  const columns = {
-    'In Progress': tasks.filter(t => t.status === 'In Progress'),
-    'Backlog': tasks.filter(t => t.status === 'Backlog'),
-    'Done': tasks.filter(t => t.status === 'Done'),
-    'Parked': tasks.filter(t => t.status === 'Parked')
-  };
+const db = new Database(dbPath);
 
-  for (const [colName, colTasks] of Object.entries(columns)) {
-    md += `## ${colName} (${colTasks.length})\n\n`;
-    if (colTasks.length === 0) {
-      md += `*No tasks in this section.*\n\n`;
-      continue;
+try {
+    // 1. Create backlog table
+    console.log('🛠️ Creating backlog_tasks table...');
+    db.prepare(`
+        CREATE TABLE IF NOT EXISTS backlog_tasks (
+            id TEXT PRIMARY KEY,
+            title TEXT NOT NULL,
+            description TEXT,
+            impact TEXT,
+            status TEXT,
+            type TEXT,
+            category TEXT
+        )
+    `).run();
+    console.log('✅ backlog_tasks table is ready.');
+
+    // 2. Read and parse dev tasks
+    let devTasks = [];
+    if (fs.existsSync(devJsonPath)) {
+        try {
+            devTasks = JSON.parse(fs.readFileSync(devJsonPath, 'utf8'));
+            console.log(`📖 Loaded ${devTasks.length} tasks from backlog-dev.json`);
+        } catch (e) {
+            console.error('❌ Failed to parse backlog-dev.json:', e.message);
+        }
+    } else {
+        console.log('⚠️ backlog-dev.json not found. Skipping.');
     }
-    for (const t of colTasks) {
-      const check = colName === 'Done' ? '[x]' : '[ ]';
-      md += `- ${check} **${t.id}**: ${t.title}\n`;
-      if (t.impact) md += `  - **Impact**: ${t.impact}\n`;
-      if (t.type) md += `  - **Type**: ${t.type}\n`;
-      if (t.description) {
-        // Indent description lines
-        const descLines = t.description.split('\n').map(line => '    ' + line).join('\n');
-        md += `  - **Description**:\n${descLines}\n`;
-      }
-      md += `\n`;
+
+    // 3. Read and parse content tasks
+    let contentTasks = [];
+    if (fs.existsSync(contentJsonPath)) {
+        try {
+            contentTasks = JSON.parse(fs.readFileSync(contentJsonPath, 'utf8'));
+            console.log(`📖 Loaded ${contentTasks.length} tasks from backlog-content.json`);
+        } catch (e) {
+            console.error('❌ Failed to parse backlog-content.json:', e.message);
+        }
+    } else {
+        console.log('⚠️ backlog-content.json not found. Skipping.');
     }
-  }
-  return md;
+
+    // 4. Seed tasks into database
+    const insertStmt = db.prepare(`
+        INSERT OR REPLACE INTO backlog_tasks (id, title, description, impact, status, type, category)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    let seededCount = 0;
+
+    const transaction = db.transaction((tasks, categoryName) => {
+        for (const task of tasks) {
+            insertStmt.run(
+                task.id,
+                task.title || '',
+                task.description || '',
+                task.impact || 'Medium',
+                task.status || 'Backlog',
+                task.type || '',
+                categoryName
+            );
+            seededCount++;
+        }
+    });
+
+    if (devTasks.length > 0) {
+        transaction(devTasks, 'dev');
+    }
+    if (contentTasks.length > 0) {
+        transaction(contentTasks, 'content');
+    }
+
+    console.log(`\n🎉 Migration successful! Seeded ${seededCount} total tasks into backlog_tasks table.`);
+
+} catch (error) {
+    console.error('❌ Migration failed with error:', error.message);
+} finally {
+    db.close();
 }
-
-function processCSV(csvPath, isDev) {
-  if (!fs.existsSync(csvPath)) {
-    console.error(`❌ CSV not found at: ${csvPath}`);
-    return [];
-  }
-
-  const rawContent = fs.readFileSync(csvPath, 'utf8');
-  const records = parse(rawContent, {
-    columns: true,
-    skip_empty_lines: true,
-    trim: true
-  });
-
-  console.log(`Parsed ${records.length} records from ${path.basename(csvPath)}`);
-
-  return records.map((r, index) => {
-    const taskName = r.Task || r['﻿Task'] || r['Page name '] || '';
-    const id = r.ID || (isDev ? `IS-${index + 1}` : `CNT-${index + 1}`);
-    return {
-      id,
-      title: taskName,
-      description: r.Description || '',
-      impact: r.Impact || '',
-      status: mapStatus(r.Status),
-      type: r.Type || ''
-    };
-  });
-}
-
-function run() {
-  console.log('🚀 Seeding local backlogs...');
-  
-  // Dev Backlog
-  const devTasks = processCSV(DEV_CSV, true);
-  if (devTasks.length > 0) {
-    fs.writeFileSync(path.join(DATA_DIR, 'backlog-dev.json'), JSON.stringify(devTasks, null, 2));
-    const devMd = generateMarkdown('IndiaScholarships Dev Backlog', devTasks);
-    fs.writeFileSync(path.join(DATA_DIR, 'backlog-dev.md'), devMd);
-    console.log(`✅ Saved dev backlog: ${devTasks.length} tasks`);
-  }
-
-  // Content Backlog
-  const contentTasks = processCSV(CONTENT_CSV, false);
-  if (contentTasks.length > 0) {
-    fs.writeFileSync(path.join(DATA_DIR, 'backlog-content.json'), JSON.stringify(contentTasks, null, 2));
-    const contentMd = generateMarkdown('IndiaScholarships Content Backlog', contentTasks);
-    fs.writeFileSync(path.join(DATA_DIR, 'backlog-content.md'), contentMd);
-    console.log(`✅ Saved content backlog: ${contentTasks.length} tasks`);
-  }
-}
-
-run();

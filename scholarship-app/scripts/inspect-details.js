@@ -1,0 +1,11 @@
+const Database = require('better-sqlite3');
+const path = require('path');
+const dbPath = path.join(__dirname, '..', 'data', 'scholarships.db');
+const db = new Database(dbPath);
+const faea1 = db.prepare("SELECT * FROM scholarships WHERE id = 'faea-undergraduate-scholarship'").get();
+const faea2 = db.prepare("SELECT * FROM scholarships WHERE id = 'sc_corp_faea_001'").get();
+console.log("=== FAEA 1 (faea-undergraduate-scholarship) ===");
+console.log(JSON.stringify(faea1, null, 2));
+console.log("=== FAEA 2 (sc_corp_faea_001) ===");
+console.log(JSON.stringify(faea2, null, 2));
+db.close();

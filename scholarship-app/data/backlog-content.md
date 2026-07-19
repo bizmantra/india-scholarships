@@ -1,6 +1,6 @@
 # IndiaScholarships Content Backlog
 
-## In Progress (2)
+## In Progress (3)
 
 - [ ] **CNT-16**: Fix leaked internal verification notes a
   - **Impact**: High
@@ -11,7 +11,31 @@
 - [ ] **CNT-18**: PM Yashasvi: add cycle-status messaging before deadline hits (traffic protection)
   - **Impact**: Critical
 
-## Backlog (7)
+- [ ] **CNT-36**: Build Adjacent Verticals (Loans, DBT & Document Utilities)
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Create guide clusters and tool links for Education Loans, Aadhaar-bank seeding for DBT, and state-wise caste/income certificate application checklists.
+
+## Backlog (10)
+
+- [ ] **CNT-33**: Optimize Low-CTR Page 2 Keywords (Position 5-15)
+  - **Impact**: High
+  - **Type**: seo
+  - **Description**:
+    Audit Google Search Console for high-impression keywords on page 2. Optimize dynamic year metadata ${year}, enrich DB detail fields, and implement structured FAQ schema to capture rich snippets and boost CTR.
+
+- [ ] **CNT-34**: Ingest High-Volume Missing Scholarships
+  - **Impact**: High
+  - **Type**: content
+  - **Description**:
+    Cross-reference keyword research CSVs against the database. Use Gemini grounding scripts to research and ingest high-volume missing targets (like Post Matriculation Scholarship, Jnanabhumi) into scholarships.db.
+
+- [ ] **CNT-35**: Establish Owned Channels (WhatsApp & Telegram)
+  - **Impact**: High
+  - **Type**: feature
+  - **Description**:
+    Implement WhatsApp Channel invitation banners in details layout and footers. Set up automated Sunday cron jobs or triggers using post-new-to-telegram.js to broadcast verified scholarships.
 
 - [ ] **CNT-19**: Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)
   - **Impact**: High

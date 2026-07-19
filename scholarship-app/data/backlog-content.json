@@ -246,5 +246,37 @@
     "impact": "High",
     "status": "Done",
     "type": "content"
+  },
+  {
+    "id": "CNT-33",
+    "title": "Optimize Low-CTR Page 2 Keywords (Position 5-15)",
+    "description": "Audit Google Search Console for high-impression keywords on page 2. Optimize dynamic year metadata ${year}, enrich DB detail fields, and implement structured FAQ schema to capture rich snippets and boost CTR.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "seo"
+  },
+  {
+    "id": "CNT-34",
+    "title": "Ingest High-Volume Missing Scholarships",
+    "description": "Cross-reference keyword research CSVs against the database. Use Gemini grounding scripts to research and ingest high-volume missing targets (like Post Matriculation Scholarship, Jnanabhumi) into scholarships.db.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "content"
+  },
+  {
+    "id": "CNT-35",
+    "title": "Establish Owned Channels (WhatsApp & Telegram)",
+    "description": "Implement WhatsApp Channel invitation banners in details layout and footers. Set up automated Sunday cron jobs or triggers using post-new-to-telegram.js to broadcast verified scholarships.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "feature"
+  },
+  {
+    "id": "CNT-36",
+    "title": "Build Adjacent Verticals (Loans, DBT & Document Utilities)",
+    "description": "Create guide clusters and tool links for Education Loans, Aadhaar-bank seeding for DBT, and state-wise caste/income certificate application checklists.",
+    "impact": "High",
+    "status": "In Progress",
+    "type": "content"
   }
 ]
