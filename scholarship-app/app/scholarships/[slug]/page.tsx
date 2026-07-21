@@ -493,8 +493,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
             )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-                {/* Mobile Navigation Tabs (visible only on mobile) */}
-                <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
+                <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
                     <span 
                         className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
                     >

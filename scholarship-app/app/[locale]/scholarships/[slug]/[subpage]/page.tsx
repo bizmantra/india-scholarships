@@ -390,8 +390,8 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                     </Link>
                 </div>
 
-                {/* Mobile Navigation Tabs (visible only on mobile) */}
-                <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
+                <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
                     <Link 
                         href={`/scholarships/${scholarship.slug}`}
                         className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
@@ -627,43 +627,45 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
 
                                     {/* Secondary CTA: Secure External Portal Redirect */}
                                     {cleanApplyUrl && (
-                                        <div className="flex flex-col sm:flex-row items-center gap-4 border border-border-gray p-6 rounded-3xl bg-white shadow-sm">
-                                            <div className="flex-1 space-y-1">
-                                                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Official Destination</span>
-                                                <p className="text-xs text-gray-600 truncate max-w-sm sm:max-w-md font-mono">{cleanApplyUrl}</p>
+                                        <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-emerald-200/80 p-5 rounded-2xl bg-emerald-50/20 shadow-xs">
+                                            <div className="min-w-0 flex-1 space-y-1">
+                                                <span className="text-[10px] text-emerald-800 uppercase font-bold tracking-wider block">Official Destination</span>
+                                                <p className="text-xs text-gray-600 truncate font-mono block w-full">{cleanApplyUrl}</p>
                                             </div>
                                             <a
                                                 href={cleanApplyUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="h-[48px] px-6 bg-google-green hover:bg-green-600 text-white rounded-full text-sm font-bold flex items-center justify-center gap-1.5 transition-colors w-full sm:w-auto shadow-md cursor-pointer"
+                                                className="h-[44px] px-6 bg-google-green hover:bg-green-600 text-white rounded-full text-xs font-bold flex items-center justify-center gap-1.5 transition-colors w-full sm:w-auto shrink-0 shadow-sm cursor-pointer"
                                             >
                                                 Go to Official Portal
-                                                <ExternalLink className="h-4.5 w-4.5" />
+                                                <ExternalLink className="h-4 w-4" />
                                             </a>
                                         </div>
                                     )}
 
-                                    {/* AdSense Placement (Clean HTML script integration) */}
-                                    <div className="my-8 p-4 bg-surface-gray border border-border-gray rounded-3xl flex flex-col items-center justify-center min-h-[180px]">
-                                        <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-2">Advertisement</span>
-                                        <div 
-                                            dangerouslySetInnerHTML={{
-                                                __html: `
-                                                    <ins class="adsbygoogle"
-                                                         style="display:block; text-align:center;"
-                                                         data-ad-layout="in-article"
-                                                         data-ad-format="fluid"
-                                                         data-ad-client="ca-pub-XXXXXXXXXXXX"
-                                                         data-ad-slot="XXXXXXXXXX"></ins>
-                                                    <script>
-                                                         (adsbygoogle = window.adsbygoogle || []).push({});
-                                                    </script>
-                                                `
-                                            }}
-                                        />
-                                        <p className="text-xs text-gray-400 mt-2">Support our free directory by viewing verified ads.</p>
-                                    </div>
+                                    {/* AdSense Placement (Rendered only when active publisher ID is configured) */}
+                                    {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
+                                        <div className="my-8 p-4 bg-surface-gray border border-border-gray rounded-3xl flex flex-col items-center justify-center min-h-[180px]">
+                                            <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-2">Advertisement</span>
+                                            <div 
+                                                dangerouslySetInnerHTML={{
+                                                    __html: `
+                                                        <ins class="adsbygoogle"
+                                                             style="display:block; text-align:center;"
+                                                             data-ad-layout="in-article"
+                                                             data-ad-format="fluid"
+                                                             data-ad-client="${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}"
+                                                             data-ad-slot="XXXXXXXXXX"></ins>
+                                                        <script>
+                                                             (adsbygoogle = window.adsbygoogle || []).push({});
+                                                        </script>
+                                                    `
+                                                }}
+                                            />
+                                            <p className="text-xs text-gray-400 mt-2">Support our free directory by viewing verified ads.</p>
+                                        </div>
+                                    )}
 
                                     {/* Step-by-Step Instructions */}
                                     <div className="space-y-4">
@@ -677,42 +679,6 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                                 <FormattedText text={scholarship.step_guide} />
                                             </div>
                                         )}
-                                    </div>
-
-                                    {/* Lead-Gen capture form placeholder */}
-                                    <div className="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 md:p-8 space-y-4">
-                                        <div className="space-y-1">
-                                            <span className="inline-block px-2 py-0.5 rounded bg-blue-100 text-google-blue text-[9px] font-extrabold uppercase tracking-wider">
-                                                Premium Advisor Matching
-                                            </span>
-                                            <h4 className="font-bold text-gray-900 text-base">
-                                                Need assistance with scholarships or education loans?
-                                            </h4>
-                                            <p className="text-xs text-gray-600 leading-relaxed">
-                                                Submit your contact details below to receive free consultation calls regarding document structuring, eligibility review, and private bank student loan opportunities.
-                                            </p>
-                                        </div>
-
-                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                            <input
-                                                type="text"
-                                                placeholder="Your Name"
-                                                className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none bg-white w-full"
-                                                disabled
-                                            />
-                                            <input
-                                                type="email"
-                                                placeholder="Email Address"
-                                                className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none bg-white w-full"
-                                                disabled
-                                            />
-                                            <button
-                                                type="button"
-                                                className="h-[40px] bg-google-blue text-white rounded-xl text-xs font-bold transition-colors cursor-pointer w-full opacity-60"
-                                            >
-                                                Advisor Matching (Coming Soon)
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                             )}

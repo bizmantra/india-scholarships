@@ -3,22 +3,22 @@
 | ID | Title | Slug | Pillar | Target Link | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | ART-1 | Karnataka SSP Post-Matric Scholarship: Full Application Guide | `karnataka-ssp-postmatric-guide-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/karnataka` | Backlog |
-| ART-2 | Odisha e-Medhabruti & Kalia Scheme: How to Apply & Check Status | `odisha-emedhabruti-kalia-guide-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/odisha` | Backlog |
-| ART-3 | MahaDBT Scholarship List: Eligibility & Renewal Guide for Maharashtra | `mahadbt-scholarship-list-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/maharashtra` | Backlog |
-| ART-4 | UP Scholarship 2026: Registration, Status Check & PFMS Verification | `up-scholarship-status-check-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/uttar-pradesh` | Backlog |
-| ART-5 | Swami Vivekananda Scholarship (SVMCM) West Bengal: Complete Rules | `west-bengal-svmcm-scholarship-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/west-bengal` | Backlog |
-| ART-6 | Tamil Nadu Post-Matric & Pudhumai Penn Scheme: Full Breakdown | `tamil-nadu-postmatric-pudhumai-penn` | Pillar 1: State & Portal Guides | `/scholarships-in/tamil-nadu` | Backlog |
-| ART-7 | MP TAAS & Portal 2.0 Guide: Madhya Pradesh SC/ST Scholarships | `mp-taas-scholarship-portal-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/madhya-pradesh` | Backlog |
-| ART-8 | AP ePASS & Jagananna Vidya Deevena: Eligibility & Application Steps | `ap-epass-jagananna-vidya-deevena` | Pillar 1: State & Portal Guides | `/scholarships-in/andhra-pradesh` | Backlog |
-| ART-9 | TS ePASS Telangana Post-Matric Scholarship: Renewal & Status Guide | `telangana-epass-postmatric-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/telangana` | Backlog |
-| ART-10 | Rajasthan SJE SJMS Portal: Post-Matric Scholarship Step-by-Step | `rajasthan-sjms-postmatric-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/rajasthan` | Backlog |
-| ART-11 | Bihar Post-Matric Scholarship (PMS): Registration & Document List | `bihar-postmatric-pms-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/bihar` | Backlog |
-| ART-12 | Kerala DCE & E-Grantz 3.0: Post-Matric Scholarship Application Guide | `kerala-dce-eprantis-scholarships` | Pillar 1: State & Portal Guides | `/scholarships-in/kerala` | Backlog |
-| ART-13 | Assam Post-Matric SC/ST/OBC Scholarship: How to Apply Online | `assam-postmatric-scholarship-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/assam` | Backlog |
-| ART-14 | Dr. Ambedkar Post-Matric Scholarship Punjab: Full Rules | `punjab-postmatric-dr-ambedkar` | Pillar 1: State & Portal Guides | `/scholarships-in/punjab` | Backlog |
-| ART-15 | Haryana Har-Chhatravratti Portal: Scholarship List & Application | `haryana-saral-scholarship-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/haryana` | Backlog |
-| ART-16 | Jharkhand e-Kalyan Scholarship: Status Check & Registration Guide | `jharkhand-ekalyan-scholarship-guide` | Pillar 1: State & Portal Guides | `/guides/e-kalyan-jharkhand` | Backlog |
-| ART-17 | Chhattisgarh Online Post-Matric Scholarship: Application & Dates | `chhattisgarh-postmatric-portal-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/chhattisgarh` | Backlog |
+| ART-2 | Odisha e-Medhabruti & Kalia Scheme: How to Apply & Check Status | `odisha-emedhabruti-kalia-guide-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/odisha` | Done |
+| ART-3 | MahaDBT Scholarship List: Eligibility & Renewal Guide for Maharashtra | `mahadbt-scholarship-list-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/maharashtra` | Done |
+| ART-4 | UP Scholarship 2026: Registration, Status Check & PFMS Verification | `up-scholarship-status-check-2026` | Pillar 1: State & Portal Guides | `/scholarships-in/uttar-pradesh` | Done |
+| ART-5 | Swami Vivekananda Scholarship (SVMCM) West Bengal: Complete Rules | `west-bengal-svmcm-scholarship-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/west-bengal` | Done |
+| ART-6 | Tamil Nadu Post-Matric & Pudhumai Penn Scheme: Full Breakdown | `tamil-nadu-postmatric-pudhumai-penn` | Pillar 1: State & Portal Guides | `/scholarships-in/tamil-nadu` | Done |
+| ART-7 | MP TAAS & Portal 2.0 Guide: Madhya Pradesh SC/ST Scholarships | `mp-taas-scholarship-portal-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/madhya-pradesh` | Done |
+| ART-8 | AP ePASS & Jagananna Vidya Deevena: Eligibility & Application Steps | `ap-epass-jagananna-vidya-deevena` | Pillar 1: State & Portal Guides | `/scholarships-in/andhra-pradesh` | Done |
+| ART-9 | TS ePASS Telangana Post-Matric Scholarship: Renewal & Status Guide | `telangana-epass-postmatric-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/telangana` | Done |
+| ART-10 | Rajasthan SJE SJMS Portal: Post-Matric Scholarship Step-by-Step | `rajasthan-sjms-postmatric-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/rajasthan` | Done |
+| ART-11 | Bihar Post-Matric Scholarship (PMS): Registration & Document List | `bihar-postmatric-pms-guide` | Pillar 1: State & Portal Guides | `/scholarships-in/bihar` | Done |
+| ART-12 | Kerala DCE & E-Grantz 3.0: Post-Matric Scholarship Application Guide | `kerala-dce-eprantis-scholarships` | Pillar 1: State & Portal Guides | `/scholarships-in/kerala` | Done |
+| ART-13 | OBC Post-Matric Scholarship Rules 2026: Income Caps & State Comparisons | `obc-postmatric-scholarship-rules-2026` | Pillar 2: Category & Income Decoders | `/scholarships-by-category/obc` | Done |
+| ART-14 | Dr. Ambedkar Post-Matric Scholarship Punjab: Full Rules | `punjab-postmatric-dr-ambedkar` | Pillar 1: State & Portal Guides | `/scholarships-in/punjab` | Done |
+| ART-15 | EWS Income Certificate Thresholds: ₹2.5L vs ₹8L Limits Decoded | `ews-income-certificate-thresholds` | Pillar 2: Category & Income Decoders | `/scholarships-by-income/under-2-lakh` | Done |
+| ART-16 | Single Girl Child Scholarship Guide: Eligibility & Affidavit Format | `single-girl-child-scholarship-guide` | Pillar 2: Category & Income Decoders | `/scholarships-by-category/girls` | Done |
+| ART-17 | Minority Merit-cum-Means (MCM) Guide: Rules for Muslim, Christian, Sikh, Jain Students | `minority-merit-cum-means-mcm-guide` | Pillar 2: Category & Income Decoders | `/scholarships-by-category/minority` | Done |
 | ART-18 | NSP Portal 2026 Registration: Complete Beginner Guide | `nsp-national-scholarship-portal-guide` | Pillar 1: State & Portal Guides | `/guides/nsp` | Backlog |
 | ART-19 | PFMS Portal Status Check: Know Your Direct Payment Status | `pfms-scholarship-status-check-guide` | Pillar 1: State & Portal Guides | `/guides/pfms` | Backlog |
 | ART-20 | State Portal vs Central NSP: Which One Should You Apply On? | `state-vs-central-scholarship-rules` | Pillar 1: State & Portal Guides | `/guides/nsp` | Backlog |
@@ -27,9 +27,9 @@
 | ART-23 | OBC Non-Creamy Layer Scholarship Rules: Who Qualifies? | `obc-ncl-scholarship-rules-explained` | Pillar 2: Category & Income | `/scholarships-for/obc` | Backlog |
 | ART-24 | EWS Scholarship Guide: Top Government & Private Options | `ews-scholarship-list-and-eligibility` | Pillar 2: Category & Income | `/scholarships-for/ews` | Backlog |
 | ART-25 | NSP Minority Scholarships (Pre-Matric, Post-Matric, MCM): Complete Rules | `minority-moma-scholarship-guide` | Pillar 2: Category & Income | `/scholarships-for/minority` | Backlog |
-| ART-26 | Top Scholarships for Differently-Abled (PwD) Students in India | `disability-pwd-scholarships-india` | Pillar 2: Category & Income | `/scholarships-for/disability` | Backlog |
-| ART-27 | Best Scholarships for Families Earning Under ₹1 Lakh Per Year | `income-under-1-lakh-scholarships` | Pillar 2: Category & Income | `/scholarships-income/under-2-lakhs` | Backlog |
-| ART-28 | Top Scholarships for Families Earning Below ₹2.5 Lakh Annual Income | `income-under-25-lakh-scholarships` | Pillar 2: Category & Income | `/scholarships-income/under-2-lakhs` | Backlog |
+| ART-26 | Engineering / B.Tech CSR Scholarships: Top 10 Grants for Tech Students | `engineering-btech-csr-scholarships` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/btech` | Done |
+| ART-27 | MBBS & Medical Education Grants: How to Fund Government & Private Seats | `mbbs-medical-education-grants` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/mbbs` | Done |
+| ART-28 | Polytechnic & Diploma Student Grants: State & Central Schemes List | `polytechnic-diploma-grants` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/diploma` | Done |
 | ART-29 | EWS & General Category Scholarships for Income Under ₹8 Lakhs | `income-under-8-lakh-scholarships` | Pillar 2: Category & Income | `/scholarships-income/under-8-lakhs` | Backlog |
 | ART-30 | Single Girl Child Scholarships in India: Complete Eligibility List | `single-girl-child-scholarships-list` | Pillar 2: Category & Income | `/scholarships-for/female` | Backlog |
 | ART-31 | Top Scholarships for Female Students in Science, Tech & Engineering | `female-stem-scholarships-india` | Pillar 2: Category & Income | `/scholarships-for/female` | Backlog |

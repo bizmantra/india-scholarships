@@ -60,36 +60,36 @@ export default function HomeClient({
 
             <main>
                 {/* Hero Section / Storefront Header */}
-                <section className="relative bg-gradient-to-b from-blue-50/40 via-white to-white pt-12 pb-10 border-b border-gray-100 overflow-hidden text-center">
-                    <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+                <section className="relative bg-gradient-to-b from-blue-50/40 via-white to-white pt-6 pb-6 md:pt-12 md:pb-10 border-b border-gray-100 overflow-hidden text-center">
+                    <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-4xl">
                         
                         {/* Animated Badge */}
-                        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-google-blue text-xs font-bold mb-6 border border-blue-100/50">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-google-blue text-[11px] sm:text-xs font-bold mb-4 sm:mb-6 border border-blue-100/50">
                             <Sparkles className="h-3.5 w-3.5 text-google-blue animate-pulse" />
                             Over {totalScholarships} Verified Schemes Tracked Daily
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight mb-4 font-serif leading-[1.1]">
+                        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-tight mb-3 md:mb-4 font-serif leading-[1.15]">
                             Find & Match Verified <br className="hidden sm:inline" />
                             <span className="text-google-blue">Scholarships in India</span>
                         </h1>
-                        <p className="text-sm md:text-base text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-5 md:mb-8 max-w-2xl mx-auto leading-relaxed">
                             Discover active government schemes, corporate CSR grants, and private trust funds for school, college, and university students. Filter dynamically by category, domicile state, and annual income.
                         </p>
 
                         {/* Centered Search Bar */}
-                        <div className="max-w-xl mx-auto px-2 mb-4">
-                            <form onSubmit={handleSearch} className="relative w-full shadow-lg rounded-full border border-gray-200/80 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue bg-white transition-all overflow-hidden">
+                        <div className="max-w-xl mx-auto px-1 sm:px-2 mb-2 sm:mb-4">
+                            <form onSubmit={handleSearch} className="relative w-full shadow-md sm:shadow-lg rounded-full border border-gray-200/80 focus-within:border-google-blue focus-within:ring-1 focus-within:ring-google-blue bg-white transition-all overflow-hidden">
                                 <input
                                     type="text"
                                     placeholder="Enter your course, class, state, or keywords..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-6 pr-24 py-4 rounded-full text-sm focus:outline-none text-gray-800"
+                                    className="w-full pl-4 sm:pl-6 pr-22 sm:pr-24 py-3 sm:py-4 rounded-full text-xs sm:text-sm focus:outline-none text-gray-800"
                                 />
                                 <button
                                     type="submit"
-                                    className="absolute right-1.5 top-1.5 bottom-1.5 px-5 bg-google-blue hover:bg-blue-600 text-white rounded-full text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1"
+                                    className="absolute right-1 top-1 bottom-1 sm:right-1.5 sm:top-1.5 sm:bottom-1.5 px-4 sm:px-5 bg-google-blue hover:bg-blue-600 text-white rounded-full text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1"
                                 >
                                     <Search className="h-3.5 w-3.5" />
                                     Search
@@ -100,21 +100,21 @@ export default function HomeClient({
                 </section>
 
                 {/* Micro highlights strip */}
-                <section className="py-6 bg-gray-50 border-b border-border-gray">
-                    <div className="container mx-auto px-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <section className="py-3 md:py-6 bg-gray-50 border-b border-border-gray">
+                    <div className="container mx-auto px-4 md:px-6">
+                        <div className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory md:grid md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto -mx-4 px-4 md:mx-auto md:px-0">
                             {[
-                                { title: 'Verified for 2026', desc: 'Direct linkage to official ministries and portal forms.', color: 'text-google-green bg-green-50' },
-                                { title: 'Faceted Matching', desc: 'Target schemes by caste, income, and domicile state.', color: 'text-google-blue bg-blue-50' },
-                                { title: 'Structured Steps', desc: 'Step-by-step document check and registration flows.', color: 'text-google-yellow bg-yellow-50/50' }
+                                { title: 'Verified for 2026', desc: 'Direct linkage to official portal forms.', color: 'text-google-green bg-green-50' },
+                                { title: 'Faceted Matching', desc: 'Target schemes by caste, income, state.', color: 'text-google-blue bg-blue-50' },
+                                { title: 'Structured Steps', desc: 'Step-by-step registration guides.', color: 'text-google-yellow bg-yellow-50/50' }
                             ].map((feature, i) => (
-                                <div key={i} className="flex gap-3.5 p-4 bg-white rounded-2xl border border-border-gray shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-2.5 rounded-xl h-fit shrink-0 bg-surface-gray">
-                                        <CheckCircle2 className="h-5 w-5 text-google-blue" />
+                                <div key={i} className="snap-center shrink-0 w-[240px] md:w-auto flex items-center gap-3 p-3 md:p-4 bg-white rounded-xl md:rounded-2xl border border-border-gray shadow-xs hover:shadow-sm transition-shadow">
+                                    <div className="p-2 rounded-lg h-fit shrink-0 bg-surface-gray">
+                                        <CheckCircle2 className="h-4.5 w-4.5 text-google-blue" />
                                     </div>
-                                    <div>
-                                        <h3 className="font-bold text-gray-900 text-sm mb-0.5">{feature.title}</h3>
-                                        <p className="text-xs text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
+                                    <div className="min-w-0">
+                                        <h3 className="font-bold text-gray-900 text-xs md:text-sm truncate">{feature.title}</h3>
+                                        <p className="text-[11px] md:text-xs text-gray-500 leading-snug font-medium truncate">{feature.desc}</p>
                                     </div>
                                 </div>
                             ))}

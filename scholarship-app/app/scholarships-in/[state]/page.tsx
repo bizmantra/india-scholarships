@@ -95,9 +95,9 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
 
-                    {/* Mobile Navigation Tabs (visible only on mobile and only if state has >= 3 schemes) */}
+                    {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
                     {scholarships.length >= 3 && (
-                        <div className="lg:hidden mb-6 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-100 pb-3">
+                        <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
                             <span 
                                 className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
                             >
