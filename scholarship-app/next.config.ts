@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     '/*': ['./data/scholarships.db'],
     '/api/search': ['./data/scholarships.db'],
   },
+  experimental: {
+    staticGenerationMaxConcurrency: 8,
+  },
   async redirects() {
     const mappings = [
       { from: 'legacy-foundation-for-excellence-scholarship', to: 'foundation-for-excellence-ffe-scholarship' },
