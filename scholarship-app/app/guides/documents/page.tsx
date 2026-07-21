@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, AlertCircle, Info, ShieldCheck, FileText, Check, HelpCircle } from 'lucide-react';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 export const metadata = {
     title: 'Essential Scholarship Documents Checklist 2026 | IndiaScholarships',
@@ -57,19 +59,8 @@ export default function DocumentsChecklistGuide() {
     ];
 
     return (
-        <div className="min-h-screen bg-white font-sans">
-            {/* Header */}
-            <header className="border-b bg-white">
-                <div className="container mx-auto h-14 flex items-center px-4 justify-between">
-                    <div className="flex items-center">
-                        <Link href="/" className="text-xl font-bold text-blue-700">IndiaScholarships</Link>
-                        <span className="mx-3 text-gray-300">/</span>
-                        <Link href="/guides" className="text-sm text-gray-600 hover:text-blue-700">Guides</Link>
-                        <span className="mx-3 text-gray-300">/</span>
-                        <span className="text-sm text-gray-500">Document Checklist</span>
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+            <Header />
 
             <main className="max-w-4xl mx-auto px-4 py-12">
                 {/* Back Link */}
@@ -183,12 +174,7 @@ export default function DocumentsChecklistGuide() {
                 </section>
             </main>
 
-            {/* Footer */}
-            <footer className="border-t bg-gray-50 py-12">
-                <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-                    <p>© 2025 IndiaScholarships. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

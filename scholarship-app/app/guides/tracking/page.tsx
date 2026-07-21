@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, AlertCircle, Info, ExternalLink, ShieldCheck, HelpCircle } from 'lucide-react';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 export const metadata = {
     title: 'Scholarship Application Status Tracking Guide 2026 | IndiaScholarships',
@@ -13,32 +15,41 @@ export const metadata = {
 export default function StatusTrackingGuide() {
     const statuses = [
         {
-            name: 'Application Submitted / Pending Verification',
-            meaning: 'Your application has been successfully submitted on the portal. It is now in the queue for your institution\'s designated Nodal Officer to verify your academic records.',
-            action: 'Ensure your college/school has received your physical documents if they require offline verification to cross-check.'
+            title: 'Submitted / Pending for Verification',
+            detail: 'Your application has been received successfully. It is now in the queue for your school/college institute nodal officer (INO) to review your academic certificates.',
+            action: 'Ensure your institution INO logs in to verify before the state institute verification deadline.'
         },
         {
-            name: 'Institute Verified (Defective/Rejected if issues found)',
-            meaning: 'Your school/college has verified your application. If there were errors, it might mark it "Defective" (allowing you to edit) or "Rejected".',
-            action: 'If marked "Defective", login immediately, correct the details (e.g. upload correct marksheet), and re-submit.'
+            title: 'Verified by Institute / Pending at District',
+            detail: 'Your school/college has verified your documents. The application is now with the District Nodal Officer (DNO) or State Nodal Officer (SNO) for secondary level approval.',
+            action: 'No student action needed. DNO/SNO verification typically takes 2–4 weeks after institute validation.'
         },
         {
-            name: 'District / State / Ministry Verified',
-            meaning: 'Your application has cleared the college level and has been approved by the government district officer or department ministry.',
-            action: 'No action needed. Your application is moving to merit list generation and financial sanction.'
+            title: 'Sent to PFMS / Under Processing',
+            detail: 'The department has approved your scholarship and forwarded it to the Public Financial Management System (PFMS) for direct bank transfer disbursement.',
+            action: 'Start tracking on the PFMS portal using your Application ID or Bank Account details.'
         },
         {
-            name: 'Sent to PFMS (Public Financial Management System)',
-            meaning: 'Your details have been sent to PFMS for bank account validation. The system checks if your Aadhaar is linked to an active bank account for Direct Benefit Transfer (DBT).',
-            action: 'Check your Aadhaar-Bank mapping status immediately on the UIDAI portal to ensure DBT is enabled.'
-        },
-        {
-            name: 'Payment File Generated / Disbursed',
-            meaning: 'The digital signature has been applied, the funds are approved, and the transfer has been initiated directly to your Aadhaar-linked bank account.',
-            action: 'Check the SMS alerts on your Aadhaar-registered mobile number or view your bank statement.'
+            title: 'Payment Disbursed / Success',
+            detail: 'Funds have been successfully transferred to your Aadhaar-linked active bank account.',
+            action: 'Check your bank statements. Note: The amount might go to a different bank account than the one you entered if you have multiple accounts linked to Aadhaar.'
         }
     ];
 
+    const troubleshooting = [
+        {
+            issue: 'Application Rejected by Institute',
+            solution: 'Read the rejection remarks carefully. Most portals allow you to "defect" or re-open the form, correct errors (like uploading a clearer certificate), and re-submit.'
+        },
+        {
+            issue: 'Aadhaar Not Seeded Error',
+            solution: 'Visit your bank branch immediately and request Aadhaar-seeding with your active bank account. Verify status on UIDAI portal. Payment will fail if seeding is inactive.'
+        },
+        {
+            issue: 'DNO Verification Delayed',
+            solution: 'If verification is pending past the deadline, contact your district social welfare officer domain helplines or submit a query on the portal grievance desk.'
+        }
+    ];
     const steps = [
         {
             title: 'Visit the Official PFMS Portal',
@@ -59,19 +70,8 @@ export default function StatusTrackingGuide() {
     ];
 
     return (
-        <div className="min-h-screen bg-white font-sans">
-            {/* Header */}
-            <header className="border-b bg-white">
-                <div className="container mx-auto h-14 flex items-center px-4 justify-between">
-                    <div className="flex items-center">
-                        <Link href="/" className="text-xl font-bold text-blue-700">IndiaScholarships</Link>
-                        <span className="mx-3 text-gray-300">/</span>
-                        <Link href="/guides" className="text-sm text-gray-600 hover:text-blue-700">Guides</Link>
-                        <span className="mx-3 text-gray-300">/</span>
-                        <span className="text-sm text-gray-500">Status Tracking</span>
-                    </div>
-                </div>
-            </header>
+        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+            <Header />
 
             <main className="max-w-4xl mx-auto px-4 py-12">
                 {/* Back Link */}
@@ -119,9 +119,9 @@ export default function StatusTrackingGuide() {
                                     <div className="w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-xs shrink-0">
                                         {idx + 1}
                                     </div>
-                                    <h3 className="font-bold text-gray-900 text-lg leading-tight">{item.name}</h3>
+                                    <h3 className="font-bold text-gray-900 text-lg leading-tight">{item.title}</h3>
                                 </div>
-                                <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.meaning}</p>
+                                <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.detail}</p>
                                 <div className="p-4 bg-white rounded-xl border border-gray-100/80 flex items-start gap-3">
                                     <Info className="h-4 w-4 text-blue-700 shrink-0 mt-0.5" />
                                     <p className="text-xs text-gray-600 font-medium"><strong>What to do:</strong> {item.action}</p>
@@ -196,12 +196,7 @@ export default function StatusTrackingGuide() {
                 </section>
             </main>
 
-            {/* Footer */}
-            <footer className="border-t bg-gray-50 py-12">
-                <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-                    <p>© 2025 IndiaScholarships. All rights reserved.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }
