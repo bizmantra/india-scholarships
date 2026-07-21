@@ -200,7 +200,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                     <div className="lg:col-span-2 space-y-10">
                         
                         {subpage === 'status-check' && (
-                            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                            <section className="pb-8 border-b border-gray-150">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
                                     <Search className="h-6 w-6 text-emerald-600" />
                                     Step-by-Step Status Check Instructions
@@ -223,7 +223,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                         )}
 
                         {subpage === 'student-login' && (
-                            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                            <section className="pb-8 border-b border-gray-150">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
                                     <UserCheck className="h-6 w-6 text-google-blue" />
                                     Registration & Student Login Workflow
@@ -245,7 +245,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                         )}
 
                         {subpage === 'documents-list' && (
-                            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                            <section className="pb-8 border-b border-gray-150">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
                                     <FileText className="h-6 w-6 text-amber-600" />
                                     Mandatory Document Upload Formats & Specifications
@@ -276,7 +276,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                         )}
 
                         {/* ALWAYS INCLUDE TOP SCHOLARSHIPS ON ALL SUBPAGES (Ensures Money Page Conversion) */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <section className="pb-8 border-b border-gray-150">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 flex items-center gap-2">
                                     <Award className="h-6 w-6 text-google-blue" />
@@ -313,7 +313,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                         </section>
 
                         {/* FAQs Card */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <section className="scroll-mt-32">
                             <h2 className="text-lg sm:text-xl font-extrabold text-gray-900 mb-4">
                                 Portal Support FAQs
                             </h2>

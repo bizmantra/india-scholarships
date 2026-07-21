@@ -653,7 +653,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                     <div className="lg:col-span-2 space-y-10">
                         
                         {/* Section 1: How to Login & Register */}
-                        <section id="student-login" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                        <section id="student-login" className="pb-8 border-b border-gray-150 scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="p-3 bg-blue-50 text-google-blue rounded-2xl">
@@ -690,7 +690,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 2: Application & Payment Status Check Guide */}
-                        <section id="status-check" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                        <section id="status-check" className="pb-8 border-b border-gray-150 scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
@@ -729,7 +729,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 3: Essential Documents Checklist */}
-                        <section id="documents" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                        <section id="documents" className="pb-8 border-b border-gray-150 scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl">
@@ -775,7 +775,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 4: Available Scholarships Hosted on Portal */}
-                        <section id="schemes" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                        <section id="schemes" className="pb-8 border-b border-gray-150 scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
                                     Top Scholarships Hosted on {data.name}
@@ -811,7 +811,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 5: Troubleshooting FAQs */}
-                        <section id="faqs" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                        <section id="faqs" className="scroll-mt-32">
                             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
                                 <HelpCircle className="h-6 w-6 text-google-blue" />
                                 Frequently Asked Questions & Solutions
