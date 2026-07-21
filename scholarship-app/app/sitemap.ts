@@ -10,6 +10,8 @@ import {
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
+import { getAllArticles } from '@/lib/articles';
+
 export async function generateSitemaps() {
     return [
         { id: 'core' },
@@ -34,6 +36,9 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
     ];
 
     if (id === 'core') {
+        const articles = getAllArticles();
+        const articleRoutes = articles.map(art => `/articles/${art.slug}`);
+
         const staticRoutes = [
             '',
             '/scholarships',
@@ -48,6 +53,8 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             '/private-scholarships',
             '/corporate-scholarships',
             '/eligibility-checker',
+            '/articles',
+            ...articleRoutes,
             '/guides',
             '/guides/nsp',
             '/guides/nsp/status-check',

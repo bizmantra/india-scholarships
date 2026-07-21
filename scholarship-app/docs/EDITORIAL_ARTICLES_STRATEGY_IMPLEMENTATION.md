@@ -78,7 +78,15 @@ Every article must strictly follow these readability rules:
 
 ---
 
-## 🔗 6. Related Documentation Links
+## 🤖 6. Subagent Automation (`article-writer`)
+
+The workspace defines a dedicated subagent type (`article-writer`) for autonomous article generation:
+* **Task Source**: Reads article tickets (`ART-[num]`) from `data/backlog-articles.json`.
+* **Execution**: Performs online grounding research, enforces the intake collision check, formats frontmatter metadata, writes simple-English markdown to `content/articles/[slug].md`, and updates task status to `Done`.
+
+---
+
+## 🔗 7. Related Documentation Links
 - [Master Product Vision & Strategy (PRODUCT_VISION_STRATEGY_TACTICS.md)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/PRODUCT_VISION_STRATEGY_TACTICS.md)
 - [SEO Site Structure & URL Hierarchy (seo_site_structure.md)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/seo_site_structure.md)
 - [Workspace Rules & Guidelines (AGENTS.md)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/.agents/AGENTS.md)

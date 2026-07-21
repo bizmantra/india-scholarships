@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps, getClient } from '@/lib/db';
+import { getArticlesForScholarship } from '@/lib/articles';
 import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
@@ -20,7 +21,8 @@ import {
     MousePointer2,
     RefreshCcw,
     CreditCard,
-    ArrowLeft
+    ArrowLeft,
+    BookOpen
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -185,6 +187,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
+    const relevantArticles = getArticlesForScholarship(scholarship.slug);
 
     // Fetch pre-computed community signals aggregates for the scholarship
     const dbClient = getClient();
@@ -894,6 +897,36 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 Applying for a scholarship does not guarantee selection. Always verify all information on the official {scholarship.provider} website before final submission.
                             </p>
                         </section>
+
+                        {relevantArticles.length > 0 && (
+                            <section id="helpful-guides" className="mt-8 pt-6 border-t border-gray-150">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <BookOpen className="h-5 w-5 text-indigo-600" />
+                                    <h2 className="text-lg font-bold text-gray-900">Helpful Reading & Step-by-Step Guides</h2>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {relevantArticles.map((art: any) => (
+                                        <Link
+                                            key={art.slug}
+                                            href={`/articles/${art.slug}`}
+                                            className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl hover:border-indigo-300 transition-all flex flex-col justify-between"
+                                        >
+                                            <div>
+                                                <span className="text-[10px] font-bold uppercase text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded">
+                                                    {art.tag}
+                                                </span>
+                                                <h4 className="text-sm font-bold text-slate-900 mt-2 mb-1 leading-snug">
+                                                    {art.title}
+                                                </h4>
+                                            </div>
+                                            <span className="text-xs font-bold text-indigo-600 mt-2 flex items-center gap-1">
+                                                Read Guide →
+                                            </span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
 
                         {relatedScholarships.length > 0 && (
                             <section id="similar-opportunities" className="mt-8 pt-4 scroll-mt-24">

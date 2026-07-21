@@ -11,9 +11,11 @@ The backlog system consists of local file databases, an API controller layer, a 
 1. **Backlog JSON Databases**:
    - `data/backlog-dev.json`: Master database for developer tasks (ID pattern: `IS-[Number]`).
    - `data/backlog-content.json`: Master database for content/grounding tasks (ID pattern: `CNT-[Number]`).
+   - `data/backlog-articles.json`: Master database for editorial article publishing (ID pattern: `ART-[Number]`).
 2. **Backlog Markdown Mirrors**:
    - `data/backlog-dev.md`: Markdown task list format compiled automatically from the dev JSON.
    - `data/backlog-content.md`: Markdown task list format compiled automatically from the content JSON.
+   - `data/backlog-articles.md`: Markdown task list format compiled automatically from the articles JSON.
 3. **Local Dashboard**:
    - `data/dashboard.md`: Compiled session-start dashboard summarizing active key metrics, in-progress tasks, and upcoming backlogs.
 4. **Interactive Command Center Page**:
