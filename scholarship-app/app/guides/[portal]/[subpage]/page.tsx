@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
-import { PORTALS_DATA, PortalGuide } from '../page';
+import { PORTALS_DATA, PortalGuide } from '@/lib/portalsData';
 import { slugify } from '@/lib/utils';
 
 const PORTAL_SUBPAGES: Record<string, { titleSuffix: string, descPrefix: string, label: string, canonicalSlug: string }> = {
