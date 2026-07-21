@@ -33,14 +33,11 @@ interface CommunitySignalsWidgetProps {
 // Client-side relative time formatter
 function formatRelativeTime(dateStr: string | null) {
     if (!dateStr) return 'No updates';
-    // Handle space separator from SQLite datetime default
     const formattedStr = dateStr.includes(' ') ? dateStr.replace(' ', 'T') : dateStr;
     const date = new Date(formattedStr);
     if (isNaN(date.getTime())) return 'Recently';
     
-    // Add timezone offset adjust if SQLite string doesn't specify Z
     if (!formattedStr.endsWith('Z')) {
-        // SQLite stores in UTC, so append Z
         const utcDate = new Date(formattedStr + 'Z');
         if (!isNaN(utcDate.getTime())) {
             const diffMs = Date.now() - utcDate.getTime();
@@ -127,10 +124,8 @@ export default function CommunitySignalsWidget({
         }
     };
 
-    // Track widget view
     useEffect(() => {
         logAnalytics('widget_view');
-        // Fetch fresh aggregates to ensure data is updated
         const fetchAggregates = async () => {
             try {
                 const res = await fetch(`/api/community-events/${scholarshipId}`);
@@ -145,7 +140,6 @@ export default function CommunitySignalsWidget({
         fetchAggregates();
     }, [scholarshipId]);
 
-    // Initialize Turnstile widget on Step 3
     useEffect(() => {
         if (step === 3 && isModalOpen && turnstileContainerRef.current) {
             const container = turnstileContainerRef.current;
@@ -182,7 +176,7 @@ export default function CommunitySignalsWidget({
         setIsModalOpen(true);
         setStep(1);
         setStatus(null);
-        setDateValue(new Date().toISOString().substring(0, 10)); // Default to today
+        setDateValue(new Date().toISOString().substring(0, 10));
         setVerificationStage(null);
         setPaymentAmount('');
         setAmountWarning(null);
@@ -330,21 +324,19 @@ export default function CommunitySignalsWidget({
         .sort((a, b) => b.percentage - a.percentage)
         .slice(0, 3);
 
-    // Calculate Application Progress percentages for horizontal bars
     const totalProgressCount = aggregate.application_count + aggregate.verification_count + aggregate.selected_count + aggregate.payment_count;
 
     return (
-        <section className="mb-12 border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm bg-gradient-to-b from-white to-gray-50/50">
+        <section id="community-signals" className="mb-12 border border-gray-100 rounded-[2.5rem] p-8 md:p-10 shadow-sm bg-gradient-to-b from-white to-gray-50/50 scroll-mt-24">
             {/* Header section with description and CTA */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-gray-100 pb-6">
                 <div>
                     <h2 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2.5">
                         <Users className="h-6 w-6 text-blue-600" />
-                        Community Updates
+                        Live Student Application Status
                     </h2>
                     <p className="text-xs text-gray-500 mt-2 font-bold leading-relaxed">
-                        Official scholarship information above.<br />
-                        Real student application progress below.
+                        Live application status & updates submitted by fellow students.
                     </p>
                 </div>
                 <div className="flex flex-col items-stretch sm:items-end gap-2.5">
@@ -352,7 +344,7 @@ export default function CommunitySignalsWidget({
                         onClick={handleOpenModal}
                         className="px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-2xl shadow-lg shadow-blue-500/10 active:scale-98 transition-all"
                     >
-                        Share My Progress
+                        Share Status
                     </button>
                     {/* Header trust indicators */}
                     <div className="hidden sm:flex items-center gap-2 text-[10px] text-gray-400 font-extrabold uppercase tracking-wider">
@@ -365,30 +357,28 @@ export default function CommunitySignalsWidget({
                 </div>
             </div>
 
-            {/* Empty state alert banner when total updates is 0 */}
-            {aggregate.total_events === 0 && (
-                <div className="mb-8 p-6 bg-blue-50/35 border border-blue-100/50 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div className="flex items-center gap-4 text-left">
-                        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0 border border-blue-100">
+            {/* Empty state Option B: Compact Prompt Card for Tier-2/3 */}
+            {aggregate.total_events === 0 ? (
+                <div className="p-6 bg-blue-50/35 border border-blue-100/60 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-md shadow-blue-500/10">
                             <Clock className="w-6 h-6" />
                         </div>
                         <div>
-                            <h4 className="font-extrabold text-gray-900 text-sm">No student has shared their progress yet</h4>
+                            <h4 className="font-extrabold text-gray-900 text-sm">Be the first student to update status for this scholarship</h4>
                             <p className="text-xs text-gray-500 mt-1 font-medium leading-relaxed">
-                                Help future applicants by sharing your application status.<br />
-                                It takes less than 15 seconds and no login is required.
+                                Help future applicants by sharing if your form is submitted, verified, or paid. Takes under 15 seconds.
                             </p>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center md:items-end gap-2 shrink-0">
+                    <div className="flex flex-col items-center sm:items-end gap-2 shrink-0">
                         <button
                             onClick={handleOpenModal}
-                            className="px-5 py-2.5 bg-white border border-blue-200 text-blue-700 font-bold text-xs rounded-xl hover:bg-blue-50/50 transition-colors shadow-sm"
+                            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors"
                         >
-                            Share My Progress
+                            Share Status
                         </button>
-                        {/* Banner trust indicators */}
-                        <div className="flex items-center gap-2 text-[9px] text-gray-400 font-black uppercase tracking-wider mt-1.5">
+                        <div className="flex items-center gap-2 text-[9px] text-gray-400 font-black uppercase tracking-wider">
                             <span>✓ Anonymous</span>
                             <span className="text-gray-300">•</span>
                             <span>✓ &lt; 15 seconds</span>
@@ -397,91 +387,85 @@ export default function CommunitySignalsWidget({
                         </div>
                     </div>
                 </div>
-            )}
-
-            {/* Always render the structure users will eventually see */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Card 1: Community Updates */}
-                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Updates</span>
-                        <span className="text-3xl font-black text-gray-900 block leading-tight">
-                            {aggregate.total_events}
-                        </span>
-                        <span className="text-xs text-gray-500 font-bold mt-1.5 block">
-                            {aggregate.total_events === 1 ? 'student has shared updates' : 'students have shared updates'}
-                        </span>
+            ) : (
+                /* Populated 4-Card statistics display */
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Card 1: Community Updates */}
+                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Updates</span>
+                            <span className="text-3xl font-black text-gray-900 block leading-tight">
+                                {aggregate.total_events}
+                            </span>
+                            <span className="text-xs text-gray-500 font-bold mt-1.5 block">
+                                {aggregate.total_events === 1 ? 'student has shared updates' : 'students have shared updates'}
+                            </span>
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-gray-50">
+                            <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Last community update</span>
+                            <span className="text-xs font-bold text-gray-700 mt-1 block">
+                                {formatRelativeTime(aggregate.last_activity)}
+                            </span>
+                        </div>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-gray-50">
-                        <span className="block text-[9px] text-gray-400 font-black uppercase tracking-widest">Last community update</span>
-                        <span className="text-xs font-bold text-gray-700 mt-1 block">
-                            {aggregate.total_events === 0 ? (
-                                <span className="text-gray-405 italic font-medium">No updates yet</span>
+
+                    {/* Card 2: Community Progress */}
+                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all sm:col-span-2 flex flex-col justify-between">
+                        <div>
+                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Progress</span>
+                            <div className="space-y-3.5">
+                                {[
+                                    { label: 'Applied (Form Submitted)', count: aggregate.application_count, color: 'bg-blue-500' },
+                                    { label: 'Verification Pending (School/College/District)', count: aggregate.verification_count, color: 'bg-purple-500' },
+                                    { label: 'Selected (Merit List)', count: aggregate.selected_count, color: 'bg-amber-500' },
+                                    { label: 'Payment Received (Money Credited)', count: aggregate.payment_count, color: 'bg-emerald-500' }
+                                ].map((item, idx) => {
+                                    const pct = totalProgressCount > 0 ? (item.count / totalProgressCount) * 100 : 0;
+                                    return (
+                                        <div key={idx}>
+                                            <div className="flex justify-between text-xs font-bold text-gray-700 mb-1">
+                                                <span>{item.label}</span>
+                                                <span className="text-gray-900">{item.count}</span>
+                                            </div>
+                                            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                <div 
+                                                    className={`h-full ${item.color} rounded-full transition-all duration-500`} 
+                                                    style={{ width: `${pct}%` }} 
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 3: Common Issues */}
+                    <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Common Issues</span>
+                            {topIssues.length === 0 ? (
+                                <p className="text-xs text-gray-400 italic mt-2 font-medium">No issues reported yet.</p>
                             ) : (
-                                formatRelativeTime(aggregate.last_activity)
-                            )}
-                        </span>
-                    </div>
-                </div>
-
-                {/* Card 2: Community Progress */}
-                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all sm:col-span-2 flex flex-col justify-between">
-                    <div>
-                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Community Progress</span>
-                        <div className="space-y-3.5">
-                            {[
-                                { label: 'Applied', count: aggregate.application_count, color: 'bg-blue-500' },
-                                { label: 'Verification', count: aggregate.verification_count, color: 'bg-purple-500' },
-                                { label: 'Selected', count: aggregate.selected_count, color: 'bg-amber-500' },
-                                { label: 'Payment Received', count: aggregate.payment_count, color: 'bg-emerald-500' }
-                            ].map((item, idx) => {
-                                const pct = totalProgressCount > 0 ? (item.count / totalProgressCount) * 100 : 0;
-                                return (
-                                    <div key={idx}>
-                                        <div className="flex justify-between text-xs font-bold text-gray-700 mb-1">
-                                            <span>{item.label}</span>
-                                            <span className="text-gray-900">
-                                                {aggregate.total_events === 0 ? '—' : item.count}
+                                <div className="space-y-3">
+                                    {topIssues.map((issue, idx) => (
+                                        <div key={idx} className="flex justify-between items-center text-xs">
+                                            <span className="font-bold text-gray-700 truncate mr-2">{issue.name}</span>
+                                            <span className="px-2 py-0.5 bg-red-50 text-red-650 font-black rounded-lg text-[10px]">
+                                                {issue.percentage}%
                                             </span>
                                         </div>
-                                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                            <div 
-                                                className={`h-full ${item.color} rounded-full transition-all duration-500`} 
-                                                style={{ width: aggregate.total_events === 0 ? '0%' : `${pct}%` }} 
-                                            />
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-50 text-[10px] text-gray-400 font-bold uppercase">
+                            <ShieldAlert className="w-3.5 h-3.5 text-gray-450" />
+                            <span>Community Sourced</span>
                         </div>
                     </div>
                 </div>
-
-                {/* Card 3: Common Issues */}
-                <div className="p-6 bg-white border border-gray-100 rounded-3xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <span className="block text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-3">Common Issues</span>
-                        {aggregate.total_events === 0 || topIssues.length === 0 ? (
-                            <p className="text-xs text-gray-400 italic mt-2 font-medium">No issues reported yet.</p>
-                        ) : (
-                            <div className="space-y-3">
-                                {topIssues.map((issue, idx) => (
-                                    <div key={idx} className="flex justify-between items-center text-xs">
-                                        <span className="font-bold text-gray-700 truncate mr-2">{issue.name}</span>
-                                        <span className="px-2 py-0.5 bg-red-50 text-red-650 font-black rounded-lg text-[10px]">
-                                            {issue.percentage}%
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                    <div className="flex items-center gap-1.5 mt-4 pt-4 border-t border-gray-50 text-[10px] text-gray-400 font-bold uppercase">
-                        <ShieldAlert className="w-3.5 h-3.5 text-gray-450" />
-                        <span>Community Sourced</span>
-                    </div>
-                </div>
-            </div>
+            )}
 
             {/* Submission Modal */}
             {isModalOpen && (
@@ -541,14 +525,14 @@ export default function CommunitySignalsWidget({
                             {step === 1 && (
                                 <div>
                                     <h4 className="font-extrabold text-gray-900 text-base mb-4">
-                                        Where are you in your scholarship journey?
+                                        What is your application status for this scholarship?
                                     </h4>
                                     <div className="grid grid-cols-1 gap-3">
                                         {[
-                                            { status: 'Applied', icon: <Calendar className="w-5 h-5 text-blue-600" />, desc: 'Submitted my application form' },
-                                            { status: 'Verification', icon: <CheckCircle2 className="w-5 h-5 text-purple-600" />, desc: 'Document verification at institute/district/state level' },
-                                            { status: 'Selected', icon: <Award className="w-5 h-5 text-amber-600" />, desc: 'Selected in merit list' },
-                                            { status: 'Paid', icon: <IndianRupee className="w-5 h-5 text-emerald-600" />, desc: 'Received scholarship money in bank account' }
+                                            { status: 'Applied', icon: <Calendar className="w-5 h-5 text-blue-600" />, label: 'Applied', desc: 'Form Submitted' },
+                                            { status: 'Verification', icon: <CheckCircle2 className="w-5 h-5 text-purple-600" />, label: 'Verification Pending', desc: 'School / College / District level' },
+                                            { status: 'Selected', icon: <Award className="w-5 h-5 text-amber-600" />, label: 'Selected', desc: 'Name in Merit List' },
+                                            { status: 'Paid', icon: <IndianRupee className="w-5 h-5 text-emerald-600" />, label: 'Payment Received', desc: 'Money Credited in Bank' }
                                         ].map((item, idx) => (
                                             <button
                                                 key={idx}
@@ -559,7 +543,7 @@ export default function CommunitySignalsWidget({
                                                 <div className="p-2.5 bg-gray-50 rounded-xl group-hover:bg-white transition-colors">{item.icon}</div>
                                                 <div>
                                                     <span className="block font-bold text-gray-900 text-sm group-hover:text-blue-700 transition-colors">
-                                                        {item.status === 'Verification' ? 'Verification in Progress' : item.status === 'Paid' ? 'Payment Received' : item.status}
+                                                        {item.label}
                                                     </span>
                                                     <span className="block text-xs text-gray-500 font-medium mt-0.5">{item.desc}</span>
                                                 </div>
@@ -684,7 +668,7 @@ export default function CommunitySignalsWidget({
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div>
                                         <h4 className="font-bold text-gray-900 text-base mb-1">
-                                            Did you face any of these issues?
+                                            Did you face any problems during form filling or verification?
                                         </h4>
                                         <p className="text-xs text-gray-500 mb-4 font-semibold">Optional – Select all that apply.</p>
                                         
