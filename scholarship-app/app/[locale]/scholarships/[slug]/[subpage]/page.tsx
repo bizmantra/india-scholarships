@@ -394,7 +394,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Back to Parent Banner */}
                 <div className="mb-8">
-                    <Link href={`/scholarships/${scholarship.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 transition-colors bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
+                    <Link href={`/${locale}/scholarships/${scholarship.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 transition-colors bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
                         <ArrowLeft className="h-4 w-4" />
                         Back to Full {scholarship.title} Overview
                     </Link>
@@ -403,7 +403,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                 {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
                 <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
                     <Link 
-                        href={`/scholarships/${scholarship.slug}`}
+                        href={`/${locale}/scholarships/${scholarship.slug}`}
                         className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
                     >
                         Overview
@@ -413,7 +413,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         return (
                             <Link 
                                 key={key} 
-                                href={`/scholarships/${scholarship.slug}/${key}`}
+                                href={`/${locale}/scholarships/${scholarship.slug}/${key}`}
                                 className={`flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs whitespace-nowrap transition-all ${
                                     isActive 
                                         ? 'bg-blue-600 text-white shadow-sm' 
