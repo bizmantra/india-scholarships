@@ -172,11 +172,27 @@ export default function CommunitySignalsWidget({
         }
     }, [step, isModalOpen]);
 
+function getLocalTodayString() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function getOneYearAgoString() {
+    const d = new Date();
+    const year = d.getFullYear() - 1;
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
         setStep(1);
         setStatus(null);
-        setDateValue(new Date().toISOString().substring(0, 10));
+        setDateValue(getLocalTodayString());
         setVerificationStage(null);
         setPaymentAmount('');
         setAmountWarning(null);
@@ -210,18 +226,16 @@ export default function CommunitySignalsWidget({
             setError('Please select a date.');
             return;
         }
-        const inputDate = new Date(dateValue);
-        const today = new Date();
-        today.setHours(0,0,0,0);
         
-        if (inputDate > today) {
+        const todayStr = getLocalTodayString();
+        const oneYearAgoStr = getOneYearAgoString();
+
+        if (dateValue > todayStr) {
             setError('Date cannot be in the future.');
             return;
         }
 
-        const oneYearAgo = new Date(today);
-        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-        if (inputDate < oneYearAgo) {
+        if (dateValue < oneYearAgoStr) {
             setError('Date cannot be older than one year.');
             return;
         }
@@ -294,7 +308,8 @@ export default function CommunitySignalsWidget({
 
             const data = await res.json();
             if (!res.ok) {
-                throw new Error(data.error || 'Failed to submit update.');
+                const errorMsg = data.details ? `${data.error} Details: ${data.details}` : (data.error || 'Failed to submit update.');
+                throw new Error(errorMsg);
             }
 
             logAnalytics('submission_completed');

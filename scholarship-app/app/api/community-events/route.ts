@@ -64,22 +64,23 @@ export async function POST(request: NextRequest) {
         if (!date) {
             return NextResponse.json({ error: 'Date is required.' }, { status: 400 });
         }
-        const inputDate = new Date(date);
-        if (isNaN(inputDate.getTime())) {
-            return NextResponse.json({ error: 'Invalid date format.' }, { status: 400 });
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+            return NextResponse.json({ error: 'Invalid date format (expected YYYY-MM-DD).' }, { status: 400 });
         }
         
-        const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const compareInput = new Date(inputDate.getFullYear(), inputDate.getMonth(), inputDate.getDate());
+        // Calculate max allowed date in IST (UTC + 5:30) to prevent false future errors for Indian users
+        const nowMs = Date.now();
+        const istDate = new Date(nowMs + (5.5 * 60 * 60 * 1000));
+        const maxTodayStr = istDate.toISOString().substring(0, 10);
 
-        if (compareInput > today) {
+        const yearAgoDate = new Date(nowMs - (365 * 24 * 60 * 60 * 1000));
+        const minYearAgoStr = yearAgoDate.toISOString().substring(0, 10);
+
+        if (date > maxTodayStr) {
             return NextResponse.json({ error: 'Date cannot be in the future.' }, { status: 400 });
         }
 
-        const oneYearAgo = new Date(today);
-        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-        if (compareInput < oneYearAgo) {
+        if (date < minYearAgoStr) {
             return NextResponse.json({ error: 'Date cannot be more than one year old.' }, { status: 400 });
         }
 
