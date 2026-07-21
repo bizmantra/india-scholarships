@@ -39,7 +39,8 @@ export async function generateStaticParams() {
     ];
 }
 
-export default async function LocalizedHome() {
+export default async function LocalizedHome({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const [recentlyAdded, closingSoon, trending, stats] = await Promise.all([
     getRecentlyAddedScholarships(6),
     getClosingSoonScholarships(6),

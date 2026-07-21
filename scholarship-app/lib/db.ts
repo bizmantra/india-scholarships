@@ -833,6 +833,7 @@ export async function getRecentlyAddedScholarships(limit: number = 6) {
         sql: `
             SELECT * FROM scholarships 
             WHERE status = 'Active' 
+            AND (always_open = 1 OR deadline IS NULL OR deadline = '' OR deadline = 'NA' OR deadline = 'Not specified' OR deadline = 'Open Year-Round' OR deadline = 'Rolling' OR deadline = 'Open Now' OR deadline >= date('now'))
             ORDER BY created_at DESC, last_verified DESC, id DESC
             LIMIT ?
         `,
@@ -871,6 +872,7 @@ export async function getTrendingScholarships(limit: number = 6) {
         sql: `
             SELECT * FROM scholarships 
             WHERE status = 'Active' 
+            AND (always_open = 1 OR deadline IS NULL OR deadline = '' OR deadline = 'NA' OR deadline = 'Not specified' OR deadline = 'Open Year-Round' OR deadline = 'Rolling' OR deadline = 'Open Now' OR deadline >= date('now'))
             ORDER BY priority_score DESC, is_popular DESC, id DESC
             LIMIT ?
         `,
@@ -948,5 +950,90 @@ export async function getInternationalScholarshipsByCountry(countrySlug: string)
         args: [countryPattern]
     });
     return res.rows.map(parseScholarship);
+}
+
+// Get live active scholarship counts grouped by state
+export async function getStateScholarshipCounts(): Promise<Record<string, number>> {
+    const client = getClient();
+    const res = await client.execute({
+        sql: `
+            SELECT state, COUNT(*) as count FROM scholarships 
+            WHERE status = 'Active' 
+            AND state IS NOT NULL AND state != '' AND state != 'All India' AND state != 'NA'
+            GROUP BY state
+        `
+    });
+    const map: Record<string, number> = {};
+    for (const row of res.rows) {
+        if (row.state) {
+            map[String(row.state).trim()] = Number(row.count || 0);
+        }
+    }
+    return map;
+}
+
+// Get live active scholarship counts grouped by main caste category
+export async function getCategoryScholarshipCounts(): Promise<Record<string, number>> {
+    const client = getClient();
+    const scholarships = (await client.execute({
+        sql: "SELECT caste FROM scholarships WHERE status = 'Active'"
+    })).rows;
+
+    const counts: Record<string, number> = {
+        'SC': 0, 'ST': 0, 'OBC': 0, 'EBC': 0, 'Minority': 0, 'General': 0, 'PWD': 0, 'Sports': 0
+    };
+
+    for (const s of scholarships) {
+        let casteArr: string[] = [];
+        try {
+            if (typeof s.caste === 'string') casteArr = JSON.parse(s.caste);
+            else if (Array.isArray(s.caste)) casteArr = s.caste as string[];
+        } catch {
+            if (typeof s.caste === 'string') casteArr = [s.caste];
+        }
+
+        const casteStr = casteArr.join(' ').toLowerCase();
+        if (casteStr.includes('sc') || casteStr.includes('scheduled caste')) counts['SC']++;
+        if (casteStr.includes('st') || casteStr.includes('scheduled tribe')) counts['ST']++;
+        if (casteStr.includes('obc') || casteStr.includes('backward class')) counts['OBC']++;
+        if (casteStr.includes('ebc')) counts['EBC']++;
+        if (casteStr.includes('minority') || casteStr.includes('muslim') || casteStr.includes('christian')) counts['Minority']++;
+        if (casteStr.includes('general') || casteStr.includes('ews') || casteStr.includes('open')) counts['General']++;
+        if (casteStr.includes('pwd') || casteStr.includes('disabilit')) counts['PWD']++;
+        if (casteStr.includes('sport')) counts['Sports']++;
+    }
+
+    return counts;
+}
+
+// Get live active counts grouped by education level key
+export async function getEducationLevelCounts(): Promise<Record<string, number>> {
+    const client = getClient();
+    const scholarships = (await client.execute({
+        sql: "SELECT level FROM scholarships WHERE status = 'Active'"
+    })).rows;
+
+    const counts: Record<string, number> = {
+        'class-1-10': 0,
+        'class-11-12': 0,
+        'diploma-polytechnic': 0,
+        'iti-courses': 0,
+        'undergraduate-degree': 0,
+        'postgraduate-degree': 0,
+        'phd-doctoral': 0
+    };
+
+    for (const s of scholarships) {
+        const lvl = String(s.level || '').toLowerCase();
+        if (lvl.includes('1') || lvl.includes('pre-matric') || lvl.includes('school')) counts['class-1-10']++;
+        if (lvl.includes('11') || lvl.includes('12') || lvl.includes('post-matric') || lvl.includes('higher secondary')) counts['class-11-12']++;
+        if (lvl.includes('diploma') || lvl.includes('polytechnic')) counts['diploma-polytechnic']++;
+        if (lvl.includes('iti')) counts['iti-courses']++;
+        if (lvl.includes('undergraduate') || lvl.includes('ug') || lvl.includes('bachelor')) counts['undergraduate-degree']++;
+        if (lvl.includes('postgraduate') || lvl.includes('pg') || lvl.includes('master')) counts['postgraduate-degree']++;
+        if (lvl.includes('phd') || lvl.includes('doctoral') || lvl.includes('research')) counts['phd-doctoral']++;
+    }
+
+    return counts;
 }
 

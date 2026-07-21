@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { getIncomeRanges } from '@/lib/db';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { Sparkles, IndianRupee, FileCheck, CheckCircle2, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
 
 export const metadata = {
-    title: 'Scholarships by Income Range - Find Based on Family Income',
-    description: 'Browse scholarships by family income range. Find scholarships that match your family income eligibility criteria.',
+    title: 'Scholarships by Income Limit 2026 - EWS, BPL & Income Caps | IndiaScholarships',
+    description: 'Browse scholarships by annual family income limits. Find EWS schemes (< ₹1L, ₹2.5L, ₹6L, and Merit No Income Bar) with income certificate guidelines.',
     alternates: {
         canonical: 'https://www.indiascholarships.in/scholarships-by-income',
     }
 };
-
 
 export default async function ScholarshipsByIncomePage() {
     const incomeRanges = await getIncomeRanges();
@@ -19,87 +19,84 @@ export default async function ScholarshipsByIncomePage() {
         <div className="min-h-screen bg-white">
             <Header />
 
-            <main className="max-w-5xl mx-auto px-4 py-12">
-                {/* Breadcrumbs */}
-                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
-                    <span>/</span>
-                    <span className="text-gray-900 font-medium">Scholarships by Income</span>
-                </nav>
+            {/* Hero Header */}
+            <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 px-4 border-b border-gray-150 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100/60 text-blue-800 text-xs font-bold mb-4 border border-blue-200/50">
+                        <Sparkles className="h-3.5 w-3.5 text-blue-700 animate-pulse" />
+                        Income Threshold Directory • Financial Need & EWS Schemes
+                    </div>
 
-                {/* Page Header */}
-                <div className="mb-12">
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                        Scholarships by Income 2026
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4 font-serif leading-[1.1]">
+                        Scholarships by Income Limit 2026 <br className="hidden sm:inline" />
+                        <span className="text-google-blue">Find Grants Matched to Family Income</span>
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                        Many scholarships are reserved for students from economically weaker sections. Find opportunities based on your family's annual income.
+
+                    <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+                        Many government and private trust funds reserve major tuition fee waivers for students below specific annual income caps.
                     </p>
                 </div>
+            </section>
 
+            <main className="max-w-6xl mx-auto px-4 py-12">
+                
                 {/* Income Ranges Grid */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
                     {incomeRanges.map((range) => (
-                        <Link
+                        <div
                             key={range.slug}
-                            href={`/scholarships-income/${range.slug}`}
-                            className="group relative p-8 bg-white border border-gray-100 rounded-3xl hover:border-blue-600 hover:shadow-xl transition-all duration-300"
+                            className="group p-6 bg-white border border-gray-200 rounded-3xl hover:border-google-blue hover:shadow-md transition-all flex flex-col justify-between"
                         >
-                            <div className="flex items-start gap-6">
-                                <div className="text-5xl transform group-hover:scale-110 transition-transform duration-300">💰</div>
-                                <div className="flex-1">
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
-                                        {range.label}
-                                    </h2>
-                                    <p className="text-gray-600 mb-6 leading-relaxed">
-                                        {range.count} scholarship{range.count !== 1 ? 's' : ''} available for families in this income bracket.
-                                    </p>
-                                    <div className="flex items-center text-blue-700 font-bold">
-                                        <span>Browse Scholarships</span>
-                                        <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                        </svg>
-                                    </div>
+                            <div>
+                                <div className="flex items-center justify-between mb-4">
+                                    <span className="text-4xl">💰</span>
+                                    <span className="px-3 py-1 bg-green-50 text-google-green text-xs font-black rounded-full border border-green-100">
+                                        {range.count} Active Schemes
+                                    </span>
                                 </div>
+
+                                <h2 className="text-2xl font-bold text-gray-900 group-hover:text-google-blue transition-colors mb-2 font-serif">
+                                    {range.label}
+                                </h2>
+
+                                <p className="text-xs text-gray-600 leading-relaxed mb-6">
+                                    Offers post-matric fee reimbursements, hostel allowances, and financial aid for families earning within {range.label.toLowerCase()}.
+                                </p>
                             </div>
-                        </Link>
-                    ))}
-                </section>
 
-                {/* Info Box */}
-                <div className="bg-blue-50 border border-blue-100 rounded-3xl p-10 mb-20 flex flex-col md:flex-row gap-8 items-center">
-                    <div className="text-5xl">ℹ️</div>
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">Income Verification Tip</h3>
-                        <p className="text-gray-700 leading-relaxed">
-                            Most scholarships require an **Income Certificate** issued by a competent authority (Tehsildar/Revenue Officer). Ensure your certificate is dated within the last 6-12 months for successful applications.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Related Links */}
-                <div className="bg-gray-50 rounded-3xl p-10 border border-gray-100">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { label: 'By State', href: '/state-scholarships' },
-                            { label: 'By Education', href: '/scholarships-by-education' },
-                            { label: 'By Category', href: '/scholarships-by-category' },
-                            { label: 'Search All', href: '/scholarships' }
-                        ].map((link) => (
                             <Link
-                                key={link.label}
-                                href={link.href}
-                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all font-medium text-gray-900"
+                                href={`/scholarships-income/${range.slug}`}
+                                className="w-full py-2.5 bg-gray-50 hover:bg-google-blue hover:text-white border border-gray-200 text-gray-800 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5 shadow-xs"
                             >
-                                {link.label}
-                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                <span>Browse {range.label} Schemes</span>
+                                <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
-                        ))}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Verification Guidance */}
+                <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100 mb-14">
+                    <div className="flex items-center gap-2 mb-4">
+                        <FileCheck className="h-5 w-5 text-google-blue" />
+                        <h3 className="text-xl font-bold text-gray-900 font-serif">Income Certificate Rules & Mandatory Guidelines</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs text-gray-700 leading-relaxed">
+                        <div className="p-4 bg-white rounded-2xl border border-blue-100/70">
+                            <span className="font-bold text-gray-900 block mb-1">📜 Issuing Authority</span>
+                            Must be issued by a competent Revenue Officer (Tehsildar, Block Development Officer, or Sub-Divisional Officer). Salary slips or employer letters are not accepted for government schemes.
+                        </div>
+                        <div className="p-4 bg-white rounded-2xl border border-blue-100/70">
+                            <span className="font-bold text-gray-900 block mb-1">📅 Validity Period</span>
+                            Income certificates are valid for 1 financial year (April 1 to March 31). Ensure your certificate is dated for the current FY 2026-27.
+                        </div>
+                        <div className="p-4 bg-white rounded-2xl border border-blue-100/70">
+                            <span className="font-bold text-gray-900 block mb-1">👨‍👩‍👧 Family Definition</span>
+                            Includes gross annual income from all sources (salaries, agriculture, business, profession) of parents/guardian for the preceding financial year.
+                        </div>
                     </div>
                 </div>
+
             </main>
 
             <Footer />

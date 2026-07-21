@@ -6,5 +6,6 @@ Disallow: /ta/
 Disallow: /te/
 Disallow: /or/
 Disallow: /kn/
+Disallow: /*?q=
 
 Sitemap: https://www.indiascholarships.in/sitemap.xml

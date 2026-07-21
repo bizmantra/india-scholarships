@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
-import { formatDeadlineDate } from '@/lib/utils';
+import { formatDeadlineDate, sanitizeApplyUrl } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -179,6 +179,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const PageIcon = metric.icon;
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const year = scholarship.verification_year || new Date().getFullYear();
+    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
 
     // FAQPage schema for subpage
     let faqSchema: any = null;
@@ -602,34 +603,113 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                             )}
 
                             {subpage === 'apply-online' && (
-                                <div className="space-y-6">
-                                    <h3 className="font-bold text-gray-900 text-xl mb-4">How to Apply Online (Step-by-Step)</h3>
-                                    {!scholarship.step_guide || scholarship.step_guide.trim() === '' ? (
-                                        <ContentVerificationFallback />
-                                    ) : (
-                                        <>
-                                            <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 mb-6">
-                                                <span className="block text-[10px] text-emerald-800 font-bold uppercase tracking-wider mb-1">Application Mode</span>
-                                                <span className="text-emerald-950 font-black text-lg uppercase">{scholarship.application_mode || 'Online'}</span>
+                                <div className="space-y-8">
+                                    
+                                    {/* Verification Status Card */}
+                                    <div className="p-6 bg-emerald-50/50 border border-emerald-100 rounded-3xl flex items-start gap-4 shadow-sm">
+                                        <div className="relative flex h-3 w-3 mt-1.5 shrink-0">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-google-green opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-3 w-3 bg-google-green"></span>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <h3 className="font-bold text-emerald-950 text-base flex items-center gap-2 leading-none">
+                                                Official Application Portal Link Verified
+                                            </h3>
+                                            <p className="text-xs text-emerald-800 leading-relaxed">
+                                                Secure redirect connection active. Follow the steps below carefully to prevent common submission mistakes and document rejection.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Secondary CTA: Secure External Portal Redirect */}
+                                    {cleanApplyUrl && (
+                                        <div className="flex flex-col sm:flex-row items-center gap-4 border border-border-gray p-6 rounded-3xl bg-white shadow-sm">
+                                            <div className="flex-1 space-y-1">
+                                                <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Official Destination</span>
+                                                <p className="text-xs text-gray-600 truncate max-w-sm sm:max-w-md font-mono">{cleanApplyUrl}</p>
                                             </div>
-                                            
-                                            <div className="mb-8">
+                                            <a
+                                                href={cleanApplyUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="h-[48px] px-6 bg-google-green hover:bg-green-600 text-white rounded-full text-sm font-bold flex items-center justify-center gap-1.5 transition-colors w-full sm:w-auto shadow-md cursor-pointer"
+                                            >
+                                                Go to Official Portal
+                                                <ExternalLink className="h-4.5 w-4.5" />
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    {/* AdSense Placement (Clean HTML script integration) */}
+                                    <div className="my-8 p-4 bg-surface-gray border border-border-gray rounded-3xl flex flex-col items-center justify-center min-h-[180px]">
+                                        <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-2">Advertisement</span>
+                                        <div 
+                                            dangerouslySetInnerHTML={{
+                                                __html: `
+                                                    <ins class="adsbygoogle"
+                                                         style="display:block; text-align:center;"
+                                                         data-ad-layout="in-article"
+                                                         data-ad-format="fluid"
+                                                         data-ad-client="ca-pub-XXXXXXXXXXXX"
+                                                         data-ad-slot="XXXXXXXXXX"></ins>
+                                                    <script>
+                                                         (adsbygoogle = window.adsbygoogle || []).push({});
+                                                    </script>
+                                                `
+                                            }}
+                                        />
+                                        <p className="text-xs text-gray-400 mt-2">Support our free directory by viewing verified ads.</p>
+                                    </div>
+
+                                    {/* Step-by-Step Instructions */}
+                                    <div className="space-y-4">
+                                        <h3 className="font-bold text-gray-900 text-lg">Application Steps & Portal Guide</h3>
+                                        {!scholarship.step_guide || scholarship.step_guide.trim() === '' ? (
+                                            <div className="p-6 text-center border border-dashed border-gray-200 bg-gray-50 rounded-2xl text-gray-500 font-medium text-xs">
+                                                Portal application instructions verification in progress.
+                                            </div>
+                                        ) : (
+                                            <div className="text-gray-700 leading-relaxed prose prose-sm max-w-none">
                                                 <FormattedText text={scholarship.step_guide} />
                                             </div>
+                                        )}
+                                    </div>
 
-                                            {scholarship.apply_url && (
-                                                <div className="pt-4 flex flex-wrap gap-4">
-                                                    <a href={scholarship.apply_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-sm hover:shadow transition-all">
-                                                        Go to Official Portal
-                                                        <ExternalLink className="h-4 w-4" />
-                                                    </a>
-                                                    <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 border border-gray-200 text-gray-700 font-bold rounded-2xl hover:bg-gray-50 transition-colors">
-                                                        View Official Guidelines
-                                                    </a>
-                                                </div>
-                                            )}
-                                        </>
-                                    )}
+                                    {/* Lead-Gen capture form placeholder */}
+                                    <div className="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 md:p-8 space-y-4">
+                                        <div className="space-y-1">
+                                            <span className="inline-block px-2 py-0.5 rounded bg-blue-100 text-google-blue text-[9px] font-extrabold uppercase tracking-wider">
+                                                Premium Advisor Matching
+                                            </span>
+                                            <h4 className="font-bold text-gray-900 text-base">
+                                                Need assistance with scholarships or education loans?
+                                            </h4>
+                                            <p className="text-xs text-gray-600 leading-relaxed">
+                                                Submit your contact details below to receive free consultation calls regarding document structuring, eligibility review, and private bank student loan opportunities.
+                                            </p>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                            <input
+                                                type="text"
+                                                placeholder="Your Name"
+                                                className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none bg-white w-full"
+                                                disabled
+                                            />
+                                            <input
+                                                type="email"
+                                                placeholder="Email Address"
+                                                className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none bg-white w-full"
+                                                disabled
+                                            />
+                                            <button
+                                                type="button"
+                                                className="h-[40px] bg-google-blue text-white rounded-xl text-xs font-bold transition-colors cursor-pointer w-full opacity-60"
+                                            >
+                                                Advisor Matching (Coming Soon)
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
 

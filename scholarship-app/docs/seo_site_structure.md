@@ -28,6 +28,7 @@ graph TD
     Home --> IncomeHub["💰 Income Range (/scholarships-income/:income)"]
     Home --> DetailsHub["📜 Scholarship Details (/scholarships/:slug)"]
     Home --> PortalGuides["🏛️ Portal Guides (/guides/:portal)"]
+    Home --> EditorialLayer["📰 Editorial Layer (/articles & /articles/:slug)"]
 
     %% Tier 2: State Subpages
     StateHub --> StateSubpage["📍 State Hub Subpages<br/>(/scholarships-in/:state/:subpage)"]
@@ -88,6 +89,15 @@ By mapping the base database entries and portal data libraries into these progra
 | **Portal Student Login Subpages** | `/guides/:portal/student-login` | Captures *"e kalyan student login"*, *"portal registration step by step"*. |
 | **Portal Documents Subpages** | `/guides/:portal/documents-list` | Captures *"e kalyan income affidavit format"*, *"portal document checklist"*. |
 | **Portal Scholarships Subpages** | `/guides/:portal/scholarships-list` | Captures *"all scholarships hosted on e-kalyan portal"*. |
+| **Editorial Main Index** | `/articles` | Primary listing hub with search and topic pill filters for Tier-2/3 simple English guides. |
+| **Editorial Article Guides** | `/articles/:slug` | Captures top/mid-funnel procedural searches (*"how to fix bank seeding"*, *"is X scholarship safe"*). |
+
+---
+
+## 📰 Editorial Content Engine (`/articles`) Strategy
+
+For the complete architectural blueprint, 100-article publishing calendar, Tier-2/3 simple English guidelines, and cannibalization defense protocols for the `/articles` section, see:
+👉 [Master Editorial Strategy & Implementation Blueprint (EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md)
 
 ---
 
@@ -100,6 +110,14 @@ To prevent single-sitemap file size and URL limit bottlenecks across 26,800+ sta
 3. **`subpages` (`/sitemap/subpages.xml`)**: Cartesian product of all base scholarships and 7 subpage cluster routes (1,498+ URLs).
 4. **`states` (`/sitemap/states.xml`)**: All state hubs and state subpages for states with $\ge 3$ active scholarships.
 5. **`taxonomies` (`/sitemap/taxonomies.xml`)**: Category, education level, course, income range, level-x-country combinations, and university listing pages.
+
+---
+
+## ⚡ Priority Indexing Automation (`scripts/submit-indexing-api.js`)
+
+To bypass standard sitemap discovery queues and accelerate Googlebot & Bingbot crawling:
+* **IndexNow Protocol (`api.indexnow.org`)**: Pushes instant URL creation/update notifications to Bing & Yandex using key file `public/c0326e5e8e894b92b67f1b7454efb507.txt`.
+* **Google Web Search Indexing API**: Batch submits top-tier/recently modified scholarship URLs directly to Googlebot using Google Service Account credentials (`scholarships-antigravity@...`).
 
 ---
 

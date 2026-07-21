@@ -173,18 +173,14 @@ export default function CgpaClient({ scholarships }: Props) {
                 <Header />
 
                 {/* Hero Section */}
-                <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-indigo-950 text-white py-16 px-4 sm:px-6 lg:px-8">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.1),transparent)] pointer-events-none" />
+                <section className="relative overflow-hidden bg-white border-b border-gray-200 py-16 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-7xl mx-auto text-center relative z-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-4">
-                            <Calculator className="w-3.5 h-3.5" />
-                            <span>Grade Converter Tool</span>
-                        </div>
-                        <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
+                        <span className="text-[10px] uppercase font-bold text-google-blue tracking-wider block mb-1">Grade Converter Tool</span>
+                        <h1 className="text-3xl sm:text-5xl font-black text-gray-900 font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
                             CGPA to Percentage Converter
                         </h1>
-                        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Use the IndiaScholarships CGPA to Percentage Converter to convert your academic scores into standard percentages and instantly match scholarship eligibility requirements.
+                        <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                            Convert your academic grades to percentages and instantly check qualifying government and private schemes.
                         </p>
                     </div>
                 </section>
@@ -192,7 +188,7 @@ export default function CgpaClient({ scholarships }: Props) {
                 <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                     {/* Breadcrumbs */}
                     <div className="text-sm text-gray-500 mb-8">
-                        <Link href="/tools" className="hover:text-blue-700 font-medium">Tools</Link>
+                        <Link href="/tools" className="hover:text-google-blue font-medium">Tools</Link>
                         <span className="mx-2">/</span>
                         <span className="text-gray-900 font-semibold">CGPA to Percentage Converter</span>
                     </div>
@@ -200,14 +196,15 @@ export default function CgpaClient({ scholarships }: Props) {
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
                         
                         {/* Calculator Card */}
-                        <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
+                        <div className="lg:col-span-5 bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xs">
                             <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <Percent className="w-5 h-5 text-emerald-600" />
+                                <Percent className="w-5 h-5 text-google-blue" />
                                 <span>Input Your Scores</span>
                             </h2>
                             <p className="text-gray-500 text-xs leading-relaxed mb-6">
                                 Choose your scale, type your current CGPA, and select the formula multiplier.
-                            </p>                            <form onSubmit={handleSubmit} className="space-y-6">
+                            </p>
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Grading Scale */}
                                 <div>
                                     <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2">
@@ -219,7 +216,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                             onClick={() => { setScale('10'); setCgpa('8.0'); }}
                                             className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                 scale === '10'
-                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/20'
+                                                    ? 'bg-google-blue border-google-blue text-white shadow-md shadow-blue-500/20'
                                                     : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                             }`}
                                         >
@@ -230,7 +227,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                             onClick={() => { setScale('4'); setCgpa('3.2'); }}
                                             className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                 scale === '4'
-                                                    ? 'bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/20'
+                                                    ? 'bg-google-blue border-google-blue text-white shadow-md shadow-blue-500/20'
                                                     : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                             }`}
                                         >
@@ -252,7 +249,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                             step="0.01"
                                             min="0"
                                             max={scale}
-                                            className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent focus:outline-hidden font-semibold text-lg"
+                                            className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-google-blue focus:border-transparent focus:outline-hidden font-semibold text-lg"
                                         />
                                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400">
                                             / {scale}.0
@@ -272,8 +269,8 @@ export default function CgpaClient({ scholarships }: Props) {
                                                 onClick={() => setFormula('9.5')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '9.5'
-                                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-800'
-                                                        : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
+                                                        ? 'bg-blue-50 border-google-blue text-google-blue font-extrabold'
+                                                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
                                                 CBSE / AICTE (× 9.5)
@@ -283,8 +280,8 @@ export default function CgpaClient({ scholarships }: Props) {
                                                 onClick={() => setFormula('10')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '10'
-                                                        ? 'bg-emerald-50 border-emerald-500 text-emerald-800'
-                                                        : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
+                                                        ? 'bg-blue-50 border-google-blue text-google-blue font-extrabold'
+                                                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
                                                 Standard (× 10.0)
@@ -297,7 +294,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {!hasCalculated && !calculating && (
                                     <button
                                         type="submit"
-                                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3.5 text-xs font-bold transition-all shadow-md shadow-emerald-500/20 flex items-center justify-center gap-1.5 cursor-pointer mt-4"
+                                        className="w-full bg-google-blue hover:bg-blue-600 text-white rounded-xl py-3.5 text-xs font-bold transition-all shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer mt-4"
                                     >
                                         <span>Convert CGPA to Percentage →</span>
                                     </button>
@@ -306,7 +303,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {calculating && (
                                     <button
                                         disabled
-                                        className="w-full bg-emerald-600/80 text-white rounded-xl py-3.5 text-xs font-bold flex items-center justify-center gap-2 cursor-wait mt-4"
+                                        className="w-full bg-google-blue/80 text-white rounded-xl py-3.5 text-xs font-bold flex items-center justify-center gap-2 cursor-wait mt-4"
                                     >
                                         <svg className="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -319,13 +316,13 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {/* Output Display */}
                                 {hasCalculated && (
                                     <div className="space-y-6">
-                                        <div className="mt-8 bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-6 text-center shadow-lg shadow-emerald-500/20 relative overflow-hidden">
-                                            <div className="absolute top-0 right-0 p-4 opacity-10">
-                                                <Percent className="w-20 h-20" />
+                                        <div className="mt-8 bg-blue-50 border border-blue-100/50 rounded-2xl p-6 text-center relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 p-4 opacity-5">
+                                                <Percent className="w-20 h-20 text-google-blue" />
                                             </div>
-                                            <span className="text-[10px] uppercase tracking-wider font-extrabold opacity-90 block mb-1">Calculated Percentage</span>
-                                            <span className="text-4xl font-black">{percentage}%</span>
-                                            <p className="text-xs mt-3 text-emerald-100 font-medium">
+                                            <span className="text-[10px] uppercase tracking-wider font-extrabold text-gray-400 block mb-1">Calculated Percentage</span>
+                                            <span className="text-4xl font-black text-google-blue">{percentage}%</span>
+                                            <p className="text-xs mt-3 text-gray-500 font-medium">
                                                 {scale === '10' 
                                                     ? `Formula: CGPA (${cgpa}) × ${formula} multiplier` 
                                                     : `Formula: (GPA ${cgpa} / 4) × 100`}
@@ -334,7 +331,7 @@ export default function CgpaClient({ scholarships }: Props) {
 
                                         <button
                                             type="submit"
-                                            className="w-full py-2.5 border border-emerald-200 hover:border-emerald-300 text-emerald-700 font-bold rounded-xl text-xs bg-emerald-50/50 hover:bg-emerald-50 transition-all flex items-center justify-center gap-1 cursor-pointer"
+                                            className="w-full py-2.5 border border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-700 font-bold rounded-xl text-xs bg-gray-50 hover:bg-gray-100 transition-all flex items-center justify-center gap-1 cursor-pointer"
                                         >
                                             <span>Recalculate Percentage →</span>
                                         </button>
@@ -353,13 +350,13 @@ export default function CgpaClient({ scholarships }: Props) {
                         {/* Recommendation Panel */}
                         <div className="lg:col-span-7 space-y-6" ref={resultsRef}>
                             {hasCalculated ? (
-                                <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
+                                <div className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xs">
                                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                                         <div>
                                             <h2 className="text-xl font-bold text-gray-900 font-serif">Recommended Scholarships</h2>
                                             <p className="text-gray-500 text-xs mt-1">Matched schemes requiring a score of ≤ {percentage}%</p>
                                         </div>
-                                        <span className="self-start sm:self-center px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 text-xs font-bold rounded-full">
+                                        <span className="self-start sm:self-center px-3 py-1 bg-blue-50 text-google-blue border border-blue-100 text-xs font-bold rounded-full">
                                             {matches.length} Matches Found
                                         </span>
                                     </div>
@@ -381,7 +378,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                                     onClick={() => setActiveTab(tab.id as TabType)}
                                                     className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                                                         activeTab === tab.id
-                                                            ? 'border-emerald-600 text-emerald-700 bg-emerald-50/50'
+                                                            ? 'border-google-blue text-google-blue bg-blue-50/50'
                                                             : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                                     }`}
                                                 >
@@ -389,7 +386,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                                     <span>{tab.label}</span>
                                                     <span className={`px-1.5 py-0.5 rounded-full text-[9px] ${
                                                         activeTab === tab.id
-                                                            ? 'bg-emerald-600 text-white font-extrabold'
+                                                            ? 'bg-google-blue text-white font-extrabold'
                                                             : 'bg-gray-100 text-gray-600'
                                                     }`}>
                                                         {count}
@@ -417,7 +414,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                     )}
                                 </div>
                             ) : (
-                                <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs text-center py-16 flex flex-col items-center justify-center">
+                                <div className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xs text-center py-16 flex flex-col items-center justify-center">
                                     <GraduationCap className="w-16 h-16 text-gray-300 mb-4 animate-pulse" />
                                     <h3 className="text-lg font-bold text-gray-900 font-serif mb-2">Find Matching Scholarships</h3>
                                     <p className="text-gray-500 text-xs max-w-sm mx-auto leading-relaxed">

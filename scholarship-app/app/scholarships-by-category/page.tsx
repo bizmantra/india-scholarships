@@ -1,127 +1,197 @@
 import Link from 'next/link';
-import { getAllCategories, getScholarshipsByCategory } from '@/lib/db';
+import { getAllCategories, getCategoryScholarshipCounts, getScholarshipsByCategory } from '@/lib/db';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { Sparkles, Users, FileCheck, ShieldCheck, ArrowRight, BookOpen, GraduationCap } from 'lucide-react';
 
 export const metadata = {
-    title: 'Scholarships by Category - SC, ST, OBC, EBC, Minority',
-    description: 'Browse scholarships by caste category. Find SC, ST, OBC, EBC, and Minority scholarships with complete eligibility and application details.',
+    title: 'Scholarships by Category 2026 - SC, ST, OBC, EWS, Minority | IndiaScholarships',
+    description: 'Find caste & category scholarships in India. Browse verified SC, ST, OBC, General EWS, PWD, and Minority welfare schemes with eligibility rules.',
     alternates: {
         canonical: 'https://www.indiascholarships.in/scholarships-by-category',
     }
 };
 
+interface CategoryMeta {
+    name: string;
+    slug: string;
+    countKey: string;
+    description: string;
+    stipend: string;
+    icon: string;
+    docs: string[];
+    bg: string;
+    badgeColor: string;
+}
+
+const CATEGORY_DEFINITIONS: CategoryMeta[] = [
+    {
+        name: 'Scheduled Caste (SC)',
+        slug: 'sc',
+        countKey: 'SC',
+        description: 'Post-matric maintenance allowances, free coaching, and tuition fee reimbursements for SC students.',
+        stipend: 'Up to ₹2.5 Lakh / Year',
+        icon: '👥',
+        docs: ['Caste Certificate (Sub-Divisional Officer)', 'Income Cert (< ₹2.5L)', 'Aadhaar Seeded Bank Account'],
+        bg: 'bg-blue-50/40 border-blue-100',
+        badgeColor: 'bg-blue-100 text-blue-800'
+    },
+    {
+        name: 'Scheduled Tribe (ST)',
+        slug: 'st',
+        countKey: 'ST',
+        description: 'Pre-matric and post-matric tribal welfare schemes, national fellowship, and overseas study grants.',
+        stipend: 'Up to ₹2.5 Lakh / Year',
+        icon: '🏔️',
+        docs: ['ST Tribe Certificate', 'Family Income Certificate', 'College Fee Receipt'],
+        bg: 'bg-green-50/40 border-green-100',
+        badgeColor: 'bg-green-100 text-green-800'
+    },
+    {
+        name: 'Other Backward Classes (OBC)',
+        slug: 'obc',
+        countKey: 'OBC',
+        description: 'Non-creamy layer OBC scholarships, hostel subsidies, and central sector merit schemes.',
+        stipend: 'Up to ₹1.5 Lakh / Year',
+        icon: '📚',
+        docs: ['OBC Non-Creamy Layer Certificate', 'Annual Income Proof', 'Marksheets'],
+        bg: 'bg-amber-50/40 border-amber-100',
+        badgeColor: 'bg-amber-100 text-amber-800'
+    },
+    {
+        name: 'General (EWS)',
+        slug: 'general',
+        countKey: 'General',
+        description: 'Economically Weaker Section (EWS) schemes, defense personnel wards, and open merit corporate CSR funds.',
+        stipend: 'Up to ₹1.0 Lakh / Year',
+        icon: '🌟',
+        docs: ['EWS Certificate (Competent Authority)', 'Class 10/12 Marksheet', 'Identity Card'],
+        bg: 'bg-indigo-50/40 border-indigo-100',
+        badgeColor: 'bg-indigo-100 text-indigo-800'
+    },
+    {
+        name: 'Minority Communities',
+        slug: 'minority',
+        countKey: 'Minority',
+        description: 'Begum Hazrat Mahal, Maulana Azad, and Ministry of Minority Affairs merit-cum-means scholarships for Muslim, Christian, Sikh, Buddhist, Jain, Parsi students.',
+        stipend: 'Up to ₹75,000 / Year',
+        icon: '🕌',
+        docs: ['Self-Declaration Minority Cert', 'Income Cert (< ₹2.0L)', 'Aadhaar Card'],
+        bg: 'bg-purple-50/40 border-purple-100',
+        badgeColor: 'bg-purple-100 text-purple-800'
+    },
+    {
+        name: 'Students with Disability (PWD)',
+        slug: 'pwd',
+        countKey: 'PWD',
+        description: 'Divyangjan scholarships, device allowances, reader assistance, and accessible higher education stipends.',
+        stipend: 'Up to ₹2.0 Lakh / Year',
+        icon: '♿',
+        docs: ['Valid UDID Card (min 40% disability)', 'Income Proof', 'Institution Verification Form'],
+        bg: 'bg-teal-50/40 border-teal-100',
+        badgeColor: 'bg-teal-100 text-teal-800'
+    },
+];
 
 export default async function ScholarshipsByCategoryPage() {
-    const categories = await getAllCategories();
-
-    const categoryInfo: Record<string, { description: string; icon: string }> = {
-        'SC': { description: 'Scholarships for students from Scheduled Caste communities.', icon: '👥' },
-        'ST': { description: 'Scholarships for students from Scheduled Tribe communities.', icon: '🏔️' },
-        'OBC': { description: 'Other Backward Classes scholarships for OBC students.', icon: '📚' },
-        'EBC': { description: 'Economically Backward Classes scholarships.', icon: '💰' },
-        'Minority': { description: 'Scholarships for minority community students.', icon: '🕌' },
-        'General': { description: 'Scholarships open to all categories without caste restrictions.', icon: '🌟' },
-        'Sports': { description: 'Scholarships and support programs for student-athletes.', icon: '🏆' },
-    };
+    const countsMap = await getCategoryScholarshipCounts();
 
     return (
         <div className="min-h-screen bg-white">
             <Header />
 
-            <main className="max-w-5xl mx-auto px-4 py-12">
-                {/* Breadcrumbs */}
-                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
-                    <span>/</span>
-                    <span className="text-gray-900 font-medium">Scholarships by Category</span>
-                </nav>
+            {/* Hero Header */}
+            <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 px-4 border-b border-gray-150 text-center">
+                <div className="max-w-4xl mx-auto">
+                    <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100/60 text-blue-800 text-xs font-bold mb-4 border border-blue-200/50">
+                        <Sparkles className="h-3.5 w-3.5 text-blue-700 animate-pulse" />
+                        Categorized Aid • Social & Financial Welfare Hub
+                    </div>
 
-                {/* Page Header */}
-                <div className="mb-12">
-                    <h1 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                        Scholarships by Category 2026
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 tracking-tight mb-4 font-serif leading-[1.1]">
+                        Scholarships by Category 2026 <br className="hidden sm:inline" />
+                        <span className="text-google-blue">Social & Welfare Schemes</span>
                     </h1>
-                    <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                        Find scholarships specifically tailored to your social and economic category. Verified opportunities for SC, ST, OBC, and more.
+
+                    <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+                        Find verified scholarships reserved for SC, ST, OBC, EWS, PWD, and Minority community students in India.
                     </p>
                 </div>
+            </section>
 
-                {/* Category Grid */}
-                <section className="space-y-6 mb-20">
-                    {(await Promise.all(categories
-                        .filter(c => ['SC', 'ST', 'OBC', 'General', 'Minority', 'EBC', 'Sports'].includes(c) || categories.length < 15)
-                        .map(async (category) => {
-                            const info = categoryInfo[category] || { description: `Verified scholarships for ${category} category students.`, icon: '📖' };
-                            const slug = slugify(category);
-                            const scholarships = (await getScholarshipsByCategory(category)).slice(0, 3);
+            <main className="max-w-6xl mx-auto px-4 py-12">
+                
+                {/* Category Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+                    {CATEGORY_DEFINITIONS.map(cat => {
+                        const count = countsMap[cat.countKey] || 0;
+                        return (
+                            <div
+                                key={cat.slug}
+                                className={`group p-6 rounded-3xl border transition-all hover:shadow-md flex flex-col justify-between ${cat.bg}`}
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between mb-4">
+                                        <span className="text-4xl">{cat.icon}</span>
+                                        <span className={`px-3 py-1 text-xs font-black rounded-full border border-gray-200/60 ${cat.badgeColor}`}>
+                                            {count > 0 ? `${count} Active Schemes` : 'Verified Schemes'}
+                                        </span>
+                                    </div>
 
-                            if (scholarships.length === 0 && !categoryInfo[category]) return null;
+                                    <h2 className="text-2xl font-black text-gray-900 group-hover:text-google-blue transition-colors mb-2 font-serif">
+                                        {cat.name}
+                                    </h2>
 
-                            return (
-                                <div key={category} className="group flex flex-col md:flex-row gap-6 p-8 bg-white border border-gray-100 rounded-3xl hover:border-blue-600 hover:shadow-xl transition-all duration-300">
-                                    <div className="text-5xl md:pt-2">{info.icon}</div>
-                                    <div className="flex-1">
-                                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                            <div>
-                                                <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
-                                                    {category} Category
-                                                </h2>
-                                                <p className="text-gray-600">{info.description}</p>
-                                            </div>
-                                            <Link
-                                                href={`/scholarships-for/${slug}`}
-                                                className="mt-4 md:mt-0 text-blue-700 font-bold flex items-center gap-1 hover:underline"
-                                            >
-                                                View All {category} <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                                            </Link>
+                                    <p className="text-xs text-gray-600 leading-relaxed mb-4">
+                                        {cat.description}
+                                    </p>
+
+                                    {/* Benefits & Documents checklist */}
+                                    <div className="bg-white/80 p-3.5 rounded-2xl border border-gray-150 mb-5 text-xs">
+                                        <span className="font-bold text-gray-900 block mb-1">Top Financial Tier: <span className="text-google-green font-extrabold">{cat.stipend}</span></span>
+                                        <span className="text-[11px] text-gray-500 font-bold block mb-1 uppercase tracking-wider">Required Certificates:</span>
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {cat.docs.map((doc, i) => (
+                                                <span key={i} className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded-md text-[10px] font-semibold">
+                                                    ✓ {doc}
+                                                </span>
+                                            ))}
                                         </div>
-
-                                        {/* Top Scholarships list */}
-                                        {scholarships.length > 0 && (
-                                            <div className="grid grid-cols-1 gap-2 mt-4">
-                                                {scholarships.map((s: any) => (
-                                                    <Link
-                                                        key={s.id}
-                                                        href={`/scholarships/${s.slug}`}
-                                                        className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors border border-transparent hover:border-blue-200"
-                                                    >
-                                                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 shrink-0" />
-                                                        <span className="text-sm font-medium text-gray-700 truncate">{s.title}</span>
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
-                            );
-                        }))).filter(Boolean)}
-                </section>
 
-                {/* Related Links */}
-                <div className="bg-gray-50 rounded-3xl p-10 border border-gray-100">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { label: 'By State', href: '/state-scholarships' },
-                            { label: 'By Education', href: '/scholarships-by-education' },
-                            { label: 'By Income', href: '/scholarships-by-income' },
-                            { label: 'Search All', href: '/scholarships' }
-                        ].map((link) => (
-                            <Link
-                                key={link.label}
-                                href={link.href}
-                                className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all font-medium text-gray-900"
-                            >
-                                {link.label}
-                                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </Link>
-                        ))}
+                                <Link
+                                    href={`/scholarships-for/${cat.slug}`}
+                                    className="w-full py-2.5 bg-white hover:bg-google-blue hover:text-white border border-gray-200 text-google-blue rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5 shadow-xs"
+                                >
+                                    <span>Browse {cat.name} Grants</span>
+                                    <ArrowRight className="h-3.5 w-3.5" />
+                                </Link>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Reservation Guidelines Info Box */}
+                <div className="bg-gray-50 p-8 rounded-3xl border border-gray-200 mb-14">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 font-serif">Category Reservation Rules</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gray-600 leading-relaxed">
+                        <div className="p-4 bg-white rounded-2xl border border-gray-150">
+                            <span className="font-bold text-gray-900 block mb-1">📜 Competent Issuing Authority</span>
+                            Caste certificates must be issued by a Revenue Officer (Tehsildar / SDO / District Magistrate) of your home domicile state.
+                        </div>
+                        <div className="p-4 bg-white rounded-2xl border border-gray-150">
+                            <span className="font-bold text-gray-900 block mb-1">💳 Non-Creamy Layer Validity</span>
+                            OBC (Non-Creamy Layer) and EWS financial certificates must be issued for the current financial year.
+                        </div>
+                        <div className="p-4 bg-white rounded-2xl border border-gray-150">
+                            <span className="font-bold text-gray-900 block mb-1">🏦 Direct Benefit Transfer (DBT)</span>
+                            Sanctioned scholarship amounts are credited directly into Aadhaar-seeded bank accounts via NPCI mapping.
+                        </div>
                     </div>
                 </div>
+
             </main>
 
             <Footer />

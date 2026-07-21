@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -247,17 +248,13 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                 <Header />
 
                 {/* Hero Header */}
-                <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-violet-950 text-white py-16 px-4 sm:px-6 lg:px-8">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(139,92,246,0.1),transparent)] pointer-events-none" />
+                <section className="relative overflow-hidden bg-white border-b border-gray-200 py-16 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-7xl mx-auto text-center relative z-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-bold mb-4">
-                            <ShieldCheck className="w-3.5 h-3.5" />
-                            <span>Verify Your Scholarship Eligibility</span>
-                        </div>
-                        <h1 className="text-3xl sm:text-5xl font-black font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
+                        <span className="text-[10px] uppercase font-bold text-google-blue tracking-wider block mb-1">Eligibility Verification Tool</span>
+                        <h1 className="text-3xl sm:text-5xl font-black text-gray-900 font-serif tracking-tight mb-4 max-w-3xl mx-auto leading-tight">
                             Scholarship Eligibility Checker
                         </h1>
-                        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
                             Use the IndiaScholarships Scholarship Eligibility Checker to enter your details and instantly check your eligibility for matching government and private scholarships.
                         </p>
                     </div>
@@ -265,7 +262,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
 
                 <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" ref={resultsRef}>
                     <div className="text-sm text-gray-500 mb-8">
-                        <a href="/tools" className="hover:text-blue-700 font-medium">Tools</a>
+                        <Link href="/tools" className="hover:text-google-blue font-medium">Tools</Link>
                         <span className="mx-2">/</span>
                         <span className="text-gray-900 font-semibold">Eligibility Checker</span>
                     </div>

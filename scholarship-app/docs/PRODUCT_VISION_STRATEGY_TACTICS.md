@@ -1074,11 +1074,11 @@ Examples:
 6. **FAQ Schema:** Target "People Also Ask" featured snippets
 7. **Breadcrumbs:** Proper navigation hierarchy
 
-**Content Marketing:**
-- **Blog:** Monthly guides ("How to Apply for Scholarships in Karnataka")
+**Content Marketing & Editorial Layer (`/articles`):**
+- **Editorial Engine:** Simple-English Tier-2/3 guides (`/articles/[slug]`) targeting top/mid-funnel procedural searches (See [Editorial Strategy & Implementation Blueprint](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md))
 - **How-To Videos:** YouTube tutorials embedded on scholarship pages
 - **Infographics:** "Scholarship Application Timeline" shareable images
-- **State Guides:** "Complete Guide to Odisha Scholarships 2025"
+- **State Guides:** "Complete Guide to Odisha Scholarships 2026" (mapped to `/scholarships-in/odisha`)
 
 ### **Secondary Channels**
 

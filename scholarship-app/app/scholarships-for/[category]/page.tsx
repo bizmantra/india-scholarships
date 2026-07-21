@@ -211,8 +211,8 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                     </div>
 
                     {/* Category-Specific FAQ */}
-                    <div className="bg-gray-50 rounded-[2.5rem] p-10 mb-20 border border-gray-100">
-                        <h2 className="text-3xl font-bold text-gray-900 mb- aggregation px-08 tracking-tight mb-8">Frequently Asked Questions</h2>
+                    <div className="bg-gray-50/70 rounded-3xl p-8 sm:p-10 mb-16 border border-gray-200">
+                        <h2 className="text-2xl font-bold font-serif text-gray-900 tracking-tight mb-8">Frequently Asked Questions ({displayName})</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                             <div>
                                 <h3 className="font-bold text-gray-900 mb-2 text-lg">Can I apply for multiple scholarships?</h3>

@@ -66,22 +66,22 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
     };
 
     return (
-        <div className="flex flex-col gap-4 p-6 bg-white border border-gray-100 rounded-3xl shadow-sm">
-            <div className="flex items-center gap-3 mb-2">
-                <Share2 className="w-5 h-5 text-gray-400" />
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">
+        <div className="py-4 border-t border-b border-gray-150">
+            <div className="flex items-center gap-2 mb-3">
+                <Share2 className="w-4 h-4 text-gray-400" />
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Share this Scholarship
                 </h3>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
                 {shareLinks.map((link) => (
                     <a
                         key={link.name}
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`p-3 rounded-xl transition-all ${link.color} border border-transparent hover:border-gray-200`}
+                        className={`p-2.5 rounded-lg transition-all ${link.color} border border-gray-200/60`}
                         aria-label={`Share on ${link.name}`}
                     >
                         {link.icon}
@@ -90,11 +90,11 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
 
                 <button
                     onClick={handleCopy}
-                    className="p-3 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all border border-transparent hover:border-gray-200 relative group"
+                    className="p-2.5 bg-surface-gray hover:bg-gray-100 rounded-lg transition-all border border-gray-200/60 relative group"
                     aria-label="Copy Link"
                 >
                     {copied ? (
-                        <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded shadow-lg animate-fade-in whitespace-nowrap">
+                        <span className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-gray-900 text-white text-[10px] rounded shadow-lg whitespace-nowrap">
                             Copied!
                         </span>
                     ) : null}

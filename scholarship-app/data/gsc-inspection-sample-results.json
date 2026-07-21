@@ -1,0 +1,913 @@
+[
+  {
+    "url": "https://www.indiascholarships.in/",
+    "verdict": "NEUTRAL",
+    "coverageState": "Duplicate, Google chose different canonical than user",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/",
+    "lastCrawlTime": "2026-07-19T19:46:33Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships",
+    "lastCrawlTime": "2026-07-20T16:40:08Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/states",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/categories",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme",
+    "lastCrawlTime": "2026-07-19T06:30:35Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships",
+    "lastCrawlTime": "2026-07-13T00:48:34Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship",
+    "lastCrawlTime": "2026-07-13T00:53:59Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship",
+    "lastCrawlTime": "2026-07-08T14:28:09Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program",
+    "lastCrawlTime": "2026-07-13T01:52:42Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar",
+    "lastCrawlTime": "2026-07-12T17:26:26Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships",
+    "lastCrawlTime": "2026-07-16T17:29:50Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship",
+    "lastCrawlTime": "2026-07-18T11:11:04Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme",
+    "lastCrawlTime": "2026-07-20T17:01:58Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship",
+    "lastCrawlTime": "2026-07-19T08:26:47Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aga-khan-foundation-international-scholarship-programme",
+    "verdict": "NEUTRAL",
+    "coverageState": "Crawled - currently not indexed",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "lastCrawlTime": "2026-07-12T22:45:37Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aicte-pragati-scholarship-for-girl-students",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aicte-pragati-scholarship-for-girl-students",
+    "lastCrawlTime": "2026-07-17T14:04:20Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aicte-saksham-scholarship-for-students-with-disabilities",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aicte-saksham-scholarship-for-students-with-disabilities",
+    "lastCrawlTime": "2026-07-20T12:22:42Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aicte-swanath-scholarship-scheme",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aicte-swanath-scholarship-scheme",
+    "lastCrawlTime": "2026-07-19T13:21:26Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal",
+    "lastCrawlTime": "2026-07-11T07:53:07Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aikyashree-post-matric-scholarship-for-minorities-west-bengal",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aikyashree-post-matric-scholarship-for-minorities-west-bengal",
+    "lastCrawlTime": "2026-07-18T11:19:29Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aikyashree-pre-matric-scholarship-for-minorities-west-bengal",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aikyashree-pre-matric-scholarship-for-minorities-west-bengal",
+    "lastCrawlTime": "2026-07-13T17:19:56Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aktu-student-welfare-fund-assistance",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aktu-student-welfare-fund-assistance",
+    "lastCrawlTime": "2026-07-07T07:22:16Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/amazon-future-engineer-scholarship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/amazon-future-engineer-scholarship",
+    "lastCrawlTime": "2026-07-11T06:10:06Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/amazon-future-engineer-scholarship-india",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/amazon-future-engineer-scholarship-india",
+    "lastCrawlTime": "2026-07-11T20:59:28Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/ambedkar-overseas-vidya-nidhi-scst",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/ambedkar-overseas-vidya-nidhi-scst",
+    "lastCrawlTime": "2026-07-19T03:07:01Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/amsterdam-merit-scholarships",
+    "verdict": "NEUTRAL",
+    "coverageState": "Crawled - currently not indexed",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "lastCrawlTime": "2026-07-12T22:41:34Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/amu-merit-financial-awards",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/amu-merit-financial-awards",
+    "lastCrawlTime": "2026-07-13T07:01:39Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/andaman-nicobar-administration-merit-scholarship",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/andaman-nicobar-administration-merit-scholarship",
+    "lastCrawlTime": "2026-06-25T06:36:17Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/andhra-pradesh-minority-welfare",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/andhra-pradesh-minority-welfare",
+    "lastCrawlTime": "2026-07-18T02:33:40Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/eligibility",
+    "lastCrawlTime": "2026-07-19T20:58:15Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/income-limit",
+    "lastCrawlTime": "2026-07-19T20:58:04Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/documents-required",
+    "lastCrawlTime": "2026-07-19T20:57:27Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aai-sports-scholarship-scheme/last-date",
+    "lastCrawlTime": "2026-07-19T21:31:07Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/eligibility",
+    "lastCrawlTime": "2026-07-13T06:42:25Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/income-limit",
+    "lastCrawlTime": "2026-07-13T12:14:38Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/documents-required",
+    "lastCrawlTime": "2026-07-13T01:12:14Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aauw-international-fellowships/last-date",
+    "lastCrawlTime": "2026-07-17T05:58:19Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/eligibility",
+    "lastCrawlTime": "2026-07-09T00:41:34Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/income-limit",
+    "lastCrawlTime": "2026-06-28T05:02:39Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/documents-required",
+    "lastCrawlTime": "2026-06-27T21:25:21Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acc-vidyasaarathi-scholarship/last-date",
+    "lastCrawlTime": "2026-07-12T23:49:36Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/eligibility",
+    "lastCrawlTime": "2026-06-27T20:39:10Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/income-limit",
+    "lastCrawlTime": "2026-07-12T10:04:09Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/documents-required",
+    "lastCrawlTime": "2026-07-08T12:41:04Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/acumen-india-fellowship/last-date",
+    "lastCrawlTime": "2026-07-13T02:16:00Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/eligibility",
+    "lastCrawlTime": "2026-07-12T23:15:57Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/income-limit",
+    "lastCrawlTime": "2026-07-20T10:09:14Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/documents-required",
+    "lastCrawlTime": "2026-07-13T05:00:20Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adb-japan-scholarship-program/last-date",
+    "verdict": "NEUTRAL",
+    "coverageState": "Crawled - currently not indexed",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "lastCrawlTime": "2026-07-12T22:36:46Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/eligibility",
+    "lastCrawlTime": "2026-07-04T10:15:25Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/income-limit",
+    "lastCrawlTime": "2026-06-28T07:03:15Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/documents-required",
+    "lastCrawlTime": "2026-07-13T02:21:38Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/additional-scholarship-for-st-students-andaman-nicobar/last-date",
+    "lastCrawlTime": "2026-07-04T23:48:25Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/eligibility",
+    "lastCrawlTime": "2026-07-17T08:06:11Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/income-limit",
+    "lastCrawlTime": "2026-07-16T23:47:59Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/documents-required",
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adelaide-global-academic-excellence-scholarships/last-date",
+    "lastCrawlTime": "2026-07-13T07:42:15Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/eligibility",
+    "lastCrawlTime": "2026-07-13T06:06:21Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/income-limit",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/documents-required",
+    "lastCrawlTime": "2026-07-06T10:28:53Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-capital-scholarship/last-date",
+    "lastCrawlTime": "2026-07-12T20:32:24Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/eligibility",
+    "lastCrawlTime": "2026-06-28T07:07:56Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/income-limit",
+    "lastCrawlTime": "2026-06-28T05:45:06Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/documents-required",
+    "lastCrawlTime": "2026-06-27T21:59:32Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/aditya-birla-scholarship-programme/last-date",
+    "lastCrawlTime": "2026-06-28T04:56:52Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/eligibility",
+    "lastCrawlTime": "2026-07-19T00:02:28Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/income-limit",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/income-limit",
+    "lastCrawlTime": "2026-07-13T02:11:21Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/documents-required",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/documents-required",
+    "lastCrawlTime": "2026-07-12T21:40:04Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/last-date",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships/adobe-ai-research-fellowship/last-date",
+    "lastCrawlTime": "2026-07-18T13:45:41Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/all-india",
+    "verdict": "NEUTRAL",
+    "coverageState": "Page with redirect",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/state-scholarships",
+    "lastCrawlTime": "2026-07-19T08:11:13Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/all-india/eligibility",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/andaman-and-nicobar-islands",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/andaman-and-nicobar-islands",
+    "lastCrawlTime": "2026-07-16T11:09:31Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/andaman-and-nicobar-islands/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/andaman-and-nicobar-islands/eligibility",
+    "lastCrawlTime": "2026-07-08T00:32:09Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/andhra-pradesh",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/andhra-pradesh",
+    "lastCrawlTime": "2026-07-17T15:42:22Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/andhra-pradesh/eligibility",
+    "verdict": "NEUTRAL",
+    "coverageState": "Discovered - currently not indexed",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/arunachal-pradesh",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/arunachal-pradesh",
+    "lastCrawlTime": "2026-07-17T15:42:22Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/arunachal-pradesh/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/arunachal-pradesh/eligibility",
+    "lastCrawlTime": "2026-07-08T00:46:11Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/assam",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/assam",
+    "lastCrawlTime": "2026-07-15T16:03:29Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/assam/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/assam/eligibility",
+    "lastCrawlTime": "2026-07-08T00:36:07Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/bihar",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/bihar",
+    "lastCrawlTime": "2026-07-15T16:03:29Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/bihar/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/bihar/eligibility",
+    "lastCrawlTime": "2026-07-19T18:40:30Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/chandigarh",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/chandigarh",
+    "lastCrawlTime": "2026-07-14T15:49:35Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/chandigarh/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/chandigarh/eligibility",
+    "lastCrawlTime": "2026-07-08T01:00:13Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/chhattisgarh",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/chhattisgarh",
+    "lastCrawlTime": "2026-07-03T01:26:40Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/chhattisgarh/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/chhattisgarh/eligibility",
+    "lastCrawlTime": "2026-07-08T00:13:23Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman-and-diu",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman-and-diu/eligibility",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/delhi",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/delhi",
+    "lastCrawlTime": "2026-07-14T10:55:05Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/scholarships-in/delhi/eligibility",
+    "verdict": "PASS",
+    "coverageState": "Submitted and indexed",
+    "indexingState": "INDEXING_ALLOWED",
+    "pageFetchState": "SUCCESSFUL",
+    "robotsTxtState": "ALLOWED",
+    "canonicalUrl": "https://www.indiascholarships.in/scholarships-in/delhi/eligibility",
+    "lastCrawlTime": "2026-07-19T18:40:24Z"
+  },
+  {
+    "url": "https://www.indiascholarships.in/category/girls",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/category/minority",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/category/merit-based",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/category/engineering",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  },
+  {
+    "url": "https://www.indiascholarships.in/category/medical",
+    "verdict": "NEUTRAL",
+    "coverageState": "URL is unknown to Google",
+    "indexingState": "INDEXING_STATE_UNSPECIFIED",
+    "pageFetchState": "PAGE_FETCH_STATE_UNSPECIFIED",
+    "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED"
+  }
+]

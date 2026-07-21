@@ -112,22 +112,31 @@ export default function Header() {
                                                 <Link href="/scholarships-for/general" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">General / EWS Schemes</Link>
                                             </div>
                                         </div>
-                                        {/* Col 3: Provider Types */}
+                                         {/* Col 3: Curated & Provider Hubs */}
                                         <div>
-                                            <span className="block text-[10px] font-black uppercase tracking-wider text-google-red mb-3">Provider Hubs</span>
+                                            <span className="block text-[10px] font-black uppercase tracking-wider text-google-red mb-3">Curated Collections</span>
                                             <div className="flex flex-col gap-1">
-                                                <Link href="/government-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Government Portals</Link>
-                                                <Link href="/private-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Private Scholarships</Link>
-                                                <Link href="/corporate-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Corporate CSR Schemes</Link>
-                                                <Link href="/scholarships/deadlines" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-red hover:bg-red-50 transition-colors flex items-center gap-1.5">
-                                                    🔥 Deadline Tracker
+                                                <Link href="/scholarships/trending" className="px-3 py-1.5 rounded-xl text-xs font-bold text-gray-800 hover:bg-orange-50 hover:text-orange-600 transition-colors flex items-center gap-1.5">
+                                                    🔥 Trending Right Now
                                                 </Link>
+                                                <Link href="/scholarships/deadlines" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-red hover:bg-red-50 transition-colors flex items-center gap-1.5">
+                                                    ⏰ Closing Soon
+                                                </Link>
+                                                <Link href="/scholarships/recently-added" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-blue hover:bg-blue-50 transition-colors flex items-center gap-1.5">
+                                                    🕒 Newly Verified
+                                                </Link>
+                                                <div className="my-1 border-t border-gray-100"></div>
+                                                <Link href="/government-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Government Portals</Link>
+                                                <Link href="/private-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Private & Corporate</Link>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
+                        <Link href="/scholarships/trending" className="transition-colors hover:text-google-blue">
+                            Trending
+                        </Link>
                         <Link href="/tools" className="transition-colors hover:text-google-blue">
                             Tools
                         </Link>
@@ -154,61 +163,58 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile Dropdown Menu Container */}
             {showMobileMenu && (
-                <div className="lg:hidden border-t bg-white">
-                    <div className="px-4 pt-4 pb-2">
-                        <form onSubmit={handleSearch} className="relative w-full">
-                            <input
-                                type="text"
-                                placeholder="Search scholarships, courses, states..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-5 pr-12 py-3 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue bg-surface-gray"
-                            />
-                            <button
-                                type="submit"
-                                className="absolute right-1.5 top-1.5 bottom-1.5 px-4 bg-google-blue hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer"
+                <div className="lg:hidden border-b bg-white p-4 space-y-6 animate-in slide-in-from-top duration-200 shadow-xl max-h-[85vh] overflow-y-auto">
+                    
+                    {/* Mobile Search Input */}
+                    <form onSubmit={handleSearch} className="relative w-full">
+                        <input
+                            type="text"
+                            placeholder="Search scholarships..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-4 pr-10 py-2.5 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-google-blue bg-surface-gray"
+                        />
+                        <button type="submit" className="absolute right-3 top-2.5 text-google-blue">
+                            <Search className="h-5 w-5" />
+                        </button>
+                    </form>
+
+                    {/* 1. Quick Actions Grid */}
+                    <div className="space-y-2">
+                        <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400">Curated Collections</span>
+                        <div className="grid grid-cols-2 gap-2">
+                            <Link
+                                href="/scholarships/trending"
+                                onClick={() => setShowMobileMenu(false)}
+                                className="flex items-center justify-center gap-1.5 p-3 bg-orange-50 border border-orange-100 rounded-2xl text-xs font-bold text-orange-700 hover:bg-orange-100/50 transition-colors"
                             >
-                                <Search className="h-4 w-4" />
-                            </button>
-                        </form>
-                    </div>
-                    <nav className="container mx-auto px-4 pb-8 space-y-6">
-                        {/* 1. Quick Actions Grid */}
-                        <div className="space-y-2">
-                            <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400">Quick Actions</span>
-                            <div className="grid grid-cols-2 gap-2">
-                                <Link
-                                    href="/scholarships"
-                                    onClick={() => setShowMobileMenu(false)}
-                                    className="flex items-center justify-center gap-2 p-3 bg-blue-50 border border-blue-100 rounded-2xl text-xs font-bold text-google-blue hover:bg-blue-100/50 transition-colors"
-                                >
-                                    🔍 Search All
-                                </Link>
-                                <Link
-                                    href="/tools/scholarship-eligibility-checker"
-                                    onClick={() => setShowMobileMenu(false)}
-                                    className="flex items-center justify-center gap-2 p-3 bg-blue-50 border border-blue-100 rounded-2xl text-xs font-bold text-google-blue hover:bg-blue-100/50 transition-colors"
-                                >
-                                    📋 Check Match
-                                </Link>
-                                <Link
-                                    href="/scholarships/deadlines"
-                                    onClick={() => setShowMobileMenu(false)}
-                                    className="flex items-center justify-center gap-2 p-3 bg-red-50 border border-red-100 rounded-2xl text-xs font-bold text-google-red hover:bg-red-100/50 transition-colors"
-                                >
-                                    🕒 Deadlines
-                                </Link>
-                                <Link
-                                    href="/tools"
-                                    onClick={() => setShowMobileMenu(false)}
-                                    className="flex items-center justify-center gap-2 p-3 bg-gray-50 border border-gray-200 rounded-2xl text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors"
-                                >
-                                    🧮 All Calculators
-                                </Link>
-                            </div>
+                                🔥 Trending
+                            </Link>
+                            <Link
+                                href="/scholarships/deadlines"
+                                onClick={() => setShowMobileMenu(false)}
+                                className="flex items-center justify-center gap-1.5 p-3 bg-red-50 border border-red-100 rounded-2xl text-xs font-bold text-google-red hover:bg-red-100/50 transition-colors"
+                            >
+                                ⏰ Deadlines
+                            </Link>
+                            <Link
+                                href="/scholarships/recently-added"
+                                onClick={() => setShowMobileMenu(false)}
+                                className="flex items-center justify-center gap-1.5 p-3 bg-blue-50 border border-blue-100 rounded-2xl text-xs font-bold text-google-blue hover:bg-blue-100/50 transition-colors"
+                            >
+                                🕒 New Arrivals
+                            </Link>
+                            <Link
+                                href="/scholarships"
+                                onClick={() => setShowMobileMenu(false)}
+                                className="flex items-center justify-center gap-1.5 p-3 bg-gray-50 border border-gray-200 rounded-2xl text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors"
+                            >
+                                🔍 All Schemes
+                            </Link>
                         </div>
+                    </div>
 
                         {/* 2. Browse Category Chips */}
                         <div className="space-y-2">
@@ -321,7 +327,6 @@ export default function Header() {
                                 </Link>
                             </div>
                         </div>
-                    </nav>
                 </div>
             )}
 
