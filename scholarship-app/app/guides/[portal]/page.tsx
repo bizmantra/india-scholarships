@@ -14,18 +14,19 @@ import {
     PhoneCall, 
     ArrowRight, 
     ChevronRight, 
-    Sparkles, 
     Search,
     IndianRupee,
     UserCheck,
-    Clock
+    Clock,
+    LayoutGrid,
+    ListFilter
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { slugify } from '@/lib/utils';
 
 // Define the portal data type
-interface PortalGuide {
+export interface PortalGuide {
     id: string;
     aliases: string[];
     name: string;
@@ -54,13 +55,13 @@ interface PortalGuide {
     };
 }
 
-const PORTALS_DATA: Record<string, PortalGuide> = {
+export const PORTALS_DATA: Record<string, PortalGuide> = {
     'e-kalyan-jharkhand': {
         id: 'e-kalyan-jharkhand',
         aliases: ['e-kalyan', 'ekalyan', 'e-kalyan-status'],
         name: 'e-Kalyan Jharkhand Portal',
         state: 'Jharkhand',
-        fullTitle: 'e-Kalyan Jharkhand Portal 2026: Login, Status Check & Online Apply Guide',
+        fullTitle: 'e-Kalyan Jharkhand Portal 2026: Login, Status Check & Application Guide',
         seoDesc: 'Complete guide to e-Kalyan Jharkhand scholarship portal (ekalyan.cgg.gov.in). Learn how to check application status, student login, upload income affidavit, and track PFMS payment.',
         officialUrl: 'https://ekalyan.cgg.gov.in',
         portalTag: 'State Government Portal',
@@ -452,6 +453,16 @@ const PORTALS_DATA: Record<string, PortalGuide> = {
     }
 };
 
+const PORTAL_NAV_ITEMS = [
+    { key: 'overview', label: 'Overview', icon: LayoutGrid, href: '#overview' },
+    { key: 'student-login', label: 'Student Login', icon: UserCheck, href: '/student-login' },
+    { key: 'status-check', label: 'Status Check', icon: Search, href: '/status-check' },
+    { key: 'documents-list', label: 'Documents List', icon: FileText, href: '/documents-list' },
+    { key: 'schemes', label: 'Top Schemes', icon: ListFilter, href: '/schemes' },
+    { key: 'faqs', label: 'FAQs', icon: HelpCircle, href: '#faqs' },
+    { key: 'helpdesk', label: 'Helpdesk', icon: PhoneCall, href: '#helpdesk' }
+];
+
 // Generate static params for all portal guides + aliases
 export async function generateStaticParams() {
     const params: Array<{ portal: string }> = [];
@@ -471,7 +482,6 @@ export async function generateMetadata({ params }: { params: Promise<{ portal: s
     const { portal } = await params;
     const key = portal.toLowerCase();
     
-    // Find matching portal or alias
     const data = Object.values(PORTALS_DATA).find(p => p.id === key || p.aliases.includes(key));
 
     if (!data) {
@@ -500,14 +510,12 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
     const { portal } = await params;
     const key = portal.toLowerCase();
 
-    // Match main ID or alias
     const data = Object.values(PORTALS_DATA).find(p => p.id === key || p.aliases.includes(key));
 
     if (!data) {
         notFound();
     }
 
-    // Redirect alias to canonical main ID if slug differs
     if (key !== data.id) {
         redirect(`/guides/${data.id}`);
     }
@@ -542,7 +550,6 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
 
     return (
         <div className="min-h-screen bg-surface-gray flex flex-col font-sans text-gray-900 antialiased">
-            {/* Inject Structured Data Schemas */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
@@ -565,10 +572,37 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                 </div>
             </div>
 
+            {/* Sticky Navigation Pill Bar (Design Helper) */}
+            <div className="sticky top-16 z-30 bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm py-2.5 px-4">
+                <div className="max-w-6xl mx-auto flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+                    {PORTAL_NAV_ITEMS.map((item) => {
+                        const IconComponent = item.icon;
+                        const isHash = item.href.startsWith('#');
+                        const targetUrl = isHash ? item.href : `/guides/${data.id}${item.href}`;
+                        const isActive = item.key === 'overview';
+
+                        return (
+                            <Link
+                                key={item.key}
+                                href={targetUrl}
+                                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all border shrink-0 ${
+                                    isActive
+                                        ? 'bg-google-blue text-white border-google-blue shadow-sm'
+                                        : 'bg-surface-gray text-gray-700 border-gray-200 hover:border-google-blue hover:text-google-blue'
+                                }`}
+                            >
+                                <IconComponent className="h-3.5 w-3.5" />
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
+
             <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1">
                 
-                {/* Hero Header Section */}
-                <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm mb-8 relative overflow-hidden">
+                {/* Hero Header Section (No External Links - Users Stay on Portal) */}
+                <div id="overview" className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm mb-8 relative overflow-hidden">
                     <div className="absolute -right-16 -top-16 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
 
                     <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -586,26 +620,9 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         {data.fullTitle}
                     </h1>
 
-                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6 max-w-4xl">
+                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-4xl">
                         {data.description}
                     </p>
-
-                    <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-gray-100">
-                        <a
-                            href={data.officialUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-google-blue text-white rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-md hover:shadow-lg"
-                        >
-                            Visit Official {data.name} <ExternalLink className="h-4 w-4" />
-                        </a>
-                        <Link
-                            href={`/eligibility-checker?state=${encodeURIComponent(data.state)}`}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-50 text-google-blue rounded-full text-sm font-bold hover:bg-blue-100 transition-all border border-blue-200"
-                        >
-                            Check Eligible Schemes in {data.state} <Sparkles className="h-4 w-4 text-google-blue" />
-                        </Link>
-                    </div>
                 </div>
 
                 {/* Quick Stats Grid */}
@@ -635,17 +652,25 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                     <div className="lg:col-span-2 space-y-10">
                         
                         {/* Section 1: How to Login & Register */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-3 bg-blue-50 text-google-blue rounded-2xl">
-                                    <UserCheck className="h-6 w-6" />
+                        <section id="student-login" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-3 bg-blue-50 text-google-blue rounded-2xl">
+                                        <UserCheck className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
+                                            How to Register & Login on {data.name}
+                                        </h2>
+                                        <p className="text-xs text-gray-500 font-medium">Follow this 4-step official registration process</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
-                                        How to Register & Login on {data.name}
-                                    </h2>
-                                    <p className="text-xs text-gray-500 font-medium">Follow this 4-step official registration process</p>
-                                </div>
+                                <Link 
+                                    href={`/guides/${data.id}/student-login`} 
+                                    className="hidden sm:inline-flex items-center gap-1 text-xs font-extrabold text-google-blue hover:underline"
+                                >
+                                    Full Login Guide <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
                             </div>
 
                             <div className="space-y-4">
@@ -664,17 +689,25 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 2: Application & Payment Status Check Guide */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
-                                    <Search className="h-6 w-6" />
+                        <section id="status-check" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+                                        <Search className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
+                                            How to Check Application & PFMS Status
+                                        </h2>
+                                        <p className="text-xs text-gray-500 font-medium">Track your disbursement stage and approval progress</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
-                                        How to Check Application & PFMS Status
-                                    </h2>
-                                    <p className="text-xs text-gray-500 font-medium">Track your disbursement stage and approval progress</p>
-                                </div>
+                                <Link 
+                                    href={`/guides/${data.id}/status-check`} 
+                                    className="hidden sm:inline-flex items-center gap-1 text-xs font-extrabold text-emerald-600 hover:underline"
+                                >
+                                    Full Status Guide <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
                             </div>
 
                             <div className="space-y-4 mb-6">
@@ -695,17 +728,25 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 3: Essential Documents Checklist */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl">
-                                    <FileText className="h-6 w-6" />
+                        <section id="documents" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl">
+                                        <FileText className="h-6 w-6" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
+                                            Mandatory Document Upload Checklist
+                                        </h2>
+                                        <p className="text-xs text-gray-500 font-medium">Prepare these files before starting your online application</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
-                                        Mandatory Document Upload Checklist
-                                    </h2>
-                                    <p className="text-xs text-gray-500 font-medium">Prepare these files before starting your online application</p>
-                                </div>
+                                <Link 
+                                    href={`/guides/${data.id}/documents-list`} 
+                                    className="hidden sm:inline-flex items-center gap-1 text-xs font-extrabold text-amber-600 hover:underline"
+                                >
+                                    Full Docs List <ChevronRight className="h-3.5 w-3.5" />
+                                </Link>
                             </div>
 
                             <div className="overflow-x-auto">
@@ -733,7 +774,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 4: Available Schemes Hosted on Portal */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <section id="schemes" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
                                     Top Schemes Hosted on {data.name}
@@ -769,7 +810,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                         </section>
 
                         {/* Section 5: Troubleshooting FAQs */}
-                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                        <section id="faqs" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
                             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
                                 <HelpCircle className="h-6 w-6 text-google-blue" />
                                 Frequently Asked Questions & Solutions
@@ -793,7 +834,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                     </div>
 
                     {/* Right Sidebar (1/3 width) */}
-                    <div className="space-y-6">
+                    <div id="helpdesk" className="space-y-6 scroll-mt-32">
                         
                         {/* Helpline & Office Contact Card */}
                         <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
@@ -802,7 +843,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                                 Official Portal Helpdesk
                             </h3>
 
-                            <div className="space-y-3 text-xs sm:text-sm">
+                            <div className="space-y-3 text-xs sm:text-sm mb-6">
                                 <div className="p-3 bg-surface-gray rounded-xl">
                                     <span className="block text-[10px] font-bold uppercase text-gray-400 mb-0.5">Helpline Phone</span>
                                     <span className="font-bold text-gray-900">{data.helpline.phone}</span>
@@ -823,29 +864,16 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                                     <span className="text-xs text-gray-600 leading-normal">{data.helpline.address}</span>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Eligibility Checker Callout Card */}
-                        <div className="bg-gradient-to-br from-blue-700 to-indigo-900 text-white rounded-3xl p-6 shadow-md relative overflow-hidden">
-                            <div className="absolute right-0 bottom-0 translate-x-4 translate-y-4 opacity-10">
-                                <Sparkles className="w-32 h-32" />
-                            </div>
-
-                            <span className="px-3 py-1 bg-white/20 text-white text-[10px] font-black uppercase tracking-widest rounded-full inline-block mb-3 backdrop-blur-sm">
-                                Instant Eligibility Checker
-                            </span>
-
-                            <h3 className="text-lg font-bold mb-2">Not sure if you qualify?</h3>
-                            <p className="text-xs text-blue-100 leading-relaxed mb-6">
-                                Enter your income, category, and state to instantly match 100% eligible scholarships.
-                            </p>
-
-                            <Link
-                                href={`/eligibility-checker?state=${encodeURIComponent(data.state)}`}
-                                className="block w-full py-3 bg-white text-google-blue font-extrabold text-center rounded-xl text-xs hover:bg-blue-50 transition-colors shadow-sm"
+                            {/* External Official Link Moved Here Below Helpdesk */}
+                            <a
+                                href={data.officialUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full py-3 bg-surface-gray hover:bg-gray-100 text-gray-800 font-bold rounded-xl text-xs transition-colors border border-gray-200"
                             >
-                                Match Scholarships Now →
-                            </Link>
+                                External Link: Official Portal <ExternalLink className="h-3.5 w-3.5 text-gray-500" />
+                            </a>
                         </div>
 
                         {/* Fallback Corporate Scholarships Card */}
