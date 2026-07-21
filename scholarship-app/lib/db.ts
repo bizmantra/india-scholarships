@@ -3,8 +3,9 @@ import path from 'path';
 import fs from 'fs';
 import { UNIVERSITIES } from './universities';
 
-const dbUrl = process.env.TURSO_DATABASE_URL || 'file:data/scholarships.db';
-const dbToken = process.env.TURSO_AUTH_TOKEN;
+const useLocal = process.env.USE_LOCAL_DB === 'true' || !process.env.TURSO_DATABASE_URL;
+const dbUrl = useLocal ? 'file:data/scholarships.db' : process.env.TURSO_DATABASE_URL;
+const dbToken = useLocal ? undefined : process.env.TURSO_AUTH_TOKEN;
 
 let clientInstance: any = null;
 

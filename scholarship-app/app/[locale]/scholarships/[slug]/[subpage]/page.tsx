@@ -253,10 +253,20 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
         </div>
     );
 
-    // Helper to format text lists
+    // Helper to format text lists and parse inline markdown
     const FormattedText = ({ text }: { text: string | null }) => {
         if (!text) return <p className="text-gray-400 italic">Not specified</p>;
         
+        const renderMarkdown = (txt: string) => {
+            const parts = txt.split(/\*\*([\s\S]*?)\*\*/g);
+            return parts.map((part, index) => {
+                if (index % 2 === 1) {
+                    return <strong key={index} className="font-bold text-gray-900">{part}</strong>;
+                }
+                return part;
+            });
+        };
+
         let items: string[] = [];
         let isNumbered = false;
 
@@ -271,7 +281,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
         }
 
         if (items.length <= 1) {
-            return <p className="text-gray-700 leading-relaxed">{text}</p>;
+            return <p className="text-gray-700 leading-relaxed">{renderMarkdown(text)}</p>;
         }
 
         return (
@@ -285,7 +295,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         ) : (
                             <div className="mt-1.5 w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
                         )}
-                        <p className="flex-1">{item}</p>
+                        <p className="flex-1">{renderMarkdown(item)}</p>
                     </li>
                 ))}
             </ul>
