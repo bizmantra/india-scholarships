@@ -19,7 +19,8 @@ import {
     UserCheck,
     Clock,
     LayoutGrid,
-    ListFilter
+    ListFilter,
+    Award
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -67,7 +68,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         portalTag: 'State Government Portal',
         description: 'The e-Kalyan portal is the official Welfare Department online scholarship system of Jharkhand. It processes Post-Matric and Pre-Matric educational financial aid for SC, ST, and BC category students studying within or outside Jharkhand.',
         stats: {
-            activeSchemes: '5+ Major Schemes',
+            activeSchemes: '5+ Active Scholarships',
             beneficiaries: '4.5 Lakh+ Annually',
             disbursementType: 'Direct Benefit Transfer (DBT)',
             verificationMode: 'Institute + DNO Verification'
@@ -75,7 +76,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         loginSteps: [
             { step: '01', title: 'Visit Official Web Portal', desc: 'Go to ekalyan.cgg.gov.in and select "Student Login" (Within State or Outside State).' },
             { step: '02', title: 'Enter Credentials', desc: 'Login using your Mobile Number / Student Name / Email ID and your secret password.' },
-            { step: '03', title: 'Fill Registration Form', desc: 'Select your scheme (Post-Matric Within State or Post-Matric Outside State) and enter academic details.' },
+            { step: '03', title: 'Fill Registration Form', desc: 'Select your scholarship (Post-Matric Within State or Post-Matric Outside State) and enter academic details.' },
             { step: '04', title: 'Upload Signed Documents', desc: 'Upload scanned copies of Income Certificate (from CO/Tahsildar), Bonafide Certificate, and Marksheet.' }
         ],
         statusSteps: [
@@ -119,7 +120,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         portalTag: 'State Government Portal',
         description: 'Digital Gujarat is the single-window digital services portal of the Government of Gujarat hosting over 30 post-matric, pre-matric, and higher education assistance schemes alongside the Mukhyamantri Yuva Swavalamban Yojana (MYSY).',
         stats: {
-            activeSchemes: '35+ Government Schemes',
+            activeSchemes: '35+ Scholarships',
             beneficiaries: '8 Lakh+ Students',
             disbursementType: 'DBT via Treasury',
             verificationMode: 'Online Document Verification'
@@ -127,7 +128,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         loginSteps: [
             { step: '01', title: 'Register on Digital Gujarat', desc: 'Click "Register" on digitalgujarat.gov.in using your mobile number and email ID.' },
             { step: '02', title: 'Profile Completion', desc: 'Fill personal details, Aadhaar number, bank account info, and caste category.' },
-            { step: '03', title: 'Select Scholarship Scheme', desc: 'Navigate to "Services" -> "Scholarship Services" and select your specific scheme (SC/ST/OBC/MYSY).' },
+            { step: '03', title: 'Select Scholarship Program', desc: 'Navigate to "Services" -> "Scholarship Services" and select your specific scholarship (SC/ST/OBC/MYSY).' },
             { step: '04', title: 'Upload Files & Final Submit', desc: 'Attach income proof, marksheets, and college fee receipt. Download application PDF.' }
         ],
         statusSteps: [
@@ -136,7 +137,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
             { title: 'Step 3: Review Verification Stage', desc: 'View status timeline: Pending at Principal -> Verified by District Officer -> Payment Sanctioned.' }
         ],
         documents: [
-            { name: 'Income Certificate (Mamlatdar/Tahsildar)', format: 'JPG/PDF (< 200 KB)', note: 'Annual family income must be within scheme limits.' },
+            { name: 'Income Certificate (Mamlatdar/Tahsildar)', format: 'JPG/PDF (< 200 KB)', note: 'Annual family income must be within scholarship limits.' },
             { name: 'Caste Certificate', format: 'JPG/PDF (< 200 KB)', note: 'For SC/ST/SEBC/OBC applicants.' },
             { name: 'Fee Receipt & Bonafide', format: 'JPG/PDF (< 200 KB)', note: 'Current academic year college fee payment proof.' },
             { name: 'Standard 10th & 12th Marksheets', format: 'JPG/PDF (< 200 KB)', note: 'Showing minimum 80 percentile for MYSY.' },
@@ -165,12 +166,12 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         name: 'National Scholarship Portal (NSP)',
         state: 'All India (Central)',
         fullTitle: 'National Scholarship Portal (NSP) 2026: OTR Registration, Login & Status Guide',
-        seoDesc: 'Complete guide to National Scholarship Portal (scholarships.gov.in). Learn about NSP OTR registration, Face-RD biometric verification, PFMS status tracking, and central schemes.',
+        seoDesc: 'Complete guide to National Scholarship Portal (scholarships.gov.in). Learn about NSP OTR registration, Face-RD biometric verification, PFMS status tracking, and central scholarships.',
         officialUrl: 'https://scholarships.gov.in',
         portalTag: 'Central Government Portal',
         description: 'The National Scholarship Portal (NSP) is India’s flagship digital platform under the Ministry of Electronics and Information Technology (MeitY) hosting central, state, and autonomous body (UGC/AICTE) scholarships worth over ₹4,000 Crore annually.',
         stats: {
-            activeSchemes: '80+ Central & State Schemes',
+            activeSchemes: '80+ Central & State Scholarships',
             beneficiaries: '1.2 Crore+ Applicants',
             disbursementType: 'DBT via PFMS System',
             verificationMode: 'Aadhaar OTR + Face-RD Verification'
@@ -178,7 +179,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         loginSteps: [
             { step: '01', title: 'Complete OTR Registration', desc: 'Download NSP OTR App or visit scholarships.gov.in to complete Aadhaar Face-RD biometric OTR.' },
             { step: '02', title: 'Get 14-Digit OTR Reference ID', desc: 'Receive your permanent OTR ID on your Aadhaar-registered mobile number.' },
-            { step: '03', title: 'Login & Scheme Matching', desc: 'Sign in to NSP Portal. System automatically matches qualifying schemes based on your profile.' },
+            { step: '03', title: 'Login & Scholarship Matching', desc: 'Sign in to NSP Portal. System automatically matches qualifying scholarships based on your profile.' },
             { step: '04', title: 'Institute & DNO Submission', desc: 'Submit application online and submit physical document set to college Nodal Officer.' }
         ],
         statusSteps: [
@@ -216,12 +217,12 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         name: 'SSP Karnataka Portal',
         state: 'Karnataka',
         fullTitle: 'SSP Karnataka Portal 2026: Post-Matric & Pre-Matric Student Login & Status Guide',
-        seoDesc: 'Complete guide to SSP Karnataka (ssp.postmatric.karnataka.gov.in). Learn Kutumba ID creation, e-Attestation, student login, status check, and Social Welfare schemes.',
+        seoDesc: 'Complete guide to SSP Karnataka (ssp.postmatric.karnataka.gov.in). Learn Kutumba ID creation, e-Attestation, student login, status check, and Social Welfare scholarships.',
         officialUrl: 'https://ssp.postmatric.karnataka.gov.in',
         portalTag: 'State Government Portal',
         description: 'The State Scholarship Portal (SSP) of Karnataka automates educational financial assistance across Social Welfare, Tribal Welfare, Backward Classes Welfare, Minorities Welfare, and Technical Education departments.',
         stats: {
-            activeSchemes: '12+ State Welfare Schemes',
+            activeSchemes: '12+ State Scholarships',
             beneficiaries: '10 Lakh+ Students',
             disbursementType: 'Direct DBT to Bank Account',
             verificationMode: 'Kutumba Data API Auto-Fetch'
@@ -256,7 +257,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
             phone: '080-22536284 / 080-22536285',
             email: 'postmatrichelp@karnataka.gov.in',
             address: 'Social Welfare Department, Vikasa Soudha, Bengaluru - 560001',
-            hours: '10:00 AM to 5:30 PM (Working Days)'
+            hours: '10:00 AM to 5:30 PM (Monday to Saturday)'
         }
     },
     'aikyashree-west-bengal': {
@@ -270,13 +271,13 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         portalTag: 'State Government Portal',
         description: 'Aikyashree is the unified scholarship portal managed by the West Bengal Minorities Development and Finance Corporation (WBMDFC) alongside Oasis (SC/ST) and Swami Vivekananda Merit-cum-Means (SVMCM) portals.',
         stats: {
-            activeSchemes: '10+ Major Schemes',
+            activeSchemes: '10+ Major Scholarships',
             beneficiaries: '25 Lakh+ Students',
             disbursementType: 'State Treasury Direct Credit',
             verificationMode: 'School/College + BDO Level'
         },
         loginSteps: [
-            { step: '01', title: 'Select Portal & Scheme', desc: 'Choose Aikyashree (Minorities), Oasis (SC/ST), or SVMCM (Merit) based on eligibility.' },
+            { step: '01', title: 'Select Portal & Scholarship', desc: 'Choose Aikyashree (Minorities), Oasis (SC/ST), or SVMCM (Merit) based on eligibility.' },
             { step: '02', title: 'Student Registration', desc: 'Enter district, institution, name, mobile number, and bank account details.' },
             { step: '03', title: 'Generate Application ID', desc: 'Save your unique Application ID (e.g. SSP20250100...) and password.' },
             { step: '04', title: 'Upload & Submit Hard Copy', desc: 'Upload marksheets and submit printed application copy to your school/college.' }
@@ -319,7 +320,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         portalTag: 'State Government Portal',
         description: 'Talliki Vandanam (formerly Amma Vodi) is the flagship financial assistance scheme of the Government of Andhra Pradesh providing ₹15,000 annual financial aid to mothers sending their children to school/junior college.',
         stats: {
-            activeSchemes: '4+ Primary State Schemes',
+            activeSchemes: '4+ State Scholarships',
             beneficiaries: '43 Lakh+ Mothers',
             disbursementType: 'Direct Credit to Mother Account',
             verificationMode: 'Gram/Ward Secretariat Verification'
@@ -332,7 +333,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         ],
         statusSteps: [
             { title: 'Step 1: Visit NWC / Navasakam Portal', desc: 'Go to the official AP Grama Sachivalayam / Navasakam portal.' },
-            { title: 'Step 2: Enter Mother Aadhaar Number', desc: 'Select "Scheme Eligibility Status" and input mother\'s 12-digit Aadhaar number.' },
+            { title: 'Step 2: Enter Mother Aadhaar Number', desc: 'Select "Scholarship Eligibility Status" and input mother\'s 12-digit Aadhaar number.' },
             { title: 'Step 3: Check Payment Sanction Status', desc: 'Status displays: Eligible -> Payment Released -> Bank Credit Confirmed.' }
         ],
         documents: [
@@ -362,12 +363,12 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         name: 'MPTAAS & MMVY Madhya Pradesh Portal',
         state: 'Madhya Pradesh',
         fullTitle: 'MPTAAS & MMVY Madhya Pradesh Portal 2026: Profile Verification & Status Guide',
-        seoDesc: 'Complete guide to MPTAAS (tribal.mp.gov.in) and Mukhyamantri Medhavi Vidyarthi Yojana (MMVY). Profile registration, applicant login, status check, and OBC/SC/ST post-matric schemes.',
+        seoDesc: 'Complete guide to MPTAAS (tribal.mp.gov.in) and Mukhyamantri Medhavi Vidyarthi Yojana (MMVY). Profile registration, applicant login, status check, and OBC/SC/ST post-matric scholarships.',
         officialUrl: 'https://www.tribal.mp.gov.in/mptaas',
         portalTag: 'State Government Portal',
         description: 'MPTAAS (Madhya Pradesh Tribal Affairs Automation System) and MMVY are the primary digital portals of the MP State Government facilitating higher education tuition assistance and post-matric grants.',
         stats: {
-            activeSchemes: '15+ MP State Schemes',
+            activeSchemes: '15+ MP State Scholarships',
             beneficiaries: '7 Lakh+ Students',
             disbursementType: 'Treasury e-Payment (DBT)',
             verificationMode: 'Profile ID + Samagra ID Auto-Fetch'
@@ -375,7 +376,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         loginSteps: [
             { step: '01', title: 'Create MPTAAS Profile ID', desc: 'Register using Samagra ID, Aadhaar number, and Caste certificate number.' },
             { step: '02', title: 'Obtain 12-Digit Profile User ID', desc: 'Get permanent User ID (e.g. User12345678) and password via SMS.' },
-            { step: '03', title: 'Apply for Post-Matric Scheme', desc: 'Select course, institute code, admission year, and upload marksheets.' },
+            { step: '03', title: 'Apply for Post-Matric Scholarship', desc: 'Select course, institute code, admission year, and upload marksheets.' },
             { step: '04', title: 'College Lock & Verification', desc: 'Submit application online and request college nodal officer to lock application.' }
         ],
         statusSteps: [
@@ -415,7 +416,7 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
         portalTag: 'State Government Portal',
         description: 'E-Grantz 3.0 is the comprehensive Web-based Application for Processing Educational Grants for Post-Matriculation Students belonging to SC, ST, OBC, OEC, and Socially Backward classes in Kerala.',
         stats: {
-            activeSchemes: '8+ State Welfare Grants',
+            activeSchemes: '8+ State Scholarships',
             beneficiaries: '3 Lakh+ Students',
             disbursementType: 'Direct DBT via Akshaya e-Pay',
             verificationMode: 'Akshaya / Institution Online Verification'
@@ -458,7 +459,7 @@ const PORTAL_NAV_ITEMS = [
     { key: 'student-login', label: 'Student Login', icon: UserCheck, href: '/student-login' },
     { key: 'status-check', label: 'Status Check', icon: Search, href: '/status-check' },
     { key: 'documents-list', label: 'Documents List', icon: FileText, href: '/documents-list' },
-    { key: 'schemes', label: 'Top Schemes', icon: ListFilter, href: '/schemes' },
+    { key: 'scholarships', label: 'Top Scholarships', icon: Award, href: '/schemes' },
     { key: 'faqs', label: 'FAQs', icon: HelpCircle, href: '#faqs' },
     { key: 'helpdesk', label: 'Helpdesk', icon: PhoneCall, href: '#helpdesk' }
 ];
@@ -601,7 +602,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1">
                 
-                {/* Hero Header Section (No External Links - Users Stay on Portal) */}
+                {/* Hero Header Section */}
                 <div id="overview" className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200 shadow-sm mb-8 relative overflow-hidden">
                     <div className="absolute -right-16 -top-16 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
 
@@ -628,7 +629,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                 {/* Quick Stats Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
                     <div className="bg-white p-5 rounded-2xl border border-gray-200 text-center">
-                        <span className="block text-xs font-bold text-gray-500 uppercase mb-1">Active Schemes</span>
+                        <span className="block text-xs font-bold text-gray-500 uppercase mb-1">Active Scholarships</span>
                         <span className="text-lg font-black text-gray-900">{data.stats.activeSchemes}</span>
                     </div>
                     <div className="bg-white p-5 rounded-2xl border border-gray-200 text-center">
@@ -773,14 +774,14 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                             </div>
                         </section>
 
-                        {/* Section 4: Available Schemes Hosted on Portal */}
+                        {/* Section 4: Available Scholarships Hosted on Portal */}
                         <section id="schemes" className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm scroll-mt-32">
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900">
-                                    Top Schemes Hosted on {data.name}
+                                    Top Scholarships Hosted on {data.name}
                                 </h2>
                                 <Link href={`/scholarships-in/${slugify(data.state)}`} className="text-xs font-bold text-google-blue hover:underline flex items-center gap-1">
-                                    View All {data.state} Schemes <ArrowRight className="h-3.5 w-3.5" />
+                                    View All {data.state} Scholarships <ArrowRight className="h-3.5 w-3.5" />
                                 </Link>
                             </div>
 
@@ -798,7 +799,7 @@ export default async function MasterPortalGuidePage({ params }: { params: Promis
                                         <p className="text-xs text-gray-500 font-medium mb-4">{scheme.targetGroup}</p>
                                         <div className="flex items-center gap-4 text-xs font-bold">
                                             <Link href={`/scholarships/${scheme.slug}`} className="text-google-blue hover:underline flex items-center gap-1">
-                                                Scheme Overview <ChevronRight className="h-3.5 w-3.5" />
+                                                Scholarship Overview <ChevronRight className="h-3.5 w-3.5" />
                                             </Link>
                                             <Link href={`/scholarships/${scheme.slug}/apply-online`} className="text-emerald-600 hover:underline flex items-center gap-1">
                                                 Step-by-Step Apply <Globe className="h-3.5 w-3.5" />

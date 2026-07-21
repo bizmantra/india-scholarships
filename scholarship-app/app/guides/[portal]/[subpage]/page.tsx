@@ -16,33 +16,45 @@ import {
     UserCheck,
     LayoutGrid,
     ListFilter,
-    ArrowLeft
+    ArrowLeft,
+    Award
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { PORTALS_DATA, PortalGuide } from '../page';
 import { slugify } from '@/lib/utils';
 
-const PORTAL_SUBPAGES: Record<string, { titleSuffix: string, descPrefix: string, label: string }> = {
+const PORTAL_SUBPAGES: Record<string, { titleSuffix: string, descPrefix: string, label: string, canonicalSlug: string }> = {
     'status-check': {
         titleSuffix: 'Application & PFMS Status Check 2026: Track Payment',
         descPrefix: 'Learn how to check your scholarship application status and PFMS payment disbursement stage on',
-        label: 'Status Check'
+        label: 'Status Check',
+        canonicalSlug: 'status-check'
     },
     'student-login': {
         titleSuffix: 'Student Login & Registration Guide 2026: Portal Help',
         descPrefix: 'Step-by-step registration and student portal login guide for',
-        label: 'Student Login'
+        label: 'Student Login',
+        canonicalSlug: 'student-login'
     },
     'documents-list': {
         titleSuffix: 'Documents Required 2026: Upload Checklist & Formats',
         descPrefix: 'Complete checklist of mandatory certificates, marksheets, and income affidavits required for',
-        label: 'Documents List'
+        label: 'Documents List',
+        canonicalSlug: 'documents-list'
     },
+    'scholarships-list': {
+        titleSuffix: 'All Scholarships List 2026: SC, ST, OBC & Merit Grants',
+        descPrefix: 'Full directory of active government scholarships hosted on',
+        label: 'Top Scholarships',
+        canonicalSlug: 'scholarships-list'
+    },
+    // Alias mapping for backwards compatibility with legacy /schemes links
     'schemes': {
-        titleSuffix: 'All Schemes List 2026: SC, ST, OBC & Merit Grants',
-        descPrefix: 'Full directory of active government scholarship schemes hosted on',
-        label: 'Top Schemes'
+        titleSuffix: 'All Scholarships List 2026: SC, ST, OBC & Merit Grants',
+        descPrefix: 'Full directory of active government scholarships hosted on',
+        label: 'Top Scholarships',
+        canonicalSlug: 'scholarships-list'
     }
 };
 
@@ -51,10 +63,10 @@ const PORTAL_NAV_ITEMS = [
     { key: 'student-login', label: 'Student Login', icon: UserCheck, href: '/student-login' },
     { key: 'status-check', label: 'Status Check', icon: Search, href: '/status-check' },
     { key: 'documents-list', label: 'Documents List', icon: FileText, href: '/documents-list' },
-    { key: 'schemes', label: 'Top Schemes', icon: ListFilter, href: '/schemes' }
+    { key: 'scholarships-list', label: 'Top Scholarships', icon: Award, href: '/scholarships-list' }
 ];
 
-// Generate static params for all portals x 4 subpages
+// Generate static params for all portals x 5 subpages
 export async function generateStaticParams() {
     const subpages = Object.keys(PORTAL_SUBPAGES);
     const params: Array<{ portal: string, subpage: string }> = [];
@@ -95,10 +107,10 @@ export async function generateMetadata({ params }: { params: Promise<{ portal: s
         title: pageTitle,
         description: pageDesc,
         alternates: {
-            canonical: `https://www.indiascholarships.in/guides/${data.id}/${subpage}`,
+            canonical: `https://www.indiascholarships.in/guides/${data.id}/${subConfig.canonicalSlug}`,
             languages: {
-                'x-default': `https://www.indiascholarships.in/guides/${data.id}/${subpage}`,
-                'en': `https://www.indiascholarships.in/guides/${data.id}/${subpage}`,
+                'x-default': `https://www.indiascholarships.in/guides/${data.id}/${subConfig.canonicalSlug}`,
+                'en': `https://www.indiascholarships.in/guides/${data.id}/${subConfig.canonicalSlug}`,
             }
         }
     };
@@ -115,8 +127,8 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
         notFound();
     }
 
-    if (key !== data.id) {
-        redirect(`/guides/${data.id}/${subpage}`);
+    if (key !== data.id || subpage !== subConfig.canonicalSlug) {
+        redirect(`/guides/${data.id}/${subConfig.canonicalSlug}`);
     }
 
     return (
@@ -142,7 +154,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                     {PORTAL_NAV_ITEMS.map((item) => {
                         const IconComponent = item.icon;
                         const targetUrl = item.href === '' ? `/guides/${data.id}` : `/guides/${data.id}${item.href}`;
-                        const isActive = item.key === subpage;
+                        const isActive = item.key === subpage || (item.key === 'scholarships-list' && subpage === 'schemes');
 
                         return (
                             <Link
@@ -185,7 +197,7 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                 {/* Main Dynamic Content rendering based on subpage topic */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
-                    <div className="lg:col-span-2 space-y-8">
+                    <div className="lg:col-span-2 space-y-10">
                         
                         {subpage === 'status-check' && (
                             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
@@ -263,37 +275,42 @@ export default async function PortalSubpage({ params }: { params: Promise<{ port
                             </section>
                         )}
 
-                        {subpage === 'schemes' && (
-                            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
-                                <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 flex items-center gap-2">
-                                    <ListFilter className="h-6 w-6 text-google-blue" />
-                                    Active Schemes Directory on {data.name}
+                        {/* ALWAYS INCLUDE TOP SCHOLARSHIPS ON ALL SUBPAGES (Ensures Money Page Conversion) */}
+                        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
+                            <div className="flex items-center justify-between mb-6">
+                                <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 flex items-center gap-2">
+                                    <Award className="h-6 w-6 text-google-blue" />
+                                    Top Scholarships Hosted on {data.name}
                                 </h2>
-                                <div className="grid grid-cols-1 gap-4">
-                                    {data.topSchemes.map((scheme, i) => (
-                                        <div key={i} className="p-5 border border-gray-200 rounded-2xl hover:border-google-blue transition-all bg-white">
-                                            <div className="flex justify-between items-start gap-4 mb-2">
-                                                <h3 className="font-bold text-base text-gray-900">
-                                                    <Link href={`/scholarships/${scheme.slug}`}>{scheme.name}</Link>
-                                                </h3>
-                                                <span className="px-3 py-1 bg-green-50 text-green-700 font-extrabold text-xs rounded-full shrink-0 border border-green-200">
-                                                    {scheme.amount}
-                                                </span>
-                                            </div>
-                                            <p className="text-xs text-gray-500 font-medium mb-4">{scheme.targetGroup}</p>
-                                            <div className="flex items-center gap-4 text-xs font-bold">
-                                                <Link href={`/scholarships/${scheme.slug}`} className="text-google-blue hover:underline flex items-center gap-1">
-                                                    Overview <ChevronRight className="h-3.5 w-3.5" />
-                                                </Link>
-                                                <Link href={`/scholarships/${scheme.slug}/apply-online`} className="text-emerald-600 hover:underline flex items-center gap-1">
-                                                    Apply Online <Globe className="h-3.5 w-3.5" />
-                                                </Link>
-                                            </div>
+                                <Link href={`/scholarships-in/${slugify(data.state)}`} className="text-xs font-bold text-google-blue hover:underline flex items-center gap-1">
+                                    View All {data.state} Scholarships <ArrowRight className="h-3.5 w-3.5" />
+                                </Link>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-4">
+                                {data.topSchemes.map((scheme, i) => (
+                                    <div key={i} className="p-5 border border-gray-200 rounded-2xl hover:border-google-blue transition-all bg-white shadow-xs hover:shadow-md">
+                                        <div className="flex justify-between items-start gap-4 mb-2">
+                                            <h3 className="font-bold text-base text-gray-900 group-hover:text-google-blue">
+                                                <Link href={`/scholarships/${scheme.slug}`}>{scheme.name}</Link>
+                                            </h3>
+                                            <span className="px-3 py-1 bg-green-50 text-green-700 font-extrabold text-xs rounded-full shrink-0 border border-green-200">
+                                                {scheme.amount}
+                                            </span>
                                         </div>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
+                                        <p className="text-xs text-gray-500 font-medium mb-4">{scheme.targetGroup}</p>
+                                        <div className="flex items-center gap-4 text-xs font-bold">
+                                            <Link href={`/scholarships/${scheme.slug}`} className="text-google-blue hover:underline flex items-center gap-1">
+                                                Scholarship Overview <ChevronRight className="h-3.5 w-3.5" />
+                                            </Link>
+                                            <Link href={`/scholarships/${scheme.slug}/apply-online`} className="text-emerald-600 hover:underline flex items-center gap-1">
+                                                Step-by-Step Apply <Globe className="h-3.5 w-3.5" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
 
                         {/* FAQs Card */}
                         <section className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm">
