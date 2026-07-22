@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps, getClient } from '@/lib/db';
+import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getSiblingVariants, getCleanSteps, getClient } from '@/lib/db';
 
 export const revalidate = 86400; // Align server revalidation to 24 hours
 
@@ -251,6 +251,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
+    const siblingVariants = await getSiblingVariants(scholarship.id, scholarship.slug, scholarship.title);
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
 
     // Fetch pre-computed community signals aggregates for the scholarship
@@ -635,6 +636,32 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 </div>
                             </div>
                         </div>
+
+                        {/* Sibling Variants Disambiguation Banner */}
+                        {siblingVariants && siblingVariants.length > 0 && (
+                            <div className="mb-8 p-5 bg-blue-50/50 border border-blue-100 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+                                <div className="flex gap-3 items-start">
+                                    <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <p className="font-bold text-blue-900 text-sm">Category Variant Alert</p>
+                                        <p className="text-xs text-blue-800 leading-relaxed">
+                                            There are multiple category-specific versions of this scholarship. Please check if you are eligible for the other options:
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-wrap gap-2 shrink-0">
+                                    {siblingVariants.map((variant: any) => (
+                                        <Link
+                                            key={variant.slug}
+                                            href={`/scholarships/${variant.slug}`}
+                                            className="px-3 py-1.5 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-[11px] font-bold rounded-full transition-all shadow-2xs"
+                                        >
+                                            View {variant.caste && variant.caste.length > 0 ? variant.caste.join('/') : 'Alternate'}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {isDeadlinePassed && (
                             <div className="mb-10 p-6 bg-amber-50 border border-amber-200 rounded-3xl flex gap-4">

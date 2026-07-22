@@ -578,6 +578,39 @@ export async function getRelatedScholarships(currentId: string, limit: number = 
     return related.map(parseScholarship);
 }
 
+// Get sibling variants for dynamic disambiguation panels
+export async function getSiblingVariants(currentId: string | number, slug: string, title: string) {
+    const client = getClient();
+    const cleanTitle = title.toLowerCase();
+    
+    // Identify common brand/portal keywords
+    const keywords = [
+        'digital gujarat', 'gujarat', 'oasis', 'aikyashree', 'ssp', 'nsp', 
+        'e kalyan', 'e-kalyan', 'mptaas', 'mahadbt', 'mmvy', 'tata', 'hdfc', 
+        'reliance', 'lic', 'azim premji', 'jindal', 'airtel', 'bharti', 
+        'post matric scholarship', 'pre matric scholarship'
+    ];
+    
+    let matchedKeyword = null;
+    for (const kw of keywords) {
+        if (cleanTitle.includes(kw) || slug.includes(kw.replace(/\s+/g, '-'))) {
+            if (!matchedKeyword || kw.length > matchedKeyword.length) {
+                matchedKeyword = kw;
+            }
+        }
+    }
+    
+    if (!matchedKeyword) return [];
+    
+    const queryPattern = `%${matchedKeyword.replace(/\s+/g, '%')}%`;
+    const res = await client.execute({
+        sql: 'SELECT * FROM scholarships WHERE (title LIKE ? OR slug LIKE ?) AND id != ? AND status = "Active" LIMIT 4',
+        args: [queryPattern, queryPattern, currentId]
+    });
+    
+    return res.rows.map(parseScholarship);
+}
+
 // Get global stats for pillar pages
 export async function getScholarshipStats() {
     const client = getClient();

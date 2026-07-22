@@ -128,35 +128,35 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     switch (subpage) {
         case 'eligibility':
-            seoTitle = `${title} Eligibility Criteria ${year}: Do You Qualify?`;
+            seoTitle = `Eligibility Criteria: ${title} (${year}) Requirements`;
             seoDesc = `Detailed eligibility criteria for ${title} ${year} including minimum marks, qualifying levels, category/caste limits, gender rules, and domicile requirements.`;
             break;
         case 'income-limit':
-            seoTitle = `${title} Income Limit ${year}: Family Income Rules`;
+            seoTitle = `Income Limit & Rules: ${title} (${year}) Family Limits`;
             seoDesc = `Find the maximum annual family income limit to qualify for ${title} ${year}. Includes required income certificates and validation rules.`;
             break;
         case 'documents-required':
-            seoTitle = `${title} Documents Required ${year}: Full Application Checklist`;
+            seoTitle = `Documents Required: ${title} (${year}) Checklist`;
             seoDesc = `Complete list of documents required to apply for ${title} ${year}. Seed your Aadhaar, prepare marksheets, certificates, and check format sizes.`;
             break;
         case 'last-date':
             seoTitle = isDeadlinePassed
-                ? `${title} Last Date ${year}: Closed Deadline & Previous Timelines`
-                : `${title} Last Date ${year}: Application Deadline & Timelines`;
+                ? `Last Date Closed: ${title} (${year}) Deadline Details`
+                : `Last Date & Timelines: ${title} (${year}) Apply Deadline`;
             seoDesc = `Check the official last date to apply online for ${title} ${year}. Includes timeline extensions, portal opening dates, and status check windows.`;
             break;
         case 'selection-process':
-            seoTitle = `${title} Selection Process ${year}: How Winners are Selected`;
+            seoTitle = `Selection Process: ${title} (${year}) Criteria & Rules`;
             seoDesc = `Learn how students are selected and ranked for ${title} ${year}. Details on merit lists, income priority rules, and verification stages.`;
             break;
         case 'apply-online':
             seoTitle = isDeadlinePassed
-                ? `${title} Apply Online ${year}: Portal Details & Eligibility Rules`
-                : `${title} Apply Online ${year}: Step-by-Step Registration Guide`;
+                ? `Portal Link & Details: ${title} (${year}) Closed Portal`
+                : `How to Apply Online: ${title} (${year}) Registration Guide`;
             seoDesc = `Official portal link and registration guide to apply online for ${title} ${year}. Track your application status and check login details.`;
             break;
         case 'renewal-process':
-            seoTitle = `${title} Renewal Process ${year}: Continuity Rules & Guidelines`;
+            seoTitle = `Renewal Process & Rules: ${title} (${year}) Continuity Guide`;
             seoDesc = `Renewal rules for ${title} ${year}. Maintain your scholarship with minimum attendance, pass marks, and learn how to re-apply online.`;
             break;
     }
