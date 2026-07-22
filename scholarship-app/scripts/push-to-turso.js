@@ -28,6 +28,7 @@ async function run() {
         await turso.execute("DROP TABLE IF EXISTS scholarship_translations;");
         await turso.execute("DROP TABLE IF EXISTS scholarship_changelog;");
         await turso.execute("DROP TABLE IF EXISTS backlog_tasks;");
+        await turso.execute("DROP TABLE IF EXISTS gsc_traffic_cache;");
         await turso.execute("DROP TABLE IF EXISTS scholarships;");
 
         // --- 2. Recreate schemas on Turso ---
@@ -86,7 +87,8 @@ async function run() {
                 created_at TEXT DEFAULT NULL,
                 scholarship_scope TEXT DEFAULT 'domestic',
                 country_of_study TEXT DEFAULT NULL,
-                always_open INTEGER DEFAULT 0
+                always_open INTEGER DEFAULT 0,
+                last_checked_at TEXT DEFAULT NULL
             );
         `);
 
@@ -138,6 +140,17 @@ async function run() {
                 status TEXT,
                 type TEXT,
                 category TEXT
+            );
+        `);
+
+        await turso.execute(`
+            CREATE TABLE IF NOT EXISTS gsc_traffic_cache (
+                slug TEXT PRIMARY KEY,
+                clicks INTEGER DEFAULT 0,
+                impressions INTEGER DEFAULT 0,
+                ctr REAL DEFAULT 0.0,
+                position REAL DEFAULT 0.0,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
             );
         `);
 
@@ -282,6 +295,31 @@ async function run() {
                 });
                 await turso.batch(statements);
                 console.log(`  Uploaded ${i + chunk.length} / ${backlogTasks.length} backlog tasks...`);
+            }
+        }
+
+        // E. GSC Traffic Cache
+        console.log("📦 Reading local GSC traffic cache...");
+        const trafficCache = localDb.prepare("SELECT * FROM gsc_traffic_cache").all();
+        console.log(`Found ${trafficCache.length} traffic cache entries.`);
+
+        if (trafficCache.length > 0) {
+            console.log("📤 Uploading GSC traffic cache to Turso...");
+            const chunkSize = 50;
+            for (let i = 0; i < trafficCache.length; i += chunkSize) {
+                const chunk = trafficCache.slice(i, i + chunkSize);
+                const statements = chunk.map(tc => {
+                    const keys = Object.keys(tc);
+                    const columns = keys.join(', ');
+                    const placeholders = keys.map(() => '?').join(', ');
+                    const values = keys.map(k => tc[k]);
+                    return {
+                        sql: `INSERT INTO gsc_traffic_cache (${columns}) VALUES (${placeholders})`,
+                        args: values
+                    };
+                });
+                await turso.batch(statements);
+                console.log(`  Uploaded ${i + chunk.length} / ${trafficCache.length} traffic cache entries...`);
             }
         }
 

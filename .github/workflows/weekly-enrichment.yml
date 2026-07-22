@@ -6,9 +6,8 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '0 0 * * 0' # Sunday midnight UTC
+    - cron: '0 0 * * 0' # Sunday midnight UTC (Runs Sunday 5:30 AM IST)
   workflow_dispatch: # Allows manual triggering from GitHub UI
-
 
 jobs:
   enrich:
@@ -33,29 +32,53 @@ jobs:
 
       - name: Run Content Quality Audit
         run: |
-          # If it is a PR or commit push, enforce strict check to block invalid database updates
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "Running strict verification check..."
             node scholarship-app/scripts/content-quality-audit.js --strict
           else
-            # Otherwise, just run standard audit and skip strict failures during automated cron runs
             node scholarship-app/scripts/content-quality-audit.js
           fi
         env:
           NODE_ENV: production
 
-      - name: Run Grounding Enrichment (Gemini / Perplexity)
-        # Only run automated AI enrichment on schedule or dispatch, not on commits/PRs
+      - name: Sync Google Search Console Live Traffic Cache
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
-          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js --limit 50
+          node scholarship-app/scripts/sync-gsc-cache.js
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          GOOGLE_SERVICES_CLIENT_EMAIL: ${{ secrets.GOOGLE_SERVICES_CLIENT_EMAIL }}
+          GOOGLE_SERVICES_PRIVATE_KEY: ${{ secrets.GOOGLE_SERVICES_PRIVATE_KEY }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           NODE_ENV: production
 
+      - name: Run Grounding Enrichment (Gemini Flash)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_ENV: production
+
+      - name: Generate Weekly Email Body
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scholarship-app/scripts/generate-email-reports.js --type weekly
+
+      - name: Send Email Report
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Weekly Scholarship Enrichment Report"
+          to: bizmantra@gmail.com
+          from: "India Scholarships Freshness Pipeline <${{ secrets.EMAIL_USERNAME }}>"
+          secure: true
+          html_body: file://${{ github.workspace }}/scholarship-app/data/weekly-email-body.html
+
       - name: Commit and push changes if updated
-        # Only commit back to main during cron schedules
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config --global user.name "github-actions[bot]"
@@ -86,9 +109,6 @@ jobs:
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
 
       - name: Trigger Vercel Redeployment
-        # Only redeploy on schedules
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
-
-

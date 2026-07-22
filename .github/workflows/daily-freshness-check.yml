@@ -1,0 +1,70 @@
+name: Daily Deadline Freshness Check
+
+on:
+  schedule:
+    - cron: '30 1 * * *' # 1:30 AM UTC (Runs Daily 7:00 AM IST)
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  check-deadlines:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Run Daily Deadline Verification (Gemini Flash)
+        run: |
+          node scholarship-app/scripts/daily-freshness-check.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_ENV: production
+
+      - name: Generate Daily Email Body
+        run: |
+          node scholarship-app/scripts/generate-email-reports.js --type daily
+
+      - name: Send Email Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Daily Scholarship Deadline Verification Report"
+          to: bizmantra@gmail.com
+          from: "India Scholarships Freshness Pipeline <${{ secrets.EMAIL_USERNAME }}>"
+          secure: true
+          html_body: file://${{ github.workspace }}/scholarship-app/data/daily-email-body.html
+
+      - name: Commit and push changes if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scholarship-app/data/scholarships.db
+          if git diff --staged --quiet; then
+            echo "No database changes. Skipping commit."
+          else
+            git commit -m "chore: automated daily deadline verification [skip ci]"
+            git push origin main
+          fi
+
+      - name: Push Database to Turso
+        run: |
+          node scholarship-app/scripts/push-to-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
