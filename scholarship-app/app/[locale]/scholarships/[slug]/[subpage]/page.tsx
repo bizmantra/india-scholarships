@@ -299,7 +299,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
             isNumbered = true;
         } else {
             items = text
-                .split(/\.\s+(?=[A-Z])|(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
+                .split(/(?<!\b[A-Z])\.\s+(?=[A-Z])|(?<=\.\s+|^)(?=[A-Z][A-Za-z\s]+:)|(?=\(\w\))|(?=•)|(?=–)|;/)
                 .map(s => s.trim())
                 .filter(s => s.length > 0);
         }
