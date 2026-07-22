@@ -23,6 +23,16 @@ console.log(`Loaded ${allUpdates.length} total scholarship updates from subagent
 
 const db = new Database(dbPath);
 
+function sanitizeUrl(urlStr) {
+    if (!urlStr) return '';
+    const trimmed = urlStr.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+        return trimmed;
+    }
+    const match = trimmed.match(/https?:\/\/[^\s\)]+/);
+    return match ? match[0] : '';
+}
+
 try {
     const updateStmt = db.prepare(`
         UPDATE scholarships 
@@ -52,8 +62,8 @@ try {
                 u.selection || '',
                 u.renewal || '',
                 u.helpline || '',
-                u.official_source || '',
-                u.apply_url || '',
+                sanitizeUrl(u.official_source || ''),
+                sanitizeUrl(u.apply_url || ''),
                 JSON.stringify(u.faq_json || []),
                 u.slug
             );

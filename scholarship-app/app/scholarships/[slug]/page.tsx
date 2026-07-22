@@ -185,6 +185,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     }
 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
@@ -633,7 +634,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         {formatAmount(scholarship.amount_annual, scholarship.amount_description)}
                                     </div>
                                     <p className="text-sm text-gray-600 leading-relaxed">
-                                        {scholarship.amount_description && scholarship.amount_annual > 0
+                                        {scholarship.amount_description
                                             ? scholarship.amount_description
                                                 .replace(/['"]?amount_annual_inr['"]?/g, 'annual amount')
                                                 .replace(/['"]?amount_min_inr['"]?/g, 'minimum stipend')
@@ -851,12 +852,19 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div>
                                     <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Official Support</h3>
                                     <div className="space-y-3">
-                                        <div className="flex items-center gap-2.5">
-                                            <Globe className="h-4 w-4 text-google-blue shrink-0" />
-                                            <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="text-google-blue font-bold truncate hover:underline">
-                                                Visit Official Portal ↗
-                                            </a>
-                                        </div>
+                                        {cleanOfficialSource ? (
+                                            <div className="flex items-center gap-2.5">
+                                                <Globe className="h-4 w-4 text-google-blue shrink-0" />
+                                                <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="text-google-blue font-bold truncate hover:underline">
+                                                    Visit Official Portal ↗
+                                                </a>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2.5 text-gray-500">
+                                                <Globe className="h-4 w-4 text-gray-400 shrink-0" />
+                                                <span className="font-medium">Visit Official Portal (Link Pending)</span>
+                                            </div>
+                                        )}
                                         <div className="flex items-center gap-2.5">
                                             <Users className="h-4 w-4 text-gray-400 shrink-0" />
                                             <span className="text-gray-900 font-medium">Helpline: {scholarship.helpline || 'Refer Official Site'}</span>

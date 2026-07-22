@@ -184,6 +184,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const year = scholarship.verification_year || new Date().getFullYear();
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
 
     // FAQPage schema for subpage
     let faqSchema: any = null;
@@ -244,8 +245,8 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                 <Link href={`/scholarships/${scholarship.slug}`} className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-sm">
                     Back to Overview
                 </Link>
-                {scholarship.official_source && (
-                    <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 border border-gray-200 text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-50 transition-colors">
+                {cleanOfficialSource && (
+                    <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 border border-gray-200 text-gray-700 text-sm font-bold rounded-xl hover:bg-gray-50 transition-colors">
                         Visit Official Portal
                     </a>
                 )}
@@ -790,9 +791,13 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                     </div>
                                     <div className="min-w-0">
                                         <span className="block text-[10px] text-gray-400 font-bold uppercase">Website</span>
-                                        <a href={scholarship.official_source} target="_blank" rel="noopener noreferrer" className="text-blue-700 font-bold text-sm truncate block hover:underline">
-                                            Official Portal
-                                        </a>
+                                        {cleanOfficialSource ? (
+                                            <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="text-blue-700 font-bold text-sm truncate block hover:underline">
+                                                Official Portal
+                                            </a>
+                                        ) : (
+                                            <span className="text-gray-400 font-medium text-sm block">Link Pending</span>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">

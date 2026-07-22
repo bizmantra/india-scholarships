@@ -80,6 +80,17 @@ function parseInt(value) {
     return isNaN(num) ? null : Math.floor(num);
 }
 
+// Helper to sanitize URLs
+function sanitizeUrl(urlStr) {
+    if (!urlStr) return '';
+    const trimmed = urlStr.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+        return trimmed;
+    }
+    const match = trimmed.match(/https?:\/\/[^\s\)]+/);
+    return match ? match[0] : '';
+}
+
 // Read and parse CSV
 console.log('📖 Reading CSV file...');
 const csvContent = fs.readFileSync(CSV_FILE, 'utf-8');
@@ -203,6 +214,15 @@ for (let i = 1; i < rows.length; i++) {
 
         console.log(`✅ Importing: ${title}`);
 
+        const rawStatus = row[indexMap['status']] || 'Active';
+        const statusVal = rawStatus.toLowerCase() === 'active' ? 'Active' : rawStatus;
+
+        const rawVerified = row[indexMap['verified_status']] || '';
+        const vLower = rawVerified.toLowerCase();
+        const verifiedStatusVal = (vLower === 'yes' || vLower === 'true' || vLower === 'official' || vLower === 'verified') ? 'Verified' : (rawVerified ? 'Pending Verification' : 'Pending Verification');
+
+        const officialSourceVal = sanitizeUrl(row[indexMap['official_source']]);
+
         insertStmt.run(
             id,
             title,
@@ -234,16 +254,16 @@ for (let i = 1; i < rows.length; i++) {
             parseInt(row[indexMap['total_awards']]),
             row[indexMap['renewal']] || '',
             row[indexMap['competitiveness']] || '',
-            row[indexMap['verified_status']] || '',
+            verifiedStatusVal,
             row[indexMap['last_verified']] || null,
-            row[indexMap['official_source']] || '',
+            officialSourceVal,
             row[indexMap['helpline']] || '',
             row[indexMap['intro_seo']] || '',
             row[indexMap['faq_json']] || '[]',
             row[indexMap['notes_actions']] || '',
             parseArray(row[indexMap['keywords']]),
             row[indexMap['scholarship_type']] || 'Government',
-            row[indexMap['status']] || 'Active',
+            statusVal,
             parseInt(row[indexMap['verification_year']]),
             parseBoolean(row[indexMap['show_on_homepage']]),
             parseBoolean(row[indexMap['is_featured']]),
