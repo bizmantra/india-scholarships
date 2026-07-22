@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getLocalizedScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+
+export const revalidate = 86400; // Align server revalidation to 24 hours
+
 import { formatDeadlineDate, sanitizeApplyUrl } from '@/lib/utils';
 import {
     Calendar,
@@ -120,6 +123,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     let seoTitle = '';
     let seoDesc = '';
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
+    const isAlwaysOpen = scholarship.always_open === 1;
+    const isDeadlinePassed = isAlwaysOpen ? false : (deadlineDate ? deadlineDate < today : false);
+
+
     switch (subpage) {
         case 'eligibility':
             seoTitle = `${title} Eligibility Criteria ${year}: Do You Qualify?`;
@@ -134,7 +144,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             seoDesc = `Complete list of documents required to apply for ${title} ${year}. Seed your Aadhaar, prepare marksheets, certificates, and check format sizes.`;
             break;
         case 'last-date':
-            seoTitle = `${title} Last Date ${year}: Application Deadline & Timelines`;
+            seoTitle = isDeadlinePassed
+                ? `${title} Last Date ${year}: Closed Deadline & Previous Timelines`
+                : `${title} Last Date ${year}: Application Deadline & Timelines`;
             seoDesc = `Check the official last date to apply online for ${title} ${year}. Includes timeline extensions, portal opening dates, and status check windows.`;
             break;
         case 'selection-process':
@@ -142,7 +154,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             seoDesc = `Learn how students are selected and ranked for ${title} ${year}. Details on merit lists, income priority rules, and verification stages.`;
             break;
         case 'apply-online':
-            seoTitle = `${title} Apply Online ${year}: Step-by-Step Registration Guide`;
+            seoTitle = isDeadlinePassed
+                ? `${title} Apply Online ${year}: Portal Details & Eligibility Rules`
+                : `${title} Apply Online ${year}: Step-by-Step Registration Guide`;
             seoDesc = `Official portal link and registration guide to apply online for ${title} ${year}. Track your application status and check login details.`;
             break;
         case 'renewal-process':
@@ -184,11 +198,13 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const year = scholarship.verification_year || new Date().getFullYear();
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
-    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
     // Helper to display helpline
     const displayHelpline = (val: string | null | undefined) => {
-        if (!val || val.trim() === '' || val.toLowerCase() === 'not specified' || val.toLowerCase() === 'na') {
+        if (!val || val.trim() === '') return 'Refer Official Site';
+        const lower = val.trim().toLowerCase();
+        if (lower === 'not specified' || lower === 'na' || lower === 'n/a' || lower === 'none') {
             return 'Refer Official Site';
         }
         return val;

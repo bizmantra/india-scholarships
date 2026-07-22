@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getLocalizedScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
+
+export const revalidate = 86400; // Align server revalidation to 24 hours
+
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -83,71 +86,125 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     // Specific brand overrides for June & July high-opportunity keywords
     if (slug === 'pm-yashasvi-scholarship') {
-        seoTitle = `PM Yashasvi Scholarship Scheme ${year}: Apply Online, Last Date & Eligibility`;
+        seoTitle = isDeadlinePassed
+            ? `PM Yashasvi Scholarship Scheme ${year}: Eligibility, Amount & Details`
+            : `PM Yashasvi Scholarship Scheme ${year}: Apply Online, Last Date & Eligibility`;
     } else if (slug === 'sitaram-jindal-foundation-scholarship') {
-        seoTitle = `Sitaram Jindal Foundation Scholarship ${year}: Apply Online & Last Date`;
+        seoTitle = isDeadlinePassed
+            ? `Sitaram Jindal Foundation Scholarship ${year}: Eligibility & Last Date Details`
+            : `Sitaram Jindal Foundation Scholarship ${year}: Apply Online & Last Date`;
     } else if (slug === 'tata-capital-pankh-scholarship') {
-        seoTitle = `Tata Capital Pankh Scholarship ${year}: Up to ₹1 Lakh | Eligibility & Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `Tata Capital Pankh Scholarship ${year}: Details, Eligibility & Selection`
+            : `Tata Capital Pankh Scholarship ${year}: Up to ₹1 Lakh | Eligibility & Apply Online`;
     } else if (slug === 'mukhyamantri-medhavi-vidyarthi-yojana-mmvy') {
-        seoTitle = `MMVY Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
+        seoTitle = isDeadlinePassed
+            ? `MMVY Scholarship ${year}: Details, Eligibility & Verification Status`
+            : `MMVY Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
     } else if (slug === 'jharkhand-e-kalyan-post-matric-scholarship') {
-        seoTitle = `e-Kalyan Jharkhand Scholarship ${year}: Apply Online, Last Date & Amount`;
+        seoTitle = isDeadlinePassed
+            ? `e-Kalyan Jharkhand Scholarship ${year}: Details, Eligibility & Verification`
+            : `e-Kalyan Jharkhand Scholarship ${year}: Apply Online, Last Date & Amount`;
     } else if (slug === 'swami-vivekananda-merit-cum-means-scholarship-svmcm') {
-        seoTitle = `SVMCM Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
+        seoTitle = isDeadlinePassed
+            ? `SVMCM Scholarship ${year}: Details, Eligibility & Application Status`
+            : `SVMCM Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
     } else if (slug === 'e-grantz-kerala-scstoecoobc-support') {
-        seoTitle = `e-Grantz Kerala Scholarship ${year}: Apply Online, Last Date & Amount`;
+        seoTitle = isDeadlinePassed
+            ? `e-Grantz Kerala Scholarship ${year}: Details, Eligibility & Status`
+            : `e-Grantz Kerala Scholarship ${year}: Apply Online, Last Date & Amount`;
     } else if (slug === 'bitsat-scholarship') {
-        seoTitle = `BITSAT Scholarship ${year}: Apply Online, Eligibility & Fee Waiver Details`;
+        seoTitle = `BITSAT Scholarship ${year}: Eligibility & Fee Waiver Details`;
     } else if (slug === 'hdfc-bank-parivartan-ecss-scholarship') {
-        seoTitle = `HDFC Parivartan Scholarship ${year}: Up to ₹75,000 | Eligibility & Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `HDFC Parivartan Scholarship ${year}: Eligibility & Details`
+            : `HDFC Parivartan Scholarship ${year}: Up to ₹75,000 | Eligibility & Apply Online`;
     } else if (slug === 'reliance-foundation-undergraduate-scholarship') {
-        seoTitle = `Reliance Foundation Scholarship ${year}: UG Apply Online, Eligibility & Selection`;
+        seoTitle = isDeadlinePassed
+            ? `Reliance Foundation Scholarship ${year}: UG Eligibility & Selection`
+            : `Reliance Foundation Scholarship ${year}: UG Apply Online, Eligibility & Selection`;
     } else if (slug === 'azim-premji-scholarship') {
-        seoTitle = `Azim Premji Scholarship ${year}: For Govt School Students | Eligibility & Apply`;
+        seoTitle = isDeadlinePassed
+            ? `Azim Premji Scholarship ${year}: For Govt School Students | Details & Eligibility`
+            : `Azim Premji Scholarship ${year}: For Govt School Students | Eligibility & Apply`;
     } else if (slug === 'lic-golden-jubilee-scholarship') {
-        seoTitle = `LIC Golden Jubilee Scholarship ${year}: Apply Online, Eligibility & Last Date`;
+        seoTitle = isDeadlinePassed
+            ? `LIC Golden Jubilee Scholarship ${year}: Eligibility & Last Date Details`
+            : `LIC Golden Jubilee Scholarship ${year}: Apply Online, Eligibility & Last Date`;
     } else if (lowerTitle.includes('nabanna')) {
-        seoTitle = `Nabanna Scholarship ${year}: Application Form, Eligibility & Submission Guide`;
+        seoTitle = isDeadlinePassed
+            ? `Nabanna Scholarship ${year}: Eligibility & Submission Guide`
+            : `Nabanna Scholarship ${year}: Application Form, Eligibility & Submission Guide`;
     } else if (slug === 'krishi-vidya-nidhi-yojana-odisha') {
         seoTitle = `Krishi Vidya Nidhi Yojana Odisha ${year}: Benefit Amount & Eligibility Check`;
     } else if (slug === 'post-matric-scholarship-for-obcsebc-students-odisha') {
-        seoTitle = `Odisha Post Matric OBC/SEBC Scholarship ${year}: Apply Online & Deadlines`;
+        seoTitle = isDeadlinePassed
+            ? `Odisha Post Matric OBC/SEBC Scholarship ${year}: Details & Eligibility`
+            : `Odisha Post Matric OBC/SEBC Scholarship ${year}: Apply Online & Deadlines`;
     } else if (slug === 'post-matric-scholarship-for-st-students-odisha') {
-        seoTitle = `Odisha Post Matric ST Scholarship ${year}: Eligibility, Last Date & Apply`;
+        seoTitle = isDeadlinePassed
+            ? `Odisha Post Matric ST Scholarship ${year}: Details & Eligibility`
+            : `Odisha Post Matric ST Scholarship ${year}: Eligibility, Last Date & Apply`;
     } else if (slug === 'boc-scholarship-nirman-shramik-kalyan-yojana-odisha') {
-        seoTitle = `Odisha BOC Scholarship ${year}: Nirman Shramik Kalyan Yojana Apply Online`;
+        seoTitle = `Odisha BOC Scholarship ${year}: Nirman Shramik Kalyan Yojana Details`;
     } else if (slug === 'chief-minister-higher-education-scholarship-rajasthan') {
-        seoTitle = `Rajasthan Chief Minister Higher Education Scholarship ${year}: Apply Online & Status`;
+        seoTitle = isDeadlinePassed
+            ? `Rajasthan Chief Minister Higher Education Scholarship ${year}: Eligibility & Details`
+            : `Rajasthan Chief Minister Higher Education Scholarship ${year}: Apply Online & Status`;
     } else if (slug === 'e-medhabruti-ug-merit-scholarship-odisha') {
-        seoTitle = `e-Medhabruti UG Merit Scholarship Odisha ${year}: Apply Online, Last Date & Renewal`;
+        seoTitle = isDeadlinePassed
+            ? `e-Medhabruti UG Merit Scholarship Odisha ${year}: Details & Renewal`
+            : `e-Medhabruti UG Merit Scholarship Odisha ${year}: Apply Online, Last Date & Renewal`;
     } else if (slug === 'mukhyamantri-yuva-swavalamban-yojana-mysy') {
-        seoTitle = `MYSY Scholarship Gujarat ${year}: Apply Online, Last Date, Document List & Status`;
+        seoTitle = isDeadlinePassed
+            ? `MYSY Scholarship Gujarat ${year}: Details, Document List & Status`
+            : `MYSY Scholarship Gujarat ${year}: Apply Online, Last Date, Document List & Status`;
     } else if (slug === 'jagananna-vidya-deevena-fees-reimbursement') {
-        seoTitle = `Jagananna Vidya Deevena (JVD) ${year}: Fees Reimbursement Status & Apply Online`;
+        seoTitle = `Jagananna Vidya Deevena (JVD) ${year}: Fees Reimbursement Status & Details`;
     } else if (slug === 'sbi-platinum-jubilee-asha-scholarship') {
-        seoTitle = `SBI Asha Scholarship ${year}: ₹15,000 | Eligibility, Last Date & Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `SBI Asha Scholarship ${year}: Eligibility & Details`
+            : `SBI Asha Scholarship ${year}: ₹15,000 | Eligibility, Last Date & Apply Online`;
     } else if (slug === 'merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka') {
-        seoTitle = `Karnataka Minorities MCM Scholarship ${year}: Professional & Technical Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `Karnataka Minorities MCM Scholarship ${year}: Professional & Technical Details`
+            : `Karnataka Minorities MCM Scholarship ${year}: Professional & Technical Apply Online`;
     } else if (slug === 'post-matric-scholarship-for-minorities-karnataka') {
-        seoTitle = `Karnataka Post Matric Scholarship for Minorities ${year}: Login & Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `Karnataka Post Matric Scholarship for Minorities ${year}: Details & Login`
+            : `Karnataka Post Matric Scholarship for Minorities ${year}: Login & Apply Online`;
     } else if (slug === 'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka') {
-        seoTitle = `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Apply Online & Status`;
+        seoTitle = isDeadlinePassed
+            ? `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Status`
+            : `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Apply Online & Status`;
     } else if (slug === 'post-matric-scholarship-for-st-students-karnataka') {
-        seoTitle = `Karnataka Post Matric ST Scholarship ${year}: Registration Portal, Login & Apply`;
+        seoTitle = isDeadlinePassed
+            ? `Karnataka Post Matric ST Scholarship ${year}: Registration Portal & Details`
+            : `Karnataka Post Matric ST Scholarship ${year}: Registration Portal, Login & Apply`;
     } else if (slug === 'prime-ministers-research-fellowship-pmrf') {
-        seoTitle = `PMRF Scholarship ${year}: Prime Minister's Research Fellowship Portal & Direct Apply`;
+        seoTitle = `PMRF Scholarship ${year}: Prime Minister's Research Fellowship Portal`;
     } else if (slug === 'bihar-post-matric-scholarship-bcebc') {
-        seoTitle = `Bihar Post Matric BC/EBC Scholarship ${year}: PMS Online Portal Login & Last Date`;
+        seoTitle = isDeadlinePassed
+            ? `Bihar Post Matric BC/EBC Scholarship ${year}: PMS Online Portal details`
+            : `Bihar Post Matric BC/EBC Scholarship ${year}: PMS Online Portal Login & Last Date`;
     } else if (slug === 'central-sector-scheme-of-scholarship-for-college-and-university-students') {
-        seoTitle = `CSSS Scholarship ${year}: Central Sector Scheme for College/University Apply Online`;
+        seoTitle = isDeadlinePassed
+            ? `CSSS Scholarship ${year}: Central Sector Scheme details`
+            : `CSSS Scholarship ${year}: Central Sector Scheme for College/University Apply Online`;
     } else if (slug === 'up-post-matric-scholarship-dashmottar') {
-        seoTitle = `UP Scholarship Dashmottar ${year}: Post Matric Apply Online, Login & Status Check`;
+        seoTitle = isDeadlinePassed
+            ? `UP Scholarship Dashmottar ${year}: Post Matric Details & Status Check`
+            : `UP Scholarship Dashmottar ${year}: Post Matric Apply Online, Login & Status Check`;
     } else if (isGov) {
         // Dynamic rule for government scholarships
-        seoTitle = `${cleanTitle} ${year}: Apply Online, Portal Login & Status Check`;
+        seoTitle = isDeadlinePassed
+            ? `${cleanTitle} ${year}: Details, Eligibility & Status Check`
+            : `${cleanTitle} ${year}: Apply Online, Portal Login & Status Check`;
     } else {
         // Dynamic rule for private/corporate/trust scholarships
-        seoTitle = `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
+        seoTitle = isDeadlinePassed
+            ? `${cleanTitle} ${year}: Details, Eligibility & Selection Process`
+            : `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
     }
 
     return {
@@ -190,7 +247,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     }
 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
-    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
 
@@ -209,7 +266,9 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
     // Helper to display helpline
     const displayHelpline = (val: string | null | undefined) => {
-        if (!val || val.trim() === '' || val.toLowerCase() === 'not specified' || val.toLowerCase() === 'na') {
+        if (!val || val.trim() === '') return 'Refer Official Site';
+        const lower = val.trim().toLowerCase();
+        if (lower === 'not specified' || lower === 'na' || lower === 'n/a' || lower === 'none') {
             return 'Refer Official Site';
         }
         return val;

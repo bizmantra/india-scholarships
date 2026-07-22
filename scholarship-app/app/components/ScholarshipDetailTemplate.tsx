@@ -21,7 +21,7 @@ export default function ScholarshipDetailTemplate({
     const applicationStatus = isDeadlinePassed ? 'closed' : 'open';
 
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
-    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
     // Helper functions
     const displayValue = (value: any) => {
@@ -316,12 +316,22 @@ export default function ScholarshipDetailTemplate({
                                 <p className="text-xs text-gray-500 leading-relaxed mb-4">
                                     Our editors manually verified this scholarship details from {scholarship.provider}'s official notification. Last checked on {scholarship.last_verified ? new Date(scholarship.last_verified).toLocaleDateString() : 'recently'}.
                                 </p>
-                                {scholarship.helpline && (
-                                    <div className="pt-4 border-t border-gray-50">
-                                        <h5 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Official Helpline</h5>
-                                        <p className="text-sm font-bold text-gray-900">{scholarship.helpline}</p>
-                                    </div>
-                                )}
+                                {(() => {
+                                    const rawHelp = scholarship.helpline;
+                                    const hasHelpline = rawHelp && rawHelp.trim() !== '';
+                                    const isPlaceholder = hasHelpline && (() => {
+                                        const lower = rawHelp.trim().toLowerCase();
+                                        return lower === 'not specified' || lower === 'na' || lower === 'n/a' || lower === 'none';
+                                    })();
+                                    return (
+                                        <div className="pt-4 border-t border-gray-50">
+                                            <h5 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Official Helpline</h5>
+                                            <p className="text-sm font-bold text-gray-900">
+                                                {!hasHelpline || isPlaceholder ? 'Refer Official Site' : rawHelp}
+                                            </p>
+                                        </div>
+                                    );
+                                })()}
                             </div>
 
                             {/* Telegram Alert Box */}
