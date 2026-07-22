@@ -185,15 +185,20 @@ export function getCanonicalSlugForCategory(category: any): string {
 /**
  * Extracts a valid HTTP/HTTPS URL from a messy/descriptive apply url field.
  * Returns null if no valid URL is found.
- */
-export function sanitizeApplyUrl(urlStr: string | null | undefined): string | null {
+ */export function sanitizeApplyUrl(urlStr: string | null | undefined): string | null {
     if (!urlStr) return null;
     const trimmed = urlStr.trim();
     if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
         return trimmed;
     }
     const match = trimmed.match(/https?:\/\/[^\s\)]+/);
-    return match ? match[0] : null;
+    if (match) return match[0];
+    
+    // Fallback: If it looks like a domain name (contains . and no spaces), prepend https://
+    if (trimmed.includes('.') && !trimmed.includes(' ') && trimmed.length > 3) {
+        return `https://${trimmed}`;
+    }
+    return null;
 }
 
 /**

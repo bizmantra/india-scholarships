@@ -186,7 +186,14 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source);
 
-    // FAQPage schema for subpage
+    // Helper to display helpline
+    const displayHelpline = (val: string | null | undefined) => {
+        if (!val || val.trim() === '' || val.toLowerCase() === 'not specified' || val.toLowerCase() === 'na') {
+            return 'Refer Official Site';
+        }
+        return val;
+    };
+
     let faqSchema: any = null;
     try {
         let faqs = scholarship.faq_json;
@@ -806,7 +813,7 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                                     </div>
                                     <div>
                                         <span className="block text-[10px] text-gray-400 font-bold uppercase">Helpline</span>
-                                        <span className="text-gray-900 font-bold text-sm">{scholarship.helpline || 'Refer Official Site'}</span>
+                                        <span className="text-gray-900 font-bold text-sm">{displayHelpline(scholarship.helpline)}</span>
                                     </div>
                                 </div>
                             </div>

@@ -71,9 +71,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                   lowerTitle.includes('pre-matric');
 
     const year = scholarship.verification_year || new Date().getFullYear();
-    // Helper to sanitize title from duplicate year strings (e.g. "2026", "2025-26", "2026-27")
     const cleanTitle = title.replace(/\s*(?:20\d{2}(?:-\d{2,4})?)\s*$/, '').trim();
     let seoTitle = '';
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const deadlineDate = scholarship.deadline && !isNaN(new Date(scholarship.deadline).getTime()) ? new Date(scholarship.deadline) : null;
+    const isAlwaysOpen = scholarship.always_open === 1;
+    const isDeadlinePassed = isAlwaysOpen ? false : (deadlineDate ? deadlineDate < today : false);
+    const statusLabel = isDeadlinePassed ? 'Closed' : 'Open';
 
     // Specific brand overrides for June & July high-opportunity keywords
     if (slug === 'pm-yashasvi-scholarship') {
@@ -161,8 +167,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             }
         },
         openGraph: {
-            title: `${scholarship.title} – Application Open (${year})`,
-            description: `Apply for ${scholarship.title}. Amount: ₹${scholarship.amount_annual > 0 ? scholarship.amount_annual : 'Variable'}/year. ${scholarship.level} students in ${scholarship.state || 'India'}.`,
+            title: `${scholarship.title} – ${isDeadlinePassed ? 'Details & Eligibility' : 'Application Open'} (${year})`,
+            description: isDeadlinePassed ? `Check ${scholarship.title} details, eligibility, benefits, and expected dates for the next cycle.` : `Apply for ${scholarship.title}. Amount: ₹${scholarship.amount_annual > 0 ? scholarship.amount_annual : 'Variable'}/year. ${scholarship.level} students in ${scholarship.state || 'India'}.`,
             url: `https://www.indiascholarships.in/scholarships/${scholarship.slug}`,
             type: 'article',
             siteName: 'IndiaScholarships',
@@ -219,6 +225,14 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const displayValue = (value: any) => {
         if (value === null || value === undefined || value === '') return 'Not specified';
         return value;
+    };
+
+    // Helper to display helpline
+    const displayHelpline = (val: string | null | undefined) => {
+        if (!val || val.trim() === '' || val.toLowerCase() === 'not specified' || val.toLowerCase() === 'na') {
+            return 'Refer Official Site';
+        }
+        return val;
     };
 
     const year = scholarship.verification_year || new Date().getFullYear();
@@ -867,7 +881,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         )}
                                         <div className="flex items-center gap-2.5">
                                             <Users className="h-4 w-4 text-gray-400 shrink-0" />
-                                            <span className="text-gray-900 font-medium">Helpline: {scholarship.helpline || 'Refer Official Site'}</span>
+                                            <span className="text-gray-900 font-medium">Helpline: {displayHelpline(scholarship.helpline)}</span>
                                         </div>
                                     </div>
                                 </div>
