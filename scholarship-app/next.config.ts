@@ -172,13 +172,99 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/central/state%20focus-scholarships',
+        destination: '/government-scholarships',
+        permanent: true,
+      },
+      {
         source: '/central/ut focus-scholarships',
+        destination: '/government-scholarships',
+        permanent: true,
+      },
+      {
+        source: '/central/ut%20focus-scholarships',
         destination: '/government-scholarships',
         permanent: true,
       },
       {
         source: '/state government-scholarships',
         destination: '/government-scholarships',
+        permanent: true,
+      },
+      // GSC 404 Legacy Redirects
+      {
+        source: '/scholarships-level/diploma/polytechnic,-iti/itc',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc,-phd',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-(class-11-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/school-(6-12),-diploma/polytechnic,-iti/itc',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/school-(1-5),-school-(6-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs.',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-(classes-11/puc-onwards-including-diploma,-iti,-general-degree,-professional-courses,-ug,-pg)',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-professional/technical\\:ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination.',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/post-matric-professional/technical\\:ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-level/class-1-to-class-8-\\(note\\:-only-up-to-class-8,-unlike-sc/st/obc-which-go-to-class-10\\)',
+        destination: '/scholarships-by-education',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-for/all-categories-\\(sc/st/obc/minority/general\\)---must-possess-valid-unique-disability-id-\\(udid\\)-card-issued-by-department-for-empowerment-of-persons-with-disabilities',
+        destination: '/scholarships-by-category',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-for/general-category---economically-weaker-section-\\(ews\\).-includes\\:-children-of-defense-personnel-\\(sc/st-parents-in-army/navy/airforce',
+        destination: '/scholarships-by-category',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-for/ews-/-merit',
+        destination: '/scholarships-by-category',
         permanent: true,
       },
     ];
