@@ -1,6 +1,6 @@
 ---
 id: "ART-101"
-title: "Stuck on NSP OTR Face Authentication? Here's My Step-by-Step Fix"
+title: "Stuck on NSP OTR Face Authentication? Here is Our Step-by-Step Fix"
 slug: "nsp-otr-face-auth-otp-errors-fix"
 date: "2026-07-23"
 readTime: "4 min read"
@@ -31,16 +31,16 @@ It is a 14-digit number that stays with you forever.
 No OTR means no scholarship applications.
 And to get it, you have to pass face verification.
 This new system is super buggy and frustrates thousands of students daily.
-Here is how to get past it without losing your mind.
+Here is how to get past it without losing your patience.
 
 Learn the basics on our general [NSP Portal Guide](/guides/nsp).
 
 ---
 
-## How I Fixed the Face Authentication Errors (Error 904)
+## How to Fix Face Authentication Errors (Error 904)
 
 If you are getting "Error 904" or camera connection failures, you are not alone.
-Here is the exact step-by-step checklist to bypass the errors:
+Here is the exact step-by-step checklist to bypass these errors:
 
 1. **Get an Android Phone:** You cannot do face authentication on an iPhone. The government apps are only on Google Play.
 2. **Download Both Apps:** You need **two** apps installed on your phone. First, install **Aadhaar FaceRD (Early Access)**. Second, install the **NSP OTR** app.
@@ -51,12 +51,12 @@ If you need a list of documents to scan later, visit the [NSP Documents Guide](/
 
 ---
 
-## Still Not Getting the OTP?
+## Solving Aadhaar Seeding and OTP Delays
 
 Sometimes, the face scan works, but you wait forever for the SMS OTP.
 The NSP servers are overloaded during the day.
 The best fix is simple: register late at night or early in the morning.
-I tried at 6:00 AM, and the OTP arrived in less than 10 seconds!
+We tested the registration at 6:00 AM, and the OTP arrived in less than 10 seconds!
 
 Also, make sure your Aadhaar is linked to your bank account.
 The government uses Direct Benefit Transfer (DBT) now.
