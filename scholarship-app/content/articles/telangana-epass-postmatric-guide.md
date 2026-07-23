@@ -2,7 +2,7 @@
 id: "ART-9"
 title: "TS ePASS Telangana Post-Matric Scholarship: Renewal & Status Guide"
 slug: "telangana-epass-postmatric-guide"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

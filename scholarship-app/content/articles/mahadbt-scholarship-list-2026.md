@@ -2,7 +2,7 @@
 id: "ART-3"
 title: "MahaDBT Scholarship List: Eligibility & Renewal Guide for Maharashtra"
 slug: "mahadbt-scholarship-list-2026"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

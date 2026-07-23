@@ -2,7 +2,7 @@
 id: "ART-17"
 title: "Minority Merit-cum-Means (MCM) Guide: Rules for Muslim, Christian, Sikh, Jain Students"
 slug: "minority-merit-cum-means-mcm-guide"
-date: "2026-08-01"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"

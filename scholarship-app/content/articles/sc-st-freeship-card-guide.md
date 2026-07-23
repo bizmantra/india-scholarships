@@ -2,7 +2,7 @@
 id: "ART-14"
 title: "SC/ST Freeship Card Guide: How to Study Without Paying Upfront Tuition Fees"
 slug: "sc-st-freeship-card-guide"
-date: "2026-07-29"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"

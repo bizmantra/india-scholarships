@@ -2,7 +2,7 @@
 id: "ART-11"
 title: "How to Apply for Bihar Post-Matric Scholarship (PMS): Registration & Document List"
 slug: "bihar-postmatric-pms-guide"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

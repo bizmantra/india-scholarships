@@ -2,7 +2,7 @@
 id: "ART-4"
 title: "How to Apply for UP Scholarship 2026: Registration, Status Check & PFMS Guide"
 slug: "up-scholarship-status-check-2026"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

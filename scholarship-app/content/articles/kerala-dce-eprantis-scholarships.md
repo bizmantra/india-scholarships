@@ -2,7 +2,7 @@
 id: "ART-12"
 title: "Kerala DCE & E-Grantz 3.0: Post-Matric Scholarship Application Guide"
 slug: "kerala-dce-eprantis-scholarships"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

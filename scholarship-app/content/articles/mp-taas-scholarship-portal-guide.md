@@ -2,7 +2,7 @@
 id: "ART-7"
 title: "MP TAAS & Portal 2.0 Guide: How to Apply for MP SC/ST Scholarships"
 slug: "mp-taas-scholarship-portal-guide"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

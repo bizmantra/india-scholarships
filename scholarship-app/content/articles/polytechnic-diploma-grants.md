@@ -2,7 +2,7 @@
 id: "ART-28"
 title: "Polytechnic & Diploma Student Grants: State & Central Schemes List"
 slug: "polytechnic-diploma-grants"
-date: "2026-08-07"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"

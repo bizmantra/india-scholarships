@@ -2,7 +2,7 @@
 id: "ART-13"
 title: "OBC Post-Matric Scholarship Rules 2026: Income Caps & State Comparisons"
 slug: "obc-postmatric-scholarship-rules-2026"
-date: "2026-07-28"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"

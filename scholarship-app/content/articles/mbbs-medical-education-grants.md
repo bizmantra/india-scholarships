@@ -2,7 +2,7 @@
 id: "ART-27"
 title: "MBBS & Medical Education Grants: How to Fund Government & Private Seats"
 slug: "mbbs-medical-education-grants"
-date: "2026-08-06"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"

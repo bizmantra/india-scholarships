@@ -2,7 +2,7 @@
 id: "ART-10"
 title: "Rajasthan SJE SJMS Portal: Post-Matric Scholarship Step-by-Step"
 slug: "rajasthan-sjms-postmatric-guide"
-date: "2026-07-21"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "State Guides"

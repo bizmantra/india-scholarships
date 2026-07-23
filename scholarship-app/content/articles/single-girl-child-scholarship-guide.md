@@ -2,7 +2,7 @@
 id: "ART-16"
 title: "Single Girl Child Scholarship Guide: Eligibility & Affidavit Format"
 slug: "single-girl-child-scholarship-guide"
-date: "2026-07-31"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
