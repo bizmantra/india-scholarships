@@ -146,6 +146,9 @@ export default function Header() {
                         <Link href="/news" className="transition-colors hover:text-google-blue">
                             News
                         </Link>
+                        <Link href="/articles" className="transition-colors hover:text-google-blue">
+                            Articles
+                        </Link>
                         <Link href="/about" className="transition-colors hover:text-google-blue">
                             About
                         </Link>
@@ -327,6 +330,13 @@ export default function Header() {
                                     className="text-xs font-semibold text-gray-700 hover:text-google-blue transition-colors flex items-center gap-1.5"
                                 >
                                     • Live Scholarship News & Updates
+                                </Link>
+                                <Link
+                                    href="/articles"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="text-xs font-semibold text-gray-700 hover:text-google-blue transition-colors flex items-center gap-1.5"
+                                >
+                                    • Step-by-Step Help Articles
                                 </Link>
                                 <Link
                                     href="/about"
