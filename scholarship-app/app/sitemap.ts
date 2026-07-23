@@ -7,7 +7,7 @@ import {
     getMajorCourses,
     getScholarshipsByState
 } from '@/lib/db';
-import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS, isSubpageQualifying } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
@@ -130,13 +130,15 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const scholarships = await getAllScholarships();
         const subpageRoutes: MetadataRoute.Sitemap = [];
         for (const s of scholarships) {
-            for (const subpage of subpageKeys) {
-                subpageRoutes.push({
-                    url: `${baseUrl}/scholarships/${s.slug}/${subpage}`,
-                    lastModified: s.updated_at ? new Date(s.updated_at) : new Date(),
-                    changeFrequency: 'weekly' as const,
-                    priority: 0.65,
-                });
+            if (isSubpageQualifying(s)) {
+                for (const subpage of subpageKeys) {
+                    subpageRoutes.push({
+                        url: `${baseUrl}/scholarships/${s.slug}/${subpage}`,
+                        lastModified: s.updated_at ? new Date(s.updated_at) : new Date(),
+                        changeFrequency: 'weekly' as const,
+                        priority: 0.65,
+                    });
+                }
             }
         }
         return subpageRoutes;

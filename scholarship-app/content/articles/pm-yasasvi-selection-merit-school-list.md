@@ -3,7 +3,7 @@ id: "ART-64"
 title: "PM YASASVI 2026: No More Entrance Exam? Here's How Selections Work Now"
 slug: "pm-yasasvi-selection-merit-school-list"
 date: "2026-07-23"
-readTime: "3 min read"
+readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Government Scheme"
 targetMoneyLink: "/scholarships/pm-yashasvi-scholarship"
@@ -12,59 +12,69 @@ relatedScholarships:
   - "pm-yasasvi-top-class-education"
   - "pm-yasasvi-jk-obc"
 takeaways:
-  - "The PM YASASVI entrance test (YET) is officially cancelled for the 2026 cycle."
-  - "Selections are now based strictly on your previous class board exam marks."
-  - "You must check if your school is on the official NSP empanelled school list."
+  - "The PM YASASVI Entrance Test (YET) conducted by NTA has been officially replaced by merit-based selection."
+  - "Selection is calculated strictly using Class 8 marks (for Class 9 applicants) and Class 10 marks (for Class 11 applicants)."
+  - "Students must be enrolled in an empanelled school listed on the National Scholarship Portal (NSP)."
 checklist:
-  - "Class 8 or Class 10 Passed Marksheet"
-  - "Empanelled School Bonafide Certificate"
-  - "OBC/EBC/DNT Caste Certificate"
-  - "Income Certificate (Family income under ₹2.5 Lakhs)"
-  - "Aadhaar Card linked to bank account"
+  - "Class 8 or Class 10 Passed Marksheet (original scanned copy)"
+  - "Empanelled School Bonafide Certificate signed by Principal"
+  - "OBC/EBC/DNT Category Certificate issued by competent state authority"
+  - "Income Certificate showing family income below ₹2.5 Lakh per year"
+  - "Bank Account details with active Aadhaar NPCI Seeding"
 ---
 
-## Did They Really Cancel the YASASVI Exam?
+## Did They Really Cancel the YASASVI Entrance Exam?
 
-Yes, they did!
-The government has officially scrapped the YASASVI Entrance Test (YET).
-This is a huge relief for many students.
-You do not need to study exam syllabus sheets or buy guidebooks anymore.
+Yes, the Ministry of Social Justice and Empowerment officially scrapped the YASASVI Entrance Test (YET) previously conducted by NTA.
 
-So, how do they choose who gets the scholarship?
-It is now 100% based on your school marks.
-They will look at your Class 8 marks (for Class 9 admission) or Class 10 marks (for Class 11 admission).
-The higher your marks, the better your chances.
+Students no longer need to sit for an entrance examination or buy special guidebook materials.
 
-Read all about the requirements on our main [PM Yasasvi Scholarship](/scholarships/pm-yashasvi-scholarship) page.
+Selection is now executed 100% on merit using previous academic board marks.
 
----
+- **For Class 9 Students**: Merit is calculated based on Class 8 final examination marks.
+- **For Class 11 Students**: Merit is calculated based on Class 10 board examination marks.
 
-## The Catch: Is Your School Empanelled?
+The higher your percentage in your previous qualifying examination, the higher your placement on the state merit list.
 
-Here is the most important rule.
-You can have 95% marks, but if your school is not on the official list, you get nothing.
-The government only awards this money to students in "empanelled schools".
-This list is updated every year on the National Scholarship Portal (NSP).
+Read full scheme requirements on our [PM Yasasvi Scholarship](/scholarships/pm-yashasvi-scholarship) master guide.
 
-Before you waste time applying, go to your principal.
-Ask them directly: "Is our school empanelled for PM YASASVI on NSP?"
-If they say yes, you are good to go!
-
-If not, do not worry.
-You can look at the [Top Class Education Scheme](/scholarships/pm-yasasvi-top-class-education) for colleges.
-If you live in J&K, check out the [J&K OBC Scheme](/scholarships/pm-yasasvi-jk-obc) instead.
+> 💡 **Pro Tip**: Check your eligibility across central and state schemes using our [/eligibility-checker](/eligibility-checker).
 
 ---
 
-## Getting Your Documents Ready (Don't Get Rejected!)
+## Critical Requirement: Empanelled School List Check
 
-The verification process is very strict this year.
-Even a small spelling mistake can get your form rejected.
-Make sure your name matches on all these documents:
+Even with top academic marks (such as 90%+), applications will be rejected if your school is not empanelled.
 
-- **Marksheet:** Clear photo of your Class 8 or Class 10 marks.
-- **Caste Certificate:** Verified OBC, EBC, or DNT certificate from your state.
-- **Income Certificate:** Showing family income under ₹2.5 Lakhs.
-- **Bonafide:** A simple letter signed by your school principal.
+PM YASASVI grants are restricted to students studying in **Top-Class Empanelled Schools** registered on the National Scholarship Portal (NSP).
 
-💡 Pro Tip: Make sure your bank account has Aadhaar seeding active so the money actually arrives!
+### How to Verify If Your School Is Empanelled:
+
+1. Visit the National Scholarship Portal (`scholarships.gov.in`).
+2. Click on "Search for Empanelled Schools/Institutes".
+3. Select your State, District, and School Management Type (Government / Aided / Private).
+4. Verify if your school's UDISE Code appears on the empanelled list for PM YASASVI.
+
+If your school is not empanelled, ask your school principal or nodal officer to apply for NSP empanelment.
+
+For college-level students, explore the [PM YASASVI Top Class Education Scheme](/scholarships/pm-yasasvi-top-class-education) or the [J&K OBC Scheme](/scholarships/pm-yasasvi-jk-obc).
+
+---
+
+## Financial Grant Levels Under PM YASASVI 2026
+
+PM YASASVI provides major financial coverage for selected students:
+
+- **Class 9 and 10 Students**: Up to ₹75,000 per year covering school tuition fees and hostel charges.
+- **Class 11 and 12 Students**: Up to ₹1,25,000 per year covering school tuition fees, hostel, and book allowances.
+
+---
+
+## Step-by-Step NSP Application Flow
+
+1. **Complete NSP OTR Registration**: Register on NSP using your Aadhaar number and complete Face Authentication via the NSP OTR app.
+2. **Select PM YASASVI Scheme**: Choose the PM-YASASVI Pre-Matric or Post-Matric scheme under the Ministry of Social Justice tab.
+3. **Upload Verified Documents**: Upload scanned copies of your marksheet, income certificate (< ₹2.5 Lakh), and category certificate.
+4. **Institute Verification (L1)**: Submit your application ID to your school nodal officer for mandatory L1 verification.
+
+All funds are remitted via Direct Benefit Transfer (DBT) into Aadhaar-seeded bank accounts.

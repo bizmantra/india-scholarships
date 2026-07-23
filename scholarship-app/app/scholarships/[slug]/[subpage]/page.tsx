@@ -1,11 +1,11 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect, RedirectType } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getCleanSteps } from '@/lib/db';
 
 export const revalidate = 86400; // Align server revalidation to 24 hours
 
-import { formatDeadlineDate, sanitizeApplyUrl } from '@/lib/utils';
+import { formatDeadlineDate, sanitizeApplyUrl, isSubpageQualifying } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -21,7 +21,8 @@ import {
     Award,
     RefreshCcw,
     ArrowLeft,
-    CheckCircle
+    CheckCircle,
+    BookOpen
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -89,15 +90,17 @@ function getFilteredFaqs(faqs: any[], subpage: string): any[] {
     return filtered;
 }
 
-// Generate static params dynamically for all scholarships
+// Generate static params dynamically for qualifying scholarships
 export async function generateStaticParams() {
     const scholarships = await getAllScholarships();
     const subpages = Object.keys(SUBPAGE_METRICS);
 
     const params: Array<{ slug: string, subpage: string }> = [];
     for (const s of scholarships) {
-        for (const subpage of subpages) {
-            params.push({ slug: s.slug, subpage });
+        if (isSubpageQualifying(s)) {
+            for (const subpage of subpages) {
+                params.push({ slug: s.slug, subpage });
+            }
         }
     }
     return params;
@@ -195,6 +198,16 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
     const year = scholarship.verification_year || new Date().getFullYear();
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
+
+    const lowerTitle = scholarship.title.toLowerCase();
+    const isGov = scholarship.scholarship_type === 'Government' || 
+                  lowerTitle.includes('yojana') || 
+                  lowerTitle.includes('scheme') || 
+                  lowerTitle.includes('portal') || 
+                  lowerTitle.includes('post matric') || 
+                  lowerTitle.includes('post-matric') || 
+                  lowerTitle.includes('pre matric') || 
+                  lowerTitle.includes('pre-matric');
 
     // Helper to display helpline
     const displayHelpline = (val: string | null | undefined) => {
@@ -412,6 +425,35 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
             )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                {/* Desktop Top Navigation Toolbar (Segmented Visual Bar) */}
+                <div className="hidden lg:flex items-center gap-1.5 p-1.5 bg-gray-100/90 rounded-2xl border border-gray-200/80 mb-8 max-w-full overflow-x-auto">
+                    <Link
+                        href={`/scholarships/${scholarship.slug}`}
+                        className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
+                    >
+                        <BookOpen className="h-4 w-4 text-gray-400" />
+                        Overview
+                    </Link>
+                    {Object.entries(SUBPAGE_METRICS).map(([key, value]) => {
+                        const isActive = key === subpage;
+                        const IconComponent = value.icon;
+                        return (
+                            <Link
+                                key={key}
+                                href={`/scholarships/${scholarship.slug}/${key}`}
+                                className={`px-3.5 py-2 rounded-xl font-bold text-xs transition-all flex items-center gap-2 whitespace-nowrap ${
+                                    isActive
+                                        ? 'bg-white text-blue-700 shadow-xs border border-gray-200/80 font-extrabold'
+                                        : 'text-gray-600 hover:bg-white/60 hover:text-blue-600'
+                                }`}
+                            >
+                                <IconComponent className={`h-4 w-4 ${isActive ? 'text-blue-600' : 'text-gray-400'}`} />
+                                {value.label}
+                            </Link>
+                        );
+                    })}
+                </div>
+
                 {/* Back to Parent Banner */}
                 <div className="mb-8">
                     <Link href={`/scholarships/${scholarship.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 transition-colors bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
@@ -420,26 +462,29 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                     </Link>
                 </div>
 
-                {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
-                <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
+                {/* Mobile Navigation Tabs (Floating Glass Segmented Bar) */}
+                <div className="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
                     <Link 
                         href={`/scholarships/${scholarship.slug}`}
-                        className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100 text-gray-700 hover:bg-gray-200 whitespace-nowrap transition-all flex items-center gap-1.5"
                     >
+                        <BookOpen className="h-3.5 w-3.5" />
                         Overview
                     </Link>
                     {Object.entries(SUBPAGE_METRICS).map(([key, value]) => {
                         const isActive = key === subpage;
+                        const IconComponent = value.icon;
                         return (
                             <Link 
                                 key={key} 
                                 href={`/scholarships/${scholarship.slug}/${key}`}
-                                className={`flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs whitespace-nowrap transition-all ${
+                                className={`flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${
                                     isActive 
-                                        ? 'bg-blue-600 text-white shadow-sm' 
-                                        : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20' 
+                                        : 'bg-gray-100/90 text-gray-700 hover:bg-gray-200/90'
                                 }`}
                             >
+                                <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
                                 {value.label}
                             </Link>
                         );
@@ -780,6 +825,13 @@ export default async function ScholarshipSubpage({ params }: { params: Promise<{
                         <div className="bg-gray-50 border border-gray-100 rounded-3xl p-6 md:p-8">
                             <h3 className="font-extrabold text-gray-900 text-lg mb-6 tracking-tight uppercase text-xs text-gray-400">Supporting Guides</h3>
                             <nav className="space-y-2">
+                                <Link 
+                                    href={`/scholarships/${scholarship.slug}`}
+                                    className="flex items-center justify-between px-4 py-3 rounded-xl font-bold text-sm transition-all text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                                >
+                                    <span>{isGov ? 'About Scheme' : 'About Scholarship'}</span>
+                                    <ChevronRight className="h-4 w-4 flex-shrink-0" />
+                                </Link>
                                 {Object.entries(SUBPAGE_METRICS).map(([key, value]) => {
                                     const isActive = key === subpage;
                                     return (

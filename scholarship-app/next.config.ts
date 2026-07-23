@@ -30,6 +30,15 @@ const nextConfig: NextConfig = {
       { from: 'jagananna-vasathi-deevena', to: 'jagananna-vasathi-deevena-ap' },
       { from: 'andhra-pradesh-jagananna-vidya-deevena', to: 'jagananna-vidya-deevena-ap' },
       { from: 'faea-scholarship-for-undergraduate-studies', to: 'faea-scholarship' },
+      { from: 'oasis-scholarship-west-bengal', to: 'oasis-post-matric-scholarship-for-sc-students-west-bengal' },
+      { from: 'kanyashree-prakalpa-k2', to: 'kanyashree-prakalpa-scheme-west-bengal' },
+      { from: 'swami-vivekananda-merit-cum-means-scholarship', to: 'swami-vivekananda-merit-cum-means-scholarship-svmcm' },
+      { from: 'suvarna-jubilee-merit-scholarship-kerala', to: 'kerala-suvarna-jubilee-merit-scholarship' },
+      { from: 'kerala-egrantz-30-postmatric-sc-st-oec', to: 'e-grantz-kerala-scstoecobc-support' },
+      { from: 'reliance-foundation-undergraduate-scholarships', to: 'reliance-foundation-undergraduate-scholarship' },
+      { from: 'pragati-scholarship-for-girls-aitcte', to: 'aicte-pragati-scholarship-for-girl-students' },
+      { from: 'rajasthan-uttar-matric-scholarship-sc-st-obc', to: 'rajasthan-post-matric-scholarship-sc' },
+      { from: 'ssp-postmatric-sc-st-obc-karnataka', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
     ];
 
     const stateMappings = [
@@ -113,6 +122,17 @@ const nextConfig: NextConfig = {
       {
         source: '/scholarships/pre-matric-post-matric-scholarships-ssp',
         destination: '/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka',
+        permanent: true,
+      },
+      // Tools & Guides legacy redirects
+      {
+        source: '/tools/eligibility-checker',
+        destination: '/eligibility-checker',
+        permanent: true,
+      },
+      {
+        source: '/guides/nsp/:subpage*',
+        destination: '/guides/national-scholarship-portal-nsp/:subpage*',
         permanent: true,
       },
       // 2. Legacy State Route Pattern

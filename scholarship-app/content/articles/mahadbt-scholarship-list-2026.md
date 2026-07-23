@@ -58,7 +58,7 @@ You must meet 4 simple conditions to qualify:
 3. **Income Limit**: Family income must be under ₹8 Lakh per year for OBC/EBC.
 4. **Attendance**: You need at least 75% attendance in college.
 
-Not sure about your eligibility? Use our [Eligibility Checker Tool](/tools/eligibility-checker) to check instantly.
+Not sure about your eligibility? Use our [Eligibility Checker Tool](/eligibility-checker) to check instantly.
 
 ---
 
@@ -95,7 +95,7 @@ Select your eligible schemes. Review your form carefully and click **Submit**. P
 ### Q1: Is there any fee to apply on MahaDBT?
 No. Applying on MahaDBT is 100% free.
 
-### Q2: Can I apply for renewal if I fail one subject?
+### Q2: Can Students Apply for Renewal After Failing One Subject?
 Yes. You can renew if your college allows next year admission.
 
 ### Q3: When does scholarship money reach bank accounts?

@@ -10,7 +10,7 @@ targetMoneyLink: "/scholarships-in/tamil-nadu"
 relatedScholarships:
   - "pudhumai-penn-scheme-tamil-nadu"
   - "evr-nagammai-scholarship"
-  - "tamil-nadu-postmatric-sc-st"
+  - "tamil-nadu-post-matric-scholarship-for-scst"
 takeaways:
   - "Pudhumai Penn scheme gives ₹1,000 monthly cash for female college students in Tamil Nadu."
   - "TN Post-Matric Scholarship covers full tuition fees for SC, ST, and converted Christian SC students."
@@ -46,7 +46,7 @@ To get these scholarships, you must meet simple rules:
 - **TN Post-Matric SC/ST**: You belong to SC, ST, or converted Christian SC categories. Family annual income must be below ₹2.5 Lakh.
 - **EVR Nagammai Scheme**: PG female students can get fee exemption under [EVR Nagammai Free Education Scheme](/scholarships/evr-nagammai-scholarship).
 
-You can check if you qualify using our [Eligibility Checker Tool](/tools/eligibility-checker).
+You can check if you qualify using our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 
@@ -55,7 +55,7 @@ You can check if you qualify using our [Eligibility Checker Tool](/tools/eligibi
 Each scheme offers different monetary assistance:
 
 - **Pudhumai Penn Scheme**: Get ₹1,000 every month (₹12,000 per year) directly in your account. Read more on the [Pudhumai Penn Scheme](/scholarships/pudhumai-penn-scheme-tamil-nadu) page.
-- **TN Post-Matric SC/ST**: Full compulsory fee reimbursement and maintenance allowance for hostellers and day scholars. Check full details on [Tamil Nadu Post-Matric SC/ST Scholarship](/scholarships/tamil-nadu-postmatric-sc-st).
+- **TN Post-Matric SC/ST**: Full compulsory fee reimbursement and maintenance allowance for hostellers and day scholars. Check full details on [Tamil Nadu Post-Matric SC/ST Scholarship](/scholarships/tamil-nadu-post-matric-scholarship-for-scst).
 - **OBC / BC / MBC Post-Matric**: Tuition fee assistance for backward class students with income under ₹2.5 Lakh.
 
 Find all active schemes on our [Tamil Nadu Scholarships Hub](/scholarships-in/tamil-nadu).
@@ -103,7 +103,7 @@ Avoid these 3 common mistakes:
 
 ## Frequently Asked Questions (FAQ)
 
-### Q1: Can I get both Pudhumai Penn and Post-Matric scholarships?
+### Q1: Can Students Receive Both Pudhumai Penn and Post-Matric Scholarships?
 Yes. Eligible female students can receive both benefits together.
 
 ### Q2: What is the monthly amount for Pudhumai Penn?

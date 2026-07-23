@@ -3,72 +3,79 @@ id: "ART-13"
 title: "OBC Post-Matric Scholarship Rules 2026: Income Caps & State Comparisons"
 slug: "obc-postmatric-scholarship-rules-2026"
 date: "2026-07-23"
-readTime: "3 min read"
+readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
 targetMoneyLink: "/scholarships-by-category/obc"
 relatedScholarships:
-  - "central-sector-scheme-for-top-class-education-sc"
-  - "post-matric-scholarship-for-sc-students-punjab"
+  - "up-post-matric-other-than-intermediate-obc"
+  - "punjab-post-matric-scholarship-for-obc-bc-students"
 takeaways:
-  - "OBC Post-Matric scholarship family income cap is ₹2.5 Lakh per year under central government guidelines."
-  - "State portals like Karnataka SSP or MahaDBT may use lower limits like ₹1 Lakh for certain OBC sub-categories."
-  - "Students can check their exact state rules and eligibility using our online checker tool."
+  - "The central government sets the OBC Post-Matric scholarship family income cap at ₹2.5 Lakh per year."
+  - "State welfare portals like Maharashtra MahaDBT and Karnataka SSP enforce state-specific income limits (₹1 Lakh to ₹2.5 Lakh)."
+  - "A valid Non-Creamy Layer (NCL) OBC Certificate issued in the current financial year is mandatory for all applicants."
 checklist:
-  - "Valid OBC Certificate (Non-Creamy Layer)"
-  - "Family Income Certificate issued by Tehsildar"
+  - "Valid OBC Certificate (Non-Creamy Layer) issued by Revenue Officer / Tehsildar"
+  - "Family Income Certificate issued for the current financial year"
   - "Aadhaar Card linked to bank account (NPCI Seeding)"
   - "Previous Year Marksheet with minimum pass marks"
-  - "College Admission Receipt and Bonafide Certificate"
+  - "College Admission Fee Receipt & Bonafide Certificate"
 ---
 
 ## What is the OBC Post-Matric Scholarship?
 
-The OBC (Other Backward Classes) Post-Matric Scholarship gives financial help to students.
-It covers college fees and monthly allowances after Class 10.
+The OBC (Other Backward Classes) Post-Matric Scholarship provides educational financial aid to students studying after Class 10.
 
-The central government sets the general rules for this scheme.
-However, each state government implements its own income limits.
-You can find top funding options on our [OBC Scholarships Guide](/scholarships-by-category/obc).
+It covers tuition fees, examination charges, and monthly maintenance allowances for ITI, Polytechnic, Diploma, UG, and PG courses.
 
----
+While the Central Ministry of Social Justice and Empowerment defines the baseline framework, state governments execute the scheme on state portals.
 
-## Income Caps for OBC Scholarships in 2026
+You can find all active OBC funding opportunities on the [OBC Scholarships Guide](/scholarships-by-category/obc).
 
-Under the central government framework, the income limit is ₹2.5 Lakh per year.
-This applies to the PM-YASASVI (PM Young Achievers Scholarship Award Scheme for Vibrant India) scheme.
-
-Your total family income from all sources must stay below this amount.
-If your family earns more, your application will get rejected.
+> 💡 **Pro Tip**: Use the free [/eligibility-checker](/eligibility-checker) to test your exact state and income eligibility.
 
 ---
 
-## State-Wise Rules and Comparisons
+## Central Income Thresholds for OBC Students in 2026
 
-Income limits can change depending on where you live.
-For example, Karnataka SSP (State Scholarship Portal) sets the OBC limit at ₹1 Lakh.
-Maharashtra MahaDBT portal also follows a ₹1 Lakh cap for certain groups.
+Under central guidelines (including PM-YASASVI), the maximum family income cap for OBC post-matric aid is ₹2.5 Lakh per year.
 
-Other states like Uttar Pradesh keep the limit at ₹2 Lakh per year.
-Always verify your state guidelines before submitting your form.
-Use our free [Eligibility Checker Tool](/tools/eligibility-checker) to test your state status quickly.
+Gross annual income from all sources (salaries, agriculture, business) of parents or guardians must not exceed this limit.
+
+Applications exceeding the income ceiling are automatically rejected by state portal filters.
 
 ---
 
-## Comparing SC and OBC Rules
+## State-Wise Rules and Allowance Comparisons
 
-Rules for SC (Scheduled Castes) students can be different from OBC rules.
-For example, check the [Central Sector Scheme for SC Students](/scholarships/central-sector-scheme-for-top-class-education-sc) for full details.
+Different state welfare departments apply varying income limits and maintenance rates for OBC students:
 
-Also look at state SC guides like the [Punjab SC Post-Matric Scholarship](/scholarships/post-matric-scholarship-for-sc-students-punjab).
-OBC students usually face stricter income rules and lower total maintenance fees.
+| State | Portal Name | Family Income Cap | Annual Benefit Structure |
+| :--- | :--- | :--- | :--- |
+| **Uttar Pradesh** | UP Scholarship Portal | ₹2.0 Lakh | Full tuition fee reimbursement + maintenance allowance |
+| **Maharashtra** | MahaDBT Portal | ₹1.5 Lakh to ₹2.5 Lakh | 50% to 100% tuition waiver + hostel allowance |
+| **Karnataka** | SSP Portal | ₹1.0 Lakh to ₹2.5 Lakh | Tuition fee reimbursement (Vidyasiri maintenance) |
+| **Punjab** | Ambedkar Portal | ₹2.5 Lakh | Post-matric fee coverage for OBC/BC students |
+| **Gujarat** | Digital Gujarat | ₹2.5 Lakh | Tuition & food bill assistance for hostellers |
+
+Explore state-specific guidelines on the [UP Post-Matric OBC Scholarship](/scholarships/up-post-matric-other-than-intermediate-obc) and [Punjab OBC Post-Matric Scholarship](/scholarships/punjab-post-matric-scholarship-for-obc-bc-students) pages.
 
 ---
 
-## Important Documents Required
+## Key Differences Between SC and OBC Scholarship Rules
 
-You must upload a valid Non-Creamy Layer OBC certificate.
-Your income certificate must be issued by a Tehsildar or Revenue Officer.
+It is important to note key operational differences between SC and OBC schemes:
 
-Money is sent through DBT (Direct Benefit Transfer) to your bank account.
-Ensure your Aadhaar card is linked to your bank account number.
+- **Income Ceiling**: SC schemes in states like Maharashtra allow up to ₹2.5 Lakh, whereas OBC categories frequently enforce a stricter ₹1 Lakh to ₹1.5 Lakh limit.
+- **Tuition Coverage**: SC candidates often receive 100% fee waiver across all professional colleges, while OBC candidates may receive capped tuition reimbursement depending on state budget allocations.
+- **Non-Creamy Layer Requirement**: OBC applicants must submit an active Non-Creamy Layer (NCL) certificate, whereas SC applicants only require a permanent caste certificate.
+
+---
+
+## Essential Documents Required for OBC Applicants
+
+To ensure your application clears institute and district officer verification without queries:
+
+1. **Non-Creamy Layer OBC Certificate**: Must be issued by a Tehsildar or Sub-Divisional Officer.
+2. **Income Certificate**: Must reflect current financial year earnings.
+3. **Aadhaar NPCI Bank Seeding**: Funds are remitted exclusively via Direct Benefit Transfer (DBT). Ensure your bank account is seeded with Aadhaar at your bank branch.

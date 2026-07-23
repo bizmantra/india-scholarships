@@ -8,8 +8,8 @@ author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
 targetMoneyLink: "/scholarships-by-category/minority"
 relatedScholarships:
-  - "post-matric-scholarships-scheme-for-minorities"
-  - "merit-cum-means-scholarship-for-professional-and-technical-courses"
+  - "up-post-matric-other-than-intermediate-minority"
+  - "merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka"
 takeaways:
   - "Minority MCM scholarships give up to ₹20,000 per year for technical courses."
   - "Muslim, Christian, Sikh, Jain, Buddhist, and Parsi students can apply."
@@ -31,7 +31,7 @@ Eligible communities include Muslim, Christian, Sikh, Jain, Buddhist, and Parsi.
 
 This scheme covers professional and technical courses like B.Tech, MBBS, and MBA.
 Students get money to pay tuition fees and maintenance expenses.
-You can read full rules on the [Merit-cum-Means Scholarship for Professional Courses](/scholarships/merit-cum-means-scholarship-for-professional-and-technical-courses) page.
+You can read full rules on the [Merit-cum-Means Scholarship for Professional Courses](/scholarships/merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka) page.
 
 > 💡 **Key Fact**: Only two students from one family can get this scholarship.
 
@@ -48,7 +48,7 @@ Admission should be through a competitive entrance exam or merit.
 Distance learning and correspondence course students cannot get this grant.
 
 Students in general BA, BSc, or BCom courses should check another option.
-They can apply for the [Post-Matric Scholarship Scheme for Minorities](/scholarships/post-matric-scholarships-scheme-for-minorities) instead.
+They can apply for the [Post-Matric Scholarship Scheme for Minorities](/scholarships/up-post-matric-other-than-intermediate-minority) instead.
 You can find more category schemes on our [Minority Scholarships Page](/scholarships-by-category/minority).
 
 ---
@@ -61,7 +61,7 @@ Selected premier institutes get full course tuition fee reimbursement.
 
 Non-premier college students get tuition fee support up to ₹20,000 per year.
 Payments are sent directly to your bank account via Direct Benefit Transfer (DBT).
-Check your eligibility with our free [Eligibility Checker Tool](/tools/eligibility-checker) today.
+Check your eligibility with the free [Eligibility Checker Tool](/eligibility-checker) today.
 
 ---
 

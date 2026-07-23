@@ -77,7 +77,7 @@ Check all your details before clicking **Submit**. Print two copies of the fille
 
 Open the SSP Odisha website and click **Know Your Status**. Enter your Aadhaar number or application tracking number. Click **Search** to see your current payment stage.
 
-If you want to test your eligibility first, use our [Eligibility Checker Tool](/tools/eligibility-checker). Girls in ITI courses can also view the [Sudakshya Scheme for Girls](/scholarships/sudakshya-scheme-for-girls-itipolyechnic).
+If you want to test your eligibility first, use our [Eligibility Checker Tool](/eligibility-checker). Girls in ITI courses can also view the [Sudakshya Scheme for Girls](/scholarships/sudakshya-scheme-for-girls-itipolyechnic).
 
 ---
 
@@ -94,8 +94,8 @@ If you want to test your eligibility first, use our [Eligibility Checker Tool](/
 ### Q1: Is there an income limit for e-Medhabruti?
 Yes. Family income must be under ₹8 Lakh per year.
 
-### Q2: Can I apply for both schemes together?
+### Q2: Can Students Apply for Both Schemes Together?
 No. You can only get benefits from one government scheme at a time.
 
-### Q3: When will scholarship money reach my bank?
+### Q3: When Is Scholarship Money Disbursed to Bank Accounts?
 Money is sent between January and March after college approval.

@@ -8,9 +8,9 @@ author: "IndiaScholarships Editorial Team"
 tag: "State Guides"
 targetMoneyLink: "/scholarships-in/west-bengal"
 relatedScholarships:
-  - "swami-vivekananda-merit-cum-means-scholarship"
-  - "oasis-scholarship-west-bengal"
-  - "kanyashree-prakalpa-k2"
+  - "swami-vivekananda-merit-cum-means-scholarship-svmcm"
+  - "oasis-post-matric-scholarship-for-sc-students-west-bengal"
+  - "kanyashree-prakalpa-scheme-west-bengal"
 takeaways:
   - "Get up to ₹60,000 per year for higher education studies in West Bengal."
   - "Score at least 60% marks in your previous qualifying exam to qualify."
@@ -46,8 +46,8 @@ You must fulfill 4 main rules to get this scholarship money:
 3. **Family Income**: Your annual family income must be under ₹2,50,000 (₹2.5 Lakhs).
 4. **Regular Student**: You must study full-time in a recognized West Bengal institution.
 
-Students from SC, ST, or OBC categories can also check the [OASIS Scholarship West Bengal](/scholarships/oasis-scholarship-west-bengal).
-Girl students receiving K2 benefits can also view [Kanyashree Prakalpa K2](/scholarships/kanyashree-prakalpa-k2).
+Students from SC, ST, or OBC categories can also check the [OASIS Scholarship West Bengal](/scholarships/oasis-post-matric-scholarship-for-sc-students-west-bengal).
+Girl students receiving K2 benefits can also view [Kanyashree Prakalpa K2](/scholarships/kanyashree-prakalpa-scheme-west-bengal).
 
 ---
 
@@ -62,7 +62,7 @@ The scholarship money depends on your current course level:
 - **Postgraduate (PG) Arts & Commerce**: Get ₹2,000 per month (₹24,000 per year).
 - **Postgraduate (PG) Science & Engineering**: Get ₹2,500 to ₹5,000 per month.
 
-You can read full details on our [Swami Vivekananda Merit-cum-Means Scholarship](/scholarships/swami-vivekananda-merit-cum-means-scholarship) page.
+You can read full details on our [Swami Vivekananda Merit-cum-Means Scholarship](/scholarships/swami-vivekananda-merit-cum-means-scholarship-svmcm) page.
 Find all state schemes on our [West Bengal Scholarships](/scholarships-in/west-bengal) page.
 
 ---
@@ -92,7 +92,7 @@ Enter your Application ID and date of birth.
 Click **Search** to see your current application progress and payment status.
 
 Want to test if you qualify before applying?
-Use our free [Eligibility Checker Tool](/tools/eligibility-checker) right now.
+Use the free [Eligibility Checker Tool](/eligibility-checker) right now.
 
 ---
 
@@ -114,5 +114,5 @@ Yes. You need 60% marks in Class 10, Class 12, or UG exams.
 ### Q2: What is the annual income limit for SVMCM?
 Your family income must be ₹2,50,000 per year or less.
 
-### Q3: When will SVMCM money reach my bank account?
+### Q3: When Is SVMCM Money Credited to Bank Accounts?
 Money is transferred after college and district officers verify your application.

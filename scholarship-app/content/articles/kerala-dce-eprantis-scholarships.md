@@ -8,8 +8,8 @@ author: "IndiaScholarships Editorial Team"
 tag: "State Guides"
 targetMoneyLink: "/scholarships-in/kerala"
 relatedScholarships:
-  - "kerala-egrantz-30-postmatric-sc-st-oec"
-  - "suvarna-jubilee-merit-scholarship-kerala"
+  - "e-grantz-kerala-scstoecobc-support"
+  - "kerala-suvarna-jubilee-merit-scholarship"
 takeaways:
   - "Kerala DCE and E-Grantz 3.0 offer scholarships for SC, ST, OEC, OBC, and merit students."
   - "Register online with your Aadhaar number and SSLC details to submit your application form."
@@ -40,8 +40,8 @@ The government transfers scholarship money directly to bank accounts using Direc
 
 Kerala offers multiple schemes for degree, diploma, and postgraduate courses.
 
-- **E-Grantz 3.0 Post-Matric Scheme**: Covers full tuition fees and monthly stipends for eligible students. You can read more about the [E-Grantz Kerala SC ST OEC Support](/scholarships/e-grantz-kerala-scstoecobc-support) and the [Kerala E-Grantz 3.0 Post-Matric SC/ST/OEC Scholarship](/scholarships/kerala-egrantz-30-postmatric-sc-st-oec).
-- **Suvarna Jubilee Merit Scholarship (DCE)**: Gives ₹10,000 yearly to BPL students in government and aided colleges. Learn details on the [Suvarna Jubilee Merit Scholarship](/scholarships/kerala-suvarna-jubilee-merit-scholarship) and [Suvarna Jubilee Merit Scholarship Kerala](/scholarships/suvarna-jubilee-merit-scholarship-kerala).
+- **E-Grantz 3.0 Post-Matric Scheme**: Covers full tuition fees and monthly stipends for eligible students. You can read more about the [E-Grantz Kerala SC ST OEC Support](/scholarships/e-grantz-kerala-scstoecobc-support) and the [Kerala E-Grantz 3.0 Post-Matric SC/ST/OEC Scholarship](/scholarships/e-grantz-kerala-scstoecobc-support).
+- **Suvarna Jubilee Merit Scholarship (DCE)**: Gives ₹10,000 yearly to BPL students in government and aided colleges. Learn details on the [Suvarna Jubilee Merit Scholarship](/scholarships/kerala-suvarna-jubilee-merit-scholarship) and [Suvarna Jubilee Merit Scholarship Kerala](/scholarships/kerala-suvarna-jubilee-merit-scholarship).
 - **District Merit Scholarship (DMS)**: Provides yearly financial support to meritorious students passing out from school.
 
 You can browse all state schemes on the [Kerala Scholarships Hub](/scholarships-in/kerala).
@@ -57,7 +57,7 @@ Eligibility depends on your course, income, and category.
 - **Income Rule for E-Grantz**: No income limit for SC, ST, and OEC students. For OBC students, family income must be under ₹1 Lakh per year.
 - **Income Rule for DCE Schemes**: Family income must be under ₹1 Lakh per year for BPL schemes.
 
-Check your exact status using our free [Eligibility Checker Tool](/tools/eligibility-checker).
+Check your exact status using the free [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 

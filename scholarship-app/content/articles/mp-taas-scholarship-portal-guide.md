@@ -8,8 +8,8 @@ author: "IndiaScholarships Editorial Team"
 tag: "State Guides"
 targetMoneyLink: "/scholarships-in/madhya-pradesh"
 relatedScholarships:
-  - "mukhyamantri-medhavi-vidyarthi-yojana-mp"
-  - "mp-taas-sc-st-postmatric"
+  - "mukhyamantri-medhavi-vidyarthi-yojana-mmvy"
+  - "mp-mptaas-post-matric-scholarship-for-sc-students"
 takeaways:
   - "MPTAAS (Madhya Pradesh Tribal Affairs Automation System) gives post-matric scholarships to SC, ST, and OBC students."
   - "Students must create a Profile ID using Aadhaar e-KYC before filling out course fee forms."
@@ -38,9 +38,9 @@ MP State Portal 2.0 handles all college scholarship forms in Madhya Pradesh. The
 
 You must be a permanent resident of Madhya Pradesh state. You must belong to SC, ST, or OBC categories. You must study in Class 11, college, or university courses.
 
-Your total family income must meet state limit rules. For SC and ST students, the family income limit is ₹6 Lakh per year. You can apply for the [MP TAAS Post-Matric Scholarship](/scholarships/mp-taas-sc-st-postmatric) easily.
+Your total family income must meet state limit rules. For SC and ST students, the family income limit is ₹6 Lakh per year. You can apply for the [MP TAAS Post-Matric Scholarship](/scholarships/mp-mptaas-post-matric-scholarship-for-sc-students) easily.
 
-High scoring students can also check the [Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)](/scholarships/mukhyamantri-medhavi-vidyarthi-yojana-mp).
+High scoring students can also check the [Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)](/scholarships/mukhyamantri-medhavi-vidyarthi-yojana-mmvy).
 
 ---
 
@@ -74,7 +74,7 @@ Double-check all details before clicking the final Submit button. Take a printed
 
 Open the MPTAAS portal and click on Track Application Status. Enter your Application Number and academic year to view progress.
 
-You can verify your course criteria using our [Eligibility Checker Tool](/tools/eligibility-checker).
+You can verify your course criteria using our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 
@@ -94,5 +94,5 @@ It is the single online portal for MP tribal and welfare schemes.
 ### Q2: Is Samagra ID mandatory for MPTAAS?
 Yes, you need a valid Samagra ID for profile registration.
 
-### Q3: How will I receive the scholarship amount?
+### Q3: How Is the Scholarship Amount Disbursed?
 Money is credited directly to your Aadhaar-linked bank account.

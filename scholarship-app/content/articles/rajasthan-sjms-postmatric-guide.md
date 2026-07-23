@@ -8,7 +8,7 @@ author: "IndiaScholarships Editorial Team"
 tag: "State Guides"
 targetMoneyLink: "/scholarships-in/rajasthan"
 relatedScholarships:
-  - "rajasthan-uttar-matric-scholarship-sc-st-obc"
+  - "rajasthan-post-matric-scholarship-sc"
   - "chief-minister-higher-education-scholarship-rajasthan"
 takeaways:
   - "Rajasthan SJE SJMS portal manages post-matric scholarships for SC, ST, and OBC students."
@@ -45,7 +45,7 @@ The portal hosts major state scholarship schemes for college students.
 - **Post-Matric Scholarship**: For SC, ST, OBC, EBC, and SBC students.
 - **Chief Minister Scholarship**: For general category needy students.
 
-You can check the [Rajasthan Uttar Matric Scholarship](/scholarships/rajasthan-uttar-matric-scholarship-sc-st-obc) for details.
+You can check the [Rajasthan Uttar Matric Scholarship](/scholarships/rajasthan-post-matric-scholarship-sc) for details.
 
 Also see the [Chief Minister Higher Education Scholarship](/scholarships/chief-minister-higher-education-scholarship-rajasthan) details.
 
@@ -64,7 +64,7 @@ You must meet basic rules to apply successfully.
    - **SC / ST Students**: Family income must be under ₹2,50,000 per year.
    - **OBC / EBC Students**: Family income must be under ₹1,50,000 per year.
 
-Test your eligibility using our [Eligibility Checker Tool](/tools/eligibility-checker).
+Test your eligibility using our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 

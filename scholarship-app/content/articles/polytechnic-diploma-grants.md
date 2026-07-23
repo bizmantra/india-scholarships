@@ -9,7 +9,7 @@ tag: "Course & Degree"
 targetMoneyLink: "/scholarships-by-education/diploma"
 relatedScholarships:
   - "sudakshya-scheme-for-girls-itipolyechnic"
-  - "pragati-scholarship-for-girls-aitcte"
+  - "aicte-pragati-scholarship-for-girl-students"
 takeaways:
   - "Polytechnic and diploma students can claim central government grants like AICTE Pragati and Saksham."
   - "State post-matric schemes cover tuition fees and give hostel allowances for 3-year diploma courses."
@@ -29,7 +29,7 @@ Many government schemes offer financial aid to cover admission fees, books, and 
 
 Both central portals and state welfare departments provide dedicated grants for polytechnic education.
 
-> 💡 **Quick Tip**: Check your eligibility using our [/tools/eligibility-checker](/tools/eligibility-checker) to find the best diploma scholarship for your course.
+> 💡 **Quick Tip**: Check your eligibility using our [/eligibility-checker](/eligibility-checker) to find the best diploma scholarship for your course.
 
 ---
 
@@ -41,7 +41,7 @@ Central schemes offer direct cash support to polytechnic students across India.
 - **Who can apply**: Girl students admitted to 1st year or 2nd year (lateral entry) diploma courses in AICTE approved polytechnics.
 - **Grant Amount**: ₹50,000 per year for tuition fees and book purchase.
 - **Income Limit**: Family income must be under ₹8 Lakh per year.
-- **Link**: Read full details on [/scholarships/pragati-scholarship-for-girls-aitcte](/scholarships/pragati-scholarship-for-girls-aitcte).
+- **Link**: Read full details on [/scholarships/aicte-pragati-scholarship-for-girl-students](/scholarships/aicte-pragati-scholarship-for-girl-students).
 
 ### 2. AICTE Saksham Scholarship for Differently-Abled Students
 - **Who can apply**: Differently-abled students (disability above 40%) pursuing diploma engineering courses.

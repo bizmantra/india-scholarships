@@ -65,7 +65,7 @@ To receive single girl child financial aid, verify these general rules:
 3. **Academic Score**: CBSE requires at least 60% marks in Class 10.
 4. **Course Type**: You must study in a recognized school, college, or university.
 
-You can verify your qualification status with our [Eligibility Checker Tool](/tools/eligibility-checker).
+You can verify your qualification status with our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 
@@ -81,13 +81,13 @@ BEFORE THE FIRST CLASS MAGISTRATE / SUB-DIVISIONAL MAGISTRATE
 
 AFFIDAVIT
 
-I, [Father/Mother Name], son/daughter of [Grandfather Name], 
+Affidavit declaration stating parent name, son/daughter of grandfather name, 
 residing at [Full Home Address], do hereby solemnly affirm as under:
 
-1. That I am the parent of [Girl Student Name], born on [Date of Birth].
+1. Statement of being the parent of [Girl Student Name], born on [Date of Birth].
 2. That [Girl Student Name] is the ONLY child of our family.
 3. That we have no other son or daughter living or deceased.
-4. That the statements made above are true to the best of my knowledge.
+4. Confirmation that all statements made are true and correct.
 
 Deponent (Parent Signature): _______________
 

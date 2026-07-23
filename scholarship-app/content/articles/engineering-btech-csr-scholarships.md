@@ -8,7 +8,7 @@ author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"
 targetMoneyLink: "/scholarships-by-education/btech"
 relatedScholarships:
-  - "reliance-foundation-undergraduate-scholarships"
+  - "reliance-foundation-undergraduate-scholarship"
   - "foundation-for-excellence-ffe-scholarship"
 takeaways:
   - "Top corporate CSR programs offer up to ₹2 Lakhs per year for B.Tech and Engineering students in India."
@@ -33,7 +33,7 @@ Major Indian companies give scholarships to technical students.
 These programs offer financial support and career mentoring.
 Students can use money for tuition fees, books, and laptops.
 
-> 💡 **Quick Tip**: Check your eligibility using our [/tools/eligibility-checker](/tools/eligibility-checker) to find matching corporate engineering grants.
+> 💡 **Quick Tip**: Check your eligibility using our [/eligibility-checker](/eligibility-checker) to find matching corporate engineering grants.
 
 ---
 
@@ -46,7 +46,7 @@ Here are top corporate CSR scholarships available for Indian engineering student
 * **Eligibility**: First-year B.Tech students with Class 12 score of minimum 60%.
 * **Income Cap**: Family income must be under ₹15 Lakhs per year (preference under ₹2.5 Lakhs).
 * **Key Feature**: Covers degree cost and offers mentorship networks.
-* **Direct Link**: Learn more about the [/scholarships/reliance-foundation-undergraduate-scholarships](/scholarships/reliance-foundation-undergraduate-scholarships).
+* **Direct Link**: Learn more about the [/scholarships/reliance-foundation-undergraduate-scholarship](/scholarships/reliance-foundation-undergraduate-scholarship).
 
 ### 2. Foundation for Excellence (FFE) Scholarship
 * **Grant Amount**: Full tuition fee support + skill training allowance.
@@ -78,4 +78,4 @@ Follow simple steps to get corporate scholarship funding:
 3. **Submit Clear Scans**: Upload clear PDF files under 200KB on portal forms.
 4. **Prepare for Telephonic Round**: Companies call candidates to confirm financial need.
 
-Use our [/tools/eligibility-checker](/tools/eligibility-checker) to find all active B.Tech scholarships matching your rank and income.
+Use our [/eligibility-checker](/eligibility-checker) to find all active B.Tech scholarships matching your rank and income.

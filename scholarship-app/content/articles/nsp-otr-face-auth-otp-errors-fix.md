@@ -1,9 +1,9 @@
 ---
 id: "ART-101"
-title: "Stuck on NSP OTR Face Authentication? Here is Our Step-by-Step Fix"
+title: "Stuck on NSP OTR Face Authentication? Step-by-Step Troubleshooting Fix"
 slug: "nsp-otr-face-auth-otp-errors-fix"
 date: "2026-07-23"
-readTime: "4 min read"
+readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Portal Guides"
 targetMoneyLink: "/guides/nsp"
@@ -11,55 +11,81 @@ relatedScholarships:
   - "pm-yashasvi-scholarship"
   - "ssp-pre-matric-post-matric-scholarship-karnataka"
 takeaways:
-  - "NSP's new One-Time Registration (OTR) is mandatory for all 2026 applicants."
-  - "Face authentication requires installing two apps and disabling mAadhaar locks."
-  - "Registering during off-peak hours solves the constant OTP delays."
+  - "NSP's One-Time Registration (OTR) is mandatory for all fresh and renewal applicants."
+  - "Face authentication requires installing both Aadhaar FaceRD and the NSP OTR Android app."
+  - "Disabling biometric locks in mAadhaar and applying during off-peak hours solves major authentication errors."
 checklist:
   - "Aadhaar Number or Enrolment ID (EID)"
-  - "Mobile number linked to Aadhaar"
+  - "Active mobile number linked to Aadhaar for OTP"
   - "Android Smartphone with functional front camera"
-  - "Latest Aadhaar FaceRD App installed"
-  - "Latest NSP OTR App installed"
+  - "Latest Aadhaar FaceRD App installed from Play Store"
+  - "Latest NSP OTR App installed from Play Store"
 ---
 
-## What is this New NSP OTR System?
+## What is the NSP OTR System?
 
-If you are trying to apply for scholarships this year, you probably got blocked by the OTR screen.
-The National Scholarship Portal (NSP) now forces everyone to get a One-Time Registration (OTR) number.
-It is a 14-digit number that stays with you forever.
+If you are trying to apply for scholarships on the National Scholarship Portal (NSP), you will be prompted to complete OTR first.
 
-No OTR means no scholarship applications.
-And to get it, you have to pass face verification.
-This new system is super buggy and frustrates thousands of students daily.
-Here is how to get past it without losing your patience.
+The Ministry of Electronics and IT has mandated a 14-digit One-Time Registration (OTR) number for all applicants.
 
-Learn the basics on our general [NSP Portal Guide](/guides/nsp).
+This OTR number stays with you throughout your academic life across all school, diploma, undergraduate, and postgraduate schemes.
 
----
+Without a valid OTR number, you cannot submit fresh or renewal applications.
 
-## How to Fix Face Authentication Errors (Error 904)
+To issue your OTR, NSP requires Aadhaar-based Face Authentication.
 
-If you are getting "Error 904" or camera connection failures, you are not alone.
-Here is the exact step-by-step checklist to bypass these errors:
+While this system prevents fraudulent applications, technical bugs regularly block genuine students.
 
-1. **Get an Android Phone:** You cannot do face authentication on an iPhone. The government apps are only on Google Play.
-2. **Download Both Apps:** You need **two** apps installed on your phone. First, install **Aadhaar FaceRD (Early Access)**. Second, install the **NSP OTR** app.
-3. **Turn Off Biometric Lock:** Open the mAadhaar app on your phone. Check if your biometric lock is on. If it is locked, the face app cannot read your Aadhaar. Turn it off.
-4. **Fix Your Camera Setup:** Face a window or bright light. Do not have lights behind you. Keep a plain white wall behind you. Hold the phone steady at eye level and blink when the app tells you to.
-
-If you need a list of documents to scan later, visit the [NSP Documents Guide](/guides/nsp/documents-list).
+Learn full portal features on our [NSP Portal Guide](/guides/nsp).
 
 ---
 
-## Solving Aadhaar Seeding and OTP Delays
+## How to Fix Face Authentication Errors (Error 904 & 905)
 
-Sometimes, the face scan works, but you wait forever for the SMS OTP.
-The NSP servers are overloaded during the day.
-The best fix is simple: register late at night or early in the morning.
-We tested the registration at 6:00 AM, and the OTP arrived in less than 10 seconds!
+If you see "Error 904", "Camera initialization failed", or continuous spinning loaders, follow this exact troubleshooting checklist:
 
-Also, make sure your Aadhaar is linked to your bank account.
-The government uses Direct Benefit Transfer (DBT) now.
-If they are not linked, your cash will bounce.
+1. **Use a Supported Android Smartphone**:
+   Face authentication is currently supported on Android OS version 8.0 and above. iOS devices (iPhones) are not supported.
 
-If you are ready to apply for YASASVI, check out the [PM Yashasvi Scholarship Guide](/scholarships/pm-yashasvi-scholarship) for the next steps!
+2. **Install Both Required Apps**:
+   You must install **two separate apps** from the Google Play Store:
+   - **Aadhaar FaceRD** (developed by UIDAI)
+   - **NSP OTR App** (developed by NIC)
+
+3. **Check mAadhaar Biometric Lock**:
+   Open the mAadhaar app on your phone. If your biometric lock is active, UIDAI blocks face authentication. Unlock your biometrics before proceeding.
+
+4. **Optimize Lighting and Camera Angle**:
+   Stand in front of a plain wall with natural front lighting. Avoid strong backlight. Hold your camera at eye level and blink naturally when prompted by the app.
+
+5. **Clear App Cache & Data**:
+   If the screen freezes, go to `Settings -> Apps -> NSP OTR -> Storage -> Clear Cache`, restart your phone, and retry.
+
+Check all required document formats on our [NSP Documents Guide](/guides/nsp/documents-list).
+
+---
+
+## Solving OTP Delays & Aadhaar Seeding Issues
+
+Sometimes, face authentication succeeds, but the OTP fails to arrive.
+
+During peak daytime hours (10 AM to 5 PM), NSP and UIDAI servers experience extreme traffic load.
+
+Follow these proven steps to resolve OTP failures:
+
+- **Apply During Off-Peak Hours**: Attempt your registration early in the morning (6 AM to 8 AM) or late at night (after 10 PM) when server latency is lowest.
+- **Verify Aadhaar NPCI Seeding**: Ensure your bank account is linked with Aadhaar NPCI. If your bank account is not seeded, DBT payments will fail even after scholarship sanction.
+- **Check DND Settings**: Ensure your mobile carrier does not block government transactional SMS alerts under Do Not Disturb settings.
+
+---
+
+## What to Do If You Lose Your OTR Reference Number
+
+If you completed face authentication but did not note down your 14-digit OTR number:
+
+1. Open the NSP OTR app and click on "Forgot OTR Number".
+2. Enter your Aadhaar Number and the mobile number registered with Aadhaar.
+3. Verify the OTP sent to your phone.
+4. Your OTR number will be displayed on screen and sent via SMS.
+
+Ready to apply for scholarships? Explore the [PM Yashasvi Scholarship](/scholarships/pm-yashasvi-scholarship) and [Karnataka SSP Scholarship](/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka) pages for portal guidelines.

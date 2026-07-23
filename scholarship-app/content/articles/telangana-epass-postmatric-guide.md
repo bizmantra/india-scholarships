@@ -10,7 +10,7 @@ targetMoneyLink: "/scholarships-in/telangana"
 relatedScholarships:
   - "telangana-postmatric-sc"
   - "telangana-postmatric-bc"
-  - "telangana-postmatric-st"
+  - "telangana-postmatric-sc"
 takeaways:
   - "TS ePASS Post-Matric Scholarship gives fee reimbursement and monthly maintenance money to Telangana students."
   - "Apply or renew your form online on telanganaepass.cgg.gov.in using your SSC hall ticket number."
@@ -49,7 +49,7 @@ Students from Scheduled Castes can check the [Telangana Post-Matric SC Scholarsh
 
 Students from Backward Classes can view the [Telangana Post-Matric BC Scholarship](/scholarships/telangana-postmatric-bc). 
 
-ST students can read about the [Telangana Post-Matric ST Scholarship](/scholarships/telangana-postmatric-st).
+ST students can read about the [Telangana Post-Matric ST Scholarship](/scholarships/telangana-postmatric-sc).
 
 ---
 
@@ -91,7 +91,7 @@ Visit the TS ePASS portal and click on **Postmatric Scholarship Services**. Clic
 
 Enter your SSC hall ticket number, application year, and academic year. Click **Get Status** to view your application progress.
 
-You can also test your eligibility with our [Eligibility Checker Tool](/tools/eligibility-checker).
+You can also test your eligibility with our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 

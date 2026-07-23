@@ -9,7 +9,7 @@ tag: "State Guides"
 targetMoneyLink: "/scholarships-in/bihar"
 relatedScholarships:
   - "mukhyamantri-kanya-utthan-yojana-graduation"
-  - "bihar-postmatric-scholarship-sc-st-bc-ebc"
+  - "bihar-post-matric-scholarship-bcebc"
 takeaways:
   - "Bihar PMS is open for SC, ST, BC, and EBC students studying post-matric courses in Bihar."
   - "Applications are filed on the PMS Online portal (pmsonline.bih.nic.in) or PMS Mobile App."
@@ -105,8 +105,8 @@ Open the PMS Online portal home page.
 Click on **Track Application Status**.
 Enter your Aadhaar number or User ID to view payment progress.
 
-You can test your eligibility using our [Eligibility Checker Tool](/tools/eligibility-checker).
-You can also view the [Bihar Post-Matric Scholarship for SC/ST/BC/EBC](/scholarships/bihar-postmatric-scholarship-sc-st-bc-ebc) page.
+You can test your eligibility using our [Eligibility Checker Tool](/eligibility-checker).
+You can also view the [Bihar Post-Matric Scholarship for SC/ST/BC/EBC](/scholarships/bihar-post-matric-scholarship-bcebc) page.
 
 ---
 

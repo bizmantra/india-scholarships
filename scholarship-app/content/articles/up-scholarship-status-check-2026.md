@@ -64,7 +64,7 @@ To qualify for UP scholarships, you must meet these basic rules:
 - **Income Limit for SC/ST**: Family annual income must be below ₹2.5 Lakh.
 - **Income Limit for OBC, General, and Minority**: Family annual income must be below ₹2 Lakh.
 
-Check your exact match using our free [Eligibility Checker Tool](/tools/eligibility-checker).
+Check your exact match using the free [Eligibility Checker Tool](/eligibility-checker).
 
 You can also view the [UP Post-Matric Scholarship for OBC](/scholarships/up-post-matric-other-than-intermediate-obc).
 
@@ -130,5 +130,5 @@ The official portal is `scholarship.up.gov.in`.
 ### Q2: Can General category students apply for UP Scholarship?
 Yes. Economically weaker General category students with income below ₹2 Lakh can apply.
 
-### Q3: How do I know if PFMS approved my payment?
+### Q3: How to Confirm IF PFMS Approved Payment?
 Check status on `scholarship.up.gov.in` or visit the official PFMS portal (`pfms.nic.in`).

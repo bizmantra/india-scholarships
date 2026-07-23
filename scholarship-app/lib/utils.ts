@@ -241,3 +241,52 @@ export function formatDeadlineDate(
     return date.toLocaleDateString('en-IN', options);
 }
 
+/**
+ * Determines whether a scholarship qualifies for dedicated sub-pages
+ * based on Government status, Major Brand priority, or Content Richness (3+ FAQs / detailed steps).
+ */
+export function isSubpageQualifying(scholarship: any): boolean {
+    if (!scholarship) return false;
+
+    const lowerTitle = (scholarship.title || '').toLowerCase();
+    const type = (scholarship.scholarship_type || '').toLowerCase();
+    const providerType = (scholarship.provider_type || '').toLowerCase();
+
+    // 1. All Government schemes qualify
+    const isGov = type === 'government' || providerType === 'government' || 
+                  lowerTitle.includes('yojana') || lowerTitle.includes('scheme') || 
+                  lowerTitle.includes('portal') || lowerTitle.includes('post matric') || 
+                  lowerTitle.includes('post-matric') || lowerTitle.includes('pre matric') || 
+                  lowerTitle.includes('pre-matric') || lowerTitle.includes('e-kalyan') || 
+                  lowerTitle.includes('svmcm') || lowerTitle.includes('nsp');
+
+    if (isGov) return true;
+
+    // 2. High-Demand Corporate & Trust Brand Overrides
+    const isMajorBrand = lowerTitle.includes('tata') || lowerTitle.includes('reliance') || 
+                         lowerTitle.includes('hdfc') || lowerTitle.includes('kotak') || 
+                         lowerTitle.includes('lic') || lowerTitle.includes('jindal') || 
+                         lowerTitle.includes('azim premji') || lowerTitle.includes('bitsat') ||
+                         scholarship.is_featured === 1;
+
+    if (isMajorBrand) return true;
+
+    // 3. Content Richness Check (3+ FAQs or rich application guide steps)
+    let faqCount = 0;
+    try {
+        let faqs = scholarship.faq_json;
+        if (typeof faqs === 'string') {
+            faqs = JSON.parse(faqs);
+        }
+        if (Array.isArray(faqs)) {
+            faqCount = faqs.length;
+        }
+    } catch (e) {}
+
+    const hasStepGuide = Boolean(scholarship.step_guide && scholarship.step_guide.trim().length > 50) || 
+                         Boolean(scholarship.application_process && scholarship.application_process.trim().length > 50);
+
+    return faqCount >= 3 || (faqCount >= 2 && hasStepGuide);
+}
+
+

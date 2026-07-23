@@ -10,7 +10,7 @@ targetMoneyLink: "/scholarships-in/andhra-pradesh"
 relatedScholarships:
   - "andhra-pradesh-postmatric-sc"
   - "andhra-pradesh-postmatric-bc"
-  - "jagananna-vidya-deevena-fees-reimbursement"
+  - "jagananna-vidya-deevena-ap"
 takeaways:
   - "Jagananna Vidya Deevena pays full college tuition fees directly to mothers."
   - "Apply through the AP Jnanabhumi portal or AP ePASS online system."
@@ -61,8 +61,8 @@ The fee amount is transferred directly to the student's mother's bank account.
 Polytechnic, ITI, B.Tech, Pharmacy, and Degree students get complete fee waivers.
 Hostel and mess expenses are covered separately under Jagananna Vasathi Deevena.
 
-You can view all state schemes on our [Andhra Pradesh Scholarships Hub](/scholarships-in/andhra-pradesh).
-Read full rules on the [Jagananna Vidya Deevena Scheme](/scholarships/jagananna-vidya-deevena-fees-reimbursement) page.
+You can view all state schemes on the [Andhra Pradesh Scholarships Hub](/scholarships-in/andhra-pradesh).
+Read full rules on the [Jagananna Vidya Deevena Scheme](/scholarships/jagananna-vidya-deevena-ap) page.
 
 ---
 
@@ -94,7 +94,7 @@ Open the Jnanabhumi portal and click **Application Status**.
 Enter your student ID or Aadhaar number to view payment progress.
 
 Want to test if you qualify before applying?
-Use our free [Eligibility Checker Tool](/tools/eligibility-checker) now.
+Use the free [Eligibility Checker Tool](/eligibility-checker) now.
 
 ---
 

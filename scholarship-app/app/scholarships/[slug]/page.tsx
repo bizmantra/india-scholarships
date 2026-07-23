@@ -8,7 +8,7 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, isSubpageQualifying } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -34,14 +34,14 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import LanguageDetector from '@/app/components/LanguageDetector';
 
-const SUBPAGE_METRICS = {
-    'eligibility': 'Eligibility',
-    'income-limit': 'Income Limit',
-    'documents-required': 'Documents',
-    'last-date': 'Last Date',
-    'selection-process': 'Selection',
-    'apply-online': 'How to Apply',
-    'renewal-process': 'Renewal'
+const SUBPAGE_METRICS: Record<string, { label: string, icon: any }> = {
+    'eligibility': { label: 'Eligibility', icon: CheckCircle2 },
+    'income-limit': { label: 'Income Limit', icon: IndianRupee },
+    'documents-required': { label: 'Documents', icon: ShieldCheck },
+    'last-date': { label: 'Last Date', icon: Calendar },
+    'selection-process': { label: 'Selection', icon: Award },
+    'apply-online': { label: 'How to Apply', icon: Globe },
+    'renewal-process': { label: 'Renewal', icon: RefreshCcw }
 };
 
 
@@ -249,6 +249,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         notFound();
     }
 
+    const hasSubpages = isSubpageQualifying(scholarship);
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
@@ -571,22 +572,72 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
             )}
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-                {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
-                <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
-                    <span 
-                        className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
-                    >
+                {/* Desktop Top Navigation Toolbar (Segmented Visual Bar) */}
+                <div className="hidden lg:flex items-center gap-1.5 p-1.5 bg-gray-100/90 rounded-2xl border border-gray-200/80 mb-8 max-w-full overflow-x-auto">
+                    <span className="px-3.5 py-2 rounded-xl font-extrabold text-xs bg-white text-blue-700 shadow-xs border border-gray-200/80 flex items-center gap-2 whitespace-nowrap cursor-default">
+                        <BookOpen className="h-4 w-4 text-blue-600" />
                         Overview
                     </span>
-                    {Object.entries(SUBPAGE_METRICS).map(([key, label]) => (
-                        <Link 
-                            key={key} 
-                            href={`/scholarships/${scholarship.slug}/${key}`}
-                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
-                        >
-                            {label}
-                        </Link>
-                    ))}
+                    {Object.entries(SUBPAGE_METRICS).map(([key, item]) => {
+                        const IconComponent = item.icon;
+                        if (hasSubpages) {
+                            return (
+                                <Link 
+                                    key={key} 
+                                    href={`/scholarships/${scholarship.slug}/${key}`}
+                                    className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
+                                >
+                                    <IconComponent className="h-4 w-4 text-gray-400" />
+                                    {item.label}
+                                </Link>
+                            );
+                        } else {
+                            return (
+                                <a 
+                                    key={key} 
+                                    href={`#${key}`}
+                                    className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
+                                >
+                                    <IconComponent className="h-4 w-4 text-gray-400" />
+                                    {item.label}
+                                </a>
+                            );
+                        }
+                    })}
+                </div>
+
+                {/* Mobile Navigation Tabs (Floating Glass Segmented Controller) */}
+                <div className="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
+                    <span className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20 whitespace-nowrap cursor-default flex items-center gap-1.5">
+                        <BookOpen className="h-3.5 w-3.5" />
+                        Overview
+                    </span>
+                    {Object.entries(SUBPAGE_METRICS).map(([key, item]) => {
+                        const IconComponent = item.icon;
+                        if (hasSubpages) {
+                            return (
+                                <Link 
+                                    key={key} 
+                                    href={`/scholarships/${scholarship.slug}/${key}`}
+                                    className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"
+                                >
+                                    <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
+                                    {item.label}
+                                </Link>
+                            );
+                        } else {
+                            return (
+                                <a 
+                                    key={key} 
+                                    href={`#${key}`}
+                                    className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"
+                                >
+                                    <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
+                                    {item.label}
+                                </a>
+                            );
+                        }
+                    })}
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -766,7 +817,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             )}
                         </section>
 
-                        <section className="mb-12 pb-8 border-b border-gray-150">
+                        <section id="eligibility" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
                             <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-blue rounded-full" />
                                 Eligibility Criteria
@@ -780,7 +831,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         {scholarship.min_marks ? ` Minimum ${scholarship.min_marks}% marks required in previous exam.` : ''}
                                     </p>
                                 </div>
-                                <div>
+                                <div id="income-limit" className="scroll-mt-24">
                                     <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-wider mb-2">Financial & Category</h3>
                                     <div className="space-y-3">
                                         <div>
@@ -799,7 +850,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </section>
 
                         <section className="mb-12 pb-8 border-b border-gray-150 grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
+                            <div id="selection-process" className="scroll-mt-24">
                                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                                     <Award className="w-5 h-5 text-google-green" />
                                     Selection Process
@@ -808,7 +859,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     <FormattedText text={scholarship.selection} />
                                 </div>
                             </div>
-                            <div>
+                            <div id="renewal-process" className="scroll-mt-24">
                                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
                                     <RefreshCcw className="w-5 h-5 text-google-blue" />
                                     Renewal Policy
@@ -819,7 +870,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         </section>
 
-                        <section className="mb-12 pb-8 border-b border-gray-150">
+                        <section id="apply-online" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
                             <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-green rounded-full" />
                                 Application Process
@@ -829,7 +880,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         </section>
 
-                        <section className="mb-12 pb-8 border-b border-gray-150">
+                        <section id="documents-required" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
                             <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                                 <CheckCircle2 className="h-5 w-5 text-google-green" />
                                 Documents Required
@@ -844,7 +895,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         </section>
 
-                        <section className="mb-12 pb-8 border-b border-gray-150">
+                        <section id="last-date" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
                             <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-red rounded-full" />
                                 Important Dates

@@ -8,9 +8,9 @@ author: "IndiaScholarships Editorial Team"
 tag: "State Guides"
 targetMoneyLink: "/scholarships-in/karnataka"
 relatedScholarships:
-  - "karnataka-post-matric-sc-scholarship"
-  - "karnataka-post-matric-st-scholarship"
-  - "maharashtra-postmatric-obc"
+  - "ssp-pre-matric-post-matric-scholarship-karnataka"
+  - "post-matric-scholarship-for-sc-students-karnataka"
+  - "post-matric-scholarship-for-st-students-karnataka"
 takeaways:
   - "Karnataka SSP Post-Matric Scholarship is open for SC, ST, OBC, and Minority students studying after Class 10."
   - "You must link your SATS ID or College Admission Number and have an Aadhaar-seeded bank account for money transfer."
@@ -78,8 +78,8 @@ Review all details carefully. Click **Submit Application**. Print the acknowledg
 ### Q1: Is there an application fee for SSP?
 **No.** Registering on the SSP Karnataka portal is 100% free.
 
-### Q2: What should I do if my college name is not listed on SSP?
+### Q2: What to Do If College Name Is Not Listed on SSP?
 Ask your college scholarship branch to register their college code on the Karnataka SSP portal database.
 
-### Q3: When will the scholarship money reach my bank?
+### Q3: When Is Scholarship Money Credited to Bank Accounts?
 Money is usually disbursed between December and February after institute and department verification.
