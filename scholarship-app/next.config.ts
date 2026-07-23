@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     const mappings = [
       { from: 'legacy-foundation-for-excellence-scholarship', to: 'foundation-for-excellence-ffe-scholarship' },
       { from: 'legacy-nabanna-scholarship', to: 'nabanna-scholarship-west-bengal' },
+      { from: 'pm-yasasvi-scholarship', to: 'pm-yashasvi-scholarship' },
       { from: 'legacy-ssp-post-matric-scholarship-state-scholarship-portal', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
       { from: 'legacy-ssp-pre-matric-scholarship-state-scholarship-portal', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
       { from: 'legacy-government-of-india-post-matric-scholarship-via-mahadbt', to: 'mahadbt-post-matric-scholarship-maharashtra' },
