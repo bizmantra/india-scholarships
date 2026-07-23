@@ -157,13 +157,7 @@ export function getAllArticles(): ArticleMetadata[] {
     });
   }
 
-  // Filter out scheduled future articles on production (drip-feed release control)
-  const todayStr = new Date().toISOString().split('T')[0];
-  const publishedArticles = process.env.NODE_ENV === 'production'
-    ? articles.filter(a => a.date <= todayStr)
-    : articles;
-
-  return publishedArticles.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 /**
@@ -179,11 +173,7 @@ export function getArticleBySlug(slug: string): ArticleData | null {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = parseFrontmatter(fileContents);
 
-  const todayStr = new Date().toISOString().split('T')[0];
   const articleDate = data.date || '2026-07-21';
-  if (process.env.NODE_ENV === 'production' && articleDate > todayStr) {
-    return null;
-  }
 
   const contentHtml = simpleMarkdownToHtml(content);
 
