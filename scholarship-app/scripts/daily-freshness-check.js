@@ -23,6 +23,11 @@ async function callGeminiForDeadline(title, provider) {
     const prompt = `Research the official current application deadline details for the "${title}" scholarship by ${provider} in India.
 You must search Google to find the accurate, current deadline for the 2025-26 or 2026-27 application cycle.
 
+CRITICAL REQUIREMENT FOR DEADLINES:
+1. You MUST find the student application submission deadline (the last date for fresh or renewal student applications to be submitted).
+2. Do NOT use the institutional verification (L1) deadline, state/district verification (L2) deadline, or final portal closure/billing date (which are usually later). If a table of dates is listed, select the student submission date, which is always the earliest.
+3. If the portal lists separate deadlines for school (Pre-Matric) and college (Post-Matric) students, prioritize the one relevant to "${title}".
+
 You must respond with a single, valid JSON object matching the following schema:
 {
   "deadline": "YYYY-MM-DD" (Format strictly as YYYY-MM-DD. If unknown/continuous/always open, leave empty string. Do not guess),
