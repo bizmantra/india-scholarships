@@ -5,6 +5,8 @@ import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { getNewsForState } from '@/lib/news';
+import { Bell } from 'lucide-react';
 
 const SUBPAGE_METRICS = {
     'eligibility': 'Eligibility',
@@ -66,6 +68,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
 
         // Get scholarships for this state
         const scholarships = await getScholarshipsByState(stateName);
+        const stateNews = getNewsForState(stateName);
 
         if (scholarships.length === 0) {
             return redirect('/state-scholarships');
@@ -147,6 +150,34 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             <p className="text-xs text-purple-600 mt-2">Active schemes</p>
                         </div>
                     </div>
+
+                    {stateNews.length > 0 && (
+                        <div className="mb-12 bg-red-50/40 border border-red-100 rounded-3xl p-6">
+                            <h2 className="text-sm font-bold text-red-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <Bell className="w-4.5 h-4.5 animate-pulse" />
+                                <span>Recent {stateName} Updates & Alerts</span>
+                            </h2>
+                            <div className="space-y-4">
+                                {stateNews.map((news: any) => (
+                                    <Link 
+                                        key={news.slug} 
+                                        href={`/news/${news.slug}`}
+                                        className="block p-4 bg-white rounded-2xl border border-gray-150 hover:border-red-400 transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
+                                    >
+                                        <div>
+                                            <span className="text-[9px] font-bold uppercase px-2 py-0.5 rounded bg-red-50 text-red-600 border border-red-100">
+                                                {news.tag}
+                                            </span>
+                                            <h3 className="text-sm font-bold text-gray-900 mt-2 leading-snug">{news.title}</h3>
+                                        </div>
+                                        <span className="text-xs font-bold text-red-600 shrink-0 flex items-center gap-0.5 hover:underline">
+                                            Read Update →
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Scholarships List */}
                     <div className="mb-20">

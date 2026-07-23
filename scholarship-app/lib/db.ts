@@ -604,7 +604,7 @@ export async function getSiblingVariants(currentId: string | number, slug: strin
     
     const queryPattern = `%${matchedKeyword.replace(/\s+/g, '%')}%`;
     const res = await client.execute({
-        sql: 'SELECT * FROM scholarships WHERE (title LIKE ? OR slug LIKE ?) AND id != ? AND status = "Active" LIMIT 4',
+        sql: "SELECT * FROM scholarships WHERE (title LIKE ? OR slug LIKE ?) AND id != ? AND status = 'Active' LIMIT 4",
         args: [queryPattern, queryPattern, currentId]
     });
     

@@ -11,6 +11,7 @@ import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
+import { getAllNews } from '@/lib/news';
 
 export async function generateSitemaps() {
     return [
@@ -39,6 +40,9 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const articles = getAllArticles();
         const articleRoutes = articles.map(art => `/articles/${art.slug}`);
 
+        const news = getAllNews();
+        const newsRoutes = news.map(n => `/news/${n.slug}`);
+
         const staticRoutes = [
             '',
             '/scholarships',
@@ -55,6 +59,8 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             '/eligibility-checker',
             '/articles',
             ...articleRoutes,
+            '/news',
+            ...newsRoutes,
             '/guides',
             '/guides/nsp',
             '/guides/nsp/status-check',

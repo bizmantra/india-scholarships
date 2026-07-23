@@ -10,6 +10,7 @@ import {
   BookOpen, Calendar, Clock, ChevronRight, CheckCircle2, 
   ThumbsUp, ThumbsDown, ShieldCheck, ExternalLink, ListChecks 
 } from 'lucide-react';
+import UpStatusDecoder from '@/app/components/UpStatusDecoder';
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -50,9 +51,9 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
   }
 
   // Fetch live scholarship cards from SQLite DB
-  const relatedScholarshipsData = article.relatedScholarships
-    .map((sSlug) => getScholarshipBySlug(sSlug))
-    .filter(Boolean);
+  const relatedScholarshipsData = (await Promise.all(
+    article.relatedScholarships.map((sSlug) => getScholarshipBySlug(sSlug))
+  )).filter(Boolean);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -142,6 +143,14 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
             className="prose prose-slate max-w-none prose-p:text-gray-700 prose-p:leading-relaxed prose-p:text-base prose-headings:text-gray-900 prose-headings:font-bold prose-a:text-google-blue prose-a:font-semibold"
             dangerouslySetInnerHTML={{ __html: article.contentHtml }}
           />
+
+          {/* Conditional interactive components per article slug */}
+          {slug === 'up-scholarship-status-check-2026' && (
+            <div className="my-8">
+              <UpStatusDecoder />
+            </div>
+          )}
+
 
           {/* Interactive Document Checklist (if present) */}
           {article.checklist && article.checklist.length > 0 && (

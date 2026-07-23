@@ -6,6 +6,7 @@ import { getAllScholarships, getScholarshipBySlug, getRelatedScholarships, getSi
 export const revalidate = 86400; // Align server revalidation to 24 hours
 
 import { getArticlesForScholarship } from '@/lib/articles';
+import { getNewsForScholarship } from '@/lib/news';
 import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
@@ -25,7 +26,8 @@ import {
     RefreshCcw,
     CreditCard,
     ArrowLeft,
-    BookOpen
+    BookOpen,
+    Bell
 } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -253,6 +255,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 3);
     const siblingVariants = await getSiblingVariants(scholarship.id, scholarship.slug, scholarship.title);
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
+    const relevantNews = getNewsForScholarship(scholarship.slug);
 
     // Fetch pre-computed community signals aggregates for the scholarship
     const dbClient = getClient();
@@ -1005,6 +1008,39 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 Applying for a scholarship does not guarantee selection. Always verify all information on the official {scholarship.provider} website before final submission.
                             </p>
                         </section>
+
+                        {relevantNews.length > 0 && (
+                            <section id="portal-updates" className="mt-8 pt-6 border-t border-gray-150">
+                                <div className="flex items-center gap-2.5 mb-4">
+                                    <Bell className="h-5 w-5 text-red-500 animate-pulse" />
+                                    <h2 className="text-lg font-bold text-gray-900">Portal Updates & Live News</h2>
+                                </div>
+                                <div className="grid grid-cols-1 gap-4">
+                                    {relevantNews.map((news: any) => (
+                                        <Link
+                                            key={news.slug}
+                                            href={`/news/${news.slug}`}
+                                            className="p-4 bg-red-50/50 border border-red-100 rounded-xl hover:border-red-300 transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                                        >
+                                            <div>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-[10px] font-bold uppercase text-red-600 bg-red-100 px-2 py-0.5 rounded">
+                                                        {news.tag}
+                                                    </span>
+                                                    <span className="text-xs text-gray-400 font-medium">{news.date}</span>
+                                                </div>
+                                                <h4 className="text-sm font-bold text-slate-900 mt-2 leading-snug">
+                                                    {news.title}
+                                                </h4>
+                                            </div>
+                                            <span className="text-xs font-bold text-red-600 flex items-center gap-1 shrink-0">
+                                                View Live Update →
+                                            </span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        )}
 
                         {relevantArticles.length > 0 && (
                             <section id="helpful-guides" className="mt-8 pt-6 border-t border-gray-150">

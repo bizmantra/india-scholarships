@@ -1073,9 +1073,11 @@ Examples:
 5. **Fresh Content:** "Last Verified" dates, quarterly updates
 6. **FAQ Schema:** Target "People Also Ask" featured snippets
 7. **Breadcrumbs:** Proper navigation hierarchy
+8. **Live News alerts (/news):** Google News RSS updates pipeline with real-time curation for time-sensitive search spikes (e.g. deadline extensions).
 
-**Content Marketing & Editorial Layer (`/articles`):**
+**Content Marketing & Editorial Layer (`/articles` & `/news`):**
 - **Editorial Engine:** Simple-English Tier-2/3 guides (`/articles/[slug]`) targeting top/mid-funnel procedural searches (See [Editorial Strategy & Implementation Blueprint](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md))
+- **Live News Pipeline (`/news`):** RSS ingestion system curating real-time updates and embedding them dynamically inside state hub portals and detail pages for contextual user updates.
 - **How-To Videos:** YouTube tutorials embedded on scholarship pages
 - **Infographics:** "Scholarship Application Timeline" shareable images
 - **State Guides:** "Complete Guide to Odisha Scholarships 2026" (mapped to `/scholarships-in/odisha`)
