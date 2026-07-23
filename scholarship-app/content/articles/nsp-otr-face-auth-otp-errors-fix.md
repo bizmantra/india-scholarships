@@ -2,7 +2,7 @@
 id: "ART-101"
 title: "How to Fix NSP OTR Registration Face Authentication & OTP Errors"
 slug: "nsp-otr-face-auth-otp-errors-fix"
-date: "2026-07-24"
+date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Portal Guides"

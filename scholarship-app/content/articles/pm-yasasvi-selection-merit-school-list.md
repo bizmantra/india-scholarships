@@ -2,7 +2,7 @@
 id: "ART-64"
 title: "PM YASASVI Scholarship 2026: Selection, Merit & School List Rules"
 slug: "pm-yasasvi-selection-merit-school-list"
-date: "2026-07-24"
+date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Government Scheme"
