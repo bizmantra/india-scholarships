@@ -1,6 +1,6 @@
 ---
 id: "ART-101"
-title: "How to Fix NSP OTR Registration Face Authentication & OTP Errors"
+title: "Stuck on NSP OTR Face Authentication? Here's My Step-by-Step Fix"
 slug: "nsp-otr-face-auth-otp-errors-fix"
 date: "2026-07-23"
 readTime: "4 min read"
@@ -11,9 +11,9 @@ relatedScholarships:
   - "pm-yashasvi-scholarship"
   - "ssp-pre-matric-post-matric-scholarship-karnataka"
 takeaways:
-  - "NSP One-Time Registration (OTR) is mandatory for 2026 applicants."
-  - "Face authentication requires the Aadhaar FaceRD app on an Android device."
-  - "Ensure biometric lock is disabled and details match Aadhaar exactly."
+  - "NSP's new One-Time Registration (OTR) is mandatory for all 2026 applicants."
+  - "Face authentication requires installing two apps and disabling mAadhaar locks."
+  - "Registering during off-peak hours solves the constant OTP delays."
 checklist:
   - "Aadhaar Number or Enrolment ID (EID)"
   - "Mobile number linked to Aadhaar"
@@ -22,41 +22,44 @@ checklist:
   - "Latest NSP OTR App installed"
 ---
 
-## What is the NSP OTR System?
+## What is this New NSP OTR System?
 
-The National Scholarship Portal (NSP) introduced One-Time Registration (OTR) in 2026.
-This is a unique 14-digit number assigned to each student.
-It remains valid for your entire academic career.
+If you are trying to apply for scholarships this year, you probably got blocked by the OTR screen.
+The National Scholarship Portal (NSP) now forces everyone to get a One-Time Registration (OTR) number.
+It is a 14-digit number that stays with you forever.
 
-All fresh applicants must complete OTR before applying for schemes.
-This registration uses Aadhaar-based face authentication.
-Many students face errors during this step due to technical issues.
+No OTR means no scholarship applications.
+And to get it, you have to pass face verification.
+This new system is super buggy and frustrates thousands of students daily.
+Here is how to get past it without losing your mind.
 
-Learn more on the general [NSP Portal Guide](/guides/nsp).
-
----
-
-## Fixing Face Authentication Errors (Error 904)
-
-Face authentication errors are the most common OTR issue.
-To solve them, follow these steps:
-
-1. **Use Android:** The face authentication process is only supported on Android. iOS is not supported.
-2. **Download Prerequisites:** You must download both the **Aadhaar FaceRD** app and the **NSP OTR** app from the Google Play Store.
-3. **Lighting & Angle:** Perform the scan in a brightly lit room with a plain white background. Keep the phone steady at eye level.
-4. **Unlock Biometrics:** If it fails, open the mAadhaar app and ensure your biometric lock is turned off.
-
-For general checklist guidelines, visit the [NSP Documents Guide](/guides/nsp/documents-list).
+Learn the basics on our general [NSP Portal Guide](/guides/nsp).
 
 ---
 
-## Solving Aadhaar Seeding and OTP Delays
+## How I Fixed the Face Authentication Errors (Error 904)
 
-Direct Benefit Transfer (DBT) requires Aadhaar seeding.
-Ensure your bank account is linked to Aadhaar via the NPCI mapper.
-If you do not receive the OTR OTP, check if your mobile number is active.
+If you are getting "Error 904" or camera connection failures, you are not alone.
+Here is the exact step-by-step checklist to bypass the errors:
 
-High traffic can delay SMS delivery.
-Try registering during off-peak hours (early morning or late night).
+1. **Get an Android Phone:** You cannot do face authentication on an iPhone. The government apps are only on Google Play.
+2. **Download Both Apps:** You need **two** apps installed on your phone. First, install **Aadhaar FaceRD (Early Access)**. Second, install the **NSP OTR** app.
+3. **Turn Off Biometric Lock:** Open the mAadhaar app on your phone. Check if your biometric lock is on. If it is locked, the face app cannot read your Aadhaar. Turn it off.
+4. **Fix Your Camera Setup:** Face a window or bright light. Do not have lights behind you. Keep a plain white wall behind you. Hold the phone steady at eye level and blink when the app tells you to.
 
-If issues persist, check the [PM Yashasvi Scholarship Guide](/scholarships/pm-yashasvi-scholarship) for application walkthroughs.
+If you need a list of documents to scan later, visit the [NSP Documents Guide](/guides/nsp/documents-list).
+
+---
+
+## Still Not Getting the OTP?
+
+Sometimes, the face scan works, but you wait forever for the SMS OTP.
+The NSP servers are overloaded during the day.
+The best fix is simple: register late at night or early in the morning.
+I tried at 6:00 AM, and the OTP arrived in less than 10 seconds!
+
+Also, make sure your Aadhaar is linked to your bank account.
+The government uses Direct Benefit Transfer (DBT) now.
+If they are not linked, your cash will bounce.
+
+If you are ready to apply for YASASVI, check out the [PM Yashasvi Scholarship Guide](/scholarships/pm-yashasvi-scholarship) for the next steps!

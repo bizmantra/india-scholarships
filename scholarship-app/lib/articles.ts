@@ -109,7 +109,7 @@ function simpleMarkdownToHtml(markdown: string): string {
 
   // Lists
   html = html.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-slate-700 mb-1.5">$1</li>');
-  html = html.replace(/^([0-9]+)\. (.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 mb-2 font-medium">$1</li>');
+  html = html.replace(/^([0-9]+)\. (.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 mb-2 font-medium">$2</li>');
 
   // Paragraphs
   const paragraphs = html.split(/\n\n+/);
@@ -157,7 +157,7 @@ export function getAllArticles(): ArticleMetadata[] {
     });
   }
 
-  return articles.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return articles.sort((a, b) => b.date.localeCompare(a.date));
 }
 
 /**
