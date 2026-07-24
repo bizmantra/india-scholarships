@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
+
+
 export interface ArticleMetadata {
   id: string;
   title: string;
@@ -13,17 +15,120 @@ export interface ArticleMetadata {
   relatedScholarships: string[];
   takeaways: string[];
   checklist?: string[];
+  featuredStats?: { label: string; value: string }[];
+  faqs?: { q: string; a: string }[];
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface ArticleData extends ArticleMetadata {
   contentHtml: string;
   rawMarkdown: string;
+  headings: { id: string; text: string; level: number }[];
 }
 
 const articlesDirectory = path.join(process.cwd(), 'content/articles');
 
 /**
- * Simple zero-dependency Frontmatter & Markdown Parser
+ * Extract H2/H3 headings for Table of Contents
+ */
+function extractHeadings(markdown: string): { id: string; text: string; level: number }[] {
+  const lines = markdown.split('\n');
+  const headings: { id: string; text: string; level: number }[] = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('## ') || trimmed.startsWith('### ')) {
+      const isH2 = trimmed.startsWith('## ');
+      const text = trimmed.replace(/^##+\s+/, '');
+      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      headings.push({
+        id,
+        text,
+        level: isH2 ? 2 : 3
+      });
+    }
+  }
+  return headings;
+}
+
+/**
+ * GFM Table Parser Helper
+ */
+function convertMarkdownTableToHtml(lines: string[]): string {
+  if (lines.length < 2) return lines.join('\n');
+
+  const rows = lines.map(line => {
+    const parts = line.split('|');
+    return parts.slice(1, parts.length - 1).map(p => p.trim());
+  });
+
+  const headers = rows[0];
+  const separator = rows[1];
+  const dataRows = rows.slice(2);
+
+  const alignments = separator.map(cell => {
+    if (cell.startsWith(':') && cell.endsWith(':')) return 'text-center';
+    if (cell.endsWith(':')) return 'text-right';
+    return 'text-left';
+  });
+
+  let html = '<div class="overflow-x-auto my-6 border border-slate-200 rounded-xl shadow-sm"><table class="min-w-full divide-y divide-slate-200 text-sm">';
+  
+  html += '<thead class="bg-slate-50">';
+  html += '<tr>';
+  headers.forEach((header, idx) => {
+    const align = alignments[idx] || 'text-left';
+    html += `<th scope="col" class="px-6 py-3.5 ${align} text-xs font-bold text-slate-500 uppercase tracking-wider">${header}</th>`;
+  });
+  html += '</tr>';
+  html += '</thead>';
+
+  html += '<tbody class="divide-y divide-slate-100 bg-white">';
+  dataRows.forEach(row => {
+    html += '<tr class="hover:bg-slate-50/50 transition-colors">';
+    row.forEach((cell, idx) => {
+      const align = alignments[idx] || 'text-left';
+      html += `<td class="px-6 py-4 ${align} text-slate-700 whitespace-pre-wrap leading-relaxed">${cell}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  html += '</table></div>';
+
+  return html;
+}
+
+function parseTables(text: string): string {
+  const lines = text.split('\n');
+  let inTable = false;
+  let tableLines: string[] = [];
+  const result: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith('|') && line.endsWith('|')) {
+      inTable = true;
+      tableLines.push(line);
+    } else {
+      if (inTable) {
+        result.push(convertMarkdownTableToHtml(tableLines));
+        inTable = false;
+        tableLines = [];
+      }
+      result.push(lines[i]);
+    }
+  }
+
+  if (inTable && tableLines.length > 0) {
+    result.push(convertMarkdownTableToHtml(tableLines));
+  }
+
+  return result.join('\n');
+}
+
+/**
+ * Simple Frontmatter & Markdown Parser
  */
 function parseFrontmatter(fileContent: string): { data: Record<string, any>; content: string } {
   const frontmatterRegex = /^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/;
@@ -39,20 +144,48 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
 
   const lines = yamlBlock.split('\n');
   let currentKey: string | null = null;
-  let currentList: string[] | null = null;
+  let currentList: any[] | null = null;
 
   for (const line of lines) {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
 
-    // List item (- "value")
-    if (trimmed.startsWith('-') && currentKey && currentList) {
-      const val = trimmed.replace(/^-/, '').trim().replace(/^["']|["']$/g, '');
-      currentList.push(val);
+    // List item starting with '-'
+    if (trimmed.startsWith('-')) {
+      const rest = trimmed.replace(/^-/, '').trim();
+      const matchKeyVal = /^[a-zA-Z_][a-zA-Z0-9_-]*\s*:/.exec(rest);
+      
+      if (matchKeyVal) {
+        const colonIdx = rest.indexOf(':');
+        const k = rest.slice(0, colonIdx).trim();
+        const v = rest.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '');
+        if (currentList) {
+          currentList.push({ [k]: v });
+        }
+      } else {
+        if (currentList) {
+          currentList.push(rest.replace(/^["']|["']$/g, ''));
+        }
+      }
       continue;
     }
 
-    // Key-Value pair
+    // Indented properties under list item (like value: or a:)
+    if (line.startsWith(' ') && currentList && currentList.length > 0) {
+      const matchKeyVal = /^[a-zA-Z_][a-zA-Z0-9_-]*\s*:/.exec(trimmed);
+      if (matchKeyVal) {
+        const colonIdx = trimmed.indexOf(':');
+        const k = trimmed.slice(0, colonIdx).trim();
+        const v = trimmed.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '');
+        const lastObj = currentList[currentList.length - 1];
+        if (lastObj && typeof lastObj === 'object') {
+          lastObj[k] = v;
+        }
+        continue;
+      }
+    }
+
+    // Root-level key-value pair
     const colonIdx = trimmed.indexOf(':');
     if (colonIdx !== -1) {
       if (currentKey && currentList) {
@@ -89,9 +222,24 @@ function simpleMarkdownToHtml(markdown: string): string {
   // Escape HTML entities to prevent injection
   html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // Headings
-  html = html.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100">$1</h2>');
+  // Tables
+  html = parseTables(html);
+
+  // Horizontal Rules
+  html = html.replace(/^---$/gim, '<hr class="my-8 border-slate-200" />');
+
+  // Images (Parse before regular links)
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<div class="my-6 flex justify-center"><img src="$2" alt="$1" class="rounded-xl border border-slate-100 shadow-sm max-w-full print:border-none print:shadow-none" /></div>');
+
+  // Headings with Slugified Anchor IDs
+  html = html.replace(/^### (.*$)/gim, (match, title) => {
+    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return `<h3 id="${id}" class="text-xl font-bold text-slate-900 mt-6 mb-3">${title}</h3>`;
+  });
+  html = html.replace(/^## (.*$)/gim, (match, title) => {
+    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return `<h2 id="${id}" class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100">${title}</h2>`;
+  });
   html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-black text-slate-900 mt-8 mb-4">$1</h1>');
 
   // Callout boxes (> 💡 Pro Tip: ...)
@@ -115,7 +263,7 @@ function simpleMarkdownToHtml(markdown: string): string {
   const paragraphs = html.split(/\n\n+/);
   html = paragraphs.map(p => {
     p = p.trim();
-    if (p.startsWith('<h') || p.startsWith('<blockquote') || p.startsWith('<div') || p.startsWith('<li')) {
+    if (p.startsWith('<h') || p.startsWith('<blockquote') || p.startsWith('<div') || p.startsWith('<li') || p.startsWith('<table') || p.startsWith('<hr')) {
       return p;
     }
     return `<p class="text-slate-700 text-base leading-relaxed mb-4">${p}</p>`;
@@ -153,7 +301,9 @@ export function getAllArticles(): ArticleMetadata[] {
       targetMoneyLink: data.targetMoneyLink || '/tools/eligibility-checker',
       relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
       takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
-      checklist: Array.isArray(data.checklist) ? data.checklist : []
+      checklist: Array.isArray(data.checklist) ? data.checklist : [],
+      featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
+      faqs: Array.isArray(data.faqs) ? data.faqs : []
     });
   }
 
@@ -173,8 +323,6 @@ export function getArticleBySlug(slug: string): ArticleData | null {
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = parseFrontmatter(fileContents);
 
-  const articleDate = data.date || '2026-07-21';
-
   const contentHtml = simpleMarkdownToHtml(content);
 
   return {
@@ -189,6 +337,9 @@ export function getArticleBySlug(slug: string): ArticleData | null {
     relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
     takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
     checklist: Array.isArray(data.checklist) ? data.checklist : [],
+    featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
+    faqs: Array.isArray(data.faqs) ? data.faqs : [],
+    headings: extractHeadings(content),
     contentHtml,
     rawMarkdown: content
   };

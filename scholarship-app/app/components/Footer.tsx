@@ -38,6 +38,7 @@ export default function Footer() {
                             <li><Link href="/eligibility-checker" className="hover:text-white transition-colors">Eligibility Checker</Link></li>
                             <li><Link href="/guides" className="hover:text-white transition-colors">How to Apply Guides</Link></li>
                             <li><Link href="/articles" className="hover:text-white transition-colors">Help Articles</Link></li>
+                            <li><Link href="/articles/india-scholarships-statistics-2025-2026" className="hover:text-white transition-colors font-bold text-google-green">📊 Scholarship Stats (2025-26)</Link></li>
                             <li><Link href="/news" className="hover:text-white transition-colors">Portal News & Updates</Link></li>
                             <li><Link href="/government-scholarships" className="hover:text-white transition-colors">Government Scholarships</Link></li>
                             <li><Link href="/private-scholarships" className="hover:text-white transition-colors">Private Scholarships</Link></li>

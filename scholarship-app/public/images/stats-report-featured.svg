@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title-feat desc-feat">
+  <title id="title-feat">India Scholarships Statistics Report Cover (2025-2026)</title>
+  <desc id="desc-feat">Official report cover for India Scholarships Statistics 2025-2026 compiling budget outlays, CSR schemes, and mobility records.</desc>
+  
+  <!-- Clean background with border -->
+  <rect width="1200" height="630" fill="#ffffff" stroke="#e2e8f0" stroke-width="8"/>
+  
+  <!-- Sleek visual grid patterns -->
+  <line x1="100" y1="0" x2="100" y2="630" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="200" y1="0" x2="200" y2="630" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="300" y1="0" x2="300" y2="630" stroke="#f1f5f9" stroke-width="1.5"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#f1f5f9" stroke-width="1.5"/>
+  
+  <!-- Right-aligned abstract line charts representing data/growth -->
+  <path d="M 750,450 L 850,380 L 950,290 L 1050,150" fill="none" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 750,500 L 850,440 L 950,380 L 1050,280" fill="none" stroke="#0d9488" stroke-width="4" stroke-dasharray="8 6" stroke-linecap="round"/>
+  
+  <!-- Decorative scatter dots representing data points -->
+  <circle cx="850" cy="380" r="8" fill="#1e3a8a"/>
+  <circle cx="950" cy="290" r="8" fill="#1e3a8a"/>
+  <circle cx="1050" cy="150" r="10" fill="#2563eb"/>
+  
+  <!-- Main Report Branding -->
+  <text x="120" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#2563eb" letter-spacing="4">OFFICIAL DATA REPORT</text>
+  
+  <!-- H1 Title -->
+  <text x="120" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" fill="#0f172a">India Scholarships</text>
+  <text x="120" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" fill="#0f172a">Statistics (2025-2026)</text>
+  
+  <!-- Subtitle -->
+  <text x="120" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#475569">Budget Allocations, Corporate CSR Schemes,</text>
+  <text x="120" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="#475569">and Outbound International Student Mobility.</text>
+
+  <!-- High-level callout metrics in the footer banner -->
+  <rect x="120" y="470" width="190" height="70" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="140" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.5">SC POST-MATRIC</text>
+  <text x="140" y="525" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="900" fill="#1e3a8a">₹6,208.08 Cr</text>
+
+  <rect x="330" y="470" width="190" height="70" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="350" y="495" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.5">OUTBOUND FLOW</text>
+  <text x="350" y="525" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="900" fill="#0d9488">626,000</text>
+
+  <!-- Bottom Brand Signature -->
+  <line x1="120" y1="580" x2="1080" y2="580" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="120" y="605" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#2563eb">IndiaScholarships.in</text>
+  <text x="960" y="605" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#64748b">Verified Primary Datasets</text>
+</svg>

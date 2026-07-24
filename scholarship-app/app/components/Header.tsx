@@ -125,6 +125,9 @@ export default function Header() {
                                                 <Link href="/scholarships/recently-added" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-blue hover:bg-blue-50 transition-colors flex items-center gap-1.5">
                                                     🕒 Newly Verified
                                                 </Link>
+                                                <Link href="/articles/india-scholarships-statistics-2025-2026" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-green hover:bg-green-50 transition-colors flex items-center gap-1.5">
+                                                    📊 Stats Report (2025-26)
+                                                </Link>
                                                 <div className="my-1 border-t border-gray-100"></div>
                                                 <Link href="/government-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Government Portals</Link>
                                                 <Link href="/private-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Private & Corporate</Link>

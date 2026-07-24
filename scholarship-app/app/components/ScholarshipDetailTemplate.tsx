@@ -447,6 +447,15 @@ export default function ScholarshipDetailTemplate({
                                 )}
                                 <li>
                                     <Link
+                                        href="/articles/india-scholarships-statistics-2025-2026"
+                                        className="flex items-center gap-2 text-blue-700 font-bold hover:underline"
+                                    >
+                                        <ExternalLink className="w-4 h-4" />
+                                        National Scholarship Budget &amp; CSR Statistics Report (2025-2026)
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
                                         href={scholarship.scholarship_type === 'Private' ? "/private-scholarships" :
                                             scholarship.scholarship_type === 'Corporate' ? "/corporate-scholarships" :
                                                 "/government-scholarships"}

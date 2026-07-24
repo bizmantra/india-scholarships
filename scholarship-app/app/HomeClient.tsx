@@ -196,6 +196,33 @@ export default function HomeClient({
                     </div>
                 </section>
 
+                {/* Stats Report Promo Callout Banner */}
+                <section className="py-6 bg-white border-t border-gray-100">
+                    <div className="container mx-auto px-6 max-w-5xl">
+                        <Link 
+                            href="/articles/india-scholarships-statistics-2025-2026"
+                            className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-blue-50/70 to-indigo-50/40 border border-blue-100/70 rounded-3xl hover:border-google-blue hover:shadow-md transition-all group"
+                        >
+                            <div className="flex items-center gap-4 text-left">
+                                <div className="p-3 bg-white rounded-2xl border border-blue-100 shadow-sm text-2xl group-hover:scale-105 transition-transform shrink-0">
+                                    📊
+                                </div>
+                                <div>
+                                    <h4 className="text-sm font-bold text-gray-900 leading-snug">
+                                        India Scholarships Statistics Report (2025-2026)
+                                    </h4>
+                                    <p className="text-xs text-gray-500 mt-1 font-medium leading-relaxed">
+                                        Explore official compiled statistics on central government budget outlays, private corporate CSR funding limits, and outbound international student mobility records.
+                                    </p>
+                                </div>
+                            </div>
+                            <span className="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-google-blue group-hover:translate-x-0.5 transition-transform">
+                                Read Report <ArrowRight className="h-3.5 w-3.5" />
+                            </span>
+                        </Link>
+                    </div>
+                </section>
+
                 {/* Horizontal Swipe Curated Carousels Section */}
                 <section className="py-16 bg-gray-50/50 border-t border-b border-border-gray overflow-hidden">
                     <div className="container mx-auto px-6 max-w-5xl">

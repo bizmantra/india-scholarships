@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-labelledby="title-scst desc-scst">
+  <title id="title-scst">National SC and ST Scholarship Disbursements</title>
+  <desc id="desc-scst">Bar chart showing SC Post-Matric funding at 6,208.08 Crore, ST Post-Matric at 2,462.68 Crore, SC Pre-Matric at 562.36 Crore, and National Tribal Fellowship at 339.98 Crore.</desc>
+  
+  <rect width="900" height="450" fill="#ffffff" rx="16" stroke="#e2e8f0" stroke-width="1.5"/>
+  
+  <text x="50" y="50" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0f172a">SC / ST National Scheme Funding</text>
+  <text x="50" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#475569">Central assistance released and outlays by scheme (₹ Crore)</text>
+
+  <!-- SC Post-Matric -->
+  <text x="50" y="130" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#334155">SC Post-Matric Scholarship (FY26 release)</text>
+  <rect x="50" y="140" width="620" height="28" rx="5" fill="url(#blue-grad)"/>
+  <text x="685" y="160" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#1d4ed8">₹6,208.08 Cr</text>
+
+  <!-- ST Post-Matric -->
+  <text x="50" y="195" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#334155">ST Post-Matric Scholarship (FY26 budget)</text>
+  <rect x="50" y="205" width="246" height="28" rx="5" fill="url(#teal-grad)"/>
+  <text x="311" y="225" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#0f766e">₹2,462.68 Cr</text>
+
+  <!-- SC Pre-Matric -->
+  <text x="50" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#334155">SC Pre-Matric Scholarship</text>
+  <rect x="50" y="270" width="56" height="28" rx="5" fill="url(#slate-grad)"/>
+  <text x="121" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#475569">₹562.36 Cr</text>
+
+  <!-- National Tribal Fellowship -->
+  <text x="50" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#334155">National Tribal Fellowship (FY27 budget)</text>
+  <rect x="50" y="335" width="34" height="28" rx="5" fill="url(#grey-grad)"/>
+  <text x="99" y="355" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="800" fill="#64748b">₹339.98 Cr</text>
+
+  <!-- Footer Info -->
+  <line x1="50" y1="390" x2="850" y2="390" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">Source: Press Information Bureau, Ministry of Tribal Affairs (FY26 actual releases and FY27 outlays)</text>
+  <text x="760" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#1d4ed8">IndiaScholarships.in</text>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="teal-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="slate-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#64748b"/>
+    </linearGradient>
+    <linearGradient id="grey-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+  </defs>
+</svg>
