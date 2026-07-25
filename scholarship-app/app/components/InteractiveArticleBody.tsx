@@ -141,7 +141,7 @@ export default function InteractiveArticleBody({
         
         {/* PDF Print Download Row */}
         <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4 print:hidden">
-          <span className="text-xs text-slate-500">Official Database Statistics Guide</span>
+          <span className="text-xs text-slate-500">Verified Statistics &amp; Research Report</span>
           <button
             onClick={() => window.print()}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-google-blue hover:bg-blue-700 text-white font-bold text-xs rounded-lg shadow-sm transition-all"
@@ -155,7 +155,7 @@ export default function InteractiveArticleBody({
         <div className="hidden print:block border-b-2 border-slate-800 pb-4 mb-6">
           <div className="flex justify-between items-baseline">
             <span className="text-2xl font-black tracking-tight text-slate-900">IndiaScholarships.in</span>
-            <span className="text-xs text-slate-500">Official Stat Report (FY 2025-2026)</span>
+            <span className="text-xs text-slate-500">IndiaScholarships Research Report (FY 2025-2026)</span>
           </div>
         </div>
 
@@ -175,7 +175,7 @@ export default function InteractiveArticleBody({
                 </span>
                 
                 <button
-                  onClick={() => copyStat(`According to IndiaScholarships.in, ${stat.label} is ${stat.value}.`, idx)}
+                  onClick={() => copyStat(`According to IndiaScholarships Research Report, ${stat.label} is ${stat.value}.`, idx)}
                   className="absolute top-3 right-3 text-slate-400 hover:text-google-blue opacity-0 group-hover:opacity-100 transition-all p-1.5 rounded-lg hover:bg-slate-200/50 print:hidden"
                   title="Copy Citation"
                 >
@@ -197,26 +197,23 @@ export default function InteractiveArticleBody({
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
-        {/* Document Readiness Checklist Component */}
+        {/* How to Interpret These Figures Box */}
         {checklist.length > 0 && (
           <div className="my-10 bg-slate-50 border border-slate-200 rounded-2xl p-6 print:page-break-inside-avoid">
             <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
               <ListChecks className="w-5 h-5 text-google-blue" />
-              <span>Reference Document Readiness Checklist</span>
+              <span>How to Interpret These Figures</span>
             </h3>
-            <p className="text-xs text-slate-500 mb-4">Check off items as you gather documents to verify these statistics:</p>
+            <p className="text-xs text-slate-500 mb-4">Please read the following guidelines to accurately reference and compare these data points:</p>
             <div className="grid gap-2.5 sm:grid-cols-2">
               {checklist.map((item, idx) => (
-                <label
+                <div
                   key={idx}
-                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-google-blue transition-colors cursor-pointer print:border-slate-300"
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-google-blue transition-colors print:border-slate-300"
                 >
-                  <input
-                    type="checkbox"
-                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-google-blue focus:ring-google-blue print:hidden"
-                  />
+                  <span className="text-google-blue font-bold text-xs shrink-0 select-none">0{idx + 1}.</span>
                   <span className="text-xs font-semibold text-slate-800 leading-normal">{item}</span>
-                </label>
+                </div>
               ))}
             </div>
           </div>

@@ -1,7 +1,7 @@
 ---
 id: "ART-102"
-title: "India Scholarships Statistics (2025-2026): 46+ Data Points on Budget Allocations, Corporate CSR Schemes, and International Student Mobility"
-seoTitle: "India Scholarships Statistics (2025-2026) | Data & Trends"
+title: "India Scholarships Statistics (2025-2026): 46+ Data Points on Budget, CSR & Mobility (with FY27 Updates)"
+seoTitle: "India Scholarships Statistics (2025-2026): 46+ Data Points & FY27 Updates"
 seoDescription: "Explore 46+ verified data points on India's scholarship landscape for 2025-2026, including government outlays, corporate CSR schemes, and outbound student mobility."
 slug: "india-scholarships-statistics-2025-2026"
 date: "2026-07-24"
@@ -18,9 +18,10 @@ takeaways:
   - "Reliance Foundation selected 5,100 scholars in the 2025-26 cycle, receiving over 1.25 lakh undergraduate and postgraduate applications."
   - "Outbound Indian student mobility stabilized at 626,000 in 2025 due to visa changes in traditional destinations."
 checklist:
-  - "Review family annual income thresholds across government and private portals."
-  - "Verify your Aadhaar-seeding status via the official NPCI mapping tool before applying."
-  - "Prepare standard academic marks transcripts and active mobile linkage."
+  - "Non-Additive Data: Do not sum up outlays across tables; figures combine separate schemes, some of which overlap in target populations."
+  - "Central vs State Shares: Federal schemes (like SC/ST Post-Matric) show the central assistance release. States contribute matching shares (typically 40%)."
+  - "Timeframes: Budget outlays represent FY 2026-27 allocations, whereas enrollment and mobility metrics are reported for FY 2024-25 and Calendar 2025."
+  - "Beneficiary Counts vs Applications: Uttar Pradesh Saksham portal stats demonstrate the drop-off from 89.89 Lakh registrations to 18.64 Lakh final paid beneficiaries due to strict verification cycles."
 featuredStats:
   - label: "SC Post-Matric Funding"
     value: "₹6,208.08 Cr"
@@ -51,11 +52,22 @@ faqs:
 
 Data from the Press Information Bureau, Ministry of Education, and corporate reports show key trends. This report compiles the latest primary datasets to analyze funding shifts. 
 
+> [!NOTE]
+> **Methodology Note**: Figures compiled in this report are not additive; they mix forward-looking budget outlays, actual disbursements, active beneficiary headcounts, raw application volume counts, and contextual higher-education enrollment indicators.
+
 ---
 
-## 1. Central Government Scholarship Funding & Budget Allocations
+## 1. Central Government Scholarship Funding & Budget Allocations (with FY27 Updates)
+
+*Forward-Looking Segment: Budget outlays represent allocations for the upcoming fiscal year (FY 2026-27), whereas historical metrics represent disbursements during the FY 2025-26 session.*
 
 National budget outlays show targeted support for higher education programs and merit subsidies. Spending through schemes like PM-USP focuses on professional training and interest reliefs. Economically weaker sections receive stable funding to prevent secondary school dropouts. 
+
+### Key Terminology Definitions
+*   **Budget Allocations (Outlay)**: Forward-looking financial resources earmarked by the government for a specific fiscal year (e.g., Union Budget FY 2026-27 outlays).
+*   **Disbursements**: Funds actually released and credited to portals or beneficiaries during a cycle.
+*   **Beneficiaries**: The number of unique students who successfully qualified and received scholarship credits.
+*   **Applications**: The total volume of student profiles submitted, indicating demand (often much higher than final beneficiaries due to strict vetting).
 
 Students looking for central funding options can view the [Government Scholarships Page](/government-scholarships).
 
@@ -87,6 +99,8 @@ Central assistance for Scheduled Caste and Scheduled Tribe students shows substa
 | **ST Post-Matric Scholarship Budget (FY26)** | ₹2,462.68 Crore | [Ministry of Tribal Affairs Reports](https://tribal.nic.in/Divisions.aspx) (2026) |
 | **Proposed Family Income Limit for SC/ST Scholarships** | ₹4.5 Lakh | [The Hindu Education News](https://www.thehindu.com/education/) (2026) |
 | **National Tribal Fellowship Budget Allocation (FY27)** | ₹339.98 Crore | [Ministry of Tribal Affairs Scheme Allocations](https://tribal.nic.in/nos.aspx) (2026) |
+
+*Note on SC Post-Matric Funding: The ₹6,208.08 Crore outlay represents the Central Share of assistance released under the Post-Matric Scholarship Scheme for SC students during the FY 2025-26 cycle. This represents 60% of the total program spend in states, with state governments contributing a 40% matching share.*
 
 ---
 
@@ -127,6 +141,8 @@ Students looking for private funding can view the [Corporate Scholarships Page](
 | **HDFC Parivartan ECSS General UG Scholarship Rate** | ₹30,000 / year | [HDFC Bank Parivartan Program](https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility/parivartan) (2025) |
 | **HDFC Parivartan ECSS Professional PG Scholarship Rate** | ₹75,000 / year | [HDFC Bank Parivartan Program](https://www.hdfcbank.com/personal/about-us/corporate-social-responsibility/parivartan) (2025) |
 
+*Note on Education CSR Allocations: The 25% to 44% range represents the share of total CSR spending allocated to education projects by NSE-listed companies between FY22 and FY25, according to CSRBOX reports. This makes education the single largest recipient sector for private corporate social responsibility grants in India, followed by healthcare.*
+
 ---
 
 ## 5. Elite International Scholarships for Indian Students
@@ -146,7 +162,6 @@ Students can verify their foreign scholarship match on the [Eligibility Checker 
 | **National Overseas Scholarship SC Slots (FY27 Plan)** | 250 | [Ministry of Social Justice NOS Scheme](https://socialjustice.gov.in/schemes/33) (2026) |
 | **National Overseas Scholarship SC Selected Candidates (FY26)** | 106 | [Ministry of Social Justice NOS Scheme](https://socialjustice.gov.in/schemes/33) (2026) |
 | **National Overseas Scholarship ST Annual Budget (FY27)** | ₹20 Crore | [Ministry of Tribal Affairs NOS Portal](https://tribal.nic.in/nos.aspx) (2026) |
-|
 
 ---
 
@@ -158,11 +173,11 @@ Changing immigration rules in host countries have stabilized the student outflow
 
 | Metric | Value | Source |
 | :--- | :--- | :--- |
-| **Total Outbound Indian Students Abroad (2025)** | 626,000 | [Ministry of Education Statistics](https://www.education.gov.in/) (2025) |
-| **Indian Undergraduate Applications to UK (2026 Cycle)** | 6.9% Increase | [UCAS Corporate Key Facts](https://www.ucas.com/corporate-news-and-key-facts) (2026) |
-| **QS Flow Outbound Indian Student Growth Forecast** | 4% annually | [QS Global Student Flow Reports](https://www.qs.com/) (2026) |
+| **Total Outbound Indian Students Abroad (2025)** | 626,000 | [Digital Sansad (Rajya Sabha Question No. 1303)](https://sansad.in/rs/questions/questions-search) (2025) |
+| **Indian Undergraduate Applications to UK (2026 Cycle)** | 6.9% Increase | [UCAS Corporate Key Facts Dashboard](https://www.ucas.com/corporate/news-and-key-facts) (2026) |
+| **QS Flow Outbound Indian Student Growth Forecast** | 4% annually | [QS Global Student Flow Insights](https://www.qs.com/) (2026) |
 | **Canada New Study Permit Reduction Rate** | 80% to 90% | [The PIE News Canada Cap Coverage](https://thepienews.com/) (2025) |
-| **Historical Inception USIEF Total Grants** | 20,000 to 33,000+ | [USIEF Fulbright-Nehru Fellowships](https://www.usief.org.in/Fulbright-Nehru-Fellowships.aspx) (2026) |
+| **Historical Inception USIEF Total Grants** | 20,000 to 33,000+ | [USIEF Fulbright-Nehru Fellowships Directory](https://www.usief.org.in/Fulbright-Nehru-Fellowships.aspx) (2026) |
 
 ---
 
@@ -174,13 +189,13 @@ Higher education parameters in India show overall expansion in student participa
 
 | Metric | Value | Source |
 | :--- | :--- | :--- |
-| **Total Student Enrolment in Higher Education** | 45 Million | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Gross Enrolment Ratio in Higher Education (18-23 Age)** | 30 | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Total Female Student Higher Education Enrolment** | 22.4 Million | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Gender Parity Index in Higher Education** | 1.08 | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Scheduled Caste Enrolment Total** | 69.72 Lakh | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Scheduled Tribe Enrolment Total** | 28.83 Lakh | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
-| **Other Backward Classes Enrolment Total** | 1.80 Crore | [AISHE Annual Survey Reports](https://aishe.gov.in/) (2026) |
+| **Total Student Enrolment in Higher Education** | 45 Million | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Gross Enrolment Ratio in Higher Education (18-23 Age)** | 30 | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Total Female Student Higher Education Enrolment** | 22.4 Million | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Gender Parity Index in Higher Education** | 1.08 | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Scheduled Caste Enrolment Total** | 69.72 Lakh | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Scheduled Tribe Enrolment Total** | 28.83 Lakh | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
+| **Other Backward Classes Enrolment Total** | 1.80 Crore | [AISHE Survey Reports Portal](https://aishe.gov.in/aishe/reports) (2026) |
 
 ---
 
@@ -213,13 +228,13 @@ The table below compiles the highest-impact statistics on Indian education fundi
 
 All metrics are aggregated from official and verified primary sources:
 
-- **Department of Higher Education, Ministry of Education**: AISHE Reports (2023-2024 published July 2026).
-- **Ministry of Finance**: Union Budget Demand for Grants and Expenditure Profiles (2026-2027).
-- **Ministry of Corporate Affairs**: CSR spending datasets (2024-2025).
-- **Ministry of Tribal Affairs & Ministry of Social Justice**: National Overseas Scholarship guidelines and fellowship disbursements.
-- **Press Information Bureau (PIB)**: Official press releases and departmental updates.
-- **State Education Portals**: UP Saksham statistical dashboard, Nagaland Higher Education reports.
-- **Corporate Foundations**: Reliance Foundation Annual Statements, HDFC Bank CSR impact reports.
+- **Department of Higher Education, Ministry of Education**: [AISHE Reports Portal](https://aishe.gov.in/aishe/reports) (2023-2024 published July 2026).
+- **Ministry of Finance**: [Union Budget Demand for Grants](https://www.indiabudget.gov.in/doc/eb/sbe26.pdf) (2026-2027).
+- **Ministry of Corporate Affairs**: [National CSR Portal](https://www.csr.gov.in/) (2024-2025).
+- **Ministry of Tribal Affairs & Ministry of Social Justice**: [NOS Portal Guidelines](https://tribal.nic.in/nos.aspx) and fellowship disbursements.
+- **Press Information Bureau (PIB)**: [Official PIB Releases Search](https://pib.gov.in/) and departmental updates.
+- **State Education Portals**: [UP Saksham Dashboard](https://scholarship.up.gov.in/Dashboard.aspx), Nagaland Higher Education reports.
+- **Corporate Foundations**: [Reliance Foundation Scholars Portal](https://www.reliancefoundation.org/scholars), HDFC Bank CSR impact reports.
 - **International Bodies**: European Union Delegation to India releases, Rhodes Trust scholar archives.
 
 *Last updated: July 2026. We update this page quarterly to ensure accuracy.*
