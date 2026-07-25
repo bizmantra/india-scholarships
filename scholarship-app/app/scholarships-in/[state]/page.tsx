@@ -7,6 +7,8 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { getNewsForState } from '@/lib/news';
 import { Bell } from 'lucide-react';
+import PillarGuideCallout from '@/app/components/PillarGuideCallout';
+import { getPillarForState } from '@/lib/pillars';
 
 const SUBPAGE_METRICS = {
     'eligibility': 'Eligibility',
@@ -98,6 +100,8 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
 
+                    <PillarGuideCallout pillar={getPillarForState(stateName)} />
+
                     {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
                     {scholarships.length >= 3 && (
                         <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
@@ -125,7 +129,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             Find the latest and most comprehensive list of {stateName} state scholarships.
-                            Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified opportunities</span> available for
+                            Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified scholarships</a> available for
                             students from {stateName}.
                         </p>
                     </div>
@@ -180,7 +184,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                     )}
 
                     {/* Scholarships List */}
-                    <div className="mb-20">
+                    <div id="scholarship-list" className="mb-20 scroll-mt-24">
                         <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {stateName} Scholarships</h2>
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>

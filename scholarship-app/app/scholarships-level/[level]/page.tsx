@@ -5,6 +5,8 @@ import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import PillarGuideCallout from '@/app/components/PillarGuideCallout';
+import { getPillarForLevel } from '@/lib/pillars';
 
 // Generate static params for all education levels (Canonical + Raw)
 export async function generateStaticParams() {
@@ -106,18 +108,20 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
 
+                    <PillarGuideCallout pillar={getPillarForLevel(levelSlug)} />
+
                     {/* Page Header */}
                     <div className="mb-10">
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
                             {displayName} Scholarships 2026
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                            {scholarships.length} scholarship{scholarships.length !== 1 ? 's' : ''} found for <span className="font-semibold text-blue-700">{displayName}</span>. {description}
+                            <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} scholarship{scholarships.length !== 1 ? 's' : ''}</a> found for <span className="font-semibold text-gray-900">{displayName}</span>. {description}
                         </p>
                     </div>
 
                     {/* Scholarships List */}
-                    <div className="mb-20">
+                    <div id="scholarship-list" className="mb-20 scroll-mt-24">
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
 

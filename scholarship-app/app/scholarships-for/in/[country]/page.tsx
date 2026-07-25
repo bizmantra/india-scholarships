@@ -76,7 +76,7 @@ export default async function CountryHubPage({ params }: { params: Promise<{ cou
                         Best Scholarships in {countryName}{countrySlug !== 'india' ? ' for Indian Students' : ''} {currentYear} - {nextYear}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        Explore fully funded and merit-based global scholarships to support your study abroad journey in <span className="font-semibold text-blue-700">{countryName}</span>. Find application guides, deadlines, and portals.
+                        Explore fully funded and merit-based global scholarships to support your study abroad journey in <span className="font-semibold text-gray-900">{countryName}</span>. Find application guides, deadlines, and portals.
                     </p>
                 </div>
 

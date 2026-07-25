@@ -39,6 +39,7 @@ const nextConfig: NextConfig = {
       { from: 'pragati-scholarship-for-girls-aitcte', to: 'aicte-pragati-scholarship-for-girl-students' },
       { from: 'rajasthan-uttar-matric-scholarship-sc-st-obc', to: 'rajasthan-post-matric-scholarship-sc' },
       { from: 'ssp-postmatric-sc-st-obc-karnataka', to: 'ssp-pre-matric-post-matric-scholarship-karnataka' },
+      { from: 'aikyashree-scholarship-west-bengal-minority', to: 'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal' },
     ];
 
     const stateMappings = [
@@ -48,7 +49,6 @@ const nextConfig: NextConfig = {
       { from: 'gujarat-post-matric-scholarship-for-scst', to: 'gujarat' },
       { from: 'west-bengal-post-matric-scholarship-for-scstobc', to: 'west-bengal' },
       { from: 'punjab-post-matric-scholarship-for-scbc-students', to: 'punjab' },
-      { from: 'aikyashree-scholarship-west-bengal-minority', to: 'west-bengal' },
       { from: 'chhattisgarh-post-matric-scholarship-scstobc', to: 'chhattisgarh' },
       { from: 'up-post-matric-scholarship-dashmottar', to: 'uttar-pradesh' },
     ];

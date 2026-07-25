@@ -12,6 +12,7 @@ import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
 import { getAllNews } from '@/lib/news';
+import { getAllPillars } from '@/lib/pillars';
 
 export async function generateSitemaps() {
     return [
@@ -43,8 +44,12 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const news = getAllNews();
         const newsRoutes = news.map(n => `/news/${n.slug}`);
 
+        const pillars = getAllPillars();
+        const pillarRoutes = pillars.map(p => `/pillars/${p.slug}`);
+
         const staticRoutes = [
             '',
+            ...pillarRoutes,
             '/scholarships',
             '/scholarships/deadlines',
             '/scholarships/recently-added',

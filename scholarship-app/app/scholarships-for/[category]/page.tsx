@@ -5,6 +5,8 @@ import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import PillarGuideCallout from '@/app/components/PillarGuideCallout';
+import { getPillarForCategory } from '@/lib/pillars';
 
 // Generate static params for all categories
 export async function generateStaticParams() {
@@ -119,12 +121,12 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                                 Best {levelLabel} Scholarships for Indian Students {currentYear} - {nextYear}
                             </h1>
                             <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                                Explore fully funded and university-specific <span className="font-semibold text-blue-700">{levelLabel}</span> scholarships to study abroad. Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified schemes</span>.
+                                Explore fully funded and university-specific <span className="font-semibold text-gray-900">{levelLabel}</span> scholarships to study abroad. Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified schemes</a>.
                             </p>
                         </div>
 
                         {/* Scholarships List */}
-                        <div className="mb-20">
+                        <div id="scholarship-list" className="mb-20 scroll-mt-24">
                             <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
                         </div>
                     </main>
@@ -147,6 +149,11 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         // Use the first one for display mapping
         const firstMatch = matchingOriginalCategories[0];
         const displayName = CATEGORY_NAME_MAP[firstMatch.toLowerCase()] || firstMatch;
+
+        // Check every matching raw category string for a covering pillar guide
+        const matchingPillar = matchingOriginalCategories
+            .map(c => getPillarForCategory(c))
+            .find(Boolean) || null;
 
         // Get scholarships for all matching original category strings
         const allScholarshipsFound = (await Promise.all(matchingOriginalCategories.map(category =>
@@ -174,14 +181,16 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
 
+                    <PillarGuideCallout pillar={matchingPillar} />
+
                     {/* Page Header */}
                     <div className="mb-10">
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
                             {displayName} Scholarships 2026
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                            Explore dedicated educational funding opportunities for <span className="font-semibold text-blue-700">{displayName}</span> students across India.
-                            Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified schemes</span> tailored for your eligibility.
+                            Explore scholarships for <span className="font-semibold text-gray-900">{displayName}</span> students across India.
+                            Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified schemes</a> tailored for your eligibility.
                         </p>
                     </div>
 
@@ -205,7 +214,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                     </div>
 
                     {/* Scholarships List */}
-                    <div className="mb-20">
+                    <div id="scholarship-list" className="mb-20 scroll-mt-24">
                         <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {displayName} Scholarships</h2>
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
                     </div>

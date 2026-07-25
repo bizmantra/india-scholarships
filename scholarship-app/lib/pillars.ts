@@ -1,9 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
+export interface HubLink {
+  label: string;
+  href: string;
+}
 
-
-export interface ArticleMetadata {
+export interface PillarMetadata {
   id: string;
   title: string;
   slug: string;
@@ -11,26 +14,30 @@ export interface ArticleMetadata {
   readTime: string;
   author: string;
   tag: string;
-  targetMoneyLink: string;
-  relatedScholarships: string[];
+  clusterCategories: string[];
+  clusterStates: string[];
+  clusterLevels: string[];
+  hubLinks: HubLink[];
+  relatedArticleSlugs: string[];
   takeaways: string[];
-  checklist?: string[];
-  featuredStats?: { label: string; value: string }[];
+  checklist: string[];
   faqs?: { q: string; a: string }[];
   seoTitle?: string;
   seoDescription?: string;
 }
 
-export interface ArticleData extends ArticleMetadata {
+export interface PillarData extends PillarMetadata {
   contentHtml: string;
-  rawMarkdown: string;
   headings: { id: string; text: string; level: number }[];
 }
 
-const articlesDirectory = path.join(process.cwd(), 'content/articles');
+const pillarsDirectory = path.join(process.cwd(), 'content/pillars');
+
+const HUB_LINKS_MARKER = '<!-- HUB_LINKS -->';
+const RELATED_ARTICLES_MARKER = '<!-- RELATED_ARTICLES -->';
 
 /**
- * Extract H2/H3 headings for Table of Contents
+ * Extract H2/H3 headings for Table of Contents (mirrors lib/articles.ts)
  */
 function extractHeadings(markdown: string): { id: string; text: string; level: number }[] {
   const lines = markdown.split('\n');
@@ -42,18 +49,14 @@ function extractHeadings(markdown: string): { id: string; text: string; level: n
       const isH2 = trimmed.startsWith('## ');
       const text = trimmed.replace(/^##+\s+/, '');
       const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-      headings.push({
-        id,
-        text,
-        level: isH2 ? 2 : 3
-      });
+      headings.push({ id, text, level: isH2 ? 2 : 3 });
     }
   }
   return headings;
 }
 
 /**
- * GFM Table Parser Helper
+ * GFM Table Parser Helper (mirrors lib/articles.ts)
  */
 function convertMarkdownTableToHtml(lines: string[]): string {
   if (lines.length < 2) return lines.join('\n');
@@ -74,16 +77,12 @@ function convertMarkdownTableToHtml(lines: string[]): string {
   });
 
   let html = '<div class="overflow-x-auto my-6 border border-slate-200 rounded-xl shadow-sm"><table class="min-w-full divide-y divide-slate-200 text-sm">';
-  
-  html += '<thead class="bg-slate-50">';
-  html += '<tr>';
+  html += '<thead class="bg-slate-50"><tr>';
   headers.forEach((header, idx) => {
     const align = alignments[idx] || 'text-left';
     html += `<th scope="col" class="px-6 py-3.5 ${align} text-xs font-bold text-slate-500 uppercase tracking-wider">${header}</th>`;
   });
-  html += '</tr>';
-  html += '</thead>';
-
+  html += '</tr></thead>';
   html += '<tbody class="divide-y divide-slate-100 bg-white">';
   dataRows.forEach(row => {
     html += '<tr class="hover:bg-slate-50/50 transition-colors">';
@@ -93,8 +92,7 @@ function convertMarkdownTableToHtml(lines: string[]): string {
     });
     html += '</tr>';
   });
-  html += '</tbody>';
-  html += '</table></div>';
+  html += '</tbody></table></div>';
 
   return html;
 }
@@ -128,7 +126,7 @@ function parseTables(text: string): string {
 }
 
 /**
- * Simple Frontmatter & Markdown Parser
+ * Simple Frontmatter & Markdown Parser (mirrors lib/articles.ts)
  */
 function parseFrontmatter(fileContent: string): { data: Record<string, any>; content: string } {
   const frontmatterRegex = /^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/;
@@ -150,11 +148,10 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith('#')) continue;
 
-    // List item starting with '-'
     if (trimmed.startsWith('-')) {
       const rest = trimmed.replace(/^-/, '').trim();
       const matchKeyVal = /^[a-zA-Z_][a-zA-Z0-9_-]*\s*:/.exec(rest);
-      
+
       if (matchKeyVal) {
         const colonIdx = rest.indexOf(':');
         const k = rest.slice(0, colonIdx).trim();
@@ -170,7 +167,6 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
       continue;
     }
 
-    // Indented properties under list item (like value: or a:)
     if (line.startsWith(' ') && currentList && currentList.length > 0) {
       const matchKeyVal = /^[a-zA-Z_][a-zA-Z0-9_-]*\s*:/.exec(trimmed);
       if (matchKeyVal) {
@@ -185,7 +181,6 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
       }
     }
 
-    // Root-level key-value pair
     const colonIdx = trimmed.indexOf(':');
     if (colonIdx !== -1) {
       if (currentKey && currentList) {
@@ -214,24 +209,16 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
 }
 
 /**
- * Lightweight Markdown to HTML Converter
+ * Lightweight Markdown to HTML Converter (mirrors lib/articles.ts)
  */
 function simpleMarkdownToHtml(markdown: string): string {
   let html = markdown;
 
-  // Escape HTML entities to prevent injection
   html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-  // Tables
   html = parseTables(html);
-
-  // Horizontal Rules
   html = html.replace(/^---$/gim, '<hr class="my-8 border-slate-200" />');
-
-  // Images (Parse before regular links)
   html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<div class="my-6 flex justify-center"><img src="$2" alt="$1" class="rounded-xl border border-slate-100 shadow-sm max-w-full print:border-none print:shadow-none" /></div>');
 
-  // Headings with Slugified Anchor IDs
   html = html.replace(/^### (.*$)/gim, (match, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     return `<h3 id="${id}" class="text-xl font-bold text-slate-900 mt-6 mb-3">${title}</h3>`;
@@ -242,25 +229,18 @@ function simpleMarkdownToHtml(markdown: string): string {
   });
   html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-black text-slate-900 mt-8 mb-4">$1</h1>');
 
-  // Callout boxes (> 💡 Pro Tip: ...)
   html = html.replace(/^&gt; 💡 (.*$)/gim, '<div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg my-4 text-amber-900 font-medium"><span class="mr-2">💡</span>$1</div>');
   html = html.replace(/^&gt; ⚠️ (.*$)/gim, '<div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg my-4 text-rose-900 font-medium"><span class="mr-2">⚠️</span>$1</div>');
   html = html.replace(/^&gt; (.*$)/gim, '<blockquote class="bg-slate-50 border-l-4 border-indigo-500 p-4 italic text-slate-700 my-4">$1</blockquote>');
 
-  // Bold & Italic
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
   html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
   html = html.replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-sm">$1</code>');
-
-  // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-indigo-600 font-semibold underline hover:text-indigo-800">$1</a>');
-
-  // Lists
   html = html.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-slate-700 mb-1.5">$1</li>');
   html = html.replace(/^([0-9]+)\. (.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 mb-2 font-medium">$2</li>');
   html = wrapListItems(html);
 
-  // Paragraphs
   const paragraphs = html.split(/\n\n+/);
   html = paragraphs.map(p => {
     p = p.trim();
@@ -310,82 +290,129 @@ function wrapListItems(html: string): string {
 }
 
 /**
- * Get all articles metadata sorted by date
+ * Strip the HUB_LINKS / RELATED_ARTICLES marker lines from the raw markdown
+ * before conversion. The page component renders those two sections itself,
+ * as live React (DB-fetched scholarships, resolved articles) placed right
+ * after the main body — not literally inline — so the shared article body
+ * component (TOC/checklist/FAQ/print controls) only wraps once, not per chunk.
  */
-export function getAllArticles(): ArticleMetadata[] {
-  if (!fs.existsSync(articlesDirectory)) {
-    return [];
-  }
-
-  const fileNames = fs.readdirSync(articlesDirectory);
-  const articles: ArticleMetadata[] = [];
-
-  for (const fileName of fileNames) {
-    if (!fileName.endsWith('.md')) continue;
-
-    const fullPath = path.join(articlesDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data } = parseFrontmatter(fileContents);
-
-    articles.push({
-      id: data.id || `ART-${fileName.replace(/\.md$/, '')}`,
-      title: data.title || fileName.replace(/\.md$/, ''),
-      slug: data.slug || fileName.replace(/\.md$/, ''),
-      date: data.date || '2026-07-21',
-      readTime: data.readTime || '3 min read',
-      author: data.author || 'IndiaScholarships Editorial Team',
-      tag: data.tag || 'General Guide',
-      targetMoneyLink: data.targetMoneyLink || '/tools/eligibility-checker',
-      relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
-      takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
-      checklist: Array.isArray(data.checklist) ? data.checklist : [],
-      featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
-      faqs: Array.isArray(data.faqs) ? data.faqs : []
-    });
-  }
-
-  return articles.sort((a, b) => b.date.localeCompare(a.date));
+function stripMarkers(rawMarkdown: string): string {
+  return rawMarkdown
+    .split('\n')
+    .filter((line) => {
+      const trimmed = line.trim();
+      return trimmed !== HUB_LINKS_MARKER && trimmed !== RELATED_ARTICLES_MARKER;
+    })
+    .join('\n');
 }
 
-/**
- * Get article by slug with converted HTML content
- */
-export function getArticleBySlug(slug: string): ArticleData | null {
-  const fullPath = path.join(articlesDirectory, `${slug}.md`);
-
-  if (!fs.existsSync(fullPath)) {
-    return null;
-  }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = parseFrontmatter(fileContents);
-
-  const contentHtml = simpleMarkdownToHtml(content);
-
+function toMetadata(data: Record<string, any>, fallbackSlug: string): PillarMetadata {
   return {
-    id: data.id || `ART-${slug}`,
-    title: data.title || slug,
-    slug: data.slug || slug,
-    date: data.date || '2026-07-21',
-    readTime: data.readTime || '3 min read',
+    id: data.id || `PILLAR-${fallbackSlug}`,
+    title: data.title || fallbackSlug,
+    slug: data.slug || fallbackSlug,
+    date: data.date || '2026-07-25',
+    readTime: data.readTime || '10 min read',
     author: data.author || 'IndiaScholarships Editorial Team',
-    tag: data.tag || 'General Guide',
-    targetMoneyLink: data.targetMoneyLink || '/tools/eligibility-checker',
-    relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
+    tag: data.tag || 'Pillar Guide',
+    clusterCategories: Array.isArray(data.clusterCategories) ? data.clusterCategories : [],
+    clusterStates: Array.isArray(data.clusterStates) ? data.clusterStates : [],
+    clusterLevels: Array.isArray(data.clusterLevels) ? data.clusterLevels : [],
+    hubLinks: Array.isArray(data.hubLinks) ? data.hubLinks : [],
+    relatedArticleSlugs: Array.isArray(data.relatedArticleSlugs) ? data.relatedArticleSlugs : [],
     takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
     checklist: Array.isArray(data.checklist) ? data.checklist : [],
-    featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
     faqs: Array.isArray(data.faqs) ? data.faqs : [],
-    headings: extractHeadings(content),
-    contentHtml,
-    rawMarkdown: content
+    seoTitle: data.seoTitle,
+    seoDescription: data.seoDescription,
   };
 }
 
 /**
- * Get articles linked to a specific scholarship slug
+ * Get all pillar metadata, sorted by date
  */
-export function getArticlesForScholarship(scholarshipSlug: string): ArticleMetadata[] {
-  const allArticles = getAllArticles();
-  return allArticles.filter(art => art.relatedScholarships.includes(scholarshipSlug));
+export function getAllPillars(): PillarMetadata[] {
+  if (!fs.existsSync(pillarsDirectory)) {
+    return [];
+  }
+
+  const fileNames = fs.readdirSync(pillarsDirectory);
+  const pillars: PillarMetadata[] = [];
+
+  for (const fileName of fileNames) {
+    if (!fileName.endsWith('.md')) continue;
+    const fullPath = path.join(pillarsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data } = parseFrontmatter(fileContents);
+    pillars.push(toMetadata(data, fileName.replace(/\.md$/, '')));
+  }
+
+  return pillars.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+/**
+ * Get a pillar by slug, with content parsed into renderable segments
+ */
+export function getPillarBySlug(slug: string): PillarData | null {
+  const fullPath = path.join(pillarsDirectory, `${slug}.md`);
+  if (!fs.existsSync(fullPath)) return null;
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = parseFrontmatter(fileContents);
+  const metadata = toMetadata(data, slug);
+
+  const cleanedContent = stripMarkers(content);
+
+  return {
+    ...metadata,
+    contentHtml: simpleMarkdownToHtml(cleanedContent),
+    headings: extractHeadings(cleanedContent),
+  };
+}
+
+/**
+ * When more than one pillar covers the same tag (e.g. a broad "SC/ST in
+ * India" pillar and a dedicated "West Bengal" pillar both list West Bengal),
+ * prefer the more specific one — fewest entries in the given cluster field —
+ * so a state hub links to its own dedicated guide instead of a broader one
+ * that merely mentions it as an example.
+ */
+function pickMostSpecific(
+  pillars: PillarMetadata[],
+  field: 'clusterCategories' | 'clusterStates' | 'clusterLevels'
+): PillarMetadata | null {
+  if (pillars.length === 0) return null;
+  return pillars.reduce((best, p) => (p[field].length < best[field].length ? p : best));
+}
+
+/**
+ * Reverse-lookup: find the pillar (if any) covering a given category slug,
+ * e.g. 'sc' or 'st' -> the SC/ST pillar. Used by hub pages to render a
+ * "Read the full guide" callout linking up to the matching pillar.
+ */
+export function getPillarForCategory(categorySlug: string): PillarMetadata | null {
+  const pillars = getAllPillars();
+  const normalized = categorySlug.toLowerCase();
+  const matches = pillars.filter(p =>
+    p.clusterCategories.some(c => c.toLowerCase() === normalized)
+  );
+  return pickMostSpecific(matches, 'clusterCategories');
+}
+
+export function getPillarForState(stateName: string): PillarMetadata | null {
+  const pillars = getAllPillars();
+  const normalized = stateName.toLowerCase();
+  const matches = pillars.filter(p =>
+    p.clusterStates.some(s => s.toLowerCase() === normalized)
+  );
+  return pickMostSpecific(matches, 'clusterStates');
+}
+
+export function getPillarForLevel(levelSlug: string): PillarMetadata | null {
+  const pillars = getAllPillars();
+  const normalized = levelSlug.toLowerCase();
+  const matches = pillars.filter(p =>
+    p.clusterLevels.some(l => l.toLowerCase() === normalized)
+  );
+  return pickMostSpecific(matches, 'clusterLevels');
 }

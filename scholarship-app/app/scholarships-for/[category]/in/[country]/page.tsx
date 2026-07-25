@@ -93,7 +93,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                         {levelName} Scholarships in {countryName}{countrySlug !== 'india' ? ' for Indian Students' : ''} {currentYear} - {nextYear}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        Explore fully funded and merit-based global scholarships for <span className="font-semibold text-blue-700">{levelName}</span> programs in <span className="font-semibold text-blue-700">{countryName}</span>. Find application guides, deadlines, and portals.
+                        Explore fully funded and merit-based global scholarships for <span className="font-semibold text-gray-900">{levelName}</span> programs in <span className="font-semibold text-gray-900">{countryName}</span>. Find application guides, deadlines, and portals.
                     </p>
                 </div>
 

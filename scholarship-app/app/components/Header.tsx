@@ -100,6 +100,7 @@ export default function Header() {
                                                 <Link href="/scholarships-by-category" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Category / Caste</Link>
                                                 <Link href="/scholarships-by-education" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Education Level</Link>
                                                 <Link href="/scholarships-by-income" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Income Limit</Link>
+                                                <Link href="/pillars/sc-st-scholarships-india-guide" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700 hover:bg-indigo-50 transition-colors">SC/ST Complete Guide</Link>
                                             </div>
                                         </div>
                                         {/* Col 2: Popular Categories */}
