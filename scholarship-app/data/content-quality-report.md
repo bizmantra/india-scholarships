@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-07-25
-Total Scholarships Audited: **472**
-Scholarships with Issues: **274** (58.1%)
+Generated on: 2026-07-26
+Total Scholarships Audited: **478**
+Scholarships with Issues: **274** (57.3%)
 
 ---
 
@@ -12,17 +12,17 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 1 | 0.2% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 42 | 8.9% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 83 | 17.6% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 118 | 25.0% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 97 | 20.6% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 26 | 5.5% | Mentions 2024, 2025, or earlier cycles |
+| **Missing Annual Amount** | 42 | 8.8% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 83 | 17.4% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 118 | 24.7% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 97 | 20.3% | Deadline is in the past (before 2026-06-26) |
+| **Old Year References** | 26 | 5.4% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 10 | 2.1% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 35 | 7.4% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 35 | 7.3% | Missing or under 15 characters |
 | **Incomplete Step Guide** | 17 | 3.6% | Missing or under 20 characters |
 | **Missing Documents** | 19 | 4.0% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 32 | 6.8% | Helpline is empty, "Not Specified", or generic |
+| **Missing Helpline** | 32 | 6.7% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 8 | 1.7% | FAQ block is empty or missing |
 | **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 
