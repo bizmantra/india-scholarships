@@ -12,9 +12,6 @@ export async function GET() {
       <loc>${baseUrl}/sitemap/scholarships.xml</loc>
    </sitemap>
    <sitemap>
-      <loc>${baseUrl}/sitemap/subpages.xml</loc>
-   </sitemap>
-   <sitemap>
       <loc>${baseUrl}/sitemap/states.xml</loc>
    </sitemap>
    <sitemap>
