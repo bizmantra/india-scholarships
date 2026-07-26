@@ -612,17 +612,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         );
                     })}
                 </div>
-                                    key={key} 
-                                    href={`#${key}`}
-                                    className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"
-                                >
-                                    <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
-                                    {item.label}
-                                </a>
-                            );
-                        }
-                    })}
-                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
