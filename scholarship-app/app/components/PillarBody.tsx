@@ -114,7 +114,7 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
         )}
 
         {faqs.length > 0 && (
-          <div className="my-10 border-t border-slate-150 pt-8 print:page-break-inside-avoid">
+          <div id="faq-section" className="my-10 scroll-mt-24 border-t border-slate-150 pt-8 print:page-break-inside-avoid">
             <h3 className="text-lg font-bold text-slate-900 mb-5 flex items-center gap-2">
               <HelpCircle className="w-4.5 h-4.5 text-indigo-600" />
               <span>Frequently Asked Questions (FAQ)</span>

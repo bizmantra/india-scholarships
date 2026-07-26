@@ -2,6 +2,7 @@
 id: "ART-6"
 title: "Tamil Nadu Post-Matric & Pudhumai Penn Scheme: Full Breakdown"
 slug: "tamil-nadu-postmatric-pudhumai-penn"
+relatedPillarSlug: "tamil-nadu-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

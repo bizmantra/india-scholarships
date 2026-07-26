@@ -2,6 +2,7 @@
 id: "ART-26"
 title: "Engineering / B.Tech CSR Scholarships: Top 10 Grants for Tech Students"
 slug: "engineering-btech-csr-scholarships"
+relatedPillarSlug: "engineering-btech-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByUniversity } from '@/lib/db';
 import { UNIVERSITIES } from '@/lib/universities';
+import { getPillarBySlug } from '@/lib/pillars';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -45,6 +46,8 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
     const uni = UNIVERSITIES.find(u => u.slug === slug);
 
     if (!uni) return notFound();
+
+    const relatedPillar = uni.relatedPillarSlug ? getPillarBySlug(uni.relatedPillarSlug) : null;
 
     // Fetch matching scholarships
     const { specific, general } = await getScholarshipsByUniversity(slug);
@@ -113,6 +116,22 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                         {uni.description}
                     </p>
                 </div>
+
+                {/* Best-Fit Pillar Callout */}
+                {relatedPillar && (
+                    <div className="mb-10 p-5 bg-indigo-50/60 border border-indigo-100 rounded-3xl flex items-center justify-between gap-4 flex-wrap">
+                        <div>
+                            <p className="font-bold text-indigo-900 text-sm">Understand the Bigger Picture</p>
+                            <p className="text-xs text-indigo-800 leading-relaxed">See how scholarships at {uni.name} fit into the wider system.</p>
+                        </div>
+                        <Link
+                            href={`/pillars/${relatedPillar.slug}`}
+                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-full transition-all shrink-0"
+                        >
+                            Read: {relatedPillar.title} →
+                        </Link>
+                    </div>
+                )}
 
                 {/* Quick Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">

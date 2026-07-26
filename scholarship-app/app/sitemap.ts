@@ -48,6 +48,7 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
 
         const staticRoutes = [
             '',
+            '/pillars',
             ...pillarRoutes,
             '/scholarships',
             '/scholarships/deadlines',

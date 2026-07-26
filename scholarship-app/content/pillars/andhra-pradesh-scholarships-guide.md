@@ -22,6 +22,7 @@ hubLinks:
     href: "/scholarships-for/obc"
 relatedArticleSlugs:
   - "ap-epass-jagananna-vidya-deevena"
+  - "how-to-apply-talliki-vandanam-eligibility-status"
 takeaways:
   - "AP ePASS and Jnanabhumi are not two different systems. ePASS is the name of the system, and Jnanabhumi is the website you actually use."
   - "Jagananna Vidya Deevena pays your tuition fees, while Jagananna Vasathi Deevena helps with hostel and living costs. They are two different schemes, and many students can get both."

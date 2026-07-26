@@ -100,7 +100,8 @@ export default function Header() {
                                                 <Link href="/scholarships-by-category" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Category / Caste</Link>
                                                 <Link href="/scholarships-by-education" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Education Level</Link>
                                                 <Link href="/scholarships-by-income" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Income Limit</Link>
-                                                <Link href="/pillars/sc-st-scholarships-india-guide" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700 hover:bg-indigo-50 transition-colors">SC/ST Complete Guide</Link>
+                                                <Link href="/scholarships-by-university" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By University</Link>
+                                                <Link href="/pillars" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700 hover:bg-indigo-50 transition-colors">All Scholarship Guides →</Link>
                                             </div>
                                         </div>
                                         {/* Col 2: Popular Categories */}
@@ -131,7 +132,8 @@ export default function Header() {
                                                 </Link>
                                                 <div className="my-1 border-t border-gray-100"></div>
                                                 <Link href="/government-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Government Portals</Link>
-                                                <Link href="/private-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Private & Corporate</Link>
+                                                <Link href="/private-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Private Scholarships</Link>
+                                                <Link href="/corporate-scholarships" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Corporate CSR Scholarships</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -226,6 +228,15 @@ export default function Header() {
                         </div>
                     </div>
 
+                        {/* 1b. Scholarship Guides (Pillars) */}
+                        <Link
+                            href="/pillars"
+                            onClick={() => setShowMobileMenu(false)}
+                            className="flex items-center justify-between gap-3 p-3.5 bg-indigo-50/60 border border-indigo-100 rounded-2xl text-xs font-bold text-indigo-700 hover:bg-indigo-100/50 transition-colors"
+                        >
+                            <span>📘 Scholarship Guides — how state & category systems work</span>
+                        </Link>
+
                         {/* 2. Browse Category Chips */}
                         <div className="space-y-2">
                             <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400">Popular Segments</span>
@@ -257,6 +268,13 @@ export default function Header() {
                                     className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
                                 >
                                     🎓 General / EWS
+                                </Link>
+                                <Link
+                                    href="/scholarships-by-university"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    🏫 By University
                                 </Link>
                             </div>
                         </div>

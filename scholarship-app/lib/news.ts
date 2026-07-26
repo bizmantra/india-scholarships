@@ -211,9 +211,34 @@ export function getNewsForScholarship(scholarshipSlug: string): NewsMetadata[] {
 export function getNewsForState(stateName: string): NewsMetadata[] {
   const allNews = getAllNews();
   const lowerState = stateName.toLowerCase();
-  return allNews.filter(n => 
-    n.title.toLowerCase().includes(lowerState) || 
+  return allNews.filter(n =>
+    n.title.toLowerCase().includes(lowerState) ||
     n.slug.toLowerCase().includes(lowerState) ||
     n.tag.toLowerCase().includes(lowerState)
   );
+}
+
+/**
+ * Get news updates relevant to a pillar guide, so a state or scheme pillar
+ * (e.g. "Odisha Scholarships" or "NSP") can surface live updates instead of
+ * only ever pointing outward to hubs and articles. Matches on the same
+ * title/slug/tag substring approach as getNewsForState, generalized to a
+ * pillar's own cluster tags (states + categories) plus its slug, since news
+ * headlines are written around state and scheme names, not clean taxonomy.
+ */
+export function getNewsForPillar(pillar: {
+  slug: string;
+  clusterStates: string[];
+  clusterCategories: string[];
+}): NewsMetadata[] {
+  const keywords = [...pillar.clusterStates, ...pillar.clusterCategories];
+  if (pillar.slug.includes('nsp')) keywords.push('NSP', 'National Scholarship Portal');
+  if (keywords.length === 0) return [];
+
+  const lowerKeywords = keywords.map(k => k.toLowerCase());
+  const allNews = getAllNews();
+  return allNews.filter(n => {
+    const haystack = `${n.title} ${n.slug} ${n.tag}`.toLowerCase();
+    return lowerKeywords.some(k => haystack.includes(k));
+  });
 }

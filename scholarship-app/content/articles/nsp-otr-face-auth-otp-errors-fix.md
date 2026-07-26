@@ -2,6 +2,7 @@
 id: "ART-101"
 title: "Stuck on NSP OTR Face Authentication? Step-by-Step Troubleshooting Fix"
 slug: "nsp-otr-face-auth-otp-errors-fix"
+relatedPillarSlug: "nsp-national-scholarship-portal-guide"
 date: "2026-07-23"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"

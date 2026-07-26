@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getArticleBySlug, getAllArticles } from '@/lib/articles';
+import { getArticleBySlug, getAllArticles, getRelatedArticles } from '@/lib/articles';
 import { getScholarshipBySlug } from '@/lib/db';
+import { getPillarBySlug } from '@/lib/pillars';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import PillarGuideCallout from '@/app/components/PillarGuideCallout';
 import { 
   BookOpen, Calendar, Clock, ChevronRight, CheckCircle2 
 } from 'lucide-react';
@@ -61,6 +63,9 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
   if (!article) {
     notFound();
   }
+
+  const relatedPillar = article.relatedPillarSlug ? getPillarBySlug(article.relatedPillarSlug) : null;
+  const moreArticles = getRelatedArticles(slug);
 
   // Fetch live scholarship cards from SQLite DB
   const relatedScholarshipsData = (await Promise.all(
@@ -125,6 +130,8 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
 
         {/* Article Main Container */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 print:py-0">
+          <PillarGuideCallout pillar={relatedPillar} />
+
           <header className="mb-8 border-b border-gray-150 pb-6 print:pb-2 print:mb-4">
             <div className="flex items-center gap-2 mb-3 print:hidden">
               <span className="px-3 py-1 bg-blue-50 text-google-blue text-xs font-bold rounded-full border border-blue-100 uppercase tracking-wider">
@@ -225,6 +232,31 @@ export default async function ArticleDetailPage({ params }: ArticlePageProps) {
                       <span className="shrink-0">→</span>
                     </Link>
                   </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* More on This Topic — sibling articles sharing the same pillar */}
+          {moreArticles.length > 0 && (
+            <div className="my-10 print:hidden">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-google-blue" />
+                <span>More on This Topic</span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {moreArticles.map((art) => (
+                  <Link
+                    key={art.slug}
+                    href={`/articles/${art.slug}`}
+                    className="flex items-start gap-3 p-4 bg-gray-50 border border-gray-150 rounded-2xl hover:border-google-blue transition-colors"
+                  >
+                    <BookOpen className="w-4 h-4 text-google-blue shrink-0 mt-0.5" />
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900 leading-snug mb-1">{art.title}</h4>
+                      <span className="text-xs text-gray-500">{art.readTime}</span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -2,6 +2,7 @@
 id: "ART-8"
 title: "AP ePASS & Jagananna Vidya Deevena: Eligibility & Application Steps"
 slug: "ap-epass-jagananna-vidya-deevena"
+relatedPillarSlug: "andhra-pradesh-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

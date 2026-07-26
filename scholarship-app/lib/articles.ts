@@ -13,6 +13,7 @@ export interface ArticleMetadata {
   tag: string;
   targetMoneyLink: string;
   relatedScholarships: string[];
+  relatedPillarSlug?: string;
   takeaways: string[];
   checklist?: string[];
   featuredStats?: { label: string; value: string }[];
@@ -337,6 +338,7 @@ export function getAllArticles(): ArticleMetadata[] {
       tag: data.tag || 'General Guide',
       targetMoneyLink: data.targetMoneyLink || '/tools/eligibility-checker',
       relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
+      relatedPillarSlug: data.relatedPillarSlug || undefined,
       takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
       checklist: Array.isArray(data.checklist) ? data.checklist : [],
       featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
@@ -372,6 +374,7 @@ export function getArticleBySlug(slug: string): ArticleData | null {
     tag: data.tag || 'General Guide',
     targetMoneyLink: data.targetMoneyLink || '/tools/eligibility-checker',
     relatedScholarships: Array.isArray(data.relatedScholarships) ? data.relatedScholarships : [],
+    relatedPillarSlug: data.relatedPillarSlug || undefined,
     takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
     checklist: Array.isArray(data.checklist) ? data.checklist : [],
     featuredStats: Array.isArray(data.featuredStats) ? data.featuredStats : [],
@@ -388,4 +391,21 @@ export function getArticleBySlug(slug: string): ArticleData | null {
 export function getArticlesForScholarship(scholarshipSlug: string): ArticleMetadata[] {
   const allArticles = getAllArticles();
   return allArticles.filter(art => art.relatedScholarships.includes(scholarshipSlug));
+}
+
+/**
+ * Get other articles that share the same pillar, so a reader who finishes
+ * one narrow how-to guide has somewhere else on-site to go besides back to a
+ * listing page. Articles have no other shared taxonomy to cluster on, so
+ * relatedPillarSlug — already required to point a single article "up" to its
+ * pillar — doubles as the sideways grouping key here.
+ */
+export function getRelatedArticles(currentSlug: string, limit = 3): ArticleMetadata[] {
+  const current = getArticleBySlug(currentSlug);
+  if (!current || !current.relatedPillarSlug) return [];
+
+  const allArticles = getAllArticles();
+  return allArticles
+    .filter(art => art.slug !== currentSlug && art.relatedPillarSlug === current.relatedPillarSlug)
+    .slice(0, limit);
 }

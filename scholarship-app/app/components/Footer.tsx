@@ -35,6 +35,7 @@ export default function Footer() {
                     <div>
                         <h4 className="text-white font-bold text-sm mb-4">Resources</h4>
                         <ul className="space-y-2 text-sm">
+                            <li><Link href="/pillars" className="hover:text-white transition-colors">Scholarship Guides</Link></li>
                             <li><Link href="/eligibility-checker" className="hover:text-white transition-colors">Eligibility Checker</Link></li>
                             <li><Link href="/guides" className="hover:text-white transition-colors">How to Apply Guides</Link></li>
                             <li><Link href="/articles" className="hover:text-white transition-colors">Help Articles</Link></li>

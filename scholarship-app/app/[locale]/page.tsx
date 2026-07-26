@@ -1,9 +1,10 @@
-import { 
-  getRecentlyAddedScholarships, 
-  getClosingSoonScholarships, 
+import {
+  getRecentlyAddedScholarships,
+  getClosingSoonScholarships,
   getTrendingScholarships,
   getScholarshipStats
 } from '@/lib/db';
+import { getFeaturedPillars } from '@/lib/pillars';
 import HomeClient from '../HomeClient';
 import type { Metadata } from 'next';
 
@@ -47,14 +48,16 @@ export default async function LocalizedHome({ params }: { params: Promise<{ loca
     getTrendingScholarships(6),
     getScholarshipStats()
   ]);
+  const featuredPillars = getFeaturedPillars(6);
 
   return (
-    <HomeClient 
-      recentlyAdded={recentlyAdded} 
-      closingSoon={closingSoon} 
+    <HomeClient
+      recentlyAdded={recentlyAdded}
+      closingSoon={closingSoon}
       trending={trending}
       totalStates={stats.stateCount}
       totalScholarships={stats.total}
+      featuredPillars={featuredPillars.map((p) => ({ title: p.title, slug: p.slug }))}
     />
   );
 }

@@ -2,6 +2,7 @@
 id: "ART-1"
 title: "How to Apply for Karnataka SSP Post-Matric Scholarship 2026"
 slug: "karnataka-ssp-postmatric-guide-2026"
+relatedPillarSlug: "karnataka-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

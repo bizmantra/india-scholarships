@@ -2,6 +2,7 @@
 id: "ART-5"
 title: "Swami Vivekananda Scholarship (SVMCM) West Bengal: Complete Rules"
 slug: "west-bengal-svmcm-scholarship-guide"
+relatedPillarSlug: "west-bengal-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

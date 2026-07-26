@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getPillarBySlug, getAllPillars, autoLinkScholarshipMentions } from '@/lib/pillars';
 import { getArticleBySlug } from '@/lib/articles';
-import { getScholarshipsByCategory, getScholarshipsByState } from '@/lib/db';
+import { getNewsForPillar } from '@/lib/news';
+import { getScholarshipsByCategory, getScholarshipsByState, getScholarshipsByProviderType, getScholarshipsByCourse } from '@/lib/db';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import PillarBody from '@/app/components/PillarBody';
-import { Calendar, Clock, ChevronRight, BookOpen, Layers } from 'lucide-react';
+import { Calendar, Clock, ChevronRight, BookOpen, Layers, Bell } from 'lucide-react';
 
 interface PillarPageProps {
   params: Promise<{ slug: string }>;
@@ -75,15 +76,21 @@ export default async function PillarPage({ params }: PillarPageProps) {
   const clusterScholarshipLists = await Promise.all([
     ...pillar.clusterCategories.map((c) => getScholarshipsByCategory(c)),
     ...pillar.clusterStates.map((s) => getScholarshipsByState(s)),
+    ...pillar.clusterProviderTypes.map((t) => getScholarshipsByProviderType(t)),
+    ...pillar.clusterCourses.map((c) => getScholarshipsByCourse(c)),
   ]);
   const merged = Array.from(
     new Map(clusterScholarshipLists.flat().map((s: any) => [s.id, s])).values()
   ) as any[];
-  const featuredScholarships = merged
+  const eligibleScholarships = merged
     .filter(isLikelyOpen)
     .filter((s) => isCategoryFocused(s, pillar.clusterCategories))
-    .sort((a, b) => (b.priority_score || 0) - (a.priority_score || 0))
-    .slice(0, 9);
+    .sort((a, b) => (b.priority_score || 0) - (a.priority_score || 0));
+  const featuredScholarships = eligibleScholarships.slice(0, 9);
+  const remainingCount = eligibleScholarships.length - featuredScholarships.length;
+  // The pillar's job is to explain, then hand off — the primary hub link (always
+  // listed first in frontmatter) is where the full, unfiltered list actually lives.
+  const primaryHubLink = pillar.hubLinks[0];
 
   // Link scholarship names as soon as the prose mentions them, not just in the
   // cards further down — matched against the full cluster, not just the top 9.
@@ -93,6 +100,9 @@ export default async function PillarPage({ params }: PillarPageProps) {
   const relatedArticles = pillar.relatedArticleSlugs
     .map((s) => getArticleBySlug(s))
     .filter(Boolean) as NonNullable<ReturnType<typeof getArticleBySlug>>[];
+
+  // Live news relevant to this pillar's states/categories, newest first
+  const relatedNews = getNewsForPillar(pillar).slice(0, 3);
 
   const schemas: any[] = [
     {
@@ -135,6 +145,37 @@ export default async function PillarPage({ params }: PillarPageProps) {
         </div>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 print:py-0">
+          {/* Mobile Navigation Pills — the desktop TOC sidebar is hidden below `lg`,
+              so without this, mobile readers (90% of traffic) have zero on-page
+              navigation for what's often a very long guide. */}
+          <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6 print:hidden">
+            {pillar.headings.map((h) => (
+              <a
+                key={h.id}
+                href={`#${h.id}`}
+                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+              >
+                {h.text}
+              </a>
+            ))}
+            {featuredScholarships.length > 0 && (
+              <a
+                href="#featured-scholarships"
+                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+              >
+                🎓 Scholarships
+              </a>
+            )}
+            {pillar.faqs && pillar.faqs.length > 0 && (
+              <a
+                href="#faq-section"
+                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+              >
+                ❓ FAQ
+              </a>
+            )}
+          </div>
+
           <header className="mb-8 pb-8 border-b-2 border-indigo-100 print:pb-2 print:mb-4 print:border-gray-200 bg-gradient-to-b from-indigo-50/60 to-transparent -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-8 print:bg-none print:mx-0 print:px-0 print:pt-0">
             <div className="flex items-center gap-2 mb-4 print:hidden">
               <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1.5">
@@ -207,16 +248,44 @@ export default async function PillarPage({ params }: PillarPageProps) {
 
           {/* Top Scholarships in This Cluster — live from DB, never hardcoded */}
           {featuredScholarships.length > 0 && (
-            <div className="my-10 print:page-break-inside-avoid">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4 flex items-center gap-2">
+            <div id="featured-scholarships" className="my-10 scroll-mt-24 print:page-break-inside-avoid">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-google-blue print:hidden" />
                 <span>Featured Scholarships in This Guide</span>
               </h3>
+              {/* Human-readable pointer to the full list, right where a reader lands
+                  on this section — not just after they've scrolled past all the cards. */}
+              {primaryHubLink && (
+                <p className="text-sm text-gray-500 mb-4 print:hidden">
+                  See the complete list of{' '}
+                  <Link href={primaryHubLink.href} className="text-google-blue font-semibold hover:underline">
+                    {primaryHubLink.label.replace(/^All\s+/i, '').replace(/\s+Scholarships$/i, '')} scholarships
+                  </Link>.
+                </p>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {featuredScholarships.map((sc: any) => (
                   <ScholarshipCard key={sc.id} scholarship={sc} />
                 ))}
               </div>
+              {/* A plain sentence, not a CTA button — these are the top picks, not
+                  the whole list, so say so and point at where the rest actually live. */}
+              {remainingCount > 0 && primaryHubLink && (
+                <p className="mt-4 text-sm text-gray-500 print:hidden">
+                  These are the {featuredScholarships.length} highest-priority picks out of {eligibleScholarships.length} open right now
+                  {pillar.hubLinks.length > 1 ? (
+                    <> — the rest are on the hub pages above.</>
+                  ) : (
+                    <>
+                      {' '}— see the rest on{' '}
+                      <Link href={primaryHubLink.href} className="text-google-blue font-semibold hover:underline">
+                        {primaryHubLink.label}
+                      </Link>
+                      .
+                    </>
+                  )}
+                </p>
+              )}
             </div>
           )}
 
@@ -239,6 +308,28 @@ export default async function PillarPage({ params }: PillarPageProps) {
                       <h4 className="text-sm font-bold text-gray-900 leading-snug mb-1">{art.title}</h4>
                       <span className="text-xs text-gray-500">{art.readTime}</span>
                     </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Latest News — live updates relevant to this pillar's states/categories */}
+          {relatedNews.length > 0 && (
+            <div className="my-10 print:hidden">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4 flex items-center gap-2">
+                <Bell className="w-4 h-4 text-red-500" />
+                <span>Latest News on This Topic</span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {relatedNews.map((news) => (
+                  <Link
+                    key={news.slug}
+                    href={`/news/${news.slug}`}
+                    className="flex flex-col gap-2 p-4 bg-red-50/40 border border-red-100 rounded-2xl hover:border-red-300 transition-colors"
+                  >
+                    <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider">{news.date}</span>
+                    <h4 className="text-sm font-bold text-gray-900 leading-snug">{news.title}</h4>
                   </Link>
                 ))}
               </div>

@@ -484,6 +484,21 @@ export default async function InternationalScholarshipsPage() {
                         </Link>
                     </section>
 
+                    {/* ── Bridge to Indian university aid ── */}
+                    <section className="mt-6 p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div>
+                            <p className="font-bold text-gray-900 mb-1">Weighing a top Indian institute instead?</p>
+                            <p className="text-sm text-gray-500">IITs, NITs, BITS Pilani, DU, and other premier universities run their own internal aid and fee-waiver schemes.</p>
+                        </div>
+                        <Link
+                            href="/scholarships-by-university"
+                            className="flex-shrink-0 inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-900 px-5 py-3 rounded-xl font-semibold text-sm hover:border-blue-300 hover:shadow-sm transition-colors"
+                        >
+                            Browse University Aid Hubs
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </section>
+
                     {/* ── FAQ Section ── */}
                     <section className="mt-16">
                         <h2 className="text-2xl font-extrabold text-gray-900 mb-8">Frequently Asked Questions</h2>

@@ -4,11 +4,12 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { getNewsBySlug, getAllNews } from '@/lib/news';
 import { getScholarshipBySlug } from '@/lib/db';
+import { getPillarForScholarship } from '@/lib/pillars';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
-import { 
-  Bell, Calendar, ChevronRight, CheckCircle2, 
-  ShieldCheck, ExternalLink, ThumbsUp, ThumbsDown
+import {
+  Bell, Calendar, ChevronRight, CheckCircle2,
+  ShieldCheck, ExternalLink, ThumbsUp, ThumbsDown, BookOpen
 } from 'lucide-react';
 import { slugify } from '@/lib/utils';
 
@@ -84,6 +85,13 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
   if (hasIntl) {
     categoryHubs.push({ label: 'Study Abroad / International', href: '/scholarships/international' });
   }
+
+  // Broader-context pillar, resolved from the same scholarships the news update
+  // is already about — only shown when the change is state/scheme-wide, not
+  // for one-off updates about a single scholarship with no matching pillar.
+  const bestFitPillar = relatedScholarshipsData.length > 0
+    ? getPillarForScholarship(relatedScholarshipsData[0] as any)
+    : null;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -222,6 +230,25 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
                   </Link>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Broader-Context Pillar Callout */}
+          {bestFitPillar && (
+            <div className="my-6 bg-indigo-50/60 border border-indigo-100 rounded-2xl p-5 flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex gap-3 items-start">
+                <BookOpen className="h-4 w-4 text-indigo-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs font-bold text-indigo-900">Want the Bigger Picture?</p>
+                  <p className="text-xs text-indigo-800">This update fits into our complete guide on the topic.</p>
+                </div>
+              </div>
+              <Link
+                href={`/pillars/${bestFitPillar.slug}`}
+                className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-full transition-colors shrink-0"
+              >
+                Read: {bestFitPillar.title} →
+              </Link>
             </div>
           )}
 

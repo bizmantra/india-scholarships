@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { getScholarshipsByType } from '@/lib/db';
+import { getScholarshipsByProviderType } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { getPillarForProviderType } from '@/lib/pillars';
 
 export const metadata = {
     title: 'Corporate CSR Scholarships 2026 - TATA, LIC, HDFC Schemes',
@@ -14,7 +15,8 @@ export const metadata = {
 
 
 export default async function CorporateScholarshipsPage() {
-    const scholarships = await getScholarshipsByType('Corporate');
+    const scholarships = await getScholarshipsByProviderType('Corporate');
+    const pillar = getPillarForProviderType('Corporate');
 
     return (
         <div className="min-h-screen bg-white">
@@ -34,8 +36,17 @@ export default async function CorporateScholarshipsPage() {
                         Corporate CSR Scholarships 2026
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        Scholarships funded by leading Indian corporations as part of their **Social Responsibility (CSR)**.
+                        Scholarships funded by leading Indian corporations as part of their <strong>Social Responsibility (CSR)</strong>.
                         Currently, we have <span className="font-bold text-blue-700">{scholarships.length} industry-backed schemes</span>.
+                        {pillar && (
+                            <>
+                                {' '}New to how corporate and private scholarships work?{' '}
+                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    Read our complete guide
+                                </Link>{' '}
+                                first.
+                            </>
+                        )}
                     </p>
                 </div>
 

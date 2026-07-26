@@ -2,6 +2,7 @@
 id: "ART-28"
 title: "Polytechnic & Diploma Student Grants: State & Central Schemes List"
 slug: "polytechnic-diploma-grants"
+relatedPillarSlug: "engineering-btech-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

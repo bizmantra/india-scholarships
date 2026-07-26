@@ -2,6 +2,7 @@
 id: "ART-25"
 title: "Digital Gujarat Scholarship Portal: Registration, Status & Application Guide"
 slug: "digital-gujarat-scholarship-portal-guide"
+relatedPillarSlug: "gujarat-scholarships-guide"
 date: "2026-07-25"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"

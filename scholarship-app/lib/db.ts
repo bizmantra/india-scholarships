@@ -583,23 +583,34 @@ export async function getSiblingVariants(currentId: string | number, slug: strin
     const client = getClient();
     const cleanTitle = title.toLowerCase();
     
-    // Identify common brand/portal keywords
-    const keywords = [
-        'digital gujarat', 'gujarat', 'oasis', 'aikyashree', 'ssp', 'nsp', 
-        'e kalyan', 'e-kalyan', 'mptaas', 'mahadbt', 'mmvy', 'tata', 'hdfc', 
-        'reliance', 'lic', 'azim premji', 'jindal', 'airtel', 'bharti', 
-        'post matric scholarship', 'pre matric scholarship'
+    // Specific brand/portal/scheme keywords, checked first so a scheme name
+    // always wins over the generic fallback below — otherwise "post matric
+    // scholarship" (24 chars) out-lengths "digital gujarat" (16 chars) and
+    // the longest-match tie-break would pull in unrelated state schemes that
+    // merely happen to also be post-matric scholarships.
+    const specificKeywords = [
+        'digital gujarat', 'gujarat', 'oasis', 'aikyashree', 'ssp', 'nsp',
+        'e kalyan', 'e-kalyan', 'mptaas', 'mahadbt', 'mmvy', 'tata', 'hdfc',
+        'reliance', 'lic', 'azim premji', 'jindal', 'airtel', 'bharti',
+        'pm yasasvi'
     ];
-    
-    let matchedKeyword = null;
-    for (const kw of keywords) {
-        if (cleanTitle.includes(kw) || slug.includes(kw.replace(/\s+/g, '-'))) {
-            if (!matchedKeyword || kw.length > matchedKeyword.length) {
-                matchedKeyword = kw;
+    // Generic fallback — only used when no specific scheme/portal name matched.
+    const genericKeywords = ['post matric scholarship', 'pre matric scholarship'];
+
+    function findMatch(keywords: string[]): string | null {
+        let matched: string | null = null;
+        for (const kw of keywords) {
+            if (cleanTitle.includes(kw) || slug.includes(kw.replace(/\s+/g, '-'))) {
+                if (!matched || kw.length > matched.length) {
+                    matched = kw;
+                }
             }
         }
+        return matched;
     }
-    
+
+    const matchedKeyword = findMatch(specificKeywords) || findMatch(genericKeywords);
+
     if (!matchedKeyword) return [];
     
     const queryPattern = `%${matchedKeyword.replace(/\s+/g, '%')}%`;

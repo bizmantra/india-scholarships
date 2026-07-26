@@ -5,7 +5,6 @@ import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
-import PillarGuideCallout from '@/app/components/PillarGuideCallout';
 import { getPillarForCategory } from '@/lib/pillars';
 
 // Generate static params for all categories
@@ -181,8 +180,6 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
 
-                    <PillarGuideCallout pillar={matchingPillar} />
-
                     {/* Page Header */}
                     <div className="mb-10">
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
@@ -191,6 +188,15 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             Explore scholarships for <span className="font-semibold text-gray-900">{displayName}</span> students across India.
                             Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified schemes</a> tailored for your eligibility.
+                            {matchingPillar && (
+                                <>
+                                    {' '}New to how {displayName} scholarships work?{' '}
+                                    <Link href={`/pillars/${matchingPillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                        Read our complete guide
+                                    </Link>{' '}
+                                    first.
+                                </>
+                            )}
                         </p>
                     </div>
 

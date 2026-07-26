@@ -2,6 +2,7 @@
 id: "ART-15"
 title: "EWS Income Certificate Thresholds: ₹2.5L vs ₹8L Limits Decoded"
 slug: "ews-income-certificate-thresholds"
+relatedPillarSlug: "corporate-private-scholarships-guide"
 date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"

@@ -2,6 +2,7 @@
 id: "ART-29"
 title: "How to Apply for UP Divyangjan Post-Matric Scholarship 2026: Eligibility, UDID & Fee Reimbursement"
 slug: "how-to-apply-up-divyangjan-post-matric-scholarship"
+relatedPillarSlug: "uttar-pradesh-scholarships-guide"
 date: "2026-07-26"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"

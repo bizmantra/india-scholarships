@@ -76,6 +76,7 @@ export default async function UniversityScholarshipsPage() {
                             { label: 'By State', href: '/state-scholarships' },
                             { label: 'By Course', href: '/scholarships-by-course' },
                             { label: 'By Education Level', href: '/scholarships-by-education' },
+                            { label: 'Studying Abroad Instead?', href: '/scholarships/international' },
                             { label: 'Search All', href: '/scholarships' }
                         ].map((link) => (
                             <Link

@@ -7,6 +7,7 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
+import { getPillarForScholarship } from '@/lib/pillars';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -255,6 +256,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const siblingVariants = await getSiblingVariants(scholarship.id, scholarship.slug, scholarship.title);
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
     const relevantNews = getNewsForScholarship(scholarship.slug);
+    const bestFitPillar = getPillarForScholarship(scholarship);
 
 
     // Dynamic deadline check (relative to India's current date boundary: June 25, 2026)
@@ -681,22 +683,32 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div className="flex gap-3 items-start">
                                     <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <p className="font-bold text-blue-900 text-sm">Category Variant Alert</p>
+                                        <p className="font-bold text-blue-900 text-sm">Related Program Variant</p>
                                         <p className="text-xs text-blue-800 leading-relaxed">
-                                            There are multiple category-specific versions of this scholarship. Please check if you are eligible for the other options:
+                                            There are multiple versions of this scheme, split by category, state, or branch. Please check if you are eligible for the other options:
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex flex-wrap gap-2 shrink-0">
-                                    {siblingVariants.map((variant: any) => (
-                                        <Link
-                                            key={variant.slug}
-                                            href={`/scholarships/${variant.slug}`}
-                                            className="px-3 py-1.5 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-[11px] font-bold rounded-full transition-all shadow-2xs"
-                                        >
-                                            View {variant.caste && variant.caste.length > 0 ? variant.caste.join('/') : 'Alternate'}
-                                        </Link>
-                                    ))}
+                                    {siblingVariants.map((variant: any) => {
+                                        // Label by whichever dimension actually distinguishes this
+                                        // variant from the page you're on — state/region for branches
+                                        // like PM-YASASVI J&K or Manipur, caste for same-state category
+                                        // splits like an Odisha SC/OBC/Minority series.
+                                        const distinguishingState = variant.state && variant.state !== 'All India' && variant.state !== scholarship.state;
+                                        const label = distinguishingState
+                                            ? variant.state
+                                            : (variant.caste && variant.caste.length > 0 ? variant.caste.join('/') : 'Alternate');
+                                        return (
+                                            <Link
+                                                key={variant.slug}
+                                                href={`/scholarships/${variant.slug}`}
+                                                className="px-3 py-1.5 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-[11px] font-bold rounded-full transition-all shadow-2xs"
+                                            >
+                                                View {label}
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
@@ -716,34 +728,24 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         )}
 
-                        {/* PM-YASASVI Cross-linking Callout Box */}
-                        {['pm-yashasvi-scholarship', 'pm-yasasvi-top-class-education', 'pm-yasasvi-jk-obc'].includes(slug) && (
-                            <div className="mb-10 p-6 bg-blue-50 border border-blue-200 rounded-3xl flex gap-4">
-                                <Info className="h-6 w-6 text-blue-700 flex-shrink-0 mt-0.5" />
-                                <div>
-                                    <p className="font-bold text-blue-900 mb-1">Important: PM-YASASVI Program Variations</p>
-                                    {slug === 'pm-yashasvi-scholarship' && (
-                                        <div className="text-blue-800 text-sm leading-relaxed">
-                                            This is the general national program. If you belong to specialized categories or regions, please see the specific branches:
-                                            <span className="block mt-2">
-                                                • Studying at an elite empanelled national college (like an IIT, NIT, or top-tier boarding school)? See the <Link href="/scholarships/pm-yasasvi-top-class-education" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Top Class Education Scheme</Link>.
-                                            </span>
-                                            <span className="block mt-1">
-                                                • Resident of Jammu & Kashmir? See the <Link href="/scholarships/pm-yasasvi-jk-obc" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI J&K OBC/EBC/DNT Scheme</Link>.
-                                            </span>
-                                        </div>
-                                    )}
-                                    {slug === 'pm-yasasvi-top-class-education' && (
-                                        <p className="text-blue-800 text-sm leading-relaxed">
-                                            This is a specialized branch for students enrolled in notified empanelled institutions of excellence. If you are not studying in a notified top-class school/college, please refer to the general <Link href="/scholarships/pm-yashasvi-scholarship" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Scholarship</Link> or the <Link href="/scholarships/pm-yasasvi-jk-obc" className="font-bold underline text-blue-900 hover:text-blue-700">J&K resident-specific scheme</Link>.
+                        {/* Best-Fit Pillar Callout */}
+                        {bestFitPillar && (
+                            <div className="mb-10 p-5 bg-indigo-50/60 border border-indigo-100 rounded-3xl flex items-center justify-between gap-4 flex-wrap shadow-xs">
+                                <div className="flex gap-3 items-start">
+                                    <BookOpen className="h-5 w-5 text-indigo-600 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <p className="font-bold text-indigo-900 text-sm">Understand the Bigger Picture</p>
+                                        <p className="text-xs text-indigo-800 leading-relaxed">
+                                            See how this scholarship fits into the wider system in our complete guide.
                                         </p>
-                                    )}
-                                    {slug === 'pm-yasasvi-jk-obc' && (
-                                        <p className="text-blue-800 text-sm leading-relaxed">
-                                            This is the UT-administered branch specifically for residents of Jammu & Kashmir. If you reside outside J&K, please refer to the general <Link href="/scholarships/pm-yashasvi-scholarship" className="font-bold underline text-blue-900 hover:text-blue-700">PM-YASASVI Scholarship</Link> or the <Link href="/scholarships/pm-yasasvi-top-class-education" className="font-bold underline text-blue-900 hover:text-blue-700">Top Class Education Scheme</Link>.
-                                        </p>
-                                    )}
+                                    </div>
                                 </div>
+                                <Link
+                                    href={`/pillars/${bestFitPillar.slug}`}
+                                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-full transition-all shadow-2xs shrink-0"
+                                >
+                                    Read: {bestFitPillar.title} →
+                                </Link>
                             </div>
                         )}
 
@@ -1181,41 +1183,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 title={scholarship.title}
                                 url={`https://www.indiascholarships.in/scholarships/${scholarship.slug}`}
                             />
-
-                            {/* Supporting Guides Link List */}
-                            <div className="py-4 border-b border-gray-150">
-                                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Supporting Guides</h3>
-                                <nav className="space-y-1.5 text-xs font-bold text-gray-700">
-                                    <Link href={`/scholarships/${scholarship.slug}/eligibility`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Eligibility Criteria</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/income-limit`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Income Limit</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/documents-required`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Documents Required</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/last-date`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Last Date & Timelines</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/selection-process`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Selection Process</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/apply-online`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>How to Apply Online</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                    <Link href={`/scholarships/${scholarship.slug}/renewal-process`} className="hover:text-google-blue flex items-center justify-between py-1">
-                                        <span>Renewal Process</span>
-                                        <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
-                                    </Link>
-                                </nav>
-                            </div>
 
                             <div className="space-y-6">
                                 <div className="grid grid-cols-2 gap-4">

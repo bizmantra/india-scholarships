@@ -2,6 +2,7 @@
 id: "ART-2"
 title: "Odisha e-Medhabruti & Kalia Scheme: How to Apply & Check Status"
 slug: "odisha-emedhabruti-kalia-guide-2026"
+relatedPillarSlug: "odisha-scholarships-guide"
 date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"

@@ -2,6 +2,7 @@
 id: "ART-27"
 title: "How to Apply for UP Purva Sainik Kalyan Educational Scholarship 2026: Class 10 & 12 Board Toppers Guide"
 slug: "how-to-apply-up-purva-sainik-kalyan-educational-scholarship"
+relatedPillarSlug: "uttar-pradesh-scholarships-guide"
 date: "2026-07-26"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"

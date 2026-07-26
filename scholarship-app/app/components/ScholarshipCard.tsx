@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { CheckCircle2, Calendar, Laptop, Users, IndianRupee, Clock } from 'lucide-react';
 
@@ -25,6 +28,8 @@ interface ScholarshipCardProps {
 }
 
 export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: ScholarshipCardProps) {
+    const [thumbnailFailed, setThumbnailFailed] = useState(false);
+
     // Calculate status badges
     const getStatusBadge = () => {
         if (!scholarship.deadline) return null;
@@ -129,17 +134,14 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
         const index = firstLetter.charCodeAt(0) % colors.length;
         const colorClass = colors[index];
 
-        if (scholarship.thumbnail_url) {
+        if (scholarship.thumbnail_url && !thumbnailFailed) {
             return (
                 <div className="relative w-12 h-12 rounded-full overflow-hidden border border-border-gray shrink-0 bg-white flex items-center justify-center">
                     <img
                         src={scholarship.thumbnail_url}
                         alt={scholarship.provider}
                         className="object-contain w-full h-full p-1"
-                        onError={(e) => {
-                            // Fallback if image fails to load
-                            e.currentTarget.style.display = 'none';
-                        }}
+                        onError={() => setThumbnailFailed(true)}
                     />
                 </div>
             );

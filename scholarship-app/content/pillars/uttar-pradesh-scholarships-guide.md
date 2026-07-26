@@ -25,6 +25,7 @@ relatedArticleSlugs:
   - "how-to-apply-up-divyangjan-post-matric-scholarship"
   - "how-to-apply-up-cm-fellowship-programme"
   - "how-to-apply-up-purva-sainik-kalyan-educational-scholarship"
+  - "how-to-apply-lucknow-university-chhatra-kalyan-scholarship"
 takeaways:
   - "Uttar Pradesh uses one main website, scholarship.up.gov.in, but it hosts many separate forms — split by your category group and by your class stage."
   - "Unlike most states, UP groups General, SC, and ST students into one combined form. OBC and Minority students each have their own separate form."

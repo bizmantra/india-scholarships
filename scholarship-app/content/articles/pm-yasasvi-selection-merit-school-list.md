@@ -2,6 +2,7 @@
 id: "ART-64"
 title: "PM YASASVI 2026: No More Entrance Exam? Here's How Selections Work Now"
 slug: "pm-yasasvi-selection-merit-school-list"
+relatedPillarSlug: "obc-scholarships-guide"
 date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"

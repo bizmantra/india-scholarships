@@ -4,6 +4,7 @@ title: "SC/ST Scholarships in India: The Complete Guide (2026)"
 seoTitle: "SC/ST Scholarships in India 2026: Central & State Schemes Explained"
 seoDescription: "A simple guide to SC/ST scholarships in India — central vs state schemes, income limits, documents needed, and how to find the right scheme for you."
 slug: "sc-st-scholarships-india-guide"
+featured: true
 date: "2026-07-25"
 readTime: "10 min read"
 author: "IndiaScholarships Editorial Team"
@@ -68,7 +69,7 @@ This comes from the national government, for the whole country.
 - For [SC students](/scholarships-for/sc), it comes from the Ministry of Social Justice & Empowerment.
 - For [ST students](/scholarships-for/st), it comes from the Ministry of Tribal Affairs.
 
-You apply on one website for the whole country: the **National Scholarship Portal**, or **NSP** (see our [NSP portal guide](/guides/nsp)). The rules are the same in every state.
+You apply on one website for the whole country: the **National Scholarship Portal**, or **NSP** (see our [complete NSP guide](/pillars/nsp-national-scholarship-portal-guide) for which schemes use it and why applications get stuck). The rules are the same in every state.
 
 ### 2. State Government scholarships
 

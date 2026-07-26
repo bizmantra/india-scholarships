@@ -3,6 +3,7 @@ import { getScholarshipsByType } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { getPillarForProviderType } from '@/lib/pillars';
 
 export const metadata = {
     title: 'Private Scholarships 2026 - Foundations & NGO Schemes',
@@ -15,6 +16,7 @@ export const metadata = {
 
 export default async function PrivateScholarshipsPage() {
     const scholarships = await getScholarshipsByType('Private');
+    const pillar = getPillarForProviderType('Private');
 
     return (
         <div className="min-h-screen bg-white">
@@ -35,7 +37,16 @@ export default async function PrivateScholarshipsPage() {
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Educational funding from private sector foundations, non-profits, and trusts.
-                        These scholarships often prioritize **academic merit** and **innovative fields of study**.
+                        These scholarships often prioritize <strong>academic merit</strong> and <strong>innovative fields of study</strong>.
+                        {pillar && (
+                            <>
+                                {' '}New to how corporate and private scholarships work?{' '}
+                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    Read our complete guide
+                                </Link>{' '}
+                                first.
+                            </>
+                        )}
                     </p>
                 </div>
 

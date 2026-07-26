@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getScholarshipsByCourse, getMajorCourses } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { GraduationCap, BookOpen, Clock, Info } from 'lucide-react';
+import { getPillarForCourse } from '@/lib/pillars';
 
 // Help helper for capitalized names
 const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -34,6 +35,7 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
 
     // Get scholarships for this course cluster
     const scholarships = await getScholarshipsByCourse(courseName);
+    const coursePillar = getPillarForCourse(course);
 
     if (scholarships.length === 0 && course !== 'all') {
         notFound();
@@ -73,6 +75,15 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
                     <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
                         Funding your {courseName} degree can be challenging. We've gathered <span className="font-bold text-blue-700">{scholarships.length} scholarships</span>
                         from government ministries and private foundations to help you cover tuition fees and living expenses.
+                        {coursePillar && (
+                            <>
+                                {' '}New to how {courseName} scholarships work?{' '}
+                                <Link href={`/pillars/${coursePillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    Read our complete guide
+                                </Link>{' '}
+                                first.
+                            </>
+                        )}
                     </p>
                 </div>
 

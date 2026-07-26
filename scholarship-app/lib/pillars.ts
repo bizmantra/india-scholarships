@@ -17,6 +17,8 @@ export interface PillarMetadata {
   clusterCategories: string[];
   clusterStates: string[];
   clusterLevels: string[];
+  clusterProviderTypes: string[];
+  clusterCourses: string[];
   hubLinks: HubLink[];
   relatedArticleSlugs: string[];
   takeaways: string[];
@@ -24,6 +26,7 @@ export interface PillarMetadata {
   faqs?: { q: string; a: string }[];
   seoTitle?: string;
   seoDescription?: string;
+  featured?: boolean;
 }
 
 export interface PillarData extends PillarMetadata {
@@ -221,11 +224,11 @@ function simpleMarkdownToHtml(markdown: string): string {
 
   html = html.replace(/^### (.*$)/gim, (match, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `<h3 id="${id}" class="text-xl font-bold text-slate-900 mt-6 mb-3">${title}</h3>`;
+    return `<h3 id="${id}" class="text-xl font-bold text-slate-900 mt-6 mb-3 scroll-mt-24">${title}</h3>`;
   });
   html = html.replace(/^## (.*$)/gim, (match, title) => {
     const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    return `<h2 id="${id}" class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100">${title}</h2>`;
+    return `<h2 id="${id}" class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100 scroll-mt-24">${title}</h2>`;
   });
   html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-black text-slate-900 mt-8 mb-4">$1</h1>');
 
@@ -318,6 +321,8 @@ function toMetadata(data: Record<string, any>, fallbackSlug: string): PillarMeta
     clusterCategories: Array.isArray(data.clusterCategories) ? data.clusterCategories : [],
     clusterStates: Array.isArray(data.clusterStates) ? data.clusterStates : [],
     clusterLevels: Array.isArray(data.clusterLevels) ? data.clusterLevels : [],
+    clusterProviderTypes: Array.isArray(data.clusterProviderTypes) ? data.clusterProviderTypes : [],
+    clusterCourses: Array.isArray(data.clusterCourses) ? data.clusterCourses : [],
     hubLinks: Array.isArray(data.hubLinks) ? data.hubLinks : [],
     relatedArticleSlugs: Array.isArray(data.relatedArticleSlugs) ? data.relatedArticleSlugs : [],
     takeaways: Array.isArray(data.takeaways) ? data.takeaways : [],
@@ -325,6 +330,7 @@ function toMetadata(data: Record<string, any>, fallbackSlug: string): PillarMeta
     faqs: Array.isArray(data.faqs) ? data.faqs : [],
     seoTitle: data.seoTitle,
     seoDescription: data.seoDescription,
+    featured: data.featured === true || data.featured === 'true',
   };
 }
 
@@ -348,6 +354,18 @@ export function getAllPillars(): PillarMetadata[] {
   }
 
   return pillars.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+/**
+ * Pillars flagged `featured: true` in frontmatter, for surfaces like the
+ * homepage that only have room for a handful — driven by the flag instead of
+ * a hardcoded slug list, so newly published pillars can be featured (or
+ * rotated in) by editing content, not by shipping a code change.
+ */
+export function getFeaturedPillars(limit = 6): PillarMetadata[] {
+  return getAllPillars()
+    .filter((p) => p.featured)
+    .slice(0, limit);
 }
 
 /**
@@ -379,7 +397,7 @@ export function getPillarBySlug(slug: string): PillarData | null {
  */
 function pickMostSpecific(
   pillars: PillarMetadata[],
-  field: 'clusterCategories' | 'clusterStates' | 'clusterLevels'
+  field: 'clusterCategories' | 'clusterStates' | 'clusterLevels' | 'clusterProviderTypes' | 'clusterCourses'
 ): PillarMetadata | null {
   if (pillars.length === 0) return null;
   return pillars.reduce((best, p) => (p[field].length < best[field].length ? p : best));
@@ -417,6 +435,81 @@ export function getPillarForLevel(levelSlug: string): PillarMetadata | null {
   return pickMostSpecific(matches, 'clusterLevels');
 }
 
+export function getPillarForProviderType(providerType: string): PillarMetadata | null {
+  const pillars = getAllPillars();
+  const normalized = providerType.toLowerCase();
+  const matches = pillars.filter(p =>
+    p.clusterProviderTypes.some(t => t.toLowerCase() === normalized)
+  );
+  return pickMostSpecific(matches, 'clusterProviderTypes');
+}
+
+export function getPillarForCourse(courseName: string): PillarMetadata | null {
+  const pillars = getAllPillars();
+  const normalized = courseName.toLowerCase();
+  const matches = pillars.filter(p =>
+    p.clusterCourses.some(c => c.toLowerCase() === normalized)
+  );
+  return pickMostSpecific(matches, 'clusterCourses');
+}
+
+/**
+ * Reverse-lookup a single best-fit pillar for a scholarship detail page,
+ * so a page like "Odisha e-Medhabruti" can link up to the pillar that
+ * explains the wider system it belongs to.
+ *
+ * Priority mirrors how a student would want the guide framed: a
+ * state-specific scheme should point to the state pillar, not a generic
+ * category one; a corporate/private scheme has no state or category pillar
+ * to fall back on, so that check comes next; course and category follow;
+ * level is the last, broadest fallback.
+ */
+export function getPillarForScholarship(scholarship: {
+  state?: string | null;
+  provider_type?: string | null;
+  caste?: string[] | null;
+  course_stream?: string[] | string | null;
+  level?: string | null;
+}): PillarMetadata | null {
+  const { state, provider_type, caste, course_stream, level } = scholarship;
+
+  if (state && state !== 'All India' && state !== 'Multiple States' && state !== 'Selected States' && state !== 'Selected Cities') {
+    const statePillar = getPillarForState(state);
+    if (statePillar) return statePillar;
+  }
+
+  if (provider_type === 'Corporate' || provider_type === 'Private') {
+    const providerPillar = getPillarForProviderType(provider_type);
+    if (providerPillar) return providerPillar;
+  }
+
+  if (course_stream) {
+    const rawCourses = Array.isArray(course_stream) ? course_stream : [course_stream];
+    const courseTokens = rawCourses.flatMap(c => c.split(/[,/]/)).map(t => t.trim()).filter(Boolean);
+    for (const token of courseTokens) {
+      const coursePillar = getPillarForCourse(token);
+      if (coursePillar) return coursePillar;
+    }
+  }
+
+  if (caste && caste.length > 0) {
+    for (const c of caste) {
+      const categoryPillar = getPillarForCategory(c);
+      if (categoryPillar) return categoryPillar;
+    }
+  }
+
+  if (level) {
+    const levelTokens = level.split(',').map(t => t.trim()).filter(Boolean);
+    for (const token of levelTokens) {
+      const levelPillar = getPillarForLevel(token);
+      if (levelPillar) return levelPillar;
+    }
+  }
+
+  return null;
+}
+
 function normalizeForMatch(s: string): string {
   return s
     .toLowerCase()
@@ -443,7 +536,11 @@ export function autoLinkScholarshipMentions(
   const seen = new Set<string>();
 
   return html.replace(/<strong[^>]*>(.*?)<\/strong>/g, (fullMatch, inner: string) => {
-    const plainText = inner.replace(/<[^>]+>/g, '');
+    const plainText = inner
+      .replace(/<[^>]+>/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
     const normalizedText = normalizeForMatch(plainText);
     if (normalizedText.length < 4) return fullMatch;
 

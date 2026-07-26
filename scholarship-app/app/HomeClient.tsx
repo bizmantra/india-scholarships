@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { CheckCircle2, MapPin, Globe, Users, ShieldCheck, GraduationCap, IndianRupee, Target, ArrowRight, Search, Sparkles } from 'lucide-react';
+import { CheckCircle2, MapPin, Globe, Users, ShieldCheck, GraduationCap, IndianRupee, Target, ArrowRight, Search, Sparkles, BookOpen, ChevronRight } from 'lucide-react';
 import ScholarshipCard from './components/ScholarshipCard';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -27,20 +27,27 @@ interface Scholarship {
     thumbnail_url?: string;
 }
 
+interface FeaturedPillar {
+    title: string;
+    slug: string;
+}
+
 interface HomeClientProps {
     recentlyAdded: Scholarship[];
     closingSoon: Scholarship[];
     trending: Scholarship[];
     totalStates: number;
     totalScholarships: number;
+    featuredPillars: FeaturedPillar[];
 }
 
-export default function HomeClient({ 
-    recentlyAdded, 
-    closingSoon, 
-    trending, 
+export default function HomeClient({
+    recentlyAdded,
+    closingSoon,
+    trending,
     totalStates,
-    totalScholarships 
+    totalScholarships,
+    featuredPillars
 }: HomeClientProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
@@ -192,6 +199,38 @@ export default function HomeClient({
                                     ))}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Scholarship Guides (Pillars) — explainers, not just listings */}
+                <section className="py-14 bg-indigo-50/30 border-t border-b border-indigo-100/60">
+                    <div className="container mx-auto px-6 max-w-5xl">
+                        <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+                            <div>
+                                <h2 className="text-2xl font-black text-gray-900 font-serif tracking-tight mb-2 flex items-center gap-2">
+                                    <BookOpen className="h-5 w-5 text-indigo-600" />
+                                    Scholarship Guides
+                                </h2>
+                                <p className="text-sm text-gray-500 font-medium">Not sure where to start? These explain how a whole system works, not just one scheme.</p>
+                            </div>
+                            <Link href="/pillars" className="flex items-center gap-1 text-sm font-bold text-indigo-700 hover:underline shrink-0">
+                                <span>All Guides</span>
+                                <ChevronRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {featuredPillars.map((g) => (
+                                <Link
+                                    key={g.slug}
+                                    href={`/pillars/${g.slug}`}
+                                    className="flex items-center justify-between gap-2 p-4 bg-white border border-gray-100 rounded-2xl text-sm font-bold text-gray-800 hover:border-indigo-300 hover:text-indigo-700 hover:shadow-sm transition-all"
+                                >
+                                    <span>{g.title}</span>
+                                    <ChevronRight className="h-4 w-4 shrink-0 text-gray-300" />
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </section>

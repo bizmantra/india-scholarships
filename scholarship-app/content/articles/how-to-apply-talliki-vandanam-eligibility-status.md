@@ -2,6 +2,7 @@
 id: "ART-24"
 title: "How to Apply for AP Talliki Vandanam Scheme: Eligibility, Status Check & Guidelines"
 slug: "how-to-apply-talliki-vandanam-eligibility-status"
+relatedPillarSlug: "andhra-pradesh-scholarships-guide"
 date: "2026-07-25"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"

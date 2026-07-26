@@ -4,6 +4,11 @@ export interface University {
   description: string;
   keywords: string[];
   nationalEligible: boolean;
+  // Only set where the institution is genuinely a single-discipline fit for an
+  // existing pillar (e.g. an IIT/NIT is unambiguously engineering) — general
+  // multi-faculty universities (DU, JNU, BHU, AMU, JMI, UoH, Ashoka) are left
+  // unset rather than forced into a pillar that only covers part of what they teach.
+  relatedPillarSlug?: string;
 }
 
 export const UNIVERSITIES: University[] = [
@@ -12,49 +17,56 @@ export const UNIVERSITIES: University[] = [
     slug: "bits-pilani",
     description: "Birla Institute of Technology and Science (BITS), Pilani (covering Pilani, Goa, and Hyderabad campuses) offers robust merit and merit-cum-need tuition fee waivers to support students across engineering, science, and pharmacy programs.",
     keywords: ["bits", "bitsat", "pilani"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "IIT Bombay",
     slug: "iit-bombay",
     description: "Indian Institute of Technology (IIT) Bombay provides extensive financial support including merit-cum-means (MCM) scholarships, full/partial tuition waivers, and free messing schemes to ensure no student is held back due to financial constraints.",
     keywords: ["iit bombay", "iitb"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "IIT Delhi",
     slug: "iit-delhi",
     description: "Indian Institute of Technology (IIT) Delhi offers a variety of institutional assistance programs including MCM scholarships, donor-sponsored awards, and postgraduate research fellowships to support its academic community.",
     keywords: ["iit delhi", "iitd"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "IIT Madras",
     slug: "iit-madras",
     description: "Indian Institute of Technology (IIT) Madras matches top-tier academics with comprehensive financial support, including institute fee waivers, MCM awards, and external alumni-sponsored endowments.",
     keywords: ["iit madras", "iitm"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "IIT Kharagpur",
     slug: "iit-kharagpur",
     description: "Indian Institute of Technology (IIT) Kharagpur, the oldest of the IITs, runs multiple student aid programs including the Institute MCM scholarship, endowment grants, and special assistance schemes for SC/ST students.",
     keywords: ["iit kharagpur", "iitkgp"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "NIT Trichy",
     slug: "nit-trichy",
     description: "National Institute of Technology (NIT) Tiruchirappalli facilitates fee reimbursements and merit-cum-means support under central/state government schemes, along with alumni-sponsored welfare scholarships.",
     keywords: ["nit trichy", "nitt", "tiruchirappalli"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "NIT Surathkal",
     slug: "nit-surathkal",
     description: "National Institute of Technology Karnataka (NITK) Surathkal coordinates multiple state and national scholarships, alongside institutional fee concessions for category and low-income students.",
     keywords: ["nit surathkal", "nitk"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "Delhi University",
@@ -103,28 +115,32 @@ export const UNIVERSITIES: University[] = [
     slug: "anna-university",
     description: "Anna University, Chennai, coordinates central and state government scholarships, first graduate concessions, and hosts various alumni-funded endowment scholarships.",
     keywords: ["anna-university"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "Visvesvaraya Technological University",
     slug: "visvesvaraya-technological-university",
     description: "Visvesvaraya Technological University (VTU), Belagavi, offers the Jnana Yaana Doctoral Fellowship (JYDF) and extensive project funding and tuition concessions for SC/ST students.",
     keywords: ["visvesvaraya-technological-university", "vtu"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "Savitribai Phule Pune University",
     slug: "savitribai-phule-pune-university",
     description: "Savitribai Phule Pune University (SPPU), Pune, runs the renowned Karmaveer Bhaurao Patil Earn and Learn Scheme, the Savitribai Phule scholarship, and state-backed MahaDBT programs.",
     keywords: ["savitribai-phule-pune-university", "sppu", "pune-university"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "maharashtra-scholarships-guide"
   },
   {
     name: "Dr. A.P.J. Abdul Kalam Technical University",
     slug: "aktu",
     description: "Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow, facilitates the UP State Post-Matric Scholarship and fee reimbursement schemes, alongside student welfare funds.",
     keywords: ["aktu", "uptu"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "uttar-pradesh-scholarships-guide"
   },
   {
     name: "Ashoka University",
@@ -138,7 +154,8 @@ export const UNIVERSITIES: University[] = [
     slug: "vellore-institute-of-technology",
     description: "Vellore Institute of Technology (VIT) runs the STARS scheme for rural students and the GVSDP merit-based tuition fee waiver programme based on VITEEE ranks.",
     keywords: ["vit", "vellore", "vellore-institute-of-technology", "vit-vellore"],
-    nationalEligible: true
+    nationalEligible: true,
+    relatedPillarSlug: "engineering-btech-scholarships-guide"
   },
   {
     name: "Manipal Academy of Higher Education",

@@ -2,6 +2,7 @@
 id: "ART-26"
 title: "How to Apply for UP CM Fellowship Programme 2026: Eligibility, ₹40k Stipend & Selection"
 slug: "how-to-apply-up-cm-fellowship-programme"
+relatedPillarSlug: "uttar-pradesh-scholarships-guide"
 date: "2026-07-26"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"

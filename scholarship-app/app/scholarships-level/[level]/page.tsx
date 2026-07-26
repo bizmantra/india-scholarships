@@ -5,7 +5,6 @@ import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
-import PillarGuideCallout from '@/app/components/PillarGuideCallout';
 import { getPillarForLevel } from '@/lib/pillars';
 
 // Generate static params for all education levels (Canonical + Raw)
@@ -94,6 +93,8 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
             return redirect('/scholarships-by-education');
         }
 
+        const levelPillar = getPillarForLevel(levelSlug);
+
         return (
             <div className="min-h-screen bg-white">
                 <Header />
@@ -108,8 +109,6 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
 
-                    <PillarGuideCallout pillar={getPillarForLevel(levelSlug)} />
-
                     {/* Page Header */}
                     <div className="mb-10">
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
@@ -117,6 +116,15 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} scholarship{scholarships.length !== 1 ? 's' : ''}</a> found for <span className="font-semibold text-gray-900">{displayName}</span>. {description}
+                            {levelPillar && (
+                                <>
+                                    {' '}New to how {displayName} scholarships work?{' '}
+                                    <Link href={`/pillars/${levelPillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                        Read our complete guide
+                                    </Link>{' '}
+                                    first.
+                                </>
+                            )}
                         </p>
                     </div>
 

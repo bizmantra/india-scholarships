@@ -7,7 +7,6 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { getNewsForState } from '@/lib/news';
 import { Bell } from 'lucide-react';
-import PillarGuideCallout from '@/app/components/PillarGuideCallout';
 import { getPillarForState } from '@/lib/pillars';
 
 const SUBPAGE_METRICS = {
@@ -71,6 +70,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
         // Get scholarships for this state
         const scholarships = await getScholarshipsByState(stateName);
         const stateNews = getNewsForState(stateName);
+        const pillar = getPillarForState(stateName);
 
         if (scholarships.length === 0) {
             return redirect('/state-scholarships');
@@ -99,8 +99,6 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         <span>/</span>
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
-
-                    <PillarGuideCallout pillar={getPillarForState(stateName)} />
 
                     {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
                     <div id="overview" className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6 scroll-mt-20">
@@ -159,6 +157,15 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             Find the latest and most comprehensive list of {stateName} state scholarships.
                             Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified scholarships</a> available for
                             students from {stateName}.
+                            {pillar && (
+                                <>
+                                    {' '}New to how {stateName}'s scholarship system works?{' '}
+                                    <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                        Read our complete guide
+                                    </Link>{' '}
+                                    first.
+                                </>
+                            )}
                         </p>
                     </div>
 
@@ -181,6 +188,14 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             <p className="text-3xl font-extrabold text-purple-900">{openCount}</p>
                             <p className="text-xs text-purple-600 mt-2">Active schemes</p>
                         </div>
+                    </div>
+
+                    {/* Scholarships List — moved above the comparison table/eligibility cards
+                        so students reach the actual scholarships before a long detour through
+                        supporting reference material. */}
+                    <div id="scholarship-list" className="mb-20 scroll-mt-24">
+                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {stateName} Scholarships</h2>
+                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
 
                     {/* Master Comparison Table Section */}
@@ -275,8 +290,8 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             </h2>
                             <div className="space-y-4">
                                 {stateNews.map((news: any) => (
-                                    <Link 
-                                        key={news.slug} 
+                                    <Link
+                                        key={news.slug}
                                         href={`/news/${news.slug}`}
                                         className="block p-4 bg-white rounded-2xl border border-gray-150 hover:border-red-400 transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs"
                                     >
@@ -294,12 +309,6 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             </div>
                         </div>
                     )}
-
-                    {/* Scholarships List */}
-                    <div id="scholarship-list" className="mb-20 scroll-mt-24">
-                        <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {stateName} Scholarships</h2>
-                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
-                    </div>
 
                     {/* FAQ Section */}
                     <div className="bg-gray-50 rounded-[2.5rem] p-10 mb-20 border border-gray-100">

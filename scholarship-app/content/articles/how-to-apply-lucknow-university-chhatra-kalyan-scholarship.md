@@ -2,6 +2,7 @@
 id: "ART-28"
 title: "How to Apply for Lucknow University Chhatra Kalyan Scholarship 2026: Student Welfare Fund Guide"
 slug: "how-to-apply-lucknow-university-chhatra-kalyan-scholarship"
+relatedPillarSlug: "uttar-pradesh-scholarships-guide"
 date: "2026-07-26"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"
