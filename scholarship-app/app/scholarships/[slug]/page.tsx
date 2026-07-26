@@ -8,7 +8,7 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, isSubpageQualifying } from '@/lib/utils';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
     MapPin,
@@ -249,7 +249,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         notFound();
     }
 
-    const hasSubpages = false;
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
@@ -580,29 +579,16 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     </span>
                     {Object.entries(SUBPAGE_METRICS).map(([key, item]) => {
                         const IconComponent = item.icon;
-                        if (hasSubpages) {
-                            return (
-                                <Link 
-                                    key={key} 
-                                    href={`/scholarships/${scholarship.slug}/${key}`}
-                                    className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
-                                >
-                                    <IconComponent className="h-4 w-4 text-gray-400" />
-                                    {item.label}
-                                </Link>
-                            );
-                        } else {
-                            return (
-                                <a 
-                                    key={key} 
-                                    href={`#${key}`}
-                                    className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
-                                >
-                                    <IconComponent className="h-4 w-4 text-gray-400" />
-                                    {item.label}
-                                </a>
-                            );
-                        }
+                        return (
+                            <a 
+                                key={key} 
+                                href={`#${key}`}
+                                className="px-3.5 py-2 rounded-xl font-bold text-xs text-gray-600 hover:bg-white hover:text-blue-600 hover:shadow-xs transition-all flex items-center gap-2 whitespace-nowrap"
+                            >
+                                <IconComponent className="h-4 w-4 text-gray-400" />
+                                {item.label}
+                            </a>
+                        );
                     })}
                 </div>
 
@@ -614,20 +600,18 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     </span>
                     {Object.entries(SUBPAGE_METRICS).map(([key, item]) => {
                         const IconComponent = item.icon;
-                        if (hasSubpages) {
-                            return (
-                                <Link 
-                                    key={key} 
-                                    href={`/scholarships/${scholarship.slug}/${key}`}
-                                    className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"
-                                >
-                                    <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
-                                    {item.label}
-                                </Link>
-                            );
-                        } else {
-                            return (
-                                <a 
+                        return (
+                            <a 
+                                key={key} 
+                                href={`#${key}`}
+                                className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"
+                            >
+                                <IconComponent className="h-3.5 w-3.5 flex-shrink-0" />
+                                {item.label}
+                            </a>
+                        );
+                    })}
+                </div>
                                     key={key} 
                                     href={`#${key}`}
                                     className="flex-shrink-0 px-3.5 py-2 rounded-full font-bold text-xs bg-gray-100/90 text-gray-700 hover:bg-gray-200/90 whitespace-nowrap transition-all flex items-center gap-1.5"

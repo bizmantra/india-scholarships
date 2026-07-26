@@ -7,7 +7,7 @@ import {
     getMajorCourses,
     getScholarshipsByState
 } from '@/lib/db';
-import { slugify, CANONICAL_LEVELS, isSubpageQualifying } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
@@ -128,10 +128,6 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             changeFrequency: 'weekly' as const,
             priority: 0.8,
         }));
-    }
-
-    if (id === 'subpages') {
-        return [];
     }
 
     if (id === 'states') {

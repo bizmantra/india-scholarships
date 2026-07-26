@@ -12,8 +12,8 @@ All localized traffic is consolidated into **Canonical Multilingual Master Detai
 
 Our localized rendering system (`lib/db.ts` $\rightarrow$ `getLocalizedScholarshipBySlug`) queries the SQLite `scholarship_translations` table:
 
-1. **Top 20 High-Volume Scholarships:** Fully translated rows in `scholarship_translations` for all 6 languages (e.g. PM Yashasvi, NSP Post-Matric, UP Post-Matric).
-2. **Graceful Fallback for Remaining ~430 Schemes:** If no localized translation row exists for a given locale, `lib/db.ts` automatically falls back to the English column value (`s.title`, `s.eligibility`, `s.docs_needed`).
+1. **Active Translation Database Coverage (692 Rows):** ~116 high-volume scholarships are fully translated into `scholarship_translations` across all 6 regional languages (Hindi, Bengali, Tamil, Telugu, Odia, Kannada), representing **~25% real per-locale coverage** for high-traffic schemes (e.g. PM Yashasvi, NSP Post-Matric, UP Post-Matric, SVMCM).
+2. **Graceful Fallback for Remaining Schemes:** If no localized translation row exists for a given locale, `lib/db.ts` automatically falls back to the English column value (`s.title`, `s.eligibility`, `s.docs_needed`).
 3. **Zero Maintenance Burden:** This architecture scales seamlessly without requiring manual translation of 450+ scholarships upfront.
 
 ---
