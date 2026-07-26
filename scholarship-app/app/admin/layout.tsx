@@ -43,7 +43,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const menuItems = [
         { href: '/admin/dashboard', label: 'Dashboard', icon: <Activity className="h-5 w-5" /> },
-        { href: '/admin/moderation', label: 'Community Signals', icon: <Users className="h-5 w-5" /> },
         { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
         { href: '/admin/seo-audit', label: 'SEO Audit', icon: <FileText className="h-5 w-5" /> },
         { href: '/admin/content-manager', label: 'Content Manager', icon: <Layers className="h-5 w-5" /> },

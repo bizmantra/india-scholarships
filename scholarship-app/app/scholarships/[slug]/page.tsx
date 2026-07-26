@@ -7,7 +7,6 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
-import CommunitySignalsWidget from '@/app/components/CommunitySignalsWidget';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -257,23 +256,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
     const relevantNews = getNewsForScholarship(scholarship.slug);
 
-    // Fetch pre-computed community signals aggregates for the scholarship
-    const dbClient = getClient();
-    const aggregateRes = await dbClient.execute({
-        sql: 'SELECT * FROM community_signals_aggregates WHERE scholarship_id = ?',
-        args: [scholarship.id]
-    });
-    const initialAggregate = aggregateRes.rows[0] ? {
-        scholarship_id: String(aggregateRes.rows[0].scholarship_id),
-        total_events: Number(aggregateRes.rows[0].total_events),
-        application_count: Number(aggregateRes.rows[0].application_count),
-        verification_count: Number(aggregateRes.rows[0].verification_count),
-        selected_count: Number(aggregateRes.rows[0].selected_count),
-        payment_count: Number(aggregateRes.rows[0].payment_count),
-        average_payment: Number(aggregateRes.rows[0].average_payment),
-        last_activity: aggregateRes.rows[0].last_activity ? String(aggregateRes.rows[0].last_activity) : null,
-        common_issues_json: String(aggregateRes.rows[0].common_issues_json || '{}')
-    } : undefined;
 
     // Dynamic deadline check (relative to India's current date boundary: June 25, 2026)
     const today = new Date();
@@ -967,11 +949,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </div>
                         </section>
 
-                        <CommunitySignalsWidget 
-                            scholarshipId={scholarship.id}
-                            scholarshipTitle={scholarship.title}
-                            initialAggregate={initialAggregate}
-                        />
 
                         {scholarship.faq_json && (
                             <section className="mb-12 pb-8 border-b border-gray-150">
@@ -1198,18 +1175,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     Verified Official Source
                                 </div>
 
-                                {/* Post-Apply CTA Nudge */}
-                                <div className="mt-4 pt-3.5 border-t border-gray-100 text-center">
-                                    <p className="text-[11px] text-gray-500 font-medium leading-normal mb-2">
-                                        Already submitted your form? Help fellow students track verification & payout delays.
-                                    </p>
-                                    <a
-                                        href="#community-signals"
-                                        className="inline-block text-xs font-extrabold text-blue-700 hover:text-blue-800 underline transition-colors"
-                                    >
-                                        Share Status (10s)
-                                    </a>
-                                </div>
                             </div>
 
                             <ShareButtons
