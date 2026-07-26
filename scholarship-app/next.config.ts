@@ -111,6 +111,24 @@ const nextConfig: NextConfig = {
     return [
       ...generatedRedirects,
 
+      // Programmatic Subpage Sunset 301 Redirects (Mapping directly to section hash anchors)
+      {
+        source: '/scholarships/:slug/:subpage(eligibility|income-limit|documents-required|last-date|selection-process|apply-online|renewal-process)',
+        destination: '/scholarships/:slug#:subpage',
+        permanent: true,
+      },
+      {
+        source: '/:locale(hi|bn|ta|te|or|kn)/scholarships/:slug/:subpage(eligibility|income-limit|documents-required|last-date|selection-process|apply-online|renewal-process)',
+        destination: '/:locale/scholarships/:slug#:subpage',
+        permanent: true,
+      },
+      {
+        source: '/scholarships-in/:state/:subpage(eligibility|income-limit|documents-required|last-date|selection-process|apply-online|renewal-process)',
+        destination: '/scholarships-in/:state#:subpage',
+        permanent: true,
+      },
+
+
 
       // 1. Broken Search Route
       {

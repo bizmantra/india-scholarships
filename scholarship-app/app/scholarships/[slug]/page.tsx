@@ -249,7 +249,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         notFound();
     }
 
-    const hasSubpages = isSubpageQualifying(scholarship);
+    const hasSubpages = false;
     const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
     const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
 
@@ -644,50 +644,79 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
                     {/* Left Column: Main Content */}
                     <div className="lg:col-span-2">
-                        {/* Page Header / Hero Area */}
-                        <div className="mb-10">
-                            <div className="flex items-center gap-3 mb-6 flex-wrap">
-                                <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wider border border-blue-100">
+                        {/* Above-the-Fold Mobile Hero Card */}
+                        <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 rounded-3xl p-6 sm:p-8 text-white mb-8 shadow-xl border border-indigo-900/40 relative overflow-hidden">
+                            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                                <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded-full border border-blue-400/30 uppercase tracking-wider">
                                     {scholarship.provider_type} Scholarship
                                 </span>
                                 {isDeadlinePassed ? (
-                                    <span className="flex items-center gap-1.5 text-slate-500 text-xs font-bold uppercase tracking-wider">
-                                        <Clock className="h-4 w-4" />
-                                        Previous Cycle (Closed)
+                                    <span className="px-3 py-1 bg-red-500/20 text-red-300 text-xs font-bold rounded-full border border-red-400/30">
+                                        🔴 Closed for Cycle
                                     </span>
                                 ) : (
-                                    <span className="flex items-center gap-1.5 text-emerald-600 text-xs font-bold uppercase tracking-wider">
-                                        <ShieldCheck className="h-4 w-4" />
-                                        Verified for {year}
+                                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-bold rounded-full border border-emerald-400/30 flex items-center gap-1.5">
+                                        🟢 Open • Deadline: {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Open Now')}
                                     </span>
                                 )}
-                                <a 
-                                    href="#community-signals"
-                                    className="px-2.5 py-1 bg-blue-50/80 hover:bg-blue-100 text-blue-700 text-[11px] font-bold rounded-full border border-blue-100/80 transition-colors flex items-center gap-1.5"
-                                >
-                                    <span>👥 {initialAggregate?.total_events && initialAggregate.total_events > 0 ? `${initialAggregate.total_events} Updates` : 'Share Status'}</span>
-                                </a>
                             </div>
 
-                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight leading-[1.1]">
+                            <h1 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight leading-tight">
                                 {scholarship.title}
                             </h1>
+                            <p className="text-xs sm:text-sm text-blue-200/90 mb-6 flex items-center gap-2 flex-wrap">
+                                <span>🏛️ {scholarship.provider}</span>
+                                <span>•</span>
+                                <span>📍 {scholarship.state || 'All India'}</span>
+                            </p>
 
-                            <div className="flex flex-wrap items-center gap-y-4 gap-x-8 text-gray-600 border-b border-gray-100 pb-8 text-sm md:text-base">
-                                <div className="flex items-center gap-2">
-                                    <Globe className="h-5 w-5 text-gray-400" />
-                                    <span className="font-medium">{scholarship.provider}</span>
+                            {/* Financial Amount Banner */}
+                            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 mb-6 border border-white/10">
+                                <span className="text-[10px] uppercase font-bold text-blue-200 tracking-wider block mb-1">Scholarship Amount</span>
+                                <div className="text-2xl sm:text-3xl font-black text-amber-300">
+                                    {formatAmount(scholarship.amount_annual, scholarship.amount_description)}
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin className="h-5 w-5 text-gray-400" />
-                                    <span className="font-medium">{scholarship.state || 'All India'}</span>
+                            </div>
+
+                            {/* 4-Grid Key Eligibility Chips */}
+                            <div className="grid grid-cols-2 gap-2 mb-6 text-xs font-medium">
+                                <div className="p-2.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2">
+                                    <span>🎓</span>
+                                    <span className="truncate">{scholarship.level || 'All Levels'}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Calendar className="h-5 w-5 text-gray-400" />
-                                    <span className="font-medium">
-                                        Deadline: <span className={`${isAlwaysOpen ? 'text-emerald-700 font-bold' : isDeadlinePassed ? 'text-gray-500 font-medium' : 'text-red-600 font-bold'}`}>{isAlwaysOpen ? 'Open Year-Round (Continuous)' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Open Now')} {isDeadlinePassed && '(Closed)'}</span>
-                                    </span>
+                                <div className="p-2.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2">
+                                    <span>👥</span>
+                                    <span className="truncate">{scholarship.caste?.join('/') || 'Open to All'}</span>
                                 </div>
+                                <div className="p-2.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2">
+                                    <span>💵</span>
+                                    <span className="truncate">{scholarship.income_limit ? `≤ ₹${(scholarship.income_limit/100000).toFixed(1)}L/yr` : 'No Income Bar'}</span>
+                                </div>
+                                <div className="p-2.5 bg-white/5 rounded-xl border border-white/10 flex items-center gap-2">
+                                    <span>🏛️</span>
+                                    <span className="truncate">{scholarship.application_mode || 'Online'}</span>
+                                </div>
+                            </div>
+
+                            {/* Primary CTA */}
+                            <div className="flex flex-col sm:flex-row gap-3">
+                                {cleanApplyUrl ? (
+                                    <a
+                                        href={cleanApplyUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full text-center py-3.5 px-6 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-black text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                                    >
+                                        <span>Apply Online Direct Link ↗</span>
+                                    </a>
+                                ) : (
+                                    <a
+                                        href="#apply-online"
+                                        className="w-full text-center py-3.5 px-6 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+                                    >
+                                        <span>How to Apply Guide ↓</span>
+                                    </a>
+                                )}
                             </div>
                         </div>
 
@@ -818,10 +847,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </section>
 
                         <section id="eligibility" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-blue rounded-full" />
-                                Eligibility Criteria
+                                Eligibility Criteria & Income Limit
                             </h2>
+                            <blockquote className="mb-6 p-4 bg-blue-50/70 border-l-4 border-blue-600 rounded-r-2xl text-xs sm:text-sm text-blue-950 font-medium leading-relaxed">
+                                <strong className="font-extrabold text-blue-900">Direct Answer:</strong> To qualify for <strong className="font-extrabold text-blue-900">{scholarship.title}</strong>, applicants must be enrolled in <strong className="font-extrabold text-blue-900">{scholarship.level || 'eligible courses'}</strong> ({scholarship.caste?.join(', ') || 'all categories'}). Family annual income must be {scholarship.income_limit ? <strong className="font-extrabold text-blue-900">≤ ₹{(scholarship.income_limit/100000).toFixed(1)} Lakh/year</strong> : 'within scheme parameters'}.
+                            </blockquote>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
                                 <div>
                                     <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-wider mb-2">Educational Qualification</h3>
@@ -871,20 +903,26 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </section>
 
                         <section id="apply-online" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-green rounded-full" />
-                                Application Process
+                                How to Apply Online
                             </h2>
+                            <blockquote className="mb-6 p-4 bg-emerald-50/70 border-l-4 border-emerald-600 rounded-r-2xl text-xs sm:text-sm text-emerald-950 font-medium leading-relaxed">
+                                <strong className="font-extrabold text-emerald-900">Direct Answer:</strong> Applications for <strong className="font-extrabold text-emerald-900">{scholarship.title}</strong> must be submitted online via <strong className="font-extrabold text-emerald-900">{scholarship.application_mode || 'the official portal'}</strong>. Complete eKYC, upload scanned mandatory certificates, and submit before the closing date.
+                            </blockquote>
                             <div className="text-gray-700">
                                 <FormattedText text={scholarship.step_guide} type="steps" />
                             </div>
                         </section>
 
                         <section id="documents-required" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                                 <CheckCircle2 className="h-5 w-5 text-google-green" />
-                                Documents Required
+                                Mandatory Documents Checklist
                             </h2>
+                            <blockquote className="mb-6 p-4 bg-gray-50 border-l-4 border-gray-600 rounded-r-2xl text-xs sm:text-sm text-gray-900 font-medium leading-relaxed">
+                                <strong className="font-extrabold text-gray-900">Direct Answer:</strong> Key documents required for application include <strong className="font-extrabold text-gray-900">{scholarship.docs_needed.slice(0, 4).join(', ') || 'Aadhaar, Marksheet, Income Certificate'}</strong>. Scans must be in PDF/JPEG format (under 200 KB).
+                            </blockquote>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
                                 {scholarship.docs_needed.map((doc: string, i: number) => (
                                     <div key={i} className="flex items-start gap-3 py-1.5 border-b border-gray-100 last:border-0">
@@ -896,10 +934,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         </section>
 
                         <section id="last-date" className="mb-12 pb-8 border-b border-gray-150 scroll-mt-24">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4 tracking-tight flex items-center gap-3">
                                 <div className="w-1.5 h-6 bg-google-red rounded-full" />
-                                Important Dates
+                                Official Last Date & Timelines
                             </h2>
+                            <blockquote className="mb-6 p-4 bg-red-50/70 border-l-4 border-red-600 rounded-r-2xl text-xs sm:text-sm text-red-950 font-medium leading-relaxed">
+                                <strong className="font-extrabold text-red-900">Direct Answer:</strong> The official deadline for <strong className="font-extrabold text-red-900">{scholarship.title}</strong> is <strong className="font-extrabold text-red-900">{isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'Continuous Enrollment')}</strong>. Submit your application early to avoid last-minute portal server load.
+                            </blockquote>
                             <div className="space-y-4 text-sm">
                                 <div className="flex items-start gap-4">
                                     <Calendar className="h-5 w-5 text-google-red flex-shrink-0 mt-0.5" />

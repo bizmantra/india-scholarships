@@ -2,7 +2,7 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
-import { slugify } from '@/lib/utils';
+import { slugify, formatDeadlineDate } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { getNewsForState } from '@/lib/news';
@@ -103,24 +103,52 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                     <PillarGuideCallout pillar={getPillarForState(stateName)} />
 
                     {/* Mobile Navigation Tabs (sticky at top-0 on mobile) */}
-                    {scholarships.length >= 3 && (
-                        <div className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6">
-                            <span 
-                                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap cursor-default"
+                    <div id="overview" className="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md py-3 -mx-4 px-4 overflow-x-auto scrollbar-none flex gap-2 border-b border-gray-200/80 shadow-xs mb-6 scroll-mt-20">
+                        <a 
+                            href="#overview"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-blue-600 text-white shadow-sm whitespace-nowrap"
+                        >
+                            📊 Overview
+                        </a>
+                        <a 
+                            href="#scholarship-list"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            🎓 All Schemes
+                        </a>
+                        <a 
+                            href="#comparison-matrix"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            📋 Comparison Table
+                        </a>
+                        <a 
+                            href="#eligibility"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            🎯 Eligibility
+                        </a>
+                        <a 
+                            href="#documents"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            📄 Documents
+                        </a>
+                        <a 
+                            href="#deadlines"
+                            className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                        >
+                            📅 Deadlines
+                        </a>
+                        {stateNews.length > 0 && (
+                            <a 
+                                href="#state-news"
+                                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
                             >
-                                Overview
-                            </span>
-                            {Object.entries(SUBPAGE_METRICS).map(([key, label]) => (
-                                <Link 
-                                    key={key} 
-                                    href={`/scholarships-in/${stateSlug}/${key}`}
-                                    className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-600 hover:bg-gray-100 whitespace-nowrap transition-all"
-                                >
-                                    {label}
-                                </Link>
-                            ))}
-                        </div>
-                    )}
+                                🔔 {stateName} News
+                            </a>
+                        )}
+                    </div>
 
                     {/* Page Header */}
                     <div className="mb-10">
@@ -155,8 +183,92 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         </div>
                     </div>
 
+                    {/* Master Comparison Table Section */}
+                    <div id="comparison-matrix" className="mb-16 scroll-mt-24">
+                        <div className="flex items-center justify-between mb-6">
+                            <div>
+                                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
+                                    {stateName} Scholarships Comparison Matrix
+                                </h2>
+                                <p className="text-sm text-gray-500 mt-1">Side-by-side overview of amounts, eligibility caps, and application deadlines.</p>
+                            </div>
+                        </div>
+                        <div className="bg-white border border-gray-150 rounded-3xl overflow-hidden shadow-xs">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse text-sm">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-b border-gray-100 text-xs font-bold text-gray-500 uppercase tracking-wider">
+                                            <th className="p-4 pl-6">Scholarship Name</th>
+                                            <th className="p-4">Level / Category</th>
+                                            <th className="p-4">Income Cap</th>
+                                            <th className="p-4">Annual Amount</th>
+                                            <th className="p-4 pr-6">Deadline</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100 text-gray-700">
+                                        {scholarships.map((s: any) => (
+                                            <tr key={s.id} className="hover:bg-blue-50/30 transition-colors">
+                                                <td className="p-4 pl-6 font-bold text-gray-900 max-w-xs">
+                                                    <Link href={`/scholarships/${s.slug}`} className="hover:text-blue-700 transition-colors">
+                                                        {s.title}
+                                                    </Link>
+                                                </td>
+                                                <td className="p-4 text-xs font-medium text-gray-600">
+                                                    {s.level || 'All Levels'} • {s.caste ? s.caste.join('/') : 'All Categories'}
+                                                </td>
+                                                <td className="p-4 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                                                    {s.income_limit ? `≤ ₹${(s.income_limit / 100000).toFixed(1)}L/yr` : 'No Income Bar'}
+                                                </td>
+                                                <td className="p-4 font-bold text-emerald-700 whitespace-nowrap">
+                                                    {s.amount_annual > 0 ? `₹${s.amount_annual.toLocaleString()}` : 'Variable'}
+                                                </td>
+                                                <td className="p-4 pr-6 text-xs text-gray-500 whitespace-nowrap">
+                                                    {formatDeadlineDate(s.deadline, { day: 'numeric', month: 'short' }, 'Open Now')}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Section Anchors for Eligibility, Documents, Deadlines */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                        <div id="eligibility" className="p-6 bg-blue-50/40 border border-blue-100 rounded-3xl scroll-mt-24">
+                            <div id="income-limit" className="scroll-mt-24"></div>
+                            <h3 className="text-base font-bold text-blue-900 mb-2 flex items-center gap-2">
+                                🎯 Eligibility Rules & Income Caps
+                            </h3>
+                            <p className="text-xs text-blue-800 leading-relaxed">
+                                Applicants must be permanent residents (domicile) of {stateName} enrolled in recognized institutions. Annual family income caps apply for reservation categories.
+                            </p>
+                        </div>
+                        <div id="documents" className="p-6 bg-green-50/40 border border-green-100 rounded-3xl scroll-mt-24">
+                            <div id="documents-required" className="scroll-mt-24"></div>
+                            <h3 className="text-base font-bold text-green-900 mb-2 flex items-center gap-2">
+                                📄 Required Documents
+                            </h3>
+                            <p className="text-xs text-green-800 leading-relaxed">
+                                Aadhaar Card (linked to bank for DBT), {stateName} Domicile Certificate, Income Certificate issued by Tehsildar, Caste certificate & marksheets.
+                            </p>
+                        </div>
+                        <div id="deadlines" className="p-6 bg-amber-50/40 border border-amber-100 rounded-3xl scroll-mt-24">
+                            <div id="last-date" className="scroll-mt-24"></div>
+                            <div id="apply-online" className="scroll-mt-24"></div>
+                            <div id="selection-process" className="scroll-mt-24"></div>
+                            <div id="renewal-process" className="scroll-mt-24"></div>
+                            <h3 className="text-base font-bold text-amber-900 mb-2 flex items-center gap-2">
+                                📅 Application Timelines & Apply Guide
+                            </h3>
+                            <p className="text-xs text-amber-800 leading-relaxed">
+                                Pre-Matric schemes generally close around August–September. Post-Matric and Degree schemes remain open through October–November.
+                            </p>
+                        </div>
+                    </div>
+
                     {stateNews.length > 0 && (
-                        <div className="mb-12 bg-red-50/40 border border-red-100 rounded-3xl p-6">
+                        <div id="state-news" className="mb-12 bg-red-50/40 border border-red-100 rounded-3xl p-6 scroll-mt-24">
                             <h2 className="text-sm font-bold text-red-600 uppercase tracking-wider mb-4 flex items-center gap-2">
                                 <Bell className="w-4.5 h-4.5 animate-pulse" />
                                 <span>Recent {stateName} Updates & Alerts</span>

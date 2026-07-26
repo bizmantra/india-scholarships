@@ -18,7 +18,6 @@ export async function generateSitemaps() {
     return [
         { id: 'core' },
         { id: 'scholarships' },
-        { id: 'subpages' },
         { id: 'states' },
         { id: 'taxonomies' },
     ];
@@ -132,21 +131,7 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
     }
 
     if (id === 'subpages') {
-        const scholarships = await getAllScholarships();
-        const subpageRoutes: MetadataRoute.Sitemap = [];
-        for (const s of scholarships) {
-            if (isSubpageQualifying(s)) {
-                for (const subpage of subpageKeys) {
-                    subpageRoutes.push({
-                        url: `${baseUrl}/scholarships/${s.slug}/${subpage}`,
-                        lastModified: s.updated_at ? new Date(s.updated_at) : new Date(),
-                        changeFrequency: 'weekly' as const,
-                        priority: 0.65,
-                    });
-                }
-            }
-        }
-        return subpageRoutes;
+        return [];
     }
 
     if (id === 'states') {
@@ -161,18 +146,6 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
                 changeFrequency: 'weekly' as const,
                 priority: 0.7,
             });
-
-            const stateScholarships = await getScholarshipsByState(state);
-            if (stateScholarships.length >= 3) {
-                for (const subpage of subpageKeys) {
-                    stateRoutes.push({
-                        url: `${baseUrl}/scholarships-in/${stateSlug}/${subpage}`,
-                        lastModified: new Date(),
-                        changeFrequency: 'weekly' as const,
-                        priority: 0.6,
-                    });
-                }
-            }
         }
         return stateRoutes;
     }
