@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import { getPillarBySlug, getAllPillars } from '@/lib/pillars';
+import { getPillarBySlug, getAllPillars, autoLinkScholarshipMentions } from '@/lib/pillars';
 import { getArticleBySlug } from '@/lib/articles';
 import { getScholarshipsByCategory, getScholarshipsByState } from '@/lib/db';
 import Header from '@/app/components/Header';
@@ -84,6 +84,10 @@ export default async function PillarPage({ params }: PillarPageProps) {
     .filter((s) => isCategoryFocused(s, pillar.clusterCategories))
     .sort((a, b) => (b.priority_score || 0) - (a.priority_score || 0))
     .slice(0, 9);
+
+  // Link scholarship names as soon as the prose mentions them, not just in the
+  // cards further down — matched against the full cluster, not just the top 9.
+  const contentHtml = autoLinkScholarshipMentions(pillar.contentHtml, merged);
 
   // Related editorial articles, resolved live so broken slugs don't 404 silently
   const relatedArticles = pillar.relatedArticleSlugs
@@ -172,18 +176,12 @@ export default async function PillarPage({ params }: PillarPageProps) {
             </div>
           )}
 
-          {/* Main body — single wrapper so TOC/checklist/FAQ render once, not per section */}
-          <PillarBody
-            contentHtml={pillar.contentHtml}
-            headings={pillar.headings}
-            faqs={pillar.faqs || []}
-            checklist={pillar.checklist}
-          />
-
-          {/* Explore by category and state — links down to hubs, not duplicating their listings */}
+          {/* Explore by category and state — above the fold, right after takeaways, so
+              readers who just want the destination page don't have to scroll past the
+              whole article to find it. Links down to hubs, not duplicating their listings. */}
           {pillar.hubLinks.length > 0 && (
-            <div className="my-10 print:hidden">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">Explore by Category &amp; State</h3>
+            <div className="mb-10 print:hidden">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">Jump Straight to a Hub</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {pillar.hubLinks.map((link) => (
                   <Link
@@ -198,6 +196,14 @@ export default async function PillarPage({ params }: PillarPageProps) {
               </div>
             </div>
           )}
+
+          {/* Main body — single wrapper so TOC/checklist/FAQ render once, not per section */}
+          <PillarBody
+            contentHtml={contentHtml}
+            headings={pillar.headings}
+            faqs={pillar.faqs || []}
+            checklist={pillar.checklist}
+          />
 
           {/* Top Scholarships in This Cluster — live from DB, never hardcoded */}
           {featuredScholarships.length > 0 && (

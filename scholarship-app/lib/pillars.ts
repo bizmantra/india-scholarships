@@ -416,3 +416,48 @@ export function getPillarForLevel(levelSlug: string): PillarMetadata | null {
   );
   return pickMostSpecific(matches, 'clusterLevels');
 }
+
+function normalizeForMatch(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, ' ') // drop "(Odisha)" / "(UG)" style suffixes
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+/**
+ * Turns a bolded scholarship name mentioned in a pillar's prose (e.g.
+ * "**Post-Matric Scholarship for SC Students**") into a link to its live
+ * detail page, so users don't have to scroll to the "Featured Scholarships"
+ * cards to act on something the text just told them about.
+ *
+ * Only links when exactly one scholarship's title matches the bolded text
+ * (via a normalized prefix match) — ambiguous names like "e-Medhabruti",
+ * which map to 3 separate Odisha scheme variants, are deliberately left
+ * unlinked rather than guessed at.
+ */
+export function autoLinkScholarshipMentions(
+  html: string,
+  scholarships: { title: string; slug: string }[]
+): string {
+  const seen = new Set<string>();
+
+  return html.replace(/<strong[^>]*>(.*?)<\/strong>/g, (fullMatch, inner: string) => {
+    const plainText = inner.replace(/<[^>]+>/g, '');
+    const normalizedText = normalizeForMatch(plainText);
+    if (normalizedText.length < 4) return fullMatch;
+
+    const candidates = scholarships.filter((s) => {
+      const normalizedTitle = normalizeForMatch(s.title);
+      return normalizedTitle.startsWith(normalizedText) || normalizedText.startsWith(normalizedTitle);
+    });
+
+    if (candidates.length !== 1) return fullMatch;
+
+    const match = candidates[0];
+    if (seen.has(match.slug)) return fullMatch; // only link the first mention
+
+    seen.add(match.slug);
+    return `<a href="/scholarships/${match.slug}" class="text-indigo-600 font-semibold hover:underline">${inner}</a>`;
+  });
+}
