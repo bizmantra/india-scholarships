@@ -679,7 +679,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
                         {/* Sibling Variants Disambiguation Banner */}
                         {siblingVariants && siblingVariants.length > 0 && (
-                            <div className="mb-8 p-5 bg-blue-50/50 border border-blue-100 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
+                            <div className="mb-8 p-5 bg-blue-50/50 border border-blue-100 rounded-3xl flex flex-col gap-4 shadow-xs">
                                 <div className="flex gap-3 items-start">
                                     <Info className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                                     <div>
@@ -689,7 +689,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                         </p>
                                     </div>
                                 </div>
-                                <div className="flex flex-wrap gap-2 shrink-0">
+                                <div className="flex flex-wrap gap-2 pl-8">
                                     {siblingVariants.map((variant: any) => {
                                         // Label by whichever dimension actually distinguishes this
                                         // variant from the page you're on — state/region for branches

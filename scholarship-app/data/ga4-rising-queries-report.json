@@ -1,0 +1,962 @@
+[
+  {
+    "pagePath": "/scholarships",
+    "viewsA": 182,
+    "viewsB": 11973,
+    "diffViews": 11791,
+    "pctGrowth": 6478.571428571429,
+    "topQueries": [
+      {
+        "query": "scholarship",
+        "clicksA": 3,
+        "clicksB": 29,
+        "clickDiff": 26,
+        "impressionsA": 109,
+        "impressionsB": 3110,
+        "impressionDiff": 3001,
+        "positionA": 7.743119266055046,
+        "positionB": 8.061414790996785
+      },
+      {
+        "query": "scholarship 2026",
+        "clicksA": 78,
+        "clicksB": 211,
+        "clickDiff": 133,
+        "impressionsA": 2075,
+        "impressionsB": 5036,
+        "impressionDiff": 2961,
+        "positionA": 3.1060240963855423,
+        "positionB": 4.078038125496425
+      },
+      {
+        "query": "scholarships",
+        "clicksA": 4,
+        "clicksB": 25,
+        "clickDiff": 21,
+        "impressionsA": 101,
+        "impressionsB": 2234,
+        "impressionDiff": 2133,
+        "positionA": 7.97029702970297,
+        "positionB": 7.181736794986572
+      },
+      {
+        "query": "2026 scholarship",
+        "clicksA": 16,
+        "clicksB": 23,
+        "clickDiff": 7,
+        "impressionsA": 493,
+        "impressionsB": 1161,
+        "impressionDiff": 668,
+        "positionA": 2.5760649087221097,
+        "positionB": 3.536606373815676
+      },
+      {
+        "query": "2026 scholarships",
+        "clicksA": 14,
+        "clicksB": 14,
+        "clickDiff": 0,
+        "impressionsA": 145,
+        "impressionsB": 336,
+        "impressionDiff": 191,
+        "positionA": 1.793103448275862,
+        "positionB": 3.5625
+      }
+    ]
+  },
+  {
+    "pagePath": "/private-scholarships",
+    "viewsA": 112,
+    "viewsB": 9733,
+    "diffViews": 9621,
+    "pctGrowth": 8590.17857142857,
+    "topQueries": [
+      {
+        "query": "india foundation scholarship",
+        "clicksA": 3,
+        "clicksB": 97,
+        "clickDiff": 94,
+        "impressionsA": 98,
+        "impressionsB": 3027,
+        "impressionDiff": 2929,
+        "positionA": 1.469387755102041,
+        "positionB": 1.2867525602907168
+      },
+      {
+        "query": "indian foundation scholarship",
+        "clicksA": 9,
+        "clicksB": 58,
+        "clickDiff": 49,
+        "impressionsA": 67,
+        "impressionsB": 1237,
+        "impressionDiff": 1170,
+        "positionA": 1.1194029850746268,
+        "positionB": 1.3556992724333063
+      },
+      {
+        "query": "private scholarship for ug students",
+        "clicksA": 142,
+        "clicksB": 186,
+        "clickDiff": 44,
+        "impressionsA": 975,
+        "impressionsB": 1083,
+        "impressionDiff": 108,
+        "positionA": 1.7692307692307692,
+        "positionB": 1.8421052631578947
+      },
+      {
+        "query": "private scholarship for ug students in india",
+        "clicksA": 21,
+        "clicksB": 39,
+        "clickDiff": 18,
+        "impressionsA": 108,
+        "impressionsB": 212,
+        "impressionDiff": 104,
+        "positionA": 1.6944444444444444,
+        "positionB": 1.7641509433962264
+      },
+      {
+        "query": "scholarship for ug students 2026",
+        "clicksA": 0,
+        "clicksB": 6,
+        "clickDiff": 6,
+        "impressionsA": 0,
+        "impressionsB": 94,
+        "impressionDiff": 94,
+        "positionA": 0,
+        "positionB": 2.4680851063829787
+      }
+    ]
+  },
+  {
+    "pagePath": "/eligibility-checker",
+    "viewsA": 17,
+    "viewsB": 7866,
+    "diffViews": 7849,
+    "pctGrowth": 46170.58823529412,
+    "topQueries": [
+      {
+        "query": "bk scholarship checker",
+        "clicksA": 0,
+        "clicksB": 4,
+        "clickDiff": 4,
+        "impressionsA": 0,
+        "impressionsB": 531,
+        "impressionDiff": 531,
+        "positionA": 0,
+        "positionB": 6.926553672316384
+      },
+      {
+        "query": "scholarship eligibility check",
+        "clicksA": 2,
+        "clicksB": 3,
+        "clickDiff": 1,
+        "impressionsA": 27,
+        "impressionsB": 52,
+        "impressionDiff": 25,
+        "positionA": 3.4074074074074074,
+        "positionB": 4.0576923076923075
+      },
+      {
+        "query": "check your eligibility",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 62,
+        "impressionsB": 87,
+        "impressionDiff": 25,
+        "positionA": 6.161290322580645,
+        "positionB": 4.344827586206897
+      },
+      {
+        "query": "eligible check",
+        "clicksA": 0,
+        "clicksB": 1,
+        "clickDiff": 1,
+        "impressionsA": 0,
+        "impressionsB": 23,
+        "impressionDiff": 23,
+        "positionA": 0,
+        "positionB": 6.434782608695652
+      },
+      {
+        "query": "eligibility checker",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 16,
+        "impressionDiff": 16,
+        "positionA": 0,
+        "positionB": 8.4375
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/hdfc-bank-parivartan-ecss-scholarship",
+    "viewsA": 39,
+    "viewsB": 6077,
+    "diffViews": 6038,
+    "pctGrowth": 15482.051282051281,
+    "topQueries": [
+      {
+        "query": "hdfc scholarship",
+        "clicksA": 48,
+        "clicksB": 92,
+        "clickDiff": 44,
+        "impressionsA": 3044,
+        "impressionsB": 7028,
+        "impressionDiff": 3984,
+        "positionA": 7.264126149802891,
+        "positionB": 8.258537279453614
+      },
+      {
+        "query": "hdfc scholarship 2026 last date to apply",
+        "clicksA": 0,
+        "clicksB": 16,
+        "clickDiff": 16,
+        "impressionsA": 0,
+        "impressionsB": 719,
+        "impressionDiff": 719,
+        "positionA": 0,
+        "positionB": 5.485396383866481
+      },
+      {
+        "query": "hdfc bank parivartan scholarship",
+        "clicksA": 19,
+        "clicksB": 48,
+        "clickDiff": 29,
+        "impressionsA": 2757,
+        "impressionsB": 3465,
+        "impressionDiff": 708,
+        "positionA": 7.5585781646717445,
+        "positionB": 7.417027417027417
+      },
+      {
+        "query": "hdfc scholarship apply online 2026",
+        "clicksA": 10,
+        "clicksB": 43,
+        "clickDiff": 33,
+        "impressionsA": 615,
+        "impressionsB": 1276,
+        "impressionDiff": 661,
+        "positionA": 8.578861788617886,
+        "positionB": 5.486677115987461
+      },
+      {
+        "query": "parivartan scholarship",
+        "clicksA": 0,
+        "clicksB": 13,
+        "clickDiff": 13,
+        "impressionsA": 0,
+        "impressionsB": 571,
+        "impressionDiff": 571,
+        "positionA": 0,
+        "positionB": 6.157618213660245
+      }
+    ]
+  },
+  {
+    "pagePath": "/",
+    "viewsA": 65,
+    "viewsB": 5809,
+    "diffViews": 5744,
+    "pctGrowth": 8836.923076923076,
+    "topQueries": [
+      {
+        "query": "india foundation scholarship 2026",
+        "clicksA": 0,
+        "clicksB": 20,
+        "clickDiff": 20,
+        "impressionsA": 0,
+        "impressionsB": 1336,
+        "impressionDiff": 1336,
+        "positionA": 0,
+        "positionB": 5.051646706586826
+      },
+      {
+        "query": "indian foundation scholarship 2026",
+        "clicksA": 2,
+        "clicksB": 13,
+        "clickDiff": 11,
+        "impressionsA": 190,
+        "impressionsB": 594,
+        "impressionDiff": 404,
+        "positionA": 5.168421052631579,
+        "positionB": 4.555555555555555
+      },
+      {
+        "query": "scholarships",
+        "clicksA": 0,
+        "clicksB": 4,
+        "clickDiff": 4,
+        "impressionsA": 0,
+        "impressionsB": 395,
+        "impressionDiff": 395,
+        "positionA": 0,
+        "positionB": 1.959493670886076
+      },
+      {
+        "query": "nabanna scholarship 2026 last date",
+        "clicksA": 0,
+        "clicksB": 2,
+        "clickDiff": 2,
+        "impressionsA": 0,
+        "impressionsB": 37,
+        "impressionDiff": 37,
+        "positionA": 0,
+        "positionB": 1
+      },
+      {
+        "query": "private scholarship",
+        "clicksA": 0,
+        "clicksB": 4,
+        "clickDiff": 4,
+        "impressionsA": 0,
+        "impressionsB": 30,
+        "impressionDiff": 30,
+        "positionA": 0,
+        "positionB": 2.833333333333333
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/tata-capital-pankh-scholarship",
+    "viewsA": 104,
+    "viewsB": 5698,
+    "diffViews": 5594,
+    "pctGrowth": 5378.846153846154,
+    "topQueries": [
+      {
+        "query": "tata capital pankh scholarship 2026 last date to apply",
+        "clicksA": 13,
+        "clicksB": 24,
+        "clickDiff": 11,
+        "impressionsA": 345,
+        "impressionsB": 780,
+        "impressionDiff": 435,
+        "positionA": 3.0028985507246375,
+        "positionB": 3.126923076923077
+      },
+      {
+        "query": "tata capital pankh scholarship 2026",
+        "clicksA": 45,
+        "clicksB": 101,
+        "clickDiff": 56,
+        "impressionsA": 807,
+        "impressionsB": 1100,
+        "impressionDiff": 293,
+        "positionA": 2.9529120198265177,
+        "positionB": 3.3581818181818184
+      },
+      {
+        "query": "tata capital pankh scholarship program 2026-27",
+        "clicksA": 10,
+        "clicksB": 13,
+        "clickDiff": 3,
+        "impressionsA": 155,
+        "impressionsB": 436,
+        "impressionDiff": 281,
+        "positionA": 2.4645161290322584,
+        "positionB": 5.151376146788991
+      },
+      {
+        "query": "tata capital pankh scholarship 2026-27",
+        "clicksA": 2,
+        "clicksB": 16,
+        "clickDiff": 14,
+        "impressionsA": 138,
+        "impressionsB": 371,
+        "impressionDiff": 233,
+        "positionA": 3.449275362318841,
+        "positionB": 4.808625336927223
+      },
+      {
+        "query": "tata scholarship 2026 start date",
+        "clicksA": 0,
+        "clicksB": 3,
+        "clickDiff": 3,
+        "impressionsA": 0,
+        "impressionsB": 114,
+        "impressionDiff": 114,
+        "positionA": 0,
+        "positionB": 2.7719298245614032
+      }
+    ]
+  },
+  {
+    "pagePath": "/guides",
+    "viewsA": 8,
+    "viewsB": 5360,
+    "diffViews": 5352,
+    "pctGrowth": 66900,
+    "topQueries": [
+      {
+        "query": "scholarship guide",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 2,
+        "impressionsB": 11,
+        "impressionDiff": 9,
+        "positionA": 8.5,
+        "positionB": 7.090909090909091
+      },
+      {
+        "query": "ssp karnataka",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 3,
+        "impressionDiff": 3,
+        "positionA": 0,
+        "positionB": 9
+      },
+      {
+        "query": "ssp scholarship karnataka",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 3,
+        "impressionDiff": 3,
+        "positionA": 0,
+        "positionB": 8.666666666666668
+      },
+      {
+        "query": "nsp scholarship karnataka",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 2,
+        "impressionDiff": 2,
+        "positionA": 0,
+        "positionB": 6.5
+      },
+      {
+        "query": "nsp ssp scholarship",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 1,
+        "impressionDiff": 1,
+        "positionA": 0,
+        "positionB": 10
+      }
+    ]
+  },
+  {
+    "pagePath": "/state-scholarships",
+    "viewsA": 64,
+    "viewsB": 4972,
+    "diffViews": 4908,
+    "pctGrowth": 7668.75,
+    "topQueries": [
+      {
+        "query": "state scholarship",
+        "clicksA": 0,
+        "clicksB": 3,
+        "clickDiff": 3,
+        "impressionsA": 17,
+        "impressionsB": 1002,
+        "impressionDiff": 985,
+        "positionA": 8,
+        "positionB": 7.060878243512974
+      },
+      {
+        "query": "state scholarships",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 1,
+        "impressionsB": 27,
+        "impressionDiff": 26,
+        "positionA": 9,
+        "positionB": 6.555555555555555
+      },
+      {
+        "query": "indiascholarships",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 2,
+        "impressionDiff": 2,
+        "positionA": 0,
+        "positionB": 7.5
+      },
+      {
+        "query": "list scholarship 2026",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 2,
+        "impressionDiff": 2,
+        "positionA": 0,
+        "positionB": 2.5
+      },
+      {
+        "query": "sate scholarship",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 2,
+        "impressionDiff": 2,
+        "positionA": 0,
+        "positionB": 7
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/atul-maheshwari-scholarship",
+    "viewsA": 28,
+    "viewsB": 4803,
+    "diffViews": 4775,
+    "pctGrowth": 17053.571428571428,
+    "topQueries": [
+      {
+        "query": "atul maheshwari scholarship 2026",
+        "clicksA": 44,
+        "clicksB": 613,
+        "clickDiff": 569,
+        "impressionsA": 315,
+        "impressionsB": 7052,
+        "impressionDiff": 6737,
+        "positionA": 1.765079365079365,
+        "positionB": 4.363726602382303
+      },
+      {
+        "query": "atul maheshwari scholarship",
+        "clicksA": 20,
+        "clicksB": 210,
+        "clickDiff": 190,
+        "impressionsA": 621,
+        "impressionsB": 4151,
+        "impressionDiff": 3530,
+        "positionA": 2.855072463768116,
+        "positionB": 4.502047699349554
+      },
+      {
+        "query": "amar ujala foundation scholarship 2026",
+        "clicksA": 2,
+        "clicksB": 61,
+        "clickDiff": 59,
+        "impressionsA": 48,
+        "impressionsB": 1067,
+        "impressionDiff": 1019,
+        "positionA": 2.854166666666667,
+        "positionB": 4.2746016869728205
+      },
+      {
+        "query": "atul maheshwari scholarship 2026 apply online",
+        "clicksA": 7,
+        "clicksB": 115,
+        "clickDiff": 108,
+        "impressionsA": 61,
+        "impressionsB": 898,
+        "impressionDiff": 837,
+        "positionA": 1.5737704918032787,
+        "positionB": 3.878619153674833
+      },
+      {
+        "query": "amar ujala foundation",
+        "clicksA": 0,
+        "clicksB": 30,
+        "clickDiff": 30,
+        "impressionsA": 91,
+        "impressionsB": 883,
+        "impressionDiff": 792,
+        "positionA": 5.318681318681318,
+        "positionB": 5.474518686296716
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/lic-golden-jubilee-scholarship",
+    "viewsA": 50,
+    "viewsB": 3339,
+    "diffViews": 3289,
+    "pctGrowth": 6578,
+    "topQueries": [
+      {
+        "query": "lic scholarship apply online 2026 last date to apply",
+        "clicksA": 14,
+        "clicksB": 28,
+        "clickDiff": 14,
+        "impressionsA": 362,
+        "impressionsB": 673,
+        "impressionDiff": 311,
+        "positionA": 4.052486187845304,
+        "positionB": 4.668647845468053
+      },
+      {
+        "query": "lic golden jubilee scholarship 2026 last date",
+        "clicksA": 30,
+        "clicksB": 23,
+        "clickDiff": -7,
+        "impressionsA": 647,
+        "impressionsB": 947,
+        "impressionDiff": 300,
+        "positionA": 3.564142194744977,
+        "positionB": 4.934530095036958
+      },
+      {
+        "query": "lic scholarship 2026 last date to apply",
+        "clicksA": 0,
+        "clicksB": 2,
+        "clickDiff": 2,
+        "impressionsA": 0,
+        "impressionsB": 77,
+        "impressionDiff": 77,
+        "positionA": 0,
+        "positionB": 5.103896103896104
+      },
+      {
+        "query": "lic jubilee scholarship",
+        "clicksA": 0,
+        "clicksB": 3,
+        "clickDiff": 3,
+        "impressionsA": 0,
+        "impressionsB": 75,
+        "impressionDiff": 75,
+        "positionA": 0,
+        "positionB": 5.093333333333334
+      },
+      {
+        "query": "lic golden jubilee",
+        "clicksA": 0,
+        "clicksB": 2,
+        "clickDiff": 2,
+        "impressionsA": 0,
+        "impressionsB": 64,
+        "impressionDiff": 64,
+        "positionA": 0,
+        "positionB": 5.921875
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/nabanna-scholarship-west-bengal",
+    "viewsA": 18,
+    "viewsB": 3290,
+    "diffViews": 3272,
+    "pctGrowth": 18177.777777777777,
+    "topQueries": [
+      {
+        "query": "chief minister scholarship",
+        "clicksA": 2,
+        "clicksB": 239,
+        "clickDiff": 237,
+        "impressionsA": 399,
+        "impressionsB": 9882,
+        "impressionDiff": 9483,
+        "positionA": 7.5664160401002505,
+        "positionB": 5.192167577413479
+      },
+      {
+        "query": "nabanna",
+        "clicksA": 0,
+        "clicksB": 10,
+        "clickDiff": 10,
+        "impressionsA": 0,
+        "impressionsB": 2524,
+        "impressionDiff": 2524,
+        "positionA": 0,
+        "positionB": 8.908082408874801
+      },
+      {
+        "query": "wb cm scholarship",
+        "clicksA": 1,
+        "clicksB": 103,
+        "clickDiff": 102,
+        "impressionsA": 32,
+        "impressionsB": 2376,
+        "impressionDiff": 2344,
+        "positionA": 4.71875,
+        "positionB": 3.605218855218855
+      },
+      {
+        "query": "cmrf wb gov in",
+        "clicksA": 1,
+        "clicksB": 8,
+        "clickDiff": 7,
+        "impressionsA": 2,
+        "impressionsB": 1941,
+        "impressionDiff": 1939,
+        "positionA": 3,
+        "positionB": 4.360638845955693
+      },
+      {
+        "query": "cm scholarship",
+        "clicksA": 0,
+        "clicksB": 11,
+        "clickDiff": 11,
+        "impressionsA": 0,
+        "impressionsB": 1823,
+        "impressionDiff": 1823,
+        "positionA": 0,
+        "positionB": 9.11684037301152
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/talliki-vandanam-scheme-ap/apply-online",
+    "viewsA": 0,
+    "viewsB": 2874,
+    "diffViews": 2874,
+    "pctGrowth": 9999,
+    "topQueries": [
+      {
+        "query": "talliki vandanam",
+        "clicksA": 0,
+        "clicksB": 330,
+        "clickDiff": 330,
+        "impressionsA": 0,
+        "impressionsB": 6314,
+        "impressionDiff": 6314,
+        "positionA": 0,
+        "positionB": 6.136997149192271
+      },
+      {
+        "query": "talliki vandanam 2026 eligibility",
+        "clicksA": 0,
+        "clicksB": 100,
+        "clickDiff": 100,
+        "impressionsA": 0,
+        "impressionsB": 2388,
+        "impressionDiff": 2388,
+        "positionA": 0,
+        "positionB": 5.394472361809045
+      },
+      {
+        "query": "talliki vandanam release date 2026",
+        "clicksA": 0,
+        "clicksB": 10,
+        "clickDiff": 10,
+        "impressionsA": 0,
+        "impressionsB": 2226,
+        "impressionDiff": 2226,
+        "positionA": 0,
+        "positionB": 9.44564240790656
+      },
+      {
+        "query": "thalliki vandanam release date in ap 2026",
+        "clicksA": 0,
+        "clicksB": 7,
+        "clickDiff": 7,
+        "impressionsA": 0,
+        "impressionsB": 1291,
+        "impressionDiff": 1291,
+        "positionA": 0,
+        "positionB": 10.005422153369482
+      },
+      {
+        "query": "thalliki vandanam official website",
+        "clicksA": 0,
+        "clicksB": 13,
+        "clickDiff": 13,
+        "impressionsA": 0,
+        "impressionsB": 1283,
+        "impressionDiff": 1283,
+        "positionA": 0,
+        "positionB": 7.636788776305534
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships-level/graduation-ug",
+    "viewsA": 23,
+    "viewsB": 2787,
+    "diffViews": 2764,
+    "pctGrowth": 12017.391304347826,
+    "topQueries": [
+      {
+        "query": "graduation scholarship",
+        "clicksA": 0,
+        "clicksB": 1,
+        "clickDiff": 1,
+        "impressionsA": 4,
+        "impressionsB": 10,
+        "impressionDiff": 6,
+        "positionA": 17.25,
+        "positionB": 13.8
+      },
+      {
+        "query": "graduation student scholarship",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 3,
+        "impressionDiff": 3,
+        "positionA": 0,
+        "positionB": 22
+      },
+      {
+        "query": "scholarship for graduation",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 5,
+        "impressionsB": 6,
+        "impressionDiff": 1,
+        "positionA": 22.2,
+        "positionB": 24.333333333333332
+      },
+      {
+        "query": "for graduation",
+        "clicksA": 0,
+        "clicksB": 1,
+        "clickDiff": 1,
+        "impressionsA": 0,
+        "impressionsB": 1,
+        "impressionDiff": 1,
+        "positionA": 0,
+        "positionB": 8
+      },
+      {
+        "query": "after graduation scholarship",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 1,
+        "impressionDiff": 1,
+        "positionA": 0,
+        "positionB": 34
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships-level/class-11-12",
+    "viewsA": 102,
+    "viewsB": 2850,
+    "diffViews": 2748,
+    "pctGrowth": 2694.1176470588234,
+    "topQueries": [
+      {
+        "query": "12th class scholarship 2026 kab aayega",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 19,
+        "impressionDiff": 19,
+        "positionA": 0,
+        "positionB": 8.789473684210527
+      },
+      {
+        "query": "cbse scholarship for class 11",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 13,
+        "impressionDiff": 13,
+        "positionA": 0,
+        "positionB": 9.153846153846153
+      },
+      {
+        "query": "scholarship for 11th students by government 2026",
+        "clicksA": 0,
+        "clicksB": 2,
+        "clickDiff": 2,
+        "impressionsA": 0,
+        "impressionsB": 8,
+        "impressionDiff": 8,
+        "positionA": 0,
+        "positionB": 4
+      },
+      {
+        "query": "scholarships for intermediate students",
+        "clicksA": 0,
+        "clicksB": 1,
+        "clickDiff": 1,
+        "impressionsA": 0,
+        "impressionsB": 8,
+        "impressionDiff": 8,
+        "positionA": 0,
+        "positionB": 6
+      },
+      {
+        "query": "11 ka scholarship kab aayega 2026",
+        "clicksA": 0,
+        "clicksB": 0,
+        "clickDiff": 0,
+        "impressionsA": 0,
+        "impressionsB": 8,
+        "impressionDiff": 8,
+        "positionA": 0,
+        "positionB": 8.5
+      }
+    ]
+  },
+  {
+    "pagePath": "/scholarships/pm-yashasvi-scholarship/apply-online",
+    "viewsA": 3,
+    "viewsB": 2465,
+    "diffViews": 2462,
+    "pctGrowth": 82066.66666666666,
+    "topQueries": [
+      {
+        "query": "pm yashasvi scholarship apply online 2026",
+        "clicksA": 0,
+        "clicksB": 54,
+        "clickDiff": 54,
+        "impressionsA": 0,
+        "impressionsB": 3530,
+        "impressionDiff": 3530,
+        "positionA": 0,
+        "positionB": 9.360906515580737
+      },
+      {
+        "query": "pm yashasvi scholarship",
+        "clicksA": 0,
+        "clicksB": 9,
+        "clickDiff": 9,
+        "impressionsA": 0,
+        "impressionsB": 1103,
+        "impressionDiff": 1103,
+        "positionA": 0,
+        "positionB": 9.785131459655485
+      },
+      {
+        "query": "pm yashasvi scholarship 2026",
+        "clicksA": 0,
+        "clicksB": 7,
+        "clickDiff": 7,
+        "impressionsA": 0,
+        "impressionsB": 662,
+        "impressionDiff": 662,
+        "positionA": 0,
+        "positionB": 9.134441087613293
+      },
+      {
+        "query": "yashasvi scholarship",
+        "clicksA": 0,
+        "clicksB": 4,
+        "clickDiff": 4,
+        "impressionsA": 0,
+        "impressionsB": 514,
+        "impressionDiff": 514,
+        "positionA": 0,
+        "positionB": 7.910505836575876
+      },
+      {
+        "query": "pm yashasvi scholarship login",
+        "clicksA": 0,
+        "clicksB": 10,
+        "clickDiff": 10,
+        "impressionsA": 0,
+        "impressionsB": 369,
+        "impressionDiff": 369,
+        "positionA": 0,
+        "positionB": 6.804878048780488
+      }
+    ]
+  }
+]

@@ -1,0 +1,93 @@
+GSC Not Found (404) URLs Check Report
+Total Checked: 82
+
+=== 200 OK URLs ===
+https://www.indiascholarships.in/scholarships-in
+https://www.indiascholarships.in/central government-scholarships
+https://www.indiascholarships.in/state government - maharashtra-scholarships
+https://www.indiascholarships.in/private university-scholarships
+https://www.indiascholarships.in/central government (ministry of minority 
+affairs) state government (karnataka directorate of minorities)-scholarships
+https://www.indiascholarships.in/private company - csr-scholarships
+https://www.indiascholarships.in/state government-scholarships
+
+=== REDIRECTED URLs ===
+https://www.indiascholarships.in/search -> (Initial: 308) -> /scholarships (Final: 200 at https://www.indiascholarships.in/scholarships)
+https://www.indiascholarships.in/central-scholarships -> (Initial: 308) -> /government-scholarships (Final: 200 at https://www.indiascholarships.in/government-scholarships)
+https://www.indiascholarships.in/scholarships-level/higher-secondary,-undergraduate,-postgraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/postgraduate-(pg) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/pre-matric-(class-9-10) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/school,-undergraduate,-postgraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/school-(9-10),-school-(11-12) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/all-levels-(school-to-ph.d.) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-undergraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-diploma,-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/1st-year-undergraduate-(ug) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/diploma,-undergraduate,-postgraduate,-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate-(ug) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/ut-scholarships -> (Initial: 308) -> /state-scholarships (Final: 200 at https://www.indiascholarships.in/state-scholarships)
+https://www.indiascholarships.in/state/ut-scholarships -> (Initial: 308) -> /scholarships-in/ut-scholarships (Final: 200 at https://www.indiascholarships.in/state-scholarships)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-in/ -> (Initial: 308) -> /scholarships-in (Final: 200 at https://www.indiascholarships.in/scholarships-in)
+https://www.indiascholarships.in/scholarships-for/minority-communities:-muslim -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/scholarships-level/postgraduate-(pg),-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-to-pg) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-for/other-backward-classes-(obc)---categories-1 -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/scholarships-level/class-9-to-12,-ug,-pg,-medical,-iit,-iim -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/postgraduate,-phd,-research -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-diploma -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/diploma,-undergraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-for/scheduled-castes-(sc) -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-11,-class-12,-undergraduate,-postgraduate,-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate-(arts,-science,-commerce) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-diploma,-iti,-professional -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-for/scheduled-caste-(sc) -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/scholarships-level/class-9,-class-10 -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/postgraduation-(pg)---india-or-abroad -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-ug,-pg,-professional-courses) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-9,-class-10,-class-11,-class-12 -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-11-12,-iti,-diploma,-ug,-pg -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate,-phd,-professional -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/foundation-scholarships -> (Initial: 308) -> /private-scholarships (Final: 200 at https://www.indiascholarships.in/private-scholarships)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-dual-degree,-ug,-pg,-professional-courses) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-professional -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-diploma -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/postgraduate,-phd -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/ug,-pg,-or-professional-coaching -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-for/other-backward-classes-(obc)---category-1 -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/state-specific-scholarships -> (Initial: 308) -> /state-scholarships (Final: 200 at https://www.indiascholarships.in/state-scholarships)
+https://www.indiascholarships.in/scholarships-level/class-11-12,-undergraduate,-postgraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-10-to-pg,-professional -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate,-postgraduate -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards).-must-have-passed-class-10-(sslc)-before-or-on-application-date. -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-11-12,ug,diploma -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/class-1-12,-diploma,-iti,-polytechnic,-ug,-pg -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman-and-diu -> (Initial: 307) -> /state-scholarships (Final: 200 at https://www.indiascholarships.in/state-scholarships)
+https://www.indiascholarships.in/scholarships-level/ug,diploma -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/current-medical-students-(2nd-year-onwards) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg) -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+https://www.indiascholarships.in/scholarships-for/scheduled-tribes-(st) -> (Initial: 307) -> /scholarships-by-category (Final: 200 at https://www.indiascholarships.in/scholarships-by-category)
+https://www.indiascholarships.in/scholarships-level/class-1-to-phd,-professional,-iti,-diploma -> (Initial: 307) -> /scholarships-by-education (Final: 200 at https://www.indiascholarships.in/scholarships-by-education)
+
+=== 404 NOT FOUND URLs ===
+https://www.indiascholarships.in/scholarships-level/diploma/polytechnic,-iti/itc
+https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc,-phd
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic
+https://www.indiascholarships.in/scholarships-for/all-categories-(sc/st/obc/minority/general)---must-possess-valid-unique-disability-id-(udid)-card-issued-by-department-for-empowerment-of-persons-with-disabilities
+https://www.indiascholarships.in/scholarships-level/school-(6-12),-diploma/polytechnic,-iti/itc
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs.
+https://www.indiascholarships.in/scholarships-level/undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic
+https://www.indiascholarships.in/scholarships-level/post-matric-(classes-11/puc-onwards-including-diploma,-iti,-general-degree,-professional-courses,-ug,-pg)
+https://www.indiascholarships.in/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination.
+https://www.indiascholarships.in/scholarships-for/general-category---economically-weaker-section-(ews).-includes:-children-of-defense-personnel-(sc/st-parents-in-army/navy/airforce
+https://www.indiascholarships.in/scholarships-level/post-matric-professional/technical:-ug-and-pg-professional/technical-courses-only.-admission-must-be-through-competitive-examination
+https://www.indiascholarships.in/scholarships-for/ews-/-merit
+https://www.indiascholarships.in/scholarships-level/class-1-to-class-8-(note:-only-up-to-class-8,-unlike-sc/st/obc-which-go-to-class-10)
+https://www.indiascholarships.in/central/state focus-scholarships
+https://www.indiascholarships.in/scholarships-level/school-(1-5),-school-(6-12),-undergraduate-(ug),-postgraduate-(pg),-diploma/polytechnic,-iti/itc
+https://www.indiascholarships.in/central/ut focus-scholarships
+https://www.indiascholarships.in/scholarships-level/post-matric-(class-11-onwards-including-puc,-iti,-diploma,-general-degree,-professional/technical-courses,-ug,-pg).-not-applicable-for-correspondence/distance-learning-or-certificate/training-programs
+
+=== ERRORS / OTHER ===

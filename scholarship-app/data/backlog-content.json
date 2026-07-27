@@ -122,7 +122,7 @@
   {
     "id": "CNT-14",
     "title": "Research & scope International High-Value Scholarships (study-abroad content track)",
-    "description": "GOAL: Explore a new content track — international/study-abroad scholarships for Indian students — as a Phase 2 expansion beyond the 251 domestic scholarships. Use Antigravity to continue research + population once scoped.\n\nCANDIDATE LIST (from initial research):\n- Fulbright-Nehru (USA) — $35-45K/yr, fully funded\n- Chevening (UK) — £50K+, ~8-10% acceptance for Indians\n- DAAD (Germany) — €992-1200/mo, free public-uni tuition\n- Erasmus Mundus (EU) — ~€1000-1400/mo, no central portal (fragmented by consortium)\n- Commonwealth Master's (UK) — fully funded, <1% acceptance\n- Inlaks Shivdasani — up to $100K, excludes most engineering/CS\n- JN Tata Endowment — loan up to ₹20L, repayable 7 yrs\n- Rhodes / Gates Cambridge (UK) — fully funded, very low volume\n- MEXT (Japan) — fully funded, less saturated content space\n\nKEY FINDINGS / CAUTIONS FROM SCOPING DISCUSSION:\n1. RPM logic check: RPM is driven by visitor geography at click time, not topic — writing about study-abroad scholarships does NOT automatically raise RPM since readers are still browsing from India. Real RPM lever is content adjacency to high-CPC verticals (education loans, forex cards, IELTS/GRE prep, visa/consultancy services) — build these as connective content around scholarship pages, not instead of them.\n2. Competitive reality: Buddy4Study, LeapScholar, upGrad, GyanDhan, Leverage Edu already dominate SERPs for every major international scholarship name (Chevening, Fulbright-Nehru, DAAD, etc.) with much larger DA/backlink profiles. Standalone \"[Scholarship] eligibility\" pages are a weak differentiation play here — our 29-field/verified-decision-engine moat doesn't transfer topical authority from domestic to this new lane (Google evaluates by topical cluster, not domain-wide).\n3. Keyword reality: no meaningful search volume exists for a generic \"international scholarship tracker\" query. Real demand pattern is per-scholarship: \"[Scholarship Name] + last date to apply / eligibility / 2026-27\" — same modifier pattern already proven on our domestic deadline tracker (live: http://indiascholarships.in/scholarships/deadlines) and used site-wide by Buddy4Study.\n4. Where a genuine opening exists: a live, verified \"which international scholarships are open right now\" status page — nobody maintains this well for the international set (smaller competitor DesiUtils does something similar). This plays directly to our verification-first positioning and reuses the same deadline-tracker pattern we just shipped domestically.\n5. Natural bridge asset already in DB: Odisha's Videsh Siksha Bruti (up to ₹25L for SC/ST students going abroad) — cross-link candidate between domestic and international content once this track exists.\n\nSCHEMA NOTE: international scholarships need their own lighter data structure vs. the 29-field domestic template — currency conversion, cycle-based (not fixed annual) deadlines, no income/caste eligibility fields, consortium-level fragmentation (e.g. Erasmus Mundus has no single portal).\n\nNEXT STEPS: scope with Antigravity — pilot with a small subset (5-8 scholarships) styled as a status tracker + individual pages only where a genuinely differentiated angle exists (e.g. MEXT, Erasmus Mundus fragmentation), rather than competing head-on on saturated terms like Chevening/Fulbright.",
+    "description": "GOAL: Explore a new content track \u2014 international/study-abroad scholarships for Indian students \u2014 as a Phase 2 expansion beyond the 251 domestic scholarships. Use Antigravity to continue research + population once scoped.\n\nCANDIDATE LIST (from initial research):\n- Fulbright-Nehru (USA) \u2014 $35-45K/yr, fully funded\n- Chevening (UK) \u2014 \u00a350K+, ~8-10% acceptance for Indians\n- DAAD (Germany) \u2014 \u20ac992-1200/mo, free public-uni tuition\n- Erasmus Mundus (EU) \u2014 ~\u20ac1000-1400/mo, no central portal (fragmented by consortium)\n- Commonwealth Master's (UK) \u2014 fully funded, <1% acceptance\n- Inlaks Shivdasani \u2014 up to $100K, excludes most engineering/CS\n- JN Tata Endowment \u2014 loan up to \u20b920L, repayable 7 yrs\n- Rhodes / Gates Cambridge (UK) \u2014 fully funded, very low volume\n- MEXT (Japan) \u2014 fully funded, less saturated content space\n\nKEY FINDINGS / CAUTIONS FROM SCOPING DISCUSSION:\n1. RPM logic check: RPM is driven by visitor geography at click time, not topic \u2014 writing about study-abroad scholarships does NOT automatically raise RPM since readers are still browsing from India. Real RPM lever is content adjacency to high-CPC verticals (education loans, forex cards, IELTS/GRE prep, visa/consultancy services) \u2014 build these as connective content around scholarship pages, not instead of them.\n2. Competitive reality: Buddy4Study, LeapScholar, upGrad, GyanDhan, Leverage Edu already dominate SERPs for every major international scholarship name (Chevening, Fulbright-Nehru, DAAD, etc.) with much larger DA/backlink profiles. Standalone \"[Scholarship] eligibility\" pages are a weak differentiation play here \u2014 our 29-field/verified-decision-engine moat doesn't transfer topical authority from domestic to this new lane (Google evaluates by topical cluster, not domain-wide).\n3. Keyword reality: no meaningful search volume exists for a generic \"international scholarship tracker\" query. Real demand pattern is per-scholarship: \"[Scholarship Name] + last date to apply / eligibility / 2026-27\" \u2014 same modifier pattern already proven on our domestic deadline tracker (live: http://indiascholarships.in/scholarships/deadlines) and used site-wide by Buddy4Study.\n4. Where a genuine opening exists: a live, verified \"which international scholarships are open right now\" status page \u2014 nobody maintains this well for the international set (smaller competitor DesiUtils does something similar). This plays directly to our verification-first positioning and reuses the same deadline-tracker pattern we just shipped domestically.\n5. Natural bridge asset already in DB: Odisha's Videsh Siksha Bruti (up to \u20b925L for SC/ST students going abroad) \u2014 cross-link candidate between domestic and international content once this track exists.\n\nSCHEMA NOTE: international scholarships need their own lighter data structure vs. the 29-field domestic template \u2014 currency conversion, cycle-based (not fixed annual) deadlines, no income/caste eligibility fields, consortium-level fragmentation (e.g. Erasmus Mundus has no single portal).\n\nNEXT STEPS: scope with Antigravity \u2014 pilot with a small subset (5-8 scholarships) styled as a status tracker + individual pages only where a genuinely differentiated angle exists (e.g. MEXT, Erasmus Mundus fragmentation), rather than competing head-on on saturated terms like Chevening/Fulbright.",
     "impact": "",
     "status": "Done",
     "type": ""
@@ -137,39 +137,39 @@
   },
   {
     "id": "CNT-19",
-    "title": "Phase 1 — Template-generated scholarship listicle/hub pages (programmatic)",
-    "description": "Build once, generate across inventory using existing schema fields. Validated demand pattern (per GSC keyword research: \"[Name] + last date + year\").\nPages: (1) [Scholarship Name] last date to apply 2026 — deadline field, ~266 pages, P0; (2) Scholarships under ₹1L/₹2.5L/₹5L/₹8L income — income field, ~4 hubs x states, P0; (3) Top scholarships for [Category] in [State] — category+state fields, P0; (4) Scholarships for girls/women in [state/course] — gender field, P1; (5) Scholarships for [Course/Stream] students — course field, P1; (6) Renewable scholarships hub — renewal field, P1; (7) Scholarship deadlines calendar (monthly), wraps existing /scholarships/deadlines, P1.\nFull outlines for items 1 & 2 in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 1 \u2014 Template-generated scholarship listicle/hub pages (programmatic)",
+    "description": "Build once, generate across inventory using existing schema fields. Validated demand pattern (per GSC keyword research: \"[Name] + last date + year\").\nPages: (1) [Scholarship Name] last date to apply 2026 \u2014 deadline field, ~266 pages, P0; (2) Scholarships under \u20b91L/\u20b92.5L/\u20b95L/\u20b98L income \u2014 income field, ~4 hubs x states, P0; (3) Top scholarships for [Category] in [State] \u2014 category+state fields, P0; (4) Scholarships for girls/women in [state/course] \u2014 gender field, P1; (5) Scholarships for [Course/Stream] students \u2014 course field, P1; (6) Renewable scholarships hub \u2014 renewal field, P1; (7) Scholarship deadlines calendar (monthly), wraps existing /scholarships/deadlines, P1.\nFull outlines for items 1 & 2 in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "High",
     "status": "Backlog",
     "type": "content"
   },
   {
     "id": "CNT-20",
-    "title": "Phase 2 — Hand-written scholarship-core articles",
-    "description": "Central government scholarships list (NSP-linked) 2026 [High demand, improves conversion on existing high-impression/low-conversion NSP traffic]; Scholarships that don't require entrance exam or merit; Highest-paying scholarships in India (₹50K+); Government vs private scholarships — which is easier to get; How scholarship selection actually works (merit vs need-based); Scholarships for differently-abled students.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 2 \u2014 Hand-written scholarship-core articles",
+    "description": "Central government scholarships list (NSP-linked) 2026 [High demand, improves conversion on existing high-impression/low-conversion NSP traffic]; Scholarships that don't require entrance exam or merit; Highest-paying scholarships in India (\u20b950K+); Government vs private scholarships \u2014 which is easier to get; How scholarship selection actually works (merit vs need-based); Scholarships for differently-abled students.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "Medium",
     "status": "Backlog",
     "type": "content"
   },
   {
     "id": "CNT-21",
-    "title": "Phase 3a — Education loan explainer articles (leadgen priority)",
-    "description": "Highest leadgen priority — direct tie-in to EMI calculator and Phase 4 loan/B2B roadmap. Articles: How education loans work in India; Collateral vs non-collateral education loans explained; What is CSIS interest subsidy and who qualifies; Education loan documents checklist; Scholarship vs education loan — which to apply for first; Can I get a scholarship and a loan together.\nFull outline for \"Scholarship vs education loan\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 3a \u2014 Education loan explainer articles (leadgen priority)",
+    "description": "Highest leadgen priority \u2014 direct tie-in to EMI calculator and Phase 4 loan/B2B roadmap. Articles: How education loans work in India; Collateral vs non-collateral education loans explained; What is CSIS interest subsidy and who qualifies; Education loan documents checklist; Scholarship vs education loan \u2014 which to apply for first; Can I get a scholarship and a loan together.\nFull outline for \"Scholarship vs education loan\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "High",
     "status": "Backlog",
     "type": "content"
   },
   {
     "id": "CNT-22",
-    "title": "Phase 3b — DBT / student banking articles (leadgen priority)",
-    "description": "Articles: Why scholarship money isn't credited — common DBT issues; How to link Aadhaar to your bank account for scholarships; Best zero-balance student bank accounts (bank referral potential).\nFull outline for \"Why scholarship money isn't credited\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 3b \u2014 DBT / student banking articles (leadgen priority)",
+    "description": "Articles: Why scholarship money isn't credited \u2014 common DBT issues; How to link Aadhaar to your bank account for scholarships; Best zero-balance student bank accounts (bank referral potential).\nFull outline for \"Why scholarship money isn't credited\" in reference doc.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "High",
     "status": "Backlog",
     "type": "content"
   },
   {
     "id": "CNT-23",
-    "title": "Phase 3c — Document/process utility content (state-wise templates)",
+    "title": "Phase 3c \u2014 Document/process utility content (state-wise templates)",
     "description": "Scales across full state inventory with minimal marginal effort once templated. Articles: Income certificate application process (state-wise); Caste certificate application process (state-wise); Common reasons scholarship applications get rejected.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "Medium",
     "status": "Backlog",
@@ -177,16 +177,16 @@
   },
   {
     "id": "CNT-24",
-    "title": "Phase 3d — Lifecycle/retention content",
-    "description": "Underserved because most competitor sites are discovery-only, not lifecycle-aware. Articles: What to do if your scholarship is delayed; Scholarship renewal — how it works, what can go wrong; Income certificate expiry and renewal.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 3d \u2014 Lifecycle/retention content",
+    "description": "Underserved because most competitor sites are discovery-only, not lifecycle-aware. Articles: What to do if your scholarship is delayed; Scholarship renewal \u2014 how it works, what can go wrong; Income certificate expiry and renewal.\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "Medium",
     "status": "Backlog",
     "type": "content"
   },
   {
     "id": "CNT-25",
-    "title": "Phase 3e — Lower-priority fill-in content",
-    "description": "Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under ₹X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized — DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
+    "title": "Phase 3e \u2014 Lower-priority fill-in content",
+    "description": "Hostel vs PG cost comparison (complements Study Cost Calculator, housing-platform referral potential); Best courses under \u20b9X fees for [category] students. Study abroad forex/cost guides flagged as deprioritized \u2014 DA70-90 incumbents (Buddy4Study, LeapScholar) dominate this space per prior scoping (see CNT-14).\nReference: data/content-expansion-backlog.md and data/content-expansion-plan.md",
     "impact": "Low",
     "status": "Backlog",
     "type": "content"
@@ -277,6 +277,102 @@
     "description": "Create guide clusters and tool links for Education Loans, Aadhaar-bank seeding for DBT, and state-wise caste/income certificate application checklists.",
     "impact": "High",
     "status": "In Progress",
+    "type": "content"
+  },
+  {
+    "id": "CNT-37",
+    "title": "Build Corporate & Private Scholarships pillar guide",
+    "description": "Context / Why it matters:\nCorporate + Private provider_type = 78 DB rows. GSC shows ~11,000 combined monthly clicks on Sitaram Jindal + Tata Pankh alone (established, not new content), yet /corporate-scholarships and /private-scholarships are thin 96-line list-only hubs with zero FAQ/explainer content, and /corporate-scholarships isn't linked from nav at all.\n\nPlan / What to do:\nBuild a pillar guide explaining how CSR/private scholarships work, how they differ from government schemes, how to spot legitimate vs scam schemes, and a comparison table of major providers (Sitaram Jindal, Tata Pankh, HDFC Parivartan, LIC Golden Jubilee, Reliance Foundation, Aditya Birla, FAEA). Link bidirectionally from both hub pages.",
+    "impact": "High",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-38",
+    "title": "Build NSP (National Scholarship Portal) pillar guide",
+    "description": "Context / Why it matters:\n\"nsp scholarship\"/\"nsp scholarships\" = 673,000/mo combined search volume with heavy confusion-driven long tail (eligibility, status check, login, renewal, \"is it for general category\"). Currently only a static /guides/nsp portal how-to exists, no pillar-depth explainer.\n\nPlan / What to do:\nBuild a national-tier pillar (not nested under any state) explaining how NSP works, which state/category schemes route through it, common rejection/status issues, and FAQ addressing the confusion-pattern queries found in keyword research.",
+    "impact": "High",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-39",
+    "title": "Cross-link /scholarships/international and /scholarships-by-university",
+    "description": "Context / Why it matters:\nDB check: scholarship_scope = 341 Domestic / 117 International. The scholarships-by-university hub (66 rows) is overwhelmingly foreign universities (Oxford, Harvard, Toronto, Wharton, etc.) \u2014 it's really a facet of International, not a standalone category. The current /scholarships/international page is already 612 lines trying to carry all of this without a clear pillar/hub split.\n\nPlan / What to do:\nRestructure into a proper International pillar with country/university-level sub-structure, folding scholarships-by-university content in as a facet rather than a separate hub tier. Reference CNT-14 and CNT-30 (prior international scoping/research) for context on which international scholarships already have research done. [Corrected on inspection: /scholarships-by-university is a curated Indian-university hub (lib/universities.ts), not foreign scholarships as earlier assumed -- the DB's provider_type='University' column separately holds foreign entries but those aren't surfaced by this page. /scholarships/international is already a well-built live tracker (FAQ, country/level hub grid) -- a pillar rebuild would've been a downgrade. Real gap was zero cross-link between the two pages; added a two-way link instead of restructuring.]",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-40",
+    "title": "Build course-level pillars (Engineering/BTech, MBBS, MBA)",
+    "description": "Context / Why it matters:\n449 DB rows have course_stream set. Keyword research shows real volume: \"scholarship for engineering students\" 3,600, \"engineering student scholarships\" 3,600, \"btech scholarships\" 1,900, \"scholarship for mbbs students\" 1,600, \"mba scholarships\" 2,400. Both inventory and demand justify pillar-tier content, not just hub listings.\n\nPlan / What to do:\nBuild pillar guides for Engineering/BTech and MBBS first (highest combined signal), then MBA. Each should explain which schemes are course-specific vs general, and link down to /scholarships-by-course hub filtered views.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-41",
+    "title": "Validate demand and scope an income-level pillar",
+    "description": "Context / Why it matters:\n273 DB rows have income_limit set \u2014 real inventory depth \u2014 but no keyword research has been done specifically on income-bracket queries (\"scholarship for family income below 2.5 lakh\" etc.) yet.\n\nPlan / What to do:\nRun targeted keyword research on income-bracket scholarship queries before committing to a full pillar build. If validated, build alongside the existing /scholarships-by-income hub. [Validated negative: reviewed against the 25 Ubersuggest CSVs already analyzed this session -- no income-bracket-specific query cluster found (e.g. 'scholarship for family income below 2.5 lakh'). Income only appears as an eligibility filter inside other queries, not as standalone search intent. Not building a dedicated pillar without demand evidence; the existing /scholarships-by-income hub is sufficient.]",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-42",
+    "title": "Build Gujarat state pillar",
+    "description": "Context / Why it matters:\n\"digital gujarat scholarship\" = 368,000/mo, one of the single largest keyword clusters found in research, yet Gujarat has only 8 scholarships in the DB (thinnest coverage relative to demand of any state) and no pillar.\n\nPlan / What to do:\nPair with dev backlog item (see IS-103) to expand Gujarat scholarship inventory first, then build the pillar guide following the same template as the 14 existing state pillars.",
+    "impact": "High",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-43",
+    "title": "Build meta \"How State Scholarships Work in India\" pillar",
+    "description": "Context / Why it matters:\nGeneric state-scholarship-system queries show large combined volume: \"state scholarship portal\" 823,000, \"state scholarship\" 550,000, \"scholarship by state\" 450,000 \u2014 none of the 14 existing state-specific pillars are positioned to own these generic-intent searches.\n\nPlan / What to do:\nBuild a national-tier pillar (pillar #15) explaining how state scholarship systems generally work (portals, eligibility patterns, common documents), linking down to all 14+ existing state pillars. Evergreen content, no urgency but clear demand.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-44",
+    "title": "Build OBC national pillar",
+    "description": "Context / Why it matters:\n\"sc st obc scholarship 2025\" = 22,200/mo (large combined-category query), \"obc scholarship\"/\"scholarship for obc\" = 5,400 each. Parallel category demand to the existing SC/ST pillar, which currently has no dedicated OBC counterpart.\n\nPlan / What to do:\nBefore building, audit DB caste field coverage for OBC-specific rows (caste field has 70+ inconsistent free-text variants \u2014 see dev backlog IS-101) to confirm real inventory depth, then build a pillar mirroring the SC/ST pillar structure.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-45",
+    "title": "Build Minority national pillar",
+    "description": "Context / Why it matters:\n\"minority scholarships\" = 12,100/mo plus meaningful long tail (status check, state-specific variants). No dedicated Minority pillar currently exists, only referenced inline within state pillars (e.g. West Bengal's Aikyashree).\n\nPlan / What to do:\nBuild a national-tier Minority scholarships pillar, cross-linking to state pillars that already cover minority-specific schemes (West Bengal/Aikyashree, etc.).",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-46",
+    "title": "Build Jharkhand, Punjab, and Haryana state pillars",
+    "description": "Context / Why it matters:\nKeyword volume: Jharkhand (\"e kalyan scholarship\" 22,200), Punjab (\"punjab scholarship\" 40,500, \"scholarships in punjab\" 9,900), Haryana (\"haryana scholarship\" 12,100, \"post matric scholarship haryana\" 9,900). All three are unbuilt states with moderate-to-real independent demand, next tier after Gujarat.\n\nPlan / What to do:\nBuild following the same pillar template used for the 14 existing state pillars, checking DB inventory depth for each state first.",
+    "impact": "Low",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-47",
+    "title": "SSP terminology audit on existing Karnataka pillar",
+    "description": "Context / Why it matters:\n\"ssp scholarship\"/\"ssp scholarships\" = 450,000-550,000/mo (Karnataka's Students Scholarship Portal) \u2014 enormous volume that should already be served by the existing Karnataka pillar, but the pillar may not use \"SSP\" terminology prominently enough in H2s/FAQs to match this query pattern.\n\nPlan / What to do:\nAudit content/pillars/karnataka-scholarships-guide.md and add/strengthen SSP-specific phrasing in headings and FAQ. Quick, low-effort fix. [Verified: SSP terminology already prominent in seoTitle, seoDescription, a dedicated FAQ, and an H2 heading ('SSP is not one website -- it is two'). No changes needed.]",
+    "impact": "Low",
+    "status": "Done",
+    "type": "content"
+  },
+  {
+    "id": "CNT-48",
+    "title": "Refresh Uttar Pradesh pillar guide to reflect fuller inventory",
+    "description": "Context / Why it matters:\nUP inventory work (IS-102) is done \u2014 DB has 19 UP scholarships. The existing content/pillars/uttar-pradesh-scholarships-guide.md was written earlier this session when coverage was thinner and may not reflect the full current scheme set. \"up scholarship\" is the single largest keyword cluster found in research (4,090,000/mo), making this the highest-leverage pillar refresh on the list.\n\nPlan / What to do:\nReview content/pillars/uttar-pradesh-scholarships-guide.md against the current 19-row UP inventory, expand scheme coverage and FAQ depth to match, following the same audit approach used for the other 13 pillars. [Verified: the existing pillar already covers all 19 current UP scholarships 1:1 -- no content gap. Refresh consisted of confirming coverage and fixing an auto-link bug where HTML-entity-encoded '&' in scheme names, e.g. Divyangjan, wasn't matching.]",
+    "impact": "High",
+    "status": "Done",
     "type": "content"
   }
 ]

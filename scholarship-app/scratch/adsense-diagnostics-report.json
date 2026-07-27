@@ -1,0 +1,424 @@
+{
+  "adsense": {
+    "summary": {
+      "earnings": 356.33,
+      "impressions": 391785,
+      "clicks": 11787,
+      "views": 133255,
+      "adRequests": 517119,
+      "matchedRequests": 436713
+    },
+    "units": []
+  },
+  "gsc": {
+    "queries": [
+      {
+        "query": "pm yashasvi scholarship",
+        "clicks": 5456,
+        "impressions": 33226,
+        "ctr": 0.16420875218202613,
+        "position": 2.3589357731896707
+      },
+      {
+        "query": "sitaram jindal scholarship",
+        "clicks": 5024,
+        "impressions": 57951,
+        "ctr": 0.08669393107970527,
+        "position": 3.51091439319425
+      },
+      {
+        "query": "pm yasasvi scholarship 2026",
+        "clicks": 4250,
+        "impressions": 17616,
+        "ctr": 0.24125794732061762,
+        "position": 1.678133514986376
+      },
+      {
+        "query": "pm yashasvi scholarship apply online 2026",
+        "clicks": 3557,
+        "impressions": 17370,
+        "ctr": 0.2047783534830167,
+        "position": 2.144847438111687
+      },
+      {
+        "query": "sitaram jindal foundation scholarship",
+        "clicks": 2865,
+        "impressions": 23206,
+        "ctr": 0.12345945014220461,
+        "position": 3.459493234508317
+      },
+      {
+        "query": "pm yashasvi scholarship 2026",
+        "clicks": 2419,
+        "impressions": 11644,
+        "ctr": 0.20774647887323944,
+        "position": 1.860786671246994
+      },
+      {
+        "query": "pm yasasvi scholarship",
+        "clicks": 1985,
+        "impressions": 19528,
+        "ctr": 0.10164891437935272,
+        "position": 3.436552642359689
+      },
+      {
+        "query": "jindal scholarship 2026",
+        "clicks": 1812,
+        "impressions": 36010,
+        "ctr": 0.05031935573451819,
+        "position": 4.034490419327964
+      },
+      {
+        "query": "sitaram jindal scholarship apply online 2026",
+        "clicks": 1427,
+        "impressions": 12669,
+        "ctr": 0.11263714578893362,
+        "position": 3.1755466098350302
+      },
+      {
+        "query": "pm yashasvi yojana online apply 2026",
+        "clicks": 1331,
+        "impressions": 6755,
+        "ctr": 0.19703923019985195,
+        "position": 2.5471502590673576
+      },
+      {
+        "query": "talliki vandanam",
+        "clicks": 1295,
+        "impressions": 21082,
+        "ctr": 0.06142680960060715,
+        "position": 5.748316099041837
+      },
+      {
+        "query": "jindal scholarship",
+        "clicks": 1232,
+        "impressions": 28328,
+        "ctr": 0.043490539395650944,
+        "position": 4.410865574696413
+      },
+      {
+        "query": "atul maheshwari scholarship 2026",
+        "clicks": 868,
+        "impressions": 8062,
+        "ctr": 0.10766559166459935,
+        "position": 2.992681716695609
+      },
+      {
+        "query": "pm yashasvi scholarship 2026 last date to apply online",
+        "clicks": 679,
+        "impressions": 3939,
+        "ctr": 0.17237877633917237,
+        "position": 2.1982736735211983
+      },
+      {
+        "query": "talliki vandanam 2026 eligibility",
+        "clicks": 639,
+        "impressions": 15914,
+        "ctr": 0.040153324117129574,
+        "position": 5.788739474676386
+      },
+      {
+        "query": "pm yashasvi yojana 2026",
+        "clicks": 636,
+        "impressions": 4973,
+        "ctr": 0.1278906092901669,
+        "position": 3.4681278906092903
+      },
+      {
+        "query": "tata capital pankh scholarship",
+        "clicks": 611,
+        "impressions": 10103,
+        "ctr": 0.06047708601405523,
+        "position": 3.977531426309017
+      },
+      {
+        "query": "sitaram jindal scholarship 2026",
+        "clicks": 606,
+        "impressions": 3789,
+        "ctr": 0.15993665874901028,
+        "position": 2.7458432304038007
+      },
+      {
+        "query": "e kalyan",
+        "clicks": 584,
+        "impressions": 150244,
+        "ctr": 0.003887010462980219,
+        "position": 3.5440217246612176
+      },
+      {
+        "query": "tata scholarship 2026",
+        "clicks": 492,
+        "impressions": 6298,
+        "ctr": 0.07812003810733566,
+        "position": 2.545093680533503
+      }
+    ],
+    "pages": [
+      {
+        "page": "https://www.indiascholarships.in/scholarships/pm-yashasvi-scholarship",
+        "clicks": 35855,
+        "impressions": 525860,
+        "ctr": 0.06818354695166014,
+        "position": 4.5596698741109805
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/sitaram-jindal-foundation-scholarship",
+        "clicks": 17665,
+        "impressions": 281637,
+        "ctr": 0.06272258261521035,
+        "position": 4.223805820968126
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/tata-capital-pankh-scholarship",
+        "clicks": 2803,
+        "impressions": 67867,
+        "ctr": 0.04130136885378755,
+        "position": 4.260200097249031
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/nabanna-scholarship-west-bengal",
+        "clicks": 2481,
+        "impressions": 102883,
+        "ctr": 0.024114771147808675,
+        "position": 4.817132082073812
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/hdfc-bank-parivartan-ecss-scholarship",
+        "clicks": 2179,
+        "impressions": 105407,
+        "ctr": 0.020672251368504937,
+        "position": 5.927889039627349
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/atul-maheshwari-scholarship",
+        "clicks": 1979,
+        "impressions": 33414,
+        "ctr": 0.05922667145507871,
+        "position": 4.953342910157419
+      },
+      {
+        "page": "https://www.indiascholarships.in/private-scholarships",
+        "clicks": 1696,
+        "impressions": 31591,
+        "ctr": 0.05368617644265772,
+        "position": 4.403152796682599
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/talliki-vandanam-scheme-ap/apply-online",
+        "clicks": 1212,
+        "impressions": 43434,
+        "ctr": 0.027904406686006356,
+        "position": 7.029423953584749
+      },
+      {
+        "page": "https://indiascholarships.in/",
+        "clicks": 1187,
+        "impressions": 23678,
+        "ctr": 0.05013092321986654,
+        "position": 4.555156685530873
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/jharkhand-e-kalyan-post-matric-scholarship",
+        "clicks": 1173,
+        "impressions": 283584,
+        "ctr": 0.004136340555179418,
+        "position": 4.109413789212367
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/mukhyamantri-kanya-utthan-yojana-graduation",
+        "clicks": 1102,
+        "impressions": 57305,
+        "ctr": 0.019230433644533636,
+        "position": 5.70566268213943
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/lic-golden-jubilee-scholarship",
+        "clicks": 972,
+        "impressions": 33109,
+        "ctr": 0.029357576489776195,
+        "position": 5.026639282370352
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/atul-maheshwari-scholarship/apply-online",
+        "clicks": 948,
+        "impressions": 12210,
+        "ctr": 0.07764127764127764,
+        "position": 4.421212121212122
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships",
+        "clicks": 820,
+        "impressions": 29049,
+        "ctr": 0.028228166201934662,
+        "position": 5.2505077627457055
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships-in/odisha",
+        "clicks": 681,
+        "impressions": 46112,
+        "ctr": 0.014768390006939625,
+        "position": 4.9418372657876475
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships-in/tamil-nadu",
+        "clicks": 646,
+        "impressions": 18154,
+        "ctr": 0.03558444419962543,
+        "position": 5.882064558774926
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships-level/class-9-12",
+        "clicks": 524,
+        "impressions": 10468,
+        "ctr": 0.050057317539166986,
+        "position": 4.670806266717616
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships-in/west-bengal",
+        "clicks": 519,
+        "impressions": 27148,
+        "ctr": 0.019117430381611906,
+        "position": 5.882274937380286
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/aikyashree-scholarship-west-bengal-minority",
+        "clicks": 488,
+        "impressions": 54126,
+        "ctr": 0.009015999704393452,
+        "position": 7.259339319365924
+      },
+      {
+        "page": "https://www.indiascholarships.in/scholarships/talliki-vandanam-scheme-ap/eligibility",
+        "clicks": 471,
+        "impressions": 14264,
+        "ctr": 0.03302019068984857,
+        "position": 6.043255748738082
+      }
+    ]
+  },
+  "ga4": {
+    "topLandingPages": [
+      {
+        "page": "/scholarships/pm-yashasvi-scholarship",
+        "sessions": 37542,
+        "views": 81574,
+        "activeUsers": 33816
+      },
+      {
+        "page": "/scholarships/sitaram-jindal-foundation-scholarship",
+        "sessions": 15668,
+        "views": 33973,
+        "activeUsers": 13805
+      },
+      {
+        "page": "/scholarships/tata-capital-pankh-scholarship",
+        "sessions": 2801,
+        "views": 6395,
+        "activeUsers": 2584
+      },
+      {
+        "page": "",
+        "sessions": 2635,
+        "views": 0,
+        "activeUsers": 2461
+      },
+      {
+        "page": "/scholarships/hdfc-bank-parivartan-ecss-scholarship",
+        "sessions": 2492,
+        "views": 6687,
+        "activeUsers": 2260
+      },
+      {
+        "page": "/scholarships/nabanna-scholarship-west-bengal",
+        "sessions": 2476,
+        "views": 3855,
+        "activeUsers": 2322
+      },
+      {
+        "page": "/private-scholarships",
+        "sessions": 2258,
+        "views": 18381,
+        "activeUsers": 2044
+      },
+      {
+        "page": "/scholarships/atul-maheshwari-scholarship",
+        "sessions": 2162,
+        "views": 5186,
+        "activeUsers": 1917
+      },
+      {
+        "page": "/",
+        "sessions": 2037,
+        "views": 16133,
+        "activeUsers": 1851
+      },
+      {
+        "page": "(not set)",
+        "sessions": 1950,
+        "views": 0,
+        "activeUsers": 1681
+      },
+      {
+        "page": "/scholarships/talliki-vandanam-scheme-ap/apply-online",
+        "sessions": 1710,
+        "views": 2645,
+        "activeUsers": 1643
+      },
+      {
+        "page": "/scholarships/mukhyamantri-kanya-utthan-yojana-graduation",
+        "sessions": 1296,
+        "views": 1794,
+        "activeUsers": 1243
+      },
+      {
+        "page": "/scholarships",
+        "sessions": 1286,
+        "views": 7692,
+        "activeUsers": 1180
+      },
+      {
+        "page": "/scholarships/kerala-kscste-prathibha-scholarship/last-date",
+        "sessions": 1200,
+        "views": 3398,
+        "activeUsers": 1058
+      },
+      {
+        "page": "/scholarships/jharkhand-e-kalyan-post-matric-scholarship",
+        "sessions": 1086,
+        "views": 1403,
+        "activeUsers": 1035
+      },
+      {
+        "page": "/scholarships/lic-golden-jubilee-scholarship",
+        "sessions": 1022,
+        "views": 2690,
+        "activeUsers": 914
+      },
+      {
+        "page": "/scholarships/talliki-vandanam-scheme-ap/eligibility",
+        "sessions": 928,
+        "views": 1483,
+        "activeUsers": 898
+      },
+      {
+        "page": "/scholarships/atul-maheshwari-scholarship/apply-online",
+        "sessions": 897,
+        "views": 2077,
+        "activeUsers": 807
+      },
+      {
+        "page": "/scholarships-in/tamil-nadu",
+        "sessions": 662,
+        "views": 2702,
+        "activeUsers": 623
+      },
+      {
+        "page": "/scholarships-in/odisha",
+        "sessions": 604,
+        "views": 1501,
+        "activeUsers": 571
+      }
+    ]
+  },
+  "errors": []
+}

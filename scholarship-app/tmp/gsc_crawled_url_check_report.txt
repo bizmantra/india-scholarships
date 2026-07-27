@@ -1,0 +1,59 @@
+GSC Crawled URLs Check Report
+Total Checked: 49
+
+=== 200 OK URLs ===
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/last-date
+https://www.indiascholarships.in/scholarships/iit-bombay-free-messing-facility/selection-process
+https://www.indiascholarships.in/scholarships-in/kerala/eligibility
+https://www.indiascholarships.in/scholarships-in/telangana/documents-required
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/income-limit
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/apply-online
+https://www.indiascholarships.in/scholarships/post-matric-scholarship-for-minorities-central-sector/last-date
+https://www.indiascholarships.in/scholarships-in/odisha/renewal-process
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/documents-required
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/selection-process
+https://www.indiascholarships.in/scholarships-in/odisha/selection-process
+https://www.indiascholarships.in/scholarships-in/telangana/selection-process
+https://www.indiascholarships.in/scholarships/du-shri-ram-lubhaya-book-grant/apply-online
+https://www.indiascholarships.in/scholarships/recently-added
+https://www.indiascholarships.in/scholarships/mext-scholarship-japan/last-date
+https://www.indiascholarships.in/scholarships/du-shri-ram-lubhaya-book-grant/documents-required
+https://www.indiascholarships.in/scholarships/mext-scholarship-japan/renewal-process
+https://www.indiascholarships.in/scholarships/du-shri-ram-lubhaya-book-grant/eligibility
+https://www.indiascholarships.in/scholarships-in/madhya-pradesh/eligibility
+https://www.indiascholarships.in/scholarships/iit-kharagpur-merit-cum-means-scholarship/selection-process
+https://www.indiascholarships.in/scholarships-in/telangana/renewal-process
+https://www.indiascholarships.in/scholarships-in/odisha/last-date
+https://www.indiascholarships.in/scholarships/aktu-student-welfare-fund-assistance/renewal-process
+https://www.indiascholarships.in/scholarships/iit-kharagpur-merit-cum-means-scholarship/renewal-process
+https://www.indiascholarships.in/scholarships/mext-scholarship-japan/documents-required
+https://www.indiascholarships.in/scholarships/chhattisgarh-post-matric-scholarship-st/renewal-process
+https://www.indiascholarships.in/scholarships/videsh-siksha-bruti-foreign-education-scholarship-odisha/renewal-process
+https://www.indiascholarships.in/scholarships/post-matric-scholarship-for-ewsgeneral-category-karnataka/last-date
+https://www.indiascholarships.in/scholarships/nagaland-state-merit-scholarship/documents-required
+https://www.indiascholarships.in/scholarships/nagaland-state-merit-scholarship/income-limit
+https://www.indiascholarships.in/scholarships/pre-matric-scholarship-for-students-with-disabilities/income-limit
+https://www.indiascholarships.in/scholarships/ongc-scholarship-csr/renewal-process
+https://www.indiascholarships.in/scholarships/sikkim-state-merit-scholarship/renewal-process
+https://www.indiascholarships.in/scholarships/sikkim-state-merit-scholarship/income-limit
+https://www.indiascholarships.in/scholarships/ongc-scholarship-csr/eligibility
+https://www.indiascholarships.in/scholarships/sn-bose-scholars-program-international-research/income-limit
+https://www.indiascholarships.in/scholarships/nagaland-state-merit-scholarship/renewal-process
+https://www.indiascholarships.in/scholarships/sikkim-state-merit-scholarship/selection-process
+https://www.indiascholarships.in/scholarships/sikkim-state-merit-scholarship/last-date
+https://www.indiascholarships.in/scholarships/pre-matric-scholarship-for-students-with-disabilities/last-date
+https://www.indiascholarships.in/scholarships/sn-bose-scholars-program-international-research/last-date
+https://www.indiascholarships.in/scholarships/videsh-siksha-bruti-foreign-education-scholarship-odisha/documents-required
+https://www.indiascholarships.in/scholarships/videsh-siksha-bruti-foreign-education-scholarship-odisha/selection-process
+
+=== REDIRECTED URLs ===
+https://www.indiascholarships.in/scholarships-in/ladakh/eligibility -> (Initial: 307) -> /scholarships-in/ladakh (Final: 200 at https://www.indiascholarships.in/scholarships-in/ladakh)
+https://www.indiascholarships.in/scholarships-in/arunachal-pradesh/income-limit -> (Initial: 307) -> /scholarships-in/arunachal-pradesh (Final: 200 at https://www.indiascholarships.in/scholarships-in/arunachal-pradesh)
+https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman/income-limit -> (Initial: 307) -> /scholarships-in/dadra-and-nagar-haveli-and-daman (Final: 200 at https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman)
+https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman/renewal-process -> (Initial: 307) -> /scholarships-in/dadra-and-nagar-haveli-and-daman (Final: 200 at https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman)
+https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman/eligibility -> (Initial: 307) -> /scholarships-in/dadra-and-nagar-haveli-and-daman (Final: 200 at https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman)
+https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman/selection-process -> (Initial: 307) -> /scholarships-in/dadra-and-nagar-haveli-and-daman (Final: 200 at https://www.indiascholarships.in/scholarships-in/dadra-and-nagar-haveli-and-daman)
+
+=== 404 NOT FOUND URLs ===
+
+=== ERRORS / OTHER ===
