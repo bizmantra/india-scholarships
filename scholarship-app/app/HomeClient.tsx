@@ -207,7 +207,7 @@ export default function HomeClient({
                 </section>
 
                 {/* Scholarship Guides (Pillars) — explainers, not just listings */}
-                <section className="py-14 bg-indigo-50/30 border-t border-b border-indigo-100/60">
+                <section className="py-14 bg-blue-50/30 border-t border-b border-blue-100/60">
                     <div className="container mx-auto px-6 max-w-5xl">
                         <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                             <div>
@@ -217,7 +217,7 @@ export default function HomeClient({
                                 </h2>
                                 <p className="text-sm text-gray-500 font-medium">Not sure where to start? These explain how a whole system works, not just one scheme.</p>
                             </div>
-                            <Link href="/pillars" className="flex items-center gap-1 text-sm font-bold text-indigo-700 hover:underline shrink-0">
+                            <Link href="/guides" className="flex items-center gap-1 text-sm font-bold text-google-blue hover:underline shrink-0">
                                 <span>All Guides</span>
                                 <ChevronRight className="h-4 w-4" />
                             </Link>
@@ -227,8 +227,8 @@ export default function HomeClient({
                             {featuredPillars.map((g) => (
                                 <Link
                                     key={g.slug}
-                                    href={`/pillars/${g.slug}`}
-                                    className="flex items-center justify-between gap-2 p-4 bg-white border border-gray-100 rounded-2xl text-sm font-bold text-gray-800 hover:border-indigo-300 hover:text-indigo-700 hover:shadow-sm transition-all"
+                                    href={`/guides/${g.slug}`}
+                                    className="flex items-center justify-between gap-2 p-4 bg-white border border-gray-100 rounded-2xl text-sm font-bold text-gray-800 hover:border-google-blue hover:text-google-blue hover:shadow-sm transition-all"
                                 >
                                     <span>{g.title}</span>
                                     <ChevronRight className="h-4 w-4 shrink-0 text-gray-300" />
@@ -242,7 +242,7 @@ export default function HomeClient({
                 <section className="py-6 bg-white border-t border-gray-100">
                     <div className="container mx-auto px-6 max-w-5xl">
                         <Link 
-                            href="/articles/india-scholarships-statistics-2025-2026"
+                            href="/guides/india-scholarships-statistics-2025-2026"
                             className="flex flex-col md:flex-row items-center justify-between gap-4 p-6 bg-gradient-to-r from-blue-50/70 to-indigo-50/40 border border-blue-100/70 rounded-3xl hover:border-google-blue hover:shadow-md transition-all group"
                         >
                             <div className="flex items-center gap-4 text-left">

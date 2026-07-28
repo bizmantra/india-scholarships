@@ -103,7 +103,7 @@ export default function Header() {
                                                 <Link href="/scholarships-by-university" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By University</Link>
                                                 <Link href="/scholarships-by-course" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Course</Link>
                                                 <Link href="/scholarships/international" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Study Abroad</Link>
-                                                <Link href="/pillars" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-brand hover:bg-brand-soft transition-colors">All Scholarship Guides →</Link>
+                                                <Link href="/guides" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-brand hover:bg-brand-soft transition-colors">All Scholarship Guides →</Link>
                                             </div>
                                         </div>
                                         {/* Col 2: Popular Categories */}
@@ -131,7 +131,7 @@ export default function Header() {
                                                 <Link href="/scholarships/recently-added" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-blue hover:bg-brand-soft transition-colors flex items-center gap-1.5">
                                                     🕒 Newly Verified
                                                 </Link>
-                                                <Link href="/articles/india-scholarships-statistics-2025-2026" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-green hover:bg-success-soft transition-colors flex items-center gap-1.5">
+                                                <Link href="/guides/india-scholarships-statistics-2025-2026" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-green hover:bg-success-soft transition-colors flex items-center gap-1.5">
                                                     📊 Stats Report (2025-26)
                                                 </Link>
                                                 <div className="my-1 border-t border-gray-100"></div>
@@ -155,9 +155,6 @@ export default function Header() {
                         </Link>
                         <Link href="/news" className="transition-colors hover:text-google-blue">
                             News
-                        </Link>
-                        <Link href="/articles" className="transition-colors hover:text-google-blue">
-                            Articles
                         </Link>
                         <Link href="/about" className="transition-colors hover:text-google-blue">
                             About
@@ -232,9 +229,9 @@ export default function Header() {
                         </div>
                     </div>
 
-                        {/* 1b. Scholarship Guides (Pillars) */}
+                        {/* 1b. Scholarship Guides */}
                         <Link
-                            href="/pillars"
+                            href="/guides"
                             onClick={() => setShowMobileMenu(false)}
                             className="flex items-center justify-between gap-3 p-3.5 bg-brand-soft border border-transparent rounded-2xl text-xs font-bold text-brand hover:opacity-80 transition-opacity"
                         >
@@ -393,11 +390,11 @@ export default function Header() {
                                     • Live Scholarship News & Updates
                                 </Link>
                                 <Link
-                                    href="/articles"
+                                    href="/guides"
                                     onClick={() => setShowMobileMenu(false)}
                                     className="text-xs font-semibold text-gray-700 hover:text-google-blue transition-colors flex items-center gap-1.5"
                                 >
-                                    • Step-by-Step Help Articles
+                                    • Step-by-Step Help Guides
                                 </Link>
                                 <Link
                                     href="/about"

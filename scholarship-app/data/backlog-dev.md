@@ -661,6 +661,12 @@
 
     Ticket fully closed. Every Pillar, Portal Guide, and Article now lives under one /guides URL namespace.
 
+    Phase 3 (index-page collapse): user found /pillars index still live and linked from the homepage, then directed "the index pages of /pillar /articles need to be collapsed into /guides." Rewrote app/guides/page.tsx to merge all three index pages (Pillar sections by classification, Portal Guides grid, new How-To Guides grid of Articles minus the 4 already-redirected duplicates) into one. Deleted app/pillars/page.tsx and app/articles/page.tsx. Added index-level redirects '/pillars' -> '/guides' and '/articles' -> '/guides'. Updated Header.tsx, Footer.tsx, HomeClient.tsx internal links and nav labels to point at /guides instead of /pillars or /articles, and de-indigo'd the homepage Guides section to match the site's single google-blue accent.
+
+    Verified locally: npx tsc --noEmit clean, zero console errors. /guides renders all three sections correctly (confirmed Pillar sections, "State & Central Portal Guides", "How-To Guides"). /pillars and /articles bare index URLs confirmed live-redirecting to /guides. Individual /guides/[slug] delegation spot-checked unaffected. Noted the pre-existing unrelated IS-120 bug (/guides/nsp 404) again in passing — not touched here.
+
+    Not yet committed/pushed — pending explicit user go-ahead.
+
     Trigger:
     Taxonomy decision made in conversation, executed same session.
 

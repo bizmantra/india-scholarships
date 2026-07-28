@@ -187,11 +187,24 @@ const nextConfig: NextConfig = {
       // Editorial consolidation, Phase 1b (IS-115) — Pillars now render under /guides/[slug]
       // too (app/guides/[portal]/page.tsx delegates to the Pillar component when the slug
       // isn't a known portal). One rule covers all 25 Pillars since destination slug always
-      // equals source slug. The /pillars index page itself is untouched — this only matches
-      // individual pillar pages (/pillars/:slug), not /pillars alone.
+      // equals source slug.
       {
         source: '/pillars/:slug',
         destination: '/guides/:slug',
+        permanent: true,
+      },
+      // Editorial consolidation, Phase 3 (IS-115) — the /pillars and /articles INDEX pages
+      // are now collapsed into one /guides index (app/guides/page.tsx), which lists Pillars
+      // (grouped by type), Portal Guides, and How-To Articles all in one place. The separate
+      // app/pillars/page.tsx and app/articles/page.tsx files have been removed.
+      {
+        source: '/pillars',
+        destination: '/guides',
+        permanent: true,
+      },
+      {
+        source: '/articles',
+        destination: '/guides',
         permanent: true,
       },
       // Editorial consolidation, Phase 2 (IS-115) — the remaining 24 unique Articles now
