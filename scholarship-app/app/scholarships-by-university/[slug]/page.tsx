@@ -100,9 +100,9 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
-                    <Link href="/scholarships-by-university" className="hover:text-blue-700">Universities</Link>
+                    <Link href="/scholarships-by-university" className="hover:text-google-blue">Universities</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">{uni.name}</span>
                 </nav>
@@ -136,7 +136,7 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                 {/* Quick Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
                     <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                        <h3 className="text-blue-700 font-bold mb-1">Total Verified Options</h3>
+                        <h3 className="text-google-blue font-bold mb-1">Total Verified Options</h3>
                         <p className="text-3xl font-extrabold text-blue-900">{allSchemesCount}</p>
                         <p className="text-xs text-blue-600 mt-2">Internal & National</p>
                     </div>

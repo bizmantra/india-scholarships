@@ -34,7 +34,7 @@ export default async function ScholarshipsByEducationPage() {
             <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 px-4 border-b border-gray-150 text-center">
                 <div className="max-w-4xl mx-auto">
                     <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100/60 text-blue-800 text-xs font-bold mb-4 border border-blue-200/50">
-                        <Sparkles className="h-3.5 w-3.5 text-blue-700 animate-pulse" />
+                        <Sparkles className="h-3.5 w-3.5 text-google-blue animate-pulse" />
                         Academic Stage Directory • School to Doctoral Level
                     </div>
 

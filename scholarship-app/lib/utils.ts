@@ -169,6 +169,11 @@ export function getCanonicalSlugForCategory(category: any): string {
     const categoryStr = String(category);
     if (!categoryStr || categoryStr === 'undefined' || categoryStr === 'null') return 'general';
     const lower = categoryStr.toLowerCase();
+    // Checked first (IS-108): messy legacy caste strings for disability eligibility often also
+    // mention SC/ST/OBC as substrings (e.g. "All categories (SC/ST/OBC...) - must possess a
+    // valid UDID card"), which would otherwise wrongly canonicalize to 'sc-st' before ever
+    // reaching this check.
+    if (lower.includes('disab') || lower.includes('pwd') || lower.includes('udid')) return 'pwd';
     if (lower.includes('obc')) return 'obc';
     if (lower.includes('sc') && lower.includes('st')) return 'sc-st';
     if (lower.includes('sc')) return 'sc';

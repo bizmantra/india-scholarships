@@ -148,6 +148,63 @@ const nextConfig: NextConfig = {
         destination: '/eligibility-checker',
         permanent: true,
       },
+      // Duplicate route cleanup (IS-105) — /tools/scholarship-eligibility-checker rendered the
+      // exact same EligibilityClient component as /eligibility-checker, which is the URL every
+      // internal link on the site actually points to. Page removed; redirect catches any stray
+      // inbound/indexed links.
+      {
+        source: '/tools/scholarship-eligibility-checker',
+        destination: '/eligibility-checker',
+        permanent: true,
+      },
+      // Editorial consolidation, Phase 1 (IS-115 / CNT-52) — these 4 articles are confirmed
+      // exact-duplicate coverage of an existing, richer Portal Guide (same portal, same topic,
+      // verified against relatedPillarSlug + title). Redirecting to the Guide, which also has
+      // student-login / status-check / documents-list sub-pages the article doesn't.
+      // The other 24 articles in content/articles/ are genuinely unique and are NOT redirected
+      // here — they have no destination yet until they're migrated onto the unified Editorial
+      // template (IS-113). Redirecting them now would orphan real content.
+      {
+        source: '/articles/digital-gujarat-scholarship-portal-guide',
+        destination: '/guides/digital-gujarat-mysy',
+        permanent: true,
+      },
+      {
+        source: '/articles/karnataka-ssp-postmatric-guide-2026',
+        destination: '/guides/ssp-karnataka',
+        permanent: true,
+      },
+      {
+        source: '/articles/mp-taas-scholarship-portal-guide',
+        destination: '/guides/mptaas-mmvy-mp',
+        permanent: true,
+      },
+      {
+        source: '/articles/how-to-apply-talliki-vandanam-eligibility-status',
+        destination: '/guides/talliki-vandanam-ap',
+        permanent: true,
+      },
+      // Editorial consolidation, Phase 1b (IS-115) — Pillars now render under /guides/[slug]
+      // too (app/guides/[portal]/page.tsx delegates to the Pillar component when the slug
+      // isn't a known portal). One rule covers all 25 Pillars since destination slug always
+      // equals source slug. The /pillars index page itself is untouched — this only matches
+      // individual pillar pages (/pillars/:slug), not /pillars alone.
+      {
+        source: '/pillars/:slug',
+        destination: '/guides/:slug',
+        permanent: true,
+      },
+      // Editorial consolidation, Phase 2 (IS-115) — the remaining 24 unique Articles now
+      // render under /guides/[slug] too (same delegation pattern as Pillars). Must be listed
+      // AFTER the 4 explicit article->guide overrides above, since those redirect to a
+      // DIFFERENT slug than the article's own (e.g. digital-gujarat-scholarship-portal-guide
+      // -> digital-gujarat-mysy) — Next.js redirects match in array order, first wins, so the
+      // specific overrides have to be checked before this generic same-slug catch-all.
+      {
+        source: '/articles/:slug',
+        destination: '/guides/:slug',
+        permanent: true,
+      },
       {
         source: '/guides/nsp/:subpage*',
         destination: '/guides/national-scholarship-portal-nsp/:subpage*',

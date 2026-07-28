@@ -19,7 +19,7 @@ export default function PrivacyPage() {
             <main className="max-w-4xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">Privacy Policy</span>
                 </nav>
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
                         Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to www.indiascholarships.in and other sites on the internet.
                     </p>
                     <p className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg my-4 text-blue-900">
-                        <strong>Important:</strong> Visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-blue-800">https://policies.google.com/technologies/ads</a>.
+                        <strong>Important:</strong> Visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-google-blue">https://policies.google.com/technologies/ads</a>.
                     </p>
                     <p>
                         Some of the advertisers on our site may use cookies and web beacons. Our advertising partners include:

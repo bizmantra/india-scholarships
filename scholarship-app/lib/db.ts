@@ -291,6 +291,21 @@ export async function getScholarshipsByCategory(category: string) {
     return res.rows.map(parseScholarship);
 }
 
+// Get scholarships targeted at girls/women — lives in the `gender` column, not `caste`.
+// IS-104: /scholarships-for/girls was silently redirecting to /scholarships-by-category
+// because it queried getScholarshipsByCategory() against `caste`, which has zero matches
+// for "girls" — the real data (values like Female, Girls, Female Only, ~44 active rows)
+// lives in `gender`, and "female"/"girl" are different substrings so both must be matched.
+export async function getScholarshipsByGender(keywords: string[]) {
+    const client = getClient();
+    const clauses = keywords.map(() => 'gender LIKE ?').join(' OR ');
+    const res = await client.execute({
+        sql: `SELECT * FROM scholarships WHERE status = 'Active' AND (${clauses})`,
+        args: keywords.map(k => `%${k}%`)
+    });
+    return res.rows.map(parseScholarship);
+}
+
 // Re-export canonical levels and mapping helpers from utils.ts
 import {
     CANONICAL_LEVELS,
@@ -662,6 +677,23 @@ export function getMajorCourses() {
     ];
 }
 
+// Get live active scholarship counts for each major course (IS-106)
+export async function getCourseScholarshipCounts(): Promise<Record<string, number>> {
+    const client = getClient();
+    const courses = getMajorCourses();
+    const counts: Record<string, number> = {};
+
+    for (const course of courses) {
+        const res = await client.execute({
+            sql: "SELECT COUNT(*) as count FROM scholarships WHERE status = 'Active' AND course_stream LIKE ?",
+            args: [`%${course.name}%`]
+        });
+        counts[course.slug] = Number(res.rows[0]?.count || 0);
+    }
+
+    return counts;
+}
+
 // Helper to parse JSON fields
 function parseScholarship(row: any) {
     return {
@@ -892,11 +924,12 @@ export async function getClosingSoonScholarships(limit: number = 6) {
     const client = getClient();
     const res = await client.execute({
         sql: `
-            SELECT * FROM scholarships 
-            WHERE status = 'Active' 
+            SELECT * FROM scholarships
+            WHERE status = 'Active'
+            AND (LOWER(scholarship_scope) IS NOT 'international')
             AND (always_open IS NULL OR always_open = 0)
-            AND deadline IS NOT NULL 
-            AND deadline != '' 
+            AND deadline IS NOT NULL
+            AND deadline != ''
             AND deadline NOT LIKE '%VERIFY%'
             AND deadline NOT LIKE '%tentative%'
             AND deadline NOT LIKE '%some sources%'
@@ -915,8 +948,9 @@ export async function getTrendingScholarships(limit: number = 6) {
     const client = getClient();
     const res = await client.execute({
         sql: `
-            SELECT * FROM scholarships 
-            WHERE status = 'Active' 
+            SELECT * FROM scholarships
+            WHERE status = 'Active'
+            AND (LOWER(scholarship_scope) IS NOT 'international')
             AND (always_open = 1 OR deadline IS NULL OR deadline = '' OR deadline = 'NA' OR deadline = 'Not specified' OR deadline = 'Open Year-Round' OR deadline = 'Rolling' OR deadline = 'Open Now' OR deadline >= date('now'))
             ORDER BY priority_score DESC, is_popular DESC, id DESC
             LIMIT ?

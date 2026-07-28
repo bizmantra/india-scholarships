@@ -71,11 +71,11 @@ export default function SubscribeForm({ slug, buttonText = 'Alert Me When Cycle 
             <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full py-3.5 bg-white text-blue-700 text-center font-black text-sm rounded-2xl hover:bg-blue-50 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50 active:scale-[0.98]"
+                className="w-full py-3.5 bg-white text-google-blue text-center font-black text-sm rounded-2xl hover:bg-blue-50 transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50 active:scale-[0.98]"
             >
                 {status === 'loading' ? (
                     <>
-                        <Loader2 className="h-4 w-4 animate-spin text-blue-700" />
+                        <Loader2 className="h-4 w-4 animate-spin text-google-blue" />
                         Saving Request...
                     </>
                 ) : (

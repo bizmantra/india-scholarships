@@ -27,7 +27,7 @@ function PillarCard({ pillar }: { pillar: PillarMetadata }) {
                     <p className="text-xs text-gray-500 leading-relaxed line-clamp-2">{pillar.takeaways[0]}</p>
                 )}
             </div>
-            <div className="flex items-center gap-1 mt-4 text-xs font-bold text-indigo-600">
+            <div className="flex items-center gap-1 mt-4 text-xs font-bold text-google-blue">
                 <span>Read the guide</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </div>

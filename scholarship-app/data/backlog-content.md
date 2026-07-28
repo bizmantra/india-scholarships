@@ -1,5 +1,23 @@
 # IndiaScholarships Content Backlog
 
+## Done (1)
+
+- [x] **CNT-52**: Content audit + migration plan: unify Guides, Articles, Pillars into one Editorial type
+  - **Impact**: High
+  - **Type**: Content Task, Strategy
+  - **Description**:
+    Context / Why it matters:
+    Companion content-side ticket to IS-115 (dev: routing/redirects). Before any URL/template migration happens, need a full content inventory: every live Guide (app/guides/[portal]), Article (content/articles/*), and Pillar (content/pillars/*) piece, and which unified category it maps to.
+
+    Plan / What to do:
+    Tag each piece as 'keep as Pillar', 'keep as How-To', or 'merge/retire' (duplicate coverage). Hand off final mapping to dev for the 301 redirect plan (IS-115).
+
+    Resolution:
+    Audited all 25 Pillars (no overlaps, all correctly scoped), 8 Portal Guides, and 29 Articles. Found 4 Articles are exact-duplicate coverage of an existing Portal Guide (Digital Gujarat, Karnataka SSP, MP TAAS, Talliki Vandanam AP — confirmed via frontmatter relatedPillarSlug + title match), 24 are genuinely unique How-To coverage with no Guide equivalent yet, and 1 (india-scholarships-statistics-2025-2026.md) is a stats report that doesn't fit either category and needs a separate taxonomy decision later. Handed the 4 duplicates to IS-115 for redirect; the 24 unique articles and the report are explicitly NOT touched — they need IS-113 (unified Editorial template) before any URL changes.
+
+    Trigger:
+    Taxonomy decision made in conversation with Claude — Guides and Articles confirmed to be the same content type built twice.
+
 ## In Progress (3)
 
 - [ ] **CNT-16**: Fix leaked internal verification notes a
@@ -17,7 +35,76 @@
   - **Description**:
     Create guide clusters and tool links for Education Loans, Aadhaar-bank seeding for DBT, and state-wise caste/income certificate application checklists.
 
-## Backlog (10)
+## Backlog (16)
+
+- [ ] **CNT-54**: How-To guide: Scholarship approved but money not credited — Aadhaar seeding fix
+  - **Impact**: Critical
+  - **Type**: Content Task
+  - **Description**:
+    Context / Why it matters:
+    Surfaced via audience-voice-research. The single most recurring technical pain point found across Quora and Careers360 — students see "PFMS transaction successful" or "status: released" but the money never arrives, almost always because Aadhaar was submitted on NSP but never actually seeded at the bank level (or the bank's data never synced with NPCI/PFMS). Nearly identical phrasing seen repeatedly: "PFMS says transaction is successful, but the scholarship amount has not credited yet." Closely related: "payment rejected by agency" is a status message nobody understands and is asked about constantly.
+
+    Plan / What to do:
+    Write as a How-To guide with a real checklist (check UIDAI bank-seeding status, verify NPCI mapping, confirm name/DOB match between Aadhaar and bank records) and numbered fix steps. Include a short "what your PFMS/NSP status message actually means" decoder table as a section within it — this is a genuinely underserved, high-intent search with no good existing answer anywhere. Position as a PRE-application step, not just a post-rejection fix, since seeding issues are avoidable before they cause a missed payment.
+
+    Trigger:
+    Audience research conducted with Claude — the single strongest, most repeated pain point found across all sources searched.
+
+- [ ] **CNT-53**: How-To guide: NSP vs. State Portal — which one do I use?
+  - **Impact**: High
+  - **Type**: Content Task
+  - **Description**:
+    Context / Why it matters:
+    Surfaced via audience-voice-research (Careers360 Q&A + Quora). Recurring, repeated question — students genuinely can't tell whether to apply through NSP or their state's SSP, and the real rule (NSP is usually a prerequisite for SSP; you generally can't hold two government scholarships at once) isn't intuitive. Example: "may i apply state and national schoolarship both?" asked verbatim on Careers360.
+
+    Plan / What to do:
+    Write as a How-To guide under the unified /guides Editorial template (IS-113). Should cross-link from every state Pillar guide (25 of them) since this question applies universally regardless of which state a student is in. Keep it blunt and decision-tree shaped: "is your scheme run by a central ministry or your state government" as the first fork.
+
+    Trigger:
+    Audience research conducted with Claude, sourced from real Careers360/Quora questions.
+
+- [ ] **CNT-55**: Trust page: How to spot a fake scholarship (and why we only list verified, no-fee ones)
+  - **Impact**: High
+  - **Type**: Content Task, Strategy
+  - **Description**:
+    Context / Why it matters:
+    Surfaced via audience-voice-research. Genuine, unresolved disagreement found in the wild — students citing conflicting Quora answers about whether exams like AIEESE/AISEE/AIYSEE are real or fee-scraping scams targeting IIT/NIT aspirants. One student described paying a Rs. 5,000 "counselling fee" before discovering conflicting reports the exam might be fake. This is a real trust gap the site is positioned to fill, given its no-fee, verified-scholarship stance is already a core trust signal (see the Detail page's verification line, shipped under IS-111).
+
+    Plan / What to do:
+    Write as a flagship trust/positioning page, not a throwaway article — should be prominently linked from the Detail page's verification line and from the site's About/trust messaging, not just buried in Editorial. Cover real red flags (application fees, guaranteed-award claims, requests for bank/card details) and explicitly explain how IndiaScholarships verifies listings, turning a trust question into a conversion asset.
+
+    Trigger:
+    Audience research conducted with Claude, sourced from real Careers360/Quora disagreement threads.
+
+- [ ] **CNT-49**: Backing article: Sports & Athlete scholarships in India
+  - **Impact**: Medium
+  - **Type**: Content Task
+  - **Description**:
+    Context / Why it matters:
+    Found during category-hub audit with Claude. /scholarships-for/sports is a real, working hub with 14 active scholarships, but it's thin as a standalone listing page and currently has zero editorial support. Same pattern Buddy4Study uses for their sparse category hubs — pair a short live list with real editorial context.
+
+    Plan / What to do:
+    Write a short guide-style article covering how sports-quota/athlete scholarships work in India, eligibility basis (state/national level certificates, etc.), and link it from the /scholarships-for/sports hub once that hub is exposed in nav (see IS-109).
+
+- [ ] **CNT-50**: Backing article: Scholarships for students with disabilities (PWD)
+  - **Impact**: Medium
+  - **Type**: Content Task
+  - **Description**:
+    Context / Why it matters:
+    Found during category-hub audit with Claude. Only 5 active scholarships reference disability eligibility, and the underlying caste data is messy (see IS-108). Once cleaned up, this will be a genuinely thin hub (5 results) that needs editorial context to not read as empty/low-value.
+
+    Plan / What to do:
+    Write an article explaining UDID card requirements, how PWD eligibility is verified across state/national schemes, and common application pitfalls. Link from the cleaned-up /scholarships-for/pwd hub. Depends on IS-108 (data cleanup) landing first so the hub itself resolves correctly.
+
+- [ ] **CNT-51**: Taxonomy note: Merit/Means/Talent-based hubs need new data before content work
+  - **Impact**: Low
+  - **Type**: Content Task, Strategy
+  - **Description**:
+    Context / Why it matters:
+    Found during Buddy4Study competitive taxonomy comparison with Claude. They expose Merit-based, Means-based, and Talent-based scholarship hubs; we have no equivalent because the DB has no clean 'selection basis' categorical field (only free-text `selection` field on scholarships).
+
+    Plan / What to do:
+    Not an article task yet — flagging so it isn't lost. Before any Merit/Means/Talent editorial or hub work starts, a dev/data ticket is needed first to define and backfill a clean selection-basis taxonomy field. Revisit once that exists.
 
 - [ ] **CNT-33**: Optimize Low-CTR Page 2 Keywords (Position 5-15)
   - **Impact**: High

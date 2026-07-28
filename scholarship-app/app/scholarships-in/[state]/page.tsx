@@ -93,9 +93,9 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                 <main className="max-w-5xl mx-auto px-4 py-8">
                     {/* Breadcrumbs */}
                     <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                        <Link href="/" className="hover:text-blue-700">Home</Link>
+                        <Link href="/" className="hover:text-google-blue">Home</Link>
                         <span>/</span>
-                        <Link href="/state-scholarships" className="hover:text-blue-700">States</Link>
+                        <Link href="/state-scholarships" className="hover:text-google-blue">States</Link>
                         <span>/</span>
                         <span className="text-gray-900 font-medium">{stateName}</span>
                     </nav>
@@ -155,12 +155,12 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             Find the latest and most comprehensive list of {stateName} state scholarships.
-                            Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified scholarships</a> available for
+                            Currently, we have <a href="#scholarship-list" className="font-bold text-google-blue hover:underline">{scholarships.length} verified scholarships</a> available for
                             students from {stateName}.
                             {pillar && (
                                 <>
                                     {' '}New to how {stateName}'s scholarship system works?{' '}
-                                    <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    <Link href={`/pillars/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.
@@ -172,7 +172,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                     {/* Quick Stats Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
                         <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100">
-                            <h3 className="text-blue-700 font-bold mb-1">Total Available</h3>
+                            <h3 className="text-google-blue font-bold mb-1">Total Available</h3>
                             <p className="text-3xl font-extrabold text-blue-900">{scholarships.length}</p>
                             <p className="text-xs text-blue-600 mt-2">Verified schemes</p>
                         </div>
@@ -224,7 +224,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                                         {scholarships.map((s: any) => (
                                             <tr key={s.id} className="hover:bg-blue-50/30 transition-colors">
                                                 <td className="p-4 pl-6 font-bold text-gray-900 max-w-xs">
-                                                    <Link href={`/scholarships/${s.slug}`} className="hover:text-blue-700 transition-colors">
+                                                    <Link href={`/scholarships/${s.slug}`} className="hover:text-google-blue transition-colors">
                                                         {s.title}
                                                     </Link>
                                                 </td>
@@ -348,16 +348,16 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                     <div className="mt-16 pt-10 border-t border-gray-100">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                            <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700">
+                            <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue">
                                 ← All States
                             </Link>
-                            <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 By Category →
                             </Link>
-                            <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 By Education →
                             </Link>
-                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 Search All →
                             </Link>
                         </div>

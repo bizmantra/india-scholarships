@@ -137,7 +137,7 @@ function getStatusInfo(deadline: string | null): {
     } else {
         return {
             label: `Open — ${daysLeft} days left`,
-            color: 'text-blue-700',
+            color: 'text-google-blue',
             bgColor: 'bg-blue-50',
             borderColor: 'border-blue-200',
             dotColor: 'bg-blue-500',
@@ -295,7 +295,7 @@ export default async function InternationalScholarshipsPage() {
                     {/* ── Browse by Destination & Level (pSEO Hubs) ── */}
                     <section className="mb-14">
                         <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <Globe className="h-5 w-5 text-blue-700" />
+                            <Globe className="h-5 w-5 text-google-blue" />
                             Browse Scholarships by Country & Level
                         </h2>
                         
@@ -361,7 +361,7 @@ export default async function InternationalScholarshipsPage() {
                                 <div key={idx} className="border border-gray-100 rounded-2xl p-4 bg-gray-50 flex flex-col justify-between hover:border-blue-100 hover:shadow-sm transition-all">
                                     <Link 
                                         href={`/scholarships-for/in/${item.slug}`}
-                                        className="flex items-center gap-1.5 mb-3 font-extrabold text-gray-900 text-sm hover:text-blue-700 hover:underline"
+                                        className="flex items-center gap-1.5 mb-3 font-extrabold text-gray-900 text-sm hover:text-google-blue hover:underline"
                                     >
                                         <span>{item.flag}</span>
                                         <span>{item.country}</span>
@@ -371,7 +371,7 @@ export default async function InternationalScholarshipsPage() {
                                             <Link 
                                                 key={lIdx} 
                                                 href={lnk.href}
-                                                className="text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline flex items-center justify-between group"
+                                                className="text-xs font-semibold text-google-blue hover:underline hover:underline flex items-center justify-between group"
                                             >
                                                 <span>{lnk.label}</span>
                                                 <ChevronRight className="h-3 w-3 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
@@ -395,7 +395,7 @@ export default async function InternationalScholarshipsPage() {
                                     <Link 
                                         key={bIdx}
                                         href={btn.href}
-                                        className="px-3.5 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:text-blue-700 hover:border-blue-300 hover:shadow-sm transition-all"
+                                        className="px-3.5 py-1.5 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-700 hover:text-google-blue hover:border-blue-300 hover:shadow-sm transition-all"
                                     >
                                         {btn.label}
                                     </Link>
@@ -569,14 +569,14 @@ function ScholarshipCard({ scholarship: s, highlighted }: { scholarship: any; hi
                             </span>
                             {/* Level badge */}
                             {s.level && (
-                                <span className="inline-flex items-center px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-100">
+                                <span className="inline-flex items-center px-2.5 py-1 bg-blue-50 text-google-blue text-xs font-semibold rounded-full border border-blue-100">
                                     {s.level}
                                 </span>
                             )}
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-base md:text-lg font-extrabold text-gray-900 group-hover:text-blue-700 transition-colors leading-snug mb-1.5">
+                        <h3 className="text-base md:text-lg font-extrabold text-gray-900 group-hover:text-google-blue transition-colors leading-snug mb-1.5">
                             {s.title}
                         </h3>
 

@@ -47,7 +47,7 @@ export default function Header() {
                             priority
                         />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-google-blue font-serif group-hover:text-blue-600 transition-colors">
+                    <span className="text-xl font-black tracking-tight text-google-blue font-serif group-hover:text-brand-dark transition-colors">
                         IndiaScholarships
                     </span>
                 </Link>
@@ -64,7 +64,7 @@ export default function Header() {
                         />
                         <button
                             type="submit"
-                            className="absolute right-1 top-1 bottom-1 px-4 bg-google-blue hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-colors cursor-pointer"
+                            className="absolute right-1 top-1 bottom-1 px-4 bg-brand hover:bg-brand-dark text-white rounded-full flex items-center justify-center transition-colors cursor-pointer"
                         >
                             <Search className="h-4 w-4" />
                         </button>
@@ -101,7 +101,9 @@ export default function Header() {
                                                 <Link href="/scholarships-by-education" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Education Level</Link>
                                                 <Link href="/scholarships-by-income" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Income Limit</Link>
                                                 <Link href="/scholarships-by-university" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By University</Link>
-                                                <Link href="/pillars" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-indigo-700 hover:bg-indigo-50 transition-colors">All Scholarship Guides →</Link>
+                                                <Link href="/scholarships-by-course" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Course</Link>
+                                                <Link href="/scholarships/international" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Study Abroad</Link>
+                                                <Link href="/pillars" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-brand hover:bg-brand-soft transition-colors">All Scholarship Guides →</Link>
                                             </div>
                                         </div>
                                         {/* Col 2: Popular Categories */}
@@ -112,22 +114,24 @@ export default function Header() {
                                                 <Link href="/scholarships-for/sc-st" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">SC / ST Categories</Link>
                                                 <Link href="/scholarships-for/minority" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Minority Students</Link>
                                                 <Link href="/scholarships-for/general" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">General / EWS Schemes</Link>
+                                                <Link href="/scholarships-for/sports" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Sports & Athletes</Link>
+                                                <Link href="/scholarships-for/pwd" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Persons with Disabilities</Link>
                                             </div>
                                         </div>
                                          {/* Col 3: Curated & Provider Hubs */}
                                         <div>
                                             <span className="block text-[10px] font-black uppercase tracking-wider text-google-red mb-3">Curated Collections</span>
                                             <div className="flex flex-col gap-1">
-                                                <Link href="/scholarships/trending" className="px-3 py-1.5 rounded-xl text-xs font-bold text-gray-800 hover:bg-orange-50 hover:text-orange-600 transition-colors flex items-center gap-1.5">
+                                                <Link href="/scholarships/trending" className="px-3 py-1.5 rounded-xl text-xs font-bold text-gray-800 hover:bg-accent-soft hover:text-accent transition-colors flex items-center gap-1.5">
                                                     🔥 Trending Right Now
                                                 </Link>
-                                                <Link href="/scholarships/deadlines" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-red hover:bg-red-50 transition-colors flex items-center gap-1.5">
+                                                <Link href="/scholarships/deadlines" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-red hover:bg-urgent-soft transition-colors flex items-center gap-1.5">
                                                     ⏰ Closing Soon
                                                 </Link>
-                                                <Link href="/scholarships/recently-added" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-blue hover:bg-blue-50 transition-colors flex items-center gap-1.5">
+                                                <Link href="/scholarships/recently-added" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-blue hover:bg-brand-soft transition-colors flex items-center gap-1.5">
                                                     🕒 Newly Verified
                                                 </Link>
-                                                <Link href="/articles/india-scholarships-statistics-2025-2026" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-green hover:bg-green-50 transition-colors flex items-center gap-1.5">
+                                                <Link href="/articles/india-scholarships-statistics-2025-2026" className="px-3 py-1.5 rounded-xl text-xs font-bold text-google-green hover:bg-success-soft transition-colors flex items-center gap-1.5">
                                                     📊 Stats Report (2025-26)
                                                 </Link>
                                                 <div className="my-1 border-t border-gray-100"></div>
@@ -200,21 +204,21 @@ export default function Header() {
                             <Link
                                 href="/scholarships/trending"
                                 onClick={() => setShowMobileMenu(false)}
-                                className="flex items-center justify-center gap-1.5 p-3 bg-orange-50 border border-orange-100 rounded-2xl text-xs font-bold text-orange-700 hover:bg-orange-100/50 transition-colors"
+                                className="flex items-center justify-center gap-1.5 p-3 bg-accent-soft border border-transparent rounded-2xl text-xs font-bold text-accent hover:opacity-80 transition-opacity"
                             >
                                 🔥 Trending
                             </Link>
                             <Link
                                 href="/scholarships/deadlines"
                                 onClick={() => setShowMobileMenu(false)}
-                                className="flex items-center justify-center gap-1.5 p-3 bg-red-50 border border-red-100 rounded-2xl text-xs font-bold text-google-red hover:bg-red-100/50 transition-colors"
+                                className="flex items-center justify-center gap-1.5 p-3 bg-urgent-soft border border-transparent rounded-2xl text-xs font-bold text-urgent hover:opacity-80 transition-opacity"
                             >
                                 ⏰ Deadlines
                             </Link>
                             <Link
                                 href="/scholarships/recently-added"
                                 onClick={() => setShowMobileMenu(false)}
-                                className="flex items-center justify-center gap-1.5 p-3 bg-blue-50 border border-blue-100 rounded-2xl text-xs font-bold text-google-blue hover:bg-blue-100/50 transition-colors"
+                                className="flex items-center justify-center gap-1.5 p-3 bg-brand-soft border border-transparent rounded-2xl text-xs font-bold text-brand hover:opacity-80 transition-opacity"
                             >
                                 🕒 New Arrivals
                             </Link>
@@ -232,7 +236,7 @@ export default function Header() {
                         <Link
                             href="/pillars"
                             onClick={() => setShowMobileMenu(false)}
-                            className="flex items-center justify-between gap-3 p-3.5 bg-indigo-50/60 border border-indigo-100 rounded-2xl text-xs font-bold text-indigo-700 hover:bg-indigo-100/50 transition-colors"
+                            className="flex items-center justify-between gap-3 p-3.5 bg-brand-soft border border-transparent rounded-2xl text-xs font-bold text-brand hover:opacity-80 transition-opacity"
                         >
                             <span>📘 Scholarship Guides — how state & category systems work</span>
                         </Link>
@@ -276,6 +280,41 @@ export default function Header() {
                                 >
                                     🏫 By University
                                 </Link>
+                                <Link
+                                    href="/scholarships-by-course"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    📚 By Course
+                                </Link>
+                                <Link
+                                    href="/scholarships-by-income"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    💰 By Income
+                                </Link>
+                                <Link
+                                    href="/scholarships/international"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    ✈️ Study Abroad
+                                </Link>
+                                <Link
+                                    href="/scholarships-for/sports"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    🏅 Sports
+                                </Link>
+                                <Link
+                                    href="/scholarships-for/pwd"
+                                    onClick={() => setShowMobileMenu(false)}
+                                    className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
+                                >
+                                    ♿ PWD
+                                </Link>
                             </div>
                         </div>
 
@@ -286,28 +325,28 @@ export default function Header() {
                                 <Link
                                     href="/scholarships-in/uttar-pradesh"
                                     onClick={() => setShowMobileMenu(false)}
-                                    className="px-3.5 py-2 bg-blue-50/50 hover:bg-blue-100 text-google-blue border border-blue-100/30 rounded-full text-xs font-semibold transition-colors"
+                                    className="px-3.5 py-2 bg-brand-soft hover:opacity-80 text-brand border border-transparent rounded-full text-xs font-semibold transition-opacity"
                                 >
                                     UP
                                 </Link>
                                 <Link
                                     href="/scholarships-in/west-bengal"
                                     onClick={() => setShowMobileMenu(false)}
-                                    className="px-3.5 py-2 bg-blue-50/50 hover:bg-blue-100 text-google-blue border border-blue-100/30 rounded-full text-xs font-semibold transition-colors"
+                                    className="px-3.5 py-2 bg-brand-soft hover:opacity-80 text-brand border border-transparent rounded-full text-xs font-semibold transition-opacity"
                                 >
                                     West Bengal
                                 </Link>
                                 <Link
                                     href="/scholarships-in/karnataka"
                                     onClick={() => setShowMobileMenu(false)}
-                                    className="px-3.5 py-2 bg-blue-50/50 hover:bg-blue-100 text-google-blue border border-blue-100/30 rounded-full text-xs font-semibold transition-colors"
+                                    className="px-3.5 py-2 bg-brand-soft hover:opacity-80 text-brand border border-transparent rounded-full text-xs font-semibold transition-opacity"
                                 >
                                     Karnataka
                                 </Link>
                                 <Link
                                     href="/scholarships-in/maharashtra"
                                     onClick={() => setShowMobileMenu(false)}
-                                    className="px-3.5 py-2 bg-blue-50/50 hover:bg-blue-100 text-google-blue border border-blue-100/30 rounded-full text-xs font-semibold transition-colors"
+                                    className="px-3.5 py-2 bg-brand-soft hover:opacity-80 text-brand border border-transparent rounded-full text-xs font-semibold transition-opacity"
                                 >
                                     Maharashtra
                                 </Link>

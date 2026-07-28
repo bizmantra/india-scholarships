@@ -22,7 +22,7 @@ export default async function UniversityScholarshipsPage() {
             <main className="max-w-5xl mx-auto px-4 py-12">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">University Hubs</span>
                 </nav>
@@ -47,7 +47,7 @@ export default async function UniversityScholarshipsPage() {
                         >
                             <div>
                                 <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                                    <h2 className="text-xl font-bold text-gray-900 group-hover:text-google-blue transition-colors">
                                         {uni.name}
                                     </h2>
                                     <span className="px-3 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded-full">
@@ -58,7 +58,7 @@ export default async function UniversityScholarshipsPage() {
                                     {uni.description}
                                 </p>
                             </div>
-                            <div className="flex items-center text-blue-700 text-sm font-bold mt-auto">
+                            <div className="flex items-center text-google-blue text-sm font-bold mt-auto">
                                 <span>Explore Hub</span>
                                 <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

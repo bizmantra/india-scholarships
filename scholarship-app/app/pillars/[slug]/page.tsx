@@ -10,7 +10,7 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import PillarBody from '@/app/components/PillarBody';
-import { Calendar, Clock, ChevronRight, BookOpen, Layers, Bell } from 'lucide-react';
+import { Calendar, Clock, ChevronRight, BookOpen } from 'lucide-react';
 
 interface PillarPageProps {
   params: Promise<{ slug: string }>;
@@ -176,13 +176,11 @@ export default async function PillarPage({ params }: PillarPageProps) {
             )}
           </div>
 
-          <header className="mb-8 pb-8 border-b-2 border-indigo-100 print:pb-2 print:mb-4 print:border-gray-200 bg-gradient-to-b from-indigo-50/60 to-transparent -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-8 print:bg-none print:mx-0 print:px-0 print:pt-0">
+          <header className="mb-8 pb-6 border-b border-gray-100 print:pb-2 print:mb-4">
             <div className="flex items-center gap-2 mb-4 print:hidden">
-              <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full uppercase tracking-wider flex items-center gap-1.5">
-                <Layers className="w-3 h-3" />
+              <span className="px-2.5 py-0.5 border border-google-blue text-google-blue text-[10px] font-bold uppercase tracking-wider rounded-sm">
                 {pillar.tag}
               </span>
-              <span className="text-xs text-indigo-700 font-semibold">A complete, evergreen guide — not a single scheme</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight print:text-2xl print:mb-2">
@@ -202,14 +200,14 @@ export default async function PillarPage({ params }: PillarPageProps) {
             </div>
           </header>
 
-          {/* Key Takeaways Box */}
+          {/* Key Takeaways — plain bordered block, no color tint */}
           {pillar.takeaways.length > 0 && (
-            <div className="bg-indigo-50/60 border-l-4 border-indigo-600 rounded-r-2xl p-6 mb-8 border border-indigo-100 print:border-l-4 print:border-indigo-600 print:bg-white print:p-4 print:mb-4">
-              <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-3">Key Takeaways</h2>
+            <div className="border-t border-b border-gray-100 py-6 mb-8 print:border-gray-200 print:p-4 print:mb-4">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Key Takeaways</h2>
               <ul className="space-y-2.5">
                 {pillar.takeaways.map((point, idx) => (
                   <li key={idx} className="text-sm text-gray-800 flex items-start gap-2 leading-relaxed print:text-xs">
-                    <span className="font-bold text-indigo-600 shrink-0">•</span>
+                    <span className="font-bold text-gray-400 shrink-0">—</span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -222,16 +220,16 @@ export default async function PillarPage({ params }: PillarPageProps) {
               whole article to find it. Links down to hubs, not duplicating their listings. */}
           {pillar.hubLinks.length > 0 && (
             <div className="mb-10 print:hidden">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">Jump Straight to a Hub</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Jump Straight to a Hub</h3>
+              <div className="border-t border-gray-100">
                 {pillar.hubLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center justify-between gap-2 p-4 bg-blue-50/50 border border-blue-100 rounded-2xl font-semibold text-google-blue text-sm hover:bg-blue-100/60 transition-colors"
+                    className="flex items-center justify-between gap-2 py-3 border-b border-gray-100 font-semibold text-google-blue hover:underline text-sm transition-colors"
                   >
                     <span>{link.label}</span>
-                    <ChevronRight className="w-4 h-4 shrink-0" />
+                    <ChevronRight className="w-4 h-4 shrink-0 text-gray-400" />
                   </Link>
                 ))}
               </div>
@@ -289,47 +287,38 @@ export default async function PillarPage({ params }: PillarPageProps) {
             </div>
           )}
 
-          {/* Related step-by-step guides — sideways links into existing editorial articles */}
+          {/* Related step-by-step guides — plain list, same pattern as "Jump to a Hub" above */}
           {relatedArticles.length > 0 && (
             <div className="my-10 print:hidden">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-google-blue" />
-                <span>Related Step-by-Step Guides</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Related How-To Guides</h3>
+              <div className="border-t border-gray-100">
                 {relatedArticles.map((art) => (
                   <Link
                     key={art.slug}
                     href={`/articles/${art.slug}`}
-                    className="flex items-start gap-3 p-4 bg-gray-50 border border-gray-150 rounded-2xl hover:border-google-blue transition-colors"
+                    className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors"
                   >
-                    <BookOpen className="w-4 h-4 text-google-blue shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-900 leading-snug mb-1">{art.title}</h4>
-                      <span className="text-xs text-gray-500">{art.readTime}</span>
-                    </div>
+                    <span className="text-sm font-semibold text-google-blue">{art.title}</span>
+                    <span className="text-xs text-gray-400 shrink-0">{art.readTime}</span>
                   </Link>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Latest News — live updates relevant to this pillar's states/categories */}
+          {/* Latest News — plain list; date as quiet metadata, not a colored badge */}
           {relatedNews.length > 0 && (
             <div className="my-10 print:hidden">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4 flex items-center gap-2">
-                <Bell className="w-4 h-4 text-red-500" />
-                <span>Latest News on This Topic</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Related News</h3>
+              <div className="border-t border-gray-100">
                 {relatedNews.map((news) => (
                   <Link
                     key={news.slug}
                     href={`/news/${news.slug}`}
-                    className="flex flex-col gap-2 p-4 bg-red-50/40 border border-red-100 rounded-2xl hover:border-red-300 transition-colors"
+                    className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors"
                   >
-                    <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider">{news.date}</span>
-                    <h4 className="text-sm font-bold text-gray-900 leading-snug">{news.title}</h4>
+                    <span className="text-sm font-semibold text-google-blue">{news.title}</span>
+                    <span className="text-xs text-gray-400 shrink-0">{news.date}</span>
                   </Link>
                 ))}
               </div>

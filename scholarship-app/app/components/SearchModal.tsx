@@ -242,7 +242,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                     <button
                                         key={suggestion}
                                         onClick={() => setQuery(suggestion)}
-                                        className="px-3 py-1.5 bg-gray-50 hover:bg-blue-50 hover:text-blue-700 text-sm font-semibold rounded-xl text-gray-600 border border-gray-100 transition-colors cursor-pointer"
+                                        className="px-3 py-1.5 bg-gray-50 hover:bg-blue-50 hover:text-google-blue text-sm font-semibold rounded-xl text-gray-600 border border-gray-100 transition-colors cursor-pointer"
                                     >
                                         "{suggestion}"
                                     </button>
@@ -275,12 +275,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                                     onClick={onClose}
                                                     className={`flex items-center justify-between p-3 rounded-2xl transition-all ${
                                                         isSelected 
-                                                            ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-700 pl-3' 
+                                                            ? 'bg-blue-50 text-google-blue font-bold border-l-4 border-blue-700 pl-3' 
                                                             : 'hover:bg-gray-50 text-gray-700 font-medium border-l-4 border-transparent'
                                                     }`}
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <MapPin className={`h-4 w-4 ${isSelected ? 'text-blue-700' : 'text-gray-400'}`} />
+                                                        <MapPin className={`h-4 w-4 ${isSelected ? 'text-google-blue' : 'text-gray-400'}`} />
                                                         <span>Scholarships in {state}</span>
                                                     </div>
                                                     <span className="text-xs opacity-60 flex items-center gap-1">
@@ -308,12 +308,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                                     onClick={onClose}
                                                     className={`flex items-center justify-between p-3 rounded-2xl transition-all ${
                                                         isSelected 
-                                                            ? 'bg-blue-50 text-blue-700 font-bold border-l-4 border-blue-700 pl-3' 
+                                                            ? 'bg-blue-50 text-google-blue font-bold border-l-4 border-blue-700 pl-3' 
                                                             : 'hover:bg-gray-50 text-gray-700 font-medium border-l-4 border-transparent'
                                                     }`}
                                                 >
                                                     <div className="flex items-center gap-3">
-                                                        <GraduationCap className={`h-4 w-4 ${isSelected ? 'text-blue-700' : 'text-gray-400'}`} />
+                                                        <GraduationCap className={`h-4 w-4 ${isSelected ? 'text-google-blue' : 'text-gray-400'}`} />
                                                         <span>Scholarships for {cat}</span>
                                                     </div>
                                                     <span className="text-xs opacity-60 flex items-center gap-1">
@@ -361,7 +361,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                                             {formatAmount(s.amount_annual, s.amount_min)}
                                                         </span>
                                                         {s.state && s.state !== 'All India' && (
-                                                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700 bg-blue-50/50 px-2.5 py-1 rounded-xl">
+                                                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-google-blue bg-blue-50/50 px-2.5 py-1 rounded-xl">
                                                                 {s.state}
                                                             </span>
                                                         )}

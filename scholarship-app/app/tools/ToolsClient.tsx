@@ -58,7 +58,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 icon: ShieldCheck,
                 href: '/eligibility-checker',
                 badge: 'Most Used',
-                gradient: 'from-blue-600 to-indigo-600',
+                gradient: 'from-brand to-brand',
                 category: 'eligibility',
             },
             {
@@ -69,7 +69,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 icon: Sparkles,
                 href: '/tools/scholarship-finder-wizard',
                 comingSoon: true,
-                gradient: 'from-purple-600 to-pink-600',
+                gradient: 'from-brand to-pink-600',
                 category: 'eligibility',
             },
             {
@@ -80,7 +80,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 icon: ArrowLeftRight,
                 href: '/tools/scholarship-compare-tool',
                 comingSoon: true,
-                gradient: 'from-sky-600 to-indigo-600',
+                gradient: 'from-sky-600 to-brand',
                 category: 'eligibility',
             },
         ],
@@ -97,7 +97,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 description: 'Add up all income sources and check if your household falls under the scholarship income cap.',
                 icon: Coins,
                 href: '/tools/family-income-calculator',
-                gradient: 'from-amber-500 to-orange-600',
+                gradient: 'from-accent to-accent',
                 category: 'calculators',
             },
             {
@@ -117,7 +117,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 description: 'Calculate total education costs — tuition, hostel, books, and travel — and see your funding gap.',
                 icon: BookOpen,
                 href: '/tools/study-cost-calculator',
-                gradient: 'from-cyan-600 to-blue-600',
+                gradient: 'from-cyan-600 to-brand',
                 category: 'calculators',
             },
             {
@@ -127,7 +127,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 description: 'Calculate your monthly EMI with moratorium period and government interest subsidy included.',
                 icon: Calculator,
                 href: '/tools/education-loan-emi-calculator',
-                gradient: 'from-rose-600 to-red-600',
+                gradient: 'from-rose-600 to-urgent',
                 category: 'calculators',
             },
         ],
@@ -144,7 +144,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 description: 'Convert your CGPA to percentage to check if you meet the minimum marks required for a scholarship.',
                 icon: Calculator,
                 href: '/tools/cgpa-percentage-converter',
-                gradient: 'from-emerald-600 to-teal-600',
+                gradient: 'from-success to-teal-600',
                 category: 'grades',
             },
         ],
@@ -198,7 +198,7 @@ export default function ToolsClient({ totalScholarships, totalValue }: Props) {
             {/* ── Hero ── */}
             <section className="relative overflow-hidden bg-white border-b border-gray-150 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-google-blue text-xs font-bold mb-4 tracking-wider uppercase">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-soft border border-brand-soft text-google-blue text-xs font-bold mb-4 tracking-wider uppercase">
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>{liveCount} Free Tools — No Sign-Up Needed</span>
                     </div>
@@ -329,22 +329,22 @@ function ToolCard({ tool }: { tool: ToolItem }) {
     return (
         <Link
             href={tool.href}
-            className="group relative bg-white border border-gray-200 rounded-3xl p-6 shadow-xs hover:shadow-md hover:border-blue-200 transition-all duration-300 flex flex-col"
+            className="group relative bg-white border border-gray-200 rounded-3xl p-6 shadow-xs hover:shadow-md hover:border-brand transition-all duration-300 flex flex-col"
         >
             {tool.badge && (
                 <div className="absolute top-4 right-4">
-                    <span className="px-2.5 py-0.5 text-[9px] font-black uppercase tracking-wider bg-blue-50 text-google-blue rounded-full border border-blue-100">
+                    <span className="px-2.5 py-0.5 text-[9px] font-black uppercase tracking-wider bg-brand-soft text-google-blue rounded-full border border-brand-soft">
                         {tool.badge}
                     </span>
                 </div>
             )}
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-google-blue border border-blue-100 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 shadow-xs">
+            <div className="w-12 h-12 rounded-2xl bg-brand-soft text-google-blue border border-brand-soft flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300 shadow-xs">
                 <Icon className="w-6 h-6" />
             </div>
             <p className="text-[10px] font-black uppercase tracking-wider text-gray-400 mb-1 group-hover:text-google-blue transition-colors">{tool.query}</p>
             <h3 className="font-bold text-base text-gray-900 group-hover:text-google-blue transition-colors mb-2">{tool.title}</h3>
             <p className="text-gray-500 text-sm leading-relaxed flex-1">{tool.description}</p>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-google-blue group-hover:text-blue-600 transition-colors mt-4">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-google-blue group-hover:text-brand transition-colors mt-4">
                 <span>Open Tool</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </div>

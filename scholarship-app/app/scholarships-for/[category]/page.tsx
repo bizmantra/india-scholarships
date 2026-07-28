@@ -1,6 +1,6 @@
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
-import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory, getInternationalScholarshipsByLevel } from '@/lib/db';
+import { getScholarshipsByCategory, getAllCategories, getCanonicalSlugForCategory, getInternationalScholarshipsByLevel, getScholarshipsByGender } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import { slugify } from '@/lib/utils';
 import Header from '@/app/components/Header';
@@ -22,6 +22,9 @@ export async function generateStaticParams() {
     slugs.add('mba');
     slugs.add('masters');
     slugs.add('undergraduate');
+
+    // Add gender categories (resolved via `gender` column, not `caste` — see GENDER_CATEGORIES)
+    Object.keys(GENDER_CATEGORIES).forEach(slug => slugs.add(slug));
 
     return Array.from(slugs).map((slug) => ({
         category: slug,
@@ -45,6 +48,7 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
     'minority': 'Minority Communities',
     'ews': 'Economically Weaker Section (EWS)',
     'sports': 'Sports & Athletes',
+    'pwd': 'Persons with Disabilities (PWD)',
 };
 
 const STUDY_ABROAD_LEVELS: Record<string, string> = {
@@ -52,6 +56,14 @@ const STUDY_ABROAD_LEVELS: Record<string, string> = {
     'mba': 'MBA',
     'masters': 'Masters / PG',
     'undergraduate': 'Undergraduate / Bachelors'
+};
+
+// IS-104: girls/women scholarships live in the `gender` column, not `caste`, so they
+// need their own resolution path — getScholarshipsByCategory() against `caste` always
+// returned zero rows for these slugs, silently redirecting the page away.
+const GENDER_CATEGORIES: Record<string, { label: string; keywords: string[] }> = {
+    'girls': { label: 'Girls & Women', keywords: ['female', 'girl'] },
+    'women': { label: 'Girls & Women', keywords: ['female', 'girl'] },
 };
 
 // Generate metadata
@@ -66,6 +78,17 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
             return {
                 title: `Best ${levelLabel} Scholarships for Indian Students ${currentYear} - ${nextYear} (Study Abroad)`,
                 description: `Find top fully funded and university-specific ${levelLabel} scholarships for Indian students to study abroad. Get application guide, deadlines, and portals.`,
+                alternates: {
+                    canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}`,
+                }
+            };
+        }
+
+        if (GENDER_CATEGORIES[categorySlug.toLowerCase()]) {
+            const { label } = GENDER_CATEGORIES[categorySlug.toLowerCase()];
+            return {
+                title: `${label} Scholarships in India ${currentYear} - Complete List & Eligibility`,
+                description: `Browse verified scholarships for ${label.toLowerCase()} students in India. Find eligibility criteria, scholarship amounts, and application deadlines for ${currentYear}.`,
                 alternates: {
                     canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}`,
                 }
@@ -107,9 +130,9 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                     <main className="max-w-5xl mx-auto px-4 py-8">
                         {/* Breadcrumbs */}
                         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                            <Link href="/" className="hover:text-blue-700">Home</Link>
+                            <Link href="/" className="hover:text-google-blue">Home</Link>
                             <span>/</span>
-                            <Link href="/scholarships/international" className="hover:text-blue-700">International</Link>
+                            <Link href="/scholarships/international" className="hover:text-google-blue">International</Link>
                             <span>/</span>
                             <span className="text-gray-900 font-medium">{levelLabel}</span>
                         </nav>
@@ -120,7 +143,52 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                                 Best {levelLabel} Scholarships for Indian Students {currentYear} - {nextYear}
                             </h1>
                             <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                                Explore fully funded and university-specific <span className="font-semibold text-gray-900">{levelLabel}</span> scholarships to study abroad. Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified schemes</a>.
+                                Explore fully funded and university-specific <span className="font-semibold text-gray-900">{levelLabel}</span> scholarships to study abroad. Currently, we have <a href="#scholarship-list" className="font-bold text-google-blue hover:underline">{scholarships.length} verified schemes</a>.
+                            </p>
+                        </div>
+
+                        {/* Scholarships List */}
+                        <div id="scholarship-list" className="mb-20 scroll-mt-24">
+                            <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
+                        </div>
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        }
+
+        // If this is a girls/women slug (resolved via `gender` column, not `caste`)
+        if (GENDER_CATEGORIES[categorySlug.toLowerCase()]) {
+            const { label, keywords } = GENDER_CATEGORIES[categorySlug.toLowerCase()];
+            const scholarships = await getScholarshipsByGender(keywords);
+
+            if (scholarships.length === 0) {
+                return redirect('/scholarships-by-category');
+            }
+
+            return (
+                <div className="min-h-screen bg-white">
+                    <Header />
+
+                    <main className="max-w-5xl mx-auto px-4 py-8">
+                        {/* Breadcrumbs */}
+                        <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                            <Link href="/" className="hover:text-google-blue">Home</Link>
+                            <span>/</span>
+                            <Link href="/scholarships-by-category" className="hover:text-google-blue">Categories</Link>
+                            <span>/</span>
+                            <span className="text-gray-900 font-medium">{label}</span>
+                        </nav>
+
+                        {/* Page Header */}
+                        <div className="mb-10">
+                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                                {label} Scholarships {currentYear}
+                            </h1>
+                            <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+                                Explore scholarships for <span className="font-semibold text-gray-900">{label.toLowerCase()}</span> students across India.
+                                Currently, we have <a href="#scholarship-list" className="font-bold text-google-blue hover:underline">{scholarships.length} verified schemes</a>.
                             </p>
                         </div>
 
@@ -173,9 +241,9 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                 <main className="max-w-5xl mx-auto px-4 py-8">
                     {/* Breadcrumbs */}
                     <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                        <Link href="/" className="hover:text-blue-700">Home</Link>
+                        <Link href="/" className="hover:text-google-blue">Home</Link>
                         <span>/</span>
-                        <Link href="/scholarships-by-category" className="hover:text-blue-700">Categories</Link>
+                        <Link href="/scholarships-by-category" className="hover:text-google-blue">Categories</Link>
                         <span>/</span>
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
@@ -187,11 +255,11 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                             Explore scholarships for <span className="font-semibold text-gray-900">{displayName}</span> students across India.
-                            Currently, we have <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} verified schemes</a> tailored for your eligibility.
+                            Currently, we have <a href="#scholarship-list" className="font-bold text-google-blue hover:underline">{scholarships.length} verified schemes</a> tailored for your eligibility.
                             {matchingPillar && (
                                 <>
                                     {' '}New to how {displayName} scholarships work?{' '}
-                                    <Link href={`/pillars/${matchingPillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    <Link href={`/pillars/${matchingPillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.
@@ -215,7 +283,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         </div>
                         <div className="bg-white p-8 rounded-3xl shadow-sm border border-blue-100 min-w-[180px] text-center">
                             <span className="text-sm text-gray-500 font-medium block mb-1 uppercase tracking-tight">Active Schemes</span>
-                            <span className="text-5xl font-extrabold text-blue-700">{scholarships.length}</span>
+                            <span className="text-5xl font-extrabold text-google-blue">{scholarships.length}</span>
                         </div>
                     </div>
 
@@ -263,16 +331,16 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                     <div className="mt-16 pt-10 border-t border-gray-100 px-0">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                            <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700">
+                            <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue">
                                 ← All Categories
                             </Link>
-                            <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 By State →
                             </Link>
-                            <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 By Education →
                             </Link>
-                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                            <Link href="/scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                                 Search All →
                             </Link>
                         </div>

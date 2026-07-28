@@ -46,7 +46,7 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
             {/* Header */}
             <header className="sticky top-0 z-50 w-full border-b bg-white">
                 <div className="container mx-auto flex h-14 items-center px-4">
-                    <Link href="/" className="text-xl font-bold text-blue-700">
+                    <Link href="/" className="text-xl font-bold text-google-blue">
                         IndiaScholarships
                     </Link>
                 </div>
@@ -55,9 +55,9 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span className="text-gray-400">/</span>
-                    <Link href="/scholarships" className="hover:text-blue-700">Scholarships</Link>
+                    <Link href="/scholarships" className="hover:text-google-blue">Scholarships</Link>
                     <span className="text-gray-400">/</span>
                     <span className="text-gray-900 font-medium">For {courseName}</span>
                 </nav>
@@ -65,7 +65,7 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
                 {/* Hero section for course */}
                 <div className="mb-12">
                     <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-50 rounded-lg text-blue-700">
+                        <div className="p-2 bg-blue-50 rounded-lg text-google-blue">
                             <BookOpen className="h-6 w-6" />
                         </div>
                         <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -73,12 +73,12 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
                         </h1>
                     </div>
                     <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
-                        Funding your {courseName} degree can be challenging. We've gathered <span className="font-bold text-blue-700">{scholarships.length} scholarships</span>
+                        Funding your {courseName} degree can be challenging. We've gathered <span className="font-bold text-google-blue">{scholarships.length} scholarships</span>
                         from government ministries and private foundations to help you cover tuition fees and living expenses.
                         {coursePillar && (
                             <>
                                 {' '}New to how {courseName} scholarships work?{' '}
-                                <Link href={`/pillars/${coursePillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                <Link href={`/pillars/${coursePillar.slug}`} className="font-bold text-google-blue hover:underline">
                                     Read our complete guide
                                 </Link>{' '}
                                 first.
@@ -156,8 +156,8 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
                 <div className="flex flex-col sm:flex-row gap-4 justify-between items-center py-8 border-t">
                     <p className="text-gray-500 text-sm italic">Didn't find what you were looking for?</p>
                     <div className="flex gap-4">
-                        <Link href="/scholarships-by-education" className="text-blue-700 font-bold hover:underline">By Level →</Link>
-                        <Link href="/state-scholarships" className="text-blue-700 font-bold hover:underline">By State →</Link>
+                        <Link href="/scholarships-by-education" className="text-google-blue font-bold hover:underline">By Level →</Link>
+                        <Link href="/state-scholarships" className="text-google-blue font-bold hover:underline">By State →</Link>
                     </div>
                 </div>
             </main>

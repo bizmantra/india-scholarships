@@ -13,7 +13,137 @@
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-## Backlog (40)
+## Backlog (50)
+
+- [ ] **IS-122**: Header: restructure for orientation — mega-menu still doesn't expose all real categories, feels cluttered
+  - **Impact**: High
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    User feedback: "header continues to have cluttered navigation without orientation." Confirmed gap — even after this session's additions, the mega-menu mixes hub links, curated collections (Trending/Deadlines/New Arrivals), and provider-type links in a flat 3-column layout with no visual hierarchy signaling which items are peer categories vs. one-off collections. It also still doesn't expose every real category (Income limit hubs missing from Popular Segments column, for example).
+
+    Plan / What to do:
+    Full redesign pass on the mega-menu structure, not just adding missing links. Needs a clear grouping principle (e.g. "Browse by facet" vs "Curated views" vs "Learn") so a user can tell at a glance what kind of thing each link is, per the taxonomy work already done in IS-116/117. Should resolve alongside IS-124 (trending/deadlines nav consolidation) since they're the same underlying problem — collections presented as peers of categories.
+
+    Trigger:
+    User feedback with mobile-menu screenshot, this session.
+
+- [ ] **IS-123**: Footer: still incomplete — needs the full persistent taxonomy block (supersedes/absorbs IS-117)
+  - **Impact**: High
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    User feedback: "both header and footer dont expose all categories." This session only added 4 links to the existing "Browse" list (Course, Study Abroad, Sports, PWD) — the bigger IS-117 redesign (full 3-column Buddy4Study-style taxonomy block, visible on every page) was never done. Confirmed still missing from footer entirely: Income hubs.
+
+    Plan / What to do:
+    Same as IS-117 — build the full persistent taxonomy footer block. Treat this ticket as the up-to-date version of that work; close IS-117 as duplicate once this is picked up.
+
+    Trigger:
+    User feedback, this session — confirms IS-117 is still the right call and now has direct user confirmation, not just competitive research.
+
+- [ ] **IS-124**: Nav: present Trending/Deadlines/Recently-Added as views within Browse, not peer top-level items
+  - **Impact**: Medium
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    User asked whether /scholarships, /scholarships/trending, and /scholarships/deadlines should be collapsed. Checked first: they are NOT duplicates — each has distinct, real SEO metadata targeting different search intent ("trending scholarships" vs "scholarship deadlines 2026" vs generic), and /scholarships/deadlines is a substantial 450-line feature page (countdown timers, filters), not a thin wrapper. Merging the URLs would destroy real ranking pages — same mistake class as the Article duplicates, but the opposite conclusion.
+
+    Plan / What to do:
+    The problem is navigational presentation, not routing. Currently the mobile "Quick Actions Grid" and desktop mega-menu present Trending/Deadlines/New Arrivals/All Schemes as 4 equal-weight, disconnected buttons. Restructure so these read as sort/filter views of one "Browse Scholarships" destination, not as separate peer destinations. Keep all URLs unchanged — this is a presentation-only fix.
+
+    Trigger:
+    User feedback, this session — direct question about collapsing these routes.
+
+- [ ] **IS-125**: Homepage: doesn't lead users into underrepresented categories or Editorial/News content
+  - **Impact**: High
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    User feedback: "Homepage needs to lead people into unrepresented pages and categories as well as editorial and news content." Current homepage has a "Category Gateway" section (By State Domicile, By Social Category grids) but it's unclear whether it covers Course/Income/Sports/PWD/Study Abroad, or surfaces Editorial (Pillars/Guides) or News at all — needs an audit against what's actually there versus what's missing, then a fix.
+
+    Plan / What to do:
+    Audit HomeClient.tsx against the full real taxonomy (State, Category, Education Level, Income, Course, University, Provider type, Study Abroad, Sports, PWD) and against Editorial/News — list what's exposed vs. missing, then add dedicated sections for whatever's absent, prioritizing categories with real scholarship counts that currently have zero homepage presence.
+
+    Trigger:
+    User feedback, this session.
+
+- [ ] **IS-116**: Cross-link scholarships across hub types (State/Category/Level/Income) for findability
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Core outcome of the taxonomy/findability discussion with Claude. Confirmed via DB counts and a Buddy4Study comparison that a faceted model (State, Category, Level, Income, Provider-type, Course, University as independent, co-equal facets) is correct for this dataset — NOT a single 'primary' hierarchy (47% of scholarships are 'All India' with no state, and SC/ST/OBC/General are near-universal so they don't discriminate well as a tree). The gap isn't the number of hubs, it's that a scholarship belonging to multiple facets simultaneously (e.g. a Karnataka + SC/ST + UG scholarship) currently only surfaces sibling links for whichever ONE hub the visiting page happens to be on — there's no cross-awareness between facet types.
+
+    Plan / What to do:
+    Extend the Detail page's related-scholarships module (already redesigned per IS-111) to pull siblings from ALL of the current scholarship's facets, not just one — e.g. 'Other scholarships in Karnataka' + 'Other SC/ST scholarships' + 'Other Undergraduate scholarships', each as its own short plain-list group. Mirrors getRelatedScholarships() in lib/db.ts but needs to surface multiple facet groups instead of one blended ranked list.
+
+    Trigger:
+    Taxonomy/findability discussion with Claude — confirmed this matters more than picking a 'primary' category.
+
+- [ ] **IS-117**: Add persistent site-wide taxonomy block (footer, all pages) — Buddy4Study-style
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Found via direct comparison with Buddy4Study (1,706+ scholarships vs. our 476). Their entire findability strategy for hub pages isn't breadcrumbs or hierarchy — it's one taxonomy block (State-wise / Class-based / Type-based, 8 links each = 24 total) repeated in the footer on every single page, site-wide. We currently bury most of this one click deep in the mega-menu, and it doesn't appear at all on Detail, Editorial, or News pages.
+
+    Plan / What to do:
+    Add a persistent 3-column taxonomy block to Footer.tsx (or a new shared component rendered on every page type): State hubs, Category/Type hubs, Education-level hubs, mirroring the coverage audit done in conversation (we already match or exceed Buddy4Study on State/Category/Government/Course — this just needs to be visible everywhere, not just the mega-menu). Include the currently-orphaned Course and International hubs (IS-106, IS-107) once those land.
+
+    Trigger:
+    Buddy4Study competitive comparison in conversation with Claude.
+
+- [ ] **IS-118**: Make breadcrumbs referrer-aware instead of a fixed fake hierarchy
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Discussed with Claude: since a scholarship genuinely has multiple valid parents (its state, its category, its level, its income bracket — all independent, none more 'true' than another), a single fixed breadcrumb pretends one facet is canonical when it isn't. Confirmed breadcrumbs matter on both desktop and mobile (mobile especially for Google's BreadcrumbList rich-snippet rendering in mobile search results), so this isn't about removing them — it's about which parent they show.
+
+    Plan / What to do:
+    Have the breadcrumb default to whichever facet the visitor actually arrived through (read from referrer/query param when available — e.g. arriving from a state hub shows State in the breadcrumb, arriving from a category hub shows Category), falling back to a sensible default (state if present, else category) when no referrer signal exists. Keep BreadcrumbList JSON-LD schema present on every page regardless of visual display.
+
+    Trigger:
+    Taxonomy/findability discussion with Claude.
+
+- [ ] **IS-119**: Prune or merge near-zero-value hub pages (thin facet combinations)
+  - **Impact**: Medium
+  - **Type**: Analysis, Feature
+  - **Description**:
+    Context / Why it matters:
+    Found via DB count audit in conversation. Several hub combinations have 0-2 active scholarships (e.g. PWD category pre-cleanup, several single-scholarship states/UTs like Lakshadweep, Nagaland, Puducherry). Buddy4Study handles this by backfilling thin facet pages with a generic 'Featured Scholarships' carousel rather than showing a near-empty page — worth adopting the same pattern rather than either hiding these pages or leaving them looking broken.
+
+    Plan / What to do:
+    Audit all generated hub pages for scholarship count. For any hub under ~3 results, either (a) blend in a 'More scholarships you may be eligible for' fallback module (same general-listing pattern Buddy4Study uses), or (b) redirect/merge into a parent hub with a pre-applied filter instead of a standalone thin page. Decide threshold and fallback design.
+
+    Trigger:
+    DB count audit + Buddy4Study comparison in conversation with Claude.
+
+- [ ] **IS-120**: BUG (pre-existing): /guides/nsp redirects to a dead slug and 404s
+  - **Impact**: High
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    Found while verifying IS-115's Pillar-to-/guides routing change (unrelated to that change — this bug already existed in next.config.ts before today). The redirect `/guides/nsp/:subpage*` -> `/guides/national-scholarship-portal-nsp/:subpage*` uses a `:subpage*` wildcard (zero-or-more), so it also matches the bare /guides/nsp URL with no subpage — but the destination slug 'national-scholarship-portal-nsp' doesn't exist anywhere in portalsData.ts. The real NSP portal's id is 'nsp' with aliases ['national-scholarship-portal', 'scholarships-gov-in'] — no '-nsp' suffix variant. Result: /guides/nsp currently 404s in production.
+
+    Plan / What to do:
+    Fix the redirect destination to point at a real slug (likely just remove this redirect entirely, since 'nsp' is already the canonical id and doesn't need rewriting to a longer alias) — or if the intent was legacy-URL support, correct the destination to 'national-scholarship-portal' instead of 'national-scholarship-portal-nsp'.
+
+    Trigger:
+    Found during IS-115 verification. Live bug, affects a page for the site's flagship central portal.
+
+- [ ] **IS-110**: Clean up messy multi-value `level` field
+  - **Impact**: Low
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    Found during category count audit with Claude. The `level` column frequently stores multi-value strings in one row (e.g. 'Undergraduate, Postgraduate, Diploma, ITI'), which undermines the cleanliness of the Education Level hub pages (/scholarships-level/[level]) and makes accurate per-level counts impossible without fragile LIKE-pattern matching (see getLevelSearchPatterns in lib/db.ts).
+
+    Plan / What to do:
+    Either split into a proper join table (scholarship_id, level) or keep as an array field like `caste`/`course_stream` and parse consistently. Re-run getEducationLevelCounts() after cleanup to confirm accurate counts.
+
+    Trigger:
+    Data cleanup, part of taxonomy work.
 
 - [ ] **IS-95**: Manual CMS Expansion: Visual Create New Scholarship & Scraping Interface
   - **Impact**: Medium
@@ -515,7 +645,212 @@
   - **Description**:
     Build a multi-step profile wizard on registration (collecting class, state, caste, gender, income) and implement a dynamic client-side filtering system to recommend matched scholarships.
 
-## Done (30)
+## Done (43)
+
+- [x] **IS-115**: Consolidate Guides + Articles + Pillars into one /guides Editorial namespace (routing/redirects)
+  - **Impact**: Critical
+  - **Type**: Strategy, Feature
+  - **Description**:
+    Context / Why it matters:
+    User decision: absorb ALL of Guides, Articles, and Pillars into one /guides URL namespace — "am not a software dev, I want everything absorbed into one /guides." Classification (Pillar vs How-To vs News) becomes a taxonomy/metadata concern, not a URL concern, relevant given a possible headless WordPress migration.
+
+    Resolution:
+    Phase 1: 4 duplicate Articles redirect to their matching Portal Guide. Phase 1b: all 25 Pillars now render under /guides/[slug] via delegation from app/guides/[portal]/page.tsx, with a single parameterized redirect (/pillars/:slug -> /guides/:slug) covering all of them. Phase 2: the remaining 24 unique Articles now also render under /guides/[slug] via the same delegation pattern (portal -> Pillar -> Article, in order, before notFound()). Added a generic redirect '/articles/:slug' -> '/guides/:slug', placed after the 4 explicit overrides so those still win. Also fixed the Article page's internal cross-links and breadcrumb to point directly at /guides instead of /articles, removing an unnecessary redirect hop on-site.
+
+    Verified locally throughout: direct /guides/[slug] URLs render correctly for Pillars, Articles, and Portal Guides; old /pillars/[slug] and /articles/[slug] URLs redirect correctly; the 4 explicit article overrides still take priority over the generic rule; breadcrumbs read "Guides" not "Articles"/"Pillars"; zero regressions on Portal Guides throughout. npx tsc --noEmit clean at every step, zero console errors.
+
+    Ticket fully closed. Every Pillar, Portal Guide, and Article now lives under one /guides URL namespace.
+
+    Trigger:
+    Taxonomy decision made in conversation, executed same session.
+
+- [x] **IS-126**: BUG: International scholarships leaking into Trending/Deadlines/Recently Added
+  - **Impact**: High
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    User noticed /scholarships/trending and /scholarships/deadlines showing Study Abroad scholarships (ESMT Berlin MBA, University of Calgary, ADB-Japan, DAAD, Hubert Humphrey Fellowship) mixed in with domestic ones, undifferentiated. Root cause: two separate, parallel implementations exist. getTrendingScholarships()/getClosingSoonScholarships() in lib/db.ts (used by the homepage carousels) had no scholarship_scope filter. Separately, and more impactfully, ScholarshipsList.tsx (the shared component actually powering the live /scholarships/trending and /scholarships/deadlines PAGES via getAllScholarships() + client-side filter/sort) also had zero scope awareness — confirmed several International scholarships share the same top priority_score (95/90) as the best domestic ones, so they were winning the sort and appearing as the featured highlight.
+
+    Resolution:
+    Added a scope exclusion to both: the two lib/db.ts query functions (SQL-level "AND (LOWER(scholarship_scope) IS NOT 'international')"), and ScholarshipsList.tsx's client-side filter (excludes any row with scholarship_scope='international' unconditionally, since this shared component has no International tab/mode at all — that content type only lives at /scholarships/international with its own dedicated hub and query functions).
+
+    Verified locally: /scholarships/trending dropped from 372 to 269 results with ESMT Berlin/Calgary/ADB-Japan/DAAD all gone from the top of the list; /scholarships/deadlines confirmed clean (3 results, all domestic). npx tsc --noEmit clean. Zero console errors.
+
+    Trigger:
+    User feedback, this session — flagged as a real, confusing UX issue, not a hypothetical.
+
+- [x] **IS-121**: BUG: Mobile menu missing Course/Income/Study Abroad/Sports/PWD links (desktop-only fix)
+  - **Impact**: High
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    User screenshot showed the mobile "Popular Segments" chip row (Girls, SC/ST, OBC/Minority, General/EWS, By University only) missing everything added to the desktop mega-menu earlier this session (Course, Income, Study Abroad, Sports, PWD) — because Header.tsx's mobile menu is a separate hardcoded JSX block from the desktop mega-menu, and only desktop was updated. 82% of traffic is mobile, so this gap mattered more than the desktop one did.
+
+    Resolution:
+    Added 5 missing chips (By Course, By Income, Study Abroad, Sports, PWD) to the mobile "Popular Segments" section in Header.tsx. Verified locally: all 5 links confirmed present in the rendered mobile DOM, zero console errors.
+
+- [x] **IS-111**: Implement simplified Detail page template (content-first redesign)
+  - **Impact**: Critical
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    Site's most-visited page (PM Yashasvi). Current template was visually noisy — gradient hero, repeated sidebar CTA, colored blockquotes, 3-column sticky layout.
+
+    Resolution:
+    Discovered ScholarshipDetailTemplate.tsx was dead code — the real live page is app/scholarships/[slug]/page.tsx (1249 lines). Rewrote it in full: preserved 100% of SEO logic (all per-slug title overrides, metadata, hreflang, OG tags), all data fetching, all 3 JSON-LD schemas, and the FormattedText parser exactly as-is. Replaced only the visual layer: removed the dark gradient hero, repeated sidebar CTA card, colored 'Direct Answer' blockquotes, and the 3-column sticky-sidebar layout. New structure: plain eyebrow+title, 3-fact strip, real ShareButtons as the only above-fold action (no fake Follow/Alerts buttons — honest choice, since IS-76 lead-capture isn't built yet), a dedicated 'Ready to apply?' section with the real outbound link placed contextually near How-to-Apply, plain spec-list eligibility, numbered steps, single-column Discover More (moved out of the sidebar), and every related-content section as plain lists.
+
+    Verified locally on PM Yasasvi: every field confirmed present with zero loss (sibling variants, best-fit pillar, benefits, special conditions, eligibility, selection, renewal, all 7 apply steps, documents, deadline, quick facts, all 3 FAQs, helpline, discover-more, disclaimer, 5 related news, 2 related guides, 3 similar scholarships). Zero console errors. Confirmed no regression on a scholarship with fewer optional fields. npx tsc --noEmit clean.
+
+    Trigger:
+    Design agreed in conversation, mock reviewed and iterated; user requested building 111, 112, and 114 together.
+
+- [x] **IS-112**: Implement simplified Listing page template
+  - **Impact**: High
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    Listing/hub pages needed a browsing rhythm distinct from Detail's reading rhythm — dense scannable rows instead of card chrome.
+
+    Resolution:
+    Rather than editing each of the 8+ separate hub page types individually, restyled the actually-shared components they all render through: ScholarshipCard.tsx (list view, the default viewMode site-wide) and its container in ScholarshipsList.tsx. Removed the provider avatar circle, 'Verified' checkmark badge, colored status pills, and CTA button — replaced with one dense plain row: title+provider+eligibility hints left, amount right-aligned, deadline right-aligned with color reserved only for genuine urgency.
+
+    Verified locally: propagated automatically and correctly to every hub type reusing these shared components — confirmed on a Category hub (SC, 239 results), a Course hub (Engineering), and a State hub (Karnataka, via its own StateScholarshipsClient wrapper) — all three show the new plain-row style with zero console errors and zero regression in surrounding hub-specific chrome. Grid view (secondary, user-toggled) left untouched.
+
+    Trigger:
+    Design agreed in conversation, mock reviewed.
+
+- [x] **IS-114**: Implement simplified News page template
+  - **Impact**: Medium
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    Lightest variant of the Editorial template family — News stays a separate content type by design, but should render consistently with the rest of the site.
+
+    Resolution:
+    Added newsToEditorial() adapter to lib/editorial.ts (added 'news' to the EditorialContent kind union). Rewrote app/news/[slug]/page.tsx to use EditorialTemplate — removed the colored takeaways box, colored pillar/hub-link callouts, and dark 'Featured Scholarships' card block in favor of the same plain-list system used everywhere else. Kept the feedback widget (thumbs up/down, no backend yet) as a small page-level extra. Tweaked EditorialTemplate's hub-links heading to read 'Related Hubs' for non-Pillar kinds.
+
+    Verified locally: a real news article renders correctly — News tag, takeaways, Related Hubs (dynamically resolved), body content, Featured Scholarships (2 real records), 'More on This Topic' (resolved parent Pillar link), and the feedback widget, all present with zero console errors. News stays intentionally separate in navigation and taxonomy — only the rendering component unified.
+
+    Trigger:
+    Design agreed in conversation, mock reviewed and iterated.
+
+- [x] **IS-113**: Implement unified Editorial page template (Pillars/Articles/Guides)
+  - **Impact**: High
+  - **Type**: Design, Feature
+  - **Description**:
+    Context / Why it matters:
+    One shared template family so Pillars, Articles, and Portal Guides stop being three different systems with three different conventions — a content-type tag, TOC for long pieces, contextual links embedded in prose, and a consistent related-content pattern.
+
+    Plan / What to do:
+    Build one shared Editorial template component and migrate Pillar, Article, and Guide pages onto it.
+
+    Resolution:
+    Built lib/editorial.ts — a unified EditorialContent TypeScript schema, a genuine superset of Pillar/Article/PortalGuide (every field mapped, none lost). Two schema fields added during the pass, both following a "resolve at the page level, render generically" convention: featuredScholarships (pre-resolved DB-fetched scholarship list) and relatedGuides (pre-resolved {title, href, meta} objects, not raw slugs). Built app/components/EditorialTemplate.tsx — one generic renderer with fully conditional blocks (tag, key facts, takeaways, hub links, official-portal link, TOC, checklist, grouped numbered steps, schemes, featured scholarships, FAQ accordion, helpline, related guides) that only render when the matching schema field is present.
+
+    Migrated all three systems: (1) Pillars restyled in place (app/pillars/[slug]/page.tsx + PillarBody.tsx) — de-indigo'd to the site's one google-blue accent, including the markdown-to-HTML renderer in lib/pillars.ts that was hardcoding indigo into rendered links/code/blockquotes. (2) All 8 Portal Guides migrated via portalGuideToEditorial() adapter — removed ~380 lines of dead legacy JSX from app/guides/[portal]/page.tsx, HowTo + FAQ JSON-LD schema preserved. (3) Articles migrated via articleToEditorial() adapter — app/articles/[slug]/page.tsx rewritten from 288 to ~145 lines, the two genuinely one-off special cases (stats-report banner image, UP Status Decoder widget) kept as small page-level extras around the shared template rather than forced into the generic schema.
+
+    Verified locally across all three: Pillars (Karnataka, SC/ST) render correctly, zero indigo remaining; 7 of 8 Portal Guides render correctly with zero console errors (NSP separately blocked by pre-existing IS-120 bug, unrelated); Articles — a plain guide (Bihar PMS), the stats-report special case, the UP-decoder special case, and a rich article with resolved "Featured Scholarships" data (SC/ST Freeship Card, matching frontmatter exactly) all confirmed working, zero console errors, zero regression anywhere.
+
+    app/components/InteractiveArticleBody.tsx is now dead code (zero remaining imports) — left in place rather than deleted, safe to remove in a follow-up cleanup pass.
+
+    Trigger:
+    Design agreed in conversation, mock reviewed and iterated; user explicitly requested finishing all three migrations (Guides, Articles, Pillars) in one session to move on to content work.
+
+- [x] **IS-108**: Clean up `caste` field for disability/PWD scholarships
+  - **Impact**: Medium
+  - **Type**: Bug, Content Task
+  - **Description**:
+    Context / Why it matters:
+    Found during category-hub verification with Claude. 5 active scholarships reference disability eligibility, but the raw `caste` values were long descriptive sentences instead of a clean tag like 'Sports' already had. This produced ugly one-off URLs instead of one canonical /scholarships-for/pwd hub.
+
+    Plan / What to do:
+    Normalize these 5 records to include a clean 'PWD' tag in the caste array, matching getCanonicalSlugForCategory conventions.
+
+    Resolution:
+    Normalized the caste field for all 5 active disability-related records to a clean ['PWD'] tag (one record kept its real other categories too: General/OBC/SC/ST/Minority/PWD, since it's genuinely open to all categories with a UDID requirement). Added a 'pwd' branch to getCanonicalSlugForCategory() in lib/utils.ts, checked first since legacy disability strings often contain SC/ST/OBC as substrings. Added a clean CATEGORY_NAME_MAP entry. Verified locally: /scholarships-for/pwd now renders 5 real scholarships with a clean title/breadcrumb; confirmed no regression on /scholarships-for/obc. Follow-up completed same session: added 'Persons with Disabilities' to the Header mega-menu (Popular Segments column) and Footer, same pattern as IS-109. Verified visually via real mouse hover on the mega-menu trigger — confirmed rendered correctly alongside Sports, Girls, SC/ST, Minority, and General/EWS.
+
+    Trigger:
+    Data cleanup, part of taxonomy work.
+
+- [x] **IS-106**: Build index page + add nav entry for /scholarships-by-course
+  - **Impact**: High
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Found during route audit with Claude. 10 real course hub pages exist (Engineering, Medical, Commerce, Science, Arts, Nursing, Pharmacy, Agriculture, Law, Management) but there was no app/scholarships-by-course/page.tsx index, and the whole route tree was absent from both Header.tsx and Footer.tsx.
+
+    Plan / What to do:
+    Build an index page listing all 10 courses with live counts, and add it to the Header mega-menu + Footer.
+
+    Resolution:
+    Added getCourseScholarshipCounts() to lib/db.ts (real per-course counts: Engineering 98, Science 81, Medical 42, Management 38, Arts 36, Commerce 29, Law 27, Pharmacy 12, Nursing 8, Agriculture 6). Built app/scholarships-by-course/page.tsx mirroring the existing scholarships-by-university index template exactly — that page already linked to /scholarships-by-course expecting it to exist. Added 'By Course' to the Header mega-menu and Footer. Verified locally: index renders all 10 courses with correct live counts.
+
+    Trigger:
+    Part of taxonomy/findability work.
+
+- [x] **IS-107**: Add /scholarships/international to primary nav
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Found during route audit with Claude. The international/study-abroad hub was linked from several content pages but had zero presence in Header.tsx or Footer.tsx.
+
+    Plan / What to do:
+    Add a link to /scholarships/international in the Header mega-menu and Footer.
+
+    Resolution:
+    Added 'Study Abroad' link to the Header mega-menu (Eligibility Hubs column) and Footer. No page changes needed — the hub already worked, it just had zero primary-nav presence. Verified locally.
+
+    Trigger:
+    Part of taxonomy/findability work.
+
+- [x] **IS-109**: Expose /scholarships-for/sports in primary nav
+  - **Impact**: Medium
+  - **Type**: Feature
+  - **Description**:
+    Context / Why it matters:
+    Found during category verification with Claude. Real data exists — 14 active scholarships tagged 'Sports' in the caste field — but 'Sports' was missing from the Header mega-menu's hardcoded category list.
+
+    Plan / What to do:
+    Add 'Scholarships for Sports/Athletes' to the Header mega-menu's Popular Segments column and Footer.
+
+    Resolution:
+    Added 'Sports & Athletes' link to the Header mega-menu (Popular Segments column) and Footer. No page changes needed — confirmed the existing category-hub resolution logic already generates a working 'sports' slug from the raw caste data since 'Sports' already exists as a clean, single-word caste value. Verified locally: page renders correctly, no 0-result or redirect.
+
+    Trigger:
+    Part of taxonomy/findability work.
+
+- [x] **IS-105**: Redirect duplicate route: /eligibility-checker vs /tools/scholarship-eligibility-checker
+  - **Impact**: Medium
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    Found during route audit with Claude. Confirmed by diff: app/eligibility-checker/page.tsx imports the exact same EligibilityClient component as app/tools/scholarship-eligibility-checker/page.tsx. Two live URLs serving identical content — duplicate content for search engines and split link equity for no reason.
+
+    Plan / What to do:
+    Pick the canonical URL and 301 redirect the other to it.
+
+    Resolution:
+    Audited every internal link site-wide (Footer, ToolsClient, HomeClient, detail pages, calculators, about, guides) — all of them already pointed to /eligibility-checker; zero internal links pointed to /tools/scholarship-eligibility-checker at all, and an existing legacy redirect (/tools/eligibility-checker -> /eligibility-checker) further confirmed that was the established canonical. Removed app/tools/scholarship-eligibility-checker/page.tsx (kept EligibilityClient.tsx, which the canonical page imports and still needs). Added a 301 redirect in next.config.ts. Verified locally: both legacy paths now resolve to the canonical page.
+
+    Trigger:
+    Quick fix, any dev session.
+
+- [x] **IS-104**: BUG: /scholarships-for/girls (and gender-based category pages) querying wrong DB field
+  - **Impact**: Critical
+  - **Type**: Bug
+  - **Description**:
+    Context / Why it matters:
+    Found during IA/taxonomy review with Claude. The category hub page (app/scholarships-for/[category]/page.tsx) filters the `caste` column via getScholarshipsByCategory(), but no `caste` values contain the word 'girls' (confirmed: 0 rows). Gender-targeted scholarships are actually tagged in the separate `gender` column, which has 28 'Female' + 11 'Girls' + several variants = ~44 real active records. This means the live, already-linked-in-header-mega-menu 'Scholarships for Girls' page was very likely showing 0 or near-0 results.
+
+    Plan / What to do:
+    Update the category resolution logic (or add a dedicated path) so 'girls'/'women' slugs also match the `gender` column, not only `caste`. Verify against live DB counts after the fix.
+
+    Resolution:
+    Added getScholarshipsByGender() to lib/db.ts (matches 'female'/'girl' substrings against the `gender` column, OR'd across keywords since 'Female' and 'Girls' are different strings). Added a GENDER_CATEGORIES branch to app/scholarships-for/[category]/page.tsx (generateStaticParams, generateMetadata, and the page component) mirroring the existing STUDY_ABROAD_LEVELS pattern. Verified locally: /scholarships-for/girls now renders 49 real active scholarships (Kotak Kanya, Maharashtra Girls Merit, Kanya Saksharta Protsahan Yojana, etc.) instead of silently redirecting to /scholarships-by-category. Confirmed no regression on /scholarships-for/sc.
+
+    Trigger:
+    Priority fix — affected a page already promoted in primary nav.
 
 - [x] **IS-1**: Fix Verified for 2026 hardcode → dynamic year (line 342)
   - **Impact**: Medium

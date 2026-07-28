@@ -64,9 +64,9 @@ export default async function IncomeRangeHubPage({ params }: { params: Promise<{
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
-                    <Link href="/scholarships-by-income" className="hover:text-blue-700">Income Ranges</Link>
+                    <Link href="/scholarships-by-income" className="hover:text-google-blue">Income Ranges</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">{rangeData.label}</span>
                 </nav>
@@ -77,7 +77,7 @@ export default async function IncomeRangeHubPage({ params }: { params: Promise<{
                         Scholarships for Families {rangeData.label}
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        Students from families with an annual income of <span className="font-semibold text-blue-700">{rangeData.label}</span> are eligible for the following {scholarships.length} scholarships.
+                        Students from families with an annual income of <span className="font-semibold text-google-blue">{rangeData.label}</span> are eligible for the following {scholarships.length} scholarships.
                     </p>
                 </div>
 
@@ -110,16 +110,16 @@ export default async function IncomeRangeHubPage({ params }: { params: Promise<{
                 <div className="mt-16 pt-10 border-t border-gray-100">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                        <Link href="/scholarships-by-income" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700">
+                        <Link href="/scholarships-by-income" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue">
                             ← Income Ranges
                         </Link>
-                        <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                        <Link href="/state-scholarships" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                             By State →
                         </Link>
-                        <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                        <Link href="/scholarships-by-education" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                             By Education →
                         </Link>
-                        <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center">
+                        <Link href="/scholarships-by-category" className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center">
                             By Category →
                         </Link>
                     </div>

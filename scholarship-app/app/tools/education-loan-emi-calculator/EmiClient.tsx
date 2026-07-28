@@ -392,7 +392,7 @@ export default function EmiClient({ scholarships }: Props) {
                                                 onClick={handleCopyResults}
                                                 className="w-full py-2.5 bg-slate-50 border border-gray-255 hover:bg-gray-100 text-gray-700 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                             >
-                                                {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
+                                                {copied ? <Check className="w-3.5 h-3.5 text-success" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
                                                 <span>{copied ? 'Copied Results!' : 'Share Loan Calculation Summary'}</span>
                                             </button>
                                         </div>
@@ -445,26 +445,26 @@ export default function EmiClient({ scholarships }: Props) {
 
                                             {/* CSIS Subsidy Alert Indicator */}
                                             {isCsisEligible ? (
-                                                <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-5 mb-6 flex gap-3.5 items-start">
-                                                    <div className="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                                                <div className="bg-success-soft border border-success-soft rounded-xl p-5 mb-6 flex gap-3.5 items-start">
+                                                    <div className="w-9 h-9 rounded-full bg-success-soft text-success flex items-center justify-center shrink-0">
                                                         <Sparkles className="w-5 h-5" />
                                                     </div>
                                                     <div>
-                                                        <h4 className="font-extrabold text-sm text-emerald-900 leading-snug">🏆 Eligible for Government Interest Subsidy!</h4>
-                                                        <p className="text-xs text-emerald-800 mt-1.5 leading-relaxed">
+                                                        <h4 className="font-extrabold text-sm text-success leading-snug">🏆 Eligible for Government Interest Subsidy!</h4>
+                                                        <p className="text-xs text-success mt-1.5 leading-relaxed">
                                                             Under the Central Sector Interest Subsidy (CSIS) scheme, the government will pay the <strong>₹{moratoriumInterest.toLocaleString('en-IN')}</strong> in interest accumulated while you study. The bank will not add this to your loan!
                                                         </p>
                                                     </div>
                                                 </div>
                                             ) : (
                                                 hasMoratorium && moratoriumInterest > 0 && (
-                                                    <div className="bg-amber-50/50 border border-amber-100 text-amber-900 rounded-xl p-5 mb-6 flex gap-3.5 items-start">
-                                                        <div className="w-9 h-9 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                                                    <div className="bg-accent-soft/50 border border-accent-soft text-accent rounded-xl p-5 mb-6 flex gap-3.5 items-start">
+                                                        <div className="w-9 h-9 rounded-full bg-accent-soft text-accent flex items-center justify-center shrink-0">
                                                             <Info className="w-5 h-5" />
                                                         </div>
                                                         <div>
-                                                            <h4 className="font-extrabold text-sm text-amber-900 leading-snug">Interest Build-up Warning</h4>
-                                                            <p className="text-xs text-amber-800 mt-1.5 leading-relaxed">
+                                                            <h4 className="font-extrabold text-sm text-accent leading-snug">Interest Build-up Warning</h4>
+                                                            <p className="text-xs text-accent mt-1.5 leading-relaxed">
                                                                 During college ({moratoriumMonths} months), the bank accumulates <strong>₹{moratoriumInterest.toLocaleString('en-IN')}</strong> in simple interest. Unless paid off early, this is added to your starting principal, raising your total loan.
                                                             </p>
                                                         </div>

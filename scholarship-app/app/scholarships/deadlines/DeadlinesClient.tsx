@@ -175,7 +175,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                     
                     {/* Hero Section */}
                     <div className="text-center mb-10">
-                        <span className="px-4 py-1.5 bg-blue-50 text-blue-700 text-sm font-extrabold rounded-full tracking-wider uppercase inline-block mb-3">
+                        <span className="px-4 py-1.5 bg-blue-50 text-google-blue text-sm font-extrabold rounded-full tracking-wider uppercase inline-block mb-3">
                             Live updates
                         </span>
                         <h1 className="text-4xl md:text-5xl font-black text-gray-950 tracking-tight mb-4">
@@ -302,7 +302,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                                         setSelectedType('All');
                                         setStatusFilter('All');
                                     }}
-                                    className="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1.5 hover:underline cursor-pointer"
+                                    className="text-xs font-bold text-google-blue hover:underline flex items-center gap-1.5 hover:underline cursor-pointer"
                                 >
                                     <RotateCcw className="h-3.5 w-3.5" /> Reset Filters
                                 </button>
@@ -340,7 +340,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                                                     ? 'bg-gray-100 text-gray-400' 
                                                     : s.daysLeft !== null && s.daysLeft <= 15
                                                         ? 'bg-orange-50 text-orange-600 animate-pulse'
-                                                        : 'bg-blue-50 text-blue-700'
+                                                        : 'bg-blue-50 text-google-blue'
                                             }`}>
                                                 <Calendar className="h-6 w-6" />
                                             </div>
@@ -353,7 +353,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                                                             Closed
                                                         </span>
                                                     ) : s.isRollingOrOpen ? (
-                                                        <span className="px-2.5 py-0.5 bg-blue-50 text-blue-700 rounded-full text-2xs font-extrabold uppercase tracking-wider flex items-center gap-1">
+                                                        <span className="px-2.5 py-0.5 bg-blue-50 text-google-blue rounded-full text-2xs font-extrabold uppercase tracking-wider flex items-center gap-1">
                                                             <InfinityIcon className="h-3 w-3" /> Rolling / Open
                                                         </span>
                                                     ) : s.daysLeft !== null && s.daysLeft <= 15 ? (
@@ -376,7 +376,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                                                 </div>
 
                                                 <Link href={`/scholarships/${s.slug}`} className="block">
-                                                    <h3 className="text-base md:text-lg font-bold text-gray-900 hover:text-blue-700 transition-colors line-clamp-1">
+                                                    <h3 className="text-base md:text-lg font-bold text-gray-900 hover:text-google-blue transition-colors line-clamp-1">
                                                         {s.title}
                                                     </h3>
                                                 </Link>

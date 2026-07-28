@@ -9,17 +9,17 @@ export default function PillarGuideCallout({ pillar }: { pillar: PillarMetadata 
 
     return (
         <Link
-            href={`/pillars/${pillar.slug}`}
-            className="mb-8 flex items-center justify-between gap-4 p-5 bg-indigo-50/60 border border-indigo-100 rounded-2xl hover:bg-indigo-100/50 transition-colors group"
+            href={`/guides/${pillar.slug}`}
+            className="mb-8 flex items-center justify-between gap-4 py-3 border-t border-b border-gray-100 hover:text-google-blue transition-colors group"
         >
             <div className="flex items-center gap-3">
-                <BookOpen className="w-5 h-5 text-indigo-600 shrink-0" />
+                <BookOpen className="w-4 h-4 text-google-blue shrink-0" />
                 <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 block mb-0.5">Read the Full Guide</span>
-                    <span className="text-sm font-bold text-gray-900">{pillar.title}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-0.5">Read the Full Guide</span>
+                    <span className="text-sm font-bold text-google-blue">{pillar.title}</span>
                 </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-indigo-600 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="w-4 h-4 text-gray-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
         </Link>
     );
 }

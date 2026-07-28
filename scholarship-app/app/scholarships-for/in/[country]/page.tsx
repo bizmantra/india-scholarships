@@ -63,9 +63,9 @@ export default async function CountryHubPage({ params }: { params: Promise<{ cou
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
-                    <Link href="/scholarships/international" className="hover:text-blue-700">International</Link>
+                    <Link href="/scholarships/international" className="hover:text-google-blue">International</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">{countryName}</span>
                 </nav>

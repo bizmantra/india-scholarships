@@ -102,9 +102,9 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                 <main className="max-w-5xl mx-auto px-4 py-8">
                     {/* Breadcrumbs */}
                     <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                        <Link href="/" className="hover:text-blue-700">Home</Link>
+                        <Link href="/" className="hover:text-google-blue">Home</Link>
                         <span>/</span>
-                        <Link href="/scholarships-by-education" className="hover:text-blue-700">Education Levels</Link>
+                        <Link href="/scholarships-by-education" className="hover:text-google-blue">Education Levels</Link>
                         <span>/</span>
                         <span className="text-gray-900 font-medium">{displayName}</span>
                     </nav>
@@ -115,11 +115,11 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                             {displayName} Scholarships 2026
                         </h1>
                         <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                            <a href="#scholarship-list" className="font-bold text-blue-700 hover:underline">{scholarships.length} scholarship{scholarships.length !== 1 ? 's' : ''}</a> found for <span className="font-semibold text-gray-900">{displayName}</span>. {description}
+                            <a href="#scholarship-list" className="font-bold text-google-blue hover:underline">{scholarships.length} scholarship{scholarships.length !== 1 ? 's' : ''}</a> found for <span className="font-semibold text-gray-900">{displayName}</span>. {description}
                             {levelPillar && (
                                 <>
                                     {' '}New to how {displayName} scholarships work?{' '}
-                                    <Link href={`/pillars/${levelPillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                    <Link href={`/pillars/${levelPillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.
@@ -136,13 +136,13 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                     <div className="mt-16 pt-10 border-t border-gray-100">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            <Link href="/scholarships-by-education" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700">
+                            <Link href="/scholarships-by-education" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue">
                                 ← Back to All Levels
                             </Link>
-                            <Link href="/state-scholarships" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center justify-center">
+                            <Link href="/state-scholarships" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center justify-center">
                                 Browse by State →
                             </Link>
-                            <Link href="/scholarships-by-category" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-blue-700 text-center justify-center">
+                            <Link href="/scholarships-by-category" className="flex items-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors font-medium text-google-blue text-center justify-center">
                                 Browse by Category →
                             </Link>
                         </div>

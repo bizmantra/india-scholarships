@@ -234,12 +234,12 @@ function simpleMarkdownToHtml(markdown: string): string {
 
   html = html.replace(/^&gt; 💡 (.*$)/gim, '<div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg my-4 text-amber-900 font-medium"><span class="mr-2">💡</span>$1</div>');
   html = html.replace(/^&gt; ⚠️ (.*$)/gim, '<div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg my-4 text-rose-900 font-medium"><span class="mr-2">⚠️</span>$1</div>');
-  html = html.replace(/^&gt; (.*$)/gim, '<blockquote class="bg-slate-50 border-l-4 border-indigo-500 p-4 italic text-slate-700 my-4">$1</blockquote>');
+  html = html.replace(/^&gt; (.*$)/gim, '<blockquote class="bg-slate-50 border-l-4 border-google-blue p-4 italic text-slate-700 my-4">$1</blockquote>');
 
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
   html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
-  html = html.replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-sm">$1</code>');
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-indigo-600 font-semibold underline hover:text-indigo-800">$1</a>');
+  html = html.replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-google-blue px-1.5 py-0.5 rounded font-mono text-sm">$1</code>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-google-blue font-semibold underline hover:opacity-80">$1</a>');
   html = html.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-slate-700 mb-1.5">$1</li>');
   html = html.replace(/^([0-9]+)\. (.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 mb-2 font-medium">$2</li>');
   html = wrapListItems(html);
@@ -555,6 +555,6 @@ export function autoLinkScholarshipMentions(
     if (seen.has(match.slug)) return fullMatch; // only link the first mention
 
     seen.add(match.slug);
-    return `<a href="/scholarships/${match.slug}" class="text-indigo-600 font-semibold hover:underline">${inner}</a>`;
+    return `<a href="/scholarships/${match.slug}" class="text-google-blue font-semibold hover:underline">${inner}</a>`;
   });
 }

@@ -1,7 +1,7 @@
 [
   {
     "id": "IS-1",
-    "title": "Fix Verified for 2026 hardcode \u2192 dynamic year (line 342)",
+    "title": "Fix Verified for 2026 hardcode → dynamic year (line 342)",
     "description": "Context / Why it matters:\nMinor bug flagged during Claude Code validation. Will show wrong in January 2027 if not fixed. 5-minute fix.\n\nPlan / What to do:\nIn app/scholarships/[slug]/page.tsx line 342, change 'Verified for 2026' to 'Verified for ${year}'. The year variable is already defined at line 147.\n\nTrigger:\nQuick fix, any dev session",
     "impact": "Medium",
     "status": "Done",
@@ -10,7 +10,7 @@
   {
     "id": "IS-2",
     "title": "Submit updated sitemap.xml in Google Search Console",
-    "description": "Context / Why it matters:\n700 subpages are live but Google won't discover them efficiently without sitemap submission. Every day without this is indexing delay.\n\nPlan / What to do:\nGSC \u2192 Sitemaps \u2192 submit https://www.indiascholarships.in/sitemap.xml. This triggers efficient crawl of the 700 new subpages generated in the Antigravity sprint.",
+    "description": "Context / Why it matters:\n700 subpages are live but Google won't discover them efficiently without sitemap submission. Every day without this is indexing delay.\n\nPlan / What to do:\nGSC → Sitemaps → submit https://www.indiascholarships.in/sitemap.xml. This triggers efficient crawl of the 700 new subpages generated in the Antigravity sprint.",
     "impact": "Critical",
     "status": "Done",
     "type": ""
@@ -34,7 +34,7 @@
   {
     "id": "IS-5",
     "title": "Printable document checklist on /documents-required subpages",
-    "description": "Context / Why it matters:\nServes the Rajesh Uncle persona \u2014 parent, limited tech comfort, wants physical verification before sending child to apply.\n\nPlan / What to do:\nAdd 'Download Printable Checklist' button on every /documents-required subpage. window.print() + print-optimised CSS class, or simple PDF of docs_needed array. High-contrast, clean layout.\n\nTrigger:\nHelpline subpage done first",
+    "description": "Context / Why it matters:\nServes the Rajesh Uncle persona — parent, limited tech comfort, wants physical verification before sending child to apply.\n\nPlan / What to do:\nAdd 'Download Printable Checklist' button on every /documents-required subpage. window.print() + print-optimised CSS class, or simple PDF of docs_needed array. High-contrast, clean layout.\n\nTrigger:\nHelpline subpage done first",
     "impact": "Medium",
     "status": "Parked",
     "type": ""
@@ -42,7 +42,7 @@
   {
     "id": "IS-6",
     "title": "Add /helpline-contact as 8th subpage type",
-    "description": "Context / Why it matters:\nQueries like 'how to contact e-Kalyan' and 'Sitaram Jindal helpline number' are uncompetitive. Zero manual effort \u2014 data already in database.\n\nPlan / What to do:\nClaude Code prompt: In app/scholarships/[slug]/[subpage]/page.tsx, add 'helpline-contact' as the 8th subpage key. Render the helpline field with contact details, official email, and link. Add to sitemap.ts. ~165 scholarships have helpline data populated.",
+    "description": "Context / Why it matters:\nQueries like 'how to contact e-Kalyan' and 'Sitaram Jindal helpline number' are uncompetitive. Zero manual effort — data already in database.\n\nPlan / What to do:\nClaude Code prompt: In app/scholarships/[slug]/[subpage]/page.tsx, add 'helpline-contact' as the 8th subpage key. Render the helpline field with contact details, official email, and link. Add to sitemap.ts. ~165 scholarships have helpline data populated.",
     "impact": "High",
     "status": "Parked",
     "type": ""
@@ -57,8 +57,8 @@
   },
   {
     "id": "IS-8",
-    "title": "BITSAT page \u2014 reframe as Scholarships for BITSAT Qualifiers",
-    "description": "Context / Why it matters:\n240K impressions at 0.59% CTR \u2014 content mismatch. Even 2% CTR = +3,400 clicks/month.\n\nPlan / What to do:\nBITSAT is an entrance exam not a scholarship. Reframe page title and intro as 'Scholarships for BITSAT Qualifiers / BITS Pilani Students'. Add actual scholarship schemes available to BITS students. Update slug if needed.\n\nTrigger:\nReview after enrichment batch",
+    "title": "BITSAT page — reframe as Scholarships for BITSAT Qualifiers",
+    "description": "Context / Why it matters:\n240K impressions at 0.59% CTR — content mismatch. Even 2% CTR = +3,400 clicks/month.\n\nPlan / What to do:\nBITSAT is an entrance exam not a scholarship. Reframe page title and intro as 'Scholarships for BITSAT Qualifiers / BITS Pilani Students'. Add actual scholarship schemes available to BITS students. Update slug if needed.\n\nTrigger:\nReview after enrichment batch",
     "impact": "Medium",
     "status": "Parked",
     "type": ""
@@ -66,7 +66,7 @@
   {
     "id": "IS-9",
     "title": "Run enrichment batch on 127 expired deadline records",
-    "description": "Context / Why it matters:\n127 of 214 scholarships show 'Applications Closed'. Deadline validator works correctly \u2014 the data is stale. Fixing this protects brand trust.\n\nPlan / What to do:\nRun node scripts/enrich-all-low-ctr-gemini.js --limit 30 four times across the week. Check content-quality-report.md after each run to track progress. Human review before WP sync each time.\n\nTrigger:\nAfter Week 1 broken pages done",
+    "description": "Context / Why it matters:\n127 of 214 scholarships show 'Applications Closed'. Deadline validator works correctly — the data is stale. Fixing this protects brand trust.\n\nPlan / What to do:\nRun node scripts/enrich-all-low-ctr-gemini.js --limit 30 four times across the week. Check content-quality-report.md after each run to track progress. Human review before WP sync each time.\n\nTrigger:\nAfter Week 1 broken pages done",
     "impact": "Critical",
     "status": "Done",
     "type": ""
@@ -74,7 +74,7 @@
   {
     "id": "IS-10",
     "title": "Sitemap splitting into sub-sitemaps",
-    "description": "Context / Why it matters:\nNext.js limit is 50,000 URLs per sitemap. Currently well under. Set reminder at 40,000.\n\nPlan / What to do:\nRefactor app/sitemap.ts to export a sitemap index file referencing split sitemaps: /sitemap-states.xml, /sitemap-subpages-1.xml, /sitemap-subpages-2.xml. Currently at ~1,800 URLs \u2014 not needed yet.\n\nTrigger:\nOnly when total URLs approach 40,000",
+    "description": "Context / Why it matters:\nNext.js limit is 50,000 URLs per sitemap. Currently well under. Set reminder at 40,000.\n\nPlan / What to do:\nRefactor app/sitemap.ts to export a sitemap index file referencing split sitemaps: /sitemap-states.xml, /sitemap-subpages-1.xml, /sitemap-subpages-2.xml. Currently at ~1,800 URLs — not needed yet.\n\nTrigger:\nOnly when total URLs approach 40,000",
     "impact": "Low",
     "status": "Parked",
     "type": ""
@@ -82,7 +82,7 @@
   {
     "id": "IS-11",
     "title": "Rewrite Odisha + West Bengal hub page content in WordPress",
-    "description": "Context / Why it matters:\nOdisha hub has 207K impressions at 0.71% CTR. Title overrides deployed \u2014 now the content needs to match what students expect to find.\n\nPlan / What to do:\nOdisha hub: update intro paragraph to list top 4 schemes by name with amounts. WB hub: feature Nabanna, SVMCM, Aikyashree with eligibility summaries. Add quick eligibility filter links pre-set for each state.\n\nTrigger:\nTitle overrides already deployed in code",
+    "description": "Context / Why it matters:\nOdisha hub has 207K impressions at 0.71% CTR. Title overrides deployed — now the content needs to match what students expect to find.\n\nPlan / What to do:\nOdisha hub: update intro paragraph to list top 4 schemes by name with amounts. WB hub: feature Nabanna, SVMCM, Aikyashree with eligibility summaries. Add quick eligibility filter links pre-set for each state.\n\nTrigger:\nTitle overrides already deployed in code",
     "impact": "High",
     "status": "Parked",
     "type": ""
@@ -97,16 +97,16 @@
   },
   {
     "id": "IS-13",
-    "title": "Add GitHub secrets \u2014 PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK",
-    "description": "Context / Why it matters:\nThe GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.\n\nPlan / What to do:\nGo to GitHub repo \u2192 Settings \u2192 Secrets \u2192 Actions. Add PERPLEXITY_API_KEY (or GEMINI_API_KEY) and VERCEL_DEPLOY_HOOK (Vercel \u2192 Project Settings \u2192 Git \u2192 Deploy Hooks \u2192 create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.",
+    "title": "Add GitHub secrets — PERPLEXITY_API_KEY + VERCEL_DEPLOY_HOOK",
+    "description": "Context / Why it matters:\nThe GitHub Actions cron is built but inactive without secrets. Every content update is currently a 5-step manual process. This one admin task makes the pipeline run automatically every Sunday.\n\nPlan / What to do:\nGo to GitHub repo → Settings → Secrets → Actions. Add PERPLEXITY_API_KEY (or GEMINI_API_KEY) and VERCEL_DEPLOY_HOOK (Vercel → Project Settings → Git → Deploy Hooks → create 'Weekly Enrichment'). This activates the Sunday cron already built and committed.",
     "impact": "Medium",
     "status": "Backlog",
     "type": ""
   },
   {
     "id": "IS-14",
-    "title": "Education loan affiliate \u2014 HDFC Credila or Avanse",
-    "description": "Context / Why it matters:\nHigh-intent placement \u2014 students who need more than scholarship covers are warm leads for education loans.\n\nPlan / What to do:\nPartner with HDFC Credila or Avanse (pay \u20b92,000\u20135,000 per qualified lead). Place native widget on /scholarships-by-course/engineering and /medical pages. Trigger: student matches scholarship covering only partial tuition.\n\nTrigger:\nAfter 80K clicks/month \u00b7 Month 3",
+    "title": "Education loan affiliate — HDFC Credila or Avanse",
+    "description": "Context / Why it matters:\nHigh-intent placement — students who need more than scholarship covers are warm leads for education loans.\n\nPlan / What to do:\nPartner with HDFC Credila or Avanse (pay ₹2,000–5,000 per qualified lead). Place native widget on /scholarships-by-course/engineering and /medical pages. Trigger: student matches scholarship covering only partial tuition.\n\nTrigger:\nAfter 80K clicks/month · Month 3",
     "impact": "High",
     "status": "Backlog",
     "type": ""
@@ -114,7 +114,7 @@
   {
     "id": "IS-15",
     "title": "Apply to Ezoic for premium ad monetisation",
-    "description": "Context / Why it matters:\nAt current traffic, \u20b98,000\u201315,000/month potential. Better than plain AdSense \u2014 dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.\n\nPlan / What to do:\nGo to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection \u2014 don't let ad scripts slow mobile load times.",
+    "description": "Context / Why it matters:\nAt current traffic, ₹8,000–15,000/month potential. Better than plain AdSense — dynamic ad density optimisation protects mobile performance. ads.txt already exists in codebase.\n\nPlan / What to do:\nGo to ezoic.com and apply. No traffic minimum. Takes 15 minutes. Configure with strict Core Web Vitals protection — don't let ad scripts slow mobile load times.",
     "impact": "High",
     "status": "Parked",
     "type": ""
@@ -122,7 +122,7 @@
   {
     "id": "IS-16",
     "title": "WhatsApp alert subscription (MSG91/Twilio)",
-    "description": "Context / Why it matters:\nPriya and Rajesh Uncle live on WhatsApp not email. Higher open rates. But API approval takes time \u2014 do email first.\n\nPlan / What to do:\nIntegrate MSG91 (better for India) WhatsApp Business API. Capture verified phone numbers alongside email. Send deadline alerts: 'The PM Yashasvi deadline closes in 48 hours. Apply here.' Needs WhatsApp Business API approval first.\n\nTrigger:\nAfter email capture proven \u00b7 Month 2",
+    "description": "Context / Why it matters:\nPriya and Rajesh Uncle live on WhatsApp not email. Higher open rates. But API approval takes time — do email first.\n\nPlan / What to do:\nIntegrate MSG91 (better for India) WhatsApp Business API. Capture verified phone numbers alongside email. Send deadline alerts: 'The PM Yashasvi deadline closes in 48 hours. Apply here.' Needs WhatsApp Business API approval first.\n\nTrigger:\nAfter email capture proven · Month 2",
     "impact": "High",
     "status": "Backlog",
     "type": ""
@@ -130,7 +130,7 @@
   {
     "id": "IS-17",
     "title": "B2B school counselor dashboard",
-    "description": "Context / Why it matters:\nMrs. Sharma persona \u2014 power user managing hundreds of students. High-value B2B segment.\n\nPlan / What to do:\nAllow school counselors to upload student Excel sheet and export PDF eligibility matrix. Charge premium subscription. Need email list of 500+ school counselors first to validate demand before building.\n\nTrigger:\nMonth 4-5 \u00b7 needs email list of counselors first",
+    "description": "Context / Why it matters:\nMrs. Sharma persona — power user managing hundreds of students. High-value B2B segment.\n\nPlan / What to do:\nAllow school counselors to upload student Excel sheet and export PDF eligibility matrix. Charge premium subscription. Need email list of 500+ school counselors first to validate demand before building.\n\nTrigger:\nMonth 4-5 · needs email list of counselors first",
     "impact": "High",
     "status": "Parked",
     "type": ""
@@ -162,7 +162,7 @@
   {
     "id": "IS-21",
     "title": "Operating Model for Notion",
-    "description": "I think we can make it significantly more useful by turning it into a true operating system rather than a collection of notes.\nInstead of one page, I'd create sections like:\n\u2022 \ud83d\udccb Master Backlog (prioritized tasks)\n\n\u2022 \ud83c\udfaf Current Sprint (this week's work)\n\n\u2022 \ud83d\udd0d Scholarship Intelligence (new scholarships to research)\n\n\u2022 \ud83d\udcc8 SEO Opportunities (GSC-driven quick wins)\n\n\u2022 \ud83d\udc40 Competitor Watch (what others published this week)\n\n\u2022 \ud83e\udd16 AI Agents (living instructions for each Antigravity agent)\n\n\u2022 \ud83d\udca1 Product Ideas (features, calculators, UX improvements)\n\n\u2022 \ud83d\udcca Monthly Reviews (traffic, rankings, completed work)\n\nThis would become the central operating hub for the project, with clear separation between strategy, execution, and ongoing research. I think it would make Antigravity much more effective because each agent would have a well-defined area of responsibility rather than a single long document.\n\nContext / Why it matters:\nHelps cover everything to do with the site \n\nPlan / What to do:\nCreate operating model (Notion) instead of just backlog etc\n\nTrigger:\nChatGPT",
+    "description": "I think we can make it significantly more useful by turning it into a true operating system rather than a collection of notes.\nInstead of one page, I'd create sections like:\n• 📋 Master Backlog (prioritized tasks)\n\n• 🎯 Current Sprint (this week's work)\n\n• 🔍 Scholarship Intelligence (new scholarships to research)\n\n• 📈 SEO Opportunities (GSC-driven quick wins)\n\n• 👀 Competitor Watch (what others published this week)\n\n• 🤖 AI Agents (living instructions for each Antigravity agent)\n\n• 💡 Product Ideas (features, calculators, UX improvements)\n\n• 📊 Monthly Reviews (traffic, rankings, completed work)\n\nThis would become the central operating hub for the project, with clear separation between strategy, execution, and ongoing research. I think it would make Antigravity much more effective because each agent would have a well-defined area of responsibility rather than a single long document.\n\nContext / Why it matters:\nHelps cover everything to do with the site \n\nPlan / What to do:\nCreate operating model (Notion) instead of just backlog etc\n\nTrigger:\nChatGPT",
     "impact": "Medium",
     "status": "Parked",
     "type": ""
@@ -170,7 +170,7 @@
   {
     "id": "IS-22",
     "title": "Grow Organic Traffic",
-    "description": "Priority 1 \u2014 Grow Organic Traffic (Highest ROI) \u2b50\u2b50\u2b50\u2b50\u2b50\nObjective: Expand what is already working.\nActions\n\u2022 \nResearch and publish 10\u201315 new scholarships every week.\n\n\u2022 \nPrioritize newly announced scholarships.\n\n\u2022 \nPublish scholarships with low competition and high demand.\n\n\u2022 \nMaintain a Scholarship Opportunity Tracker.\n\nSuccess Metric\n\u2022 \n10\u201315 new scholarship pages/week.\n\n\nContext / Why it matters:\nEssential for the site \n\nPlan / What to do:\nGrow organic traffic\n\nTrigger:\nChatGPT",
+    "description": "Priority 1 — Grow Organic Traffic (Highest ROI) ⭐⭐⭐⭐⭐\nObjective: Expand what is already working.\nActions\n• \nResearch and publish 10–15 new scholarships every week.\n\n• \nPrioritize newly announced scholarships.\n\n• \nPublish scholarships with low competition and high demand.\n\n• \nMaintain a Scholarship Opportunity Tracker.\n\nSuccess Metric\n• \n10–15 new scholarship pages/week.\n\n\nContext / Why it matters:\nEssential for the site \n\nPlan / What to do:\nGrow organic traffic\n\nTrigger:\nChatGPT",
     "impact": "High",
     "status": "Backlog",
     "type": ""
@@ -186,7 +186,7 @@
   {
     "id": "IS-25",
     "title": "Scholarship Micro tools",
-    "description": "I want IndiaScholarships.in to become a decision engine.\nImagine tools like:\n\u2022 \n\ud83c\udfaf Scholarship Eligibility Checker\n\n\u2022 \n\ud83d\udcb0 Scholarship Amount Calculator\n\n\u2022 \n\ud83d\udcc5 Deadline Calendar\n\n\u2022 \n\ud83d\udcca Scholarship Success Probability\n\n\u2022 \n\ud83e\uddfe Document Readiness Checklist\n\n\u2022 \n\ud83d\udd14 Deadline Alerts\n\n\u2022 \n\ud83d\udccd State Scholarship Finder\n\n\u2022 \n\ud83c\udf93 College Scholarship Finder\n\n\u2022 \n\ud83c\udfdb Government Scheme Finder\n\n\u2022 \n\ud83e\udd16 AI Scholarship Recommender\n\nTrigger:\nchatgpt",
+    "description": "I want IndiaScholarships.in to become a decision engine.\nImagine tools like:\n• \n🎯 Scholarship Eligibility Checker\n\n• \n💰 Scholarship Amount Calculator\n\n• \n📅 Deadline Calendar\n\n• \n📊 Scholarship Success Probability\n\n• \n🧾 Document Readiness Checklist\n\n• \n🔔 Deadline Alerts\n\n• \n📍 State Scholarship Finder\n\n• \n🎓 College Scholarship Finder\n\n• \n🏛 Government Scheme Finder\n\n• \n🤖 AI Scholarship Recommender\n\nTrigger:\nchatgpt",
     "impact": "High",
     "status": "Backlog",
     "type": ""
@@ -194,7 +194,7 @@
   {
     "id": "IS-27",
     "title": "Expand top pages",
-    "description": "Your GSC already told us what Google likes.\nStart with:\n\u2022 \nPM YASASVI\n\n\u2022 \nSitaram Jindal\n\n\u2022 \nAny page with 500+ clicks/month\n\nFor each one create supporting pages like:\n\u2022 \nEligibility\n\n\u2022 \nApply Online\n\n\u2022 \nDocuments Required\n\n\u2022 \nLast Date\n\n\u2022 \nRenewal\n\n\u2022 \nLogin\n\n\u2022 \nStatus Check\n\n\u2022 \nFAQs\n\nThink of these as intent pages, not duplicate content.\n\n\nTrigger:\nchatgpt",
+    "description": "Your GSC already told us what Google likes.\nStart with:\n• \nPM YASASVI\n\n• \nSitaram Jindal\n\n• \nAny page with 500+ clicks/month\n\nFor each one create supporting pages like:\n• \nEligibility\n\n• \nApply Online\n\n• \nDocuments Required\n\n• \nLast Date\n\n• \nRenewal\n\n• \nLogin\n\n• \nStatus Check\n\n• \nFAQs\n\nThink of these as intent pages, not duplicate content.\n\n\nTrigger:\nchatgpt",
     "impact": "Critical",
     "status": "Backlog",
     "type": ""
@@ -202,7 +202,7 @@
   {
     "id": "IS-28",
     "title": "Improve ranking positions from 8-20",
-    "description": "his is probably your fastest SEO win.\nEvery month I'll identify pages like:Position 11Position 14Position 18\nOften these need:\n\u2022 \nBetter introduction\n\n\u2022 \nUpdated eligibility\n\n\u2022 \nFAQs\n\n\u2022 \nInternal links\n\n\u2022 \nBetter title\n\nMoving from #12 to #5 can bring far more traffic than publishing a new page.\n\nTrigger:\nchatgpt",
+    "description": "his is probably your fastest SEO win.\nEvery month I'll identify pages like:Position 11Position 14Position 18\nOften these need:\n• \nBetter introduction\n\n• \nUpdated eligibility\n\n• \nFAQs\n\n• \nInternal links\n\n• \nBetter title\n\nMoving from #12 to #5 can bring far more traffic than publishing a new page.\n\nTrigger:\nchatgpt",
     "impact": "High",
     "status": "Backlog",
     "type": ""
@@ -218,7 +218,7 @@
   {
     "id": "IS-31",
     "title": "Create multiple agents ",
-    "description": "I think we can make this much more powerful by evolving it into an AI Operating Manual rather than just a backlog. For example:\n\u2022 Role: Scholarship Research Agent\n\n    \u25e6 \nFind newly announced scholarships.\n\n    \u25e6 \nVerify eligibility, deadlines, official sources.\n\n    \u25e6 \nFlag duplicates.\n\n\u2022 Role: SEO Agent\n\n    \u25e6 \nAnalyze GSC.\n\n    \u25e6 \nFind pages ranking #8\u201320.\n\n    \u25e6 \nSuggest title/H1/FAQ improvements.\n\n\u2022 Role: Content QA Agent\n\n    \u25e6 \nEnsure every scholarship page has required sections.\n\n    \u25e6 \nCheck for outdated dates.\n\n    \u25e6 \nValidate internal links.\n\n\u2022 Role: Product Agent\n\n    \u25e6 \nRecommend new tools and features.\n\n    \u25e6 \nIdentify UX improvements.\n\n\u2022 Role: Competitor Intelligence Agent\n\n    \u25e6 \nTrack new scholarships, content, and features added by competitors.\n\nThis would allow Antigravity to run with much more autonomy while giving you actionable outputs instead of generic suggestions. I think that kind of operating manual will become one of the most valuable assets for this project, and we can keep refining it as your platform grows. \n\nTrigger:\nchatgpt",
+    "description": "I think we can make this much more powerful by evolving it into an AI Operating Manual rather than just a backlog. For example:\n• Role: Scholarship Research Agent\n\n    ◦ \nFind newly announced scholarships.\n\n    ◦ \nVerify eligibility, deadlines, official sources.\n\n    ◦ \nFlag duplicates.\n\n• Role: SEO Agent\n\n    ◦ \nAnalyze GSC.\n\n    ◦ \nFind pages ranking #8–20.\n\n    ◦ \nSuggest title/H1/FAQ improvements.\n\n• Role: Content QA Agent\n\n    ◦ \nEnsure every scholarship page has required sections.\n\n    ◦ \nCheck for outdated dates.\n\n    ◦ \nValidate internal links.\n\n• Role: Product Agent\n\n    ◦ \nRecommend new tools and features.\n\n    ◦ \nIdentify UX improvements.\n\n• Role: Competitor Intelligence Agent\n\n    ◦ \nTrack new scholarships, content, and features added by competitors.\n\nThis would allow Antigravity to run with much more autonomy while giving you actionable outputs instead of generic suggestions. I think that kind of operating manual will become one of the most valuable assets for this project, and we can keep refining it as your platform grows. \n\nTrigger:\nchatgpt",
     "impact": "Critical",
     "status": "Backlog",
     "type": ""
@@ -234,7 +234,7 @@
   {
     "id": "IS-61",
     "title": "Scholarship News tracker ",
-    "description": "Whenever a scholarship\n\u2022 \nopens\n\n\u2022 \ncloses\n\n\u2022 \nextends deadline\n\n\u2022 \nchanges eligibility\n\n\u2022 \nincreases amount\n\nwe update the page immediately.\n\nTrigger:\nChatgpt",
+    "description": "Whenever a scholarship\n• \nopens\n\n• \ncloses\n\n• \nextends deadline\n\n• \nchanges eligibility\n\n• \nincreases amount\n\nwe update the page immediately.\n\nTrigger:\nChatgpt",
     "impact": "High",
     "status": "Parked",
     "type": "Strategy"
@@ -282,15 +282,15 @@
   {
     "id": "IS-45",
     "title": "State hubs: sort cards by deadline urgency (soonest open first, expired last)",
-    "description": "Found in IS-37 QA. State hub card order is arbitrary. Sort cards by: (1) deadline urgency \u2014 soonest non-expired first, (2) expired/no-deadline pushed to bottom. Secondary: highest amount_annual. This helps mobile users identify the most time-sensitive opportunities immediately. Also applies to the main /scholarships listing. Consider making sort user-selectable (deadline / amount / newest).",
+    "description": "Found in IS-37 QA. State hub card order is arbitrary. Sort cards by: (1) deadline urgency — soonest non-expired first, (2) expired/no-deadline pushed to bottom. Secondary: highest amount_annual. This helps mobile users identify the most time-sensitive opportunities immediately. Also applies to the main /scholarships listing. Consider making sort user-selectable (deadline / amount / newest).",
     "impact": "Medium",
     "status": "Done",
     "type": "Content Task, Feature"
   },
   {
     "id": "IS-46",
-    "title": "State hubs: fix misleading 'Max Amount' stat \u2014 add Typical Range or relabel",
-    "description": "Found in IS-37 QA. The 'Max Amount' stat card on state hubs (e.g. Karnataka shows '\u20b930,00,000') is misleading \u2014 this is a rare PG/overseas scholarship, not representative of the typical \u20b93,000\u2013\u20b960,000 range. Options: (1) Add a 'Typical Range' stat computed from percentile (P25\u2013P75) of amount_annual, (2) Label the max amount as 'Highest Available' more explicitly, (3) Replace with median amount. Prevents users feeling baited by an outlier figure.",
+    "title": "State hubs: fix misleading 'Max Amount' stat — add Typical Range or relabel",
+    "description": "Found in IS-37 QA. The 'Max Amount' stat card on state hubs (e.g. Karnataka shows '₹30,00,000') is misleading — this is a rare PG/overseas scholarship, not representative of the typical ₹3,000–₹60,000 range. Options: (1) Add a 'Typical Range' stat computed from percentile (P25–P75) of amount_annual, (2) Label the max amount as 'Highest Available' more explicitly, (3) Replace with median amount. Prevents users feeling baited by an outlier figure.",
     "impact": "Medium",
     "status": "Backlog",
     "type": "Bug"
@@ -314,7 +314,7 @@
   {
     "id": "IS-49",
     "title": "Scholarship Deadline & Results Pages (SEO)",
-    "description": "Narrowed from original \"Scholarship News Feature\" concept. Not a newsroom/browsing product \u2014 pure SEO play: auto-generate lightweight, individually-indexable pages/sections for scholarship deadline extensions and result publications on top-N high-traffic scholarships, sourced from existing DB field changes. Gated by Phase 0 search-volume validation before any build. Full PRD: IS-49_Scholarship_Event_Pages_PRD.docx. Parked until Phase 0 validation is prioritized.",
+    "description": "Narrowed from original \"Scholarship News Feature\" concept. Not a newsroom/browsing product — pure SEO play: auto-generate lightweight, individually-indexable pages/sections for scholarship deadline extensions and result publications on top-N high-traffic scholarships, sourced from existing DB field changes. Gated by Phase 0 search-volume validation before any build. Full PRD: IS-49_Scholarship_Event_Pages_PRD.docx. Parked until Phase 0 validation is prioritized.",
     "impact": "Medium",
     "status": "Parked",
     "type": "Feature"
@@ -386,7 +386,7 @@
   {
     "id": "IS-58",
     "title": "Research & scope International High-Value Scholarships (study-abroad content track)",
-    "description": "Moved to \u270d\ufe0f Content Backlog \u2014 this is research/content-population work, not dev. See: Research & scope International High-Value Scholarships (study-abroad content track) (https://app.notion.com/p/Research-scope-International-High-Value-Scholarships-study-abroad-content-track-3962e0a03f1e8193bc7cf5ef80df1cb5?pvs=21)",
+    "description": "Moved to ✍️ Content Backlog — this is research/content-population work, not dev. See: Research & scope International High-Value Scholarships (study-abroad content track) (https://app.notion.com/p/Research-scope-International-High-Value-Scholarships-study-abroad-content-track-3962e0a03f1e8193bc7cf5ef80df1cb5?pvs=21)",
     "impact": "Medium",
     "status": "Parked",
     "type": "Content Task"
@@ -514,7 +514,7 @@
   {
     "id": "IS-75",
     "title": "Integrate Tools into Scholarship Detail Pages (Deep Links)",
-    "description": "GOAL: Drive tool usage and reduce friction on scholarship detail pages by surfacing relevant tools contextually \u2014 at the exact moment a student is reading eligibility criteria, income limits, or academic cutoffs.\n\nCONTEXT: Right now tools (/tools) and scholarship detail pages (/scholarships/[slug]) are completely siloed. A student reading about a scholarship has to navigate away to use a calculator, which kills momentum.\n\nAPPROACH (Phase 1 \u2014 Deep Links, ship fast):\nAdd contextual tool CTAs directly on the detail page at relevant sections:\n\u2022 Near 'Eligibility Criteria' \u2192 Scholarship Eligibility Checker CTA: 'Check if you qualify \u2192'\n\u2022 Near 'Income Limit' field \u2192 Family Income Calculator CTA: 'Verify your household income \u2192'\n\u2022 Near 'Minimum Marks / CGPA' field \u2192 CGPA to Percentage Converter CTA: 'Convert your CGPA \u2192'\n\u2022 Near 'Benefits / Amount' section \u2192 Scholarship Amount Calculator CTA: 'Estimate your benefit \u2192'\n\u2022 Bottom of page \u2192 'Explore similar tools' strip (passive, links to /tools)\n\nIMPLEMENTATION NOTES:\n\u2022 Start with deep links only (buttons/cards that open the standalone tool page). No inline widgets yet.\n\u2022 Links can be pre-parameterised if the tool supports URL params (e.g. pre-select category/level based on the scholarship record).\n\u2022 Use conditional rendering: only show a tool CTA if the relevant DB field is populated (e.g. only show Income Calculator CTA if income_limit field is non-null).\n\u2022 Target file: app/scholarships/[slug]/page.tsx and relevant subpage components.\n\nPHASE 2 (future, separate ticket): Embed inline mini-widgets on the detail page so students never leave the page.\n\nSUCCESS METRIC: Track clicks on tool CTAs from detail pages. Goal is >5% CTR from detail page to tool.",
+    "description": "GOAL: Drive tool usage and reduce friction on scholarship detail pages by surfacing relevant tools contextually — at the exact moment a student is reading eligibility criteria, income limits, or academic cutoffs.\n\nCONTEXT: Right now tools (/tools) and scholarship detail pages (/scholarships/[slug]) are completely siloed. A student reading about a scholarship has to navigate away to use a calculator, which kills momentum.\n\nAPPROACH (Phase 1 — Deep Links, ship fast):\nAdd contextual tool CTAs directly on the detail page at relevant sections:\n• Near 'Eligibility Criteria' → Scholarship Eligibility Checker CTA: 'Check if you qualify →'\n• Near 'Income Limit' field → Family Income Calculator CTA: 'Verify your household income →'\n• Near 'Minimum Marks / CGPA' field → CGPA to Percentage Converter CTA: 'Convert your CGPA →'\n• Near 'Benefits / Amount' section → Scholarship Amount Calculator CTA: 'Estimate your benefit →'\n• Bottom of page → 'Explore similar tools' strip (passive, links to /tools)\n\nIMPLEMENTATION NOTES:\n• Start with deep links only (buttons/cards that open the standalone tool page). No inline widgets yet.\n• Links can be pre-parameterised if the tool supports URL params (e.g. pre-select category/level based on the scholarship record).\n• Use conditional rendering: only show a tool CTA if the relevant DB field is populated (e.g. only show Income Calculator CTA if income_limit field is non-null).\n• Target file: app/scholarships/[slug]/page.tsx and relevant subpage components.\n\nPHASE 2 (future, separate ticket): Embed inline mini-widgets on the detail page so students never leave the page.\n\nSUCCESS METRIC: Track clicks on tool CTAs from detail pages. Goal is >5% CTR from detail page to tool.",
     "impact": "High",
     "status": "Backlog",
     "type": "Feature"
@@ -522,15 +522,15 @@
   {
     "id": "IS-76",
     "title": "Lead Capture via Scholarship Tools",
-    "description": "GOAL: Capture student contact details at the highest-intent moment on the site \u2014 immediately after they complete a tool and see their results (e.g. Eligibility Checker shows 5 matching scholarships).\n\nCONTEXT: Parked as of July 2026 until two decisions are made:\n1. What do we offer the student in exchange for their contact? (the 'exchange value')\n2. What infrastructure will send the follow-up? (email service, WhatsApp API, etc.)\n\nOPTIONS TO DECIDE BETWEEN (for discussion when picking this up):\nOption A \u2014 'Email me my results': Zero-friction. Student enters email to receive their eligibility results or tool output. Requires: transactional email service (e.g. Resend, Mailchimp, SendGrid). Easiest to ship.\nOption B \u2014 'Get notified when applications open': Student opts in to deadline alerts for matched scholarships. Higher intent, higher value to student. Requires: email service + scheduled job to send alerts when scholarship status changes.\nOption C \u2014 WhatsApp opt-in: 'Get alerts on WhatsApp'. Higher conversion rate in India. Requires: WhatsApp Business API setup (via Twilio, Interakt, or WATI). More complex setup.\n\nWHERE TO INSERT THE FORM:\n\u2022 End of Eligibility Checker results (highest intent \u2014 student just saw their matches)\n\u2022 End of CGPA Converter results (after seeing their converted % + matched scholarships)\n\u2022 End of Family Income Calculator results (after seeing income band + matched schemes)\n\u2022 Scholarship detail page 'Alert me when this opens' CTA\n\nPRE-REQUISITES BEFORE BUILDING:\n\u2022 Decide on Option A / B / C above\n\u2022 Set up chosen email/WhatsApp service and obtain API keys\n\u2022 Decide on data storage: where leads are stored (a simple DB table, Airtable, Google Sheets, CRM)\n\u2022 Define the first follow-up sequence (what does the student receive after opt-in?)\n\nNOTE: Do NOT add a generic popup or modal. The opt-in must feel like a natural next step after the tool gives them value.",
+    "description": "GOAL: Capture student contact details at the highest-intent moment on the site — immediately after they complete a tool and see their results (e.g. Eligibility Checker shows 5 matching scholarships).\n\nCONTEXT: Parked as of July 2026 until two decisions are made:\n1. What do we offer the student in exchange for their contact? (the 'exchange value')\n2. What infrastructure will send the follow-up? (email service, WhatsApp API, etc.)\n\nOPTIONS TO DECIDE BETWEEN (for discussion when picking this up):\nOption A — 'Email me my results': Zero-friction. Student enters email to receive their eligibility results or tool output. Requires: transactional email service (e.g. Resend, Mailchimp, SendGrid). Easiest to ship.\nOption B — 'Get notified when applications open': Student opts in to deadline alerts for matched scholarships. Higher intent, higher value to student. Requires: email service + scheduled job to send alerts when scholarship status changes.\nOption C — WhatsApp opt-in: 'Get alerts on WhatsApp'. Higher conversion rate in India. Requires: WhatsApp Business API setup (via Twilio, Interakt, or WATI). More complex setup.\n\nWHERE TO INSERT THE FORM:\n• End of Eligibility Checker results (highest intent — student just saw their matches)\n• End of CGPA Converter results (after seeing their converted % + matched scholarships)\n• End of Family Income Calculator results (after seeing income band + matched schemes)\n• Scholarship detail page 'Alert me when this opens' CTA\n\nPRE-REQUISITES BEFORE BUILDING:\n• Decide on Option A / B / C above\n• Set up chosen email/WhatsApp service and obtain API keys\n• Decide on data storage: where leads are stored (a simple DB table, Airtable, Google Sheets, CRM)\n• Define the first follow-up sequence (what does the student receive after opt-in?)\n\nNOTE: Do NOT add a generic popup or modal. The opt-in must feel like a natural next step after the tool gives them value.",
     "impact": "High",
     "status": "Backlog",
     "type": "Feature, Strategy"
   },
   {
     "id": "IS-77",
-    "title": "Scholarship Tools Expansion \u2014 Phase 2 (Document Checklist, Merit Checker, Stipend vs Loan)",
-    "description": "Phase 2 expansion of the IndiaScholarships tool suite. Three tools identified for future consideration:\n\n1. DOCUMENT CHECKLIST GENERATOR\nStudent enters their profile (category, scholarship type, education level) and gets a personalised list of documents they need to apply. High utility \u2014 most students lose applications due to missing paperwork. Data already exists in our DB via the documents_required field. Low effort, no external dependencies. Suggested slug: /tools/document-checklist-generator\n\n2. MERIT / RANK CUTOFF CHECKER\nStudent enters their board/competitive exam rank or percentage and sees which merit-based scholarships they qualify for (e.g. Central Sector Scholarship, Inspire, state merit schemes). Good SEO angle \u2014 targets queries like 'JEE rank scholarship eligibility' and 'NEET score scholarship'. Medium effort \u2014 requires mapping rank/score thresholds to scholarship eligibility in the DB. Suggested slug: /tools/merit-rank-cutoff-checker\n\n3. STIPEND VS LOAN CALCULATOR\nSide-by-side comparison tool: 'Should I take this scholarship stipend or an education loan?' Shows the long-term financial difference including interest cost, repayment burden, and net benefit of the scholarship over time. Useful for higher education students choosing between scholarship + partial loan vs full loan. Medium effort. Suggested slug: /tools/stipend-vs-loan-calculator\n\nAll three should follow the existing tool template (problem statement, calculator, scenario examples, FAQ + JSON-LD schema) and be added to the Tools Hub with Coming Soon cards until implemented.",
+    "title": "Scholarship Tools Expansion — Phase 2 (Document Checklist, Merit Checker, Stipend vs Loan)",
+    "description": "Phase 2 expansion of the IndiaScholarships tool suite. Three tools identified for future consideration:\n\n1. DOCUMENT CHECKLIST GENERATOR\nStudent enters their profile (category, scholarship type, education level) and gets a personalised list of documents they need to apply. High utility — most students lose applications due to missing paperwork. Data already exists in our DB via the documents_required field. Low effort, no external dependencies. Suggested slug: /tools/document-checklist-generator\n\n2. MERIT / RANK CUTOFF CHECKER\nStudent enters their board/competitive exam rank or percentage and sees which merit-based scholarships they qualify for (e.g. Central Sector Scholarship, Inspire, state merit schemes). Good SEO angle — targets queries like 'JEE rank scholarship eligibility' and 'NEET score scholarship'. Medium effort — requires mapping rank/score thresholds to scholarship eligibility in the DB. Suggested slug: /tools/merit-rank-cutoff-checker\n\n3. STIPEND VS LOAN CALCULATOR\nSide-by-side comparison tool: 'Should I take this scholarship stipend or an education loan?' Shows the long-term financial difference including interest cost, repayment burden, and net benefit of the scholarship over time. Useful for higher education students choosing between scholarship + partial loan vs full loan. Medium effort. Suggested slug: /tools/stipend-vs-loan-calculator\n\nAll three should follow the existing tool template (problem statement, calculator, scenario examples, FAQ + JSON-LD schema) and be added to the Tools Hub with Coming Soon cards until implemented.",
     "impact": "Medium",
     "status": "Backlog",
     "type": "Feature"
@@ -609,7 +609,7 @@
   },
   {
     "id": "IS-87",
-    "title": "Option 2 \u2014 Personalized Telegram Bot Alerts",
+    "title": "Option 2 — Personalized Telegram Bot Alerts",
     "description": "User-specific subscriptions based on State/Level/Category matching. Store chat IDs in SQLite and run matching queries.",
     "impact": "Medium",
     "status": "Parked",
@@ -682,7 +682,7 @@
   {
     "id": "IS-96",
     "title": "Fix Header nav: mislabeled 'Private & Corporate' link + missing /corporate-scholarships entry",
-    "description": "Context / Why it matters:\nHeader.tsx only links to /private-scholarships under the label 'Private & Corporate', but /corporate-scholarships is a separate page (24 DB rows, real GSC traffic on Tata Pankh/HDFC/LIC queries) that isn't linked from nav at all \u2014 it's a pure orphan page reachable only by direct URL.\n\nPlan / What to do:\nSplit the nav entry into two correctly-labeled links, or add a distinct /corporate-scholarships link alongside the existing private one. Quick fix, do alongside the Corporate & Private pillar build (CNT-37).",
+    "description": "Context / Why it matters:\nHeader.tsx only links to /private-scholarships under the label 'Private & Corporate', but /corporate-scholarships is a separate page (24 DB rows, real GSC traffic on Tata Pankh/HDFC/LIC queries) that isn't linked from nav at all — it's a pure orphan page reachable only by direct URL.\n\nPlan / What to do:\nSplit the nav entry into two correctly-labeled links, or add a distinct /corporate-scholarships link alongside the existing private one. Quick fix, do alongside the Corporate & Private pillar build (CNT-37).",
     "impact": "Medium",
     "status": "Done",
     "type": "bug"
@@ -690,7 +690,7 @@
   {
     "id": "IS-97",
     "title": "Build /pillars index/landing page",
-    "description": "Context / Why it matters:\nNo index page currently exists listing all 14 pillar guides. 13 of 14 are undiscoverable except via direct URL or the single hub page each links from \u2014 only 1/14 is in site nav.\n\nPlan / What to do:\nBuild a landing page at /pillars listing all pillar guides grouped by type (state, category, national), similar in spirit to the existing /state-scholarships directory page but distinct-content-styled per earlier discussion.",
+    "description": "Context / Why it matters:\nNo index page currently exists listing all 14 pillar guides. 13 of 14 are undiscoverable except via direct URL or the single hub page each links from — only 1/14 is in site nav.\n\nPlan / What to do:\nBuild a landing page at /pillars listing all pillar guides grouped by type (state, category, national), similar in spirit to the existing /state-scholarships directory page but distinct-content-styled per earlier discussion.",
     "impact": "High",
     "status": "Done",
     "type": "feature"
@@ -698,7 +698,7 @@
   {
     "id": "IS-98",
     "title": "Add homepage pillar-linking module",
-    "description": "Context / Why it matters:\nHomeClient.tsx currently has zero links to any pillar guide (hero, Category Gateway, trending/recent/deadline carousels, eligibility-checker CTA all checked \u2014 no pillar module present). This is a major discoverability and authority-flow gap identified in the IA/SEO audit.\n\nPlan / What to do:\nAdd a homepage section surfacing 3-6 pillar guides (e.g. featured states + SC/ST + a category pillar), linking to the new /pillars index (IS-97).",
+    "description": "Context / Why it matters:\nHomeClient.tsx currently has zero links to any pillar guide (hero, Category Gateway, trending/recent/deadline carousels, eligibility-checker CTA all checked — no pillar module present). This is a major discoverability and authority-flow gap identified in the IA/SEO audit.\n\nPlan / What to do:\nAdd a homepage section surfacing 3-6 pillar guides (e.g. featured states + SC/ST + a category pillar), linking to the new /pillars index (IS-97).",
     "impact": "High",
     "status": "Done",
     "type": "feature"
@@ -713,7 +713,7 @@
   },
   {
     "id": "IS-100",
-    "title": "Article \u2192 pillar backlink retrofit",
+    "title": "Article → pillar backlink retrofit",
     "description": "Context / Why it matters:\nArticles currently link down to individual scholarships (relatedScholarships frontmatter) but never link up to matching pillars, even where a clear match exists (~7 articles identified with a matching pillar during pillar-build work).\n\nPlan / What to do:\nAdd a relatedPillarSlug frontmatter field to content/articles/*.md and render a callout (reuse PillarGuideCallout.tsx pattern) on app/articles/[slug]/page.tsx. [Implemented: added relatedPillarSlug frontmatter field to ArticleMetadata, reused existing pillar->article relatedArticleSlugs associations (20 articles matched, reverse-mapped), added PillarGuideCallout to app/articles/[slug]/page.tsx above the fold.]",
     "impact": "Medium",
     "status": "Done",
@@ -730,7 +730,7 @@
   {
     "id": "IS-102",
     "title": "Enrichment priority: expand Uttar Pradesh scholarship inventory",
-    "description": "Context / Why it matters:\n\"up scholarship\" = 4,090,000/mo, by far the single largest keyword cluster found across all research \u2014 yet UP has only 19 DB rows, one of the thinnest state datasets relative to its demand. CNT-3 (top 5 UP scholarships) is marked Done but coverage is still thin at 19 rows.\n\nPlan / What to do:\nPrioritize UP in the next enrichment pipeline run \u2014 research and add additional UP state schemes beyond the initial top-5 batch before further deepening the UP pillar's content.",
+    "description": "Context / Why it matters:\n\"up scholarship\" = 4,090,000/mo, by far the single largest keyword cluster found across all research — yet UP has only 19 DB rows, one of the thinnest state datasets relative to its demand. CNT-3 (top 5 UP scholarships) is marked Done but coverage is still thin at 19 rows.\n\nPlan / What to do:\nPrioritize UP in the next enrichment pipeline run — research and add additional UP state schemes beyond the initial top-5 batch before further deepening the UP pillar's content.",
     "impact": "High",
     "status": "Done",
     "type": "feature"
@@ -738,9 +738,193 @@
   {
     "id": "IS-103",
     "title": "Enrichment priority: expand Gujarat scholarship inventory",
-    "description": "Context / Why it matters:\n\"digital gujarat scholarship\" = 368,000/mo, but Gujarat has only 8 DB rows \u2014 thinnest coverage of any state relative to its demand, and currently has no pillar (see CNT-42).\n\nPlan / What to do:\nRun enrichment research on Gujarat state scholarships ahead of/alongside the Gujarat pillar build (CNT-42).",
+    "description": "Context / Why it matters:\n\"digital gujarat scholarship\" = 368,000/mo, but Gujarat has only 8 DB rows — thinnest coverage of any state relative to its demand, and currently has no pillar (see CNT-42).\n\nPlan / What to do:\nRun enrichment research on Gujarat state scholarships ahead of/alongside the Gujarat pillar build (CNT-42).",
     "impact": "High",
     "status": "Done",
     "type": "feature"
+  },
+  {
+    "id": "IS-104",
+    "title": "Fix /scholarships-for/girls (and gender-based category pages) querying wrong DB field",
+    "description": "Context / Why it matters:\nFound during IA/taxonomy review. The category hub page (app/scholarships-for/[category]/page.tsx) filters the `caste` column via getScholarshipsByCategory(), but no `caste` values contain the word 'girls' (confirmed: 0 rows). Gender-targeted scholarships are actually tagged in the separate `gender` column, which has 28 'Female' + 11 'Girls' + several variants = ~44 real active records. This means the live, already-linked-in-header-mega-menu 'Scholarships for Girls' page is very likely showing 0 or near-0 results right now.\n\nPlan / What to do:\nUpdate the category resolution logic (or add a dedicated path) so 'girls'/'women' slugs also match the `gender` column (LIKE '%Female%' OR LIKE '%Girls%'), not only `caste`. Verify against live DB counts after the fix.\n\nTrigger:\nPriority fix — affects a page already promoted in primary nav.\n\nResolution:\nAdded getScholarshipsByGender() to lib/db.ts (matches 'female'/'girl' substrings against the `gender` column, OR'd across keywords since 'Female' and 'Girls' are different strings). Added a GENDER_CATEGORIES branch to app/scholarships-for/[category]/page.tsx (generateStaticParams, generateMetadata, and the page component) mirroring the existing STUDY_ABROAD_LEVELS pattern. Verified locally: /scholarships-for/girls now renders 49 real active scholarships (Kotak Kanya, Maharashtra Girls Merit, Kanya Saksharta Protsahan Yojana, etc.) instead of silently redirecting to /scholarships-by-category. Confirmed no regression on /scholarships-for/sc.",
+    "impact": "Critical",
+    "status": "Done",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-105",
+    "title": "Redirect duplicate route: /eligibility-checker vs /tools/scholarship-eligibility-checker",
+    "description": "Context / Why it matters:\nFound during route audit. Confirmed by diff: app/eligibility-checker/page.tsx imports the exact same EligibilityClient component as app/tools/scholarship-eligibility-checker/page.tsx. Two live URLs serving identical content — duplicate content for search engines and split link equity for no reason.\n\nPlan / What to do:\nPick the canonical URL (likely /tools/scholarship-eligibility-checker since Tools is a real nav section) and 301 redirect the other to it. Update the Footer link accordingly.\n\nTrigger:\nQuick fix, any dev session.\n\nResolution:\nAudited every internal link site-wide (Footer, ToolsClient, HomeClient, detail pages, calculators, about, guides) — all of them already pointed to /eligibility-checker; zero internal links pointed to /tools/scholarship-eligibility-checker at all. Removed app/tools/scholarship-eligibility-checker/page.tsx (kept EligibilityClient.tsx, which the canonical /eligibility-checker page imports and still needs). Added a 301 redirect in next.config.ts: /tools/scholarship-eligibility-checker -> /eligibility-checker, next to the existing /tools/eligibility-checker legacy redirect. Verified locally: both legacy paths now resolve to the canonical page (confirmed via window.location.href after redirect).",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-106",
+    "title": "Build index page + add nav entry for /scholarships-by-course",
+    "description": "Context / Why it matters:\nFound during route audit. 10 real course hub pages exist (Engineering, Medical, Commerce, Science, Arts, Nursing, Pharmacy, Agriculture, Law, Management) but there is no app/scholarships-by-course/page.tsx index, and the whole route tree is absent from both Header.tsx and Footer.tsx. Only reachable via deep links buried in University and Education-level pages. This is the closest match to a 'Type Based' hub bucket (à la Buddy4Study) and it currently has no front door.\n\nPlan / What to do:\nBuild an index page listing all 10 courses with live counts (pattern already exists for state-scholarships / getAllStates+getStateScholarshipCounts — mirror for courses), and add it to the Header mega-menu + Footer.\n\nTrigger:\nPart of taxonomy/findability work.\n\nResolution:\nAdded getCourseScholarshipCounts() to lib/db.ts (real per-course counts: Engineering 98, Science 81, Medical 42, Management 38, Arts 36, Commerce 29, Law 27, Pharmacy 12, Nursing 8, Agriculture 6). Built app/scholarships-by-course/page.tsx mirroring the existing scholarships-by-university index template exactly (same card grid, same Related Links block) — that page already linked to /scholarships-by-course expecting it to exist. Added 'By Course' to the Header mega-menu (Eligibility Hubs column) and Footer (Browse section). Verified locally: index renders all 10 courses with correct live counts.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-107",
+    "title": "Add /scholarships/international to primary nav",
+    "description": "Context / Why it matters:\nFound during route audit. The international/study-abroad hub is linked from several content pages (University, Education-level, News, category pages) but has zero presence in Header.tsx or Footer.tsx, despite Study Abroad being a full top-level bucket in competitor taxonomy (Buddy4Study).\n\nPlan / What to do:\nAdd a link to /scholarships/international in the Header mega-menu (Curated Collections column) and Footer (Browse column).\n\nTrigger:\nPart of taxonomy/findability work.\n\nResolution:\nAdded 'Study Abroad' link to the Header mega-menu (Eligibility Hubs column, next to By Course) and Footer (Browse section), pointing to the existing /scholarships/international page. No page changes needed — the hub already worked, it just had zero primary-nav presence. Verified locally.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-108",
+    "title": "Clean up `caste` field for disability/PWD scholarships",
+    "description": "Context / Why it matters:\nFound during category-hub verification. 5 active scholarships reference disability eligibility, but the raw `caste` values are long descriptive sentences (e.g. 'All categories (SC/ST/OBC/Minority/General) - must possess valid Unique Disability ID (UDID) card issued by Department for Empowerment of Persons with Disabilities, Government of India.') instead of a clean tag like 'Sports' already is. Because generateStaticParams() slugifies raw caste strings directly, this produces ugly one-off URLs instead of one canonical /scholarships-for/pwd hub, and a clean URL like /scholarships-for/students-with-disabilities does not actually resolve to real content today (0 caste rows match that exact slug via LIKE).\n\nPlan / What to do:\nNormalize these 5 records to include a clean 'PWD' or 'Disability' tag in the caste array (same pattern as 'Sports'), matching getCanonicalSlugForCategory conventions. Pairs with CNT ticket for backing article on this thin category.\n\nTrigger:\nData cleanup, part of taxonomy work.\n\nResolution:\nNormalized the caste field for all 5 active disability-related records to a clean ['PWD'] tag (id 25 kept its real other categories too: General/OBC/SC/ST/Minority/PWD, since it's genuinely open to all categories with a UDID requirement). Added a 'pwd' branch to getCanonicalSlugForCategory() in lib/utils.ts, checked first (before SC/ST/OBC) since legacy disability strings often contain those as substrings and would otherwise mis-canonicalize. Added a clean CATEGORY_NAME_MAP entry: 'pwd' -> 'Persons with Disabilities (PWD)'. Verified locally: /scholarships-for/pwd now renders 5 real scholarships with a clean title/breadcrumb; confirmed no regression on /scholarships-for/obc. Follow-up completed same session: added 'Persons with Disabilities' to the Header mega-menu (Popular Segments column) and Footer, same pattern as IS-109. Verified visually via real mouse hover on the mega-menu trigger — confirmed rendered correctly alongside Sports, Girls, SC/ST, Minority, and General/EWS.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Bug, Content Task"
+  },
+  {
+    "id": "IS-109",
+    "title": "Expose /scholarships-for/sports in primary nav",
+    "description": "Context / Why it matters:\nFound during category verification. Real data exists — 14 active scholarships tagged 'Sports' in the caste field, confirmed working query — but 'Sports' is missing from the Header mega-menu's hardcoded category list (girls, sc-st, minority, general only). This is a real, working, underexposed hub.\n\nPlan / What to do:\nAdd 'Scholarships for Sports/Athletes' to the Header mega-menu's Popular Segments column and Footer.\n\nTrigger:\nPart of taxonomy/findability work.\n\nResolution:\nAdded 'Sports & Athletes' link to the Header mega-menu (Popular Segments column) and Footer (Browse section), pointing to /scholarships-for/sports. No page changes needed — confirmed the existing category-hub resolution logic (getAllCategories + getCanonicalSlugForCategory) already generates a working 'sports' slug from the raw caste data (14 active scholarships) since 'Sports' already exists as a clean, single-word caste value. Verified locally: page renders correctly, no 0-result or redirect.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-110",
+    "title": "Clean up messy multi-value `level` field",
+    "description": "Context / Why it matters:\nFound during category count audit. The `level` column frequently stores multi-value strings in one row (e.g. 'Undergraduate, Postgraduate, Diploma, ITI'), which undermines the cleanliness of the Education Level hub pages (/scholarships-level/[level]) and makes accurate per-level counts impossible without fragile LIKE-pattern matching (see getLevelSearchPatterns in lib/db.ts).\n\nPlan / What to do:\nEither split into a proper join table (scholarship_id, level) or keep as an array field like `caste`/`course_stream` and parse consistently. Re-run getEducationLevelCounts() after cleanup to confirm accurate counts.\n\nTrigger:\nData cleanup, part of taxonomy work.",
+    "impact": "Low",
+    "status": "Backlog",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-111",
+    "title": "Implement simplified Detail page template (content-first redesign + lead-gen-first CTA hierarchy)",
+    "description": "Context / Why it matters:\nWorked out with Claude via HTML mockups, refined after reviewing Buddy4Study's detail-page CTA pattern. Current ScholarshipDetailTemplate.tsx (app/components/ScholarshipDetailTemplate.tsx) is visually noisy — colored section bars, gradient CTA card, Telegram promo card, trust badge card, and a card-grid 'Similar Scholarships' section all compete with the Apply CTA. Beyond decluttering, the CTA *hierarchy* itself is changing: this is the site's most-visited page (PM Yashasvi), so what sits above the fold matters most here. Decision: the outbound 'Apply on official portal' link is NOT gated (we still link out, unlike Buddy4Study's signup wall) but is deliberately moved OUT of the hero — it now lives in its own section next to 'How to Apply', contextually placed where someone reading the steps needs it, not as the first thing shown. The top-of-fold primary CTA slot instead goes to lead-gen (Follow this scholarship / Get deadline alerts), which also becomes the only CTA that persists as a sticky bar while scrolling — the outbound Apply link does not get a sticky treatment, to avoid re-introducing the same attention competition we removed.\n\nPlan / What to do:\nRebuild ScholarshipDetailTemplate.tsx following the agreed mock: eyebrow + breadcrumb for orientation, 3 plain facts (amount/deadline/status), a lead-gen CTA row above the fold (Follow / Get Alerts) as the single loud accent-colored element up top, spec-list eligibility (not card grid), numbered How-to-Apply steps with the outbound portal link embedded directly in that section (not the hero), native <details> FAQ, then the 4-group related-content section in priority order: Pillar/guide (evergreen, bold) -> related how-to -> other scholarships across ALL matching facets (state/category/level — see IS-116) -> related news. Preserve every existing data field with zero omissions (this is the most-visited page — verified against live DB row: amount tiers by class, income limit, age limit, special_conditions, total_awards=30000, renewal policy, helpline, verification/last_verified line, full FAQ set, selection criteria, documents, step_guide). Lead-gen CTA copy/backend depends on IS-76 decision (email first).\n\nTrigger:\nDesign agreed in conversation, mock reviewed and iterated; CTA hierarchy changed per direct feedback: 'I don't want the CTA linking out to be above the fold... move it to its own section like B4S and don't surface it above the fold' — lead-gen CTAs (Follow/Alerts) take the prime real estate instead.\n\nResolution:\nDiscovered ScholarshipDetailTemplate.tsx (the component originally mocked against) was actually dead code — the real live page is the 1249-line app/scholarships/[slug]/page.tsx itself. Rewrote it in full: preserved 100% of the SEO logic (all per-slug title overrides, metadata, hreflang, OG tags), all data fetching, all 3 JSON-LD schemas (Article/FAQ/GovernmentService), and the FormattedText parser exactly as-is. Replaced only the visual layer: removed the dark gradient hero, the repeated sidebar CTA card, all colored 'Direct Answer' blockquotes (blue/emerald/red/gray), the 3-column sticky-sidebar grid layout, and the colored pillar/sibling-variant callout boxes. New structure: plain eyebrow+title, 3-fact strip (amount/deadline/status), real ShareButtons as the only above-fold action (no fake Follow/Alerts buttons — those need IS-76 lead-capture decided and built first, so the honest choice was to keep Apply as the real primary action rather than fake a feature that doesn't exist), a dedicated 'Ready to apply?' section with the real outbound link placed contextually near How-to-Apply, plain spec-list eligibility, numbered how-to-apply steps, plain-list Discover More (moved out of the sidebar into the single-column flow), and every related-content section (news, guides, similar scholarships) as plain lists.\n\nVerified locally on PM Yasasvi (highest-traffic page): every single field confirmed present with zero loss — sibling variants, best-fit pillar, benefits, special conditions, eligibility, selection, renewal, all 7 apply steps, documents, deadline, quick facts (total awards), all 3 FAQs, helpline, discover-more links, disclaimer, 5 related news items, 2 related guides, 3 similar scholarships. Zero console errors. Confirmed no regression on a scholarship with fewer optional fields (Bihar Post-Matric). npx tsc --noEmit clean across the whole project.",
+    "impact": "Critical",
+    "status": "Done",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-112",
+    "title": "Implement simplified Listing page template",
+    "description": "Context / Why it matters:\nWorked out with Claude via HTML mockups. Listing/hub pages (e.g. /scholarships-in/[state], /scholarships-for/[category]) need a browsing rhythm distinct from Detail's reading rhythm: dense scannable rows instead of long-form sections, plain inline filter controls instead of a filter-sidebar card, one quiet 'read the guide' callout at the top (not bottom) to orient first-time visitors before they start scanning.\n\nPlan / What to do:\nRebuild listing/hub page components using the agreed mock pattern: table-like rows (title/meta left, amount/deadline/category right-aligned for pattern-matching), plain select/chip filters, single guide callout above the results, same one-accent-color system as Detail. No related-scholarship or news content at the bottom of Listing pages — that's reserved for Detail/Editorial only (agreed in conversation).\n\nTrigger:\nDesign agreed in conversation, mock reviewed.\n\nResolution:\nRather than editing each of the 8+ separate hub page types individually, restyled the actually-shared components they all render through: ScholarshipCard.tsx (list view, which is the default viewMode across the site) and its container in ScholarshipsList.tsx. Removed the provider avatar circle, 'Verified' checkmark badge, colored status pills, and CTA button — replaced with one dense plain row: title+provider+eligibility hints on the left, amount right-aligned, deadline right-aligned with color reserved only for genuine urgency (amber for closing soon, gray for closed) — matching the Listing mock's scannable-by-column pattern exactly.\n\nVerified locally: propagated automatically and correctly to every hub type that reuses these shared components — confirmed on a Category hub (SC, 239 results), a Course hub (Engineering), and a State hub (Karnataka, which uses its own StateScholarshipsClient wrapper but still renders through the same ScholarshipCard) — all three show the new plain-row style with zero console errors and zero visual regression in the surrounding hub-specific chrome (stats, filters). Grid view (secondary, user-toggled) left untouched — lower priority since list is the default experience.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-113",
+    "title": "Implement unified Editorial page template (Pillars/Articles/Guides)",
+    "description": "Context / Why it matters:\nWorked out with Claude via HTML mockups, directly tied to the taxonomy decision below (collapse Guides/Articles/Pillars into one content type). One shared template family: a content-type tag (e.g. 'Guide') in the eyebrow, table of contents for genuinely long pieces, contextual links embedded in prose (not just an end-of-page list), and a continue-block ordered Pillar-priority: related how-to -> scholarships the guide discusses -> related news. Depth (Pillar vs. How-To) differs only in length/TOC presence, not in template.\n\nPlan / What to do:\nBuild one shared Editorial template component and migrate Pillar, Article, and Guide pages onto it. Depends on IS-{next_id+4} (taxonomy consolidation) for final routing/URL decisions — template work can start in parallel but final rollout should follow the redirect plan.\n\nTrigger:\nDesign agreed in conversation, mock reviewed and iterated (inline contextual links, content-type tag without secondary descriptor).\n\nProgress:\nRestyled the Pillar template (app/pillars/[slug]/page.tsx + app/components/PillarBody.tsx), which now also serves as the /guides content for all 25 Pillars post-IS-115. Changes: removed the gradient hero background and solid-filled colored badge, replaced with the mock's plain bordered content-type tag; 'Key Takeaways' box de-tinted from indigo-filled to a plain top/bottom-border block; 'Jump to a Hub' card grid converted to a plain bordered list; 'Related Step-by-Step Guides' and 'Latest News' card grids (gray/red-tinted boxes) converted to the same plain-list pattern. Consolidated the accent color: this section previously used a separate 'indigo' accent distinct from the rest of the site's 'google-blue' brand color — replaced every indigo instance (component files AND the markdown-to-HTML renderer in lib/pillars.ts, which was hardcoding indigo into rendered links/code/blockquotes/auto-linked scholarship mentions) with google-blue, so Editorial content now genuinely shares one accent with the rest of the site, not two.\n\nVerified locally: Karnataka and SC/ST pillars render correctly with zero console errors and zero remaining 'indigo' classes in the rendered page; Portal Guides (SSP Karnataka) confirmed unaffected/unchanged, since they still use their own separate template.\n\nNOT done yet: Articles still render through a completely different component (InteractiveArticleBody, not touched) with its own styling — those need the same treatment before this is a true 'one Editorial template.' Portal Guides also still use their own distinct template (sidebar nav, HowTo schema layout) — whether that should be visually unified too, or is legitimately different enough to stay separate, is an open design question not yet decided. The News template (IS-114) is also still separate/untouched.\n\nProof of concept shipped:\nBuilt lib/editorial.ts — a unified EditorialContent TypeScript schema (superset of Pillar/Article/PortalGuide, every field mapped, none lost — includes the key distinction between static `schemes` lists and live `relatedScholarshipQuery` DB lookups, and grouped `steps` to support Portal Guides' separate login-steps vs status-steps sequences). Built app/components/EditorialTemplate.tsx — a single generic renderer with conditional blocks (content tag, key facts strip, takeaways, hub links, official-portal link, TOC, checklist, grouped numbered steps, schemes list, FAQ accordion, helpline) that only render when the corresponding schema field is present. Wrote portalGuideToEditorial() adapter and wired app/guides/[portal]/page.tsx so the ssp-karnataka portal (proof case) now renders entirely through the new unified template instead of its old bespoke JSX — every other portal still uses the legacy template until verified further.\n\nVerified locally: /guides/ssp-karnataka renders correctly through the new template — key facts, checklist, BOTH step groups (Student Login & Registration + Checking Application Status, correctly split from loginSteps/statusSteps), top schemes, FAQ accordion, and helpline all confirmed present with zero console errors. Confirmed no regression: other portals (Digital Gujarat) still render via the legacy template unaffected; Pillars (Karnataka) still render correctly via their own delegation path.\n\nThis proves the schema/renderer genuinely handles a Portal Guide's structure (the most different of the three types — the only one with grouped steps + static schemes + helpline), not just Pillars. Remaining work to fully close this ticket: migrate the other 7 portals onto the same adapter/template (mechanical once ssp-karnataka is proven), then do the equivalent for Articles (needs an articleToEditorial adapter + retiring InteractiveArticleBody), then decide whether Pillars should also route through EditorialTemplate directly rather than their own still-separate (though now visually-matching) PillarBody component.\n\nFull migration completed:\n1) All 8 Portal Guides now render through EditorialTemplate via portalGuideToEditorial() — removed ~380 lines of dead legacy JSX from app/guides/[portal]/page.tsx, cleaned up now-unused imports (PORTAL_NAV_ITEMS, several lucide icons, slugify, Link). HowTo + FAQ JSON-LD schema preserved. Verified all 7 non-NSP portals render correctly, zero console errors, zero regression. NSP is separately blocked by the pre-existing IS-120 bug (unrelated).\n2) Built articleToEditorial() adapter (lib/editorial.ts) — maps ArticleData's featuredStats, takeaways, checklist, faqs, relatedScholarships, targetMoneyLink into the schema. Added two new schema fields discovered as genuinely needed during this pass: featuredScholarships (pre-resolved render list — the DB fetch for relatedScholarshipSlugs/relatedScholarshipQuery happens at the page level, template just renders the result) and relatedGuides restructured to take pre-resolved {title, href, meta} objects instead of raw slugs, both following the same 'resolve at the page, render generically' convention already established. Rewrote app/articles/[slug]/page.tsx (288 lines -> ~145) to use EditorialTemplate, keeping the two genuinely one-off special cases (stats-report featured image, UP Status Decoder widget) as small page-level extras around the shared template rather than forcing them into the generic schema. Recolored PillarGuideCallout off indigo and repointed it from /pillars/ to /guides/.\nVerified locally: a plain article (Bihar PMS) renders fully with TOC/takeaways/checklist/FAQ; the stats-report special case shows its banner image; the UP-decoder special case shows its widget; a rich article (SC/ST Freeship Card) correctly resolves and displays its 'Featured Scholarships' block with real DB data matching frontmatter exactly. Zero console errors across all cases.\n\napp/components/InteractiveArticleBody.tsx is now dead code (zero remaining imports anywhere) — left in place rather than deleted, in case any in-flight content still references it; safe to remove in a follow-up cleanup pass.\n\nTicket closed. All three original systems (Pillars, Articles, Portal Guides) now render through one shared EditorialTemplate + one shared schema. News (IS-114) remains intentionally separate.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-114",
+    "title": "Implement simplified News page template",
+    "description": "Context / Why it matters:\nWorked out with Claude via HTML mockups. Lightest variant of the Editorial template family: no table of contents, a 'what changed / affects / date' facts strip reused from the Detail page pattern, and related scholarship/guide links woven directly into the article prose instead of a bottom link list (per feedback: 'weave in links within the article itself so it is more natural'). Related-content order is inverted from Editorial: more news first, then the specific scholarship, then background reading.\n\nPlan / What to do:\nBuild News template following the agreed mock. Should share base styling/tokens with the Editorial template but is a distinct, lighter component given the different intent (live update vs. deep read).\n\nTrigger:\nDesign agreed in conversation, mock reviewed and iterated.\n\nResolution:\nAdded newsToEditorial() adapter to lib/editorial.ts (added 'news' to the EditorialContent kind union). Rewrote app/news/[slug]/page.tsx to use EditorialTemplate — removed the colored takeaways box, colored pillar/hub-link callouts, and dark 'Featured Scholarships' card block in favor of the same plain-list system used everywhere else. Kept the feedback widget (thumbs up/down — no backend to persist it yet) as a small page-level extra, same pattern as Article's one-off widgets. Tweaked EditorialTemplate's hub-links heading to read 'Related Hubs' for non-Pillar kinds instead of the Pillar-specific 'Jump Straight to a Hub' wording.\n\nVerified locally: a real news article (AP Talliki Vandanam payment status) renders correctly — News tag, takeaways, Related Hubs (dynamically resolved from the scholarships it discusses), body content, Featured Scholarships (2 real records), 'More on This Topic' (resolved parent Pillar link), and the feedback widget, all present with zero console errors.\n\nNews stays intentionally separate in navigation and taxonomy — this only unified the rendering component, not the content-type classification, per the earlier explicit decision to keep News apart from Editorial.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-115",
+    "title": "Consolidate Guides + Articles + Pillars into one /guides Editorial namespace (routing/redirects)",
+    "description": "Context / Why it matters:\nTaxonomy decision made in conversation with Claude: /guides (app/guides/[portal]) and /articles (content/articles/*) are the same underlying content type — narrow, step-by-step portal walkthroughs — built twice in two different route trees with two different templates. Pillars (content/pillars/*) are structurally different (broad, evergreen topic guides) and should remain distinguishable, but all three should share one Editorial identity instead of three inconsistently-labeled sections (all three currently self-describe as 'Scholarship Guides' in their page titles, which is the root cause of the original 'no cohesion' complaint that started this whole discussion).\n\nPlan / What to do:\nThis is an SEO-sensitive migration, not a simple rename — requires a full 301 redirect map before any URL changes ship. Steps: 1) Audit all live Guide/Article/Pillar URLs and their current search performance. 2) Decide final URL structure (e.g. keep /guides for how-to depth, /pillars for evergreen depth, drop /articles entirely or fold into /guides). 3) Build redirect map. 4) Migrate content into the unified Editorial template (IS-{next_id+2}). 5) Update Header.tsx nav and Footer.tsx to reflect the collapsed taxonomy (currently lists Guides, Articles, Pillars as 3 separate top-level items). 6) Monitor Search Console post-migration.\n\nTrigger:\nTaxonomy decision made in conversation — do NOT execute URL changes without the redirect plan step above.\n\nProgress:\nPhase 1 shipped: added 301 redirects in next.config.ts for the 4 confirmed duplicate articles (identified in CNT-52) to their matching live Portal Guide — /articles/digital-gujarat-scholarship-portal-guide -> /guides/digital-gujarat-mysy, /articles/karnataka-ssp-postmatric-guide-2026 -> /guides/ssp-karnataka, /articles/mp-taas-scholarship-portal-guide -> /guides/mptaas-mmvy-mp, /articles/how-to-apply-talliki-vandanam-eligibility-status -> /guides/talliki-vandanam-ap. Verified locally: all 4 redirect correctly; confirmed no regression on an unrelated unique article (bihar-postmatric-pms-guide). 5 Pillar files still reference the old article slugs in relatedArticleSlugs frontmatter — redirect keeps those links working (one extra hop), optional polish to update directly, not required for correctness.\n\nPhase 2 NOT started (blocked on IS-113): the other 24 unique articles have no destination yet — migrating them requires the unified Editorial template landing first, then expanding portalsData.ts (or equivalent) with new entries, then redirecting old -> new. Also still open: what to do with the 1 stats-report article, and the eventual Header/Footer nav taxonomy update once migration is complete.\n\nDecision revised in conversation: rather than 'Pillars stay separate at /pillars, only Articles absorb into /guides', the user opted to absorb ALL THREE into one /guides URL namespace now, while Pillars are still new/low-traffic — cheaper to move now than after they accumulate rankings. Classification (Pillar vs How-To vs News) becomes a taxonomy/metadata concern, not a URL concern — relevant given a headless WordPress migration is being considered, where this is the natural post-type+taxonomy model anyway.\n\nPhase 1c shipped: app/guides/[portal]/page.tsx now delegates to the existing Pillar page component (app/pillars/[slug]/page.tsx, reused as-is, not duplicated) whenever the requested slug isn't a known portal id/alias but IS a Pillar slug. generateStaticParams and generateMetadata both updated to cover Pillar slugs, with metadata's canonical correctly pointing at /guides/... not /pillars/.... Added one parameterized redirect in next.config.ts (/pillars/:slug -> /guides/:slug) covering all 25 Pillars, since destination slug always equals source slug — no need to hardcode 25 entries. The /pillars index page itself is untouched (redirect only matches individual pillar pages).\n\nVerified locally: /guides/karnataka-scholarships-guide renders full pillar content (takeaways, hub links, TOC) correctly; /pillars/karnataka-scholarships-guide redirects there; /guides/sc-st-scholarships-india-guide works; existing portal guides (ssp-karnataka, digital-gujarat-mysy) unaffected — no regression. /pillars index page still renders normally.\n\nKnown follow-up, not yet done: internal cross-links (Pillar hubLinks/relatedPillarSlug frontmatter, and the Header mega-menu's 'All Scholarship Guides' link) still point at old /pillars/... URLs — these still work via the redirect (one extra hop) but should eventually be updated to link directly at /guides/... Also: the /pillars and /guides INDEX pages are still two separate pages (one lists only Pillars, one lists only Portal Guides) — merging those into one combined index is separate follow-up work, not done here.\n\nStill fully blocked on IS-113: the 24 unique Articles (from CNT-52's audit) still have no destination — they need the unified Editorial template before they can move into /guides too.\n\nPhase 2 completed:\nThe remaining 24 unique Articles now also render under /guides/[slug], via the same delegation pattern proven on Pillars — app/guides/[portal]/page.tsx now checks portal -> Pillar -> Article in order before returning notFound(). generateStaticParams and generateMetadata both cover Article slugs (metadata built inline with a /guides/... canonical, not delegated to the Article page's own generateMetadata which still points at /articles/...). Added a generic redirect '/articles/:slug' -> '/guides/:slug' in next.config.ts, placed AFTER the 4 explicit article-to-different-slug overrides so those still win (verified: /articles/karnataka-ssp-postmatric-guide-2026 still correctly redirects to /guides/ssp-karnataka, not to a same-named guides route). Also fixed the Article page's internal cross-links (sibling 'More on This Topic' links, breadcrumb label) to point directly at /guides instead of /articles, removing the redirect hop on-site.\n\nVerified locally: /guides/bihar-postmatric-pms-guide renders correctly at the direct URL; /articles/bihar-postmatric-pms-guide redirects there; the 4 explicit overrides still take priority over the new generic rule; breadcrumb correctly reads 'Guides' not 'Articles'; Pillars and Portal Guides both confirmed unaffected. npx tsc --noEmit clean, zero console errors.\n\nTicket fully closed. Every Pillar, Portal Guide, and Article now lives under one /guides URL namespace, per the original decision — 'am not a software dev, I want everything absorbed into one /guides.'",
+    "impact": "Critical",
+    "status": "Done",
+    "type": "Strategy, Feature"
+  },
+  {
+    "id": "IS-116",
+    "title": "Cross-link scholarships across hub types (State/Category/Level/Income) for findability",
+    "description": "Context / Why it matters:\nCore outcome of the taxonomy/findability discussion with Claude. Confirmed via DB counts and a Buddy4Study comparison that a faceted model (State, Category, Level, Income, Provider-type, Course, University as independent, co-equal facets) is correct for this dataset — NOT a single 'primary' hierarchy (47% of scholarships are 'All India' with no state, and SC/ST/OBC/General are near-universal so they don't discriminate well as a tree). The gap isn't the number of hubs, it's that a scholarship belonging to multiple facets simultaneously (e.g. a Karnataka + SC/ST + UG scholarship) currently only surfaces sibling links for whichever ONE hub the visiting page happens to be on — there's no cross-awareness between facet types.\n\nPlan / What to do:\nExtend the Detail page's related-scholarships module (already redesigned per IS-111) to pull siblings from ALL of the current scholarship's facets, not just one — e.g. 'Other scholarships in Karnataka' + 'Other SC/ST scholarships' + 'Other Undergraduate scholarships', each as its own short plain-list group. Mirrors getRelatedScholarships() in lib/db.ts but needs to surface multiple facet groups instead of one blended ranked list.\n\nTrigger:\nTaxonomy/findability discussion with Claude — confirmed this matters more than picking a 'primary' category.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-117",
+    "title": "Add persistent site-wide taxonomy block (footer, all pages) — Buddy4Study-style",
+    "description": "Context / Why it matters:\nFound via direct comparison with Buddy4Study (1,706+ scholarships vs. our 476). Their entire findability strategy for hub pages isn't breadcrumbs or hierarchy — it's one taxonomy block (State-wise / Class-based / Type-based, 8 links each = 24 total) repeated in the footer on every single page, site-wide. We currently bury most of this one click deep in the mega-menu, and it doesn't appear at all on Detail, Editorial, or News pages.\n\nPlan / What to do:\nAdd a persistent 3-column taxonomy block to Footer.tsx (or a new shared component rendered on every page type): State hubs, Category/Type hubs, Education-level hubs, mirroring the coverage audit done in conversation (we already match or exceed Buddy4Study on State/Category/Government/Course — this just needs to be visible everywhere, not just the mega-menu). Include the currently-orphaned Course and International hubs (IS-106, IS-107) once those land.\n\nTrigger:\nBuddy4Study competitive comparison in conversation with Claude.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-118",
+    "title": "Make breadcrumbs referrer-aware instead of a fixed fake hierarchy",
+    "description": "Context / Why it matters:\nDiscussed with Claude: since a scholarship genuinely has multiple valid parents (its state, its category, its level, its income bracket — all independent, none more 'true' than another), a single fixed breadcrumb pretends one facet is canonical when it isn't. Confirmed breadcrumbs matter on both desktop and mobile (mobile especially for Google's BreadcrumbList rich-snippet rendering in mobile search results), so this isn't about removing them — it's about which parent they show.\n\nPlan / What to do:\nHave the breadcrumb default to whichever facet the visitor actually arrived through (read from referrer/query param when available — e.g. arriving from a state hub shows State in the breadcrumb, arriving from a category hub shows Category), falling back to a sensible default (state if present, else category) when no referrer signal exists. Keep BreadcrumbList JSON-LD schema present on every page regardless of visual display.\n\nTrigger:\nTaxonomy/findability discussion with Claude.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Feature"
+  },
+  {
+    "id": "IS-119",
+    "title": "Prune or merge near-zero-value hub pages (thin facet combinations)",
+    "description": "Context / Why it matters:\nFound via DB count audit in conversation. Several hub combinations have 0-2 active scholarships (e.g. PWD category pre-cleanup, several single-scholarship states/UTs like Lakshadweep, Nagaland, Puducherry). Buddy4Study handles this by backfilling thin facet pages with a generic 'Featured Scholarships' carousel rather than showing a near-empty page — worth adopting the same pattern rather than either hiding these pages or leaving them looking broken.\n\nPlan / What to do:\nAudit all generated hub pages for scholarship count. For any hub under ~3 results, either (a) blend in a 'More scholarships you may be eligible for' fallback module (same general-listing pattern Buddy4Study uses), or (b) redirect/merge into a parent hub with a pre-applied filter instead of a standalone thin page. Decide threshold and fallback design.\n\nTrigger:\nDB count audit + Buddy4Study comparison in conversation with Claude.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Analysis, Feature"
+  },
+  {
+    "id": "IS-120",
+    "title": "BUG (pre-existing): /guides/nsp redirects to a dead slug and 404s",
+    "description": "Context / Why it matters:\nFound while verifying IS-115's Pillar-to-/guides routing change (unrelated to that change — this bug already existed in next.config.ts before today). The redirect `/guides/nsp/:subpage*` -> `/guides/national-scholarship-portal-nsp/:subpage*` uses a `:subpage*` wildcard (zero-or-more), so it also matches the bare /guides/nsp URL with no subpage — but the destination slug 'national-scholarship-portal-nsp' doesn't exist anywhere in portalsData.ts. The real NSP portal's id is 'nsp' with aliases ['national-scholarship-portal', 'scholarships-gov-in'] — no '-nsp' suffix variant. Result: /guides/nsp currently 404s in production.\n\nPlan / What to do:\nFix the redirect destination to point at a real slug (likely just remove this redirect entirely, since 'nsp' is already the canonical id and doesn't need rewriting to a longer alias) — or if the intent was legacy-URL support, correct the destination to 'national-scholarship-portal' (matching the real alias) instead of 'national-scholarship-portal-nsp'.\n\nTrigger:\nFound during IS-115 verification. Live bug, affects a page for the site's flagship central portal.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-121",
+    "title": "BUG: Mobile menu missing Course/Income/Study Abroad/Sports/PWD links (desktop-only fix)",
+    "description": "Context / Why it matters:\nUser screenshot showed the mobile 'Popular Segments' chip row (Girls, SC/ST, OBC/Minority, General/EWS, By University only) missing everything added to the desktop mega-menu earlier this session (Course, Income, Study Abroad, Sports, PWD) — because Header.tsx's mobile menu is a separate hardcoded JSX block from the desktop mega-menu, and only desktop was updated. 82% of traffic is mobile, so this gap mattered more than the desktop one did.\n\nResolution:\nAdded 5 missing chips (By Course, By Income, Study Abroad, Sports, PWD) to the mobile 'Popular Segments' section in Header.tsx. Verified locally: all 5 links confirmed present in the rendered mobile DOM, zero console errors.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Bug"
+  },
+  {
+    "id": "IS-122",
+    "title": "Header: restructure for orientation — mega-menu still doesn't expose all real categories, feels cluttered",
+    "description": "Context / Why it matters:\nUser feedback: 'header continues to have cluttered navigation without orientation.' Confirmed gap — even after this session's additions, the mega-menu mixes hub links, curated collections (Trending/Deadlines/New Arrivals), and provider-type links in a flat 3-column layout with no visual hierarchy signaling which items are peer categories vs. one-off collections. It also still doesn't expose every real category (Income limit hubs missing from Popular Segments column, for example).\n\nPlan / What to do:\nFull redesign pass on the mega-menu structure, not just adding missing links. Needs a clear grouping principle (e.g. 'Browse by facet' vs 'Curated views' vs 'Learn') so a user can tell at a glance what kind of thing each link is, per the taxonomy work already done in IS-116/117. Should resolve alongside IS-123 (trending/deadlines nav consolidation) since they're the same underlying problem — collections presented as peers of categories.\n\nTrigger:\nUser feedback with mobile-menu screenshot, this session.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-123",
+    "title": "Footer: still incomplete — needs the full persistent taxonomy block (supersedes/absorbs IS-117)",
+    "description": "Context / Why it matters:\nUser feedback: 'both header and footer dont expose all categories.' This session only added 4 links to the existing 'Browse' list (Course, Study Abroad, Sports, PWD) — the bigger IS-117 redesign (full 3-column Buddy4Study-style taxonomy block, visible on every page) was never done. Confirmed still missing from footer entirely: Income hubs.\n\nPlan / What to do:\nSame as IS-117 — build the full persistent taxonomy footer block. Treat this ticket as the up-to-date version of that work; close IS-117 as duplicate once this is picked up.\n\nTrigger:\nUser feedback, this session — confirms IS-117 is still the right call and now has direct user confirmation, not just competitive research.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-124",
+    "title": "Nav: present Trending/Deadlines/Recently-Added as views within Browse, not peer top-level items",
+    "description": "Context / Why it matters:\nUser asked whether /scholarships, /scholarships/trending, and /scholarships/deadlines should be collapsed. Checked first: they are NOT duplicates — each has distinct, real SEO metadata targeting different search intent ('trending scholarships' vs 'scholarship deadlines 2026' vs generic), and /scholarships/deadlines is a substantial 450-line feature page (countdown timers, filters), not a thin wrapper. Merging the URLs would destroy real ranking pages — same mistake class as the Article duplicates, but the opposite conclusion.\n\nPlan / What to do:\nThe problem is navigational presentation, not routing. Currently the mobile 'Quick Actions Grid' and desktop mega-menu present Trending/Deadlines/New Arrivals/All Schemes as 4 equal-weight, disconnected buttons. Restructure so these read as sort/filter views of one 'Browse Scholarships' destination (e.g. one primary Browse entry point, with Trending/Deadlines/Recently-Added shown as a secondary row or toggle within it), not as separate peer destinations. Keep all URLs unchanged — this is a presentation-only fix.\n\nTrigger:\nUser feedback, this session — direct question about collapsing these routes.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-125",
+    "title": "Homepage: doesn't lead users into underrepresented categories or Editorial/News content",
+    "description": "Context / Why it matters:\nUser feedback: 'Homepage needs to lead people into unrepresented pages and categories as well as editorial and news content.' Current homepage has a 'Category Gateway' section (By State Domicile, By Social Category grids) but it's unclear whether it covers Course/Income/Sports/PWD/Study Abroad, or surfaces Editorial (Pillars/Guides) or News at all — needs an audit against what's actually there versus what's missing, then a fix.\n\nPlan / What to do:\nAudit HomeClient.tsx against the full real taxonomy (State, Category, Education Level, Income, Course, University, Provider type, Study Abroad, Sports, PWD) and against Editorial/News — list what's exposed vs. missing, then add dedicated sections for whatever's absent, prioritizing categories with real scholarship counts that currently have zero homepage presence.\n\nTrigger:\nUser feedback, this session.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Design, Feature"
+  },
+  {
+    "id": "IS-126",
+    "title": "BUG: International scholarships leaking into Trending/Deadlines/Recently Added",
+    "description": "Context / Why it matters:\nUser noticed /scholarships/trending and /scholarships/deadlines showing Study Abroad scholarships (ESMT Berlin MBA, University of Calgary, ADB-Japan, DAAD, Hubert Humphrey Fellowship) mixed in with domestic ones, undifferentiated. Root cause: two separate, parallel implementations exist. getTrendingScholarships()/getClosingSoonScholarships() in lib/db.ts (used by the homepage carousels) had no scholarship_scope filter. Separately, and more impactfully, ScholarshipsList.tsx (the shared component actually powering the live /scholarships/trending and /scholarships/deadlines PAGES via getAllScholarships() + client-side filter/sort) also had zero scope awareness — confirmed several International scholarships share the same top priority_score (95/90) as the best domestic ones, so they were winning the sort and appearing as the featured highlight.\n\nResolution:\nAdded a scope exclusion to both: the two lib/db.ts query functions (SQL-level 'AND (LOWER(scholarship_scope) IS NOT 'international')'), and ScholarshipsList.tsx's client-side filter (excludes any row with scholarship_scope='international' unconditionally, since this shared component has no International tab/mode at all — that content type only lives at /scholarships/international with its own dedicated hub and query functions).\n\nVerified locally: /scholarships/trending dropped from 372 to 269 results with ESMT Berlin/Calgary/ADB-Japan/DAAD all gone from the top of the list; /scholarships/deadlines confirmed clean (3 results, all domestic). npx tsc --noEmit clean. Zero console errors.\n\nTrigger:\nUser feedback, this session — flagged as a real, confusing UX issue, not a hypothetical.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Bug"
   }
 ]

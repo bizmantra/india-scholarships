@@ -34,7 +34,7 @@ export default function NewsIndexPage() {
         {/* Hero Banner Header */}
         <section className="bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 border-b border-gray-150">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider mb-3 border border-red-100 animate-pulse">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-urgent-soft text-urgent text-xs font-bold uppercase tracking-wider mb-3 border border-transparent animate-pulse">
               <Bell className="w-3.5 h-3.5" />
               <span>Live Updates & Announcements</span>
             </div>
@@ -64,7 +64,7 @@ export default function NewsIndexPage() {
                 >
                   <div className="p-6">
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-red-600 bg-red-50 px-2.5 py-0.5 rounded-md border border-red-100">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-urgent bg-urgent-soft px-2.5 py-0.5 rounded-md border border-transparent">
                         <Tag className="w-3 h-3" />
                         {news.tag}
                       </span>

@@ -27,7 +27,7 @@ export default function FilterChips({ activeFilters, onRemove, onClearAll }: Fil
                 <button
                     key={`${filter.type}-${filter.value}-${index}`}
                     onClick={() => onRemove(filter)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors group"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-google-blue border border-blue-200 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors group"
                 >
                     <span>{filter.label}</span>
                     <X className="h-3.5 w-3.5 group-hover:text-blue-900" />

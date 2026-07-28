@@ -64,13 +64,13 @@ export default function DocumentsChecklistGuide() {
 
             <main className="max-w-4xl mx-auto px-4 py-12">
                 {/* Back Link */}
-                <Link href="/guides" className="inline-flex items-center gap-2 text-sm text-blue-700 font-bold mb-8 hover:underline">
+                <Link href="/guides" className="inline-flex items-center gap-2 text-sm text-google-blue font-bold mb-8 hover:underline">
                     <ArrowLeft className="h-4 w-4" /> Back to All Guides
                 </Link>
 
                 {/* Hero */}
                 <div className="mb-12">
-                    <span className="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold uppercase tracking-widest text-google-blue bg-blue-50 px-3 py-1 rounded-full">
                         Essential Checklist
                     </span>
                     <h1 id="documents-hero" className="text-4xl font-extrabold text-gray-900 mt-4 mb-6 leading-tight font-serif">
@@ -129,7 +129,7 @@ export default function DocumentsChecklistGuide() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {formats.map((f, idx) => (
                             <div key={idx} className="p-6 border rounded-2xl bg-gray-50/30 flex items-start gap-4">
-                                <FileText className="h-6 w-6 text-blue-700 shrink-0 mt-0.5" />
+                                <FileText className="h-6 w-6 text-google-blue shrink-0 mt-0.5" />
                                 <div>
                                     <h4 className="font-bold text-gray-900 text-sm mb-1">{f.type}</h4>
                                     <p className="text-xs text-gray-600 leading-relaxed">{f.spec}</p>
@@ -145,7 +145,7 @@ export default function DocumentsChecklistGuide() {
                     <div className="space-y-6">
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 What if my family income certificate has expired?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">
@@ -154,7 +154,7 @@ export default function DocumentsChecklistGuide() {
                         </div>
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 Can I upload my internet-generated marksheet copy?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">
@@ -163,7 +163,7 @@ export default function DocumentsChecklistGuide() {
                         </div>
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 Is a bank passbook upload required if my account is seeded with Aadhaar?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">

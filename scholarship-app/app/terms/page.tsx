@@ -19,7 +19,7 @@ export default function TermsPage() {
             <main className="max-w-4xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">Terms of Service</span>
                 </nav>

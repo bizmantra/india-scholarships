@@ -196,7 +196,7 @@ export default function IncomeClient({ scholarships }: Props) {
                         {/* Slider and presets card */}
                         <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                             <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <Coins className="w-5 h-5 text-amber-500" />
+                                <Coins className="w-5 h-5 text-accent" />
                                 <span>Select Your Family Income</span>
                             </h2>
                             <p className="text-gray-500 text-xs leading-relaxed mb-6">
@@ -208,7 +208,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                 <div>
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Annual Family Income</span>
-                                        <span className="text-2xl font-black text-amber-700">
+                                        <span className="text-2xl font-black text-accent">
                                             ₹{income.toLocaleString('en-IN')}
                                         </span>
                                     </div>
@@ -245,7 +245,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                 }}
                                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                                     income === val
-                                                        ? 'bg-amber-600 border border-amber-600 text-white shadow-xs'
+                                                        ? 'bg-accent border border-accent text-white shadow-xs'
                                                         : 'bg-white border border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -260,7 +260,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                     <button
                                         type="submit"
                                         disabled={calculating}
-                                        className="w-full py-4 bg-amber-600 hover:bg-amber-700 disabled:bg-amber-400 text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                        className="w-full py-4 bg-accent hover:bg-accent disabled:bg-accent text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                                     >
                                         {calculating ? (
                                             <>
@@ -279,7 +279,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                 onClick={handleCopyResults}
                                                 className="w-full py-2.5 bg-slate-50 border border-gray-250 hover:bg-gray-100 text-gray-700 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                             >
-                                                {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
+                                                {copied ? <Check className="w-3.5 h-3.5 text-success" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
                                                 <span>{copied ? 'Copied Results!' : 'Copy Summary Link'}</span>
                                             </button>
                                             <ShareButtons 
@@ -297,7 +297,7 @@ export default function IncomeClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs min-h-[380px] flex flex-col justify-between">
                                 {!hasCalculated ? (
                                     <div className="flex flex-col items-center justify-center text-center py-16 flex-1">
-                                        <div className="w-16 h-16 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 rounded-full bg-accent-soft text-accent flex items-center justify-center mb-4">
                                             <Coins className="w-8 h-8" />
                                         </div>
                                         <h3 className="font-extrabold text-lg text-gray-900 mb-1">Select income to see scholarships</h3>
@@ -313,7 +313,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                     <h3 className="font-extrabold text-base text-gray-900">Your Scholarship Report</h3>
                                                     <p className="text-[11px] text-gray-500 mt-0.5">Scholarships you can apply for with income of ₹{income.toLocaleString('en-IN')}</p>
                                                 </div>
-                                                <span className="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-extrabold rounded-full">
+                                                <span className="px-2.5 py-1 bg-accent-soft text-accent text-xs font-extrabold rounded-full">
                                                     {matches.length} Total Matches
                                                 </span>
                                             </div>
@@ -334,7 +334,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                             onClick={() => setActiveTab(tab.id as TabType)}
                                                             className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                                                                 activeTab === tab.id
-                                                                    ? 'border-amber-600 text-amber-700 bg-amber-50/50'
+                                                                    ? 'border-accent text-accent bg-accent-soft/50'
                                                                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                                             }`}
                                                         >
@@ -342,7 +342,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                             <span>{tab.label}</span>
                                                             <span className={`px-1.5 py-0.5 rounded-full text-[9px] ${
                                                                 activeTab === tab.id
-                                                                    ? 'bg-amber-600 text-white font-extrabold'
+                                                                    ? 'bg-accent text-white font-extrabold'
                                                                     : 'bg-gray-100 text-gray-600'
                                                             }`}>
                                                                 {count}
@@ -357,16 +357,16 @@ export default function IncomeClient({ scholarships }: Props) {
                                                     {tabFilteredMatches.slice(0, 4).map((s) => {
                                                         const hasLimit = s.income_limit && s.income_limit > 0;
                                                         return (
-                                                            <div key={s.id} className="border border-gray-150 hover:border-amber-400 rounded-xl p-5 transition-all bg-slate-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fadeIn">
+                                                            <div key={s.id} className="border border-gray-150 hover:border-accent rounded-xl p-5 transition-all bg-slate-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fadeIn">
                                                                 <div>
                                                                     <div className="flex items-center gap-2 flex-wrap mb-2">
                                                                         {hasLimit ? (
-                                                                            <span className="px-2 py-0.5 text-[10px] font-extrabold bg-emerald-100 text-emerald-800 rounded-full flex items-center gap-1">
-                                                                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                                                                            <span className="px-2 py-0.5 text-[10px] font-extrabold bg-success-soft text-success rounded-full flex items-center gap-1">
+                                                                                <CheckCircle2 className="w-3.5 h-3.5 text-success" />
                                                                                 <span>Cap: ₹{(s.income_limit / 100000).toFixed(1)}L</span>
                                                                             </span>
                                                                         ) : (
-                                                                            <span className="px-2 py-0.5 text-[10px] font-extrabold bg-blue-100 text-blue-800 rounded-full">
+                                                                            <span className="px-2 py-0.5 text-[10px] font-extrabold bg-brand-soft text-brand rounded-full">
                                                                                 No Income Limit
                                                                             </span>
                                                                         )}
@@ -376,7 +376,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                                     <p className="text-xs text-gray-500 mt-1">Provider: {s.provider}</p>
                                                                 </div>
                                                                 <div className="flex sm:flex-col items-start sm:items-end justify-between sm:justify-center w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-150">
-                                                                    <span className="text-sm font-black text-amber-700">
+                                                                    <span className="text-sm font-black text-accent">
                                                                         {s.amount_annual >= 100000 
                                                                             ? `₹${(s.amount_annual / 100000).toFixed(1)}L` 
                                                                             : `₹${(s.amount_annual || s.amount_min || 0).toLocaleString('en-IN')}`
@@ -384,7 +384,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                                                     </span>
                                                                     <a 
                                                                         href={`/scholarships/${s.slug}`}
-                                                                        className="inline-flex items-center gap-1 text-xs font-bold text-amber-600 hover:text-amber-700 mt-1"
+                                                                        className="inline-flex items-center gap-1 text-xs font-bold text-accent hover:text-accent mt-1"
                                                                     >
                                                                         <span>Details</span>
                                                                         <ArrowRight className="w-3 h-3" />
@@ -406,7 +406,7 @@ export default function IncomeClient({ scholarships }: Props) {
                                             <div className="text-center mt-6 pt-4 border-t border-gray-100">
                                                 <Link 
                                                     href={`/eligibility-checker?income=${income}`}
-                                                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-50 text-amber-700 border border-amber-100 text-xs font-bold rounded-xl hover:bg-amber-100 transition-colors"
+                                                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent-soft text-accent border border-accent-soft text-xs font-bold rounded-xl hover:bg-accent-soft transition-colors"
                                                 >
                                                     <span>Search All {tabFilteredMatches.length} Matches</span>
                                                 </Link>
@@ -427,7 +427,7 @@ export default function IncomeClient({ scholarships }: Props) {
                             {/* Why it Matters (The Problem) */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <Info className="w-5 h-5 text-indigo-600" />
+                                    <Info className="w-5 h-5 text-google-blue" />
                                     <span>Why Family Income Limits Matter for Scholarships</span>
                                 </h3>
                                 <div className="text-gray-600 text-sm leading-relaxed space-y-4">
@@ -451,19 +451,19 @@ export default function IncomeClient({ scholarships }: Props) {
                             {/* Practical Examples (Scenarios) */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <FileText className="w-5 h-5 text-indigo-600" />
+                                    <FileText className="w-5 h-5 text-google-blue" />
                                     <span>Real-World Eligibility Scenarios</span>
                                 </h3>
                                 
                                 <div className="space-y-6">
-                                    <div className="border-l-4 border-amber-500 pl-4 py-1">
+                                    <div className="border-l-4 border-accent pl-4 py-1">
                                         <h4 className="font-bold text-sm text-gray-900">Scenario 1: Household Income under ₹2.5 Lakhs (Ideal Category)</h4>
                                         <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                                             Students in this bracket qualify for almost all central and state government scholarships (NSP, SSP, UP Scholarships). This includes full tuition fee waivers and maintenance allowances for professional degrees (like engineering/medical).
                                         </p>
                                     </div>
 
-                                    <div className="border-l-4 border-indigo-500 pl-4 py-1">
+                                    <div className="border-l-4 border-brand pl-4 py-1">
                                         <h4 className="font-bold text-sm text-gray-900">Scenario 2: Household Income ₹2.5 Lakhs to ₹8 Lakhs (Middle Tier)</h4>
                                         <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                                             While you may be excluded from some SC/OBC centrally funded programs, you remain highly competitive for state-level general category schemes, EWS (Economically Weaker Section) quotas, and private corporate scholarships.
@@ -482,7 +482,7 @@ export default function IncomeClient({ scholarships }: Props) {
                             {/* FAQ Section */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <HelpCircle className="w-5 h-5 text-indigo-600" />
+                                    <HelpCircle className="w-5 h-5 text-google-blue" />
                                     <span>Frequently Asked Questions</span>
                                 </h3>
                                 
@@ -519,13 +519,13 @@ export default function IncomeClient({ scholarships }: Props) {
                                 <div className="absolute top-0 right-0 p-4 opacity-5">
                                     <Coins className="w-24 h-24" />
                                 </div>
-                                <h4 className="font-extrabold text-sm text-amber-400 uppercase tracking-wider mb-2">Need an Income Certificate?</h4>
+                                <h4 className="font-extrabold text-sm text-accent uppercase tracking-wider mb-2">Need an Income Certificate?</h4>
                                 <p className="text-xs text-slate-300 leading-relaxed mb-4">
                                     Learn how to apply for an official Income Certificate in your state, the list of required documents, and processing times.
                                 </p>
                                 <Link 
                                     href="/guides/documents"
-                                    className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-amber-400 transition-colors"
+                                    className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-accent transition-colors"
                                 >
                                     <span>Read Document Guide</span>
                                     <ArrowRight className="w-3 h-3" />
@@ -535,16 +535,16 @@ export default function IncomeClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-xs">
                                 <h4 className="font-bold text-sm text-gray-900 mb-3">Other Utility Tools</h4>
                                 <div className="space-y-3">
-                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Scholarship Eligibility Checker
                                     </Link>
-                                    <Link href="/tools/amount-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/amount-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Scholarship Benefit Estimator
                                     </Link>
-                                    <Link href="/tools/study-cost-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/study-cost-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Study Cost Planner
                                     </Link>
-                                    <Link href="/tools/loan-emi-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/loan-emi-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Education Loan EMI Calculator
                                     </Link>
                                 </div>

@@ -25,7 +25,7 @@ export default async function CorporateScholarshipsPage() {
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">Corporate Scholarships</span>
                 </nav>
@@ -37,11 +37,11 @@ export default async function CorporateScholarshipsPage() {
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Scholarships funded by leading Indian corporations as part of their <strong>Social Responsibility (CSR)</strong>.
-                        Currently, we have <span className="font-bold text-blue-700">{scholarships.length} industry-backed schemes</span>.
+                        Currently, we have <span className="font-bold text-google-blue">{scholarships.length} industry-backed schemes</span>.
                         {pillar && (
                             <>
                                 {' '}New to how corporate and private scholarships work?{' '}
-                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
                                     Read our complete guide
                                 </Link>{' '}
                                 first.
@@ -86,7 +86,7 @@ export default async function CorporateScholarshipsPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 font-serif">Explore More Funding</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <Link href="/government-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-blue-600">
-                            <h3 className="font-bold text-gray-900 group-hover:text-blue-700 mb-1">Government Schemes</h3>
+                            <h3 className="font-bold text-gray-900 group-hover:text-google-blue mb-1">Government Schemes</h3>
                             <p className="text-sm text-gray-500">Central & State funding</p>
                         </Link>
                         <Link href="/private-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-emerald-600">

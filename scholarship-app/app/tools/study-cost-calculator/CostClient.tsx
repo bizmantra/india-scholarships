@@ -369,7 +369,7 @@ export default function CostClient({ scholarships }: Props) {
                                 <div>
                                     <div className="flex justify-between items-center mb-1.5">
                                         <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Scholarship Money You Already Have (Annual)</span>
-                                        <span className="text-sm font-black text-emerald-700">₹{securedScholarship.toLocaleString('en-IN')}</span>
+                                        <span className="text-sm font-black text-success">₹{securedScholarship.toLocaleString('en-IN')}</span>
                                     </div>
                                     <input
                                         type="range"
@@ -414,7 +414,7 @@ export default function CostClient({ scholarships }: Props) {
                                                 onClick={handleCopyResults}
                                                 className="w-full py-2.5 bg-slate-50 border border-gray-250 hover:bg-gray-100 text-gray-700 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                             >
-                                                {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
+                                                {copied ? <Check className="w-3.5 h-3.5 text-success" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
                                                 <span>{copied ? 'Copied Results!' : 'Copy Summary Link'}</span>
                                             </button>
                                             <ShareButtons 
@@ -462,7 +462,7 @@ export default function CostClient({ scholarships }: Props) {
                                                     </span>
                                                     <span className="text-[9px] text-gray-400 font-bold block">per year</span>
                                                 </div>
-                                                <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 rounded-xl p-4 text-center">
+                                                <div className="bg-success-soft border border-success-soft text-success rounded-xl p-4 text-center">
                                                     <span className="text-[9px] font-extrabold uppercase opacity-90 tracking-wider">Scholarship Money</span>
                                                     <span className="text-lg font-black block mt-0.5">
                                                         - ₹{securedScholarship.toLocaleString('en-IN')}
@@ -486,7 +486,7 @@ export default function CostClient({ scholarships }: Props) {
                                                 </div>
                                                 <div className="w-full h-2.5 bg-gray-250 rounded-full overflow-hidden">
                                                     <div 
-                                                        className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full transition-all duration-500" 
+                                                        className="h-full bg-gradient-to-r from-cyan-500 to-brand rounded-full transition-all duration-500" 
                                                         style={{ width: `${coveragePercent}%` }}
                                                     />
                                                 </div>
@@ -496,8 +496,8 @@ export default function CostClient({ scholarships }: Props) {
                                                         <span>You need to find ₹{fundingGap.toLocaleString('en-IN')} more to pay for your studies. Check scholarship matches below!</span>
                                                     </p>
                                                 ) : (
-                                                    <p className="text-[10px] text-emerald-700 font-bold mt-2 flex items-center gap-1">
-                                                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                                    <p className="text-[10px] text-success font-bold mt-2 flex items-center gap-1">
+                                                        <CheckCircle2 className="w-3.5 h-3.5 text-success" />
                                                         <span>100% of your college costs are covered by your scholarship money!</span>
                                                     </p>
                                                 )}
@@ -688,16 +688,16 @@ export default function CostClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-xs">
                                 <h4 className="font-bold text-sm text-gray-900 mb-3">Other Utility Tools</h4>
                                 <div className="space-y-3">
-                                    <Link href="/tools/amount-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/amount-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Scholarship Amount Calculator
                                     </Link>
-                                    <Link href="/tools/income-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/income-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Family Income Cap Calculator
                                     </Link>
-                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Scholarship Eligibility Checker
                                     </Link>
-                                    <Link href="/tools/cgpa-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/cgpa-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → CGPA to Percentage Converter
                                     </Link>
                                 </div>

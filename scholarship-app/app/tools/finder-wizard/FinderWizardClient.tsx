@@ -111,7 +111,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                 <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     {/* Breadcrumbs */}
                     <div className="text-sm text-gray-500 mb-6">
-                        <a href="/tools" className="hover:text-blue-700 font-medium">Tools</a>
+                        <a href="/tools" className="hover:text-google-blue font-medium">Tools</a>
                         <span className="mx-2">/</span>
                         <span className="text-gray-900 font-semibold">Scholarship Finder Wizard</span>
                     </div>
@@ -119,7 +119,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                     <div className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-xs relative overflow-hidden">
                         {/* Sparkle background decoration */}
                         <div className="absolute top-0 right-0 p-8 opacity-5">
-                            <Sparkles className="w-32 h-32 text-purple-600" />
+                            <Sparkles className="w-32 h-32 text-brand" />
                         </div>
 
                         {step <= totalSteps ? (
@@ -127,7 +127,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                 {/* Wizard Header */}
                                 <div className="flex justify-between items-center mb-8 border-b pb-4">
                                     <div>
-                                        <span className="text-xs font-bold uppercase tracking-widest text-purple-600">Question {step} of {totalSteps}</span>
+                                        <span className="text-xs font-bold uppercase tracking-widest text-brand">Question {step} of {totalSteps}</span>
                                         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">Profile Builder</h1>
                                     </div>
                                     <div className="flex items-center gap-1">
@@ -135,7 +135,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                             <div 
                                                 key={i}
                                                 className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
-                                                    i + 1 <= step ? 'bg-purple-600' : 'bg-gray-150'
+                                                    i + 1 <= step ? 'bg-brand' : 'bg-gray-150'
                                                 }`}
                                             />
                                         ))}
@@ -147,13 +147,13 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     {step === 1 && (
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <MapPin className="w-5 h-5 text-purple-600" />
+                                                <MapPin className="w-5 h-5 text-brand" />
                                                 <h3 className="font-extrabold text-lg text-gray-900">Which state are you a resident of?</h3>
                                             </div>
                                             <select
                                                 value={state}
                                                 onChange={(e) => setState(e.target.value)}
-                                                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:outline-hidden font-medium"
+                                                className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand focus:border-transparent focus:outline-hidden font-medium"
                                             >
                                                 <option value="">Select your home state</option>
                                                 <option value="All India">All India</option>
@@ -169,7 +169,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     {step === 2 && (
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <User className="w-5 h-5 text-purple-600" />
+                                                <User className="w-5 h-5 text-brand" />
                                                 <h3 className="font-extrabold text-lg text-gray-900">What is your social caste category?</h3>
                                             </div>
                                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -179,7 +179,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setCategory(c)}
                                                         className={`px-4 py-3 rounded-xl border text-sm font-semibold transition-all cursor-pointer ${
                                                             category === c 
-                                                                ? 'bg-purple-600 border-purple-600 text-white shadow-md shadow-purple-500/20' 
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20' 
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >
@@ -193,7 +193,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     {step === 3 && (
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <GraduationCap className="w-5 h-5 text-purple-600" />
+                                                <GraduationCap className="w-5 h-5 text-brand" />
                                                 <h3 className="font-extrabold text-lg text-gray-900">What is your current level of education?</h3>
                                             </div>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -209,7 +209,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setLevel(opt.value)}
                                                         className={`px-5 py-4 rounded-xl border text-sm font-semibold text-left transition-all cursor-pointer ${
                                                             level === opt.value
-                                                                ? 'bg-purple-600 border-purple-600 text-white shadow-md shadow-purple-500/20'
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20'
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >
@@ -223,7 +223,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     {step === 4 && (
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <Coins className="w-5 h-5 text-purple-600" />
+                                                <Coins className="w-5 h-5 text-brand" />
                                                 <h3 className="font-extrabold text-lg text-gray-900">What is your annual family income limit range?</h3>
                                             </div>
                                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -240,7 +240,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setIncome(opt.val)}
                                                         className={`px-4 py-3.5 rounded-xl border text-xs font-bold uppercase transition-all cursor-pointer ${
                                                             income === opt.val
-                                                                ? 'bg-purple-600 border-purple-600 text-white shadow-md shadow-purple-500/20'
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20'
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >
@@ -254,7 +254,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     {step === 5 && (
                                         <div className="space-y-4">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <BookOpen className="w-5 h-5 text-purple-600" />
+                                                <BookOpen className="w-5 h-5 text-brand" />
                                                 <h3 className="font-extrabold text-lg text-gray-900">What were your marks in the last qualifying exam (%)?</h3>
                                             </div>
                                             <div className="relative max-w-sm">
@@ -265,7 +265,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                     min="0"
                                                     max="100"
                                                     placeholder="e.g. 75"
-                                                    className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:outline-hidden font-semibold text-lg"
+                                                    className="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand focus:border-transparent focus:outline-hidden font-semibold text-lg"
                                                 />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-400">%</span>
                                             </div>
@@ -286,7 +286,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                     <button
                                         onClick={handleNext}
                                         disabled={!isStepValid()}
-                                        className="inline-flex items-center gap-1.5 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                                        className="inline-flex items-center gap-1.5 px-6 py-3 bg-brand hover:bg-brand text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                                     >
                                         <span>{step === totalSteps ? 'View Results' : 'Next Step'}</span>
                                         <ChevronRight className="w-4 h-4" />
@@ -296,10 +296,10 @@ export default function FinderWizardClient({ scholarships }: Props) {
                         ) : (
                             <div>
                                 {/* Output Header */}
-                                <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl p-6 sm:p-8 text-center sm:text-left mb-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                                <div className="bg-gradient-to-r from-brand to-pink-600 text-white rounded-2xl p-6 sm:p-8 text-center sm:text-left mb-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                                     <div>
                                         <h2 className="text-2xl sm:text-3xl font-black">Matched {results.length} Scholarships!</h2>
-                                        <p className="text-xs sm:text-sm text-purple-100 mt-2 font-medium">
+                                        <p className="text-xs sm:text-sm text-brand-soft mt-2 font-medium">
                                             Found potential grants worth up to ₹{results.reduce((sum, s) => sum + (s.amount_annual || 0), 0).toLocaleString('en-IN')}+ matching your build profile.
                                         </p>
                                     </div>
@@ -337,7 +337,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                         <p className="text-gray-500 font-semibold mb-2">No scholarships exactly match your profile combinations</p>
                                         <button 
                                             onClick={handleReset}
-                                            className="text-sm font-bold text-purple-700 hover:text-purple-800"
+                                            className="text-sm font-bold text-brand hover:text-brand"
                                         >
                                             Adjust Profile Answers
                                         </button>

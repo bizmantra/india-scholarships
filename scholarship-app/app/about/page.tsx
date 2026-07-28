@@ -19,14 +19,14 @@ export default function AboutPage() {
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">About Us</span>
                 </nav>
 
                 {/* Hero Section */}
                 <div className="mb-16 text-center max-w-3xl mx-auto">
-                    <span className="text-blue-700 font-extrabold uppercase tracking-widest text-xs px-3 py-1 bg-blue-50 rounded-full">
+                    <span className="text-google-blue font-extrabold uppercase tracking-widest text-xs px-3 py-1 bg-blue-50 rounded-full">
                         Our Mission
                     </span>
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4 mb-6 tracking-tight">
@@ -40,7 +40,7 @@ export default function AboutPage() {
                 {/* Visual Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
                     <div className="bg-blue-50/50 p-8 rounded-3xl border border-blue-100 text-center">
-                        <h3 className="text-blue-700 font-bold mb-1 uppercase tracking-wider text-xs">Verified Schemes</h3>
+                        <h3 className="text-google-blue font-bold mb-1 uppercase tracking-wider text-xs">Verified Schemes</h3>
                         <p className="text-4xl font-black text-blue-900">1,000+</p>
                     </div>
                     <div className="bg-orange-50/50 p-8 rounded-3xl border border-orange-100 text-center">
@@ -78,19 +78,19 @@ export default function AboutPage() {
                         </p>
                         <ul className="space-y-3 text-gray-600">
                             <li className="flex items-start gap-3">
-                                <span className="text-blue-700 font-bold">✓</span>
+                                <span className="text-google-blue font-bold">✓</span>
                                 <div>
                                     <strong className="text-gray-900">29 Enriched Data Fields:</strong> Deep detail for every scholarship, from exact document checklists to principal verifications.
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="text-blue-700 font-bold">✓</span>
+                                <span className="text-google-blue font-bold">✓</span>
                                 <div>
                                     <strong className="text-gray-900">Smart Eligibility Checks:</strong> Match your profile instantly against hundreds of active funds.
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
-                                <span className="text-blue-700 font-bold">✓</span>
+                                <span className="text-google-blue font-bold">✓</span>
                                 <div>
                                     <strong className="text-gray-900">Step-by-Step Application Guides:</strong> Clear screenshots and walk-throughs for complex portals.
                                 </div>
@@ -138,7 +138,7 @@ export default function AboutPage() {
                     <div className="flex flex-wrap justify-center gap-4">
                         <a 
                             href="mailto:contact@indiascholarships.in" 
-                            className="px-8 py-4 bg-white text-blue-700 font-extrabold rounded-2xl hover:bg-gray-50 transition-all shadow-lg"
+                            className="px-8 py-4 bg-white text-google-blue font-extrabold rounded-2xl hover:bg-gray-50 transition-all shadow-lg"
                         >
                             contact@indiascholarships.in
                         </a>

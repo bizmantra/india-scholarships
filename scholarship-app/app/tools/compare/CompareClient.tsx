@@ -32,7 +32,7 @@ export default function CompareClient({ scholarships }: Props) {
                 <Header />
                 <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="text-sm text-gray-500 mb-6">
-                        <a href="/tools" className="hover:text-blue-700 font-medium">Tools</a>
+                        <a href="/tools" className="hover:text-google-blue font-medium">Tools</a>
                         <span className="mx-2">/</span>
                         <span className="text-gray-900 font-semibold">Scholarship Compare Tool</span>
                     </div>
@@ -109,7 +109,7 @@ export default function CompareClient({ scholarships }: Props) {
                                         <tr>
                                             <td className="py-4 px-4 font-bold text-gray-700">Annual Benefit</td>
                                             {comparedScholarships.map(s => (
-                                                <td key={s.id} className="py-4 px-6 font-black text-emerald-700">
+                                                <td key={s.id} className="py-4 px-6 font-black text-success">
                                                     ₹{(s.amount_annual || s.amount_min || 0).toLocaleString('en-IN')}
                                                 </td>
                                             ))}

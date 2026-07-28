@@ -25,7 +25,7 @@ export default async function PrivateScholarshipsPage() {
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">Private Scholarships</span>
                 </nav>
@@ -41,7 +41,7 @@ export default async function PrivateScholarshipsPage() {
                         {pillar && (
                             <>
                                 {' '}New to how corporate and private scholarships work?{' '}
-                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-blue-700 hover:underline">
+                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
                                     Read our complete guide
                                 </Link>{' '}
                                 first.
@@ -86,7 +86,7 @@ export default async function PrivateScholarshipsPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 font-serif">Explore Alternative Funding</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <Link href="/government-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-blue-600">
-                            <h3 className="font-bold text-gray-900 group-hover:text-blue-700 mb-1">Government Schemes</h3>
+                            <h3 className="font-bold text-gray-900 group-hover:text-google-blue mb-1">Government Schemes</h3>
                             <p className="text-sm text-gray-500">Central & State funding</p>
                         </Link>
                         <Link href="/corporate-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-purple-600">

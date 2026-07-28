@@ -59,7 +59,7 @@ export default function LanguageDetector({ slug }: { slug: string }) {
                 </div>
                 <button
                     onClick={handleDismiss}
-                    className="p-1 hover:bg-blue-100 rounded-lg text-blue-500 hover:text-blue-700 transition-colors"
+                    className="p-1 hover:bg-blue-100 rounded-lg text-blue-500 hover:text-google-blue transition-colors"
                     aria-label="Dismiss language notice"
                 >
                     <X className="h-4 w-4" />

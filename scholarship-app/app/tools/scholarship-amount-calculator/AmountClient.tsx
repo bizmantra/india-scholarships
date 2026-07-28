@@ -368,7 +368,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                 onClick={handleCopyResults}
                                                 className="w-full py-2.5 bg-slate-50 border border-gray-250 hover:bg-gray-100 text-gray-700 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                                             >
-                                                {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
+                                                {copied ? <Check className="w-3.5 h-3.5 text-success" /> : <Share2 className="w-3.5 h-3.5 text-gray-500" />}
                                                 <span>{copied ? 'Copied Results!' : 'Copy Summary Link'}</span>
                                             </button>
                                             <ShareButtons 
@@ -564,14 +564,14 @@ export default function AmountClient({ scholarships }: Props) {
                                         </p>
                                     </div>
 
-                                    <div className="border-l-4 border-emerald-500 pl-4 py-1">
+                                    <div className="border-l-4 border-success pl-4 py-1">
                                         <h4 className="font-bold text-sm text-gray-900">Example 2: 100% Fees Paid by Government</h4>
                                         <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                                             Priya is studying BA. Under the government's Post-Matric SC Scheme, her entire college fee of ₹12,000 is paid by the government, and she gets ₹1,200 every month in her bank account for books and food.
                                         </p>
                                     </div>
 
-                                    <div className="border-l-4 border-amber-500 pl-4 py-1">
+                                    <div className="border-l-4 border-accent pl-4 py-1">
                                         <h4 className="font-bold text-sm text-gray-900">Example 3: Studying Abroad with Full Funding</h4>
                                         <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                                             Vikram got a fellowship to study in the USA. The scholarship pays his complete college fees, flight tickets, visa charges, and sends him monthly pocket money for living there.
@@ -636,16 +636,16 @@ export default function AmountClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-xs">
                                 <h4 className="font-bold text-sm text-gray-900 mb-3">Other Utility Tools</h4>
                                 <div className="space-y-3">
-                                    <Link href="/tools/income-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/income-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Family Income Cap Calculator
                                     </Link>
-                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/eligibility-checker" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Scholarship Eligibility Checker
                                     </Link>
-                                    <Link href="/tools/loan-emi-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/loan-emi-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → Education Loan EMI Calculator
                                     </Link>
-                                    <Link href="/tools/cgpa-calculator" className="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                    <Link href="/tools/cgpa-calculator" className="block text-xs font-semibold text-gray-600 hover:text-google-blue transition-colors">
                                         → CGPA to Percentage Converter
                                     </Link>
                                 </div>

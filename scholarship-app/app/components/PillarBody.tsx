@@ -73,9 +73,9 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
               <a
                 key={h.id}
                 href={`#${h.id}`}
-                className={`block text-xs font-semibold leading-relaxed transition-all pl-2.5 border-l-2 hover:text-indigo-600 ${
+                className={`block text-xs font-semibold leading-relaxed transition-all pl-2.5 border-l-2 hover:text-google-blue ${
                   activeHeading === h.id
-                    ? 'text-indigo-600 border-indigo-600 font-bold'
+                    ? 'text-google-blue border-google-blue font-bold'
                     : 'text-slate-500 border-transparent hover:border-slate-300'
                 } ${h.level === 3 ? 'ml-3' : ''}`}
               >
@@ -88,14 +88,14 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
 
       <div className="w-full flex-1 min-w-0">
         <div
-          className="prose prose-slate max-w-none prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-base prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-indigo-600 prose-a:font-semibold"
+          className="prose prose-slate max-w-none prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-base prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-google-blue prose-a:font-semibold"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
         {checklist.length > 0 && (
           <div className="my-10 bg-slate-50 border border-slate-200 rounded-2xl p-6 print:page-break-inside-avoid">
             <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <ListChecks className="w-5 h-5 text-indigo-600" />
+              <ListChecks className="w-5 h-5 text-google-blue" />
               <span>Documents Checklist</span>
             </h3>
             <p className="text-xs text-slate-500 mb-4">Check off items as you gather them:</p>
@@ -103,9 +103,9 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
               {checklist.map((item, idx) => (
                 <label
                   key={idx}
-                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-indigo-400 transition-colors cursor-pointer print:border-slate-300"
+                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-google-blue transition-colors cursor-pointer print:border-slate-300"
                 >
-                  <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 print:hidden" />
+                  <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-slate-300 text-google-blue focus:ring-google-blue print:hidden" />
                   <span className="text-xs font-semibold text-slate-800 leading-normal">{item}</span>
                 </label>
               ))}
@@ -116,7 +116,7 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
         {faqs.length > 0 && (
           <div id="faq-section" className="my-10 scroll-mt-24 border-t border-slate-150 pt-8 print:page-break-inside-avoid">
             <h3 className="text-lg font-bold text-slate-900 mb-5 flex items-center gap-2">
-              <HelpCircle className="w-4.5 h-4.5 text-indigo-600" />
+              <HelpCircle className="w-4.5 h-4.5 text-google-blue" />
               <span>Frequently Asked Questions (FAQ)</span>
             </h3>
             <div className="space-y-3.5">

@@ -160,7 +160,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                         {/* Hero Section */}
                         <div className="text-center mb-12">
                             <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                                <Search className="w-8 h-8 text-blue-700" />
+                                <Search className="w-8 h-8 text-google-blue" />
                             </div>
                             <h1 className="text-4xl font-bold text-gray-900 mb-4">
                                 Find Scholarships You're Eligible For
@@ -313,7 +313,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                         <div className="mb-8">
                             <button
                                 onClick={() => setShowResults(false)}
-                                className="text-blue-700 hover:text-blue-800 mb-4 flex items-center gap-2"
+                                className="text-google-blue hover:text-google-blue mb-4 flex items-center gap-2"
                             >
                                 ← Back to form
                             </button>
@@ -358,7 +358,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                 <div className="text-center py-12 bg-white rounded-xl">
                                     <p className="text-gray-600 mb-4">No scholarships match your exact criteria.</p>
                                     <p className="text-sm text-gray-500">Try adjusting your filters or browse all scholarships.</p>
-                                    <a href="/" className="inline-block mt-4 text-blue-700 hover:text-blue-800 font-semibold">
+                                    <a href="/" className="inline-block mt-4 text-google-blue hover:text-google-blue font-semibold">
                                         Browse All Scholarships →
                                     </a>
                                 </div>

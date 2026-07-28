@@ -269,7 +269,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                                 onClick={() => setFormula('9.5')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '9.5'
-                                                        ? 'bg-blue-50 border-google-blue text-google-blue font-extrabold'
+                                                        ? 'bg-brand-soft border-google-blue text-google-blue font-extrabold'
                                                         : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -280,7 +280,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                                 onClick={() => setFormula('10')}
                                                 className={`py-2.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                                     formula === '10'
-                                                        ? 'bg-blue-50 border-google-blue text-google-blue font-extrabold'
+                                                        ? 'bg-brand-soft border-google-blue text-google-blue font-extrabold'
                                                         : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -294,7 +294,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {!hasCalculated && !calculating && (
                                     <button
                                         type="submit"
-                                        className="w-full bg-google-blue hover:bg-blue-600 text-white rounded-xl py-3.5 text-xs font-bold transition-all shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer mt-4"
+                                        className="w-full bg-google-blue hover:bg-brand text-white rounded-xl py-3.5 text-xs font-bold transition-all shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer mt-4"
                                     >
                                         <span>Convert CGPA to Percentage →</span>
                                     </button>
@@ -316,7 +316,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                 {/* Output Display */}
                                 {hasCalculated && (
                                     <div className="space-y-6">
-                                        <div className="mt-8 bg-blue-50 border border-blue-100/50 rounded-2xl p-6 text-center relative overflow-hidden">
+                                        <div className="mt-8 bg-brand-soft border border-brand-soft/50 rounded-2xl p-6 text-center relative overflow-hidden">
                                             <div className="absolute top-0 right-0 p-4 opacity-5">
                                                 <Percent className="w-20 h-20 text-google-blue" />
                                             </div>
@@ -356,7 +356,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                             <h2 className="text-xl font-bold text-gray-900 font-serif">Recommended Scholarships</h2>
                                             <p className="text-gray-500 text-xs mt-1">Matched schemes requiring a score of ≤ {percentage}%</p>
                                         </div>
-                                        <span className="self-start sm:self-center px-3 py-1 bg-blue-50 text-google-blue border border-blue-100 text-xs font-bold rounded-full">
+                                        <span className="self-start sm:self-center px-3 py-1 bg-brand-soft text-google-blue border border-brand-soft text-xs font-bold rounded-full">
                                             {matches.length} Matches Found
                                         </span>
                                     </div>
@@ -378,7 +378,7 @@ export default function CgpaClient({ scholarships }: Props) {
                                                     onClick={() => setActiveTab(tab.id as TabType)}
                                                     className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                                                         activeTab === tab.id
-                                                            ? 'border-google-blue text-google-blue bg-blue-50/50'
+                                                            ? 'border-google-blue text-google-blue bg-brand-soft/50'
                                                             : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                                     }`}
                                                 >
@@ -445,17 +445,17 @@ export default function CgpaClient({ scholarships }: Props) {
                             <h3 className="text-2xl font-black text-gray-900 font-serif">How to Calculate: Real Examples</h3>
                             <div className="bg-slate-50 border border-gray-200 rounded-2xl p-6 space-y-4">
                                 <div className="border-b pb-3">
-                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario A: CBSE Board Class 10/12</span>
+                                    <span className="text-xs font-bold text-success uppercase tracking-wider block mb-1">Scenario A: CBSE Board Class 10/12</span>
                                     <p className="text-gray-700 font-semibold text-sm">CGPA: 8.4</p>
                                     <p className="text-gray-500 text-xs mt-1">Calculation: 8.4 × 9.5 = <strong className="text-gray-800">79.8%</strong></p>
                                 </div>
                                 <div className="border-b pb-3">
-                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario B: University AICTE Standard</span>
+                                    <span className="text-xs font-bold text-success uppercase tracking-wider block mb-1">Scenario B: University AICTE Standard</span>
                                     <p className="text-gray-700 font-semibold text-sm">CGPA: 7.5</p>
                                     <p className="text-gray-500 text-xs mt-1">Calculation: 7.5 × 10 = <strong className="text-gray-800">75.0%</strong></p>
                                 </div>
                                 <div>
-                                    <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-1">Scenario C: International GPA Scale</span>
+                                    <span className="text-xs font-bold text-success uppercase tracking-wider block mb-1">Scenario C: International GPA Scale</span>
                                     <p className="text-gray-700 font-semibold text-sm">GPA: 3.6 / 4.0</p>
                                     <p className="text-gray-500 text-xs mt-1">Calculation: (3.6 / 4) × 100 = <strong className="text-gray-800">90.0%</strong></p>
                                 </div>

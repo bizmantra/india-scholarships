@@ -46,13 +46,13 @@ export default function ScholarshipDetailTemplate({
             {/* Header */}
             <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
                 <div className="container mx-auto flex h-16 items-center justify-between px-6">
-                    <Link href="/" className="text-2xl font-black tracking-tight text-blue-700 font-serif">
+                    <Link href="/" className="text-2xl font-black tracking-tight text-google-blue font-serif">
                         IndiaScholarships
                     </Link>
                     <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-500">
-                        <Link href="/scholarships-by-category" className="hover:text-blue-700 transition-colors">Categories</Link>
-                        <Link href="/state-scholarships" className="hover:text-blue-700 transition-colors">States</Link>
-                        <Link href="/scholarships-by-education" className="hover:text-blue-700 transition-colors">Education</Link>
+                        <Link href="/scholarships-by-category" className="hover:text-google-blue transition-colors">Categories</Link>
+                        <Link href="/state-scholarships" className="hover:text-google-blue transition-colors">States</Link>
+                        <Link href="/scholarships-by-education" className="hover:text-google-blue transition-colors">Education</Link>
                     </nav>
                 </div>
             </header>
@@ -60,9 +60,9 @@ export default function ScholarshipDetailTemplate({
             <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-xs uppercase tracking-widest text-gray-400 mb-10">
-                    <Link href="/" className="hover:text-blue-700 transition-colors">Home</Link>
+                    <Link href="/" className="hover:text-google-blue transition-colors">Home</Link>
                     <span>/</span>
-                    <Link href="/scholarships" className="hover:text-blue-700 transition-colors">Scholarships</Link>
+                    <Link href="/scholarships" className="hover:text-google-blue transition-colors">Scholarships</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-semibold truncate">{scholarship.title}</span>
                 </nav>
@@ -93,7 +93,7 @@ export default function ScholarshipDetailTemplate({
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
                             <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                                 <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block mb-1">Scholarship Amount</span>
-                                <span className="text-xl font-black text-blue-700 block truncate">
+                                <span className="text-xl font-black text-google-blue block truncate">
                                     {scholarship.amount_min && scholarship.amount_annual
                                         ? `₹${(scholarship.amount_annual / 1000).toFixed(0)}k+`
                                         : formatAmount(scholarship.amount_annual)
@@ -239,7 +239,7 @@ export default function ScholarshipDetailTemplate({
                                         <p className="text-gray-700 leading-relaxed italic">"{displayValue(scholarship.selection)}"</p>
                                         {scholarship.total_awards && (
                                             <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
-                                                <span className="text-blue-700 font-bold">Total Awards:</span>
+                                                <span className="text-google-blue font-bold">Total Awards:</span>
                                                 <span className="text-gray-900">{scholarship.total_awards.toLocaleString('en-IN')} scholarships</span>
                                             </div>
                                         )}
@@ -284,7 +284,7 @@ export default function ScholarshipDetailTemplate({
                                                 href={cleanApplyUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-700 font-black rounded-2xl hover:bg-blue-50 transition-all transform hover:-translate-y-1 active:translate-y-0"
+                                                className="flex items-center justify-center gap-2 w-full py-4 bg-white text-google-blue font-black rounded-2xl hover:bg-blue-50 transition-all transform hover:-translate-y-1 active:translate-y-0"
                                             >
                                                 Go to Official Portal
                                                 <ExternalLink className="w-4 h-4" />
@@ -352,7 +352,7 @@ export default function ScholarshipDetailTemplate({
                                             href="https://t.me/IndiaScholarships1"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 transition-colors pt-1"
+                                            className="inline-flex items-center gap-1.5 text-xs font-bold text-google-blue hover:underline transition-colors pt-1"
                                         >
                                             Join Channel
                                             <ChevronRight className="w-3.5 h-3.5" />
@@ -425,8 +425,8 @@ export default function ScholarshipDetailTemplate({
                                 { label: `In ${scholarship.state || 'India'}`, href: `/scholarships-in/${scholarship.state ? slugify(scholarship.state) : 'india'}` }
                             ].map((link, i) => (
                                 <Link key={i} href={link.href} className="flex items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl hover:border-blue-700 hover:shadow-lg transition-all group">
-                                    <span className="text-sm font-bold text-gray-700 group-hover:text-blue-700">{link.label}</span>
-                                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-700" />
+                                    <span className="text-sm font-bold text-gray-700 group-hover:text-google-blue">{link.label}</span>
+                                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-google-blue" />
                                 </Link>
                             ))}
                         </div>
@@ -439,7 +439,7 @@ export default function ScholarshipDetailTemplate({
                             <ul className="space-y-4">
                                 {cleanOfficialSource && (
                                     <li>
-                                        <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-700 font-bold hover:underline">
+                                        <a href={cleanOfficialSource} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-google-blue font-bold hover:underline">
                                             <ExternalLink className="w-4 h-4" />
                                             Official Portal: {scholarship.provider}
                                         </a>
@@ -448,7 +448,7 @@ export default function ScholarshipDetailTemplate({
                                 <li>
                                     <Link
                                         href="/articles/india-scholarships-statistics-2025-2026"
-                                        className="flex items-center gap-2 text-blue-700 font-bold hover:underline"
+                                        className="flex items-center gap-2 text-google-blue font-bold hover:underline"
                                     >
                                         <ExternalLink className="w-4 h-4" />
                                         National Scholarship Budget &amp; CSR Statistics Report (2025-2026)
@@ -459,7 +459,7 @@ export default function ScholarshipDetailTemplate({
                                         href={scholarship.scholarship_type === 'Private' ? "/private-scholarships" :
                                             scholarship.scholarship_type === 'Corporate' ? "/corporate-scholarships" :
                                                 "/government-scholarships"}
-                                        className="flex items-center gap-2 text-blue-700 font-bold hover:underline"
+                                        className="flex items-center gap-2 text-google-blue font-bold hover:underline"
                                     >
                                         <ExternalLink className="w-4 h-4" />
                                         All {scholarship.scholarship_type || 'Government'} Scholarship Schemes

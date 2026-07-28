@@ -394,8 +394,8 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
 
                             {/* Trust Badges */}
                             <div className="mt-6 pt-6 border-t border-gray-100 flex justify-center gap-6 text-[10px] text-gray-500 font-extrabold uppercase tracking-wider">
-                                <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-green-600" /> 100% Free</span>
-                                <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-green-600" /> Safe & Secured</span>
+                                <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-success" /> 100% Free</span>
+                                <span className="flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-success" /> Safe & Secured</span>
                             </div>
                         </div>
 
@@ -430,9 +430,9 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
 
                                             {/* Matches Header Summary */}
                                             {results.length > 0 && (
-                                                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl p-5 mb-6 text-center">
-                                                    <h4 className="font-extrabold text-sm text-emerald-900 leading-snug">🏆 Congratulations! You qualify to apply!</h4>
-                                                    <p className="text-[11px] text-emerald-800 mt-1 leading-relaxed">
+                                                <div className="bg-gradient-to-r from-success-soft to-teal-50 border border-success-soft rounded-xl p-5 mb-6 text-center">
+                                                    <h4 className="font-extrabold text-sm text-success leading-snug">🏆 Congratulations! You qualify to apply!</h4>
+                                                    <p className="text-[11px] text-success mt-1 leading-relaxed">
                                                         You matched with scholarships worth up to <strong>₹{results.reduce((max, s) => Math.max(max, s.amount_annual || s.amount_min || 0), 0).toLocaleString('en-IN')}/year</strong>.
                                                     </p>
                                                 </div>

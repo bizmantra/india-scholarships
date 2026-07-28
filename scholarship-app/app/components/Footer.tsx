@@ -30,6 +30,10 @@ export default function Footer() {
                             <li><Link href="/scholarships-by-category" className="hover:text-white transition-colors">By Category</Link></li>
                             <li><Link href="/scholarships-by-education" className="hover:text-white transition-colors">By Education Level</Link></li>
                             <li><Link href="/scholarships-by-income" className="hover:text-white transition-colors">By Income</Link></li>
+                            <li><Link href="/scholarships-by-course" className="hover:text-white transition-colors">By Course</Link></li>
+                            <li><Link href="/scholarships/international" className="hover:text-white transition-colors">Study Abroad</Link></li>
+                            <li><Link href="/scholarships-for/sports" className="hover:text-white transition-colors">Sports & Athletes</Link></li>
+                            <li><Link href="/scholarships-for/pwd" className="hover:text-white transition-colors">Persons with Disabilities</Link></li>
                         </ul>
                     </div>
                     <div>

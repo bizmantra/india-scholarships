@@ -54,6 +54,14 @@ export default function ScholarshipsList({
     // 1. Filter by category, deadline status, and text search query
     const filteredScholarships = useMemo(() => {
         return scholarships.filter(s => {
+            // Scope filter — this component has no "International" tab/mode (that lives at
+            // /scholarships/international with its own hub), so a Study Abroad scholarship
+            // (different eligibility: foreign university admission, IELTS/GRE, etc.) should
+            // never surface here, including in Trending/Deadlines/Recently Added.
+            if (s.scholarship_scope && String(s.scholarship_scope).toLowerCase() === 'international') {
+                return false;
+            }
+
             // Category Filter
             let matchesCategory = true;
             if (selectedCategory !== 'All') {
@@ -401,7 +409,7 @@ export default function ScholarshipsList({
 
             {/* Scholarships List */}
             {sortedScholarships.length > 0 ? (
-                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}>
+                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'border-t border-gray-100'}>
                     {sortedScholarships.map(s => (
                         <ScholarshipCard
                             key={s.id}

@@ -44,14 +44,14 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
 
         // Closed
         if (deadlineDate < today) {
-            return { text: 'Closed', color: 'text-gray-500 bg-gray-50 border-gray-200' };
+            return { text: 'Closed', color: 'text-ink-soft bg-surface-gray border-border-gray' };
         }
 
         const daysUntilDeadline = Math.ceil((deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
         // Closing Soon
         if (daysUntilDeadline <= 7) {
-            return { text: 'Closing Soon', color: 'text-google-red bg-red-50/50 border-red-100' };
+            return { text: 'Closing Soon', color: 'text-urgent bg-urgent-soft border-transparent' };
         }
 
         // New
@@ -59,7 +59,7 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             const createdDate = new Date(scholarship.created_at);
             const daysSinceCreated = Math.ceil((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
             if (daysSinceCreated <= 14) {
-                return { text: 'New Opportunity', color: 'text-google-blue bg-blue-50/50 border-blue-100' };
+                return { text: 'New Opportunity', color: 'text-accent bg-accent-soft border-transparent' };
             }
         }
 
@@ -126,10 +126,10 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
     const getProviderBadge = () => {
         const firstLetter = scholarship.provider ? scholarship.provider.charAt(0).toUpperCase() : 'S';
         const colors = [
-            'bg-blue-50 text-google-blue border-blue-100',
-            'bg-green-50 text-google-green border-green-100',
-            'bg-red-50 text-google-red border-red-100',
-            'bg-yellow-50 text-google-yellow border-yellow-100'
+            'bg-brand-soft text-brand border-transparent',
+            'bg-success-soft text-success border-transparent',
+            'bg-urgent-soft text-urgent border-transparent',
+            'bg-accent-soft text-accent border-transparent'
         ];
         const index = firstLetter.charCodeAt(0) % colors.length;
         const colorClass = colors[index];
@@ -155,66 +155,30 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
     };
 
     if (viewMode === 'list') {
+        // Plain, dense scannable row — title/meta on the left, amount/deadline/category
+        // right-aligned so a browsing user can pattern-match by column, no card chrome.
+        const deadlineIsUrgent = statusBadge?.text === 'Closing Soon';
+        const deadlineIsClosed = statusBadge?.text === 'Closed';
         return (
             <Link
                 href={`/scholarships/${scholarship.slug}`}
-                className="block border border-border-gray rounded-3xl p-6 md:p-8 hover:border-google-blue hover:shadow-lg transition-all bg-white group"
+                className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] items-center gap-x-6 gap-y-1 py-4 border-b border-gray-100 hover:bg-gray-50/60 transition-colors group"
             >
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    
-                    {/* Left & Middle Column */}
-                    <div className="flex items-start gap-4 flex-1">
-                        {getProviderBadge()}
-
-                        <div className="space-y-1">
-                            {/* Verification & Urgency Row */}
-                            <div className="flex flex-wrap items-center gap-2 text-xs">
-                                <span className="flex items-center gap-1 text-google-green font-semibold">
-                                    <CheckCircle2 className="h-3.5 w-3.5 text-google-green" />
-                                    Verified
-                                </span>
-                                {statusBadge && (
-                                    <>
-                                        <span className="text-gray-300">•</span>
-                                        <span className={`px-2 py-0.5 rounded-md border text-[10px] font-bold uppercase tracking-wider ${statusBadge.color}`}>
-                                            {statusBadge.text}
-                                        </span>
-                                    </>
-                                )}
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-google-blue transition-colors leading-snug">
-                                {scholarship.title}
-                            </h3>
-
-                            {/* Provider */}
-                            <p className="text-xs text-gray-500 font-medium">
-                                {scholarship.provider}
-                            </p>
-
-                            {/* Eligibility Summary */}
-                            {eligibilityHints.length > 0 && (
-                                <p className="text-xs text-gray-500 font-medium">
-                                    <span className="text-gray-400">Eligibility:</span> {eligibilityHints.join(' • ')}
-                                </p>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Right Column: Reward and CTA (Desktop aligned right, Mobile stacked) */}
-                    <div className="flex md:flex-col items-between md:items-end justify-between w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0 gap-3 shrink-0">
-                        <div className="text-left md:text-right">
-                            <span className="text-xs text-gray-400 block font-medium">Reward Value</span>
-                            <span className="text-lg md:text-xl font-black text-google-blue">
-                                {formatAmount()}
-                            </span>
-                        </div>
-
-                        <button className="h-[48px] px-6 bg-google-blue hover:bg-blue-600 text-white rounded-full text-sm font-bold flex items-center justify-center gap-1 cursor-pointer transition-colors w-auto">
-                            View Details
-                        </button>
-                    </div>
+                <div>
+                    <p className="text-base font-semibold text-gray-900 group-hover:text-google-blue transition-colors leading-snug">
+                        {scholarship.title}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                        {scholarship.provider}
+                        {eligibilityHints.length > 0 && <span> · {eligibilityHints.join(' · ')}</span>}
+                    </p>
+                </div>
+                <div className="text-left sm:text-right">
+                    <span className="text-sm font-bold text-gray-900 font-variant-tabular-nums">{formatAmount()}</span>
+                    <span className="block text-[11px] text-gray-400">per year</span>
+                </div>
+                <div className={`text-sm font-semibold text-left sm:text-right whitespace-nowrap ${deadlineIsUrgent ? 'text-urgent' : deadlineIsClosed ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {formatDeadline(scholarship.deadline)}
                 </div>
             </Link>
         );

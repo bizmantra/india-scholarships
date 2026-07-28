@@ -23,7 +23,7 @@ export default async function GovernmentScholarshipsPage() {
             <main className="max-w-5xl mx-auto px-4 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-                    <Link href="/" className="hover:text-blue-700">Home</Link>
+                    <Link href="/" className="hover:text-google-blue">Home</Link>
                     <span>/</span>
                     <span className="text-gray-900 font-medium">Government Scholarships</span>
                 </nav>
@@ -35,14 +35,14 @@ export default async function GovernmentScholarshipsPage() {
                     </h1>
                     <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Official financial aid schemes provided by the **Government of India** and various **State Governments**.
-                        Currently, we have <span className="font-bold text-blue-700">{scholarships.length} verified government schemes</span> listed for students.
+                        Currently, we have <span className="font-bold text-google-blue">{scholarships.length} verified government schemes</span> listed for students.
                     </p>
                 </div>
 
                 {/* Quick Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                     <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed">
-                        <h3 className="text-blue-700 font-bold mb-1">Total Schemes</h3>
+                        <h3 className="text-google-blue font-bold mb-1">Total Schemes</h3>
                         <p className="text-3xl font-extrabold text-blue-900">{scholarships.length}</p>
                     </div>
                     <div className="bg-orange-50/50 p-6 rounded-3xl border border-orange-100">
@@ -72,28 +72,28 @@ export default async function GovernmentScholarshipsPage() {
                         <Link href="/scholarships-by-category" className="flex items-center gap-4 p-6 bg-white rounded-3xl border border-gray-100 hover:border-blue-600 hover:shadow-xl transition-all group">
                             <div className="text-4xl">👥</div>
                             <div>
-                                <h3 className="font-bold text-gray-900 group-hover:text-blue-700">Caste Category</h3>
+                                <h3 className="font-bold text-gray-900 group-hover:text-google-blue">Caste Category</h3>
                                 <p className="text-sm text-gray-500">SC, ST, OBC, Minority schemes</p>
                             </div>
                         </Link>
                         <Link href="/state-scholarships" className="flex items-center gap-4 p-6 bg-white rounded-3xl border border-gray-100 hover:border-blue-600 hover:shadow-xl transition-all group">
                             <div className="text-4xl">🗺️</div>
                             <div>
-                                <h3 className="font-bold text-gray-900 group-hover:text-blue-700">States of India</h3>
+                                <h3 className="font-bold text-gray-900 group-hover:text-google-blue">States of India</h3>
                                 <p className="text-sm text-gray-500">Find schemes for your state</p>
                             </div>
                         </Link>
                         <Link href="/scholarships-by-education" className="flex items-center gap-4 p-6 bg-white rounded-3xl border border-gray-100 hover:border-blue-600 hover:shadow-xl transition-all group">
                             <div className="text-4xl">🎓</div>
                             <div>
-                                <h3 className="font-bold text-gray-900 group-hover:text-blue-700">Education Level</h3>
+                                <h3 className="font-bold text-gray-900 group-hover:text-google-blue">Education Level</h3>
                                 <p className="text-sm text-gray-500">School, Graduation, PhD</p>
                             </div>
                         </Link>
                         <Link href="/scholarships-by-income" className="flex items-center gap-4 p-6 bg-white rounded-3xl border border-gray-100 hover:border-blue-600 hover:shadow-xl transition-all group">
                             <div className="text-4xl">💰</div>
                             <div>
-                                <h3 className="font-bold text-gray-900 group-hover:text-blue-700">Income Range</h3>
+                                <h3 className="font-bold text-gray-900 group-hover:text-google-blue">Income Range</h3>
                                 <p className="text-sm text-gray-500">EWS and EBC specific scholarships</p>
                             </div>
                         </Link>

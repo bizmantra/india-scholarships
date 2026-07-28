@@ -75,13 +75,13 @@ export default function StatusTrackingGuide() {
 
             <main className="max-w-4xl mx-auto px-4 py-12">
                 {/* Back Link */}
-                <Link href="/guides" className="inline-flex items-center gap-2 text-sm text-blue-700 font-bold mb-8 hover:underline">
+                <Link href="/guides" className="inline-flex items-center gap-2 text-sm text-google-blue font-bold mb-8 hover:underline">
                     <ArrowLeft className="h-4 w-4" /> Back to All Guides
                 </Link>
 
                 {/* Hero */}
                 <div className="mb-12">
-                    <span className="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold uppercase tracking-widest text-google-blue bg-blue-50 px-3 py-1 rounded-full">
                         Status & Disbursals
                     </span>
                     <h1 id="tracking-hero" className="text-4xl font-extrabold text-gray-900 mt-4 mb-6 leading-tight font-serif">
@@ -116,14 +116,14 @@ export default function StatusTrackingGuide() {
                         {statuses.map((item, idx) => (
                             <div key={idx} className="p-6 border border-gray-100 rounded-2xl bg-gray-50/50 hover:bg-white hover:shadow-md transition-all">
                                 <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-xs shrink-0">
+                                    <div className="w-6 h-6 bg-blue-100 text-google-blue rounded-full flex items-center justify-center font-bold text-xs shrink-0">
                                         {idx + 1}
                                     </div>
                                     <h3 className="font-bold text-gray-900 text-lg leading-tight">{item.title}</h3>
                                 </div>
                                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.detail}</p>
                                 <div className="p-4 bg-white rounded-xl border border-gray-100/80 flex items-start gap-3">
-                                    <Info className="h-4 w-4 text-blue-700 shrink-0 mt-0.5" />
+                                    <Info className="h-4 w-4 text-google-blue shrink-0 mt-0.5" />
                                     <p className="text-xs text-gray-600 font-medium"><strong>What to do:</strong> {item.action}</p>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@ export default function StatusTrackingGuide() {
                     <div className="space-y-6">
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 My status shows "Payment Rejected". What should I do?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">
@@ -176,7 +176,7 @@ export default function StatusTrackingGuide() {
                         </div>
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 What is the difference between PFMS status and NSP Portal status?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">
@@ -185,7 +185,7 @@ export default function StatusTrackingGuide() {
                         </div>
                         <div className="p-6 border rounded-2xl bg-white hover:border-blue-100 transition-colors">
                             <h3 className="font-bold text-gray-900 mb-2 flex items-start gap-2.5 text-base">
-                                <HelpCircle className="h-5 w-5 text-blue-700 shrink-0 mt-0.5" />
+                                <HelpCircle className="h-5 w-5 text-google-blue shrink-0 mt-0.5" />
                                 How long does it take for money to be disbursed after status changes to "Sent to PFMS"?
                             </h3>
                             <p className="text-gray-600 text-sm leading-relaxed pl-7">

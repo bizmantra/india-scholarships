@@ -497,7 +497,7 @@ function getOneYearAgoString() {
                         <div className="p-8 overflow-y-auto flex-1">
                             {/* Modal Header */}
                             <div className="mb-6">
-                                <span className="text-[10px] text-blue-700 font-black uppercase tracking-widest">Community Verification</span>
+                                <span className="text-[10px] text-google-blue font-black uppercase tracking-widest">Community Verification</span>
                                 <h3 className="text-xl font-black text-gray-900 mt-1 leading-tight">{scholarshipTitle}</h3>
                             </div>
 
@@ -557,7 +557,7 @@ function getOneYearAgoString() {
                                             >
                                                 <div className="p-2.5 bg-gray-50 rounded-xl group-hover:bg-white transition-colors">{item.icon}</div>
                                                 <div>
-                                                    <span className="block font-bold text-gray-900 text-sm group-hover:text-blue-700 transition-colors">
+                                                    <span className="block font-bold text-gray-900 text-sm group-hover:text-google-blue transition-colors">
                                                         {item.label}
                                                     </span>
                                                     <span className="block text-xs text-gray-500 font-medium mt-0.5">{item.desc}</span>

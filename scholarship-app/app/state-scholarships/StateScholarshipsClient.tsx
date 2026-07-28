@@ -17,7 +17,7 @@ interface StateInfo {
 const REGIONS = ['All Regions', 'North', 'South', 'East', 'West', 'Central', 'North-East', 'UT'];
 
 const MAJOR_PORTALS = [
-    { title: 'National Scholarship Portal (NSP)', tag: 'Central Govt', url: '/guides/nsp', color: 'bg-blue-50 text-blue-700 border-blue-100' },
+    { title: 'National Scholarship Portal (NSP)', tag: 'Central Govt', url: '/guides/nsp', color: 'bg-blue-50 text-google-blue border-blue-100' },
     { title: 'SSP Karnataka State Portal', tag: 'Karnataka', url: '/guides/ssp', color: 'bg-green-50 text-green-700 border-green-100' },
     { title: 'MahaDBT Post-Matric Portal', tag: 'Maharashtra', url: '/guides/mahadbt', color: 'bg-amber-50 text-amber-700 border-amber-100' },
     { title: 'e-Kalyan Welfare Portal', tag: 'Jharkhand / Bihar', url: '/guides/e-kalyan-jharkhand', color: 'bg-purple-50 text-purple-700 border-purple-100' },
@@ -97,7 +97,7 @@ export default function StateScholarshipsClient({
             <section className="bg-gradient-to-b from-blue-50/50 via-white to-white py-12 px-4 border-b border-gray-150 text-center">
                 <div className="max-w-4xl mx-auto">
                     <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100/60 text-blue-800 text-xs font-bold mb-4 border border-blue-200/50">
-                        <Sparkles className="h-3.5 w-3.5 text-blue-700 animate-pulse" />
+                        <Sparkles className="h-3.5 w-3.5 text-google-blue animate-pulse" />
                         Live State Directory • {totalActiveSchemes}+ Active Regional Grants
                     </div>
 
@@ -164,7 +164,7 @@ export default function StateScholarshipsClient({
                                 >
                                     <div>
                                         <div className="flex items-center justify-between mb-3">
-                                            <span className="px-2.5 py-1 bg-blue-50 text-blue-700 text-[11px] font-bold rounded-md border border-blue-100">
+                                            <span className="px-2.5 py-1 bg-blue-50 text-google-blue text-[11px] font-bold rounded-md border border-blue-100">
                                                 {st.portalName}
                                             </span>
                                             <span className="text-xs font-extrabold text-google-green bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
