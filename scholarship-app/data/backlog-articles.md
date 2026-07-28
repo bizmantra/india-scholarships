@@ -22,50 +22,50 @@
 | ART-18 | NSP Portal 2026 Registration: Complete Beginner Guide | `nsp-national-scholarship-portal-guide` | Pillar 1: State & Portal Guides | `/guides/nsp` | Backlog |
 | ART-19 | PFMS Portal Status Check: Know Your Direct Payment Status | `pfms-scholarship-status-check-guide` | Pillar 1: State & Portal Guides | `/guides/pfms` | Backlog |
 | ART-20 | State Portal vs Central NSP: Which One Should You Apply On? | `state-vs-central-scholarship-rules` | Pillar 1: State & Portal Guides | `/guides/nsp` | Backlog |
-| ART-21 | SC Post-Matric Scholarship: Income Caps & Free-Ship Scheme Explained | `sc-postmatric-scholarship-income-rules` | Pillar 2: Category & Income | `/scholarships-for/sc` | Backlog |
-| ART-22 | ST Post-Matric Scholarship: Eligibility, Hostel Allowance & Rules | `st-postmatric-scholarship-rules-2026` | Pillar 2: Category & Income | `/scholarships-for/st` | Backlog |
-| ART-23 | OBC Non-Creamy Layer Scholarship Rules: Who Qualifies? | `obc-ncl-scholarship-rules-explained` | Pillar 2: Category & Income | `/scholarships-for/obc` | Backlog |
-| ART-24 | EWS Scholarship Guide: Top Government & Private Options | `ews-scholarship-list-and-eligibility` | Pillar 2: Category & Income | `/scholarships-for/ews` | Backlog |
-| ART-25 | NSP Minority Scholarships (Pre-Matric, Post-Matric, MCM): Complete Rules | `minority-moma-scholarship-guide` | Pillar 2: Category & Income | `/scholarships-for/minority` | Backlog |
+| ART-21 | SC Post-Matric Scholarship: Income Caps & Free-Ship Scheme Explained | `sc-postmatric-scholarship-income-rules` | Pillar 2: Category & Income | `/scholarships-for/sc` | Done |
+| ART-22 | ST Post-Matric Scholarship: Eligibility, Hostel Allowance & Rules | `st-postmatric-scholarship-rules-2026` | Pillar 2: Category & Income | `/scholarships-for/st` | Done |
+| ART-23 | OBC Non-Creamy Layer Scholarship Rules: Who Qualifies? | `obc-ncl-scholarship-rules-explained` | Pillar 2: Category & Income | `/scholarships-for/obc` | Done |
+| ART-24 | EWS Scholarship Guide: Top Government & Private Options | `ews-scholarship-list-and-eligibility` | Pillar 2: Category & Income | `/scholarships-for/ews` | Done |
+| ART-25 | NSP Minority Scholarships (Pre-Matric, Post-Matric, MCM): Complete Rules | `minority-moma-scholarship-guide` | Pillar 2: Category & Income | `/scholarships-for/minority` | Done |
 | ART-26 | Engineering / B.Tech CSR Scholarships: Top 10 Grants for Tech Students | `engineering-btech-csr-scholarships` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/btech` | Done |
 | ART-27 | MBBS & Medical Education Grants: How to Fund Government & Private Seats | `mbbs-medical-education-grants` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/mbbs` | Done |
 | ART-28 | Polytechnic & Diploma Student Grants: State & Central Schemes List | `polytechnic-diploma-grants` | Pillar 3: Course & Degree Financial Aid | `/scholarships-by-education/diploma` | Done |
 | ART-29 | EWS & General Category Scholarships for Income Under ₹8 Lakhs | `income-under-8-lakh-scholarships` | Pillar 2: Category & Income | `/scholarships-income/under-8-lakhs` | Backlog |
-| ART-30 | Single Girl Child Scholarships in India: Complete Eligibility List | `single-girl-child-scholarships-list` | Pillar 2: Category & Income | `/scholarships-for/female` | Backlog |
-| ART-31 | Top Scholarships for Female Students in Science, Tech & Engineering | `female-stem-scholarships-india` | Pillar 2: Category & Income | `/scholarships-for/female` | Backlog |
+| ART-30 | Single Girl Child Scholarships in India: Complete Eligibility List | `single-girl-child-scholarships-list` | Pillar 2: Category & Income | `/scholarships-for/female` | Done |
+| ART-31 | Top Scholarships for Female Students in Science, Tech & Engineering | `female-stem-scholarships-india` | Pillar 2: Category & Income | `/scholarships-for/female` | Done |
 | ART-32 | First Generation College Student Scholarships in India | `first-generation-learner-scholarships` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
 | ART-33 | Scholarships for Orphans & Children of Single Parents in India | `orphan-single-parent-scholarships` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
-| ART-34 | Prime Minister Scholarship Scheme (PMSS) for Ex-Servicemen Children | `defence-ex-servicemen-scholarships` | Pillar 2: Category & Income | `/scholarships-for/general` | Backlog |
+| ART-34 | Prime Minister Scholarship Scheme (PMSS) for Ex-Servicemen Children | `defence-ex-servicemen-scholarships` | Pillar 2: Category & Income | `/scholarships-for/general` | Done |
 | ART-35 | Wards of Beedi, Cine & Non-Coal Mine Workers Scholarship Guide | `beedi-cinema-mining-worker-scholarships` | Pillar 2: Category & Income | `/guides/nsp` | Backlog |
-| ART-36 | Top Sports Scholarships in India for State & National Level Athletes | `sports-quota-scholarships-india` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
+| ART-36 | Top Sports Scholarships in India for State & National Level Athletes | `sports-quota-scholarships-india` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Done |
 | ART-37 | Merit-Cum-Means Scholarships Explained: Marks vs Income Weightage | `merit-cum-means-scholarships-guide` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
 | ART-38 | Pre-Matric vs Post-Matric Scholarship: What is the Difference? | `pre-matric-vs-post-matric-difference` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
 | ART-39 | Caste Certificate Rules: Do You Need Central or State Certificate? | `caste-certificate-validity-for-scholarship` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
 | ART-40 | Income Certificate Validity: How Old Can Your Income Proof Be? | `income-certificate-validity-period` | Pillar 2: Category & Income | `/tools/eligibility-checker` | Backlog |
-| ART-41 | B.Tech & Engineering Scholarships: How to Cover 4-Year Tuition Fees | `btech-engineering-scholarships-guide` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Backlog |
-| ART-42 | Top Scholarships for Diploma & Polytechnic Students | `diploma-polytechnic-scholarships-india` | Pillar 3: Course & Degree | `/scholarships-level/diploma` | Backlog |
-| ART-43 | MBBS & Medical Student Scholarships: Private vs Govt Assistance | `mbbs-medical-scholarships-india` | Pillar 3: Course & Degree | `/scholarships-by-course/medicine` | Backlog |
-| ART-44 | BSc Nursing & GNM Scholarships: Top Financial Aid Schemes | `nursing-bsc-nursing-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/medicine` | Backlog |
+| ART-41 | B.Tech & Engineering Scholarships: How to Cover 4-Year Tuition Fees | `btech-engineering-scholarships-guide` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Done |
+| ART-42 | Top Scholarships for Diploma & Polytechnic Students | `diploma-polytechnic-scholarships-india` | Pillar 3: Course & Degree | `/scholarships-level/diploma` | Done |
+| ART-43 | MBBS & Medical Student Scholarships: Private vs Govt Assistance | `mbbs-medical-grants-india-guide` | Pillar 3: Course & Degree | `/scholarships-by-course/medical` | Done |
+| ART-44 | BSc Nursing & GNM Scholarships: Top Financial Aid Schemes | `nursing-bsc-nursing-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/medicine` | Done |
 | ART-45 | BSc Agriculture & Allied Sciences Scholarships in India | `bsc-agriculture-scholarships-guide` | Pillar 3: Course & Degree | `/scholarships-by-course/science` | Backlog |
 | ART-46 | BCA & MCA Student Scholarships: Technical Skill Financial Aid | `bca-mca-computer-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Backlog |
-| ART-47 | B.Com & BBA Scholarships: Top Corporate & Govt Schemes | `bcom-bba-commerce-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/commerce` | Backlog |
-| ART-48 | BA, MA & Humanities Scholarships: Research & Degree Funding | `ba-ma-arts-humanities-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/arts` | Backlog |
+| ART-47 | B.Com & BBA Scholarships: Top Corporate & Govt Schemes | `bcom-bba-commerce-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/commerce` | Done |
+| ART-48 | BA, MA & Humanities Scholarships: Research & Degree Funding | `ba-ma-arts-humanities-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/arts` | Done |
 | ART-49 | ITI & Skill Training Scholarships: Govt Allowances & Stipends | `iti-skill-development-scholarships` | Pillar 3: Course & Degree | `/scholarships-level/diploma` | Backlog |
-| ART-50 | Best Scholarships to Apply Immediately After Passing Class 10 | `class-10-passed-scholarships-list` | Pillar 3: Course & Degree | `/scholarships-level/class-10-passed` | Backlog |
-| ART-51 | Top Scholarships After Passing Class 12 Board Exams | `class-12-passed-scholarships-list` | Pillar 3: Course & Degree | `/scholarships-level/class-12-passed` | Backlog |
-| ART-52 | Law Student Scholarships: Financial Aid for 3-Year & 5-Year LLB | `llb-law-student-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/law` | Backlog |
+| ART-50 | Best Scholarships to Apply Immediately After Passing Class 10 | `class-10-passed-scholarships-list` | Pillar 3: Course & Degree | `/scholarships-level/class-10-passed` | Done |
+| ART-51 | Top Scholarships After Passing Class 12 Board Exams | `class-12-passed-scholarships-list` | Pillar 3: Course & Degree | `/scholarships-level/class-12-passed` | Done |
+| ART-52 | Law Student Scholarships: Financial Aid for 3-Year & 5-Year LLB | `llb-law-student-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/law` | Done |
 | ART-53 | Architecture (B.Arch) Scholarships: Fees & Design Grants | `barch-architecture-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Backlog |
 | ART-54 | B.Ed & D.El.Ed Scholarships: Aid for Future School Teachers | `bed-deled-teaching-scholarships` | Pillar 3: Course & Degree | `/scholarships-level/post-graduate` | Backlog |
 | ART-55 | CA, CS & CMA Student Scholarships: ICAI & Private Grants | `ca-cs-cma-professional-scholarships` | Pillar 3: Course & Degree | `/scholarships-by-course/commerce` | Backlog |
 | ART-56 | M.Tech GATE Financial Assistance & Non-GATE M.Tech Scholarships | `mtech-gate-stipend-guide` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Backlog |
-| ART-57 | PhD Fellowships in India: CSIR NET, UGC NET & Prime Minister PMRF | `phd-research-fellowship-scholarships` | Pillar 3: Course & Degree | `/scholarships-level/phd` | Backlog |
+| ART-57 | PhD Fellowships in India: CSIR NET, UGC NET & Prime Minister PMRF | `phd-research-fellowship-scholarships` | Pillar 3: Course & Degree | `/scholarships-level/phd` | Done |
 | ART-58 | Scholarships That Specifically Cover Hostel & Food Fees | `hostel-fee-reimbursement-scholarships` | Pillar 3: Course & Degree | `/tools/eligibility-checker` | Backlog |
 | ART-59 | Can IGNOU & Distance Education Students Get Govt Scholarships? | `distance-education-open-university-scholarships` | Pillar 3: Course & Degree | `/tools/eligibility-checker` | Backlog |
 | ART-60 | How to Get Fee Reimbursement in Private Engineering Colleges | `private-college-tuition-fee-reimbursement` | Pillar 3: Course & Degree | `/scholarships-by-course/engineering` | Backlog |
-| ART-61 | Top 10 High-Value Corporate CSR Scholarships in India | `best-corporate-csr-scholarships-2026` | Pillar 4: Corporate & CSR | `/corporate-scholarships` | Backlog |
+| ART-61 | Top 10 High-Value Corporate CSR Scholarships in India | `best-corporate-csr-scholarships-2026` | Pillar 4: Corporate & CSR | `/corporate-scholarships` | Done |
 | ART-62 | Tata Capital Pankh Scholarship: Eligibility, Selection & How to Apply | `tata-capital-pankh-scholarship-guide` | Pillar 4: Corporate & CSR | `/scholarships/tata-capital-pankh-scholarship` | Backlog |
 | ART-63 | LIC Golden Jubilee Scholarship: Step-by-Step Application Guide | `lic-golden-jubilee-scholarship-guide` | Pillar 4: Corporate & CSR | `/scholarships/lic-golden-jubilee-scholarship` | Backlog |
-| ART-64 | PM Yashasvi Scholarship Scheme: Exam Date, Syllabus & Amount | `pm-yashasvi-scholarship-full-guide` | Pillar 4: Corporate & CSR | `/scholarships/pm-yashasvi-scholarship` | Backlog |
+| ART-64 | PM Yashasvi Scholarship Scheme: Exam Date, Syllabus & Amount | `pm-yashasvi-scholarship-full-guide` | Pillar 4: Corporate & CSR | `/scholarships/pm-yashasvi-scholarship` | Done |
 | ART-65 | Azim Premji Scholarship 2026: Application Process & Benefits | `azim-premji-scholarship-full-guide` | Pillar 4: Corporate & CSR | `/scholarships/azim-premji-scholarship` | Backlog |
 | ART-66 | Glow & Lovely Careers Scholarship for Women: Complete Details | `glow-and-lovely-careers-scholarship` | Pillar 4: Corporate & CSR | `/scholarships/glow-lovely-careers-scholarship-for-women` | Backlog |
 | ART-67 | AICTE Pragati, Saksham & Swanath Schemes: Full Comparison | `aicte-pragati-saksham-swanath-guide` | Pillar 4: Corporate & CSR | `/scholarships/aicte-pragati-scholarship-for-girl-students` | Backlog |
@@ -91,7 +91,7 @@
 | ART-87 | MahaDBT Document Upload Error & Application Sent Back Fix | `mahadbt-re-upload-documents-guide` | Pillar 5: Procedural & Docs | `/guides/mahadbt/documents-list` | Backlog |
 | ART-88 | Karnataka SSP SATS ID & College Admission Number Linking Error Fix | `ssp-kats-sats-id-linking-error` | Pillar 5: Procedural & Docs | `/guides/ssp-karnataka/status-check` | Backlog |
 | ART-89 | Scholarship Payment Bounced or Bank Rejected? How to Re-register Bank Details | `scholarship-bank-account-rejected-dbt` | Pillar 5: Procedural & Docs | `/guides/pfms` | Backlog |
-| ART-90 | Scholarship Money Not Received? How to File Grievance on CPGRAMS & State Portals | `how-to-file-scholarship-grievance-online` | Pillar 5: Procedural & Docs | `/guides/pfms` | Backlog |
+| ART-90 | Scholarship Money Not Received? How to File Grievance on CPGRAMS & State Portals | `how-to-file-scholarship-grievance-online` | Pillar 5: Procedural & Docs | `/guides/pfms` | Done |
 | ART-91 | Gap Year Affidavit for Scholarship: Download Stamp Paper Format | `gap-year-affidavit-format-for-scholarship` | Pillar 5: Procedural & Docs | `/tools/eligibility-checker` | Backlog |
 | ART-92 | Domicile Certificate Rules: How to Prove Residence for State Scholarships | `domicile-residence-certificate-guide` | Pillar 5: Procedural & Docs | `/tools/eligibility-checker` | Backlog |
 | ART-93 | Self-Declaration Minority Form for NSP & State Portals | `minority-declaration-affidavit-format` | Pillar 5: Procedural & Docs | `/scholarships-for/minority` | Backlog |

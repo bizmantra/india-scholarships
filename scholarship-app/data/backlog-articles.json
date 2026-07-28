@@ -141,7 +141,7 @@
   },
   {
     "id": "ART-15",
-    "title": "EWS Income Certificate Thresholds: ₹2.5L vs ₹8L Limits Decoded",
+    "title": "EWS Income Certificate Thresholds: \u20b92.5L vs \u20b98L Limits Decoded",
     "slug": "ews-income-certificate-thresholds",
     "pillar": "Pillar 2: Category & Income Decoders",
     "target_link": "/scholarships-by-income/under-2-lakh",
@@ -205,7 +205,7 @@
     "slug": "sc-postmatric-scholarship-income-rules",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/sc",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -215,7 +215,7 @@
     "slug": "st-postmatric-scholarship-rules-2026",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/st",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -225,7 +225,7 @@
     "slug": "obc-ncl-scholarship-rules-explained",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/obc",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -235,7 +235,7 @@
     "slug": "ews-scholarship-list-and-eligibility",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/ews",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -245,7 +245,7 @@
     "slug": "minority-moma-scholarship-guide",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/minority",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -281,7 +281,7 @@
   },
   {
     "id": "ART-29",
-    "title": "EWS & General Category Scholarships for Income Under ₹8 Lakhs",
+    "title": "EWS & General Category Scholarships for Income Under \u20b98 Lakhs",
     "slug": "income-under-8-lakh-scholarships",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-income/under-8-lakhs",
@@ -295,7 +295,7 @@
     "slug": "single-girl-child-scholarships-list",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/female",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -305,7 +305,7 @@
     "slug": "female-stem-scholarships-india",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/female",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -335,7 +335,7 @@
     "slug": "defence-ex-servicemen-scholarships",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/scholarships-for/general",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -355,7 +355,7 @@
     "slug": "sports-quota-scholarships-india",
     "pillar": "Pillar 2: Category & Income",
     "target_link": "/tools/eligibility-checker",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -405,7 +405,7 @@
     "slug": "btech-engineering-scholarships-guide",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/engineering",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -415,17 +415,17 @@
     "slug": "diploma-polytechnic-scholarships-india",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-level/diploma",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
   {
     "id": "ART-43",
     "title": "MBBS & Medical Student Scholarships: Private vs Govt Assistance",
-    "slug": "mbbs-medical-scholarships-india",
+    "slug": "mbbs-medical-grants-india-guide",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/medicine",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -435,7 +435,7 @@
     "slug": "nursing-bsc-nursing-scholarships",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/medicine",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -465,7 +465,7 @@
     "slug": "bcom-bba-commerce-scholarships",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/commerce",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -475,7 +475,7 @@
     "slug": "ba-ma-arts-humanities-scholarships",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/arts",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -495,7 +495,7 @@
     "slug": "class-10-passed-scholarships-list",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-level/class-10-passed",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -505,7 +505,7 @@
     "slug": "class-12-passed-scholarships-list",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-level/class-12-passed",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -515,7 +515,7 @@
     "slug": "llb-law-student-scholarships",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-by-course/law",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -565,7 +565,7 @@
     "slug": "phd-research-fellowship-scholarships",
     "pillar": "Pillar 3: Course & Degree",
     "target_link": "/scholarships-level/phd",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -605,7 +605,7 @@
     "slug": "best-corporate-csr-scholarships-2026",
     "pillar": "Pillar 4: Corporate & CSR",
     "target_link": "/corporate-scholarships",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -635,7 +635,7 @@
     "slug": "pm-yashasvi-scholarship-full-guide",
     "pillar": "Pillar 4: Corporate & CSR",
     "target_link": "/scholarships/pm-yashasvi-scholarship",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },
@@ -895,7 +895,7 @@
     "slug": "how-to-file-scholarship-grievance-online",
     "pillar": "Pillar 5: Procedural & Docs",
     "target_link": "/guides/pfms",
-    "status": "Backlog",
+    "status": "Done",
     "impact": "High",
     "type": "Article"
   },

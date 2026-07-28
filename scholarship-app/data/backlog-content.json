@@ -430,5 +430,37 @@
     "impact": "High",
     "status": "Backlog",
     "type": "Content Task, Strategy"
+  },
+  {
+    "id": "CNT-56",
+    "title": "High-Volume Search Term Guides: DAAD, Erasmus Mundus, FAEA & Corporate CSR",
+    "description": "Context / Why it matters:\nKeyword analysis identified 50,000+ monthly searches for DAAD (Germany), Erasmus Mundus, FAEA, and major corporate CSR schemes (Sitaram Jindal, Tata Capital Pankh). High-intent traffic with low competitive guide coverage.\n\nPlan / What to do:\nResearch and publish comprehensive guides under /guides for: 1) DAAD Postgraduate Scholarships, 2) Erasmus Mundus Joint Master Degrees, 3) FAEA Undergraduate Scholarship, 4) Corporate CSR Scholarship Bundle.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-57",
+    "title": "How-To Procedural Articles: NSP Face-RD Errors, PFMS Tracking & Certificate Formats",
+    "description": "Context / Why it matters:\nSolving high-friction technical roadblocks for Tier-2/3 students. Huge organic search demand for NSP biometric authentication errors and PFMS bank payment tracking.\n\nPlan / What to do:\nDraft step-by-step troubleshooting articles: 1) 'How to Fix NSP Face-RD & OTP Verification Errors', 2) 'How to Track Scholarship Payment Status via PFMS', 3) 'State-wise Income & Domicile Certificate Application Guide'.",
+    "impact": "Critical",
+    "status": "Done",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-58",
+    "title": "High-Value Segment Listicles: Overseas SC/ST Schemes, B.Tech CSR & MBBS Grants",
+    "description": "Context / Why it matters:\nInternal linking engines designed to route search engine authority from high-level topics into specific scholarship detail pages.\n\nPlan / What to do:\nCreate 3 targeted listicles: 1) 'Top 8 Overseas Scholarships for SC/ST & Minority Students', 2) 'Top CSR Scholarships for B.Tech & Diploma Students', 3) 'Scholarships & Grants for MBBS Students in India'.",
+    "impact": "High",
+    "status": "Done",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-59",
+    "title": "News & Portal Opening Alerts: Gujarat MYSY, UP Post-Matric & SSP Karnataka",
+    "description": "Context / Why it matters:\nTime-sensitive news alerts designed to trigger fast indexation and Google Discover placement as annual application portals open.\n\nPlan / What to do:\nPublish breaking news posts for 2026-27 cycle launches: 1) Gujarat MYSY registration opening, 2) UP Post-Matric district status release, 3) SSP Karnataka Kutumba ID sync requirements.",
+    "impact": "Medium",
+    "status": "Done",
+    "type": "Content Task"
   }
 ]

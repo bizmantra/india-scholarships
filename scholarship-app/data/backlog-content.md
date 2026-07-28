@@ -1,6 +1,30 @@
 # IndiaScholarships Content Backlog
 
-## Done (1)
+## Done (5)
+
+- [x] **CNT-56**: High-Volume Search Term Guides: DAAD, Erasmus Mundus, FAEA & Corporate CSR
+  - **Impact**: High
+  - **Type**: Content Task
+  - **Description**:
+    Published comprehensive guides under /guides for: 1) DAAD Postgraduate Scholarships, 2) Erasmus Mundus Joint Master Degrees, 3) FAEA Undergraduate Scholarship, 4) Corporate CSR Scholarship Bundle.
+
+- [x] **CNT-57**: How-To Procedural Articles: NSP Face-RD Errors, PFMS Tracking & Certificate Formats
+  - **Impact**: Critical
+  - **Type**: Content Task
+  - **Description**:
+    Drafted step-by-step troubleshooting articles: 1) "How to Fix NSP Face-RD & OTP Verification Errors", 2) "How to Track Scholarship Payment Status via PFMS", 3) "State-wise Income & Domicile Certificate Application Guide".
+
+- [x] **CNT-58**: High-Value Segment Listicles: Overseas SC/ST Schemes, B.Tech CSR & MBBS Grants
+  - **Impact**: High
+  - **Type**: Content Task
+  - **Description**:
+    Created 3 targeted listicles: 1) "Top 8 Overseas Scholarships for SC/ST & Minority Students", 2) "Top CSR Scholarships for B.Tech & Diploma Students", 3) "Scholarships & Grants for MBBS Students in India".
+
+- [x] **CNT-59**: News & Portal Opening Alerts: Gujarat MYSY, UP Post-Matric & SSP Karnataka
+  - **Impact**: Medium
+  - **Type**: Content Task
+  - **Description**:
+    Published breaking news posts for 2026-27 cycle launches: 1) Gujarat MYSY registration opening, 2) UP Post-Matric district status release, 3) SSP Karnataka Kutumba ID sync requirements.
 
 - [x] **CNT-52**: Content audit + migration plan: unify Guides, Articles, Pillars into one Editorial type
   - **Impact**: High

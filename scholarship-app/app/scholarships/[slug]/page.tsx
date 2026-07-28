@@ -100,8 +100,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `MMVY Scholarship ${year}: Apply Online, Eligibility, Last Date & Amount`;
     } else if (slug === 'jharkhand-e-kalyan-post-matric-scholarship') {
         seoTitle = isDeadlinePassed
-            ? `e-Kalyan Jharkhand Scholarship ${year}: Details, Eligibility & Verification`
-            : `e-Kalyan Jharkhand Scholarship ${year}: Apply Online, Last Date & Amount`;
+            ? `e-Kalyan Jharkhand Scholarship ${year}: Fee Reimbursement & Eligibility`
+            : `e-Kalyan Jharkhand Scholarship ${year}: Fee Reimbursement | Apply & Last Date`;
     } else if (slug === 'swami-vivekananda-merit-cum-means-scholarship-svmcm') {
         seoTitle = isDeadlinePassed
             ? `SVMCM Scholarship ${year}: Details, Eligibility & Application Status`
@@ -122,8 +122,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `Reliance Foundation Scholarship ${year}: UG Apply Online, Eligibility & Selection`;
     } else if (slug === 'azim-premji-scholarship') {
         seoTitle = isDeadlinePassed
-            ? `Azim Premji Scholarship ${year}: For Govt School Students | Details & Eligibility`
-            : `Azim Premji Scholarship ${year}: For Govt School Students | Eligibility & Apply`;
+            ? `Azim Premji Scholarship ${year}: ₹30,000/Year | Eligibility & Details`
+            : `Azim Premji Scholarship ${year}: ₹30,000/Year | Eligibility & Apply Online`;
+    } else if (slug === 'talliki-vandanam-scheme-ap') {
+        seoTitle = isDeadlinePassed
+            ? `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Eligibility & Status`
+            : `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Apply & Check Status`;
     } else if (slug === 'lic-golden-jubilee-scholarship') {
         seoTitle = isDeadlinePassed
             ? `LIC Golden Jubilee Scholarship ${year}: Eligibility & Last Date Details`
@@ -626,7 +630,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         <div>
                             <p className="font-bold text-amber-900 mb-1 text-sm">Status check</p>
                             <p className="text-amber-800 text-sm leading-relaxed">
-                                The previous application cycle closed on {new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}. The next cycle is expected to open soon — we'll update this page as soon as the official notification is released.
+                                The previous application cycle (2025–26) closed on {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'the previous cycle')}. The upcoming 2026–27 cycle is expected to open soon. We will update the links here as soon as the official notification is released.
                             </p>
                             <a href="#similar-opportunities" className="mt-2 inline-block text-xs font-bold text-google-blue hover:underline">
                                 View active scholarships you can apply for today →

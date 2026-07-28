@@ -531,7 +531,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 <div>
                                     <p className="font-bold text-amber-900 mb-1">Status Check</p>
                                     <p className="text-amber-800 text-sm leading-relaxed">
-                                        The previous application cycle (2025–26) closed on {new Date(scholarship.deadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}. The upcoming 2026–27 cycle is expected to open soon. We will update the links here as soon as the official notification is released.
+                                        The previous application cycle (2025–26) closed on {formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'long', year: 'numeric' }, 'the previous cycle')}. The upcoming 2026–27 cycle is expected to open soon. We will update the links here as soon as the official notification is released.
                                     </p>
                                     <a href="#similar-opportunities" className="mt-2 inline-block text-xs font-bold text-google-blue hover:underline">
                                         👉 View active scholarships you can apply for today
