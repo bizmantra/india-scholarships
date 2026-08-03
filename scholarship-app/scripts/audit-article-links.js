@@ -12,6 +12,14 @@ const db = new Database(dbPath);
 const dbRows = db.prepare('SELECT slug, title FROM scholarships').all();
 const validDbSlugs = new Map(dbRows.map(r => [r.slug, r.title]));
 
+// Fetch all articles and pillars slugs
+const pillarsDir = path.join(projectRoot, 'content', 'pillars');
+const pillarFiles = fs.existsSync(pillarsDir) ? fs.readdirSync(pillarsDir).filter(f => f.endsWith('.md')) : [];
+const validPillarSlugs = new Set(pillarFiles.map(f => f.replace(/\.md$/, '')));
+
+const articleFiles = fs.readdirSync(articlesDir).filter(f => f.endsWith('.md'));
+const validArticleSlugs = new Set(articleFiles.map(f => f.replace(/\.md$/, '')));
+
 // Fetch all redirect rules from next.config.ts if any
 const nextConfigContent = fs.readFileSync(path.join(projectRoot, 'next.config.ts'), 'utf8');
 
@@ -40,7 +48,7 @@ try {
 // Map of valid tool routes
 const validToolRoutes = new Set(['/tools/eligibility-checker', '/tools/deadline-calendar', '/tools/income-calculator']);
 
-const articleFiles = fs.readdirSync(articlesDir).filter(f => f.endsWith('.md'));
+// articleFiles is declared at the top of the file
 
 console.log(`=======================================================`);
 console.log(`  AUDITING ${articleFiles.length} ARTICLES FOR CONTENT & BROKEN LINKS`);
@@ -188,20 +196,26 @@ function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
     }
   } else if (cleanPath.startsWith('/articles/')) {
     const artSlug = cleanPath.replace('/articles/', '').split('/')[0];
-    if (artSlug && !fs.existsSync(path.join(articlesDir, `${artSlug}.md`))) {
-      brokenLinks.push({
-        context,
-        url: rawUrl,
-        reason: `Article file '${artSlug}.md' DOES NOT EXIST`
-      });
-    }
+    brokenLinks.push({
+      context,
+      url: rawUrl,
+      reason: "Deprecated path: Link uses '/articles/" + artSlug + "'. Please update to '/guides/" + artSlug + "'."
+    });
+  } else if (cleanPath.startsWith('/pillars/')) {
+    const pilSlug = cleanPath.replace('/pillars/', '').split('/')[0];
+    brokenLinks.push({
+      context,
+      url: rawUrl,
+      reason: "Deprecated path: Link uses '/pillars/" + pilSlug + "'. Please update to '/guides/" + pilSlug + "'."
+    });
   } else if (cleanPath.startsWith('/guides/')) {
-    const portalSub = cleanPath.replace('/guides/', '').split('/')[0];
-    if (portalSub && !portalSlugs.has(portalSub)) {
+    const guideSlug = cleanPath.replace('/guides/', '').split('/')[0];
+    const isValidGuide = portalSlugs.has(guideSlug) || validArticleSlugs.has(guideSlug) || validPillarSlugs.has(guideSlug);
+    if (guideSlug && !isValidGuide) {
       brokenLinks.push({
         context,
         url: rawUrl,
-        reason: `Portal guide '${portalSub}' NOT FOUND in portalsData`
+        reason: "Guide slug '" + guideSlug + "' not found (must be a valid Portal Guide, Article, or Pillar)."
       });
     }
   } else if (cleanPath.startsWith('/tools/')) {

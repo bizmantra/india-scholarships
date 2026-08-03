@@ -38,17 +38,16 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
 
     if (id === 'core') {
         const articles = getAllArticles();
-        const articleRoutes = articles.map(art => `/articles/${art.slug}`);
+        const articleRoutes = articles.map(art => `/guides/${art.slug}`);
 
         const news = getAllNews();
         const newsRoutes = news.map(n => `/news/${n.slug}`);
 
         const pillars = getAllPillars();
-        const pillarRoutes = pillars.map(p => `/pillars/${p.slug}`);
+        const pillarRoutes = pillars.map(p => `/guides/${p.slug}`);
 
         const staticRoutes = [
             '',
-            '/pillars',
             ...pillarRoutes,
             '/scholarships',
             '/scholarships/deadlines',
@@ -62,7 +61,6 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             '/private-scholarships',
             '/corporate-scholarships',
             '/eligibility-checker',
-            '/articles',
             ...articleRoutes,
             '/news',
             ...newsRoutes,

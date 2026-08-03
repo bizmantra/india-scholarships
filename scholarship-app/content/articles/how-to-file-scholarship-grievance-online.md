@@ -7,7 +7,7 @@ date: "2026-07-29"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Procedural & Docs"
-targetMoneyLink: "/guides/pfms"
+targetMoneyLink: "/guides/nsp"
 relatedScholarships: []
 takeaways:
   - "CPGRAMS (Centralized Public Grievance Redress and Monitoring System) is the official central channel for unresolved NSP scholarship complaints."
@@ -55,4 +55,4 @@ Attach your application ID, PFMS transaction reference, and a clear description 
 2. **Institute verification pending** — your college hasn't confirmed your enrollment/attendance on the portal.
 3. **Bank account frozen/closed** — inactive accounts fail silently during the transfer attempt.
 
-Check your live payment status anytime on our [PFMS Guide](/guides/pfms).
+Check your live payment status anytime on our [PFMS Guide](/guides/pfms-scholarship-payment-status-tracking-guide).

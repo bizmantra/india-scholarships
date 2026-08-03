@@ -1,6 +1,7 @@
 require('dotenv').config({ path: '.env.local' });
 const { google } = require('googleapis');
 const path = require('path');
+const fs = require('fs');
 const db = require('better-sqlite3')(path.join(__dirname, '..', 'data', 'scholarships.db'));
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.indiascholarships.in';
@@ -26,6 +27,51 @@ async function main() {
         const slug = st.state.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
         targetUrls.push(`${BASE_URL}/scholarships-in/${slug}`);
     });
+
+    // Add guides (articles)
+    try {
+        const articlesDir = path.join(__dirname, '..', 'content', 'articles');
+        if (fs.existsSync(articlesDir)) {
+            fs.readdirSync(articlesDir)
+                .filter(f => f.endsWith('.md'))
+                .forEach(file => {
+                    const slug = file.replace(/\.md$/, '');
+                    targetUrls.push(`${BASE_URL}/guides/${slug}`);
+                });
+        }
+    } catch (e) {
+        console.error('Error reading articles directory:', e.message);
+    }
+
+    // Add guides (pillars)
+    try {
+        const pillarsDir = path.join(__dirname, '..', 'content', 'pillars');
+        if (fs.existsSync(pillarsDir)) {
+            fs.readdirSync(pillarsDir)
+                .filter(f => f.endsWith('.md'))
+                .forEach(file => {
+                    const slug = file.replace(/\.md$/, '');
+                    targetUrls.push(`${BASE_URL}/guides/${slug}`);
+                });
+        }
+    } catch (e) {
+        console.error('Error reading pillars directory:', e.message);
+    }
+
+    // Add news
+    try {
+        const newsDir = path.join(__dirname, '..', 'content', 'news');
+        if (fs.existsSync(newsDir)) {
+            fs.readdirSync(newsDir)
+                .filter(f => f.endsWith('.md'))
+                .forEach(file => {
+                    const slug = file.replace(/\.md$/, '');
+                    targetUrls.push(`${BASE_URL}/news/${slug}`);
+                });
+        }
+    } catch (e) {
+        console.error('Error reading news directory:', e.message);
+    }
 
     console.log(`Prepared ${targetUrls.length} priority URLs for submission.\n`);
 
