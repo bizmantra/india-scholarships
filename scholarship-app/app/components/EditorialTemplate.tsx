@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Calendar, Clock, ChevronRight, ExternalLink } from 'lucide-react';
 import { EditorialContent } from '@/lib/editorial';
+import StudyAbroadCTA from './StudyAbroadCTA';
 
 interface Crumb {
   label: string;
@@ -12,6 +13,18 @@ interface EditorialTemplateProps {
   content: EditorialContent;
   breadcrumbs: Crumb[];
 }
+
+const shouldShowStudyAbroadCTA = (content: EditorialContent) => {
+  // Target articles about PG exams, domestic scholarships, educational loans, or careers.
+  const keywords = [
+    'loan', 'loans', 'pg', 'postgraduate', 'gate', 'exam', 'exams',
+    'career', 'careers', 'domestic', 'scholarship', 'scholarships',
+    'scheme', 'schemes', 'btech', 'engineering', 'mba', 'master',
+    'masters', 'phd', 'abroad', 'overseas', 'international'
+  ];
+  const textToSearch = `${content.title} ${content.tag || ''} ${content.body || ''}`.toLowerCase();
+  return keywords.some(keyword => textToSearch.includes(keyword));
+};
 
 // The single shared renderer for Pillars, Articles, and Portal Guides (IS-113).
 // "kind" only tweaks small defaults (TOC visibility threshold) — every block below
@@ -37,28 +50,28 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
       </div>
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Content-type tag — plain bordered, no fill */}
+        {/* Content-type tag — rounded pill */}
         <div className="mb-4">
-          <span className="px-2.5 py-0.5 border border-google-blue text-google-blue text-[10px] font-bold uppercase tracking-wider rounded-sm">
+          <span className="px-3 py-1 border border-[#4A47FF] bg-[#F5F6FF] text-[#4A47FF] text-[11px] font-bold uppercase tracking-wider rounded-full shadow-xs">
             {content.tag}
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-[#2E2C57] font-heading leading-tight mb-4 tracking-tight">
           {content.title}
         </h1>
 
         {(content.date || content.readTime || content.author) && (
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-gray-500 font-medium mb-8 pb-6 border-b border-gray-100">
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#56547A] font-medium mb-8 pb-6 border-b border-[#E2E2E8]">
             {content.date && (
               <span className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-gray-400" />
+                <Calendar className="w-3.5 h-3.5 text-[#4A47FF]" />
                 Updated {content.date}
               </span>
             )}
             {content.readTime && (
               <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-gray-400" />
+                <Clock className="w-3.5 h-3.5 text-[#4A47FF]" />
                 {content.readTime}
               </span>
             )}
@@ -68,24 +81,27 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
 
         {/* Key Facts — plain fact-strip, same device the Detail page uses */}
         {content.keyFacts && content.keyFacts.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-b border-gray-100 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 border border-[#E2E2E8] bg-[#F8F9FE] rounded-2xl mb-8 overflow-hidden">
             {content.keyFacts.map((f, i) => (
-              <div key={i} className={`py-4 px-4 ${i > 0 ? 'border-l border-gray-100' : ''}`}>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">{f.label}</p>
-                <p className="text-sm font-bold text-gray-900">{f.value}</p>
+              <div key={i} className={`py-4 px-4 ${i > 0 ? 'border-l border-[#E2E2E8]' : ''}`}>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#56547A] mb-1">{f.label}</p>
+                <p className="text-sm font-bold text-[#2E2C57]">{f.value}</p>
               </div>
             ))}
           </div>
         )}
 
-        {/* Takeaways — plain list */}
+        {/* Takeaways — LeapScholar soft card */}
         {content.takeaways && content.takeaways.length > 0 && (
-          <div className="border-t border-b border-gray-100 py-6 mb-8">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3">Key Takeaways</h2>
+          <div className="border border-[#E2E2E8] bg-[#F8F9FE] rounded-2xl p-6 mb-8 shadow-xs">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-[#4A47FF] mb-3 font-heading flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#4A47FF]"></span>
+              Key Takeaways
+            </h2>
             <ul className="space-y-2.5">
               {content.takeaways.map((point, idx) => (
-                <li key={idx} className="text-sm text-gray-800 flex items-start gap-2 leading-relaxed">
-                  <span className="font-bold text-gray-400 shrink-0">—</span>
+                <li key={idx} className="text-sm text-[#2E2C57] flex items-start gap-2.5 leading-relaxed font-medium">
+                  <span className="font-bold text-[#4A47FF] shrink-0">•</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -155,6 +171,8 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
                 dangerouslySetInnerHTML={{ __html: content.body }}
               />
             )}
+
+            {shouldShowStudyAbroadCTA(content) && <StudyAbroadCTA />}
 
             {/* Checklist — bordered checkbox list, legitimate list-of-equal-items */}
             {content.checklist && content.checklist.length > 0 && (

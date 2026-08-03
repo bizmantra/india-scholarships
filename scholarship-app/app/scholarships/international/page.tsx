@@ -276,7 +276,36 @@ export default async function InternationalScholarshipsPage() {
                     </div>
                 </section>
 
-
+                {/* Premium Study Abroad Subdomain Callout */}
+                <div className="bg-gradient-to-r from-blue-900 via-indigo-950 to-purple-950 border-y border-indigo-500/20 py-8 relative overflow-hidden">
+                    <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl"></div>
+                    <div className="absolute -left-24 -bottom-24 w-48 h-48 rounded-full bg-purple-500/10 blur-3xl"></div>
+                    
+                    <div className="container mx-auto px-4 max-w-5xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div className="flex-1 space-y-2.5">
+                            <span className="inline-flex items-center gap-1 bg-[#4A47FF]/20 border border-[#4A47FF]/30 text-indigo-300 text-[10px] font-black uppercase tracking-wider rounded-full px-2.5 py-0.5">
+                                ✈️ Zero-Gating Interactive Tools
+                            </span>
+                            <h2 className="text-xl md:text-2xl font-black text-white leading-tight">
+                                Introducing the Study Abroad Decision Engine
+                            </h2>
+                            <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
+                                Ready to plan your journey? Calculate your true cost of study, compare non-collateral education loans, and generate step-by-step student visa checklists instantly.
+                            </p>
+                        </div>
+                        <div className="shrink-0 w-full md:w-auto">
+                            <a 
+                                href="https://study.indiascholarships.in"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-4 bg-gradient-to-r from-[#4A47FF] to-indigo-600 hover:from-[#3834E0] hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer animate-in fade-in zoom-in-95 duration-500"
+                            >
+                                <span>Explore Study Abroad Options</span>
+                                <ArrowRight className="h-4 w-4" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="container mx-auto px-4 max-w-5xl py-12 md:py-16">
 
@@ -457,8 +486,29 @@ export default async function InternationalScholarshipsPage() {
                         </div>
                     </section>
 
+                    {/* ── Bridge to Study Abroad Tools ── */}
+                    <section className="mt-10 p-6 bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl border border-indigo-950 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md relative overflow-hidden group">
+                        <div className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-indigo-500/10 blur-xl"></div>
+                        <div className="relative z-10">
+                            <p className="font-extrabold text-white mb-1 flex items-center gap-1.5">
+                                <Globe className="h-4 w-4 text-indigo-300 animate-spin-slow" />
+                                Try the interactive Study Abroad Decision Engine
+                            </p>
+                            <p className="text-sm text-slate-300">Calculate total expenses, compare loan providers, and access country-specific visa trackers.</p>
+                        </div>
+                        <a
+                            href="https://study.indiascholarships.in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative z-10 flex-shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-[#4A47FF] to-indigo-650 text-white px-5 py-3 rounded-xl font-bold text-sm hover:from-[#3834E0] hover:to-indigo-700 transition-all hover:-translate-y-0.5 cursor-pointer shadow-sm"
+                        >
+                            Explore Interactive Tools
+                            <ArrowRight className="h-4 w-4" />
+                        </a>
+                    </section>
+
                     {/* ── Bridge to domestic ── */}
-                    <section className="mt-10 p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <section className="mt-6 p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                         <div>
                             <p className="font-bold text-gray-900 mb-1">Also planning to study within India?</p>
                             <p className="text-sm text-gray-500">We've verified 250+ domestic scholarships across all states, castes, and education levels.</p>

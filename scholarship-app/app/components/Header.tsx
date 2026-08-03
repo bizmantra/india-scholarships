@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, Menu, X, Search } from 'lucide-react';
+import { ChevronDown, Menu, X, Search, ArrowRight, Globe } from 'lucide-react';
 import SearchModal from './SearchModal';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -33,12 +33,12 @@ export default function Header() {
     };
 
     return (
-        <header className="relative z-50 w-full border-b border-gray-100 bg-white">
+        <header className="sticky top-0 z-50 w-full border-b border-[#E2E2E8] bg-white/95 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 
                 {/* Brand Logo & Text */}
                 <Link href="/" className="flex items-center gap-3 group shrink-0">
-                    <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-sm group-hover:shadow-md transition-shadow">
+                    <div className="relative w-10 h-10 overflow-hidden rounded-xl shadow-xs group-hover:shadow-sm transition-shadow">
                         <Image
                             src="/logo/logo-is.png"
                             alt="IndiaScholarships"
@@ -47,7 +47,7 @@ export default function Header() {
                             priority
                         />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-google-blue font-serif group-hover:text-brand-dark transition-colors">
+                    <span className="text-xl font-extrabold tracking-tight text-[#2E2C57] font-heading group-hover:text-[#4A47FF] transition-colors">
                         IndiaScholarships
                     </span>
                 </Link>
@@ -60,11 +60,11 @@ export default function Header() {
                             placeholder="Search scholarships, courses, states..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-5 pr-12 py-2.5 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-google-blue focus:ring-1 focus:ring-google-blue bg-surface-gray hover:bg-white transition-all"
+                            className="w-full pl-5 pr-12 py-2 rounded-full border border-[#E2E2E8] text-sm font-medium focus:outline-none focus:border-[#4A47FF] focus:ring-2 focus:ring-[#4A47FF]/20 bg-[#F8F9FE] hover:bg-white transition-all text-[#2E2C57]"
                         />
                         <button
                             type="submit"
-                            className="absolute right-1 top-1 bottom-1 px-4 bg-brand hover:bg-brand-dark text-white rounded-full flex items-center justify-center transition-colors cursor-pointer"
+                            className="absolute right-1 top-1 bottom-1 px-4 bg-[#4A47FF] hover:bg-[#3834E0] text-white rounded-full flex items-center justify-center transition-colors cursor-pointer"
                         >
                             <Search className="h-4 w-4" />
                         </button>
@@ -153,6 +153,9 @@ export default function Header() {
                         <Link href="/guides" className="transition-colors hover:text-google-blue">
                             Guides
                         </Link>
+                        <a href="https://study.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="transition-all text-[#4A47FF] hover:text-[#3834E0] font-extrabold flex items-center gap-1">
+                            Study Abroad 🌍
+                        </a>
                         <Link href="/news" className="transition-colors hover:text-google-blue">
                             News
                         </Link>
@@ -237,6 +240,21 @@ export default function Header() {
                         >
                             <span>📘 Scholarship Guides — how state & category systems work</span>
                         </Link>
+
+                        {/* Study Abroad Guides & Tools Link */}
+                        <a
+                            href="https://study.indiascholarships.in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setShowMobileMenu(false)}
+                            className="flex items-center justify-between gap-3 p-3.5 bg-indigo-55 border border-indigo-100 rounded-2xl text-xs font-extrabold text-[#4A47FF] hover:bg-indigo-100/70 transition-all shadow-xs"
+                        >
+                            <span className="flex items-center gap-2">
+                                <Globe className="h-4 w-4 shrink-0 text-[#4A47FF]" />
+                                <span>Study Abroad Guides & Tools 🌍</span>
+                            </span>
+                            <ArrowRight className="h-4 w-4 shrink-0 text-[#4A47FF]" />
+                        </a>
 
                         {/* 2. Browse Category Chips */}
                         <div className="space-y-2">
