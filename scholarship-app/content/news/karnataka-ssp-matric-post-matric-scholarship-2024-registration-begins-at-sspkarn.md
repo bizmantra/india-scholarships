@@ -51,3 +51,9 @@ Aadhaar seeding with your bank account is crucial. This ensures direct benefit t
 **Official Portals**
 
 The main SSP portal is ssp.karnataka.gov.in. For Post-Matric scholarships, use ssp.postmatric.karnataka.gov.in.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Karnataka SSP Post-Matric Scholarship](/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Karnataka SSP Portal Guide](/guides/ssp-karnataka).

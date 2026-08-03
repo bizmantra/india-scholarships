@@ -3,7 +3,7 @@ title: "AP Talliki Vandanam First Phase Payments Released: Check Status Online"
 date: "2026-07-25"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/talliki-vandanam-scheme-ap"
+targetMoneyLink: "/scholarships/jagananna-vidya-deevena-ap"
 relatedScholarships:
   - "talliki-vandanam-scheme-ap"
   - "jagananna-vidya-deevena-ap"
@@ -52,3 +52,9 @@ Ensure the bank account is linked to Aadhaar.
 NPCI seeding must be active to avoid payment failure.
 Low school attendance under 75% will block the disbursement.
 Submit necessary documents to clear any pending verification issues.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Jagananna Vidya Deevena Scheme AP](/scholarships/jagananna-vidya-deevena-ap).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Andhra Pradesh Scholarships Hub](/scholarships-in/andhra-pradesh).

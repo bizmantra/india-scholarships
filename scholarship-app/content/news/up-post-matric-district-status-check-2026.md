@@ -3,9 +3,9 @@ title: "UP Scholarship 2026 District Status Released: Check Verification & Credi
 date: "2026-07-29"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/up-post-matric-scholarship-dashmottar"
+targetMoneyLink: "/scholarships/up-post-matric-intermediate-scholarship-general-sc-st"
 relatedScholarships:
-  - "up-post-matric-scholarship-dashmottar"
+  - "up-post-matric-intermediate-scholarship-general-sc-st"
 takeaways:
   - "The Social Welfare Department of Uttar Pradesh has released District Scholarship Committee status reports."
   - "Students can check whether their application is verified or rejected by the District Welfare Officer (DWO)."
@@ -27,7 +27,7 @@ Students can check their status using their registration credentials:
 4. Enter your Registration Number, Date of Birth, and Password.
 5. Click **Check Current Status** to view the District Scholarship Committee approval report.
 
-View full eligibility guidelines on our [UP Post-Matric Scholarship Page](/scholarships/up-post-matric-scholarship-dashmottar).
+View full eligibility guidelines on our [UP Post-Matric Scholarship Page](/scholarships/up-post-matric-intermediate-scholarship-general-sc-st).
 
 **Understanding District Welfare Officer (DWO) Status Messages**
 
@@ -47,3 +47,9 @@ Students whose applications show document discrepancies must submit correction r
 Ensure your bank account is active and linked with Aadhaar NPCI seeding to avoid transfer failures.
 
 Explore all state guides on our main [Scholarship Guides](/guides) hub.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [UP Post-Matric Intermediate Scholarship](/scholarships/up-post-matric-intermediate-scholarship-general-sc-st).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Uttar Pradesh State Scholarships Hub](/scholarships-in/uttar-pradesh).

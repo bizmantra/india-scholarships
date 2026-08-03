@@ -3,7 +3,7 @@ title: "Telangana Overseas Scholarship: ₹20 Lakh for Minority Students"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/telangana-minority-welfare"
+targetMoneyLink: "/scholarships/telangana-postmatric-sc"
 relatedScholarships:
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
   - "jn-tata-endowment-for-higher-education"
@@ -35,3 +35,9 @@ After online submission, original documents must be submitted. Take them to Dist
 **Important Reminders for Online Applications:**
 
 Ensure your Aadhaar is linked to your bank account. This mapping should be with NPCI. Direct Benefit Transfer (DBT) requires this. Errors can cause payment delays. Double-check all entered information.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Telangana ePASS Overseas & Post-Matric SC Scholarship](/scholarships/telangana-postmatric-sc).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Telangana State Scholarships Hub](/scholarships-in/telangana).

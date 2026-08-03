@@ -3,7 +3,7 @@ title: "Punjab Opens PM YASASVI Scholarship Portal for OBC, EBC, DNT Students"
 date: "2026-05-23"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/pm-yashasvi-scholarship"
+targetMoneyLink: "/scholarships/punjab-post-matric-scholarship-for-sc-students"
 relatedScholarships:
   - "pm-yashasvi-scholarship"
   - "punjab-post-matric-scholarship-for-obc-bc-students"
@@ -42,3 +42,9 @@ For students in Classes 9-10, the scholarship can be up to ₹75,000 per year. F
 Your Aadhaar card must be linked to an active bank account. Ensure your bank account is mapped with NPCI for smooth DBT. This ensures timely receipt of scholarship funds.
 
 The YASASVI Entrance Test (YET) has been discontinued. Selection is now based purely on academic merit. It considers marks from your previous class's final examination. A 30% reservation is available for eligible girl students. The scholarship benefit is limited to two siblings per family.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Punjab Post Matric SC Scholarship Portal](/scholarships/punjab-post-matric-scholarship-for-sc-students).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Punjab State Scholarships Hub](/scholarships-in/punjab).

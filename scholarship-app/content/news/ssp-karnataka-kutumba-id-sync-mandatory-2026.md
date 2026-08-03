@@ -42,3 +42,9 @@ If your Kutumba record shows incorrect family income or missing family members, 
 Update your Kutumba family card details before the official portal closing date.
 
 Find all portal walkthroughs on our [Scholarship Guides](/guides) hub.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [SSP Karnataka Post-Matric Scholarship](/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Karnataka SSP Portal Guide](/guides/ssp-karnataka).

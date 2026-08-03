@@ -3,7 +3,7 @@ title: "AICTE Scholarships 2026-27: Funding Technical Education and Research"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "https://scholarships.gov.in"
+targetMoneyLink: "/scholarships/aicte-pragati-scholarship-for-girl-students"
 relatedScholarships:
   - "aicte-pragati-scholarship-for-girl-students"
   - "aicte-saksham-scholarship-for-students-with-disabilities"
@@ -53,3 +53,9 @@ This program is for faculty members of technical institutions. It aims to bridge
 ### Important Application Information
 
 All scholarship disbursements happen through Direct Benefit Transfer (DBT). Applicants must ensure their Aadhaar is linked to a general savings bank account. Joint or minor accounts are not accepted. Keep your income and other relevant certificates ready. This ensures a smooth application process.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [AICTE Pragati Scholarship for Girls](/scholarships/aicte-pragati-scholarship-for-girl-students).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [National Scholarship Portal (NSP) Guide](/guides/nsp).

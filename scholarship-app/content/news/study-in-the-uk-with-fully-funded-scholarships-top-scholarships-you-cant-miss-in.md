@@ -3,7 +3,7 @@ title: "UK Study Dreams: Top Fully Funded Scholarships for 2026-27"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/chevening-scholarships"
+targetMoneyLink: "/scholarships/narotam-sekhsaria-postgraduate-scholarship"
 relatedScholarships:
   - "chevening-scholarships"
   - "rhodes-scholarship"
@@ -47,3 +47,9 @@ Eligibility criteria vary for each scholarship. Common requirements include exce
 Start your application process at least 12 months before your course begins. Research scholarships thoroughly based on your chosen course and university. Prepare all required documents carefully, including transcripts, essays, and recommendation letters. A well-crafted personal statement is crucial for competitive awards.
 
 Remember to verify all deadlines on the official scholarship websites. Ensure your documents are accurate and complete before submission.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Narotam Sekhsaria Postgraduate Scholarship](/scholarships/narotam-sekhsaria-postgraduate-scholarship).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [UK Masters Overseas Scholarships](/scholarships-for/masters/in/uk).

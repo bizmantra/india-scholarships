@@ -3,7 +3,7 @@ title: "IGNOU July 2026 Re-registration Deadline Extended to July 31"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/post-matric-scholarships-india"
+targetMoneyLink: "/scholarships/central-sector-scheme-of-scholarship-for-college-and-university-students"
 relatedScholarships:
   - "central-sector-scheme-of-scholarship-for-college-and-university-students"
   - "pm-yashasvi-scholarship"
@@ -45,3 +45,9 @@ Ensure your chosen payment method is active. Digital payments are processed in r
 If your bank account is mapped for Direct Benefit Transfer (DBT), ensure it's active. While not directly for scholarship, general financial transactions benefit from this.
 
 Missing the deadline could mean losing an academic session. A late fee of INR 200 might be charged.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Central Sector University Scholarship](/scholarships/central-sector-scheme-of-scholarship-for-college-and-university-students).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Government Scholarships Hub](/government-scholarships).

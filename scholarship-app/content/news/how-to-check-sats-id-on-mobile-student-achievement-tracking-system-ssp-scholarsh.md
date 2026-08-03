@@ -64,3 +64,9 @@ For pre-matric scholarships, visit `ssp.karnataka.gov.in`. Enter your SATS ID to
 ### Aadhaar and DBT Reminders
 
 Scholarship funds are disbursed via Direct Benefit Transfer (DBT). Your Aadhaar number must be linked to your bank account. Ensure your bank account is mapped with NPCI. Visit your bank branch to link your Aadhaar if needed. Only one bank account can receive DBT payments at a time. You can check your Aadhaar-bank linking status on the official NPCI website.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [SSP Karnataka Post-Matric Scholarship](/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Karnataka SSP Portal Guide](/guides/ssp-karnataka).

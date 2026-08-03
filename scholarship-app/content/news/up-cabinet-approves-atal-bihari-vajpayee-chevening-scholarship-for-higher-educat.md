@@ -3,7 +3,7 @@ title: "UP Cabinet Approves Atal Bihari Vajpayee-Chevening Scholarship for UK St
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/chevening-scholarship-india-uk-govt-partnered"
+targetMoneyLink: "/scholarships/up-post-matric-intermediate-scholarship-general-sc-st"
 relatedScholarships:
   - "chevening-scholarships"
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
@@ -48,3 +48,9 @@ Prepare necessary documents carefully. These include a valid passport and Nation
 **Important Reminders for UP Applicants**
 
 Ensure your Aadhaar is linked to your bank account via NPCI mapping. This facilitates direct benefit transfers. Keep all required documents ready well in advance of deadlines.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [UP Post-Matric Intermediate Scholarship](/scholarships/up-post-matric-intermediate-scholarship-general-sc-st).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Uttar Pradesh State Scholarships Hub](/scholarships-in/uttar-pradesh).

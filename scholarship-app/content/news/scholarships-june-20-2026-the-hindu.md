@@ -3,7 +3,7 @@ title: "Scholarships: Key Updates for AICTE Pragati, Swanath, and NMMS Schemes 2
 date: "2026-06-20"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/national-scholarship-portal-nsp"
+targetMoneyLink: "/scholarships/pm-yashasvi-scholarship"
 relatedScholarships:
   - "aicte-pragati-scholarship-for-girl-students"
   - "aicte-swanath-scholarship-scheme"
@@ -37,3 +37,9 @@ Students must be in Class 8 at government or aided schools. Their family income 
 ### Important Reminders for Applicants
 
 All these scholarships are processed via the National Scholarship Portal (NSP). Ensure your bank account is mapped to your Aadhaar number. This is crucial for Direct Benefit Transfer (DBT) payments. Timely application and document verification are highly recommended.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [PM Yashasvi Scholarship Scheme](/scholarships/pm-yashasvi-scholarship).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Government Scholarships Hub](/government-scholarships).

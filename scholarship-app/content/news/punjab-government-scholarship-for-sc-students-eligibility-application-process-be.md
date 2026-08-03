@@ -37,3 +37,9 @@ The application portal opened on July 1, 2026. The last date for students to app
 ### Aadhaar and DBT Reminders
 
 Scholarship funds are disbursed via Direct Benefit Transfer (DBT). Your bank account must be linked with Aadhaar. It also needs to be mapped for DBT through NPCI. Simply having KYC done is not enough. Visit your bank branch to ensure proper NPCI mapping. Request an Aadhaar Seeding Consent Form for DBT. This prevents payment failures.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Punjab Post-Matric Scholarship for SC Students](/scholarships/punjab-post-matric-scholarship-for-sc-students).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Punjab Scholarships Hub](/scholarships-in/punjab).

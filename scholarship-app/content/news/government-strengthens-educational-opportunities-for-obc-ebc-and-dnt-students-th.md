@@ -12,7 +12,7 @@ relatedScholarships:
   - "maharashtra-ebc-postmatric"
   - "post-matric-scholarship-for-obcsebc-students-odisha"
   - "post-matric-scholarship-for-obc-students-karnataka"
-  - "digital-gujarat-post-matric-scholarship-for-obc"
+  - "gujarat-post-matric-scholarship-for-obc"
   - "haryana-post-matric-scholarship-for-bcobc-students"
 takeaways:
   - "PM-YASASVI offers significant financial support for eligible students."
@@ -48,3 +48,9 @@ Prepare your Aadhaar Card and passport-size photograph. Also, keep educational m
 **Aadhaar and DBT Reminder**
 
 Ensure your Aadhaar is linked to your bank account. This is crucial for Direct Benefit Transfer (DBT) of funds. Incorrect linking can delay scholarship payments. Update your bank account details on NSP accurately.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [PM Yashasvi Scholarship Scheme](/scholarships/pm-yashasvi-scholarship).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [OBC Category Scholarships Hub](/scholarships-for/obc).

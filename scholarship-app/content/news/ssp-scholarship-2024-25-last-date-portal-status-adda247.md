@@ -43,3 +43,9 @@ Scholarship funds are disbursed via Direct Benefit Transfer (DBT). Your bank acc
 ### Checking Application Status
 
 After applying, track your scholarship status online. Visit ssp.karnataka.gov.in and use your Student SATS ID. This allows you to monitor your application progress.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Karnataka SSP Scholarship Online](/scholarships/ssp-pre-matric-post-matric-scholarship-karnataka).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Karnataka SSP Portal Guide](/guides/ssp-karnataka).

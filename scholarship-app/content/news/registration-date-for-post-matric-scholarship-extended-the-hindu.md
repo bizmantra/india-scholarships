@@ -3,7 +3,7 @@ title: "Post-Matric Scholarship Deadlines Extended for 2026-27 Applications"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/post-matric-scholarships-india"
+targetMoneyLink: "/scholarships/post-matric-scholarship-for-obcsebc-students-odisha"
 relatedScholarships:
   - "national-scholarship-portal-nsp"
   - "post-matric-scholarships-india"
@@ -55,3 +55,9 @@ These scholarships are for SC, ST, OBC, minority, and disabled students. Annual 
 **Important Reminders for Applicants**
 
 Always register on the official National Scholarship Portal (scholarships.gov.in). Also, check your respective state scholarship portals for local schemes. Ensure your Aadhaar number is correctly linked to your bank account for Direct Benefit Transfer (DBT). Scholarship funds will be credited directly. Timely application helps avoid last-minute issues.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Odisha Post-Matric OBC Scholarship](/scholarships/post-matric-scholarship-for-obcsebc-students-odisha).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Odisha State Scholarships Hub](/scholarships-in/odisha).

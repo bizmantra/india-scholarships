@@ -3,7 +3,7 @@ title: "National Scholarship Portal (NSP) 2026-27 Applications Now Open"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/national-scholarship-portal-nsp"
+targetMoneyLink: "/scholarships/central-sector-scheme-of-scholarship-for-college-and-university-students"
 relatedScholarships:
   - "national-scholarship-portal-nsp"
   - "central-sector-scheme-of-scholarship-for-college-and-university-students"
@@ -33,3 +33,9 @@ One-Time Registration (OTR) is compulsory for all applicants. This generates a u
 ### Aadhaar and DBT Reminders
 
 An Aadhaar-linked bank account is essential for Direct Benefit Transfer (DBT). Ensure your Aadhaar is seeded with the NPCI Mapper. Your biometric lock on Aadhaar must be unlocked for face authentication during OTR. Check your bank's DBT enabled status.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [NSP Central Sector Scheme Scholarship](/scholarships/central-sector-scheme-of-scholarship-for-college-and-university-students).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [National Scholarship Portal (NSP) Guide](/guides/nsp).

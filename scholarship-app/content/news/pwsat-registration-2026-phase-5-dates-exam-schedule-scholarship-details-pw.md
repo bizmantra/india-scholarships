@@ -3,7 +3,7 @@ title: "PWSAT 2026 Phase 5: Last Chance for Up to 90% Scholarship"
 date: "2026-07-22"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/pwsat-scholarship"
+targetMoneyLink: "/scholarships/tata-capital-pankh-scholarship"
 relatedScholarships:
   - "bitsat-scholarship"
   - "pm-yashasvi-scholarship"
@@ -53,3 +53,9 @@ Top performers can receive up to a 90% scholarship. This applies to PW Vidyapeet
 **Aadhaar/DBT Reminder:**
 
 This is a private scholarship opportunity from Physics Wallah. Government-linked Direct Benefit Transfer (DBT) schemes or Aadhaar requirements do not apply here.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Tata Capital Pankh Scholarship](/scholarships/tata-capital-pankh-scholarship).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Private & Foundation Scholarships Hub](/private-scholarships).

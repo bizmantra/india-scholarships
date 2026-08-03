@@ -3,7 +3,7 @@ title: "Digital Gujarat Scholarship 2026-27: Registration Dates & Portal Updates
 date: "2026-07-25"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/guides/digital-gujarat-mysy"
+targetMoneyLink: "/scholarships/gujarat-post-matric-scholarship-for-obc"
 relatedScholarships:
   - "digital-gujarat-post-matric-scholarship-for-sc-students"
   - "gujarat-post-matric-scholarship-for-obc"
@@ -63,3 +63,9 @@ Funds fail to credit if the bank account lacks Aadhaar mapping.
 Verify your NPCI mapping status at your local bank branch today.
 
 Keep your Aadhaar-registered mobile number active to receive treasury notifications.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Digital Gujarat Post-Matric Scholarship for SEBC/OBC](/scholarships/gujarat-post-matric-scholarship-for-obc).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Digital Gujarat Portal Guide](/guides/digital-gujarat-mysy).

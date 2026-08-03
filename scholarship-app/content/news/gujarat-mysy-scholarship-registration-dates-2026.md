@@ -44,3 +44,9 @@ Selected scholars receive significant financial assistance:
 5. Get documents verified at designated Help Centers before the final deadline.
 
 Check all Gujarat portal guides in our [Scholarship Guides](/guides) section.
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [Gujarat MYSY Scholarship Scheme](/scholarships/mukhyamantri-yuva-swavalamban-yojana-mysy).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Digital Gujarat & MYSY Portal Guide](/guides/digital-gujarat-mysy).

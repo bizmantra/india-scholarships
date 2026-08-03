@@ -14,11 +14,16 @@ const validDbSlugs = new Map(dbRows.map(r => [r.slug, r.title]));
 
 // Fetch all articles and pillars slugs
 const pillarsDir = path.join(projectRoot, 'content', 'pillars');
+const newsDir = path.join(projectRoot, 'content', 'news');
+
 const pillarFiles = fs.existsSync(pillarsDir) ? fs.readdirSync(pillarsDir).filter(f => f.endsWith('.md')) : [];
 const validPillarSlugs = new Set(pillarFiles.map(f => f.replace(/\.md$/, '')));
 
-const articleFiles = fs.readdirSync(articlesDir).filter(f => f.endsWith('.md'));
-const validArticleSlugs = new Set(articleFiles.map(f => f.replace(/\.md$/, '')));
+const articleFilesOnly = fs.readdirSync(articlesDir).filter(f => f.endsWith('.md')).map(f => path.join('articles', f));
+const newsFilesOnly = fs.existsSync(newsDir) ? fs.readdirSync(newsDir).filter(f => f.endsWith('.md')).map(f => path.join('news', f)) : [];
+
+const articleFiles = [...articleFilesOnly, ...newsFilesOnly];
+const validArticleSlugs = new Set(articleFilesOnly.map(f => path.basename(f, '.md')));
 
 // Fetch all redirect rules from next.config.ts if any
 const nextConfigContent = fs.readFileSync(path.join(projectRoot, 'next.config.ts'), 'utf8');
@@ -62,10 +67,10 @@ const summary = {
   details: []
 };
 
-articleFiles.forEach(file => {
-  const filePath = path.join(articlesDir, file);
+articleFiles.forEach(relFile => {
+  const filePath = path.join(projectRoot, 'content', relFile);
   const rawContent = fs.readFileSync(filePath, 'utf8');
-  const slug = file.replace(/\.md$/, '');
+  const slug = path.basename(relFile, '.md');
 
   const frontmatterMatch = rawContent.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*[\r\n]+([\s\S]*)$/);
   const yamlText = frontmatterMatch ? frontmatterMatch[1] : '';
@@ -142,13 +147,15 @@ articleFiles.forEach(file => {
   if (contentIssues.length > 0) summary.articlesWithThinContent++;
   summary.totalBrokenLinks += brokenLinks.length;
 
-  summary.details.push({
-    file,
-    slug,
-    wordCount,
-    contentIssues,
-    brokenLinks
-  });
+  if (brokenLinks.length > 0 || contentIssues.length > 0) {
+    summary.details.push({
+      file: relFile,
+      slug,
+      wordCount,
+      contentIssues,
+      brokenLinks
+    });
+  }
 });
 
 function checkUrl(url, context, brokenLinks) {

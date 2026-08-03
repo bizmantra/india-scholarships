@@ -3,12 +3,12 @@ title: "UP Extends Sanskrit Education Scholarship Coverage: Monthly Grants for C
 date: "2026-07-26"
 author: "IndiaScholarships Editorial Team"
 tag: "News Update"
-targetMoneyLink: "/scholarships/up-sanskrit-shiksha-scholarship"
+targetMoneyLink: "/scholarships/mukhyamantri-kanya-sumangala-yojana"
 relatedScholarships:
   - "up-sanskrit-shiksha-scholarship"
   - "up-pre-matric-scholarship-general-sc-st"
   - "up-post-matric-intermediate-scholarship-general-sc-st"
-  - "up-mukhyamantri-kanya-sumangala"
+  - "mukhyamantri-kanya-sumangala-yojana"
 takeaways:
   - "Uttar Pradesh Government expands Sanskrit Education Scholarship for students from Class 6 to Shastri/Acharya levels."
   - "The previous annual family income limit of ₹50,000 has been completely removed to benefit all enrolled Sanskrit students."
@@ -42,3 +42,9 @@ To receive the monthly stipend, students must be enrolled in recognized Sanskrit
 Applications are submitted online via the official Uttar Pradesh state portal (`scholarship.up.gov.in`) during the state scholarship window. Students must submit hard copies of their online application to their school principal and District Inspector of Schools (DIoS) for institutional verification.
 
 For complete state scheme options, visit our [Uttar Pradesh State Scholarships Portal](/scholarships-in/uttar-pradesh).
+
+## Related Scholarship Portals & Money Pages
+For complete eligibility, document requirements, and step-by-step application instructions, visit our dedicated resources:
+
+* **Official Scholarship Detail**: Check full guidelines and deadlines on the [UP Mukhyamantri Kanya Sumangala Yojana](/scholarships/mukhyamantri-kanya-sumangala-yojana).
+* **State & Portal Hub**: Explore all active schemes and status tracking guides on the [Uttar Pradesh State Scholarships Hub](/scholarships-in/uttar-pradesh).
