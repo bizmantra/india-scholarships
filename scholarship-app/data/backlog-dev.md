@@ -13,7 +13,25 @@
   - **Description**:
     Setting journal_mode = WAL pragma on SQLite failed with SQLITE_CANTOPEN in the production environment (Vercel) due to Vercel's read-only serverless filesystem, returning 500 error for /api/search.
 
-## Backlog (50)
+## Backlog (51)
+
+- [ ] **IS-127**: Collapse /guides/[portal]/[subpage] into single portal pages — retire per-portal subpage generation
+  - **Impact**: High
+  - **Type**: Refactor, Content Architecture
+  - **Description**:
+    Context / Why it matters:
+    The /guides/[portal]/[subpage] route (app/guides/[portal]/[subpage]/page.tsx) statically generates 4-5 thin subpages per portal (status-check, student-login, documents-list, scholarships-list, schemes alias) across all 9 portals in lib/portalsData.ts — roughly 45 low-content URLs, each just a template wrapper around portal metadata with little unique substance per subpage.
+
+    Now that we have a unified editorial articles section (content/articles/*.md, rendered at /articles/[slug]) covering the same ground with real, substantive content — NSP status checks, PFMS tracking, documents guides, etc. are already covered there — we don't want thin, templated portal subpages competing with or diluting that content.
+
+    Plan / What to do:
+    1. Collapse each portal's subpages back onto a single /guides/[portal] overview page (app/guides/[portal]/page.tsx already exists for this) — fold the status-check / student-login / documents-list / scholarships-list content into sections or tabs on that one page instead of separate URLs.
+    2. Remove the generateStaticParams portal x subpage matrix and the PORTAL_SUBPAGES page generation logic in app/guides/[portal]/[subpage]/page.tsx.
+    3. Add 301 redirects from the old /guides/[portal]/[subpage] URLs to the consolidated /guides/[portal] page (or to the relevant /articles/[slug] piece where one now exists, e.g. /guides/pfms/status-check -> /articles/pfms-scholarship-payment-status-tracking-guide) to preserve any existing SEO equity.
+    4. Audit content/articles and internal links (several new articles link to /guides/nsp/status-check, /guides/mahadbt/documents-list, etc.) and repoint them to the surviving consolidated URLs.
+
+    Trigger:
+    User decision, 2026-07-29: now that editorial articles exist as the substantive content layer, stop generating thin per-portal subpages — collapse to one page per portal and remove the subpage-generation rule.
 
 - [ ] **IS-122**: Header: restructure for orientation — mega-menu still doesn't expose all real categories, feels cluttered
   - **Impact**: High

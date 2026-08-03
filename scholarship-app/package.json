@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "USE_LOCAL_DB=true next dev",
     "build": "USE_LOCAL_DB=true next build",
     "start": "next start",
     "lint": "eslint"

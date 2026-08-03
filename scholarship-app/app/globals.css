@@ -9,32 +9,33 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
 
-  /* Brand system — replaces the old ad-hoc "google-*" colors so every page
-     that referenced google-blue/green/red/yellow now shares one consistent
-     palette instead of each page picking its own. Each color has one job:
-     brand = trust/nav/links, accent = the one CTA/featured highlight,
-     success = verified/open, urgent = deadlines only. Light-only, no dark mode. */
-  --color-google-blue: #243373;
-  --color-google-green: #1f7a4d;
-  --color-google-red: #b8391f;
-  --color-google-yellow: #dd8a2b;
+  /* LeapScholar-inspired Brand System */
+  --color-google-blue: #4A47FF;
+  --color-google-green: #10B981;
+  --color-google-red: #EF4444;
+  --color-google-yellow: #F59E0B;
 
-  --color-brand: #243373;
-  --color-brand-dark: #1a2456;
-  --color-brand-soft: #e9ebf7;
-  --color-accent: #dd8a2b;
-  --color-accent-soft: #faead2;
-  --color-success: #1f7a4d;
-  --color-success-soft: #e3f3e9;
-  --color-urgent: #b8391f;
-  --color-urgent-soft: #fbe8e3;
-  --color-ink: #1a1d2b;
-  --color-ink-soft: #565b72;
+  --color-brand: #4A47FF;
+  --color-brand-dark: #3834E0;
+  --color-brand-soft: #F5F6FF;
+  --color-accent: #4A47FF;
+  --color-accent-soft: #EEEDFF;
+  --color-success: #10B981;
+  --color-success-soft: #ECFDF5;
+  --color-urgent: #EF4444;
+  --color-urgent-soft: #FEF2F2;
+  --color-ink: #2E2C57;
+  --color-ink-soft: #56547A;
 
-  --color-surface-gray: #f5f5f9;
-  --color-border-gray: #e3e3ec;
+  --color-surface-gray: #F8F9FE;
+  --color-border-gray: #E2E2E8;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: var(--font-heading);
 }
 
 body {

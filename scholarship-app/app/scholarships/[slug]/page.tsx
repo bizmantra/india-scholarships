@@ -521,20 +521,18 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(govServiceSchema) }} />
             )}
 
-            {/* Sticky quick-jump nav — real anchors, matches the next.config.ts subpage
-                redirects (/scholarships/:slug/:subpage -> #:subpage). One sticky bar only,
-                doubles as orientation + jump links, so it doesn't compete with anything else. */}
-            <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 overflow-x-auto scrollbar-none">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1 py-2">
+            {/* Sticky quick-jump nav — LeapScholar rounded pill navigation */}
+            <nav className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-[#E2E2E8] overflow-x-auto scrollbar-none py-2.5">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-2">
                     {SUBPAGE_NAV.map((item) => {
                         const Icon = item.icon;
                         return (
                             <a
                                 key={item.key}
                                 href={`#${item.key}`}
-                                className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-semibold text-gray-600 hover:text-google-blue hover:bg-gray-50 transition-colors whitespace-nowrap"
+                                className="shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#2E2C57] bg-[#F8F9FE] hover:text-[#4A47FF] hover:bg-[#F5F6FF] border border-[#E2E2E8] transition-all whitespace-nowrap shadow-xs"
                             >
-                                <Icon className="h-3.5 w-3.5" />
+                                <Icon className="h-3.5 w-3.5 text-[#4A47FF]" />
                                 {item.label}
                             </a>
                         );
@@ -544,19 +542,18 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
 
             <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 {/* Eyebrow + title */}
-                <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-2">
-                    {scholarship.provider_type} Scholarship · {scholarship.level || 'All Levels'}
-                </p>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight leading-tight">
+                <div className="mb-3">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#F5F6FF] text-[#4A47FF] text-xs font-bold border border-[#E2E2E8] uppercase tracking-wider">
+                        {scholarship.provider_type} Scholarship · {scholarship.level || 'All Levels'}
+                    </span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-[#2E2C57] font-heading mb-2 tracking-tight leading-tight">
                     {scholarship.title}
                 </h1>
-                <p className="text-sm text-gray-500 mb-8">{scholarship.provider}{scholarship.state ? ` · ${scholarship.state}` : ''}</p>
+                <p className="text-sm font-medium text-[#56547A] mb-8">{scholarship.provider}{scholarship.state ? ` · ${scholarship.state}` : ''}</p>
 
-                {/* Facts — merged with what used to be a separate "Quick Facts" section
-                    further down the page, so all at-a-glance facts live in one place.
-                    Rendered as a filtered row list (not a fixed grid) so a field with
-                    no data just doesn't produce a row, instead of showing an empty cell. */}
-                <div className="bg-white border border-border-gray rounded-2xl px-5 mb-10">
+                {/* Facts — LeapScholar soft surface card */}
+                <div className="bg-[#F8F9FE] border border-[#E2E2E8] rounded-3xl p-6 mb-10 shadow-xs">
                     {[
                         { k: 'Amount', v: formatAmount(scholarship.amount_annual, scholarship.amount_description) },
                         {
