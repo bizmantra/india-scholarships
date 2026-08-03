@@ -14,7 +14,6 @@ import {
     MapPin,
     IndianRupee,
     ShieldCheck,
-    Info,
     Zap,
 } from 'lucide-react';
 
@@ -277,18 +276,7 @@ export default async function InternationalScholarshipsPage() {
                     </div>
                 </section>
 
-                {/* ── Important Notice ── */}
-                <section className="bg-amber-50 border-b border-amber-200">
-                    <div className="container mx-auto px-4 max-w-5xl py-4">
-                        <div className="flex items-start gap-3 text-sm text-amber-800">
-                            <Info className="h-4 w-4 mt-0.5 flex-shrink-0 text-amber-600" />
-                            <p>
-                                <strong>About RPM & these scholarships:</strong> These are study-abroad scholarships for Indian students going overseas. RPM on these pages is driven by your readers' location (India), not the scholarship country — so we connect these pages to high-CPC adjacent content like education loans, IELTS prep, and forex guidance.
-                                {' '}<Link href="/scholarships" className="underline font-medium hover:text-amber-900">Browse all domestic scholarships →</Link>
-                            </p>
-                        </div>
-                    </div>
-                </section>
+
 
                 <div className="container mx-auto px-4 max-w-5xl py-12 md:py-16">
 
