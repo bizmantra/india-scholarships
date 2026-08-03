@@ -153,7 +153,7 @@ export default function Header() {
                         <Link href="/guides" className="transition-colors hover:text-google-blue">
                             Guides
                         </Link>
-                        <a href="https://study.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="transition-all text-[#4A47FF] hover:text-[#3834E0] font-extrabold flex items-center gap-1">
+                        <a href="https://studyabroad.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="transition-all text-[#4A47FF] hover:text-[#3834E0] font-extrabold flex items-center gap-1">
                             Study Abroad 🌍
                         </a>
                         <Link href="/news" className="transition-colors hover:text-google-blue">
@@ -243,7 +243,7 @@ export default function Header() {
 
                         {/* Study Abroad Guides & Tools Link */}
                         <a
-                            href="https://study.indiascholarships.in"
+                            href="https://studyabroad.indiascholarships.in"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setShowMobileMenu(false)}

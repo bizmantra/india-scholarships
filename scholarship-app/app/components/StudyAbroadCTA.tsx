@@ -23,7 +23,7 @@ export default function StudyAbroadCTA() {
         </div>
         <div className="shrink-0 w-full md:w-auto">
           <a
-            href="https://study.indiascholarships.in"
+            href="https://studyabroad.indiascholarships.in"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-3.5 bg-gradient-to-r from-[#4A47FF] to-indigo-600 hover:from-[#3834E0] hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer group"
