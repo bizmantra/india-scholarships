@@ -160,7 +160,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             {pillar && (
                                 <>
                                     {' '}New to how {stateName}'s scholarship system works?{' '}
-                                    <Link href={`/pillars/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
+                                    <Link href={`/guides/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.

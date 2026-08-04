@@ -447,7 +447,7 @@ export default function ScholarshipDetailTemplate({
                                 )}
                                 <li>
                                     <Link
-                                        href="/articles/india-scholarships-statistics-2025-2026"
+                                        href="/guides/india-scholarships-statistics-2025-2026"
                                         className="flex items-center gap-2 text-google-blue font-bold hover:underline"
                                     >
                                         <ExternalLink className="w-4 h-4" />

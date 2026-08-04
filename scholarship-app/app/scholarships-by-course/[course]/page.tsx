@@ -78,7 +78,7 @@ export default async function CourseHubPage({ params }: { params: Promise<{ cour
                         {coursePillar && (
                             <>
                                 {' '}New to how {courseName} scholarships work?{' '}
-                                <Link href={`/pillars/${coursePillar.slug}`} className="font-bold text-google-blue hover:underline">
+                                <Link href={`/guides/${coursePillar.slug}`} className="font-bold text-google-blue hover:underline">
                                     Read our complete guide
                                 </Link>{' '}
                                 first.

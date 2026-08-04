@@ -120,22 +120,7 @@ export default async function NewsDetailPage({ params }: NewsPageProps) {
         ]}
       />
 
-      {/* Feedback widget — special-cased, not a schema field (no backend to persist it yet) */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 mb-10">
-        <div className="border border-gray-200 rounded-md p-5 text-center">
-          <p className="text-xs font-bold text-gray-600 uppercase tracking-wider mb-3">Is this information up to date?</p>
-          <div className="flex items-center justify-center gap-3">
-            <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm border border-gray-200 text-gray-700 font-bold text-xs hover:border-google-blue hover:text-google-blue transition-colors">
-              <ThumbsUp className="w-4 h-4" />
-              <span>Yes, verified</span>
-            </button>
-            <button className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm border border-gray-200 text-gray-700 font-bold text-xs hover:border-google-blue hover:text-google-blue transition-colors">
-              <ThumbsDown className="w-4 h-4" />
-              <span>Report error</span>
-            </button>
-          </div>
-        </div>
-      </div>
+
 
       <Footer />
     </div>

@@ -109,6 +109,36 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
           </div>
         )}
 
+        {/* "What to Do Now" Box for News (Phase 6 / IS-115) */}
+        {content.kind === 'news' && content.monetizationLink && (
+          <div className="border border-blue-200 bg-blue-50/50 rounded-3xl p-6 mb-8 shadow-xs">
+            <h2 className="text-sm font-bold text-blue-900 mb-2 font-heading">
+              What to Do Now
+            </h2>
+            <p className="text-sm text-blue-800 leading-relaxed mb-4">
+              An important official update has been released regarding this scholarship. Check the details, verify your eligibility, and submit your application before the deadline.
+            </p>
+            <Link
+              href={content.monetizationLink}
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs hover:shadow-md transition-all shrink-0"
+            >
+              Check Scholarship Details →
+            </Link>
+          </div>
+        )}
+
+        {/* Primary CTA for Guides (Phase 6 / IS-115) */}
+        {content.kind !== 'news' && content.monetizationLink && (
+          <div className="mb-8">
+            <Link
+              href={content.monetizationLink}
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#4A47FF] hover:bg-[#3b38df] text-white font-bold text-xs hover:shadow-md transition-all shrink-0"
+            >
+              View Application Details & Apply →
+            </Link>
+          </div>
+        )}
+
         {/* Hub links — plain list */}
         {content.hubLinks && content.hubLinks.length > 0 && (
           <div className="mb-10">

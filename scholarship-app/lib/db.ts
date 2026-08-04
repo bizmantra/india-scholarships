@@ -694,6 +694,32 @@ export async function getCourseScholarshipCounts(): Promise<Record<string, numbe
     return counts;
 }
 
+function determinePortalId(row: any): string | null {
+    if (row.portal_id) return row.portal_id;
+    
+    const source = (row.official_source || '').toLowerCase();
+    const apply = (row.apply_url || '').toLowerCase();
+    const title = (row.title || '').toLowerCase();
+    const provider = (row.provider || '').toLowerCase();
+
+    if (source.includes('scholarships.gov.in') || apply.includes('scholarships.gov.in') || title.includes('national scholarship portal') || title.includes(' nsp')) {
+        return 'nsp';
+    }
+    if (source.includes('ssp.postmatric.karnataka.gov.in') || apply.includes('ssp.postmatric.karnataka.gov.in') || source.includes('ssp.karnataka') || apply.includes('ssp.karnataka')) {
+        return 'ssp-karnataka';
+    }
+    if (source.includes('digitalgujarat.gov.in') || apply.includes('digitalgujarat.gov.in') || provider.includes('digital gujarat')) {
+        return 'digital-gujarat-mysy';
+    }
+    if (source.includes('ekalyan.cgg.gov.in') || apply.includes('ekalyan.cgg.gov.in') || provider.includes('e-kalyan') || title.includes('e-kalyan')) {
+        return 'e-kalyan-jharkhand';
+    }
+    if (source.includes('mahadbt') || apply.includes('mahadbt') || provider.includes('mahadbt') || title.includes('mahadbt')) {
+        return 'mahadbt-maharashtra';
+    }
+    return null;
+}
+
 // Helper to parse JSON fields
 function parseScholarship(row: any) {
     return {
@@ -703,6 +729,8 @@ function parseScholarship(row: any) {
         docs_needed: parseDocsField(row.docs_needed),
         keywords: tryParseJSON(row.keywords, []),
         faq_json: tryParseJSON(row.faq_json, []),
+        portal_id: determinePortalId(row),
+        extra_data_json: tryParseJSON(row.extra_data_json, {}),
     };
 }
 

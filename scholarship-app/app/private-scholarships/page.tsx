@@ -41,7 +41,7 @@ export default async function PrivateScholarshipsPage() {
                         {pillar && (
                             <>
                                 {' '}New to how corporate and private scholarships work?{' '}
-                                <Link href={`/pillars/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
+                                <Link href={`/guides/${pillar.slug}`} className="font-bold text-google-blue hover:underline">
                                     Read our complete guide
                                 </Link>{' '}
                                 first.

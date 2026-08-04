@@ -259,7 +259,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                             {matchingPillar && (
                                 <>
                                     {' '}New to how {displayName} scholarships work?{' '}
-                                    <Link href={`/pillars/${matchingPillar.slug}`} className="font-bold text-google-blue hover:underline">
+                                    <Link href={`/guides/${matchingPillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.

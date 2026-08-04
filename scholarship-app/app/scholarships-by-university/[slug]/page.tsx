@@ -125,7 +125,7 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                             <p className="text-xs text-indigo-800 leading-relaxed">See how scholarships at {uni.name} fit into the wider system.</p>
                         </div>
                         <Link
-                            href={`/pillars/${relatedPillar.slug}`}
+                            href={`/guides/${relatedPillar.slug}`}
                             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-full transition-all shrink-0"
                         >
                             Read: {relatedPillar.title} →

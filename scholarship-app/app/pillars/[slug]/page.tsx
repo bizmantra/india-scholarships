@@ -295,7 +295,7 @@ export default async function PillarPage({ params }: PillarPageProps) {
                 {relatedArticles.map((art) => (
                   <Link
                     key={art.slug}
-                    href={`/articles/${art.slug}`}
+                    href={`/guides/${art.slug}`}
                     className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors"
                   >
                     <span className="text-sm font-semibold text-google-blue">{art.title}</span>

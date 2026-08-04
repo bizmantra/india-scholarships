@@ -833,7 +833,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         <h2 className="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b border-gray-100">Scholarship Guides</h2>
                         <div>
                             {relevantArticles.map((art: any) => (
-                                <Link key={art.slug} href={`/articles/${art.slug}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
+                                <Link key={art.slug} href={`/guides/${art.slug}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
                                     <span className="text-sm font-semibold text-google-blue">{art.title}</span>
                                     <ChevronRight className="h-4 w-4 text-gray-400 shrink-0" />
                                 </Link>

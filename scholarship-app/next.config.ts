@@ -111,6 +111,18 @@ const nextConfig: NextConfig = {
     return [
       ...generatedRedirects,
 
+      // Year-suffixed URL redirect patterns (e.g. /scholarships/tata-2024 -> /scholarships/tata)
+      {
+        source: '/scholarships/:slug(.*)-(2024|2025|2026)',
+        destination: '/scholarships/:slug',
+        permanent: true,
+      },
+      {
+        source: '/:locale(hi|bn|ta|te|or|kn)/scholarships/:slug(.*)-(2024|2025|2026)',
+        destination: '/:locale/scholarships/:slug',
+        permanent: true,
+      },
+
       // Programmatic Subpage Sunset 301 Redirects (Mapping directly to section hash anchors)
       {
         source: '/scholarships/:slug/:subpage(eligibility|income-limit|documents-required|last-date|selection-process|apply-online|renewal-process)',

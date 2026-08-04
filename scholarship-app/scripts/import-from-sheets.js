@@ -91,6 +91,31 @@ function sanitizeUrl(urlStr) {
     return match ? match[0] : '';
 }
 
+function isValidValue(val) {
+    if (!val) return false;
+    const lower = String(val).toLowerCase().trim();
+    if (
+        lower === '' || 
+        lower === 'na' || 
+        lower === 'n/a' || 
+        lower === 'not specified' || 
+        lower === 'tbd' || 
+        lower === 'check portal' || 
+        lower === 'null' ||
+        lower === 'refer official site'
+    ) {
+        return false;
+    }
+    return true;
+}
+
+function sanitizeText(val) {
+    if (!val) return '';
+    const trimmed = String(val).trim();
+    if (!isValidValue(trimmed)) return '';
+    return trimmed;
+}
+
 // Read and parse CSV
 console.log('📖 Reading CSV file...');
 const csvContent = fs.readFileSync(CSV_FILE, 'utf-8');
@@ -207,8 +232,18 @@ for (let i = 1; i < rows.length; i++) {
         continue;
     }
 
+    const title = row[indexMap['title']] || '';
+    const provider = row[indexMap['provider']] || '';
+    const applyUrl = row[indexMap['apply_url']] || '';
+    const officialSource = row[indexMap['official_source']] || '';
+
+    if (!isValidValue(title) || !isValidValue(provider) || (!isValidValue(applyUrl) && !isValidValue(officialSource))) {
+        console.log(`⚠️  Skipping row ${i} due to invalid placeholders or empty critical fields: Title="${title}"`);
+        skipped++;
+        continue;
+    }
+
     try {
-        const title = row[indexMap['title']] || '';
         const id = row[indexMap['id']] || generateSlug(title);
         const slug = generateSlug(title);
 
@@ -221,55 +256,56 @@ for (let i = 1; i < rows.length; i++) {
         const vLower = rawVerified.toLowerCase();
         const verifiedStatusVal = (vLower === 'yes' || vLower === 'true' || vLower === 'official' || vLower === 'verified') ? 'Verified' : (rawVerified ? 'Pending Verification' : 'Pending Verification');
 
-        const officialSourceVal = sanitizeUrl(row[indexMap['official_source']]);
+        const officialSourceVal = sanitizeUrl(officialSource);
+        const cleanApplyUrl = sanitizeUrl(applyUrl);
 
         insertStmt.run(
             id,
             title,
             slug,
-            row[indexMap['provider']] || '',
-            row[indexMap['provider_type']] || '',
-            row[indexMap['state']] || '',
-            row[indexMap['level']] || '',
+            sanitizeText(provider),
+            sanitizeText(row[indexMap['provider_type']]),
+            sanitizeText(row[indexMap['state']]),
+            sanitizeText(row[indexMap['level']]),
             parseArray(row[indexMap['caste']]),
-            row[indexMap['gender']] || '',
+            sanitizeText(row[indexMap['gender']]),
             parseArray(row[indexMap['course_stream']]),
-            row[indexMap['application_mode']] || '',
+            sanitizeText(row[indexMap['application_mode']]),
             parseInt(row[indexMap['amount_annual']]),
             parseInt(row[indexMap['amount_min']]),
-            row[indexMap['amount_description']] || '',
-            row[indexMap['benefits']] || '',
+            sanitizeText(row[indexMap['amount_description']]),
+            sanitizeText(row[indexMap['benefits']]),
             parseInt(row[indexMap['income_limit']]),
             parseInt(row[indexMap['min_marks']]),
-            row[indexMap['age_limit']] || '',
-            row[indexMap['residency_requirement']] || '',
+            sanitizeText(row[indexMap['age_limit']]),
+            sanitizeText(row[indexMap['residency_requirement']]),
             parseArray(row[indexMap['docs_needed']]),
-            row[indexMap['application_mode']] || '',
-            row[indexMap['apply_url']] || '',
+            sanitizeText(row[indexMap['application_mode']]),
+            cleanApplyUrl,
             row[indexMap['deadline']] || null,
-            row[indexMap['deadline_description']] || '',
+            sanitizeText(row[indexMap['deadline_description']]),
             parseInt(row[indexMap['time_min']]),
-            row[indexMap['step_guide']] || '',
-            row[indexMap['selection']] || '',
+            sanitizeText(row[indexMap['step_guide']]),
+            sanitizeText(row[indexMap['selection']]),
             parseInt(row[indexMap['total_awards']]),
-            row[indexMap['renewal']] || '',
-            row[indexMap['competitiveness']] || '',
+            sanitizeText(row[indexMap['renewal']]),
+            sanitizeText(row[indexMap['competitiveness']]),
             verifiedStatusVal,
             row[indexMap['last_verified']] || null,
             officialSourceVal,
-            row[indexMap['helpline']] || '',
-            row[indexMap['intro_seo']] || '',
+            sanitizeText(row[indexMap['helpline']]),
+            sanitizeText(row[indexMap['intro_seo']]),
             row[indexMap['faq_json']] || '[]',
-            row[indexMap['notes_actions']] || '',
+            sanitizeText(row[indexMap['notes_actions']]),
             parseArray(row[indexMap['keywords']]),
-            row[indexMap['scholarship_type']] || 'Government',
+            sanitizeText(row[indexMap['scholarship_type']]) || 'Government',
             statusVal,
             parseInt(row[indexMap['verification_year']]),
             parseBoolean(row[indexMap['show_on_homepage']]),
             parseBoolean(row[indexMap['is_featured']]),
             parseBoolean(row[indexMap['is_popular']]),
             parseInt(row[indexMap['priority_score']]) || 50,
-            row[indexMap['special_conditions']] || '',
+            sanitizeText(row[indexMap['special_conditions']]),
             parseArray(row[indexMap['tags']]),
             row[indexMap['thumbnail_url']] || ''
         );

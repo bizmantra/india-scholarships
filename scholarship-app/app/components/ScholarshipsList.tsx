@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useMemo, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, usePathname } from 'next/navigation';
 import ScholarshipCard from './ScholarshipCard';
 import ResultsHeader from './ResultsHeader';
 
@@ -20,6 +20,7 @@ interface ScholarshipsListProps {
     scholarships: any[];
     showCategoryFilters?: boolean;
     initialTab?: string;
+    initialCategory?: string;
 }
 
 const CATEGORIES = [
@@ -35,9 +36,10 @@ const CATEGORIES = [
 export default function ScholarshipsList({
     scholarships,
     showCategoryFilters = true,
-    initialTab = 'All'
+    initialTab = 'All',
+    initialCategory = 'All'
 }: ScholarshipsListProps) {
-    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
     const initialStatus = initialTab === 'ClosingSoon' ? 'Closing Soon' : initialTab;
     const [selectedDeadlineStatus, setSelectedDeadlineStatus] = useState(initialStatus);
     const [sortBy, setSortBy] = useState('deadline');
@@ -50,6 +52,40 @@ export default function ScholarshipsList({
         d.setHours(0, 0, 0, 0);
         return d;
     }, []);
+
+    const pathname = usePathname() || '';
+    const stateMatch = pathname.match(/^\/scholarships-in\/([^\/]+)/);
+    const stateSlug = stateMatch ? stateMatch[1] : null;
+
+    const renderCategoryChip = (cat: { value: string; label: string }, isMobile: boolean = false) => {
+        const isSelected = selectedCategory === cat.value;
+        const className = `px-4 ${isMobile ? 'py-2 text-xs' : 'py-2.5 text-sm'} rounded-full font-semibold transition-all cursor-pointer inline-block ${
+            isSelected
+                ? 'bg-google-blue text-white shadow-md shadow-blue-100'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+        }`;
+
+        if (stateSlug) {
+            const href = cat.value === 'All'
+                ? `/scholarships-in/${stateSlug}`
+                : `/scholarships-in/${stateSlug}/${cat.value.toLowerCase()}`;
+            return (
+                <Link key={cat.value} href={href} className={className}>
+                    {cat.label}
+                </Link>
+            );
+        }
+
+        return (
+            <button
+                key={cat.value}
+                onClick={() => setSelectedCategory(cat.value)}
+                className={className}
+            >
+                {cat.label}
+            </button>
+        );
+    };
 
     // 1. Filter by category, deadline status, and text search query
     const filteredScholarships = useMemo(() => {
@@ -204,19 +240,7 @@ export default function ScholarshipsList({
                             Filter by Category
                         </span>
                         <div className="flex flex-wrap gap-2">
-                            {CATEGORIES.map(cat => (
-                                <button
-                                    key={cat.value}
-                                    onClick={() => setSelectedCategory(cat.value)}
-                                    className={`px-4 py-2.5 rounded-full text-sm font-semibold transition-all cursor-pointer ${
-                                        selectedCategory === cat.value
-                                            ? 'bg-google-blue text-white shadow-md shadow-blue-100'
-                                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                    }`}
-                                >
-                                    {cat.label}
-                                </button>
-                            ))}
+                            {CATEGORIES.map(cat => renderCategoryChip(cat, false))}
                         </div>
                     </div>
                 )}
@@ -325,19 +349,7 @@ export default function ScholarshipsList({
                                     Filter by Category
                                 </span>
                                 <div className="flex flex-wrap gap-2">
-                                    {CATEGORIES.map(cat => (
-                                        <button
-                                            key={cat.value}
-                                            onClick={() => setSelectedCategory(cat.value)}
-                                            className={`px-4 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                                                selectedCategory === cat.value
-                                                    ? 'bg-google-blue text-white shadow-md shadow-blue-100'
-                                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                            }`}
-                                        >
-                                            {cat.label}
-                                        </button>
-                                    ))}
+                                    {CATEGORIES.map(cat => renderCategoryChip(cat, true))}
                                 </div>
                             </div>
                         )}

@@ -1,0 +1,158 @@
+{
+  "checked": 30,
+  "pending_review": 0,
+  "check_failed": 30,
+  "changes": [],
+  "failed": [
+    {
+      "title": "Rhodes Scholarship (India)",
+      "slug": "rhodes-scholarship-india",
+      "error": "fetch failed"
+    },
+    {
+      "title": "PM Yasasvi Scholarship",
+      "slug": "pm-yashasvi-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Bharti Airtel Scholarship Program 2026-27",
+      "slug": "bharti-airtel-scholarship-program",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Jharkhand e-Kalyan Post-Matric Scholarship",
+      "slug": "jharkhand-e-kalyan-post-matric-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "ESMT Berlin MBA Scholarships",
+      "slug": "esmt-berlin-mba-scholarships",
+      "error": "fetch failed"
+    },
+    {
+      "title": "University of Calgary Graduate Fellowships",
+      "slug": "university-of-calgary-graduate-fellowships",
+      "error": "fetch failed"
+    },
+    {
+      "title": "ADB-Japan Scholarship Program",
+      "slug": "adb-japan-scholarship-program",
+      "error": "fetch failed"
+    },
+    {
+      "title": "DAAD Research Grants for Doctoral Candidates",
+      "slug": "daad-research-grants-for-doctoral-candidates",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Hubert H. Humphrey Fellowship Program",
+      "slug": "hubert-h-humphrey-fellowship-program",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Schaeffler India Hope Engineering Scholarship 2026",
+      "slug": "schaeffler-india-hope-engineering-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Buddy4Study India Foundation Scholarship 2026",
+      "slug": "buddy4study-india-foundation-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Kotak Kanya Scholarship 2026-27",
+      "slug": "kotak-kanya-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "GyanDhan Scholarship 2026",
+      "slug": "gyandhan-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Vidyasiri Food and Accommodation Scholarship for OBC Students (Karnataka)",
+      "slug": "vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Azim Premji Scholarship 2026-27",
+      "slug": "azim-premji-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Mukhymantri Shiksha Protsahan Yojana",
+      "slug": "mukhymantri-shiksha-protsahan-yojana-jharkhand",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Talliki Vandanam Scheme",
+      "slug": "talliki-vandanam-scheme-ap",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Pre-Matric Scholarship for SC/ST Students (Class 9-10) (HP)",
+      "slug": "pre-matric-sc-st-hp",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Generation Google Scholarship (APAC) 2026",
+      "slug": "generation-google-scholarship-apac",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Raman Kant Munjal Scholarship 2026",
+      "slug": "raman-kant-munjal-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Khelo India Sports Scholarship Scheme",
+      "slug": "khelo-india-sports-scholarship-scheme",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Haryana State Sports Scholarship Scheme",
+      "slug": "harrison-state-sports-scholarship-scheme",
+      "error": "fetch failed"
+    },
+    {
+      "title": "GAIL Sports Scholarship Scheme",
+      "slug": "gail-sports-scholarship-scheme",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Chandigarh Sports Department Scholarship",
+      "slug": "chandigarh-sports-department-scholarship",
+      "error": "fetch failed"
+    },
+    {
+      "title": "IndianOil Sports Scholarship Scheme",
+      "slug": "indianoil-sports-scholarship-scheme",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Gujarat State Pre-Matric Scholarship for SC/ST/OBC Students",
+      "slug": "gujarat-pre-matric-scholarship-sc-st-obc",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Scholarship to the Disabled Students (Divyang) (Gujarat)",
+      "slug": "gujarat-scholarship-to-disabled-students",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Gujarat National Means-cum-Merit Scholarship (NMMS)",
+      "slug": "gujarat-national-means-cum-merit-scholarship-nmms",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Punjab Chief Minister Scholarship Scheme",
+      "slug": "punjab-chief-minister-scholarship-scheme",
+      "error": "fetch failed"
+    },
+    {
+      "title": "Swami Vivekanand Stipend Scheme for ITI & Technical Courses (Gujarat)",
+      "slug": "swami-vivekanand-stipend-scheme-iti-gujarat",
+      "error": "fetch failed"
+    }
+  ]
+}

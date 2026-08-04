@@ -119,7 +119,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                             {levelPillar && (
                                 <>
                                     {' '}New to how {displayName} scholarships work?{' '}
-                                    <Link href={`/pillars/${levelPillar.slug}`} className="font-bold text-google-blue hover:underline">
+                                    <Link href={`/guides/${levelPillar.slug}`} className="font-bold text-google-blue hover:underline">
                                         Read our complete guide
                                     </Link>{' '}
                                     first.

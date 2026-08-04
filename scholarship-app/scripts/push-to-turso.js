@@ -88,7 +88,8 @@ async function run() {
                 scholarship_scope TEXT DEFAULT 'domestic',
                 country_of_study TEXT DEFAULT NULL,
                 always_open INTEGER DEFAULT 0,
-                last_checked_at TEXT DEFAULT NULL
+                last_checked_at TEXT DEFAULT NULL,
+                extra_data_json TEXT DEFAULT NULL
             );
         `);
 

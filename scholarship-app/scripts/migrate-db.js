@@ -25,7 +25,8 @@ const newColumns = [
     { name: 'priority_score', type: 'INTEGER', default: '50' },
     { name: 'special_conditions', type: 'TEXT', default: 'NULL' },
     { name: 'tags', type: 'TEXT', default: 'NULL' },
-    { name: 'thumbnail_url', type: 'TEXT', default: 'NULL' }
+    { name: 'thumbnail_url', type: 'TEXT', default: 'NULL' },
+    { name: 'extra_data_json', type: 'TEXT', default: 'NULL' }
 ];
 
 let added = 0;
