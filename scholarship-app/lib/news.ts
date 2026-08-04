@@ -82,42 +82,121 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
  * Lightweight Markdown to HTML Converter
  */
 function simpleMarkdownToHtml(markdown: string): string {
-  let html = markdown;
+  const lines = markdown.split(/\r?\n/);
+  
+  let html = '';
+  let inList: 'ul' | 'ol' | null = null;
+  let inParagraph = false;
+  
+  const closeListIfNeeded = () => {
+    if (inList) {
+      html += `</${inList}>\n`;
+      inList = null;
+    }
+  };
+  
+  const closeParagraphIfNeeded = () => {
+    if (inParagraph) {
+      html += `</p>\n`;
+      inParagraph = false;
+    }
+  };
 
-  // Escape HTML entities to prevent injection
-  html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i].trim();
+    
+    // Empty line: close open paragraphs and lists
+    if (!line) {
+      closeParagraphIfNeeded();
+      closeListIfNeeded();
+      continue;
+    }
+    
+    // Handle Blockquotes / Callout boxes
+    if (line.startsWith('&gt;') || line.startsWith('>')) {
+      closeParagraphIfNeeded();
+      closeListIfNeeded();
+      
+      let cleanLine = line.replace(/^&gt;\s*|^>\s*/, '').trim();
+      cleanLine = cleanLine.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+      
+      if (cleanLine.startsWith('💡')) {
+        html += `<div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg my-4 text-amber-900 font-medium">${cleanLine}</div>\n`;
+      } else if (cleanLine.startsWith('⚠️')) {
+        html += `<div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg my-4 text-rose-900 font-medium">${cleanLine}</div>\n`;
+      } else {
+        html += `<blockquote class="bg-slate-50 border-l-4 border-indigo-500 p-4 italic text-slate-700 my-4">${cleanLine}</blockquote>\n`;
+      }
+      continue;
+    }
 
-  // Headings
-  html = html.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100">$1</h2>');
-  html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-black text-slate-900 mt-8 mb-4">$1</h1>');
+    // Escape basic HTML tags to prevent injection
+    line = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  // Callout boxes (> 💡 Pro Tip: ...)
-  html = html.replace(/^&gt; 💡 (.*$)/gim, '<div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg my-4 text-amber-900 font-medium"><span class="mr-2">💡</span>$1</div>');
-  html = html.replace(/^&gt; ⚠️ (.*$)/gim, '<div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg my-4 text-rose-900 font-medium"><span class="mr-2">⚠️</span>$1</div>');
-  html = html.replace(/^&gt; (.*$)/gim, '<blockquote class="bg-slate-50 border-l-4 border-indigo-500 p-4 italic text-slate-700 my-4">$1</blockquote>');
+    // Headings
+    if (line.startsWith('### ')) {
+      closeParagraphIfNeeded();
+      closeListIfNeeded();
+      html += `<h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">${line.slice(4)}</h3>\n`;
+      continue;
+    }
+    if (line.startsWith('## ')) {
+      closeParagraphIfNeeded();
+      closeListIfNeeded();
+      html += `<h2 class="text-2xl font-extrabold text-slate-900 mt-8 mb-4 pb-2 border-b border-slate-100">${line.slice(3)}</h2>\n`;
+      continue;
+    }
+    if (line.startsWith('# ')) {
+      closeParagraphIfNeeded();
+      closeListIfNeeded();
+      html += `<h1 class="text-3xl font-black text-slate-900 mt-8 mb-4">${line.slice(2)}</h1>\n`;
+      continue;
+    }
 
-  // Bold & Italic
+    // Lists: Unordered
+    const unorderedMatch = line.match(/^[\-\*]\s+(.*)$/);
+    if (unorderedMatch) {
+      closeParagraphIfNeeded();
+      if (inList !== 'ul') {
+        closeListIfNeeded();
+        html += `<ul class="list-disc pl-5 mb-4 space-y-1.5">\n`;
+        inList = 'ul';
+      }
+      html += `<li class="text-slate-700 text-base leading-relaxed">${unorderedMatch[1]}</li>\n`;
+      continue;
+    }
+
+    // Lists: Ordered
+    const orderedMatch = line.match(/^([0-9]+)\.\s+(.*)$/);
+    if (orderedMatch) {
+      closeParagraphIfNeeded();
+      if (inList !== 'ol') {
+        closeListIfNeeded();
+        html += `<ol class="list-decimal pl-5 mb-4 space-y-2 font-medium">\n`;
+        inList = 'ol';
+      }
+      html += `<li class="text-slate-700 text-base leading-relaxed font-normal">${orderedMatch[2]}</li>\n`;
+      continue;
+    }
+
+    // Normal paragraph text
+    closeListIfNeeded();
+    if (!inParagraph) {
+      html += `<p class="text-slate-700 text-base leading-relaxed mb-4">`;
+      inParagraph = true;
+    } else {
+      html += ' ';
+    }
+    html += line;
+  }
+  
+  closeParagraphIfNeeded();
+  closeListIfNeeded();
+
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
   html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
   html = html.replace(/`([^`]+)`/g, '<code class="bg-slate-100 text-indigo-700 px-1.5 py-0.5 rounded font-mono text-sm">$1</code>');
-
-  // Links
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-indigo-600 font-semibold underline hover:text-indigo-800">$1</a>');
-
-  // Lists
-  html = html.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-slate-700 mb-1.5">$1</li>');
-  html = html.replace(/^([0-9]+)\. (.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 mb-2 font-medium">$2</li>');
-
-  // Paragraphs
-  const paragraphs = html.split(/\n\n+/);
-  html = paragraphs.map(p => {
-    p = p.trim();
-    if (p.startsWith('<h') || p.startsWith('<blockquote') || p.startsWith('<div') || p.startsWith('<li')) {
-      return p;
-    }
-    return `<p class="text-slate-700 text-base leading-relaxed mb-4">${p}</p>`;
-  }).join('\n');
 
   return html;
 }
