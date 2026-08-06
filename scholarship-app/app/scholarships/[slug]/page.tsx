@@ -300,29 +300,23 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         }
     } catch (e) {}
 
-    // GovernmentService schema
-    let govServiceSchema = null;
-    if (scholarship.scholarship_type === 'Government' || scholarship.provider_type === 'Government') {
-        govServiceSchema = {
-            '@context': 'https://schema.org',
-            '@type': 'GovernmentService',
-            name: scholarship.title,
-            serviceType: 'Scholarship',
-            provider: {
-                '@type': 'GovernmentOrganization',
-                name: scholarship.provider || 'Government Agency'
-            },
-            areaServed: {
-                '@type': 'AdministrativeArea',
-                name: scholarship.state || 'India'
-            },
-            serviceOperator: {
-                '@type': 'GovernmentOrganization',
-                name: scholarship.provider || 'Government Agency'
-            },
-            eligibilityNote: scholarship.residency_requirement || scholarship.level || 'Refer to eligibility guidelines'
-        };
-    }
+    // FinancialAid schema
+    const financialAidSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FinancialAid',
+        name: scholarship.title,
+        description: scholarship.intro_seo || scholarship.title,
+        amount: {
+            '@type': 'MonetaryAmount',
+            currency: 'INR',
+            value: scholarship.amount_annual || 0
+        },
+        provider: {
+            '@type': 'Organization',
+            name: scholarship.provider || 'Scholarship Provider'
+        },
+        url: `https://www.indiascholarships.in/scholarships/${scholarship.slug}`
+    };
 
     // Format amount
     const formatAmount = (amount: number | null, description: string = '') => {
@@ -517,9 +511,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
             {faqSchema && (
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
             )}
-            {govServiceSchema && (
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(govServiceSchema) }} />
-            )}
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(financialAidSchema) }} />
 
             {/* Sticky quick-jump nav — LeapScholar rounded pill navigation */}
             <nav className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-[#E2E2E8] overflow-x-auto scrollbar-none py-2.5">
