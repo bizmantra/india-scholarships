@@ -1,0 +1,869 @@
+[dotenv@17.2.3] injecting env (36) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+{
+  "adsenseError": "invalid_grant",
+  "ga4TopPagesThisWeek": {
+    "dimensionHeaders": [
+      {
+        "name": "pagePath"
+      }
+    ],
+    "metricHeaders": [
+      {
+        "name": "screenPageViews",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
+      }
+    ],
+    "rows": [
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/pm-yashasvi-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "4713"
+          },
+          {
+            "value": "3342"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/atul-maheshwari-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3433"
+          },
+          {
+            "value": "2230"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/private-scholarships"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2283"
+          },
+          {
+            "value": "675"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/sitaram-jindal-foundation-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1416"
+          },
+          {
+            "value": "1068"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1271"
+          },
+          {
+            "value": "550"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/hdfc-bank-parivartan-ecss-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "839"
+          },
+          {
+            "value": "605"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "777"
+          },
+          {
+            "value": "474"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/tata-capital-pankh-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "588"
+          },
+          {
+            "value": "444"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/nabanna-scholarship-west-bengal"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "566"
+          },
+          {
+            "value": "454"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/talliki-vandanam-scheme-ap"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "529"
+          },
+          {
+            "value": "388"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/eligibility-checker"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "485"
+          },
+          {
+            "value": "301"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/reliance-foundation-undergraduate-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "467"
+          },
+          {
+            "value": "378"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/buddy4study-india-foundation-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "465"
+          },
+          {
+            "value": "376"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/lic-golden-jubilee-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "403"
+          },
+          {
+            "value": "317"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/generation-google-scholarship-apac"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "387"
+          },
+          {
+            "value": "304"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/ladli-lakshmi-yojana-mp"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "374"
+          },
+          {
+            "value": "287"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/khelo-india-sports-scholarship-scheme"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "368"
+          },
+          {
+            "value": "299"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/mukhyamantri-kanya-utthan-yojana-graduation"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "351"
+          },
+          {
+            "value": "284"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/kotak-kanya-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "325"
+          },
+          {
+            "value": "260"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/bharti-airtel-scholarship-program"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "299"
+          },
+          {
+            "value": "266"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/jharkhand-e-kalyan-post-matric-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "299"
+          },
+          {
+            "value": "236"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/gyandhan-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "293"
+          },
+          {
+            "value": "239"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships-by-course/engineering"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "291"
+          },
+          {
+            "value": "103"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/azim-premji-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "277"
+          },
+          {
+            "value": "223"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/pm-yasasvi-top-class-education"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "263"
+          },
+          {
+            "value": "203"
+          }
+        ]
+      }
+    ],
+    "rowCount": 1696,
+    "metadata": {
+      "currencyCode": "USD",
+      "timeZone": "Asia/Calcutta"
+    },
+    "kind": "analyticsData#runReport"
+  },
+  "ga4TopPagesLastWeek": {
+    "dimensionHeaders": [
+      {
+        "name": "pagePath"
+      }
+    ],
+    "metricHeaders": [
+      {
+        "name": "screenPageViews",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
+      }
+    ],
+    "rows": [
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/pm-yashasvi-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "7745"
+          },
+          {
+            "value": "5837"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/atul-maheshwari-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "3074"
+          },
+          {
+            "value": "2229"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/private-scholarships"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "2600"
+          },
+          {
+            "value": "550"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/talliki-vandanam-scheme-ap/apply-online"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1864"
+          },
+          {
+            "value": "1428"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1720"
+          },
+          {
+            "value": "754"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/sitaram-jindal-foundation-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1444"
+          },
+          {
+            "value": "1167"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/talliki-vandanam-scheme-ap/eligibility"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "1328"
+          },
+          {
+            "value": "1071"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/talliki-vandanam-scheme-ap"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "968"
+          },
+          {
+            "value": "695"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "965"
+          },
+          {
+            "value": "568"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/eligibility-checker"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "766"
+          },
+          {
+            "value": "518"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/hdfc-bank-parivartan-ecss-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "729"
+          },
+          {
+            "value": "561"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/ta/scholarships/talliki-vandanam-scheme-ap/last-date"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "713"
+          },
+          {
+            "value": "585"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/guides"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "673"
+          },
+          {
+            "value": "484"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/tata-capital-pankh-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "596"
+          },
+          {
+            "value": "478"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/nabanna-scholarship-west-bengal"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "545"
+          },
+          {
+            "value": "451"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/bharti-airtel-scholarship-program"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "541"
+          },
+          {
+            "value": "444"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/guides/e-grantz-kerala/status-check"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "495"
+          },
+          {
+            "value": "379"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/buddy4study-india-foundation-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "442"
+          },
+          {
+            "value": "346"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships-level/class-11-12"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "427"
+          },
+          {
+            "value": "268"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/mukhyamantri-kanya-utthan-yojana-graduation"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "412"
+          },
+          {
+            "value": "344"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/pm-yasasvi-top-class-education"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "362"
+          },
+          {
+            "value": "272"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships-by-course/engineering"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "358"
+          },
+          {
+            "value": "107"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/kotak-kanya-scholarship"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "352"
+          },
+          {
+            "value": "294"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/atul-maheshwari-scholarship/apply-online"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "349"
+          },
+          {
+            "value": "247"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "/scholarships/generation-google-scholarship-apac"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "346"
+          },
+          {
+            "value": "274"
+          }
+        ]
+      }
+    ],
+    "rowCount": 3297,
+    "metadata": {
+      "currencyCode": "USD",
+      "timeZone": "Asia/Calcutta"
+    },
+    "kind": "analyticsData#runReport"
+  },
+  "ga4WeekTotals": {
+    "dimensionHeaders": [
+      {
+        "name": "dateRange"
+      }
+    ],
+    "metricHeaders": [
+      {
+        "name": "sessions",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "screenPageViews",
+        "type": "TYPE_INTEGER"
+      },
+      {
+        "name": "activeUsers",
+        "type": "TYPE_INTEGER"
+      }
+    ],
+    "rows": [
+      {
+        "dimensionValues": [
+          {
+            "value": "last_week"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "27953"
+          },
+          {
+            "value": "63416"
+          },
+          {
+            "value": "25381"
+          }
+        ]
+      },
+      {
+        "dimensionValues": [
+          {
+            "value": "this_week"
+          }
+        ],
+        "metricValues": [
+          {
+            "value": "23096"
+          },
+          {
+            "value": "45515"
+          },
+          {
+            "value": "21160"
+          }
+        ]
+      }
+    ],
+    "rowCount": 2,
+    "metadata": {
+      "currencyCode": "USD",
+      "timeZone": "Asia/Calcutta"
+    },
+    "kind": "analyticsData#runReport"
+  }
+}

@@ -53,3 +53,40 @@ If you're moving into Class 11 Science, Commerce, or Arts, most Post-Matric cate
 3. **Track the PM Yashasvi exam calendar** if you belong to an eligible category — the entrance exam is typically held once a year.
 
 See every scholarship available right after Class 10 on our [Class 10 Passed Scholarships Hub](/scholarships-level/class-10-passed).
+
+## Detailed Step-by-Step Application Procedure
+
+To apply for Best Scholarships to Apply Immediately After Passing Class 10 successfully without errors or rejections, follow this structured procedural checklist:
+
+1. **Official Portal Access & Registration**:
+   - Navigate to the designated official state/national scholarship portal.
+   - Click on **New Student Registration / One-Time Registration (OTR)**.
+   - Enter your active mobile number, Aadhaar number, and email address to complete OTP verification.
+
+2. **Form Filling & Category Selection**:
+   - Log in using your generated Application ID and password.
+   - Fill in personal details, caste category, annual family income, and current academic course enrollment.
+   - Select your target scheme name accurately from the scheme drop-down menu.
+
+3. **Document Uploading**:
+   - Upload scanned copies of required documents in PDF or JPEG format (file size typically under 200 KB).
+   - Ensure the document details match your Aadhaar card and academic certificates exactly.
+
+4. **Institution Verification & Final Submission**:
+   - Preview the completed application form to verify all fields.
+   - Click **Final Submit** and download the acknowledgment receipt.
+   - Submit a hard copy of the printed form along with original document photocopies to your school/college scholarship officer for institute-level verification.
+
+> [!IMPORTANT]
+> **Aadhaar Bank Seeding Mandatory**: Ensure your bank account is seeded with Aadhaar via NPCI mapping. Direct Benefit Transfer (DBT) scholarship funds will be credited only to Aadhaar-seeded accounts.
+
+## Frequently Asked Questions (FAQs)
+
+### 1. What is the deadline to apply for Best Scholarships to Apply Immediately After Passing Class 10?
+Applications generally open between August and October for the 2026–27 academic session. Students are advised to submit forms before the official closing date to allow sufficient time for institute verification.
+
+### 2. Can students with income above ₹2.5 Lakh per annum apply?
+Income limits vary by category. SC/ST/OBC post-matric schemes usually mandate an annual family income ceiling of ₹2.50 Lakh, whereas merit-cum-means and corporate schemes may allow higher income thresholds.
+
+### 3. How Can Applicants Track Application Status Online?
+Log in to the official portal dashboard using your Application ID and DOB. Navigate to **Track Application Status** or **PFMS Payment Status** to check real-time approval stages.
