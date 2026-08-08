@@ -389,7 +389,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/study-abroad',
+        destination: 'https://study-abroad-is.vercel.app/study-abroad',
+      },
+      {
+        source: '/study-abroad/:path*',
+        destination: 'https://study-abroad-is.vercel.app/study-abroad/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
