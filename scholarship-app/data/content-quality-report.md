@@ -1,5 +1,5 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-08-06
+Generated on: 2026-08-09
 Total Scholarships Audited: **482**
 Scholarships with Issues: **138** (28.6%)
 
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `videsh-siksha-bruti-foreign-education-scholarship-odisha` | **Videsh Siksha Bruti - Foreign Education Scholarship (Odisha)** | 1 | Missing Min Amount |
 | `mukhyamantri-medhavi-vidyarthi-yojana-mmvy` | **Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)** | 1 | Missing Min Amount |
 
-*Note: Showing top 50 rows. A complete list of all 138 records is exported to [content-quality-audit.csv](file:///Users/roshankumar/Desktop/Schlarship Tracker /Scholarship-Tracker-POC-antigravity/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 138 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
