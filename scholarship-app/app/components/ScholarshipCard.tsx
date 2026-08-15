@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CheckCircle2, Calendar, Laptop, Users, IndianRupee, Clock, ArrowRight } from 'lucide-react';
 
 interface Scholarship {
     id: number;
@@ -30,7 +29,8 @@ interface ScholarshipCardProps {
 export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: ScholarshipCardProps) {
     const [thumbnailFailed, setThumbnailFailed] = useState(false);
 
-    // Calculate status badges
+    // Calculate status badges — rounded-full pills, soft bg + solid text (matches
+    // the "Applications Open" badge in the Figma mockup)
     const getStatusBadge = () => {
         if (!scholarship.deadline) return null;
 
@@ -44,14 +44,14 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
 
         // Closed
         if (deadlineDate < today) {
-            return { text: 'Closed', color: 'text-[#56547A] bg-[#F8F9FE] border-[#E2E2E8]' };
+            return { text: 'Closed', color: 'text-slate-600 bg-slate-100' };
         }
 
         const daysUntilDeadline = Math.ceil((deadlineDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
         // Closing Soon
         if (daysUntilDeadline <= 7) {
-            return { text: 'Closing Soon', color: 'text-[#EF4444] bg-[#FEF2F2] border-transparent' };
+            return { text: 'Closing Soon', color: 'text-red-700 bg-red-50' };
         }
 
         // New
@@ -59,11 +59,11 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             const createdDate = new Date(scholarship.created_at);
             const daysSinceCreated = Math.ceil((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
             if (daysSinceCreated <= 14) {
-                return { text: 'New Opportunity', color: 'text-[#4A47FF] bg-[#F5F6FF] border-transparent' };
+                return { text: 'New Opportunity', color: 'text-brand bg-brand-soft' };
             }
         }
 
-        return null;
+        return { text: 'Applications Open', color: 'text-emerald-700 bg-emerald-50' };
     };
 
     const statusBadge = getStatusBadge();
@@ -105,127 +105,69 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
         return `₹${scholarship.amount_annual.toLocaleString('en-IN')}`;
     };
 
-    // Provider circular badge generator
-    const getProviderBadge = () => {
-        const firstLetter = scholarship.provider ? scholarship.provider.charAt(0).toUpperCase() : 'S';
-        const colors = [
-            'bg-[#F5F6FF] text-[#4A47FF]',
-            'bg-[#ECFDF5] text-[#10B981]',
-            'bg-[#FEF2F2] text-[#EF4444]',
-            'bg-[#FEF3C7] text-[#F59E0B]'
-        ];
-        const index = firstLetter.charCodeAt(0) % colors.length;
-        const colorClass = colors[index];
-
-        if (scholarship.thumbnail_url && !thumbnailFailed) {
-            return (
-                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-[#E2E2E8] shrink-0 bg-white flex items-center justify-center shadow-xs">
-                    <img
-                        src={scholarship.thumbnail_url}
-                        alt={scholarship.provider}
-                        className="object-contain w-full h-full p-1"
-                        onError={() => setThumbnailFailed(true)}
-                    />
-                </div>
-            );
-        }
-
-        return (
-            <div className={`w-12 h-12 rounded-full border border-[#E2E2E8] flex items-center justify-center font-bold text-lg shrink-0 shadow-xs font-heading ${colorClass}`}>
-                {firstLetter}
-            </div>
-        );
-    };
-
     if (viewMode === 'list') {
-        const deadlineIsUrgent = statusBadge?.text === 'Closing Soon';
-        const deadlineIsClosed = statusBadge?.text === 'Closed';
         return (
             <Link
                 href={`/scholarships/${scholarship.slug}`}
-                className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] items-center gap-x-6 gap-y-2 py-4 px-4 rounded-xl border-b border-[#E2E2E8] hover:bg-[#F8F9FE] transition-all group"
+                className="flex flex-col gap-2 py-3 px-4 border-b border-slate-200 hover:bg-slate-50 transition-all group min-h-[72px] justify-center"
             >
-                <div>
-                    <p className="text-base font-extrabold text-[#2E2C57] font-heading group-hover:text-[#4A47FF] transition-colors leading-snug">
+                <div className="flex justify-between items-start gap-3">
+                    <p className="text-base font-bold text-slate-900 group-hover:text-brand transition-colors leading-snug">
                         {scholarship.title}
                     </p>
-                    <p className="text-xs text-[#56547A] font-medium mt-0.5">
-                        {scholarship.provider} {scholarship.state ? `· ${scholarship.state}` : ''}
-                    </p>
+                    {statusBadge && (
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shrink-0 ${statusBadge.color}`}>
+                            {statusBadge.text}
+                        </span>
+                    )}
                 </div>
-                <div className="text-left sm:text-right">
-                    <span className="text-base font-extrabold text-[#4A47FF] font-heading">{formatAmount()}</span>
-                    <span className="block text-[11px] text-[#56547A]">per year</span>
-                </div>
-                <div className={`text-xs font-bold text-left sm:text-right whitespace-nowrap px-3 py-1.5 rounded-full ${deadlineIsUrgent ? 'text-[#EF4444] bg-[#FEF2F2]' : deadlineIsClosed ? 'text-[#56547A] bg-[#F8F9FE]' : 'text-[#10B981] bg-[#ECFDF5]'}`}>
-                    {formatDeadline(scholarship.deadline)}
+                <p className="text-xs text-slate-600">
+                    {scholarship.provider} {scholarship.state ? `· ${scholarship.state}` : ''}
+                </p>
+                <div className="flex justify-between items-center text-xs pt-2 border-t border-slate-200">
+                    <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
+                    <span className="text-slate-600 font-medium">
+                        Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
+                    </span>
                 </div>
             </Link>
         );
     }
 
-    // LeapScholar Grid View Card
+    // Card — matches the Featured Scholarship card in the Figma mockup:
+    // white surface, soft shadow, rounded-xl, green amount, filled blue CTA.
     return (
         <Link
             href={`/scholarships/${scholarship.slug}`}
-            className="group bg-white border border-[#E2E2E8] rounded-3xl overflow-hidden hover:shadow-xl hover:border-[#4A47FF]/60 hover:-translate-y-1 transition-all flex flex-col p-6 h-full min-h-[350px] shadow-xs"
+            className="group flex flex-col bg-white border border-slate-200 rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_16px_32px_rgba(15,23,42,0.08)] hover:-translate-y-0.5 p-6 transition-all duration-300 h-full justify-between"
         >
-            {/* Top row: Verification and Status pill */}
-            <div className="flex justify-between items-center mb-4">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] text-[#10B981] text-[11px] font-bold">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981]" />
-                    Verified Scheme
-                </span>
+            <div className="flex justify-between items-start gap-3 mb-2">
+                <h3 className="text-base font-bold text-slate-900 group-hover:text-brand transition-colors leading-snug">
+                    {scholarship.title}
+                </h3>
                 {statusBadge && (
-                    <span className={`px-3 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wider ${statusBadge.color}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider shrink-0 ${statusBadge.color}`}>
                         {statusBadge.text}
                     </span>
                 )}
             </div>
 
-            {/* Provider Circle & Details */}
-            <div className="flex items-center gap-3 mb-4">
-                {getProviderBadge()}
-                <div className="overflow-hidden">
-                    <p className="text-xs text-[#2E2C57] font-bold truncate font-heading">
-                        {scholarship.provider}
-                    </p>
-                    <p className="text-[11px] text-[#56547A] truncate font-medium">
-                        {scholarship.state || 'Pan-India'}
-                    </p>
-                </div>
-            </div>
+            <p className="text-xs text-slate-500 mb-3">{scholarship.provider}</p>
 
-            {/* Scholarship Title */}
-            <h3 className="text-base font-extrabold text-[#2E2C57] font-heading group-hover:text-[#4A47FF] transition-colors line-clamp-2 leading-snug mb-4 flex-1">
-                {scholarship.title}
-            </h3>
-
-            {/* Price Tag Highlight */}
-            <div className="mb-4 p-3 bg-[#F8F9FE] rounded-2xl border border-[#E2E2E8]">
-                <span className="text-[10px] text-[#56547A] block font-bold uppercase tracking-wider">Annual Scholarship Grant</span>
-                <span className="text-xl font-extrabold text-[#4A47FF] block mt-0.5 font-heading">
-                    {formatAmount()}
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mb-3">
+                <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
+                <span className="text-slate-600">
+                    Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
                 </span>
             </div>
 
-            {/* Micro details */}
-            <div className="flex items-center justify-between text-xs text-[#56547A] mb-5 border-t border-[#E2E2E8] pt-3 font-medium">
-                <span className="flex items-center gap-1 truncate">
-                    <Clock className="h-3.5 w-3.5 text-[#4A47FF]" />
-                    {formatDeadline(scholarship.deadline)}
-                </span>
-                <span className="flex items-center gap-1 truncate">
-                    <Laptop className="h-3.5 w-3.5 text-[#4A47FF]" />
-                    {scholarship.application_mode || 'Online'}
-                </span>
+            <div className="bg-surface-gray border border-slate-100 rounded-lg px-3 py-2 text-xs text-slate-600 mb-3">
+                <strong className="text-slate-700">Eligibility:</strong> {scholarship.state || 'All India'} · {scholarship.application_mode || 'Online'}
             </div>
 
-            {/* Rounded Pill CTA Button */}
-            <button className="w-full py-3 bg-[#4A47FF] group-hover:bg-[#3834E0] text-white rounded-full text-xs font-bold font-heading flex items-center justify-center gap-2 cursor-pointer transition-all shadow-sm">
-                <span>View Scheme & Apply</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-            </button>
+            <span className="mt-auto inline-flex items-center justify-center gap-1 bg-brand group-hover:bg-brand-dark text-white text-xs font-bold rounded-xl px-4 py-2.5 transition-colors">
+                View Details →
+            </span>
         </Link>
     );
 }

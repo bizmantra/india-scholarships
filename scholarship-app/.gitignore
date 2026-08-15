@@ -44,3 +44,7 @@ next-env.d.ts
 google-ads.yaml
 /venv/
 
+# toolings
+.claude/
+.obsidian/
+

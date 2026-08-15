@@ -153,7 +153,15 @@ async function syncAll() {
         helpline: row.helpline || '',
         faq_json: row.faq_json || '[]',
         tags: formatStringField(row.tags),
-        thumbnail_url: row.thumbnail_url || ''
+        thumbnail_url: row.thumbnail_url || '',
+        course_stream: formatStringField(row.course_stream),
+        special_conditions: row.special_conditions || '',
+        application_mode: row.application_mode || '',
+        official_source: row.official_source || '',
+        always_open: row.always_open ? Number(row.always_open) : 0,
+        priority_score: row.priority_score ? Number(row.priority_score) : 0,
+        scholarship_type: row.scholarship_type || 'Private',
+        scholarship_scope: row.scholarship_scope || 'Domestic'
       }
     };
 

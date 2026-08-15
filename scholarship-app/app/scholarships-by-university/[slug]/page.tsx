@@ -119,14 +119,14 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
 
                 {/* Best-Fit Pillar Callout */}
                 {relatedPillar && (
-                    <div className="mb-10 p-5 bg-indigo-50/60 border border-indigo-100 rounded-3xl flex items-center justify-between gap-4 flex-wrap">
+                    <div className="mb-10 p-5 bg-blue-50/60 border border-blue-100 rounded-3xl flex items-center justify-between gap-4 flex-wrap">
                         <div>
-                            <p className="font-bold text-indigo-900 text-sm">Understand the Bigger Picture</p>
-                            <p className="text-xs text-indigo-800 leading-relaxed">See how scholarships at {uni.name} fit into the wider system.</p>
+                            <p className="font-bold text-blue-900 text-sm">Understand the Bigger Picture</p>
+                            <p className="text-xs text-blue-800 leading-relaxed">See how scholarships at {uni.name} fit into the wider system.</p>
                         </div>
                         <Link
                             href={`/guides/${relatedPillar.slug}`}
-                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-full transition-all shrink-0"
+                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-full transition-all shrink-0"
                         >
                             Read: {relatedPillar.title} →
                         </Link>
@@ -147,10 +147,10 @@ export default async function UniversityHubPage({ params }: { params: Promise<{ 
                         </p>
                         <p className="text-xs text-green-600 mt-2">Up to 100% tuition waiver</p>
                     </div>
-                    <div className="bg-purple-50/50 p-6 rounded-3xl border border-purple-100">
-                        <h3 className="text-purple-700 font-bold mb-1">Status Verification</h3>
-                        <p className="text-3xl font-extrabold text-purple-900">Active</p>
-                        <p className="text-xs text-purple-600 mt-2">Audited for 2026 cycle</p>
+                    <div className="bg-emerald-50/50 p-6 rounded-3xl border border-emerald-100">
+                        <h3 className="text-emerald-700 font-bold mb-1">Status Verification</h3>
+                        <p className="text-3xl font-extrabold text-emerald-900">Active</p>
+                        <p className="text-xs text-emerald-600 mt-2">Audited for 2026 cycle</p>
                     </div>
                 </div>
 

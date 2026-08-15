@@ -227,7 +227,7 @@ export default async function InternationalScholarshipsPage() {
 
             <main>
                 {/* ── Hero ── */}
-                <section className="bg-gradient-to-br from-indigo-900 via-blue-800 to-blue-700 py-16 md:py-24 text-white relative overflow-hidden">
+                <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 py-16 md:py-24 text-white relative overflow-hidden">
                     {/* Subtle decorative globe pattern */}
                     <div className="absolute inset-0 opacity-5 pointer-events-none select-none flex items-center justify-end pr-8">
                         <Globe className="h-[400px] w-[400px] text-white" />
@@ -277,13 +277,13 @@ export default async function InternationalScholarshipsPage() {
                 </section>
 
                 {/* Premium Study Abroad Subdomain Callout */}
-                <div className="bg-gradient-to-r from-blue-900 via-indigo-950 to-purple-950 border-y border-indigo-500/20 py-8 relative overflow-hidden">
-                    <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-indigo-500/10 blur-3xl"></div>
-                    <div className="absolute -left-24 -bottom-24 w-48 h-48 rounded-full bg-purple-500/10 blur-3xl"></div>
+                <div className="bg-gradient-to-r from-blue-900 via-blue-950 to-blue-950 border-y border-blue-500/20 py-8 relative overflow-hidden">
+                    <div className="absolute -right-24 -top-24 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl"></div>
+                    <div className="absolute -left-24 -bottom-24 w-48 h-48 rounded-full bg-blue-500/10 blur-3xl"></div>
                     
                     <div className="container mx-auto px-4 max-w-5xl relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="flex-1 space-y-2.5">
-                            <span className="inline-flex items-center gap-1 bg-[#4A47FF]/20 border border-[#4A47FF]/30 text-indigo-300 text-[10px] font-black uppercase tracking-wider rounded-full px-2.5 py-0.5">
+                            <span className="inline-flex items-center gap-1 bg-[var(--color-brand)]/20 border border-[var(--color-brand)]/30 text-blue-300 text-[10px] font-black uppercase tracking-wider rounded-full px-2.5 py-0.5">
                                 ✈️ Zero-Gating Interactive Tools
                             </span>
                             <h2 className="text-xl md:text-2xl font-black text-white leading-tight">
@@ -298,7 +298,7 @@ export default async function InternationalScholarshipsPage() {
                                 href="https://studyabroad.indiascholarships.in"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-4 bg-gradient-to-r from-[#4A47FF] to-indigo-600 hover:from-[#3834E0] hover:to-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer animate-in fade-in zoom-in-95 duration-500"
+                                className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-4 bg-gradient-to-r from-[var(--color-brand)] to-blue-600 hover:from-[var(--color-brand-dark)] hover:to-blue-700 text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer animate-in fade-in zoom-in-95 duration-500"
                             >
                                 <span>Explore Study Abroad Options</span>
                                 <ArrowRight className="h-4 w-4" />
@@ -458,10 +458,10 @@ export default async function InternationalScholarshipsPage() {
                     </section>
 
                     {/* ── Context / Strategy Note ── */}
-                    <section className="mt-16 bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-3xl p-8 md:p-10">
+                    <section className="mt-16 bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100 rounded-3xl p-8 md:p-10">
                         <div className="flex items-start gap-4">
-                            <div className="p-3 bg-indigo-100 rounded-2xl flex-shrink-0">
-                                <ShieldCheck className="h-6 w-6 text-indigo-700" />
+                            <div className="p-3 bg-blue-100 rounded-2xl flex-shrink-0">
+                                <ShieldCheck className="h-6 w-6 text-blue-700" />
                             </div>
                             <div>
                                 <h2 className="text-xl font-bold text-gray-900 mb-2">How to use this tracker</h2>
@@ -487,11 +487,11 @@ export default async function InternationalScholarshipsPage() {
                     </section>
 
                     {/* ── Bridge to Study Abroad Tools ── */}
-                    <section className="mt-10 p-6 bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl border border-indigo-950 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md relative overflow-hidden group">
-                        <div className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-indigo-500/10 blur-xl"></div>
+                    <section className="mt-10 p-6 bg-gradient-to-br from-blue-900 to-slate-900 text-white rounded-2xl border border-blue-950 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-md relative overflow-hidden group">
+                        <div className="absolute -right-16 -top-16 w-32 h-32 rounded-full bg-blue-500/10 blur-xl"></div>
                         <div className="relative z-10">
                             <p className="font-extrabold text-white mb-1 flex items-center gap-1.5">
-                                <Globe className="h-4 w-4 text-indigo-300 animate-spin-slow" />
+                                <Globe className="h-4 w-4 text-blue-300 animate-spin-slow" />
                                 Try the interactive Study Abroad Decision Engine
                             </p>
                             <p className="text-sm text-slate-300">Calculate total expenses, compare loan providers, and access country-specific visa trackers.</p>
@@ -500,7 +500,7 @@ export default async function InternationalScholarshipsPage() {
                             href="https://studyabroad.indiascholarships.in"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative z-10 flex-shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-[#4A47FF] to-indigo-650 text-white px-5 py-3 rounded-xl font-bold text-sm hover:from-[#3834E0] hover:to-indigo-700 transition-all hover:-translate-y-0.5 cursor-pointer shadow-sm"
+                            className="relative z-10 flex-shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-brand)] to-blue-650 text-white px-5 py-3 rounded-xl font-bold text-sm hover:from-[var(--color-brand-dark)] hover:to-blue-700 transition-all hover:-translate-y-0.5 cursor-pointer shadow-sm"
                         >
                             Explore Interactive Tools
                             <ArrowRight className="h-4 w-4" />

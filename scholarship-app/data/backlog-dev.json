@@ -934,5 +934,61 @@
     "impact": "High",
     "status": "Backlog",
     "type": "Refactor, Content Architecture"
+  },
+  {
+    "id": "IS-128",
+    "title": "Reorganize app routing into 5 Master Cluster Hubs (/states, /portals, /qualifications, /eligibility, /private-scholarships)",
+    "description": "Consolidate 12+ legacy fragmented root folders into 5 primary master clusters: /states/[state], /portals/[portal], /qualifications/[...slug], /eligibility/[...slug], and /private-scholarships/[...slug]. Clean up dev testing folders simple-[id] and test-[test].",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "Architecture, IA"
+  },
+  {
+    "id": "IS-129",
+    "title": "Implement 301 Redirect Preservation Matrix in next.config.ts",
+    "description": "Configure explicit 301 permanent redirects for legacy route patterns (/scholarships-by-education/*, /scholarships-by-category/*, /scholarships-for/*, /corporate-scholarships/*, /guides/[portal]/* -> /portals/[portal]/*) to pass 100% PageRank authority to new cluster hubs.",
+    "impact": "Critical",
+    "status": "Backlog",
+    "type": "SEO, Infrastructure"
+  },
+  {
+    "id": "IS-130",
+    "title": "Build Programmatic SEO (pSEO) Matrix Engine (lib/pseo.ts)",
+    "description": "Develop lib/pseo.ts to query SQLite/Turso database for long-tail combination queries ([qualification] + [eligibility] + [state]). Implement thin-content guardrails requiring >=2 verified active schemes per generated landing page.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, pSEO"
+  },
+  {
+    "id": "IS-131",
+    "title": "Revive Vernacular Native Script Translation Pipeline with source_hash staleness check",
+    "description": "Add SHA-256 source_hash column to translate-scholarships.js to automatically detect SQLite/Turso deadline and amount updates, re-translating updated records for /hi/, /bn/, /ta/, /te/, /kn/, and /or/ routes while keeping hreflang tags synchronized.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Localization"
+  },
+  {
+    "id": "IS-132",
+    "title": "Build Phonetic Romanized Intent Engine (lib/phoneticKeywords.ts) for Hinglish/Tanglish",
+    "description": "Target high-volume searches typed in English script for local languages ('UP scholarship last date kab hai', 'NSP apply kaise kare'). Create lib/phoneticKeywords.ts and embed Hinglish/Tanglish/Kanglish FAQ accordions with FAQPage JSON-LD schema.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, SEO"
+  },
+  {
+    "id": "IS-133",
+    "title": "Implement SERP Snippet & Schema Optimization (FinancialProduct, HowTo, FAQPage)",
+    "description": "Add current year (2026) and exact amount (₹) title engineering, H2 direct-answer quick-fact tables for Position Zero passage extraction, and JSON-LD FinancialProduct, HowTo, FAQPage, and BreadcrumbList schemas across templates.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "SEO, Feature"
+  },
+  {
+    "id": "IS-134",
+    "title": "Build Sticky WhatsApp/Telegram Alert Component & Google Indexing API automation script",
+    "description": "Create <WhatsAppAlertCTA> widget for high-intent money pages and portal guides to capture viral retention traffic. Create scripts/push-to-google-indexing.js to ping Googlebot on database updates.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Retention"
   }
 ]

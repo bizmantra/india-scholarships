@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
     return (
-        <footer className="border-t bg-gray-900 text-gray-400 py-16">
+        <footer className="border-t bg-[#0f172a] text-slate-400 py-16">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
@@ -32,7 +32,7 @@ export default function Footer() {
                             <li><Link href="/scholarships-by-income" className="hover:text-white transition-colors">By Income</Link></li>
                             <li><Link href="/scholarships-by-course" className="hover:text-white transition-colors">By Course</Link></li>
                             <li><Link href="/scholarships/international" className="hover:text-white transition-colors">Study Abroad</Link></li>
-                            <li><a href="https://studyabroad.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 font-extrabold transition-colors flex items-center gap-1">Study Abroad Portal 🌍</a></li>
+                            <li><a href="https://studyabroad.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-extrabold transition-colors flex items-center gap-1">Study Abroad Portal 🌍</a></li>
                             <li><Link href="/scholarships-for/sports" className="hover:text-white transition-colors">Sports & Athletes</Link></li>
                             <li><Link href="/scholarships-for/pwd" className="hover:text-white transition-colors">Persons with Disabilities</Link></li>
                         </ul>

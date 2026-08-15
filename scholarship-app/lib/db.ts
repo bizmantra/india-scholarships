@@ -79,7 +79,7 @@ function mapWpPostToScholarship(post: any) {
         return taxCollection ? taxCollection.map((t: any) => t.name) : [];
     };
 
-    const states = getTaxonomyNames('scholarship_states');
+    const states = getTaxonomyNames('scholarship_state');
     const categories = getTaxonomyNames('scholarship_category');
     const levels = getTaxonomyNames('scholarship_level');
 
@@ -205,9 +205,9 @@ export async function getLocalizedScholarshipBySlug(slug: string, locale?: strin
 // Get scholarships by state
 export async function getScholarshipsByState(state: string) {
     if (WP_API_URL) {
-        const terms = await wpFetch('/scholarship_states', { slug: state.toLowerCase().replace(/\s+/g, '-') });
+        const terms = await wpFetch('/scholarship_state', { slug: state.toLowerCase().replace(/\s+/g, '-') });
         if (terms && Array.isArray(terms) && terms.length > 0) {
-            const posts = await wpFetch('/scholarship', { scholarship_states: terms[0].id });
+            const posts = await wpFetch('/scholarship', { scholarship_state: terms[0].id });
             if (posts && Array.isArray(posts)) return posts.map(mapWpPostToScholarship);
         }
 
@@ -225,7 +225,7 @@ export async function getScholarshipsByState(state: string) {
 // Get all unique states
 export async function getAllStates() {
     if (WP_API_URL) {
-        const terms = await wpFetch('/scholarship_states?per_page=100');
+        const terms = await wpFetch('/scholarship_state?per_page=100');
         if (terms && Array.isArray(terms)) {
             return terms.map((t: any) => t.name);
         }

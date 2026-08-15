@@ -179,7 +179,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setCategory(c)}
                                                         className={`px-4 py-3 rounded-xl border text-sm font-semibold transition-all cursor-pointer ${
                                                             category === c 
-                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20' 
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-blue-500/20' 
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >
@@ -209,7 +209,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setLevel(opt.value)}
                                                         className={`px-5 py-4 rounded-xl border text-sm font-semibold text-left transition-all cursor-pointer ${
                                                             level === opt.value
-                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20'
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-blue-500/20'
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >
@@ -240,7 +240,7 @@ export default function FinderWizardClient({ scholarships }: Props) {
                                                         onClick={() => setIncome(opt.val)}
                                                         className={`px-4 py-3.5 rounded-xl border text-xs font-bold uppercase transition-all cursor-pointer ${
                                                             income === opt.val
-                                                                ? 'bg-brand border-brand text-white shadow-md shadow-purple-500/20'
+                                                                ? 'bg-brand border-brand text-white shadow-md shadow-blue-500/20'
                                                                 : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
                                                         }`}
                                                     >

@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { ExternalLink, ChevronRight, Bookmark, Share2 } from 'lucide-react';
 import { getCanonicalSlugForLevel, getCanonicalSlugForCategory, slugify, sanitizeApplyUrl } from '@/lib/utils';
+import { WikiInfobox } from './WikiInfobox';
+import { StickyJumpNav } from './StickyJumpNav';
+
 
 interface ScholarshipDetailTemplateProps {
     scholarship: any; // Will be typed properly
@@ -71,55 +74,32 @@ export default function ScholarshipDetailTemplate({
                     {/* Main Content Column */}
                     <div className="lg:col-span-2">
                         {/* Title & Provider */}
-                        <div className="mb-10">
-                            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-[1.15] font-serif tracking-tight">
+                        <div className="mb-6">
+                            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3 leading-tight tracking-tight">
                                 {scholarship.title}
                             </h1>
-                            <div className="flex flex-wrap items-center gap-4 text-gray-500">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100 italic font-serif">i</div>
-                                    <span className="font-medium">{scholarship.provider}</span>
-                                </div>
-                                <span className="hidden md:block w-1.5 h-1.5 rounded-full bg-gray-200"></span>
-                                <div className="flex items-center gap-2">
-                                    <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-full uppercase tracking-tighter">
-                                        {scholarship.provider_type || 'Scheme'}
-                                    </span>
-                                </div>
+                            <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
+                                <span className="font-semibold text-slate-800">{scholarship.provider}</span>
+                                <span>•</span>
+                                <span className="px-2 py-0.5 bg-slate-100 text-slate-700 text-xs font-bold rounded uppercase">
+                                    {scholarship.provider_type || 'Scheme'}
+                                </span>
                             </div>
                         </div>
 
-                        {/* Visual High-Level Stats Cards */}
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-                            <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block mb-1">Scholarship Amount</span>
-                                <span className="text-xl font-black text-google-blue block truncate">
-                                    {scholarship.amount_min && scholarship.amount_annual
-                                        ? `₹${(scholarship.amount_annual / 1000).toFixed(0)}k+`
-                                        : formatAmount(scholarship.amount_annual)
-                                    }
-                                </span>
-                            </div>
-                            <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block mb-1">Application Deadline</span>
-                                <span className="text-xl font-black text-red-600 block truncate">
-                                    {(() => {
-                                        if (!scholarship.deadline) return 'Open Now';
-                                        const trimmed = scholarship.deadline.trim();
-                                        if (trimmed.toLowerCase() === 'not specified' || trimmed.toLowerCase() === 'na' || trimmed === '') return 'Check Portal';
-                                        const date = new Date(trimmed);
-                                        if (isNaN(date.getTime())) return trimmed;
-                                        return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
-                                    })()}
-                                </span>
-                            </div>
-                            <div className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow col-span-2 md:col-span-1">
-                                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold block mb-1">Target Community</span>
-                                <span className="text-xl font-black text-gray-900 block truncate">
-                                    {scholarship.caste && scholarship.caste.length > 0 ? scholarship.caste[0] : 'All Categories'}
-                                </span>
-                            </div>
-                        </div>
+                        {/* Minimalist Gov/Wiki Infobox */}
+                        <WikiInfobox 
+                            title={scholarship.title}
+                            amount={scholarship.amount_annual ? `₹${scholarship.amount_annual.toLocaleString('en-IN')}` : '₹75,000 max'}
+                            deadline={scholarship.deadline || 'Closing Soon'}
+                            eligibility={scholarship.eligibility_summary || 'Class 11-12, Graduation, Engineering (< ₹8L Income)'}
+                            provider={scholarship.provider}
+                            applyUrl={cleanApplyUrl || ''}
+                        />
+
+                        {/* Sticky Jump Navigation Bar */}
+                        <StickyJumpNav />
+
 
                         {/* Content Sections */}
                         <div className="space-y-16">
@@ -190,13 +170,13 @@ export default function ScholarshipDetailTemplate({
                             {scholarship.docs_needed && scholarship.docs_needed.length > 0 && (
                                 <section>
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="w-1.5 h-6 bg-purple-600 rounded-full"></div>
+                                        <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
                                         <h2 className="text-2xl font-bold tracking-tight text-gray-900 font-serif">Required Documentation</h2>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {scholarship.docs_needed.map((doc: string, i: number) => (
                                             <div key={i} className="flex gap-4 p-4 bg-white border border-gray-100 rounded-xl shadow-sm">
-                                                <div className="w-6 h-6 rounded bg-purple-50 text-purple-600 flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</div>
+                                                <div className="w-6 h-6 rounded bg-blue-50 text-blue-600 flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</div>
                                                 <span className="text-gray-700 text-sm leading-relaxed">{doc}</span>
                                             </div>
                                         ))}
@@ -230,7 +210,7 @@ export default function ScholarshipDetailTemplate({
                             {/* Selection & Renewal */}
                             <section>
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-1.5 h-6 bg-indigo-600 rounded-full"></div>
+                                    <div className="w-1.5 h-6 bg-blue-600 rounded-full"></div>
                                     <h2 className="text-2xl font-bold tracking-tight text-gray-900 font-serif">Selection & Renewal</h2>
                                 </div>
                                 <div className="space-y-6">
@@ -335,7 +315,7 @@ export default function ScholarshipDetailTemplate({
                             </div>
 
                             {/* Telegram Alert Box */}
-                            <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-3xl relative overflow-hidden shadow-sm">
+                            <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-50 border border-blue-100 rounded-3xl relative overflow-hidden shadow-sm">
                                 <div className="absolute right-0 top-0 -mr-8 -mt-8 w-24 h-24 bg-blue-500/10 rounded-full blur-xl pointer-events-none"></div>
                                 <div className="flex items-start gap-4">
                                     <div className="w-10 h-10 shrink-0 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-100">

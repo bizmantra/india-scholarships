@@ -43,7 +43,7 @@ export default function ScholarshipsList({
     const initialStatus = initialTab === 'ClosingSoon' ? 'Closing Soon' : initialTab;
     const [selectedDeadlineStatus, setSelectedDeadlineStatus] = useState(initialStatus);
     const [sortBy, setSortBy] = useState('deadline');
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [showMobileFilters, setShowMobileFilters] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -231,8 +231,8 @@ export default function ScholarshipsList({
                 <SearchParamsHandler onChange={setSearchQuery} />
             </Suspense>
 
-            {/* Desktop Filters (Hidden on Mobile) */}
-            <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {/* Desktop Filters (Tablet-only horizontal chips, hidden on mobile and desktop) */}
+            <div className="hidden md:grid lg:hidden grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 {/* Category Filter Chips */}
                 {renderCategoryFilters && (
                     <div>
@@ -290,162 +290,249 @@ export default function ScholarshipsList({
                 )}
             </div>
 
-            {/* Mobile Filter Trigger Button (AdSense Safe, Top Sticky / Inline Row) */}
-            <div className="flex items-center justify-between md:hidden mb-6 bg-white p-4 border border-gray-200 rounded-2xl shadow-xs">
-                <div className="text-sm">
-                    <span className="font-black text-gray-900">{sortedScholarships.length}</span>
-                    <span className="text-gray-500"> schemes found</span>
-                </div>
-                <button
-                    onClick={() => setShowMobileFilters(true)}
-                    className="flex items-center gap-1.5 px-4 py-2 bg-google-blue hover:bg-blue-600 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm shadow-blue-100"
-                >
-                    <span>🎛️</span> Filters
-                </button>
-            </div>
-
-            {/* Desktop Results Header (Hidden on Mobile) */}
-            <div className="hidden md:block">
-                {showSortingControl ? (
-                    <ResultsHeader
-                        count={sortedScholarships.length}
-                        sortBy={sortBy}
-                        viewMode={viewMode}
-                        onSortChange={setSortBy}
-                        onViewChange={setViewMode}
-                        showViewToggle={true}
-                    />
-                ) : (
-                    <div className="flex items-center justify-between mb-6 pb-4 border-b">
-                        <div className="text-sm">
-                            <span className="font-semibold text-gray-900">{sortedScholarships.length}</span>
-                            <span className="text-gray-600"> scholarship{sortedScholarships.length !== 1 ? 's' : ''} found</span>
+            {/* Layout Grid: Sticky Sidebar on Desktop (lg and up) */}
+            <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
+                
+                {/* Left Desktop Filter Sidebar */}
+                <aside className="hidden lg:block sticky top-24 w-[280px] shrink-0 space-y-6">
+                    <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)] space-y-6">
+                        <div className="flex justify-between items-center border-b border-gray-100 pb-3">
+                            <h3 className="font-bold text-sm text-slate-800 font-heading">Filters</h3>
+                            {(selectedCategory !== 'All' || selectedDeadlineStatus !== 'All') && (
+                                <button
+                                    onClick={() => {
+                                        setSelectedCategory('All');
+                                        setSelectedDeadlineStatus('All');
+                                    }}
+                                    className="text-xs font-bold text-brand hover:underline"
+                                >
+                                    Reset All
+                                </button>
+                            )}
                         </div>
-                    </div>
-                )}
-            </div>
 
-            {/* Mobile Full-Screen Filter Overlay Modal (Avoids bottom sheet AdSense collision) */}
-            {showMobileFilters && (
-                <div className="fixed inset-0 bg-white z-[999] overflow-y-auto p-6 flex flex-col md:hidden animate-in fade-in slide-in-from-bottom duration-200">
-                    <div className="flex items-center justify-between border-b pb-4 mb-6">
-                        <span className="text-lg font-bold text-gray-900">Filters & Sorting</span>
-                        <button
-                            onClick={() => setShowMobileFilters(false)}
-                            className="p-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-colors"
-                            aria-label="Close filters"
-                        >
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div className="flex-1 space-y-6">
-                        {/* 1. Category Filters */}
-                        {showCategoryFilters && (
-                            <div>
-                                <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
-                                    Filter by Category
+                        {/* Category Filter Group */}
+                        {renderCategoryFilters && (
+                            <div className="space-y-3">
+                                <span className="block text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                    Category
                                 </span>
-                                <div className="flex flex-wrap gap-2">
-                                    {CATEGORIES.map(cat => renderCategoryChip(cat, true))}
+                                <div className="flex flex-col gap-1.5">
+                                    {CATEGORIES.map(cat => {
+                                        const isSelected = selectedCategory === cat.value;
+                                        return (
+                                            <button
+                                                key={cat.value}
+                                                onClick={() => setSelectedCategory(cat.value)}
+                                                className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                                                    isSelected
+                                                        ? 'bg-brand-soft text-brand font-bold'
+                                                        : 'text-slate-600 hover:bg-slate-50'
+                                                }`}
+                                            >
+                                                {cat.label}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
 
-                        {/* 2. Deadline Filters */}
-                        <div>
-                            <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
-                                Deadline Status
-                            </span>
-                            <div className="flex flex-wrap gap-2">
-                                {[
-                                    { value: 'All', label: 'All Opportunities' },
-                                    { value: 'Open', label: 'Open & Ongoing' },
-                                    { value: 'Closing Soon', label: '🔥 Closing Soon' },
-                                    { value: 'Expired', label: 'Closed' }
-                                ].map(status => (
-                                    <button
-                                        key={status.value}
-                                        onClick={() => setSelectedDeadlineStatus(status.value)}
-                                        className={`px-4 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                                            selectedDeadlineStatus === status.value
-                                                ? 'bg-google-blue text-white shadow-md shadow-blue-100'
-                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                                        }`}
-                                    >
-                                        {status.label}
-                                    </button>
-                                ))}
+                        {/* Curated Collections Group */}
+                        {scholarships.length >= 3 && (
+                            <div className="space-y-3">
+                                <span className="block text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                    Collections
+                                </span>
+                                <div className="flex flex-col gap-1.5">
+                                    {[
+                                        { value: 'All', label: 'All Schemes' },
+                                        { value: 'Trending', label: '🔥 Trending' },
+                                        { value: 'RecentlyAdded', label: '🕒 Recently Added' },
+                                        { value: 'ClosingSoon', label: '⏰ Closing Soon' },
+                                        { value: 'Expired', label: 'Closed Archive' }
+                                    ].map(tab => {
+                                        const isSelected = selectedDeadlineStatus === tab.value || (tab.value === 'ClosingSoon' && selectedDeadlineStatus === 'Closing Soon');
+                                        return (
+                                            <button
+                                                key={tab.value}
+                                                onClick={() => setSelectedDeadlineStatus(tab.value)}
+                                                className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                                                    isSelected
+                                                        ? 'bg-brand-soft text-brand font-bold'
+                                                        : 'text-slate-600 hover:bg-slate-50'
+                                                }`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
-
-                        {/* 3. Sorting Options */}
-                        <div>
-                            <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
-                                Sort Opportunities
-                            </span>
-                            <div className="flex flex-col gap-2">
-                                {[
-                                    { value: 'deadline', label: 'Deadline (Soonest)' },
-                                    { value: 'amount', label: 'Reward Value (Highest)' },
-                                    { value: 'newest', label: 'Recently Added' }
-                                ].map(sortOpt => (
-                                    <button
-                                        key={sortOpt.value}
-                                        onClick={() => setSortBy(sortOpt.value)}
-                                        className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
-                                            sortBy === sortOpt.value
-                                                ? 'bg-blue-50 text-google-blue border border-blue-100'
-                                                : 'bg-gray-50 text-gray-700 border border-transparent hover:bg-gray-100'
-                                        }`}
-                                    >
-                                        {sortOpt.label}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        )}
                     </div>
+                </aside>
 
-                    <div className="border-t pt-4 mt-6">
+                {/* Right Results Column */}
+                <div className="flex-1 min-w-0">
+                    {/* Mobile Filter Trigger Button (AdSense Safe, Top Sticky / Inline Row) */}
+                    <div className="flex items-center justify-between md:hidden mb-6 bg-white p-4 border border-gray-200 rounded-2xl shadow-xs">
+                        <div className="text-sm">
+                            <span className="font-black text-gray-900">{sortedScholarships.length}</span>
+                            <span className="text-gray-500"> schemes found</span>
+                        </div>
                         <button
-                            onClick={() => setShowMobileFilters(false)}
-                            className="w-full py-4 bg-google-blue hover:bg-blue-600 text-white font-bold rounded-2xl transition-colors shadow-lg shadow-blue-100"
+                            onClick={() => setShowMobileFilters(true)}
+                            className="flex items-center gap-1.5 px-4 py-2 bg-google-blue hover:bg-blue-600 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm shadow-blue-100"
                         >
-                            Apply Filters ({filteredScholarships.length} Results)
+                            <span>🎛️</span> Filters
                         </button>
                     </div>
-                </div>
-            )}
 
-            {/* Scholarships List */}
-            {sortedScholarships.length > 0 ? (
-                <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'border-t border-gray-100'}>
-                    {sortedScholarships.map(s => (
-                        <ScholarshipCard
-                            key={s.id}
-                            scholarship={s}
-                            viewMode={viewMode}
-                        />
-                    ))}
+                    {/* Desktop Results Header */}
+                    <div className="hidden md:block">
+                        {showSortingControl ? (
+                            <ResultsHeader
+                                count={sortedScholarships.length}
+                                sortBy={sortBy}
+                                viewMode={viewMode}
+                                onSortChange={setSortBy}
+                                onViewChange={setViewMode}
+                                showViewToggle={true}
+                            />
+                        ) : (
+                            <div className="flex items-center justify-between mb-6 pb-4 border-b">
+                                <div className="text-sm">
+                                    <span className="font-semibold text-gray-900">{sortedScholarships.length}</span>
+                                    <span className="text-gray-600"> scholarship{sortedScholarships.length !== 1 ? 's' : ''} found</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Mobile Full-Screen Filter Overlay Modal (Avoids bottom sheet AdSense collision) */}
+                    {showMobileFilters && (
+                        <div className="fixed inset-0 bg-white z-[999] overflow-y-auto p-6 flex flex-col md:hidden animate-in fade-in slide-in-from-bottom duration-200">
+                            <div className="flex items-center justify-between border-b pb-4 mb-6">
+                                <span className="text-lg font-bold text-gray-900 font-heading">Filters & Sorting</span>
+                                <button
+                                    onClick={() => setShowMobileFilters(false)}
+                                    className="p-2 text-gray-400 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-colors"
+                                    aria-label="Close filters"
+                                >
+                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div className="flex-1 space-y-6">
+                                {/* 1. Category Filters */}
+                                {showCategoryFilters && (
+                                    <div>
+                                        <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
+                                            Filter by Category
+                                        </span>
+                                        <div className="flex flex-wrap gap-2">
+                                            {CATEGORIES.map(cat => renderCategoryChip(cat, true))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* 2. Deadline Filters */}
+                                <div>
+                                    <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
+                                        Deadline Status
+                                    </span>
+                                    <div className="flex flex-wrap gap-2">
+                                        {[
+                                            { value: 'All', label: 'All Opportunities' },
+                                            { value: 'Open', label: 'Open & Ongoing' },
+                                            { value: 'Closing Soon', label: '🔥 Closing Soon' },
+                                            { value: 'Expired', label: 'Closed' }
+                                        ].map(status => (
+                                            <button
+                                                key={status.value}
+                                                onClick={() => setSelectedDeadlineStatus(status.value)}
+                                                className={`px-4 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                                                    selectedDeadlineStatus === status.value
+                                                        ? 'bg-google-blue text-white shadow-md shadow-blue-100'
+                                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                }`}
+                                            >
+                                                {status.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 3. Sorting Options */}
+                                <div>
+                                    <span className="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-3">
+                                        Sort Opportunities
+                                    </span>
+                                    <div className="flex flex-col gap-2">
+                                        {[
+                                            { value: 'deadline', label: 'Deadline (Soonest)' },
+                                            { value: 'amount', label: 'Reward Value (Highest)' },
+                                            { value: 'newest', label: 'Recently Added' }
+                                        ].map(sortOpt => (
+                                            <button
+                                                key={sortOpt.value}
+                                                onClick={() => setSortBy(sortOpt.value)}
+                                                className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-bold transition-all ${
+                                                    sortBy === sortOpt.value
+                                                        ? 'bg-blue-50 text-google-blue border border-blue-100'
+                                                        : 'bg-gray-50 text-gray-700 border border-transparent hover:bg-gray-100'
+                                                }`}
+                                            >
+                                                {sortOpt.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="border-t pt-4 mt-6">
+                                <button
+                                    onClick={() => setShowMobileFilters(false)}
+                                    className="w-full py-4 bg-google-blue hover:bg-blue-600 text-white font-bold rounded-2xl transition-colors shadow-lg shadow-blue-100"
+                                >
+                                    Apply Filters ({filteredScholarships.length} Results)
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Scholarships List */}
+                    {sortedScholarships.length > 0 ? (
+                        <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 gap-6' : 'border-t border-gray-100'}>
+                            {sortedScholarships.map(s => (
+                                <ScholarshipCard
+                                    key={s.id}
+                                    scholarship={s}
+                                    viewMode={viewMode}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="p-12 text-center bg-gray-50 rounded-3xl border border-dashed border-gray-200 text-gray-500 font-medium">
+                            <div className="text-4xl mb-3">🔍</div>
+                            <p className="mb-4">No scholarships found matching this filter.</p>
+                            <button
+                                onClick={() => {
+                                    setSelectedCategory('All');
+                                    setSelectedDeadlineStatus('All');
+                                    setSearchQuery('');
+                                }}
+                                className="px-6 py-2.5 bg-google-blue text-white font-bold rounded-xl hover:bg-blue-600 transition-colors cursor-pointer text-sm"
+                            >
+                                Reset Filters
+                            </button>
+                        </div>
+                    )}
                 </div>
-            ) : (
-                <div className="p-12 text-center bg-gray-50 rounded-3xl border border-dashed border-gray-200 text-gray-500 font-medium">
-                    <div className="text-4xl mb-3">🔍</div>
-                    <p className="mb-4">No scholarships found matching this filter.</p>
-                    <button
-                        onClick={() => {
-                            setSelectedCategory('All');
-                            setSelectedDeadlineStatus('All');
-                            setSearchQuery('');
-                        }}
-                        className="px-6 py-2.5 bg-google-blue text-white font-bold rounded-xl hover:bg-blue-600 transition-colors cursor-pointer text-sm"
-                    >
-                        Reset Filters
-                    </button>
-                </div>
-            )}
+            </div>
         </div>
     );
 }

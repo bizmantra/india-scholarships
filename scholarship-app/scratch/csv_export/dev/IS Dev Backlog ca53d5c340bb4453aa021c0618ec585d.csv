@@ -1,0 +1,74 @@
+﻿ID,Task,Impact,Status,Type
+IS-83,Feature: Auto refresh scholarships,,Backlog,Feature
+IS-82,"Feature: Lead Capture in scholarship detail pages ",,Backlog,Feature
+IS-81,Feature: Monetization strategies,Critical,Backlog,Feature
+IS-80,Feature: Twitter Distribution,Medium,Backlog,Feature
+IS-79,Feature-Whatsapp alerts,Critical,Backlog,Feature
+IS-78,"Feature: Telegram Alerts ",Critical,Backlog,Feature
+IS-77,"Scholarship Tools Expansion — Phase 2 (Document Checklist, Merit Checker, Stipend vs Loan)",Medium,Backlog,Feature
+IS-76,Lead Capture via Scholarship Tools,High,Backlog,"Feature, Strategy"
+IS-75,Integrate Tools into Scholarship Detail Pages (Deep Links),High,Backlog,Feature
+IS-74,Optimize and Redesign Tool Hub Page (/tools),High,✅ Done,Feature
+IS-73,Implement Tool: Scholarship Compare Tool,High,Backlog,Feature
+IS-72,Implement Tool: CGPA to Percentage Converter,High,✅ Done,Feature
+IS-71,Implement Tool: Scholarship Finder Wizard,High,Backlog,Feature
+IS-70,Redesign and Integrate Existing Scholarship Eligibility Checker,High,✅ Done,"Design, Feature"
+IS-69,Implement Tool: Education Loan EMI Calculator,High,✅ Done,Feature
+IS-68,Implement Tool: Study Cost Calculator,High,✅ Done,Feature
+IS-67,Implement Tool: Scholarship Amount Calculator,High,✅ Done,Feature
+IS-66,Implement Tool: Family Income Eligibility Calculator,High,✅ Done,Feature
+IS-65,Implement Phase 1: 8 Scholarship Micro-Tools and Hub Page,High,✅ Done,Feature
+IS-64,Scholarship Tools,High,✅ Done,Feature
+IS-63,BUG: Site search live issues,High,In Progress,Bug
+IS-62,AI / Conversational Search,Medium,Deferred,Feature
+IS-61,"Scholarship News tracker ",High,Cancelled,Strategy
+IS-60,Dynamic Homepage / Scholarship Pulse,High,In Discussion,Feature
+IS-59,Keyword research analysis,High,In Discussion,Analysis
+IS-58,Research & scope International High-Value Scholarships (study-abroad content track),Medium,Cancelled,Content Task
+IS-57,Content Gap Audit (Prioritized Missing & Partial Targets),Medium,In Discussion,Analysis
+IS-56,Research & Enrich High-Value Private/Corporate Scholarships,High,✅ Done,Content Task
+IS-55,Content Feature: State sub-pages,High,✅ Done,"Content Task, Feature"
+IS-54,Perform Content Gap Audit & Prioritization based on Keyword Report,Medium,✅ Done,Analysis
+IS-53,Keyword Research & Intent Clustering (Ubersuggest + Google Ads Planner),High,✅ Done,Analysis
+IS-52,Analyze and expand keyword research for broad term 'scholarships' (India),High,✅ Done,Analysis
+IS-51,Run Google Keyword Planner script for target scholarship keywords,Medium,Backlog,Analysis
+IS-50,Integrate Google Keyword Planner API for keyword research,Low,In Progress,
+IS-49,Scholarship News Feature,Medium,Backlog,Feature
+IS-48,Site Search Feature,Critical,✅ Done,Feature
+IS-47,DB cleanup: resolve 7 Karnataka deadline fields with leaked research notes to clean ISO dates,Medium,Backlog,Bug
+IS-46,State hubs: fix misleading 'Max Amount' stat — add Typical Range or relabel,Medium,Backlog,Bug
+IS-45,"State hubs: sort cards by deadline urgency (soonest open first, expired last)",Medium,✅ Done,"Content Task, Feature"
+IS-44,State hubs: add SC/ST/OBC/Minority/General/PWD category filter chips,Medium,✅ Done,"Content Task, Feature"
+IS-43,State hub: merge duplicate SSP Karnataka entries into one canonical card,Low,✅ Done,"Content Task, Feature"
+IS-36,CTR Improvement: title/meta rewrites across 129 opportunity pages (~85K upside clicks/mo),Critical,Backlog,Analysis
+IS-35,Integrate Google Indexing API into sync pipeline,Medium,Backlog,
+IS-34,Optimize Similar Opportunities relevance algorithm,Medium,Backlog,"Analysis, Content Task"
+IS-33,Build public-facing Deadline Tracker page,High,✅ Done,"Feature, Strategy"
+IS-31,"Create multiple agents ",Critical,Backlog,
+IS-30,"Monthly GSC and analytics review ",,Backlog,
+IS-28,Improve ranking positions from 8-20,High,Backlog,
+IS-27,Expand top pages,Critical,Backlog,
+IS-25,Scholarship Micro tools,High,Backlog,
+IS-24,"Competitor tracker ",High,Backlog,
+IS-22,Grow Organic Traffic,High,Backlog,
+IS-21,Operating Model for Notion,Medium,Deferred,
+IS-20,Feature: Lead Gen Email Capture,Critical,Backlog,
+IS-19,Question: Which state gets deep coverage after Odisha?,High,✅ Done,
+IS-18,Question: When does the eligibility checker email capture go live?,High,Backlog,
+IS-17,B2B school counselor dashboard,High,Deferred,
+IS-16,WhatsApp alert subscription (MSG91/Twilio),High,Backlog,
+IS-15,Apply to Ezoic for premium ad monetisation,High,Backlog,
+IS-14,Education loan affiliate — HDFC Credila or Avanse,High,Backlog,
+IS-13,Add GitHub secrets — GEMINI_API_KEY + VERCEL_DEPLOY_HOOK,Medium,Backlog,
+IS-12,"West Bengal deep coverage (Nabanna, SVMCM, Aikyashree)",Medium,✅ Done,
+IS-11,Rewrite Odisha + West Bengal hub page content in WordPress,High,Cancelled,
+IS-10,Sitemap splitting into sub-sitemaps,Low,Deferred,
+IS-9,Run enrichment batch on 127 expired deadline records,Critical,✅ Done,
+IS-8,BITSAT page — reframe as Scholarships for BITSAT Qualifiers,Medium,Cancelled,
+IS-7,Karnataka data reconciliation (14 missing scholarships),Medium,✅ Done,
+IS-6,Add /helpline-contact as 8th subpage type,High,Cancelled,
+IS-5,Printable document checklist on /documents-required subpages,Medium,Deferred,
+IS-4,Email capture on eligibility checker results screen,High,Backlog,
+IS-3,Run Gemini enrichment on 5 broken pages,Critical,✅ Done,
+IS-2,Submit updated sitemap.xml in Google Search Console,Critical,✅ Done,
+IS-1,Fix Verified for 2026 hardcode → dynamic year (line 342),Medium,✅ Done,

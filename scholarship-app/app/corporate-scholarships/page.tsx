@@ -51,27 +51,27 @@ export default async function CorporateScholarshipsPage() {
                 </div>
 
                 {/* Info Block */}
-                <div className="bg-indigo-50 rounded-[2.5rem] p-10 mb-16 border border-indigo-100 flex flex-col md:flex-row gap-10 items-center">
+                <div className="bg-blue-50 rounded-[2.5rem] p-10 mb-16 border border-blue-100 flex flex-col md:flex-row gap-10 items-center">
                     <div className="flex-1">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4 text-indigo-900">Why Corporate CSR?</h2>
-                        <ul className="space-y-3 text-indigo-800 font-medium">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4 text-blue-900">Why Corporate CSR?</h2>
+                        <ul className="space-y-3 text-blue-800 font-medium">
                             <li className="flex items-center gap-3">
-                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                <div className="h-2 w-2 rounded-full bg-blue-500" />
                                 Focused on merit-cum-means eligibility
                             </li>
                             <li className="flex items-center gap-3">
-                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                <div className="h-2 w-2 rounded-full bg-blue-500" />
                                 Support for professional & technical courses
                             </li>
                             <li className="flex items-center gap-3">
-                                <div className="h-2 w-2 rounded-full bg-indigo-500" />
+                                <div className="h-2 w-2 rounded-full bg-blue-500" />
                                 Streamlined online application process
                             </li>
                         </ul>
                     </div>
-                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-indigo-100 min-w-[200px] text-center">
+                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-blue-100 min-w-[200px] text-center">
                         <span className="text-sm text-gray-500 font-medium block mb-1 uppercase tracking-tight">CSR Programs</span>
-                        <span className="text-5xl font-extrabold text-indigo-700">{scholarships.length}</span>
+                        <span className="text-5xl font-extrabold text-blue-700">{scholarships.length}</span>
                     </div>
                 </div>
 

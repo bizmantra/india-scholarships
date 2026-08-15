@@ -767,7 +767,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         {scholarship.faq_json && (
                             <section className="mb-12 pb-8 border-b border-gray-150">
                                 <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight flex items-center gap-3">
-                                    <div className="w-1.5 h-6 bg-purple-600 rounded-full" />
+                                    <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
                                     Common Questions (FAQs)
                                 </h2>
                                 <div className="space-y-4">

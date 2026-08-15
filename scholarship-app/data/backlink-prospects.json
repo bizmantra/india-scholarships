@@ -1,0 +1,98 @@
+[
+  {
+    "domain": "du.ac.in",
+    "url": "http://www.du.ac.in/du/index.php?page=scholarships",
+    "title": "University of Delhi - Financial Assistance & Scholarships",
+    "category": "University Resource Page",
+    "authority_score": 95,
+    "footprint_used": "site:.ac.in \"scholarship\"",
+    "outreach_type": "Resource Page Link Request",
+    "suggested_anchor": "India Scholarships Finder",
+    "target_link": "https://www.indiascholarships.in/",
+    "status": "New Lead"
+  },
+  {
+    "domain": "iitb.ac.in",
+    "url": "https://www.iitb.ac.in/en/education/scholarships",
+    "title": "IIT Bombay - Student Scholarships Portal",
+    "category": "University Resource Page",
+    "authority_score": 95,
+    "footprint_used": "site:.ac.in \"scholarship\"",
+    "outreach_type": "Resource Page Link Request",
+    "suggested_anchor": "Government & Private Scholarship Database",
+    "target_link": "https://www.indiascholarships.in/",
+    "status": "New Lead"
+  },
+  {
+    "domain": "jnu.ac.in",
+    "url": "https://www.jnu.ac.in/fellowships_scholarships",
+    "title": "Jawaharlal Nehru University - Fellowships & Scholarships",
+    "category": "University Resource Page",
+    "authority_score": 95,
+    "footprint_used": "site:.ac.in \"financial aid\"",
+    "outreach_type": "Resource Page Link Request",
+    "suggested_anchor": "State Wise Scholarship Hub",
+    "target_link": "https://www.indiascholarships.in/scholarships-in/delhi",
+    "status": "New Lead"
+  },
+  {
+    "domain": "geeksforgeeks.org",
+    "url": "https://www.geeksforgeeks.org/top-scholarships-for-engineering-students/",
+    "title": "GeeksforGeeks - Scholarships for Engineering & Tech Students",
+    "category": "Career Guidance Portal",
+    "authority_score": 91,
+    "footprint_used": "\"scholarship application guide\"",
+    "outreach_type": "Co-Author / Guest Guide Pitch",
+    "suggested_anchor": "Engineering & STEM Scholarship Directory",
+    "target_link": "https://www.indiascholarships.in/",
+    "status": "New Lead"
+  },
+  {
+    "domain": "annauniv.edu",
+    "url": "https://www.annauniv.edu/scholarship/",
+    "title": "Anna University - Student Welfare & Scholarship Cell",
+    "category": "University Resource Page",
+    "authority_score": 90,
+    "footprint_used": "site:.edu.in \"scholarship\"",
+    "outreach_type": "Resource Page Link Request",
+    "suggested_anchor": "Tamil Nadu Scholarship Portal Guide",
+    "target_link": "https://www.indiascholarships.in/scholarships-in/tamil-nadu",
+    "status": "New Lead"
+  },
+  {
+    "domain": "shiksha.com",
+    "url": "https://www.shiksha.com/studyabroad/scholarships-in-india-article",
+    "title": "Shiksha - Comprehensive Guide to Indian Scholarships",
+    "category": "Education Blog",
+    "authority_score": 89,
+    "footprint_used": "\"how to get scholarship in India\"",
+    "outreach_type": "Co-Author / Guest Guide Pitch",
+    "suggested_anchor": "Pre-Matric & Post-Matric Scholarship Finder",
+    "target_link": "https://www.indiascholarships.in/eligibility-checker",
+    "status": "New Lead"
+  },
+  {
+    "domain": "careers360.com",
+    "url": "https://www.careers360.com/scholarships",
+    "title": "Careers360 - Top Scholarships for Indian Students",
+    "category": "Education Blog",
+    "authority_score": 88,
+    "footprint_used": "site:.in \"best scholarships in India\"",
+    "outreach_type": "Co-Author / Guest Guide Pitch",
+    "suggested_anchor": "NSP Portal Troubleshooting & Application Steps",
+    "target_link": "https://www.indiascholarships.in/guides/national-scholarship-portal-nsp",
+    "status": "New Lead"
+  },
+  {
+    "domain": "tiss.edu",
+    "url": "https://www.tiss.edu/financial-aid/",
+    "title": "Tata Institute of Social Sciences - Financial Aid Resources",
+    "category": "University Resource Page",
+    "authority_score": 87,
+    "footprint_used": "site:.edu.in \"scholarships for students\"",
+    "outreach_type": "Resource Page Link Request",
+    "suggested_anchor": "Reserved Category & Merit Scholarship Guide",
+    "target_link": "https://www.indiascholarships.in/",
+    "status": "New Lead"
+  }
+]

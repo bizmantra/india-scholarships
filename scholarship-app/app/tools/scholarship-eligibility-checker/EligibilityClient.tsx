@@ -272,7 +272,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                         {/* Profile Input Form */}
                         <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                             <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <Search className="w-5 h-5 text-violet-600" />
+                                <Search className="w-5 h-5 text-blue-600" />
                                 <span>Check Your Profile</span>
                             </h2>
                             <p className="text-gray-500 text-xs leading-relaxed mb-6">
@@ -288,7 +288,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                         value={formData.state}
                                         onChange={handleChange}
                                         required
-                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-violet-500"
+                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-blue-500"
                                     >
                                         <option value="">Select your state</option>
                                         <option value="All India">All India (Any State)</option>
@@ -308,7 +308,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                         value={formData.category}
                                         onChange={handleChange}
                                         required
-                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-violet-500"
+                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-blue-500"
                                     >
                                         <option value="">Select your category</option>
                                         <option value="General">General</option>
@@ -328,7 +328,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                         value={formData.level}
                                         onChange={handleChange}
                                         required
-                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-violet-500"
+                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-blue-500"
                                     >
                                         <option value="">Select education level</option>
                                         <option value="Pre-Matric">Class 1 - 10</option>
@@ -347,7 +347,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                         value={formData.income}
                                         onChange={handleChange}
                                         required
-                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-violet-500"
+                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-blue-500"
                                     >
                                         <option value="">Select income range</option>
                                         <option value="100000">Below ₹1 Lakh</option>
@@ -371,7 +371,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                         min="0"
                                         max="100"
                                         placeholder="e.g. 75"
-                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-violet-500"
+                                        className="w-full text-xs font-semibold bg-white border border-gray-250 p-3 rounded-lg focus:outline-hidden focus:border-blue-500"
                                     />
                                 </div>
 
@@ -379,7 +379,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full py-4 bg-violet-700 hover:bg-violet-800 disabled:bg-violet-400 text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                    className="w-full py-4 bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                                 >
                                     {loading ? (
                                         <>
@@ -404,7 +404,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-250 rounded-2xl p-6 sm:p-8 shadow-xs min-h-[480px] flex flex-col justify-between">
                                 {!showResults ? (
                                     <div className="flex flex-col items-center justify-center text-center py-24 flex-1">
-                                        <div className="w-16 h-16 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                                             <ShieldCheck className="w-8 h-8" />
                                         </div>
                                         <h3 className="font-extrabold text-lg text-gray-900 mb-1">See your eligible matching schemes</h3>
@@ -455,7 +455,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                                             onClick={() => setActiveTab(tab.id as TabType)}
                                                             className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                                                                 activeTab === tab.id
-                                                                    ? 'border-violet-600 text-violet-700 bg-violet-50/50'
+                                                                    ? 'border-blue-600 text-blue-700 bg-blue-50/50'
                                                                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                                             }`}
                                                         >
@@ -463,7 +463,7 @@ export default function EligibilityCheckerClient({ scholarships }: Props) {
                                                             <span>{tab.label}</span>
                                                             <span className={`px-1.5 py-0.5 rounded-full text-[9px] ${
                                                                 activeTab === tab.id
-                                                                    ? 'bg-violet-600 text-white font-extrabold'
+                                                                    ? 'bg-blue-600 text-white font-extrabold'
                                                                     : 'bg-gray-100 text-gray-600'
                                                             }`}>
                                                                     {count}

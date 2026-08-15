@@ -1,0 +1,20 @@
+{
+  "title": "LIC Golden Jubilee Scholarship",
+  "provider": "LIC Golden Jubilee Foundation",
+  "amount_annual": 40000,
+  "amount_description": "Varies by course: Medical ₹40,000/yr, Engineering ₹30,000/yr, Graduation/Diploma ₹20,000/yr.",
+  "income_limit": "4.5 Lakhs",
+  "min_marks": "60%",
+  "deadline": "15 Dec 2026",
+  "docs_needed": [
+    "Class 10 or 12 Marksheet proving >= 60%",
+    "Income Certificate (< ₹4.5 Lakhs)",
+    "College Bonafide and Admission fee receipt",
+    "Aadhaar Card & Aadhaar-seeded Bank details"
+  ],
+  "apply_url": "licindia.in",
+  "caste": "General, OBC, SC, ST, EWS",
+  "gender": "All",
+  "course_stream": "All Streams",
+  "renewal": "Scholarships are renewed annually for the entire course duration (excluding internship/stipendiary periods) for Gener..."
+}

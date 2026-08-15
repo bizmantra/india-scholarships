@@ -462,5 +462,61 @@
     "impact": "Medium",
     "status": "Done",
     "type": "Content Task"
+  },
+  {
+    "id": "CNT-60",
+    "title": "Audit & map existing portal guides from /guides/[portal] to /portals/[portal]",
+    "description": "Audit all 8 portal guides and map them from legacy /guides/ paths to dedicated /portals/[portal] hubs (NSP, SSP Karnataka, MahaDBT, Digital Gujarat, MPTAAS, Medhabruthi) ensuring Top Scholarships grid and sidebar Helpdesk CTAs remain 100% active.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content Task, IA"
+  },
+  {
+    "id": "CNT-61",
+    "title": "Draft Hinglish & Tanglish FAQ blocks for top 10 portal guides (NSP, SSP, MahaDBT, UP)",
+    "description": "Create high-volume conversational FAQ blocks typed in Romanized Hindi/Tamil ('status kaise check kare', 'documents kya lagega') for NSP, SSP, MahaDBT, Digital Gujarat, and UP Post-Matric portal guides to capture mobile search snippets.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content Task, SEO"
+  },
+  {
+    "id": "CNT-62",
+    "title": "Create Sports & Athletes Scholarship Hub landing content (/eligibility/sports-scholarships)",
+    "description": "Draft high-intent hub landing overview explaining state/national level sports quota eligibility, Khelo India schemes, and direct grant application rules.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-63",
+    "title": "Create Girls & Women in STEM Scholarship Hub landing content (/eligibility/girl-students)",
+    "description": "Draft targeted hub landing content highlighting AICTE Pragati, Pudhumai Penn, Single Girl Child schemes, and Women in STEM research grants.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-64",
+    "title": "Create Corporate CSR & Charitable Trust Hub landing content (/private-scholarships/csr-corporate)",
+    "description": "Draft provider overview content for major corporate CSR grants (Reliance, HDFC Parivartan, SBI Asha, Tata Capital Pankh) and trusts (FFE, Sekhsaria, Jindal).",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content Task"
+  },
+  {
+    "id": "CNT-65",
+    "title": "Audit and re-verify source_hash translations across Hindi, Tamil, and Kannada records",
+    "description": "Run translate-scholarships.js --verify-hashes to re-translate updated source records for Hindi, Tamil, and Kannada master detail pages, verifying accurate amounts and deadlines.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content Task, Localization"
+  },
+  {
+    "id": "CNT-66",
+    "title": "Write Google Discover breaking news headlines for upcoming 2026-27 scholarship portal openings",
+    "description": "Draft high-CTR 16:9 featured news articles targeting immediate Discover traffic during upcoming portal registration window launches (NSP 2026-27, SSP Karnataka, UP Dashmottar).",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content Task, Discover"
   }
 ]

@@ -431,7 +431,7 @@ function getOneYearAgoString() {
                             <div className="space-y-3.5">
                                 {[
                                     { label: 'Applied (Form Submitted)', count: aggregate.application_count, color: 'bg-blue-500' },
-                                    { label: 'Verification Pending (School/College/District)', count: aggregate.verification_count, color: 'bg-purple-500' },
+                                    { label: 'Verification Pending (School/College/District)', count: aggregate.verification_count, color: 'bg-blue-500' },
                                     { label: 'Selected (Merit List)', count: aggregate.selected_count, color: 'bg-amber-500' },
                                     { label: 'Payment Received (Money Credited)', count: aggregate.payment_count, color: 'bg-emerald-500' }
                                 ].map((item, idx) => {
@@ -545,7 +545,7 @@ function getOneYearAgoString() {
                                     <div className="grid grid-cols-1 gap-3">
                                         {[
                                             { status: 'Applied', icon: <Calendar className="w-5 h-5 text-blue-600" />, label: 'Applied', desc: 'Form Submitted' },
-                                            { status: 'Verification', icon: <CheckCircle2 className="w-5 h-5 text-purple-600" />, label: 'Verification Pending', desc: 'School / College / District level' },
+                                            { status: 'Verification', icon: <CheckCircle2 className="w-5 h-5 text-blue-600" />, label: 'Verification Pending', desc: 'School / College / District level' },
                                             { status: 'Selected', icon: <Award className="w-5 h-5 text-amber-600" />, label: 'Selected', desc: 'Name in Merit List' },
                                             { status: 'Paid', icon: <IndianRupee className="w-5 h-5 text-emerald-600" />, label: 'Payment Received', desc: 'Money Credited in Bank' }
                                         ].map((item, idx) => (
@@ -595,7 +595,7 @@ function getOneYearAgoString() {
                                                             onClick={() => setVerificationStage(stg)}
                                                             className={`py-3.5 px-4 rounded-xl text-xs font-bold text-center border transition-all ${
                                                                 verificationStage === stg
-                                                                    ? 'bg-purple-50 border-purple-500 text-purple-700 font-black'
+                                                                    ? 'bg-blue-50 border-blue-500 text-blue-700 font-black'
                                                                     : 'bg-white border-gray-150 text-gray-600 hover:border-gray-300'
                                                             }`}
                                                             style={verificationStage === stg ? { backgroundColor: 'rgba(147, 51, 234, 0.08)' } : {}}

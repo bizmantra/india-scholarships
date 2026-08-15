@@ -198,7 +198,7 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                         </div>
 
                         {/* Total Open Card */}
-                        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 rounded-3xl shadow-xl shadow-blue-100 flex flex-col justify-between">
+                        <div className="bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-3xl shadow-xl shadow-blue-100 flex flex-col justify-between">
                             <div>
                                 <span className="text-sm font-bold uppercase tracking-widest text-blue-100 block mb-1">Open & Active</span>
                                 <span className="text-4xl font-black block mb-2">{metrics.totalOpen} Schemes</span>
@@ -207,12 +207,12 @@ export default function DeadlinesClient({ scholarships }: DeadlinesClientProps) 
                         </div>
 
                         {/* Max Value Card */}
-                        <div className="bg-gradient-to-br from-violet-600 to-purple-700 text-white p-6 rounded-3xl shadow-xl shadow-purple-100 flex flex-col justify-between">
+                        <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 text-white p-6 rounded-3xl shadow-xl shadow-emerald-100 flex flex-col justify-between">
                             <div>
-                                <span className="text-sm font-bold uppercase tracking-widest text-purple-100 block mb-1">Max Reward Value</span>
+                                <span className="text-sm font-bold uppercase tracking-widest text-emerald-100 block mb-1">Max Reward Value</span>
                                 <span className="text-4xl font-black block mb-2">{formatAmount(metrics.maxReward)}</span>
                             </div>
-                            <p className="text-xs text-purple-100 font-medium">Highest annual grant currently accepting entries.</p>
+                            <p className="text-xs text-emerald-100 font-medium">Highest annual grant currently accepting entries.</p>
                         </div>
                     </div>
 

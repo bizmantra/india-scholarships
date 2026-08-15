@@ -183,10 +183,10 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                             </p>
                             <p className="text-xs text-green-600 mt-2">Per academic year</p>
                         </div>
-                        <div className="bg-purple-50/50 p-6 rounded-3xl border border-purple-100">
-                            <h3 className="text-purple-700 font-bold mb-1">Open Now</h3>
-                            <p className="text-3xl font-extrabold text-purple-900">{openCount}</p>
-                            <p className="text-xs text-purple-600 mt-2">Active schemes</p>
+                        <div className="bg-emerald-50/50 p-6 rounded-3xl border border-emerald-100">
+                            <h3 className="text-emerald-700 font-bold mb-1">Open Now</h3>
+                            <p className="text-3xl font-extrabold text-emerald-900">{openCount}</p>
+                            <p className="text-xs text-emerald-600 mt-2">Active schemes</p>
                         </div>
                     </div>
 

@@ -89,8 +89,8 @@ export default async function PrivateScholarshipsPage() {
                             <h3 className="font-bold text-gray-900 group-hover:text-google-blue mb-1">Government Schemes</h3>
                             <p className="text-sm text-gray-500">Central & State funding</p>
                         </Link>
-                        <Link href="/corporate-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-purple-600">
-                            <h3 className="font-bold text-gray-900 group-hover:text-purple-700 mb-1">Corporate CSR</h3>
+                        <Link href="/corporate-scholarships" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-blue-600">
+                            <h3 className="font-bold text-gray-900 group-hover:text-blue-700 mb-1">Corporate CSR</h3>
                             <p className="text-sm text-gray-500">Industry backed grants</p>
                         </Link>
                         <Link href="/scholarships-by-income" className="group p-6 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-all border-b-4 border-green-600">

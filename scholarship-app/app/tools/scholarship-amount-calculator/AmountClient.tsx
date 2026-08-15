@@ -253,7 +253,7 @@ export default function AmountClient({ scholarships }: Props) {
                         {/* Control Panel */}
                         <div className="lg:col-span-5 bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                             <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <Coins className="w-5 h-5 text-violet-500" />
+                                <Coins className="w-5 h-5 text-blue-500" />
                                 <span>Enter Your Details</span>
                             </h2>
                             <p className="text-gray-500 text-xs leading-relaxed mb-6">
@@ -280,7 +280,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                 }}
                                                 className={`py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
                                                     level === opt.id
-                                                        ? 'bg-violet-600 border-violet-600 text-white shadow-xs'
+                                                        ? 'bg-blue-600 border-blue-600 text-white shadow-xs'
                                                         : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -304,7 +304,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                 }}
                                                 className={`py-2 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
                                                     category === cat
-                                                        ? 'bg-violet-600 border-violet-600 text-white shadow-xs'
+                                                        ? 'bg-blue-600 border-blue-600 text-white shadow-xs'
                                                         : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -334,7 +334,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                 }}
                                                 className={`py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
                                                     stream === opt.id
-                                                        ? 'bg-violet-600 border-violet-600 text-white shadow-xs'
+                                                        ? 'bg-blue-600 border-blue-600 text-white shadow-xs'
                                                         : 'bg-white border-gray-250 text-gray-700 hover:bg-gray-50'
                                                 }`}
                                             >
@@ -349,7 +349,7 @@ export default function AmountClient({ scholarships }: Props) {
                                     <button
                                         type="submit"
                                         disabled={calculating}
-                                        className="w-full py-4 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                                        className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-xl text-sm font-extrabold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                                     >
                                         {calculating ? (
                                             <>
@@ -386,7 +386,7 @@ export default function AmountClient({ scholarships }: Props) {
                             <div className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs min-h-[380px] flex flex-col justify-between">
                                 {!hasCalculated ? (
                                     <div className="flex flex-col items-center justify-center text-center py-16 flex-1">
-                                        <div className="w-16 h-16 rounded-full bg-violet-50 text-violet-500 flex items-center justify-center mb-4">
+                                        <div className="w-16 h-16 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mb-4">
                                             <Coins className="w-8 h-8" />
                                         </div>
                                         <h3 className="font-extrabold text-lg text-gray-900 mb-1">Enter details to see scholarship money</h3>
@@ -402,7 +402,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                     <h3 className="font-extrabold text-base text-gray-900">How Much Money You Can Get</h3>
                                                     <p className="text-[11px] text-gray-500 mt-0.5">Estimated amount for {level} • {stream} • {category}</p>
                                                 </div>
-                                                <span className="px-2.5 py-1 bg-violet-50 text-violet-700 text-xs font-extrabold rounded-full">
+                                                <span className="px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-extrabold rounded-full">
                                                     {matches.length} Total Matches
                                                 </span>
                                             </div>
@@ -416,7 +416,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                     </span>
                                                     <span className="text-[9px] text-gray-400 font-bold block">per year</span>
                                                 </div>
-                                                <div className="bg-violet-600 text-white rounded-xl p-4 text-center shadow-md shadow-violet-500/10">
+                                                <div className="bg-blue-600 text-white rounded-xl p-4 text-center shadow-md shadow-blue-500/10">
                                                     <span className="text-[9px] font-extrabold uppercase opacity-90 tracking-wider">Average Amount</span>
                                                     <span className="text-xl font-black block mt-0.5">
                                                         ₹{stats.avg >= 100000 ? `${(stats.avg / 100000).toFixed(1)}L` : stats.avg.toLocaleString('en-IN')}
@@ -448,7 +448,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                             onClick={() => setActiveTab(tab.id as TabType)}
                                                             className={`px-3 py-2 text-xs font-bold rounded-t-lg transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer border-b-2 ${
                                                                 activeTab === tab.id
-                                                                    ? 'border-violet-600 text-violet-700 bg-violet-50/50'
+                                                                    ? 'border-blue-600 text-blue-700 bg-blue-50/50'
                                                                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                                                             }`}
                                                         >
@@ -456,7 +456,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                             <span>{tab.label}</span>
                                                             <span className={`px-1.5 py-0.5 rounded-full text-[9px] ${
                                                                 activeTab === tab.id
-                                                                    ? 'bg-violet-600 text-white font-extrabold'
+                                                                    ? 'bg-blue-600 text-white font-extrabold'
                                                                     : 'bg-gray-100 text-gray-600'
                                                             }`}>
                                                                 {count}
@@ -470,10 +470,10 @@ export default function AmountClient({ scholarships }: Props) {
                                             {tabFilteredMatches.length > 0 ? (
                                                 <div className="space-y-4">
                                                     {tabFilteredMatches.slice(0, 4).map((s) => (
-                                                        <div key={s.id} className="border border-gray-150 hover:border-violet-400 rounded-xl p-5 transition-all bg-slate-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fadeIn">
+                                                        <div key={s.id} className="border border-gray-150 hover:border-blue-400 rounded-xl p-5 transition-all bg-slate-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 animate-fadeIn">
                                                             <div>
                                                                 <div className="flex items-center gap-2 flex-wrap mb-2">
-                                                                    <span className="px-2 py-0.5 text-[10px] font-extrabold bg-violet-100 text-violet-800 rounded-full">
+                                                                    <span className="px-2 py-0.5 text-[10px] font-extrabold bg-blue-100 text-blue-800 rounded-full">
                                                                         {s.state || 'All India'}
                                                                     </span>
                                                                     <span className="text-[10px] text-gray-500 font-bold">{s.provider}</span>
@@ -481,7 +481,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                                 <h4 className="font-bold text-sm text-gray-900 mt-1 leading-snug">{s.title}</h4>
                                                             </div>
                                                             <div className="flex sm:flex-col items-start sm:items-end justify-between sm:justify-center w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-150">
-                                                                <span className="text-sm font-black text-violet-700">
+                                                                <span className="text-sm font-black text-blue-700">
                                                                     {s.amount_annual >= 100000 
                                                                         ? `₹${(s.amount_annual / 100000).toFixed(1)}L` 
                                                                         : `₹${(s.amount_annual || s.amount_min || 0).toLocaleString('en-IN')}`
@@ -489,7 +489,7 @@ export default function AmountClient({ scholarships }: Props) {
                                                                 </span>
                                                                 <a 
                                                                     href={`/scholarships/${s.slug}`}
-                                                                    className="inline-flex items-center gap-1 text-xs font-bold text-violet-600 hover:text-violet-700 mt-1"
+                                                                    className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 mt-1"
                                                                 >
                                                                     <span>Details</span>
                                                                     <ArrowRight className="w-3 h-3" />
@@ -510,7 +510,7 @@ export default function AmountClient({ scholarships }: Props) {
                                             <div className="text-center mt-6 pt-4 border-t border-gray-100">
                                                 <Link 
                                                     href={`/eligibility-checker?level=${level}&caste=${category}`}
-                                                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-violet-50 text-violet-700 border border-violet-100 text-xs font-bold rounded-xl hover:bg-violet-100 transition-colors"
+                                                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-50 text-blue-700 border border-blue-100 text-xs font-bold rounded-xl hover:bg-blue-100 transition-colors"
                                                 >
                                                     <span>Search All {tabFilteredMatches.length} Matches</span>
                                                 </Link>
@@ -531,7 +531,7 @@ export default function AmountClient({ scholarships }: Props) {
                             {/* Why it Matters (The Problem) */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <Info className="w-5 h-5 text-violet-600" />
+                                    <Info className="w-5 h-5 text-blue-600" />
                                     <span>How Do Scholarship Payments Work?</span>
                                 </h3>
                                 <div className="text-gray-600 text-sm leading-relaxed space-y-4">
@@ -552,12 +552,12 @@ export default function AmountClient({ scholarships }: Props) {
                             {/* Payout Scenarios (Case Studies) */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <BookOpen className="w-5 h-5 text-violet-600" />
+                                    <BookOpen className="w-5 h-5 text-blue-600" />
                                     <span>Real-Life Examples</span>
                                 </h3>
                                 
                                 <div className="space-y-6">
-                                    <div className="border-l-4 border-violet-500 pl-4 py-1">
+                                    <div className="border-l-4 border-blue-500 pl-4 py-1">
                                         <h4 className="font-bold text-sm text-gray-900">Example 1: Getting both Government Fee Waiver and Company Money</h4>
                                         <p className="text-xs text-gray-600 mt-2 leading-relaxed">
                                             Amit is an engineering student. The Maharashtra government pays half of his college fees directly to his college. At the same time, he gets ₹40,000 per year from the Tata Capital Pankh Scholarship in his bank account, which he uses to buy a laptop and pay for his hostel.
@@ -583,7 +583,7 @@ export default function AmountClient({ scholarships }: Props) {
                             {/* FAQ Section */}
                             <section className="bg-white border border-gray-150 rounded-2xl p-6 sm:p-8 shadow-xs">
                                 <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <HelpCircle className="w-5 h-5 text-violet-600" />
+                                    <HelpCircle className="w-5 h-5 text-blue-600" />
                                     <span>Frequently Asked Questions</span>
                                 </h3>
                                 
@@ -620,13 +620,13 @@ export default function AmountClient({ scholarships }: Props) {
                                 <div className="absolute top-0 right-0 p-4 opacity-5">
                                     <Coins className="w-24 h-24" />
                                 </div>
-                                <h4 className="font-extrabold text-sm text-violet-400 uppercase tracking-wider mb-2">Plan Your Education Costs</h4>
+                                <h4 className="font-extrabold text-sm text-blue-400 uppercase tracking-wider mb-2">Plan Your Education Costs</h4>
                                 <p className="text-xs text-slate-300 leading-relaxed mb-4">
                                     Use our interactive Study Cost Planner to calculate tuition, hostel, and miscellaneous fees and estimate your financial gap.
                                 </p>
                                 <Link 
                                     href="/tools/study-cost-calculator"
-                                    className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-violet-400 transition-colors"
+                                    className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-blue-400 transition-colors"
                                 >
                                     <span>Open Cost Planner</span>
                                     <ArrowRight className="w-3 h-3" />

@@ -107,7 +107,7 @@ const TOOL_GROUPS: ToolGroup[] = [
                 description: 'Estimate your scholarship amount based on your course, level, category, and state.',
                 icon: GraduationCap,
                 href: '/tools/scholarship-amount-calculator',
-                gradient: 'from-violet-600 to-fuchsia-600',
+                gradient: 'from-brand to-brand-dark',
                 category: 'calculators',
             },
             {

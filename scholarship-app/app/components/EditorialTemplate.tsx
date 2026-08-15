@@ -52,26 +52,26 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Content-type tag — rounded pill */}
         <div className="mb-4">
-          <span className="px-3 py-1 border border-[#4A47FF] bg-[#F5F6FF] text-[#4A47FF] text-[11px] font-bold uppercase tracking-wider rounded-full shadow-xs">
+          <span className="px-3 py-1 border border-[var(--color-brand)] bg-[var(--color-brand-soft)] text-[var(--color-brand)] text-[11px] font-bold uppercase tracking-wider rounded-full shadow-xs">
             {content.tag}
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-[#2E2C57] font-heading leading-tight mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-[var(--color-ink)] font-heading leading-tight mb-4 tracking-tight">
           {content.title}
         </h1>
 
         {(content.date || content.readTime || content.author) && (
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[#56547A] font-medium mb-8 pb-6 border-b border-[#E2E2E8]">
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-[var(--color-ink-soft)] font-medium mb-8 pb-6 border-b border-[var(--color-border-gray)]">
             {content.date && (
               <span className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-[#4A47FF]" />
+                <Calendar className="w-3.5 h-3.5 text-[var(--color-brand)]" />
                 Updated {content.date}
               </span>
             )}
             {content.readTime && (
               <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#4A47FF]" />
+                <Clock className="w-3.5 h-3.5 text-[var(--color-brand)]" />
                 {content.readTime}
               </span>
             )}
@@ -79,35 +79,42 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
           </div>
         )}
 
-        {/* Key Facts — plain fact-strip, same device the Detail page uses */}
+        {/* Key Facts — Wiki Table */}
         {content.keyFacts && content.keyFacts.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 border border-[#E2E2E8] bg-[#F8F9FE] rounded-2xl mb-8 overflow-hidden">
-            {content.keyFacts.map((f, i) => (
-              <div key={i} className={`py-4 px-4 ${i > 0 ? 'border-l border-[#E2E2E8]' : ''}`}>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#56547A] mb-1">{f.label}</p>
-                <p className="text-sm font-bold text-[#2E2C57]">{f.value}</p>
-              </div>
-            ))}
+          <div className="wiki-infobox mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 pb-1 border-b border-slate-200">
+              Guide Summary & Key Facts
+            </h2>
+            <table className="wiki-table text-sm">
+              <tbody>
+                {content.keyFacts.map((f, i) => (
+                  <tr key={i}>
+                    <td>{f.label}</td>
+                    <td className="font-semibold text-slate-900">{f.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
 
-        {/* Takeaways — LeapScholar soft card */}
+        {/* Takeaways — Wiki Box */}
         {content.takeaways && content.takeaways.length > 0 && (
-          <div className="border border-[#E2E2E8] bg-[#F8F9FE] rounded-2xl p-6 mb-8 shadow-xs">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-[#4A47FF] mb-3 font-heading flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#4A47FF]"></span>
+          <div className="border border-slate-300 bg-slate-50 rounded-md p-5 mb-8">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-800 mb-3 border-b border-slate-200 pb-1.5">
               Key Takeaways
             </h2>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {content.takeaways.map((point, idx) => (
-                <li key={idx} className="text-sm text-[#2E2C57] flex items-start gap-2.5 leading-relaxed font-medium">
-                  <span className="font-bold text-[#4A47FF] shrink-0">•</span>
+                <li key={idx} className="text-sm text-slate-900 flex items-start gap-2.5 leading-relaxed">
+                  <span className="font-bold text-emerald-700 shrink-0">✓</span>
                   <span>{point}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
+
 
         {/* "What to Do Now" Box for News (Phase 6 / IS-115) */}
         {content.kind === 'news' && content.monetizationLink && (
@@ -132,7 +139,7 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
           <div className="mb-8">
             <Link
               href={content.monetizationLink}
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#4A47FF] hover:bg-[#3b38df] text-white font-bold text-xs hover:shadow-md transition-all shrink-0"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[var(--color-brand)] hover:bg-[#3b38df] text-white font-bold text-xs hover:shadow-md transition-all shrink-0"
             >
               View Application Details & Apply →
             </Link>

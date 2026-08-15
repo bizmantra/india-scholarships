@@ -67,8 +67,8 @@ const CATEGORY_DEFINITIONS: CategoryMeta[] = [
         stipend: 'Up to ₹1.0 Lakh / Year',
         icon: '🌟',
         docs: ['EWS Certificate (Competent Authority)', 'Class 10/12 Marksheet', 'Identity Card'],
-        bg: 'bg-indigo-50/40 border-indigo-100',
-        badgeColor: 'bg-indigo-100 text-indigo-800'
+        bg: 'bg-blue-50/40 border-blue-100',
+        badgeColor: 'bg-blue-100 text-blue-800'
     },
     {
         name: 'Minority Communities',

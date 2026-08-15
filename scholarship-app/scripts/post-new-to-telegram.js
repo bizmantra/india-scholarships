@@ -48,7 +48,7 @@ async function run() {
         // Query all active and verified scholarships
         const scholarships = db.prepare(`
             SELECT * FROM scholarships 
-            WHERE status = 'Active' AND verified_status = 'Verified'
+            WHERE (status = 'Active' OR status = 'Open') AND verified_status = 'Verified'
         `).all();
 
         console.log(`🔍 Found ${scholarships.length} active, verified scholarships in DB.`);

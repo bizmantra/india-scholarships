@@ -1,131 +1,120 @@
-# IndiaScholarships Site Architecture & Programmatic SEO (pSEO) Strategy
+# IndiaScholarships Master Information Architecture (IA) & SEO Strategy
 
-This document details how the IndiaScholarships web platform is architected to optimize for search engine visibility, indexation, and capturing long-tail search queries. It is structured to serve as an integration resource for developers and AI agents.
-
----
-
-## 🏗️ Architecture Overview
-
-The site leverages **Next.js dynamic routing** coupled with a SQLite database containing scholarship opportunity details and dedicated portal metadata libraries (`lib/portalsData.ts`). Instead of relying solely on single detail pages per scholarship, the platform programmatically compiles **subpage clusters** targeting hyper-specific user intent (e.g., specific queries about deadlines, eligibility, documents, or application portals).
-
-This multi-tiered hierarchy scales **214 base scholarships**, **10 master state/central portal guides**, and **30+ states/categories** into **over 26,800 indexable pages** with custom dynamic year headers (e.g., `2026`), structured JSON-LD schemas, and dedicated metadata.
+This document details the master **Information Architecture (IA)**, **Content Cluster Strategy**, **Programmatic SEO (pSEO) Matrix**, and **Search Engine Traffic Maximization Strategy** for **India Scholarships (`indiascholarships.in`)**. It serves as the authoritative architectural blueprint for developers and AI agents.
 
 ---
 
-## 📊 Visual Site Structure (Mermaid Diagram)
+## 🏗️ Master Architectural Overview (The 6-Cluster Hub-and-Spoke Pyramid)
+
+The platform is structured into a strict **Siloed Hub-and-Spoke Pyramid** to establish maximum topical authority. All site URLs belong to **6 Core Master Clusters**, eliminating flat route fragmentation and thin content cannibalization.
 
 ```mermaid
 graph TD
     %% Base Node
     Home["🏠 Homepage (/)"]
-    
-    %% Tier 1: Primary Hubs / Directories
-    Home --> StateHub["🗺️ State Listing Hubs (/scholarships-in/:state)"]
-    Home --> CatHub["🏷️ Category Hubs (/scholarships-for/:category)"]
-    Home --> EduHub["🎓 Education Level (/scholarships-level/:level)"]
-    Home --> CourseHub["📚 Course Listing (/scholarships-by-course/:course)"]
-    Home --> UniHub["🏫 University Listing (/scholarships-by-university/:university)"]
-    Home --> IncomeHub["💰 Income Range (/scholarships-income/:income)"]
-    Home --> DetailsHub["📜 Scholarship Details (/scholarships/:slug)"]
-    Home --> PortalGuides["🏛️ Portal Guides (/guides/:portal)"]
-    Home --> EditorialLayer["📰 Editorial Layer (/articles & /articles/:slug)"]
 
-    %% Tier 2: State Subpages
-    StateHub --> StateSubpage["📍 State Hub Subpages<br/>(/scholarships-in/:state/:subpage)"]
-    
-    %% Tier 2: Scholarship Subpages
-    DetailsHub --> DetailsSubpage["📑 Scholarship Subpage Cluster<br/>(/scholarships/:slug/:subpage)"]
+    %% Tier 1: 6 Core Master Clusters
+    Home --> StateHub["🗺️ State Ecosystem (/states/:state)"]
+    Home --> PortalHub["🏛️ Portal Ecosystem (/portals/:portal)"]
+    Home --> QualHub["🎓 Qualification Hubs (/qualifications/:slug)"]
+    Home --> EligHub["🏷️ Eligibility & Talent Hubs (/eligibility/:slug)"]
+    Home --> PrivHub["🏢 Private Ecosystem (/private-scholarships/:slug)"]
+    Home --> KnowledgeBase["📚 Unified Knowledge Base (/guides/:slug)"]
 
-    %% Tier 2: Portal Guide Subpages
-    PortalGuides --> PortalSubpages["🔍 Portal Procedural Subpages<br/>(/guides/:portal/:subpage)"]
+    %% Tier 2: Master Detail Pages
+    StateHub --> MasterDetails["📜 Master Scholarship Detail Pages (/scholarships/:slug)"]
+    PortalHub --> MasterDetails
+    QualHub --> MasterDetails
+    EligHub --> MasterDetails
+    PrivHub --> MasterDetails
+    KnowledgeBase --> MasterDetails
 
-    %% Subpage Types
-    subgraph Subpages [Scholarship Subpage Cluster Slugs]
-        sub1["📄 eligibility"]
-        sub2["💵 income-limit"]
-        sub3["📂 documents-required"]
-        sub4["📅 last-date"]
-        sub5["⚙️ selection-process"]
-        sub6["🌐 apply-online"]
-        sub7["🔄 renewal-process"]
+    %% Single-Page Section Anchors (Zero Subpages)
+    subgraph SectionAnchors [Single-Page Master Anchor Pills (#anchor)]
+        anchor1["#eligibility"]
+        anchor2["#income-limit"]
+        anchor3["#documents-required"]
+        anchor4["#last-date"]
+        anchor5["#selection-process"]
+        anchor6["#apply-online"]
+        anchor7["#renewal-process"]
     end
 
-    subgraph PortalSubtopics [Portal Procedural Subtopic Slugs]
-        pSub1["🔍 status-check"]
-        pSub2["👤 student-login"]
-        pSub3["📄 documents-list"]
-        pSub4["🏆 scholarships-list"]
-    end
-
-    StateSubpage -.-> Subpages
-    DetailsSubpage -.-> Subpages
-    PortalSubpages -.-> PortalSubtopics
+    MasterDetails -.-> SectionAnchors
 
     style Home fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
-    style Subpages fill:#F3F4F6,stroke:#9CA3AF,stroke-width:1px,color:#111827
-    style PortalSubtopics fill:#ECFDF5,stroke:#10B981,stroke-width:1px,color:#065F46
+    style MasterDetails fill:#059669,stroke:#047857,stroke-width:2px,color:#fff
+    style SectionAnchors fill:#F3F4F6,stroke:#9CA3AF,stroke-width:1px,color:#111827
 ```
 
 ---
 
-## ⚡ Programmatic SEO (pSEO) Matrix
+## 📂 The 6 Core Master Clusters
 
-By mapping the base database entries and portal data libraries into these programmatic templates, we cover key long-tail search permutations matching exact Google query patterns:
+| Master Cluster | Base Path | Cluster Purpose & Scope | Target Search Intent |
+| :--- | :--- | :--- | :--- |
+| **1. Regional State Ecosystem** | `/states/[state]` | Master State Hubs featuring Master Comparison Matrices, State Portal CTAs, and active schemes. | High-intent state applicants (*"Scholarships in Karnataka"*, *"UP scholarship 2026"*). |
+| **2. Official Portal Ecosystem** | `/portals/[portal]` | Hand-curated procedural guides for major government portals (NSP, SSP Karnataka, MahaDBT, Digital Gujarat, MPTAAS). | Portal search traffic (*"NSP student login"*, *"SSP Karnataka status check"*). |
+| **3. Qualification & Course** | `/qualifications/[slug]` | Grade & course-based clusters (School/10th, 12th Pass, Undergraduate, B.Tech, MBBS, PhD). | Students searching by education level or degree. |
+| **4. Eligibility & Special Talent** | `/eligibility/[slug]` | Social Category (SC/ST/OBC/EWS/Minority), Gender (Girls, Single Girl Child), PwD, Sports, Defense. | Demographic & talent-specific scholarship discovery. |
+| **5. Private & Corporate Ecosystem** | `/private-scholarships/[slug]` | Corporate CSR (Reliance, HDFC, SBI), Charitable Trusts (FFE, Sekhsaria), Private Universities, Study Abroad. | High-grant private searchers (*"Top CSR scholarships"*, *"Private engineering grants"*). |
+| **6. Single-Page Master Directory** | `/scholarships/[slug]` | Single-page Master Detail Pages containing 3 mini-tables, direct answer lead blocks, and `#anchor` jump pills. | Direct brand/scheme searches (*"PM YASASVI"*, *"Reliance Foundation Scholarship"*). |
 
-| Target Query Type (Long-Tail) | URL Route Pattern | SEO Purpose |
-| :--- | :--- | :--- |
-| **Direct Scholarship Information** | `/scholarships/:slug` | Standard target page for brand-level searches. |
-| **Eligibility Queries** | `/scholarships/:slug/eligibility` | Captures *"Am I eligible for [Scholarship Name]?"* |
-| **Income Cap Limits** | `/scholarships/:slug/income-limit` | Targets *"What is the family income limit for [Scholarship Name]?"* |
-| **Required Documents Checklist** | `/scholarships/:slug/documents-required` | Targets *"[Scholarship Name] documents checklist list pdf"* |
-| **Deadlines & Important Dates** | `/scholarships/:slug/last-date` | Targets *"When is the last date to apply for [Scholarship Name]?"* |
-| **Selection Process / Rules** | `/scholarships/:slug/selection-process` | Targets *"How are candidates selected for [Scholarship Name]?"* |
-| **Apply / Portal Registration** | `/scholarships/:slug/apply-online` | Targets *"How to apply online for [Scholarship Name] on portal"* |
-| **Renewal Instructions** | `/scholarships/:slug/renewal-process` | Targets *"[Scholarship Name] renewal criteria and process"* |
-| **State Listing Hubs** | `/scholarships-in/:state` | Captures broad *"scholarships in [State]"* |
-| **State Hub Subpages** | `/scholarships-in/:state/:subpage` | Programmatic child pages at state level (for states with $\ge 3$ scholarships). |
-| **Master Portal Guides** | `/guides/:portal` | Targets major state & central portal terms (*"e-Kalyan Jharkhand guide"*, *"NSP portal login"*). |
-| **Portal Status Check Subpages** | `/guides/:portal/status-check` | Captures high-volume *"e kalyan status check 2026"*, *"PFMS payment tracking"*. |
-| **Portal Student Login Subpages** | `/guides/:portal/student-login` | Captures *"e kalyan student login"*, *"portal registration step by step"*. |
-| **Portal Documents Subpages** | `/guides/:portal/documents-list` | Captures *"e kalyan income affidavit format"*, *"portal document checklist"*. |
-| **Portal Scholarships Subpages** | `/guides/:portal/scholarships-list` | Captures *"all scholarships hosted on e-kalyan portal"*. |
-| **Editorial Main Index** | `/articles` | Primary listing hub with search and topic pill filters for Tier-2/3 simple English guides. |
-| **Editorial Article Guides** | `/articles/:slug` | Captures top/mid-funnel procedural searches (*"how to fix bank seeding"*, *"is X scholarship safe"*). |
+> **Note on Editorial Consolidation**: Articles, pillars, and procedural walkthroughs are unified under **`/guides/[slug]`**. Legacy routes (`/articles`, `/pillars`) are 301-redirected to `/guides/`. Legacy scholarship subpages (`/scholarships/:slug/:subpage`) are 301-redirected to section anchors (`/scholarships/:slug#:subpage`).
 
 ---
 
-## 📰 Editorial Content Engine (`/articles`) Strategy
+## ⚡ Programmatic SEO (pSEO) Matrix Engine
 
-For the complete architectural blueprint, 100-article publishing calendar, Tier-2/3 simple English guidelines, and cannibalization defense protocols for the `/articles` section, see:
-👉 [Master Editorial Strategy & Implementation Blueprint (EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/EDITORIAL_ARTICLES_STRATEGY_IMPLEMENTATION.md)
+The platform dynamically combines taxonomy attributes to generate hyper-specific long-tail landing pages matching exact student query patterns:
 
----
+$$\text{Pillar 1 (Qualification)} + \text{Pillar 2 (Eligibility / Category)} + \text{Pillar 3 (State)}$$
 
-## 🛠️ Multi-Sitemap Chunking Architecture (`app/sitemap.ts`)
+### High-Traffic pSEO Combination Examples:
+* `/qualifications/btech/sc-category/maharashtra` (*"B.Tech Scholarships for SC Students in Maharashtra"*)
+* `/eligibility/girl-students/postgraduate/income-below-2-5-lakhs` (*"PG Scholarships for Girl Students under 2.5 Lakhs Income"*)
+* `/qualifications/10th-pass/sports-scholarships/haryana` (*"10th Pass Sports Scholarships in Haryana"*)
 
-To prevent single-sitemap file size and URL limit bottlenecks across 26,800+ static URLs, the sitemap engine utilizes Next.js `generateSitemaps()` to divide the sitemap index into 5 dedicated, topic-clustered XML feeds:
-
-1. **`core` (`/sitemap/core.xml`)**: Homepage, primary category directories, static tools, master portal guides, and portal subpages.
-2. **`scholarships` (`/sitemap/scholarships.xml`)**: Dynamic mapping of all primary scholarship detail pages (`/scholarships/${s.slug}`).
-3. **`subpages` (`/sitemap/subpages.xml`)**: Cartesian product of all base scholarships and 7 subpage cluster routes (1,498+ URLs).
-4. **`states` (`/sitemap/states.xml`)**: All state hubs and state subpages for states with $\ge 3$ active scholarships.
-5. **`taxonomies` (`/sitemap/taxonomies.xml`)**: Category, education level, course, income range, level-x-country combinations, and university listing pages.
+> **Anti-Thin Content Guardrail**: Programmatic landing pages are only generated when $\ge 2$ verified active schemes exist for the target filters. Every generated page includes a unique aggregate lead summary, comparison matrix table, and custom 3-step application checklist.
 
 ---
 
-## ⚡ Priority Indexing Automation (`scripts/submit-indexing-api.js`)
+## 🌐 Vernacular & Phonetic Search Engine
 
-To bypass standard sitemap discovery queues and accelerate Googlebot & Bingbot crawling:
-* **IndexNow Protocol (`api.indexnow.org`)**: Pushes instant URL creation/update notifications to Bing & Yandex using key file `public/c0326e5e8e894b92b67f1b7454efb507.txt`.
-* **Google Web Search Indexing API**: Batch submits top-tier/recently modified scholarship URLs directly to Googlebot using Google Service Account credentials (`scholarships-antigravity@...`).
+To capture the **65%+ of Indian students** who search in native scripts or Romanized local language text (Hinglish/Tanglish/Kanglish):
+
+### 1. Native Script Translation Pipeline (`/hi/`, `/bn/`, `/ta/`, `/te/`, `/kn/`, `/or/`)
+* Native language localized routes under `app/[locale]/`.
+* **Staleness Solution (`source_hash`)**: A `SHA-256` hash of concatenated scholarship attributes is stored in `scholarship_translations`. When official deadlines or amounts update in SQLite/Turso, the script automatically detects hash mismatches and re-translates *only* updated records.
+* **Hreflang Compliance**: Every template emits clean `<link rel="alternate" hreflang="...">` tags for all 6 supported Indian languages.
+
+### 2. Phonetic Romanized Intent Engine (Hinglish, Tanglish, Kanglish, Benglish)
+* Captures queries typed in English script for local languages (e.g. *"UP scholarship last date kab hai"*, *"NSP scholarship apply kaise kare"*, *"documents kya lagega"*).
+* Dedicated **Phonetic FAQ Accordions** embedded on Portal Guides and Master Pages with valid `FAQPage` JSON-LD schema markup.
 
 ---
 
-## 🛡️ Anti-Thin Content & Conversion Guardrails
+## 🛡️ 100% PageRank Preservation & 301 Redirect Matrix
 
-To maximize search engine ranking authority and user conversion:
-* **Top Scholarships Card Grid Injection**: Every portal procedural subpage (`/status-check`, `/student-login`, `/documents-list`, `/scholarships-list`) embeds the **Top Scholarships Hosted on Portal** card grid to route procedural search traffic directly into money pages (`/scholarships/[slug]`).
-* **Hero CTA & Off-Site Bounce Mitigation**: External portal links are located under the Helpdesk card in the right sidebar (never in the hero header) to prevent immediate off-site user bounce.
-* **"Content Verification in Progress" Fallbacks**: Visual cards explain that specific details are under verification rather than leaving empty spaces or returning thin content.
-* **Date Parsing & Fallbacks**: Non-parseable values like `"NA"` or `"Not specified"` display generic safe labels such as `"Open Now"` or `"Check Portal"` rather than `"Invalid Date"`.
-* **Annual Amount Safe Chains**: To prevent displaying `₹0k` (which triggers alerts/poor CTR), the site runs a safe display check: `amount_annual` $\rightarrow$ `amount_min` $\rightarrow$ `"Amount Varies"`.
+To ensure zero loss of existing SEO authority, backlinks, or indexed traffic during migration:
+
+| Legacy / Current Path Pattern | New Target Cluster Path Pattern | Redirect Type | SEO Preservation Rationale |
+| :--- | :--- | :--- | :--- |
+| `/:locale/scholarships/:slug/:subpage*` | `/:locale/scholarships/:slug#:subpage` | 301 Permanent | Preserves master page authority; maps subpages to section anchors. |
+| `/guides/nsp/:subpage*` | `/portals/national-scholarship-portal-nsp/:subpage*` | 301 Permanent | Maps National Scholarship Portal guide to dedicated `/portals/` hub. |
+| `/guides/ssp-karnataka/:subpage*` | `/portals/ssp-karnataka/:subpage*` | 301 Permanent | Maps Karnataka SSP Portal guide & subpages to `/portals/`. |
+| `/guides/mahadbt/:subpage*` | `/portals/mahadbt-maharashtra/:subpage*` | 301 Permanent | Maps Maharashtra MahaDBT Portal guide & subpages to `/portals/`. |
+| `/scholarships-by-education/:slug*` | `/qualifications/:slug*` | 301 Permanent | Preserves education level backlinks (UG, PG, B.Tech, 10th Pass). |
+| `/scholarships-by-category/:slug*` | `/eligibility/:slug*` | 301 Permanent | Preserves caste/category backlinks (SC, ST, OBC, EWS, Minority). |
+| `/scholarships-for/:slug*` | `/eligibility/:slug*` | 301 Permanent | Preserves demographic backlinks (Girls, PwD, Sports, Single Girl Child). |
+| `/corporate-scholarships/:slug*` | `/private-scholarships/csr-corporate/:slug*` | 301 Permanent | Preserves corporate CSR backlinks (Reliance, HDFC, SBI). |
+| `/scholarships-in/:state` | `/states/:state` | 301 Permanent | Unifies state hubs under `/states/` for clean cluster hierarchy. |
+
+---
+
+## ⚡ Indexing & Viral Retention Pipeline
+
+1. **Google Indexing API (`scripts/push-to-google-indexing.js`)**: Automatically pings Googlebot whenever scholarship deadlines or news announcements update in SQLite/Turso.
+2. **Dynamic XML Sitemap (`app/sitemap.ts`)**: Auto-generates multi-sitemap chunks for core hubs, master scholarships, state hubs, qualifications, eligibility, and portal guides.
+3. **WhatsApp / Telegram Alert Widget (`<WhatsAppAlertCTA>`)**: Sticky call-to-action on every money page and portal guide, driving direct recurring traffic during deadline extensions.
+4. **Structured Data Schemas**: Every page emits JSON-LD `FinancialProduct` (or `GovernmentService`), `HowTo`, `FAQPage`, and `BreadcrumbList` schemas.

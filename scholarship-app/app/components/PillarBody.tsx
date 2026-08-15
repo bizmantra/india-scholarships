@@ -64,20 +64,20 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
         }
       `}</style>
 
-      {/* Sticky TOC Sidebar */}
+      {/* Sticky TOC Sidebar — Wiki Style */}
       {headings.length > 0 && (
-        <aside id="pillar-toc-sidebar" className="hidden lg:block w-64 shrink-0 sticky top-24 max-h-[80vh] overflow-y-auto scrollbar-thin pr-4 border-r border-slate-100">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-3">In This Guide</span>
-          <nav className="space-y-2">
+        <aside id="pillar-toc-sidebar" className="hidden lg:block w-64 shrink-0 sticky top-24 max-h-[80vh] overflow-y-auto pr-4 border-r border-slate-300">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700 block mb-3 pb-1 border-b border-slate-200">In This Guide</span>
+          <nav className="space-y-1.5">
             {headings.map((h) => (
               <a
                 key={h.id}
                 href={`#${h.id}`}
-                className={`block text-xs font-semibold leading-relaxed transition-all pl-2.5 border-l-2 hover:text-google-blue ${
+                className={`block text-xs font-medium leading-relaxed transition-all pl-2 border-l-2 hover:text-blue-700 ${
                   activeHeading === h.id
-                    ? 'text-google-blue border-google-blue font-bold'
-                    : 'text-slate-500 border-transparent hover:border-slate-300'
-                } ${h.level === 3 ? 'ml-3' : ''}`}
+                    ? 'text-blue-800 border-blue-700 font-bold bg-slate-100 py-0.5 rounded-r'
+                    : 'text-slate-600 border-transparent hover:border-slate-400'
+                } ${h.level === 3 ? 'ml-3 text-[11px]' : ''}`}
               >
                 {h.text}
               </a>
@@ -88,33 +88,29 @@ export default function PillarBody({ contentHtml, headings, faqs, checklist }: P
 
       <div className="w-full flex-1 min-w-0">
         <div
-          className="prose prose-slate max-w-none prose-p:text-slate-700 prose-p:leading-relaxed prose-p:text-base prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-google-blue prose-a:font-semibold"
+          className="prose prose-slate max-w-none prose-p:text-slate-900 prose-p:leading-relaxed prose-p:text-base prose-headings:text-slate-900 prose-headings:font-bold prose-a:text-blue-700 prose-a:font-semibold prose-a:underline"
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
 
         {checklist.length > 0 && (
-          <div className="my-10 bg-slate-50 border border-slate-200 rounded-2xl p-6 print:page-break-inside-avoid">
-            <h3 className="text-base font-bold text-slate-900 mb-1 flex items-center gap-2">
-              <ListChecks className="w-5 h-5 text-google-blue" />
-              <span>Documents Checklist</span>
+          <div className="my-8 bg-slate-50 border border-slate-300 rounded-md p-5 print:page-break-inside-avoid">
+            <h3 className="text-xs font-bold text-slate-900 mb-3 uppercase tracking-wider border-b border-slate-200 pb-2">
+              Mandatory Checklist & Requirements
             </h3>
-            <p className="text-xs text-slate-500 mb-4">Check off items as you gather them:</p>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <ul className="space-y-2">
               {checklist.map((item, idx) => (
-                <label
-                  key={idx}
-                  className="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-200 hover:border-google-blue transition-colors cursor-pointer print:border-slate-300"
-                >
-                  <input type="checkbox" className="mt-0.5 h-4 w-4 rounded border-slate-300 text-google-blue focus:ring-google-blue print:hidden" />
-                  <span className="text-xs font-semibold text-slate-800 leading-normal">{item}</span>
-                </label>
+                <li key={idx} className="text-xs text-slate-800 flex items-start gap-2 bg-white border border-slate-200 p-2.5 rounded">
+                  <span className="text-emerald-700 font-bold">✓</span>
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
 
         {faqs.length > 0 && (
-          <div id="faq-section" className="my-10 scroll-mt-24 border-t border-slate-150 pt-8 print:page-break-inside-avoid">
+          <div id="faq-section" className="my-10 scroll-mt-24 border-t border-slate-200 pt-8 print:page-break-inside-avoid">
+
             <h3 className="text-lg font-bold text-slate-900 mb-5 flex items-center gap-2">
               <HelpCircle className="w-4.5 h-4.5 text-google-blue" />
               <span>Frequently Asked Questions (FAQ)</span>
