@@ -30,17 +30,6 @@ jobs:
           cd scholarship-app
           npm ci
 
-      - name: Run Content Quality Audit
-        run: |
-          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "Running strict verification check..."
-            node scholarship-app/scripts/content-quality-audit.js --strict
-          else
-            node scholarship-app/scripts/content-quality-audit.js
-          fi
-        env:
-          NODE_ENV: production
-
       - name: Sync Google Search Console Live Traffic Cache
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
@@ -57,6 +46,24 @@ jobs:
           node scholarship-app/scripts/enrich-all-low-ctr-gemini.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_ENV: production
+
+      - name: Run Content Quality Audit
+        run: |
+          if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "Running strict verification check..."
+            node scholarship-app/scripts/content-quality-audit.js --strict
+          else
+            node scholarship-app/scripts/content-quality-audit.js
+          fi
+        env:
+          NODE_ENV: production
+
+      - name: Run Article Links Validation
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        run: |
+          node scholarship-app/scripts/audit-article-links.js --strict
+        env:
           NODE_ENV: production
 
       - name: Generate Weekly Email Body

@@ -37,7 +37,7 @@ You must respond with a single, valid JSON object matching the following schema:
 }
 Provide ONLY the raw JSON object.`;
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     const payload = {
         contents: [
             {
@@ -53,19 +53,6 @@ Provide ONLY the raw JSON object.`;
                 googleSearch: {}
             }
         ],
-        generationConfig: {
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: "OBJECT",
-                properties: {
-                    deadline: { type: "STRING", description: "Strictly YYYY-MM-DD. Empty if unknown." },
-                    deadline_description: { type: "STRING", description: "Brief description of the deadline cycle." },
-                    official_source: { type: "STRING" },
-                    apply_url: { type: "STRING" }
-                },
-                required: ["deadline", "deadline_description", "official_source", "apply_url"]
-            }
-        }
     };
 
     const response = await fetch(url, {
@@ -86,8 +73,11 @@ Provide ONLY the raw JSON object.`;
         throw new Error("No response candidates returned from Gemini");
     }
 
-    const contentText = data.candidates[0].content.parts[0].text;
-    return JSON.parse(contentText.trim());
+    let contentText = data.candidates[0].content.parts[0].text.trim();
+    if (contentText.startsWith('```')) {
+        contentText = contentText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
+    }
+    return JSON.parse(contentText);
 }
 
 async function runDailyCheck() {

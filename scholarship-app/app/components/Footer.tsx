@@ -32,7 +32,7 @@ export default function Footer() {
                             <li><Link href="/scholarships-by-income" className="hover:text-white transition-colors">By Income</Link></li>
                             <li><Link href="/scholarships-by-course" className="hover:text-white transition-colors">By Course</Link></li>
                             <li><Link href="/scholarships/international" className="hover:text-white transition-colors">Study Abroad</Link></li>
-                            <li><a href="https://studyabroad.indiascholarships.in" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-extrabold transition-colors flex items-center gap-1">Study Abroad Portal 🌍</a></li>
+                            <li><a href="/study-abroad" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-extrabold transition-colors flex items-center gap-1">Study Abroad Portal 🌍</a></li>
                             <li><Link href="/scholarships-for/sports" className="hover:text-white transition-colors">Sports & Athletes</Link></li>
                             <li><Link href="/scholarships-for/pwd" className="hover:text-white transition-colors">Persons with Disabilities</Link></li>
                         </ul>

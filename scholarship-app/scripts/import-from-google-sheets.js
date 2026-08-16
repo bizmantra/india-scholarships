@@ -184,7 +184,13 @@ async function importFromGoogleSheets() {
                 is_featured: parseBoolean(row[columnIndices['is_featured']]) ? 1 : 0,
                 is_popular: parseBoolean(row[columnIndices['is_popular']]) ? 1 : 0,
                 priority_score: row[columnIndices['priority_score']] ? parseInt(row[columnIndices['priority_score']]) : 50,
-                status: row[columnIndices['status']] || 'Active',
+                status: (() => {
+                    const raw = row[columnIndices['status']] || 'Active';
+                    const lower = raw.toLowerCase().trim();
+                    if (lower === 'closed' || lower === 'expired' || lower === 'inactive') return 'Closed';
+                    if (lower === 'draft') return 'Draft';
+                    return 'Active';
+                })(),
                 time_min: row[columnIndices['time_to_apply']] ? parseInt(row[columnIndices['time_to_apply']]) : null,
                 renewal: row[columnIndices['renewal']] || '',
                 helpline: row[columnIndices['helpline']] || '',

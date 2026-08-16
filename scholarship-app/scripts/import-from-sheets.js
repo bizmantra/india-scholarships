@@ -250,7 +250,13 @@ for (let i = 1; i < rows.length; i++) {
         console.log(`✅ Importing: ${title}`);
 
         const rawStatus = row[indexMap['status']] || 'Active';
-        const statusVal = rawStatus.toLowerCase() === 'active' ? 'Active' : rawStatus;
+        const statusLower = rawStatus.toLowerCase().trim();
+        let statusVal = 'Active';
+        if (statusLower === 'closed' || statusLower === 'expired' || statusLower === 'inactive') {
+            statusVal = 'Closed';
+        } else if (statusLower === 'draft') {
+            statusVal = 'Draft';
+        }
 
         const rawVerified = row[indexMap['verified_status']] || '';
         const vLower = rawVerified.toLowerCase();

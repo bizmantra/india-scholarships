@@ -118,7 +118,7 @@ Provide ONLY the raw JSON object.`;
 Generate structured content targeting student and parent intent (e.g. disbursement details, selection criteria, renewal conditions, status tracking guides, and critical FAQs).
 You must search Google to find the accurate, current values.`;
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     const payload = {
         contents: [
             {
@@ -134,49 +134,6 @@ You must search Google to find the accurate, current values.`;
                 googleSearch: {}
             }
         ],
-        generationConfig: {
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: "OBJECT",
-                properties: {
-                    amount_annual: { type: "INTEGER", description: "Estimated or exact annual amount in INR. 0 if variable/unknown." },
-                    amount_min: { type: "INTEGER", description: "Minimum annual amount in INR. 0 if unknown." },
-                    amount_description: { type: "STRING", description: "Describe the amount, payment schedule, and Direct Benefit Transfer (DBT) to Aadhaar-seeded accounts details." },
-                    min_marks: { type: "INTEGER", description: "Minimum percentage marks required. 0 if none/unknown." },
-                    selection: { type: "STRING", description: "Clear description of how candidates are selected (merit ranking on marks, preference for lower income, or exams)." },
-                    renewal: { type: "STRING", description: "Clear conditions for annual renewal (passing previous exams with no backlogs, maintaining attendance) and the process." },
-                    helpline: { type: "STRING", description: "Official support phone numbers and email address, comma-separated." },
-                    official_source: { type: "STRING", description: "Official department/provider URL." },
-                    apply_url: { type: "STRING", description: "Official direct application form/portal link URL." },
-                    step_guide: { type: "STRING", description: "Markdown instructions detailing how to register, apply, and track status online." },
-                    faq_json: {
-                        type: "ARRAY",
-                        description: "List of exactly 3 critical FAQ questions and answers solving parent/student anxieties.",
-                        items: {
-                            type: "OBJECT",
-                            properties: {
-                                question: { type: "STRING" },
-                                answer: { type: "STRING" }
-                            },
-                            required: ["question", "answer"]
-                        }
-                    }
-                },
-                required: [
-                    "amount_annual",
-                    "amount_min",
-                    "amount_description",
-                    "min_marks",
-                    "selection",
-                    "renewal",
-                    "helpline",
-                    "official_source",
-                    "apply_url",
-                    "step_guide",
-                    "faq_json"
-                ]
-            }
-        }
     };
 
     const response = await fetch(url, {
@@ -197,8 +154,11 @@ You must search Google to find the accurate, current values.`;
         throw new Error("No response candidates returned from Gemini");
     }
 
-    const contentText = data.candidates[0].content.parts[0].text;
-    return JSON.parse(contentText.trim());
+    let contentText = data.candidates[0].content.parts[0].text.trim();
+    if (contentText.startsWith('```')) {
+        contentText = contentText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
+    }
+    return JSON.parse(contentText);
 }
 
 async function runEnrichment() {

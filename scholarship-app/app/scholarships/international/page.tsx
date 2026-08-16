@@ -295,7 +295,7 @@ export default async function InternationalScholarshipsPage() {
                         </div>
                         <div className="shrink-0 w-full md:w-auto">
                             <a 
-                                href="https://studyabroad.indiascholarships.in"
+                                href="/study-abroad"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center gap-2 w-full md:w-auto px-6 py-4 bg-gradient-to-r from-[var(--color-brand)] to-blue-600 hover:from-[var(--color-brand-dark)] hover:to-blue-700 text-white font-bold text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 cursor-pointer animate-in fade-in zoom-in-95 duration-500"
@@ -497,7 +497,7 @@ export default async function InternationalScholarshipsPage() {
                             <p className="text-sm text-slate-300">Calculate total expenses, compare loan providers, and access country-specific visa trackers.</p>
                         </div>
                         <a
-                            href="https://studyabroad.indiascholarships.in"
+                            href="/study-abroad"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="relative z-10 flex-shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-brand)] to-blue-650 text-white px-5 py-3 rounded-xl font-bold text-sm hover:from-[var(--color-brand-dark)] hover:to-blue-700 transition-all hover:-translate-y-0.5 cursor-pointer shadow-sm"

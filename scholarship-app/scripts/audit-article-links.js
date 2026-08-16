@@ -260,3 +260,11 @@ console.log(`Articles with Broken Links: ${summary.articlesWithBrokenLinks}`);
 console.log(`Total Broken Links Identified: ${summary.totalBrokenLinks}`);
 
 db.close();
+
+const isStrict = process.argv.includes('--strict');
+if (isStrict && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0)) {
+  console.error(`\n❌ Strict Quality Check Failed: Found articles with formatting/link issues.`);
+  process.exit(1);
+} else {
+  console.log('✅ Article Links Audit Passed!');
+}
