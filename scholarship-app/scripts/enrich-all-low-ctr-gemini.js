@@ -116,7 +116,28 @@ Provide ONLY the raw JSON object.`;
     // Default to Gemini Flash
     const prompt = `Research the official details for the "${title}" scholarship by ${provider} in India for the academic year 2025-26 or 2026.
 Generate structured content targeting student and parent intent (e.g. disbursement details, selection criteria, renewal conditions, status tracking guides, and critical FAQs).
-You must search Google to find the accurate, current values.`;
+You must search Google to find the accurate, current values.
+
+You must respond with a single, valid JSON object matching the following schema. Wrap the JSON in a markdown code block (e.g. \`\`\`json ... \`\`\`).
+JSON Schema:
+{
+  "amount_annual": integer (Estimated or exact highest annual amount in INR. 0 if variable/unknown),
+  "amount_min": integer (Minimum annual amount in INR. 0 if unknown),
+  "amount_description": string (Describe the amount, payment schedule, and Direct Benefit Transfer (DBT) to Aadhaar-seeded accounts details),
+  "min_marks": integer (Minimum percentage marks required. 0 if none/unknown),
+  "selection": string (Clear description of how candidates are selected),
+  "renewal": string (Clear conditions for annual renewal and the process),
+  "helpline": string (Official support phone numbers and email address, comma-separated),
+  "official_source": string (Official department/provider URL),
+  "apply_url": string (Official direct application form/portal link URL),
+  "step_guide": string (Markdown instructions detailing how to register, apply, and track status online),
+  "faq_json": [
+    {
+      "question": string (FAQ question),
+      "answer": string (FAQ answer)
+    }
+  ] (Exactly 3 critical FAQ questions and answers solving parent/student anxieties)
+}`;
 
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     const payload = {

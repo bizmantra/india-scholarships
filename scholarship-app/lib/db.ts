@@ -132,7 +132,7 @@ function mapWpPostToScholarship(post: any) {
     };
 }
 
-// Get all scholarships
+// Get all scholarships (full records)
 export async function getAllScholarships() {
     if (WP_API_URL) {
         const posts = await wpFetch('/scholarship?per_page=500');
@@ -143,6 +143,23 @@ export async function getAllScholarships() {
     const client = getClient();
     const res = await client.execute('SELECT * FROM scholarships');
     return res.rows.map(parseScholarship);
+}
+
+// Get lightweight catalog scholarships (optimized for listing pages and minimal SSR HTML weight)
+export async function getScholarshipsCatalog() {
+    const client = getClient();
+    const res = await client.execute(`
+        SELECT id, title, slug, provider, provider_type, state, level, caste, gender,
+               amount_annual, amount_min, amount_description, deadline, always_open,
+               status, is_featured, is_popular, priority_score, thumbnail_url,
+               scholarship_type, scholarship_scope, country_of_study, last_verified,
+               income_limit, created_at, application_mode
+        FROM scholarships
+    `);
+    return res.rows.map((row: any) => ({
+        ...row,
+        caste: parseCasteField(row.caste),
+    }));
 }
 
 // Get scholarship by slug

@@ -1,4 +1,4 @@
-import { getAllScholarships } from '@/lib/db';
+import { getScholarshipsCatalog } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -12,7 +12,7 @@ export const metadata = {
 };
 
 export default async function ScholarshipsPage() {
-    const scholarships = await getAllScholarships();
+    const scholarships = await getScholarshipsCatalog();
 
     return (
         <div className="min-h-screen bg-white">

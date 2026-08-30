@@ -1,7 +1,7 @@
 {
-  "swept": 1,
+  "swept": 5,
   "skipped": 0,
   "auto_updated": 0,
-  "pending_review": 0,
-  "check_failed": 1
+  "pending_review": 5,
+  "check_failed": 0
 }
