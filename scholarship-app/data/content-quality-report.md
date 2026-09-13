@@ -1,5 +1,5 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-09-06
+Generated on: 2026-09-13
 Total Scholarships Audited: **482**
 Scholarships with Issues: **116** (24.1%)
 
@@ -37,11 +37,11 @@ Here are the scholarships with the highest number of content quality issues:
 | `mahadbt-post-matric-scholarship-maharashtra` | **MahaDBT Post-Matric Scholarship (Maharashtra)** | 3 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents; Missing Helpline Contact Details |
 | `holland-scholarship` | **Holland Scholarship** | 3 | Missing Min Amount; Old Year Reference (e.g. 2024 or 2025 in title or description); Invalid Apply URL format: "Applications are made directly through the website of the chosen participating Dutch higher education institution. There is no single central application portal for the NL Scholarship. Always check the institution's official website for specific application instructions and deadlines." |
 | `nec-merit-scholarship` | **NEC Merit Scholarship** | 2 | Missing Required Documents; Missing Helpline Contact Details |
-| `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 2 | Missing Required Documents; Contains Unwanted Raw HTML Tags |
 | `kotak-shiksha-nidhi-scholarship` | **Kotak Shiksha Nidhi Scholarship** | 2 | Missing Required Documents; Missing Helpline Contact Details |
 | `sanchi-honnamma-scholarship-karnataka` | **Sanchi Honnamma Scholarship (Karnataka)** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
 | `lila-poonawalla-foundation-scholarship` | **Lila Poonawalla Foundation Scholarship** | 2 | Missing Required Documents; Missing Helpline Contact Details |
 | `foundation-for-excellence-ffe-scholarship` | **Foundation for Excellence (FFE) Scholarship** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
+| `tata-trusts-medical-and-healthcare-scholarship` | **Tata Trusts Medical and Healthcare Scholarship 2026-27** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Contains Unwanted Raw HTML Tags |
 | `central-sector-scholarship-kerala-applicants-via-dce` | **Central Sector Scholarship (Kerala applicants via DCE)** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
 | `post-matric-scholarship-for-differently-abled` | **Post-Matric Scholarship for Differently Abled** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `pragyan-bharati-scheme` | **Pragyan Bharati Scheme** | 2 | Missing Min Amount; Missing Helpline Contact Details |
@@ -71,6 +71,7 @@ Here are the scholarships with the highest number of content quality issues:
 | `national-fellowship-scholarship-for-higher-education-of-st-students` | **National Fellowship & Scholarship for Higher Education of ST Students** | 1 | Missing Required Documents |
 | `pre-matric-scholarship-for-students-with-disabilities` | **Pre-Matric Scholarship for Students with Disabilities** | 1 | Missing Required Documents |
 | `pm-scholarship-scheme-railways` | **PM Scholarship Scheme (Railways)** | 1 | Missing Required Documents |
+| `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 1 | Missing Required Documents |
 | `vidyasaarathi-scholarship-csr-programs` | **Vidyasaarathi Scholarship (CSR Programs)** | 1 | Missing Required Documents |
 | `ssp-pre-matric-post-matric-scholarship-karnataka` | **SSP Pre-Matric & Post-Matric Scholarship (Karnataka)** | 1 | Missing Required Documents |
 | `nmms-scholarship-karnataka` | **NMMS Scholarship (Karnataka)** | 1 | Missing Required Documents |
@@ -78,7 +79,6 @@ Here are the scholarships with the highest number of content quality issues:
 | `sbi-platinum-jubilee-asha-scholarship` | **SBI Platinum Jubilee Asha Scholarship 2026-27** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `narotam-sekhsaria-postgraduate-scholarship` | **Narotam Sekhsaria Postgraduate Scholarship 2026** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `glow-lovely-careers-scholarship-for-women` | **Glow & Lovely Careers Scholarship for Women 2026-27** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `tata-trusts-medical-and-healthcare-scholarship` | **Tata Trusts Medical and Healthcare Scholarship 2026-27** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `junior-merit-scholarship` | **Junior Merit Scholarship** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `goa-dayanand-social-security-scheme-students` | **Goa Dayanand Social Security Scheme (Students)** | 1 | Missing Helpline Contact Details |
 | `meghalaya-merit-scholarship` | **Meghalaya Merit Scholarship** | 1 | Missing Helpline Contact Details |
