@@ -37,7 +37,7 @@ while ((rm = redirectRegex.exec(nextConfigContent)) !== null) {
 }
 
 // Fetch all portals from portalsData.ts
-let portalSlugs = new Set(['nsp', 'e-kalyan-jharkhand', 'digital-gujarat-mysy', 'ssp-karnataka', 'aikyashree-west-bengal', 'talliki-vandanam-ap', 'mptaas-mmvy-mp', 'e-grantz-kerala']);
+let portalSlugs = new Set(['nsp', 'e-kalyan-jharkhand', 'digital-gujarat-mysy', 'ssp-karnataka', 'aikyashree-west-bengal', 'talliki-vandanam-ap', 'mptaas-mmvy-mp', 'e-grantz-kerala', 'up-scholarship', 'mahadbt-maharashtra']);
 try {
   const { PORTALS_DATA } = require(path.join(projectRoot, 'lib', 'portalsData.ts'));
   Object.keys(PORTALS_DATA).forEach(k => {

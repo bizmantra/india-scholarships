@@ -423,5 +423,112 @@ export const PORTALS_DATA: Record<string, PortalGuide> = {
             address: 'Directorate of Scheduled Castes Development, Museum P.O., Thiruvananthapuram - 695033',
             hours: '10:15 AM to 5:00 PM (Monday to Saturday)'
         }
+    },
+    'up-scholarship': {
+        id: 'up-scholarship',
+        aliases: ['up-scholarship-portal', 'saksham-up', 'upscholarship'],
+        name: 'UP Scholarship & Fee Reimbursement Portal (Saksham)',
+        state: 'Uttar Pradesh',
+        fullTitle: 'UP Scholarship Portal 2026: Student Registration, Login, Status & Guidelines',
+        seoDesc: 'Comprehensive guide to the Uttar Pradesh Scholarship Portal (scholarship.up.gov.in / Saksham). Student login, Pre-Matric & Post-Matric Dashmottar application status, DIOS verification, and PFMS tracking.',
+        officialUrl: 'https://scholarship.up.gov.in',
+        portalTag: 'State Government Portal',
+        description: 'The UP Scholarship & Fee Reimbursement Online System (Saksham) is the official portal of the Social Welfare, Backward Class Welfare, and Minority Welfare Departments of Uttar Pradesh. It processes educational scholarships and fee waivers for millions of students across Pre-Matric and Post-Matric Dashmottar schemes.',
+        stats: {
+            activeSchemes: '10+ State Schemes',
+            beneficiaries: '50 Lakh+ Students Annually',
+            disbursementType: 'Direct Benefit Transfer via PFMS',
+            verificationMode: 'Institute + DIOS + DWO Verification'
+        },
+        loginSteps: [
+            { step: '01', title: 'Visit Official Portal & Register', desc: 'Go to scholarship.up.gov.in and click "Student" -> "Registration" (Fresh or Renewal).' },
+            { step: '02', title: 'Choose Category & Education Level', desc: 'Select your caste category (General/SC/ST, OBC, or Minority) and educational stage (Pre-Matric, Post-Matric Inter, or Post-Matric Other Than Inter).' },
+            { step: '03', title: 'Generate Registration Number', desc: 'Fill in High School board details, mobile number, and create a secure password to generate your UP Scholarship Registration Number.' },
+            { step: '04', title: 'DigiLocker Verification & Scrutiny', desc: 'Log in under Student Login, complete DigiLocker authentication, enter e-District income and caste certificate numbers, and submit for institutional scrutiny.' }
+        ],
+        statusSteps: [
+            { title: 'Step 1: Open Application Status Tab', desc: 'Open scholarship.up.gov.in and click on the "Status" dropdown in the main header menu.' },
+            { title: 'Step 2: Enter Registration & Birth Date', desc: 'Select your application session and input your Registration Number and Date of Birth.' },
+            { title: 'Step 3: Track Verification & PFMS Release', desc: 'View your real-time status: College Scrutiny -> District Inspector of Schools (DIOS) Clearance -> District Welfare Officer (DWO) Approval -> PFMS Disbursed.' }
+        ],
+        documents: [
+            { name: 'Income Certificate (Aay Praman Patra)', format: 'Digital Verified', note: 'Must be issued by UP Revenue Department e-District portal and valid for 3 years.' },
+            { name: 'Caste Certificate (Jati Praman Patra)', format: 'Digital Verified', note: 'Mandatory for SC, ST, and OBC categories issued via UP e-District.' },
+            { name: 'Domicile Certificate (Niwas Praman Patra)', format: 'Digital Verified', note: 'Proof of permanent Uttar Pradesh state residence.' },
+            { name: 'Class 10 Marksheet & Roll Number', format: 'PDF (< 100 KB)', note: 'Used for DigiLocker authentication and birth date validation.' },
+            { name: 'College Fee Receipt & Bonafide Slip', format: 'PDF (< 100 KB)', note: 'Current academic session college admission and fee breakdown receipt.' },
+            { name: 'Aadhaar-Seeded Bank Passbook', format: 'PDF (< 100 KB)', note: 'Bank account must have active NPCI mapping for DBT scholarship credit.' }
+        ],
+        topSchemes: [
+            { name: 'UP Scholarship Portal (Dashmottar Schemes)', slug: 'up-scholarship-portal', targetGroup: 'Post-Matric & Higher Education Students', amount: 'Full Tuition Fee Waiver' },
+            { name: 'UP Pre-Matric Scholarship (General/SC/ST)', slug: 'up-pre-matric-scholarship-general-sc-st', targetGroup: 'Class 9 & 10 SC/ST/General Students', amount: '₹3,000/year' },
+            { name: 'UP Pre-Matric Scholarship (OBC)', slug: 'up-pre-matric-scholarship-obc', targetGroup: 'Class 9 & 10 OBC Students', amount: '₹3,000/year' },
+            { name: 'UP Pre-Matric Scholarship (Minority)', slug: 'up-pre-matric-scholarship-minority', targetGroup: 'Class 9 & 10 Minority Students', amount: '₹3,000/year' }
+        ],
+        faqs: [
+            { q: 'How can I check my UP Scholarship status online?', a: 'Visit scholarship.up.gov.in, navigate to the Status tab, choose your academic session, enter your Registration Number and Date of Birth, and submit to inspect your live scrutiny status report.' },
+            { q: 'What does "Pending at District Scholarship Committee" mean on UP Scholarship?', a: 'It means your application has passed college and DIOS level verification, and is currently pending financial sanction and quota clearance by the District Welfare Officer (DWO).' },
+            { q: 'Why is DigiLocker integration required on UP Scholarship portal?', a: 'DigiLocker integration enables automated verification of educational marksheets, caste certificates, and domicile documents directly from official state repositories, preventing fraudulent claims.' },
+            { q: 'What should I do if my UP Scholarship status shows "Bank Account Not Mapped with NPCI"?', a: 'Visit your bank branch immediately with an Aadhaar DBT Seeding consent form to activate your NPCI mapper. Payments will fail on PFMS until this mapping is active.' }
+        ],
+        helpline: {
+            phone: '0522-3538700 / Toll Free 1076',
+            email: 'helpdesk.upscholarship@gmail.com',
+            address: 'Directorate of Social Welfare, Kalyan Bhawan, Prag Narain Road, Lucknow, Uttar Pradesh - 226001',
+            hours: '10:00 AM to 5:00 PM (Working Days)'
+        }
+    },
+    'mahadbt-maharashtra': {
+        id: 'mahadbt-maharashtra',
+        aliases: ['mahadbt', 'mahadbt-status', 'mahadbtmahait'],
+        name: 'MahaDBT Scholarship Portal (Maharashtra)',
+        state: 'Maharashtra',
+        fullTitle: 'MahaDBT Portal 2026: Student Login, Application Status & Schemes Guide',
+        seoDesc: 'Complete guide to the Maharashtra MahaDBT scholarship portal (mahadbt.maharashtra.gov.in). Student profile registration, Aadhaar authentication, Rajarshi Shahu Maharaj fee waiver, and PFMS tracking.',
+        officialUrl: 'https://mahadbt.maharashtra.gov.in',
+        portalTag: 'State Government Portal',
+        description: 'MahaDBT (Maharashtra Direct Benefit Transfer) is the unified state welfare portal developed by the Government of Maharashtra. It manages post-matric scholarships, tuition fee waivers, hostel allowances, and educational stipends across Social Justice, Tribal Development, Higher Education, and Technical Education directorates.',
+        stats: {
+            activeSchemes: '14+ State Departments',
+            beneficiaries: '15 Lakh+ Students',
+            disbursementType: 'Aadhaar-Based DBT Transfer',
+            verificationMode: 'College Desk 1 -> Desk 2 -> Department DDO'
+        },
+        loginSteps: [
+            { step: '01', title: 'New Applicant Registration', desc: 'Visit mahadbt.maharashtra.gov.in and click "Post-Matric Scholarship" -> "New Applicant Registration".' },
+            { step: '02', title: 'Aadhaar Biometric/OTP Verification', desc: 'Authenticate using your 12-digit Aadhaar number via OTP sent to your registered mobile number.' },
+            { step: '03', title: 'Complete 6-Step Student Profile', desc: 'Log in and fill your Profile tabs: Personal Info, Address, Other Info, Caste, Income, and Past Academic Qualification.' },
+            { step: '04', title: 'Select Scheme & Apply', desc: 'Search for your eligible department scheme (e.g., Rajarshi Shahu Maharaj or Post-Matric SC/OBC), link your current academic course, and submit.' }
+        ],
+        statusSteps: [
+            { title: 'Step 1: Log in to MahaDBT Profile', desc: 'Sign in to mahadbt.maharashtra.gov.in using your registered username and secret password.' },
+            { title: 'Step 2: Open My Applied Scheme', desc: 'Click on "My Applied Scheme" on the left-hand user dashboard navigation menu.' },
+            { title: 'Step 3: Review Verification Stage', desc: 'Track stages: Under Scrutiny -> Approved -> Voucher Generated -> Disbursed via Aadhaar DBT.' }
+        ],
+        documents: [
+            { name: 'Caste Certificate & Validity', format: 'Digital Verified', note: 'Caste Certificate and Caste Validity Certificate (mandatory for professional degrees).' },
+            { name: 'Income Certificate from Tahsildar', format: 'Digital Verified', note: 'Annual household income certificate valid for the current financial year.' },
+            { name: 'Maharashtra Domicile Certificate', format: 'Digital Verified', note: 'Certifying permanent domicile in Maharashtra state.' },
+            { name: 'Previous Year Qualifying Marksheets', format: 'PDF (< 256 KB)', note: 'HSC, SSC, or last passed degree/diploma examination marksheet.' },
+            { name: 'College Admission Letter & Fee Receipt', format: 'PDF (< 256 KB)', note: 'Current academic year college bonafide and fee structure slip.' },
+            { name: 'Aadhaar-NPCI Seeded Bank Account', format: 'Digital Auto-Fetch', note: 'Account must be NPCI seeded for Aadhaar payment bridge disbursal.' }
+        ],
+        topSchemes: [
+            { name: 'Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh', slug: 'maharashtra-rajarshi-shahu', targetGroup: 'EBC / General Merit Students (50% Fee Reimbursement)', amount: 'Up to 50% Tuition Fee Waiver' },
+            { name: 'Dr. Panjabrao Deshmukh Vasatigruh Nirvah Bhatta', slug: 'dr-panjabrao-deshmukh-vasatigruh-nirvah-bhatta-yojna', targetGroup: 'Hosteller Children of Farmers & Labourers', amount: 'Up to ₹30,000/year' },
+            { name: 'MahaDBT Post-Matric Scholarship (Maharashtra)', slug: 'mahadbt-post-matric-scholarship-maharashtra', targetGroup: 'SC / ST / VJNT / OBC Post-Matric Students', amount: 'Full Tuition + Maintenance' }
+        ],
+        faqs: [
+            { q: 'Who is eligible for the Rajarshi Shahu Maharaj fee reimbursement on MahaDBT?', a: 'Students admitted under general or EBC categories in recognized degree or diploma courses with an annual family income up to ₹8,00,000 receive 50% tuition and exam fee reimbursement.' },
+            { q: 'What does "Under Scrutiny" mean on the MahaDBT dashboard?', a: 'It means your application is currently undergoing scrutiny by your college scrutiny officer (Desk 1) and principal (Desk 2) for fee and attendance verification.' },
+            { q: 'What is the Dr. Panjabrao Deshmukh hostel allowance on MahaDBT?', a: 'It provides up to ₹30,000 per year (for Mumbai/Pune) and ₹20,000 per year (other regions) to hosteller children of small/marginal farmers and registered labourers pursuing higher professional degrees.' },
+            { q: 'What should I do if my MahaDBT application status shows "Send Back to Applicant"?', a: 'Log in to your profile, click on the application, review the specific defect raised by the college scrutiny clerk, update the flagged certificate or marks detail, and re-submit.' }
+        ],
+        helpline: {
+            phone: '022-49150800',
+            email: 'mahadbt.helpdesk@maharashtra.gov.in',
+            address: 'Directorate of Information Technology, 7th Floor, Mantralaya, Madam Cama Road, Mumbai - 400032',
+            hours: '09:00 AM to 06:00 PM (Monday to Saturday)'
+        }
     }
 };
