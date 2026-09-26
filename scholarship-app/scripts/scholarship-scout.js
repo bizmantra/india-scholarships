@@ -7,6 +7,7 @@
  *   3. CSR & competitors — rotating sweep of foundations and aggregator sites (e.g. Buddy4Study).
  *   4. News            — Google News RSS for newly announced / opened scholarships (last 7 days).
  *   5. Coverage gaps   — states and student groups where our catalogue is thinnest.
+ *   6. Open web search — broad Google searches for scholarships announced or opened recently.
  *
  * Every lead is de-duplicated against the database, researched with Gemini + Google Search
  * grounding, filtered by the sourcing gate (no coaching tests, no loans, must be active or
@@ -15,7 +16,7 @@
  * Nothing is written to the database here. Candidates go live only after the weekly
  * pull request is merged (see scripts/publish-scout-approved.js).
  *
- * Usage: node scripts/scholarship-scout.js [--dry-run] [--max=8] [--channels=demand,portals,csr,news,coverage]
+ * Usage: node scripts/scholarship-scout.js [--dry-run] [--max=8] [--channels=demand,web,portals,csr,news,coverage]
  */
 const fs = require('fs');
 const path = require('path');
@@ -33,7 +34,7 @@ const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const argValue = name => args.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
 const MAX_CANDIDATES = parseInt(argValue('max') || '8', 10);
-const ALL_CHANNELS = ['demand', 'portals', 'csr', 'news', 'coverage'];
+const ALL_CHANNELS = ['demand', 'web', 'portals', 'csr', 'news', 'coverage'];
 const CHANNELS = (argValue('channels') || ALL_CHANNELS.join(',')).split(',');
 
 const APP_DIR = path.join(__dirname, '..');
@@ -47,6 +48,7 @@ const REPORT_PATH = path.join(SCOUT_DIR, 'scout-report.md');
 
 const CHANNEL_LABELS = {
     demand: '🔎 Search demand',
+    web: '🌐 Open web search',
     portals: '🏛️ Official portal',
     csr: '🏢 CSR / competitor',
     news: '📰 News',
@@ -90,6 +92,17 @@ const CSR_SOURCES = [
     { name: 'Women-in-STEM scholarships (L\'Oréal, Rolls-Royce Unnati, etc.)', url: 'https://www.loreal.com' },
 ];
 const PORTALS_PER_WEEK = 4;
+
+// ---- Channel 6: open-ended web searches, not tied to any source (2 per week, rotating) ----
+const WEB_SEARCHES = [
+    'scholarships for Indian students announced or opened for applications in the last 30 days',
+    'newly launched government scholarship schemes in India this year (central and state)',
+    'new corporate and foundation scholarships for Indian school and college students this year',
+    'scholarships for Indian students with application deadlines in the next 60 days',
+    'new scholarships for Indian students to study abroad for the upcoming academic year',
+    'lesser-known state and district level scholarships in India for poor and rural students',
+];
+const WEB_SEARCHES_PER_WEEK = 2;
 const CSR_PER_WEEK = 3;
 
 // ---- Channel 5: coverage matrix ----
@@ -324,6 +337,22 @@ async function sweepLeads(sources, count, channel, knownTitles) {
             found.forEach(f => leads.push({ ...f, channel, evidence: f.evidence || source.url, via: source.name }));
         } catch (error) {
             console.error(`   ❌ Sweep failed for ${source.name}: ${error.message.slice(0, 120)}`);
+        }
+        await sleep(6000);
+    }
+    return leads;
+}
+
+// ---------------- Channel 6: open web search ----------------
+async function webLeads(knownTitles) {
+    const leads = [];
+    for (const query of rotate(WEB_SEARCHES, WEB_SEARCHES_PER_WEEK)) {
+        console.log(`   Searching: ${query}`);
+        try {
+            const found = await discoverFromPrompt(`Search the web for: ${query}.`, knownTitles, 8);
+            found.forEach(f => leads.push({ ...f, channel: 'web', via: `Web search: ${query}` }));
+        } catch (error) {
+            console.error(`   ❌ Web search failed: ${error.message.slice(0, 120)}`);
         }
         await sleep(6000);
     }
@@ -622,12 +651,13 @@ async function runScout() {
     const channelStats = {};
     const runners = {
         demand: () => demandLeads(existing, knownKeywords),
+        web: () => webLeads(knownTitles),
         news: () => newsLeads(seenLinks, knownTitles, freshLinks),
         portals: () => sweepLeads(PORTAL_SOURCES, PORTALS_PER_WEEK, 'portals', knownTitles),
         csr: () => sweepLeads(CSR_SOURCES, CSR_PER_WEEK, 'csr', knownTitles),
         coverage: () => coverageLeads(dbRows, knownTitles),
     };
-    for (const channel of ['demand', 'news', 'portals', 'csr', 'coverage']) {
+    for (const channel of ['demand', 'web', 'news', 'portals', 'csr', 'coverage']) {
         if (!CHANNELS.includes(channel)) continue;
         console.log(`\n${CHANNEL_LABELS[channel]}`);
         try {
@@ -649,14 +679,15 @@ async function runScout() {
     for (const lead of leads) {
         if (accepted.length >= MAX_CANDIDATES) break;
 
+        // The same scheme often surfaces in several channels in one run
+        if (triedNames.some(n => similarity(n, lead.name) >= 0.85)) continue;
+        triedNames.push(lead.name);
+
         const dup = isDuplicate(lead.name, existing);
         if (dup) {
             rejected.push({ name: lead.name, channel: lead.channel, reason: `Already listed as "${dup.title}"` });
             continue;
         }
-        // The same scheme often surfaces in several channels in one run
-        if (triedNames.some(n => similarity(n, lead.name) >= 0.85)) continue;
-        triedNames.push(lead.name);
 
         console.log(`🔍 [${lead.channel}] Researching: "${lead.name}" (${lead.provider || 'unknown provider'})`);
         try {
