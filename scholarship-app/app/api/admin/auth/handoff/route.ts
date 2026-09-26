@@ -28,5 +28,5 @@ export async function GET(request: Request) {
         path: '/',
         maxAge: 7 * 24 * 60 * 60,
     });
-    return NextResponse.redirect(`${url.origin}/admin/command`);
+    return NextResponse.redirect(`${url.origin}/admin/agents`);
 }

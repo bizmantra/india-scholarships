@@ -73,4 +73,4 @@ export const AGENTS: AgentDefinition[] = [
 ];
 
 export const agentById = (id: string) => AGENTS.find(a => a.id === id);
-export const agentLabel = (id: string) => agentById(id)?.label || (id === 'command-center' ? 'Command Center' : id);
+export const agentLabel = (id: string) => agentById(id)?.label || (id === 'command-center' ? 'Agent Center' : id);

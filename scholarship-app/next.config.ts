@@ -109,6 +109,8 @@ const nextConfig: NextConfig = {
     }
 
     return [
+      // The chat was renamed Agent Center
+      { source: '/admin/command', destination: '/admin/agents', permanent: false },
       ...generatedRedirects,
 
       // Year-suffixed URL redirect patterns (e.g. /scholarships/tata-2024 -> /scholarships/tata)
