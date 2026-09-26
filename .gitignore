@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Database backups (never commit)
 backups/
+scholarship-app/data/scout/scout-report.md

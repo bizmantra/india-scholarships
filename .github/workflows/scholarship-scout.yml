@@ -1,16 +1,41 @@
 name: Weekly New Scholarship Scout
+# The request id lets the command center find the run it started
+run-name: "Scholarship Scout · ${{ inputs.target || 'production' }}${{ inputs.state && format(' · {0}', inputs.state) || '' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
   schedule:
     - cron: '15 3 * * 3' # Wednesday 3:15 AM UTC (Runs Wednesday 8:45 AM IST)
-  workflow_dispatch: # Allows manual triggering from GitHub UI
+  workflow_dispatch: # Started from the command center or the GitHub UI
+    inputs:
+      target:
+        description: 'Database to update (staging = test run: live site untouched)'
+        type: choice
+        options: [production, staging]
+        default: production
+      state:
+        description: 'Focus on one state (optional), e.g. Bihar'
+        type: string
+        required: false
+        default: ''
+      request_id:
+        description: 'Set by the command center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
+
+# The scout saves candidates to the database, so it waits for other database writers
+concurrency:
+  group: database-writes
+  cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
 
 jobs:
   scout:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,50 +52,77 @@ jobs:
           cd scholarship-app
           npm ci
 
-      # Read-only: the scout needs the current list of scholarships to spot new ones
+      # Turso is the master copy: start from its latest data
       - name: Pull latest database from Turso
         run: node scholarship-app/scripts/pull-from-turso.js
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Discover New Scholarships (Gemini Flash)
         id: scout
-        run: |
-          node scholarship-app/scripts/scholarship-scout.js
+        run: node scholarship-app/scripts/scholarship-scout.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Passed as a variable, never pasted into the command, so any text is safe
+          SCOUT_STATE: ${{ inputs.state }}
           NODE_ENV: production
 
-      - name: Open Review Pull Request
-        id: pr
-        if: steps.scout.outputs.candidates != '0'
-        uses: peter-evans/create-pull-request@v7
+      - name: Show the scout report on the run page
+        if: always()
+        run: |
+          if [ -f scholarship-app/data/scout/scout-report.md ]; then
+            cat scholarship-app/data/scout/scout-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Normalize data formats
+        run: node scholarship-app/scripts/clean-data-formats.js
+
+      - name: Check data formats (blocks bad data from reaching Turso)
+        run: node scholarship-app/scripts/check-data-formats.js
+
+      - name: Back up Turso before syncing
+        run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Store pre-sync backup
+        uses: actions/upload-artifact@v4
         with:
-          branch: scout/new-scholarships
-          add-paths: scholarship-app/data/scout/**
-          commit-message: "feat: scout found new scholarships for review"
-          title: "🔭 Scholarship Scout: ${{ steps.scout.outputs.candidates }} new scholarship(s) to review"
-          body-path: scholarship-app/data/scout/scout-report.md
-          labels: scholarship-scout
-          delete-branch: true
+          name: pre-sync-backup-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: backups/pre-sync.db
+          retention-days: 7
+
+      # Saves the candidates (pending review) and the run summary to the inbox
+      - name: Push Database to Turso
+        run: node scholarship-app/scripts/push-to-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Send Email Notification
-        if: steps.pr.outputs.pull-request-url != ''
+        if: steps.scout.outputs.candidates != '0' && steps.scout.outputs.candidates != ''
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Scholarship Scout: ${{ steps.scout.outputs.candidates }} new scholarship(s) to review"
+          subject: "${{ env.DB_TARGET == 'staging' && '[STAGING] ' || '' }}Scholarship Scout: ${{ steps.scout.outputs.candidates }} new scholarship(s) to review"
           to: bizmantra@gmail.com
           from: "India Scholarships Scout <${{ secrets.EMAIL_USERNAME }}>"
           secure: true
           body: |
-            The weekly scout found ${{ steps.scout.outputs.candidates }} scholarship(s) that are not yet on the site.
+            The scout found ${{ steps.scout.outputs.candidates }} scholarship(s) that are not yet on the site.
 
-            Review and approve them here:
-            ${{ steps.pr.outputs.pull-request-url }}
+            Review them in the command center: https://indiascholarships.in/admin
+            Approved scholarships go live when the Scout Publisher runs. Rejected ones are never suggested again.
 
-            Merge the pull request to publish them. Close it to reject them all.
+            Full report: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

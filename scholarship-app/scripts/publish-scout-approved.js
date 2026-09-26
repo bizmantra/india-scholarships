@@ -1,22 +1,24 @@
 /**
  * Publish Scout-Approved Scholarships
  *
- * Runs after a New Scholarship Scout pull request is merged. Every file still in
- * data/scout/candidates/ was approved by a human, so each one is inserted into the
- * scholarships table as Active and then moved to data/scout/published/.
+ * Publishes every New Scholarship Scout candidate the owner approved in the command center
+ * (agent_proposals: kind 'new_scholarship', status 'approved'). Each one is inserted into the
+ * scholarships table as Active and its proposal is marked 'published'.
+ *
+ * Runs on the local copy (pull → publish → format check → push), started from the command center
+ * or by hand.
  *
  * Usage: node scripts/publish-scout-approved.js [--dry-run]
  */
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
+const inbox = require('./lib/agent-inbox');
 
 const dryRun = process.argv.includes('--dry-run');
+const AGENT = 'scout-publisher';
 
 const DB_PATH = process.env.SCOUT_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
-const SCOUT_DIR = path.join(__dirname, '..', 'data', 'scout');
-const CANDIDATES_DIR = path.join(SCOUT_DIR, 'candidates');
-const PUBLISHED_DIR = path.join(SCOUT_DIR, 'published');
 
 const COLUMNS = [
     'id', 'title', 'slug', 'provider', 'provider_type', 'state', 'level', 'caste', 'gender', 'course_stream', 'app_type',
@@ -35,7 +37,7 @@ function toRow(candidate) {
         verified_status: 'Verified',
         last_verified: now,
         last_checked_at: now,
-        notes_actions: 'Added by New Scholarship Scout (human-approved PR)',
+        notes_actions: 'Added by New Scholarship Scout (approved in the command center)',
         status: 'Active',
         verification_year: new Date().getFullYear(),
         priority_score: 50,
@@ -51,68 +53,78 @@ function toRow(candidate) {
 }
 
 function run() {
-    if (!fs.existsSync(CANDIDATES_DIR)) {
-        console.log('No candidates directory. Nothing to publish.');
-        return;
-    }
-    const files = fs.readdirSync(CANDIDATES_DIR).filter(f => f.endsWith('.json'));
-    if (files.length === 0) {
+    const db = new Database(DB_PATH);
+    inbox.ensureAgentTables(db);
+    const approved = db.prepare(`SELECT * FROM agent_proposals WHERE kind = 'new_scholarship' AND status = 'approved' ORDER BY id`).all();
+    if (approved.length === 0) {
         console.log('No approved candidates. Nothing to publish.');
+        db.close();
+        if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'published=0\n');
         return;
     }
 
-    const db = new Database(DB_PATH);
     const insert = db.prepare(`INSERT INTO scholarships (${COLUMNS.join(', ')}) VALUES (${COLUMNS.map(c => '@' + c).join(', ')})`);
     const exists = db.prepare('SELECT id FROM scholarships WHERE id = ? OR slug = ?');
     const insertChangelog = db.prepare(`
         INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details)
         VALUES (?, ?, ?, ?)
     `);
+    const markProposal = db.prepare(`UPDATE agent_proposals SET status = ?, decision_note = ? WHERE id = ?`);
 
-    fs.mkdirSync(PUBLISHED_DIR, { recursive: true });
     let published = 0;
+    const publishedSlugs = [];
 
-    for (const file of files) {
-        const filePath = path.join(CANDIDATES_DIR, file);
-        let candidate;
+    for (const proposal of approved) {
+        let fields;
         try {
-            candidate = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            fields = JSON.parse(proposal.payload_json);
         } catch (error) {
-            console.error(`❌ ${file}: invalid JSON (${error.message}). Left in place.`);
+            console.error(`❌ Proposal ${proposal.id}: unreadable record (${error.message}). Left as approved.`);
             continue;
         }
-        const { _scout, ...fields } = candidate;
         if (!fields.title || !fields.slug) {
-            console.error(`❌ ${file}: missing title or slug. Left in place.`);
+            console.error(`❌ Proposal ${proposal.id}: missing title or slug. Left as approved.`);
             continue;
         }
         fields.id = fields.id || fields.slug;
+        const evidence = JSON.parse(proposal.evidence_json || '{}');
 
         if (exists.get(fields.id, fields.slug)) {
-            console.log(`⏭️  ${fields.slug} already exists in the database. Archiving file only.`);
-        } else if (dryRun) {
+            console.log(`⏭️  ${fields.slug} already exists in the database. Marking as published.`);
+            if (!dryRun) markProposal.run('published', 'Already on the site when publishing', proposal.id);
+            continue;
+        }
+        if (dryRun) {
             console.log(`🧪 Would publish: "${fields.title}" (${fields.slug})`);
             continue;
-        } else {
-            db.transaction(() => {
-                insert.run(toRow(fields));
-                insertChangelog.run(fields.id, fields.title, 'scout_added', JSON.stringify({
-                    source_citation: fields.official_source,
-                    channel: _scout?.channel || null,
-                    evidence: _scout?.evidence || [],
-                    confidence: _scout?.confidence || null
-                }));
-            })();
-            published++;
-            console.log(`✅ Published: "${fields.title}" (${fields.slug})`);
         }
-
-        if (!dryRun) fs.renameSync(filePath, path.join(PUBLISHED_DIR, file));
+        db.transaction(() => {
+            insert.run(toRow(fields));
+            insertChangelog.run(fields.id, fields.title, 'scout_added', JSON.stringify({
+                source_citation: fields.official_source,
+                approved_by: proposal.decided_by,
+                proposal_id: proposal.id,
+                evidence: evidence.evidence || [],
+                confidence: evidence.confidence || null
+            }));
+            markProposal.run('published', `Published ${new Date().toISOString().slice(0, 10)}`, proposal.id);
+        })();
+        published++;
+        publishedSlugs.push(fields.slug);
+        console.log(`✅ Published: "${fields.title}" (${fields.slug})`);
     }
 
+    if (!dryRun && published > 0) {
+        inbox.logEvent(db, {
+            agent: AGENT,
+            kind: 'run_finished',
+            summary: `Published ${published} approved scholarship(s)`,
+            details: { slugs: publishedSlugs }
+        });
+    }
     db.close();
     console.log(`\n🏁 Published ${published} new scholarship(s).`);
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `published=${published}\n`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `published=${published}\nslugs=${publishedSlugs.join(',')}\n`);
 }
 
 run();

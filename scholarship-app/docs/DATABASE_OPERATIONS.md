@@ -60,10 +60,40 @@ The site build (`npm run build`) pulls from Turso first, so every deploy uses cu
 | Workflow | What it does |
 |---|---|
 | Daily Database Backup | Backs up production every morning; the file is kept 30 days as a run artifact. |
-| Daily Deadline Freshness Check / Weekly Enrichment / Publish Scout-Approved | Pull from Turso → run the agent → normalize → check formats → back up Turso → push only the agent's changes → redeploy the site. Can be run manually against staging. |
+| Daily Deadline Freshness Check / Weekly Enrichment | Pull from Turso → run the agent (proposals go to the agent inbox) → normalize → check formats → back up Turso → push only the agent's changes → redeploy the site. Can be run manually against staging. |
+| Weekly New Scholarship Scout | Same pull → push cycle; saves new scholarship candidates to the agent inbox. Optional `state` input focuses the search on one state. |
+| Publish Scout-Approved | Publishes scout candidates approved in the inbox. Started from the command center after an approval, and daily as a safety net. |
 | Refresh Staging Database | Copies production into staging (reads production only). |
 
 All workflows that write the database share the `database-writes` concurrency group, so they never run at the same time.
+
+## Agent inbox (approvals)
+
+Agents never change facts on the site by themselves. They put proposed changes in the **agent inbox**, and the owner
+approves or rejects them (command center in `/admin`, or `node scripts/apply-reviewed-changes.js` in a terminal).
+The shared rules live in `scripts/lib/agent-inbox.js`.
+
+| Table | What it holds |
+|---|---|
+| `agent_proposals` | One row per proposed change. `kind` is `field_change` (one field of one scholarship) or `new_scholarship` (a scout find, full record in `payload_json`). `status`: `pending` → `approved` / `rejected`; also `superseded` (replaced by a newer value), `dismissed` (not a real change) and `published` (scout find now live). |
+| `agent_events` | The activity feed: agent runs, approvals, rejections. |
+| `agent_settings` | Owner-controlled settings per agent (on/off for scheduled runs, limits, channels). |
+| `agent_state` | An agent's memory between runs (e.g. news links the scout already read). |
+
+Rules every agent follows (enforced by `proposeFieldChange`):
+- **One pending item per scholarship and field.** A repeat bumps `times_proposed`; a different value replaces the old one.
+- **Rejected values never come back.** The same value for the same field is not proposed again.
+- **Blank or "not found" answers are not proposals** (an empty deadline or a ₹0 amount means the agent found nothing).
+- **Rewordings are not proposals:** a reworded deadline description when the date did not change, a reformatted helpline,
+  or another page on the same website. Filling an empty field or fixing a bad value is always proposed.
+- Only these fields can be proposed: `deadline`, `deadline_description`, `amount_annual`, `amount_min`, `official_source`,
+  `apply_url`, `helpline`. Values are format-checked before they are applied.
+
+Approving a field change writes the scholarship, logs a `reviewed_applied` changelog entry (who approved, old and new value)
+and an activity event. Approving a scout find marks it `approved`; the Scout Publisher inserts it.
+
+Before the inbox, proposals were `scholarship_changelog` rows with `action_type = 'pending_review'`.
+`scripts/migrate-to-agent-inbox.js` moves them (it runs at the start of every Deadline Freshness run and does nothing once they are moved).
 
 ## Required secrets
 

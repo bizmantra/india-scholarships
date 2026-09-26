@@ -1,4 +1,6 @@
 name: Daily Deadline Freshness Check
+# The request id lets the command center find the run it started
+run-name: "Deadline Freshness · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
   schedule:
@@ -10,6 +12,11 @@ on:
         type: choice
         options: [production, staging]
         default: production
+      request_id:
+        description: 'Set by the command center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
 
 # Every workflow that writes the database shares this group, so they run one at a time
 concurrency:
@@ -48,6 +55,10 @@ jobs:
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
           TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
           TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      # One-time move of old changelog proposals into the agent inbox; does nothing once they are moved
+      - name: Move old proposals into the agent inbox
+        run: node scholarship-app/scripts/migrate-to-agent-inbox.js
 
       - name: Run Daily Deadline Verification (Gemini Flash)
         run: |
