@@ -92,7 +92,7 @@ export default function ScholarshipDetailTemplate({
                             title={scholarship.title}
                             amount={scholarship.amount_annual ? `₹${scholarship.amount_annual.toLocaleString('en-IN')}` : '₹75,000 max'}
                             deadline={scholarship.deadline || 'Closing Soon'}
-                            eligibility={scholarship.eligibility_summary || 'Class 11-12, Graduation, Engineering (< ₹8L Income)'}
+                            eligibility={scholarship.eligibility_summary || [scholarship.level, scholarship.income_limit ? `Family income up to ₹${Number((scholarship.income_limit / 100000).toFixed(2))} Lakh/year` : 'No income limit'].filter(Boolean).join(' · ')}
                             provider={scholarship.provider}
                             applyUrl={cleanApplyUrl || ''}
                         />

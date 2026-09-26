@@ -1,0 +1,12 @@
+{
+  "_about": "Human-reviewed field values. Applied by scripts/clean-data-formats.js on every agent run (only when the value differs), and logged to scholarship_changelog. extra_data_json values are merged into the existing JSON object.",
+  "up-postmatric-dashmotar-scholarship": {
+    "income_limit": 200000,
+    "extra_data_json": { "income_limit_note": "₹2.5 lakh for SC/ST" },
+    "_reviewed": "2026-09-26: ₹2 lakh for General, OBC and Minority; ₹2.5 lakh for SC/ST (confirmed by site owner)"
+  },
+  "bihar-postmatric-pms-scholarship": {
+    "income_limit": 300000,
+    "_reviewed": "2026-09-26: ₹3 lakh annual family income (confirmed by site owner against official guidelines)"
+  }
+}

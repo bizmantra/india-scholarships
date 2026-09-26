@@ -320,6 +320,27 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         url: `https://www.indiascholarships.in/scholarships/${scholarship.slug}`
     };
 
+    // Income limit in lakh, e.g. "Up to ₹2 Lakh/year (₹2.5 lakh for SC/ST)"
+    const incomeNote: string = scholarship.extra_data_json?.income_limit_note || '';
+    const formatIncomeLimit = () => {
+        if (!scholarship.income_limit) return 'No income bar';
+        const lakh = Number((Number(scholarship.income_limit) / 100000).toFixed(2));
+        return `Up to ₹${lakh} Lakh/year${incomeNote ? ` (${incomeNote})` : ''}`;
+    };
+
+    // One-line eligibility summary built from the scholarship's own fields
+    const buildEligibilitySummary = () => {
+        const parts: string[] = [];
+        if (scholarship.level) parts.push(String(scholarship.level));
+        const castes: string[] = Array.isArray(scholarship.caste) ? scholarship.caste : [];
+        // A list that includes General / All is open to every category, so it is not worth repeating
+        if (castes.length && !castes.some((c: string) => /^(all|general|open to all)/i.test(c))) parts.push(castes.join(', '));
+        if (/^(female|girls?|women)( only)?$/i.test(String(scholarship.gender || '').trim())) parts.push('Girls / women only');
+        if (scholarship.state && !/all india/i.test(scholarship.state)) parts.push(`${scholarship.state} residents`);
+        parts.push(scholarship.income_limit ? `Family income ${formatIncomeLimit().replace(/^Up to/, 'up to')}` : 'No income limit');
+        return parts.join(' · ');
+    };
+
     // Format amount
     const formatAmount = (amount: number | null, description: string = '') => {
         if (!amount || amount === 0) {
@@ -557,7 +578,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 title={scholarship.title}
                                 amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
                                 deadline={isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short' }, 'Check portal')}
-                                eligibility={scholarship.eligibility_summary || 'Class 11-12, Graduation, Engineering (< ₹8L Income)'}
+                                eligibility={buildEligibilitySummary()}
                                 provider={scholarship.provider}
                                 applyUrl={cleanApplyUrl || ''}
                             />
@@ -673,7 +694,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     )}
                                     <tr id="income-limit">
                                         <td>Income Limit</td>
-                                        <td className="text-slate-900 font-bold text-google-red bg-red-50/20">{scholarship.income_limit ? `Up to ₹${(scholarship.income_limit / 100000).toFixed(1)} Lakh/year` : 'No income bar'}</td>
+                                        <td className="text-slate-900 font-bold text-google-red bg-red-50/20">{formatIncomeLimit()}</td>
                                     </tr>
                                     <tr>
                                         <td>Category / Caste</td>
