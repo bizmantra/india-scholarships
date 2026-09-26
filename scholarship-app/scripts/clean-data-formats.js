@@ -8,6 +8,8 @@
  *
  * Income limits that contain real amounts in text are NOT guessed; they are listed for a human
  * decision and recorded in data/format-exceptions.json so the format check does not block syncs.
+ * Human-reviewed values in data/manual-corrections.json are applied first ({ "<slug>": { "<field>": value } };
+ * extra_data_json values are merged into the existing JSON object).
  * Every change is recorded in scholarship_changelog as 'data_cleanup' with old and new values.
  *
  * Usage: node scripts/clean-data-formats.js [--dry-run]
@@ -19,6 +21,7 @@ const Database = require('better-sqlite3');
 const dryRun = process.argv.includes('--dry-run');
 const DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
 const EXCEPTIONS_PATH = path.join(__dirname, '..', 'data', 'format-exceptions.json');
+const CORRECTIONS_PATH = path.join(__dirname, '..', 'data', 'manual-corrections.json');
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const isJsonArray = v => {
@@ -36,7 +39,9 @@ function toDocsArray(text) {
 
 function run() {
     const db = new Database(DB_PATH);
-    const rows = db.prepare('SELECT id, slug, title, status, scholarship_scope, country_of_study, docs_needed, deadline, income_limit, amount_annual, amount_min FROM scholarships').all();
+    const rows = db.prepare('SELECT id, slug, title, status, scholarship_scope, country_of_study, docs_needed, deadline, income_limit, amount_annual, amount_min, extra_data_json FROM scholarships').all();
+    const corrections = fs.existsSync(CORRECTIONS_PATH) ? JSON.parse(fs.readFileSync(CORRECTIONS_PATH, 'utf8')) : {};
+    const columns = new Set(db.prepare('PRAGMA table_info(scholarships)').all().map(c => c.name));
     const exceptions = fs.existsSync(EXCEPTIONS_PATH) ? JSON.parse(fs.readFileSync(EXCEPTIONS_PATH, 'utf8')) : {};
 
     const changes = [];
@@ -44,6 +49,25 @@ function run() {
     const change = (row, field, oldValue, newValue) => changes.push({ row, field, oldValue, newValue });
 
     for (const row of rows) {
+        // Human-reviewed corrections take priority over the automatic rules below
+        for (const [field, value] of Object.entries(corrections[row.slug] || {})) {
+            if (field.startsWith('_')) continue;
+            if (!columns.has(field)) throw new Error(`manual-corrections.json: unknown field "${field}" for ${row.slug}`);
+            const current = field in row ? row[field] : db.prepare(`SELECT ${field} AS v FROM scholarships WHERE id = ?`).get(row.id).v;
+            let next = value;
+            if (field === 'extra_data_json') {
+                let existing = {};
+                try { existing = JSON.parse(current || '{}') || {}; } catch { existing = {}; }
+                next = JSON.stringify({ ...existing, ...value });
+            }
+            if (current !== next) {
+                change(row, field, current, next);
+                row[field] = next;
+            }
+            if (exceptions[row.slug]?.[field]) delete exceptions[row.slug][field];
+            if (exceptions[row.slug] && Object.keys(exceptions[row.slug]).length === 0) delete exceptions[row.slug];
+        }
+
         // Scope
         if (row.scholarship_scope !== 'Domestic' && row.scholarship_scope !== 'International') {
             const lower = (row.scholarship_scope || '').toLowerCase();
