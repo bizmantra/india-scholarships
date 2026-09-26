@@ -67,9 +67,15 @@ function checkDeletedSlugs() {
         const dbRepoPath = path.relative(gitRoot, DB_PATH).replace(/\\/g, '/');
         const tempGitDbPath = path.join(path.dirname(DB_PATH), 'scholarships.db.git-base');
         
+        // Prefer the snapshot taken by pull-from-turso.js (Turso is the master copy); fall back to git HEAD
+        const baseSnapshot = path.join(path.dirname(DB_PATH), '.turso-base-production.db');
         try {
-            const fileBuffer = execSync(`git show HEAD:${dbRepoPath}`, { maxBuffer: 100 * 1024 * 1024 });
-            fs.writeFileSync(tempGitDbPath, fileBuffer);
+            if (fs.existsSync(baseSnapshot)) {
+                fs.copyFileSync(baseSnapshot, tempGitDbPath);
+            } else {
+                const fileBuffer = execSync(`git show HEAD:${dbRepoPath}`, { maxBuffer: 100 * 1024 * 1024 });
+                fs.writeFileSync(tempGitDbPath, fileBuffer);
+            }
         } catch (gitErr) {
             console.log('ℹ️ No git history found or could not read database from HEAD, skipping slug deletion check.');
             return;

@@ -51,3 +51,8 @@ google-ads.yaml
 
 # Database backups (never commit)
 /backups
+
+# Turso is the master copy; the local working copy and its snapshots are never committed (npm run db:pull)
+/data/scholarships.db
+/data/.turso-base-*.db
+/data/*.downloading

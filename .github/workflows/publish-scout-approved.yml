@@ -33,7 +33,15 @@ jobs:
           cd scholarship-app
           npm ci
 
+      # Turso is the master copy: start from its latest data
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
       - name: Insert Approved Scholarships
+        id: publish
         run: |
           node scholarship-app/scripts/publish-scout-approved.js
 
@@ -43,25 +51,13 @@ jobs:
       - name: Check data formats (blocks bad data from reaching Turso)
         run: node scholarship-app/scripts/check-data-formats.js
 
-      - name: Check for database changes
-        id: commit
-        run: |
-          if git diff --quiet -- scholarship-app/data/scholarships.db; then
-            echo "No database changes."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Back up Turso before syncing
-        if: steps.commit.outputs.changed == 'true'
         run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
 
       - name: Store pre-sync backup
-        if: steps.commit.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: pre-sync-backup-production-${{ github.run_id }}
@@ -69,7 +65,6 @@ jobs:
           retention-days: 7
 
       - name: Push Database to Turso
-        if: steps.commit.outputs.changed == 'true'
         run: |
           node scholarship-app/scripts/push-to-turso.js
         env:
@@ -77,7 +72,7 @@ jobs:
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
 
       - name: Broadcast New Entries to Telegram
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.publish.outputs.published != '0'
         run: |
           node scholarship-app/scripts/post-new-to-telegram.js
         env:
@@ -85,11 +80,12 @@ jobs:
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           NODE_ENV: production
 
-      - name: Commit and push changes
+      # The database itself lives in Turso; git only records which candidate files were published
+      - name: Commit published candidate files
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scholarship-app/data/scholarships.db scholarship-app/data/format-exceptions.json scholarship-app/data/scout scholarship-app/data/telegram-posted.json
+          git add scholarship-app/data/scout scholarship-app/data/telegram-posted.json
           if git diff --staged --quiet; then
             echo "Nothing to commit."
           else
@@ -98,6 +94,6 @@ jobs:
           fi
 
       - name: Trigger Vercel Redeployment
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.publish.outputs.published != '0'
         run: |
           curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"

@@ -27,6 +27,13 @@ jobs:
           cd scholarship-app
           npm ci
 
+      # Read-only: the scout needs the current list of scholarships to spot new ones
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
       - name: Discover New Scholarships (Gemini Flash)
         id: scout
         run: |

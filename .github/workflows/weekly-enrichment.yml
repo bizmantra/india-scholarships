@@ -10,7 +10,7 @@ on:
   workflow_dispatch: # Allows manual triggering from GitHub UI
     inputs:
       target:
-        description: 'Database to update (staging = test run: no git commit, live site untouched)'
+        description: 'Database to update (staging = test run: live site untouched)'
         type: choice
         options: [production, staging]
         default: production
@@ -43,6 +43,15 @@ jobs:
         run: |
           cd scholarship-app
           npm ci
+
+      # Turso is the master copy: start from its latest data (push/PR runs only read it for the audits)
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Sync Google Search Console Live Traffic Cache
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -99,34 +108,12 @@ jobs:
           secure: true
           html_body: file://${{ github.workspace }}/scholarship-app/data/weekly-email-body.html
 
-      # On push/PR runs this only fixes the checked-out copy (nothing is committed), so the check below can pass
+      # On push/PR runs this only fixes the local copy (nothing is pushed), so the check below can pass
       - name: Normalize data formats
         run: node scholarship-app/scripts/clean-data-formats.js
 
       - name: Check data formats (blocks bad data from reaching Turso)
         run: node scholarship-app/scripts/check-data-formats.js
-
-      - name: Commit and push changes if updated
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.DB_TARGET == 'production'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scholarship-app/data/scholarships.db scholarship-app/data/format-exceptions.json scholarship-app/data/content-quality-report.md scholarship-app/data/content-quality-audit.csv
-          if git diff --staged --quiet; then
-            echo "No database changes. Skipping commit."
-          else
-            git commit -m "chore: automated weekly data enrichment & audit [skip ci]"
-            git push origin main
-          fi
-
-      - name: Broadcast New Entries to Telegram
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.DB_TARGET == 'production'
-        run: |
-          node scholarship-app/scripts/post-new-to-telegram.js
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-          NODE_ENV: production
 
       - name: Back up Turso before syncing
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -154,6 +141,28 @@ jobs:
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
           TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
           TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Broadcast New Entries to Telegram
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.DB_TARGET == 'production'
+        run: |
+          node scholarship-app/scripts/post-new-to-telegram.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          NODE_ENV: production
+
+      - name: Commit reports and Telegram registry
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.DB_TARGET == 'production'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scholarship-app/data/content-quality-report.md scholarship-app/data/content-quality-audit.csv scholarship-app/data/telegram-posted.json
+          if git diff --staged --quiet; then
+            echo "No report changes. Skipping commit."
+          else
+            git commit -m "chore: automated weekly data enrichment & audit [skip ci]"
+            git push origin main
+          fi
 
       - name: Trigger Vercel Redeployment
         if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.DB_TARGET == 'production'
