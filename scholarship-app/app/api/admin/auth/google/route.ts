@@ -1,7 +1,15 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
+import { isPreviewOrigin, LIVE_ADMIN_ORIGIN } from '@/lib/token';
 
 export async function GET(request: Request) {
+    const requestUrl = new URL(request.url);
+
+    // On a preview (staging) deployment, sign in through the live site, which then hands this preview a pass
+    if (isPreviewOrigin(requestUrl.origin)) {
+        return NextResponse.redirect(`${LIVE_ADMIN_ORIGIN}/api/admin/auth/google?return_to=${encodeURIComponent(requestUrl.origin)}`);
+    }
+
     const clientId = process.env.GOOGLE_ADSENSE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID;
     const clientSecret = process.env.GOOGLE_ADSENSE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET;
 
@@ -34,5 +42,17 @@ export async function GET(request: Request) {
         prompt: 'consent'
     });
 
-    return NextResponse.redirect(authUrl);
+    const response = NextResponse.redirect(authUrl);
+    // Remember which preview asked, for the callback (only this project's own preview addresses are accepted)
+    const returnTo = requestUrl.searchParams.get('return_to');
+    if (isPreviewOrigin(returnTo)) {
+        response.cookies.set('admin_return_to', returnTo, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'lax',
+            path: '/api/admin/auth',
+            maxAge: 10 * 60,
+        });
+    }
+    return response;
 }

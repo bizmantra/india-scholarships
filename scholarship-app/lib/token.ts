@@ -25,14 +25,14 @@ function base64urlDecode(base64url: string): string {
 /**
  * Sign a payload with HMAC SHA-256
  */
-export async function signToken(payload: any, secret: string): Promise<string> {
+export async function signToken(payload: any, secret: string, expiresInSeconds = 7 * 24 * 60 * 60): Promise<string> {
     const encoder = new TextEncoder();
     
     const header = base64urlEncode(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
     const data = base64urlEncode(JSON.stringify({
         ...payload,
         iat: Math.floor(Date.now() / 1000),
-        exp: Math.floor(Date.now() / 1000) + (7 * 24 * 60 * 60) // 7 days expiration
+        exp: Math.floor(Date.now() / 1000) + expiresInSeconds // 7 days unless stated
     }));
 
     const key = await crypto.subtle.importKey(
@@ -112,4 +112,19 @@ export async function verifyToken(token: string, secret: string): Promise<any> {
  */
 export function sessionCookieDomain(hostname: string): string | undefined {
     return /(^|\.)indiascholarships\.in$/.test(hostname) ? '.indiascholarships.in' : undefined;
+}
+
+/**
+ * Sign-in on Vercel preview deployments (staging).
+ * Google only accepts pre-registered return addresses, and preview addresses change with every deployment.
+ * So a preview sends the owner through the live site's Google login, and the live site hands the preview a
+ * pass valid for one minute and only for that preview's address. The preview then starts its own session.
+ */
+export const LIVE_ADMIN_ORIGIN = process.env.ADMIN_AUTH_ORIGIN || 'https://www.indiascholarships.in';
+export const PREVIEW_HANDOFF_SECONDS = 60;
+
+// Only this project's own preview addresses may receive a pass
+export function isPreviewOrigin(origin: string | null | undefined): origin is string {
+    return typeof origin === 'string'
+        && /^https:\/\/india-scholarships-[a-z0-9-]+-bizmantra-gmailcoms-projects\.vercel\.app$/.test(origin);
 }
