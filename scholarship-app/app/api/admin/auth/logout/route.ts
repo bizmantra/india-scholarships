@@ -4,6 +4,12 @@ import { sessionCookieDomain } from '@/lib/token';
 
 export async function GET(request: Request) {
     const origin = new URL(request.url).origin;
+
+    // Browsers and Next.js pre-load links; only a real click may sign the user out
+    const headers = request.headers;
+    if (headers.get('next-router-prefetch') || headers.get('purpose') === 'prefetch' || headers.get('sec-purpose')?.includes('prefetch')) {
+        return new NextResponse(null, { status: 204 });
+    }
     
     try {
         const cookieStore = await cookies();

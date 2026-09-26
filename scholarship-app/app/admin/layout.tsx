@@ -110,12 +110,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <Home className="h-4 w-4" />
                         Return to Website
                     </Link>
-                    <Link
+                    {/* A plain link on purpose: Next.js pre-loads <Link>s, and pre-loading this one would sign the user out */}
+                    <a
                         href="/api/admin/auth/logout"
                         className="flex items-center gap-2 px-4 py-2.5 bg-rose-950/25 hover:bg-rose-900/40 border border-rose-900/30 hover:border-rose-800/50 text-xs text-rose-400 hover:text-rose-300 rounded-xl transition-all font-bold w-full justify-center"
                     >
                         Log Out Session
-                    </Link>
+                    </a>
                 </div>
             </aside>
 
