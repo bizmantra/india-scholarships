@@ -98,7 +98,8 @@ function run() {
                 insert.run(toRow(fields));
                 insertChangelog.run(fields.id, fields.title, 'scout_added', JSON.stringify({
                     source_citation: fields.official_source,
-                    found_via: _scout?.found_via || [],
+                    channel: _scout?.channel || null,
+                    evidence: _scout?.evidence || [],
                     confidence: _scout?.confidence || null
                 }));
             })();
