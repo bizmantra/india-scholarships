@@ -112,6 +112,7 @@ function run() {
 
     db.close();
     console.log(`\n🏁 Published ${published} new scholarship(s).`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `published=${published}\n`);
 }
 
 run();

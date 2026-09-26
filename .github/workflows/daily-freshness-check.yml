@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # Allows manual triggering from GitHub UI
     inputs:
       target:
-        description: 'Database to update (staging = test run: no git commit, live site untouched)'
+        description: 'Database to update (staging = test run: live site untouched)'
         type: choice
         options: [production, staging]
         default: production
@@ -23,7 +23,7 @@ jobs:
   check-deadlines:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,6 +39,15 @@ jobs:
         run: |
           cd scholarship-app
           npm ci
+
+      # Turso is the master copy: start from its latest data
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Run Daily Deadline Verification (Gemini Flash)
         run: |
@@ -70,19 +79,6 @@ jobs:
       - name: Check data formats (blocks bad data from reaching Turso)
         run: node scholarship-app/scripts/check-data-formats.js
 
-      - name: Commit and push changes if updated
-        if: env.DB_TARGET == 'production'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scholarship-app/data/scholarships.db scholarship-app/data/format-exceptions.json
-          if git diff --staged --quiet; then
-            echo "No database changes. Skipping commit."
-          else
-            git commit -m "chore: automated daily deadline verification [skip ci]"
-            git push origin main
-          fi
-
       - name: Back up Turso before syncing
         run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
         env:
@@ -106,3 +102,9 @@ jobs:
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
           TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
           TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      # Listing pages are built at deploy time, so rebuild the site once the data has changed
+      - name: Trigger Vercel Redeployment
+        if: env.DB_TARGET == 'production'
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"

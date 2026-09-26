@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "USE_LOCAL_DB=true next dev",
-    "build": "USE_LOCAL_DB=true next build",
+    "build": "node scripts/pull-from-turso.js --if-configured && USE_LOCAL_DB=true next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:pull": "node scripts/pull-from-turso.js",
+    "db:push": "node scripts/push-to-turso.js"
   },
   "dependencies": {
     "@libsql/client": "^0.17.4",

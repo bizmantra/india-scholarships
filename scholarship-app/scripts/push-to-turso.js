@@ -1,19 +1,27 @@
 /**
- * Push local SQLite data (data/scholarships.db) to Turso — safely.
+ * Push local changes (data/scholarships.db) to Turso — safely.
  *
- * Unlike the previous version, this never drops or empties a table:
- *   - Table structure comes from the local database (no second hand-written copy).
- *     Missing tables are created and missing columns are added on Turso.
- *   - Only rows that are new or changed are written, as upserts in small transactions,
- *     so the live site keeps serving every row throughout the sync.
- *   - Rows that exist only on Turso are reported, never deleted.
- *   - Any failure exits with a non-zero code so the workflow run shows as failed.
+ * Turso is the master copy. Normal use is pull → edit locally → push (see pull-from-turso.js).
  *
- * Usage: node scripts/push-to-turso.js [--target=production|staging] [--dry-run]
+ *   - Never drops or empties a table. Table structure comes from the local database;
+ *     missing tables and columns are added on Turso.
+ *   - THREE-WAY MERGE when a base snapshot from pull-from-turso.js exists: only fields that
+ *     this run changed (local vs base) are written. If someone else changed the same field on
+ *     Turso in the meantime, their value is kept and the clash is reported.
+ *   - Without a base snapshot the push is refused, because a stale local copy would overwrite newer
+ *     Turso data. --overwrite-turso (with --no-base to ignore an existing snapshot) forces
+ *     "make Turso match local" for rows that differ — only for deliberate one-off repairs.
+ *   - New rows in auto-numbered tables (changelog, translations) are inserted without their
+ *     local id, so they can never collide with rows added on Turso meanwhile.
+ *   - Rows are never deleted. Writes go in small transactions; failures exit non-zero.
+ *
+ * Usage: node scripts/push-to-turso.js [--target=production|staging] [--dry-run] [--no-base --overwrite-turso]
  */
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 const { resolveTarget, connect, describe } = require('./lib/turso-target');
+const { basePathFor } = require('./pull-from-turso');
 
 const dryRun = process.argv.includes('--dry-run');
 const LOCAL_DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
@@ -94,65 +102,133 @@ async function ensureTable(turso, localDb, table) {
     return { localCols, created: remote.rows.length === 0 };
 }
 
-async function syncTable(turso, localDb, table) {
+async function syncTable(turso, localDb, baseDb, table) {
     console.log(`\n📦 ${table}`);
     const { localCols, created } = await ensureTable(turso, localDb, table);
     const cols = localCols.map(c => c.name);
-    const pk = localCols.filter(c => c.pk).sort((a, b) => a.pk - b.pk).map(c => c.name);
+    const pkCols = localCols.filter(c => c.pk).sort((a, b) => a.pk - b.pk);
+    const pk = pkCols.map(c => c.name);
     if (pk.length === 0) throw new Error(`Table "${table}" has no primary key; cannot sync safely`);
+    // Auto-numbered tables: new rows get a fresh id on Turso instead of the local one
+    const autoId = pkCols.length === 1 && /^INTEGER$/i.test(pkCols[0].type) && table !== 'scholarships';
 
     const localRows = localDb.prepare(`SELECT * FROM ${quote(table)}`).all();
     const remoteRows = created && dryRun ? [] : (await turso.execute(`SELECT * FROM ${quote(table)}`)).rows;
     const remoteByKey = new Map(remoteRows.map(r => [rowKey(r, pk), r]));
+    const baseHasTable = baseDb && baseDb.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?").get(table);
+    const baseByKey = baseHasTable ? new Map(baseDb.prepare(`SELECT * FROM ${quote(table)}`).all().map(r => [rowKey(r, pk), r])) : null;
 
-    const inserts = [];
-    const updates = [];
+    const inserts = [];   // brand-new rows
+    const updates = [];   // merged rows to write
+    const clashes = [];   // fields changed both here and on Turso
+    let removedLocally = 0;
+
     for (const row of localRows) {
-        const remote = remoteByKey.get(rowKey(row, pk));
-        if (!remote) inserts.push(row);
-        else if (!sameRow(row, remote, cols)) updates.push(row);
-        remoteByKey.delete(rowKey(row, pk));
-    }
-    const remoteOnly = remoteByKey.size;
+        const key = rowKey(row, pk);
+        const remote = remoteByKey.get(key);
+        const base = baseByKey ? baseByKey.get(key) : undefined;
 
-    console.log(`   local ${localRows.length} · turso ${remoteRows.length} · new ${inserts.length} · changed ${updates.length} · only on turso ${remoteOnly}`);
-    if (remoteOnly > 0) {
-        const sample = [...remoteByKey.values()].slice(0, 5).map(r => rowKey(r, pk)).join(', ');
-        console.log(`   ⚠️  ${remoteOnly} row(s) exist only on Turso and were left untouched (e.g. ${sample})`);
+        if (baseByKey && !base) {
+            // Created by this run
+            if (autoId) inserts.push(row);
+            else if (!remote) inserts.push(row);
+            else if (!sameRow(row, remote, cols)) clashes.push(`${key}: created here and on Turso with different values (Turso kept)`);
+            continue;
+        }
+        if (!baseByKey) {
+            // Two-way fallback: make Turso match local
+            if (!remote) inserts.push(row);
+            else if (!sameRow(row, remote, cols)) updates.push(row);
+            continue;
+        }
+        if (sameRow(row, base, cols)) continue; // untouched by this run
+        if (!remote) {
+            clashes.push(`${key}: changed here but deleted on Turso (not recreated)`);
+            continue;
+        }
+        // Field-by-field three-way merge
+        const merged = { ...remote };
+        let changed = false;
+        for (const c of cols) {
+            if (norm(row[c]) === norm(base[c])) continue;          // we did not touch this field
+            if (norm(remote[c]) === norm(row[c])) continue;        // Turso already has our value
+            if (norm(remote[c]) !== norm(base[c])) {               // someone else changed it too
+                clashes.push(`${key}.${c}: changed here and on Turso (Turso value kept)`);
+                continue;
+            }
+            merged[c] = row[c];
+            changed = true;
+        }
+        if (changed) updates.push(merged);
+    }
+    if (baseByKey) {
+        const localKeys = new Set(localRows.map(r => rowKey(r, pk)));
+        for (const key of baseByKey.keys()) if (!localKeys.has(key)) removedLocally++;
     }
 
-    const toWrite = [...inserts, ...updates];
-    if (dryRun || toWrite.length === 0) return { table, inserts: inserts.length, updates: updates.length, remoteOnly };
+    console.log(`   local ${localRows.length} · turso ${remoteRows.length} · new ${inserts.length} · changed ${updates.length}${baseByKey ? '' : ' (no base snapshot: two-way sync)'}`);
+    if (removedLocally) console.log(`   ⚠️  ${removedLocally} row(s) were removed locally; rows are never deleted from Turso (set status instead)`);
+    if (clashes.length) {
+        console.log(`   ⚠️  ${clashes.length} clash(es) with changes made on Turso during this run — Turso values kept:`);
+        clashes.slice(0, 10).forEach(c => console.log(`      - ${c}`));
+    }
+
+    if (dryRun || (inserts.length === 0 && updates.length === 0)) {
+        return { table, inserts: inserts.length, updates: updates.length, clashes: clashes.length };
+    }
 
     const nonPk = cols.filter(c => !pk.includes(c));
-    const sql = `INSERT INTO ${quote(table)} (${cols.map(quote).join(', ')}) VALUES (${cols.map(() => '?').join(', ')})
+    const upsertSql = `INSERT INTO ${quote(table)} (${cols.map(quote).join(', ')}) VALUES (${cols.map(() => '?').join(', ')})
         ON CONFLICT(${pk.map(quote).join(', ')}) DO UPDATE SET ${nonPk.map(c => `${quote(c)} = excluded.${quote(c)}`).join(', ')}`;
-    for (let i = 0; i < toWrite.length; i += CHUNK_SIZE) {
-        const chunk = toWrite.slice(i, i + CHUNK_SIZE);
+    const insertNewIdSql = `INSERT INTO ${quote(table)} (${nonPk.map(quote).join(', ')}) VALUES (${nonPk.map(() => '?').join(', ')}) ON CONFLICT DO NOTHING`;
+
+    const statements = [
+        ...inserts.map(row => autoId && baseByKey
+            ? { sql: insertNewIdSql, args: nonPk.map(c => norm(row[c])) }
+            : { sql: upsertSql, args: cols.map(c => norm(row[c])) }),
+        ...updates.map(row => ({ sql: upsertSql, args: cols.map(c => norm(row[c])) })),
+    ];
+    for (let i = 0; i < statements.length; i += CHUNK_SIZE) {
         // Each batch is one transaction: it applies fully or not at all
-        await turso.batch(chunk.map(row => ({ sql, args: cols.map(c => norm(row[c])) })), 'write');
+        await turso.batch(statements.slice(i, i + CHUNK_SIZE), 'write');
     }
-    console.log(`   ✅ wrote ${toWrite.length} row(s)`);
-    return { table, inserts: inserts.length, updates: updates.length, remoteOnly };
+    console.log(`   ✅ wrote ${statements.length} row(s)`);
+    return { table, inserts: inserts.length, updates: updates.length, clashes: clashes.length };
 }
 
 async function run() {
     const target = resolveTarget();
     const { client: turso, url } = connect(target);
     const localDb = new Database(LOCAL_DB_PATH, { readonly: true });
+    const basePath = path.join(path.dirname(LOCAL_DB_PATH), path.basename(basePathFor(target)));
+    const useBase = !process.argv.includes('--no-base') && fs.existsSync(basePath);
+    const baseDb = useBase ? new Database(basePath, { readonly: true }) : null;
+    if (!useBase) {
+        // Without a base we cannot tell our edits from stale data, so an old local copy would overwrite newer Turso data
+        if (!dryRun && !process.argv.includes('--overwrite-turso')) {
+            throw new Error('No base snapshot found. Run "node scripts/pull-from-turso.js" before editing, then push again. ' +
+                '(To deliberately make Turso match this local file, re-run with --overwrite-turso.)');
+        }
+        console.log('⚠️  No base snapshot — every local difference will be written to Turso.');
+    }
 
     console.log(`🔄 Sync local database → Turso (${target}: ${describe(url)})${dryRun ? ' — DRY RUN, nothing will be written' : ''}`);
 
     const results = [];
     for (const table of SYNCED_TABLES) {
-        results.push(await syncTable(turso, localDb, table));
+        results.push(await syncTable(turso, localDb, baseDb, table));
     }
     if (!dryRun) {
         for (const sql of COMMUNITY_DDL) await turso.execute(sql);
     }
     localDb.close();
+    if (baseDb) baseDb.close();
+    // Everything this run changed is now on Turso: move the base forward so a repeated push sends nothing twice
+    if (!dryRun && useBase) fs.copyFileSync(LOCAL_DB_PATH, basePath);
 
     const written = results.reduce((n, r) => n + r.inserts + r.updates, 0);
+    const clashes = results.reduce((n, r) => n + r.clashes, 0);
+    if (clashes) console.log(`\n⚠️  ${clashes} clash(es) kept the Turso value; see above.`);
     console.log(`\n🏁 ${dryRun ? 'Dry run complete' : 'Sync complete'}: ${written} row(s) ${dryRun ? 'would be' : ''} written across ${results.length} tables.`);
 }
 

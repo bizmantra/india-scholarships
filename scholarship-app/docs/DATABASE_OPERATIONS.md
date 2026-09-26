@@ -7,31 +7,48 @@ script, agent and AI assistant must follow. **Read this before changing data or 
 
 | Copy | Role |
 |---|---|
-| `data/scholarships.db` (in git) | **Master copy for now.** Scripts and agents edit this file. |
-| Turso **production** (`TURSO_DATABASE_URL`) | What the live site reads. Updated from the master copy by `push-to-turso.js`. |
-| Turso **staging** (`TURSO_STAGING_DATABASE_URL`) | A separate copy for testing new or changed agents. Never shown to users. |
+| Turso **production** (`TURSO_DATABASE_URL`) | **The master copy.** The live site, `/admin` and every agent read and write it. |
+| Turso **staging** (`TURSO_STAGING_DATABASE_URL`) | A separate copy for testing new or changed agents. Vercel **Preview** deployments use it. |
+| `data/scholarships.db` | A **local working copy**, downloaded with `npm run db:pull`. Not in git. Throwaway. |
 
-A later step makes Turso production the only master copy. Until then, the rules below apply.
+## The workflow: pull → edit → push
+
+```
+npm run db:pull          # 1. fresh copy of Turso + a base snapshot (data/.turso-base-production.db)
+node scripts/<your-script>.js   # 2. edit data/scholarships.db as before
+npm run db:push          # 3. sends ONLY what step 2 changed
+```
+
+The push compares three versions of every field (the base snapshot, your copy and Turso as it is now):
+- fields you changed are written;
+- fields someone else changed on Turso in the meantime (an `/admin` edit, another agent) are kept;
+- if you both changed the same field, **Turso's value wins** and the clash is reported.
+
+A push **without a fresh pull is refused**, because a stale local copy would overwrite newer data.
+`--no-base --overwrite-turso` forces "make Turso match this file" and is only for deliberate repairs.
+
+The site build (`npm run build`) pulls from Turso first, so every deploy uses current data.
 
 ## Rules
 
-1. **Never drop, empty or recreate a table on Turso production.** `push-to-turso.js` only inserts and
-   updates changed rows, in small transactions, and never deletes. Do not reintroduce `DROP TABLE`.
-2. **Deleting a scholarship:** set `status = 'Closed'` instead of deleting the row. Rows removed from the local file are
-   reported by the sync as "only on turso" and are left untouched.
-3. **Formats are enforced.** `check-data-formats.js` runs before every sync and fails the run if, for example,
+1. **Never commit `data/scholarships.db`** and never edit Turso by dropping/recreating tables.
+2. **Always pull before editing**, and push soon after (small time window = fewer clashes).
+3. **Deleting a scholarship:** set `status = 'Closed'`. The push never deletes rows.
+4. **Formats are enforced.** `check-data-formats.js` runs before every agent push and fails the run if, for example,
    `income_limit` is text, `deadline` is not `YYYY-MM-DD`, `scholarship_scope` is not `Domestic`/`International`,
    or `docs_needed`/`faq_json` are not JSON lists. `clean-data-formats.js` fixes the mechanical cases automatically.
-   Cases needing a human decision are listed in `data/format-exceptions.json`.
-4. **Test on staging first.** Run a new or changed agent with `--target=staging` (or the workflow's
-   "target: staging" option) before letting it touch production.
-5. **Back up before risky work.** `node scripts/backup-turso.js` writes a full copy to `backups/`.
+   Ambiguous cases are listed in `data/format-exceptions.json`.
+5. **Human-reviewed values** go in `data/manual-corrections.json`; the cleanup step applies them on every agent run.
+6. **Test on staging first.** Run a new or changed agent with `--target=staging` (pull, script and push all accept it),
+   or the workflow's "target: staging" option.
+7. **Back up before risky work.** `node scripts/backup-turso.js` writes a full copy to `backups/`.
 
 ## Commands
 
 | Task | Command |
 |---|---|
-| Sync local file → Turso (safe upsert) | `node scripts/push-to-turso.js [--target=staging] [--dry-run]` |
+| Get a fresh local copy | `npm run db:pull` (= `node scripts/pull-from-turso.js [--target=staging]`) |
+| Send your local changes to Turso | `npm run db:push` (= `node scripts/push-to-turso.js [--target=staging] [--dry-run]`) |
 | Back up Turso to a file | `node scripts/backup-turso.js [--target=staging] [--out=file.db]` |
 | Make staging a copy of production | `node scripts/refresh-staging.js` |
 | Restore a backup | `node scripts/restore-turso.js --from=file.db --target=staging` (production also needs `--confirm-production`, and takes a safety backup first) |
@@ -43,7 +60,7 @@ A later step makes Turso production the only master copy. Until then, the rules 
 | Workflow | What it does |
 |---|---|
 | Daily Database Backup | Backs up production every morning; the file is kept 30 days as a run artifact. |
-| Daily Deadline Freshness Check / Weekly Enrichment / Publish Scout-Approved | Normalize → check formats → commit → back up Turso → safe sync. Can be run manually against staging. |
+| Daily Deadline Freshness Check / Weekly Enrichment / Publish Scout-Approved | Pull from Turso → run the agent → normalize → check formats → back up Turso → push only the agent's changes → redeploy the site. Can be run manually against staging. |
 | Refresh Staging Database | Copies production into staging (reads production only). |
 
 All workflows that write the database share the `database-writes` concurrency group, so they never run at the same time.
