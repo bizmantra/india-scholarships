@@ -223,7 +223,7 @@ function proposeNewScholarship(db, { agent, record, source, evidence, confidence
 
 // Scout candidates already waiting, approved, published or rejected: never suggest them again
 function knownProposedScholarships(db) {
-    return db.prepare(`SELECT scholarship_title AS title, scholarship_id AS slug FROM agent_proposals
+    return db.prepare(`SELECT scholarship_title AS title, scholarship_id AS slug, json_extract(payload_json, '$.state') AS state FROM agent_proposals
                        WHERE kind = 'new_scholarship' AND status IN ('pending', 'approved', 'published', 'rejected')`).all();
 }
 
