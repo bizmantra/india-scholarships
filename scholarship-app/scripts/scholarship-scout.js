@@ -93,16 +93,21 @@ const CSR_SOURCES = [
 ];
 const PORTALS_PER_WEEK = 4;
 
-// ---- Channel 6: open-ended web searches, not tied to any source (2 per week, rotating) ----
+// ---- Channel 6: open-ended web searches, not tied to any source (rotating) ----
+// Footprint queries that target official announcements rather than aggregator/coaching pages.
+// {year} and {state} are filled in at run time.
 const WEB_SEARCHES = [
+    'site:gov.in ("post-matric" OR "pre-matric" OR "merit-cum-means") scholarship "apply online" {year}',
+    'site:nic.in "scholarship scheme" ("fresh application" OR "guidelines") {year}',
+    'site:pib.gov.in scholarship scheme students {year}',
+    '"{state}" ("e-kalyan" OR "welfare department" OR "higher education") scholarship notification {year} filetype:pdf',
+    '("CSR Foundation" OR "Trust") scholarship "applications invited" (undergraduate OR engineering OR medical) {year}',
+    '"scholarship for girls" ("STEM" OR "engineering") "apply" {year} -coaching',
+    '("sports scholarship" OR "para-athlete") ("Ministry of Youth Affairs" OR "SAI") {year}',
     'scholarships for Indian students announced or opened for applications in the last 30 days',
-    'newly launched government scholarship schemes in India this year (central and state)',
-    'new corporate and foundation scholarships for Indian school and college students this year',
-    'scholarships for Indian students with application deadlines in the next 60 days',
     'new scholarships for Indian students to study abroad for the upcoming academic year',
-    'lesser-known state and district level scholarships in India for poor and rural students',
 ];
-const WEB_SEARCHES_PER_WEEK = 2;
+const WEB_SEARCHES_PER_WEEK = 3;
 const CSR_PER_WEEK = 3;
 
 // ---- Channel 5: coverage matrix ----
@@ -146,9 +151,26 @@ const FEEDS = [
 
 // The sourcing gate, shared by every Gemini prompt that proposes or validates a scholarship
 const SOURCING_GATE = `Reject (never propose) any of these:
-- Coaching-institute or ed-tech "scholarship tests" that are really admission discounts or promotions.
+- Coaching-institute or ed-tech "scholarship tests" that are really admission discounts or promotions
+  (e.g. Allen, FIITJEE, Aakash, Sri Chaitanya, Physics Wallah, Made Easy, BYJU'S, Unacademy, Vedantu, ALS IAS).
 - Education loans or loan schemes presented as financial aid.
 - Schemes that are not currently active and not provably recurring every year (one-time PR announcements, or schemes with no application cycle in the last 3 years).`;
+
+// Domains that can point us to a scholarship but can never be its official source
+const NON_OFFICIAL_DOMAINS = [
+    'buddy4study.com', 'collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com',
+    'indiatoday.in', 'timesofindia.indiatimes.com', 'hindustantimes.com', 'ndtv.com', 'news18.com', 'wikipedia.org', 'youtube.com',
+    'allen.ac.in', 'allen.in', 'fiitjee.com', 'aakash.ac.in', 'srichaitanya.net', 'pw.live', 'madeeasy.in', 'byjus.com',
+    'unacademy.com', 'vedantu.com', 'alsias.net',
+];
+function isNonOfficialSource(url) {
+    try {
+        const host = new URL(url).hostname.replace(/^www\./, '');
+        return NON_OFFICIAL_DOMAINS.some(d => host === d || host.endsWith('.' + d));
+    } catch {
+        return true;
+    }
+}
 
 const parser = new Parser();
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -346,10 +368,17 @@ async function sweepLeads(sources, count, channel, knownTitles) {
 // ---------------- Channel 6: open web search ----------------
 async function webLeads(knownTitles) {
     const leads = [];
-    for (const query of rotate(WEB_SEARCHES, WEB_SEARCHES_PER_WEEK)) {
+    const year = new Date().getFullYear();
+    const state = rotate(PRIORITY_STATES, 1)[0];
+    for (const template of rotate(WEB_SEARCHES, WEB_SEARCHES_PER_WEEK)) {
+        const query = template.replace(/\{year\}/g, year).replace(/\{state\}/g, state);
         console.log(`   Searching: ${query}`);
+        const context = `Run this Google search (and close variations of it): ${query}
+Most results for scholarship searches are aggregator clickbait or coaching promotions. Prefer official domains
+(.gov.in, .nic.in, pib.gov.in, .edu, .ac.in, .org, and verified provider sites such as tatatrusts.org,
+reliancefoundation.org, vidyasaarathi.co.in, ffe.org) and official guideline PDFs or circulars.`;
         try {
-            const found = await discoverFromPrompt(`Search the web for: ${query}.`, knownTitles, 8);
+            const found = await discoverFromPrompt(context, knownTitles, 8);
             found.forEach(f => leads.push({ ...f, channel: 'web', via: `Web search: ${query}` }));
         } catch (error) {
             console.error(`   ❌ Web search failed: ${error.message.slice(0, 120)}`);
@@ -444,7 +473,7 @@ async function coverageLeads(dbRows, knownTitles) {
 // ---------------- Research & validation ----------------
 async function researchCandidate(lead) {
     const prompt = `Research the "${lead.name}" scholarship offered by ${lead.provider || 'unknown provider'} for Indian students.
-Use Google Search and rely ONLY on official sources (government portals, provider websites, university pages). Lead context: ${lead.evidence || 'none'}
+Use Google Search and rely ONLY on official sources (government portals on .gov.in / .nic.in, PIB releases, official guideline PDFs, provider or university websites) — never aggregators, news sites or coaching institutes. Lead context: ${lead.evidence || 'none'}
 
 Set "is_valid" to false (and explain in "rejection_reason") if you cannot confirm it is a real scholarship open to Indian students, or if it fails this gate:
 ${SOURCING_GATE}
@@ -700,6 +729,8 @@ async function runScout() {
                 reject(data.rejection_reason || 'Could not be verified');
             } else if (!data.title || !/^https?:\/\//.test(data.official_source || '')) {
                 reject('No official source URL found');
+            } else if (isNonOfficialSource(data.official_source)) {
+                reject(`Source is a news, aggregator or coaching site, not the provider (${data.official_source})`);
             } else if (data.confidence === 'Low') {
                 reject('Low confidence in researched details');
             } else {
