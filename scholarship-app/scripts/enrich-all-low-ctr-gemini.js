@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
+const inbox = require('./lib/agent-inbox');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -37,15 +38,7 @@ if (testLimit) {
 console.log('');
 
 const db = new Database(dbPath);
-
-function isValidValue(val) {
-    if (!val) return false;
-    const lower = String(val).toLowerCase().trim();
-    if (lower === '' || lower === 'na' || lower === 'n/a' || lower === 'not specified' || lower === 'tbd' || lower === 'check portal' || lower === 'null') {
-        return false;
-    }
-    return true;
-}
+const AGENT = 'weekly-enrichment';
 
 async function callModel(title, provider) {
     if (engine === 'perplexity') {
@@ -183,6 +176,13 @@ JSON Schema:
 }
 
 async function runEnrichment() {
+    inbox.ensureAgentTables(db);
+    if (inbox.skipIfDisabled(db, AGENT)) {
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'weekly-enrichment-summary.json'),
+            JSON.stringify({ skipped_run: true, swept: 0, skipped: 0, auto_updated: 0, pending_review: 0, check_failed: 0 }, null, 2));
+        db.close();
+        return;
+    }
     // Select all active scholarships
     const query = `
         SELECT id, title, provider, slug, amount_annual, amount_min, official_source, apply_url, helpline, last_checked_at 
@@ -241,53 +241,30 @@ async function runEnrichment() {
             const data = await callModel(item.title, item.provider || 'Government');
             console.log(`   ✅ Grounding search successful.`);
 
-            const proposedAnnual = data.amount_annual || 0;
-            const proposedMin = data.amount_min || 0;
-            const proposedSource = data.official_source || '';
-            const proposedApplyUrl = data.apply_url || '';
-            const proposedHelpline = data.helpline || '';
-
-            const existingAnnual = item.amount_annual || 0;
-            const existingMin = item.amount_min || 0;
-            const existingSource = item.official_source || '';
-            const existingApplyUrl = item.apply_url || '';
-            const existingHelpline = item.helpline || '';
-
-            let diffs = [];
-            if (proposedAnnual !== existingAnnual) {
-                diffs.push({ field: 'amount_annual', old: existingAnnual, new: proposedAnnual });
-            }
-            if (proposedMin !== existingMin) {
-                diffs.push({ field: 'amount_min', old: existingMin, new: proposedMin });
-            }
-            
-            // Validate changes to prevent reintroducing placeholder strings
-            if (proposedSource !== existingSource) {
-                if (isValidValue(proposedSource) || !isValidValue(existingSource)) {
-                    diffs.push({ field: 'official_source', old: existingSource, new: proposedSource });
-                }
-            }
-            if (proposedApplyUrl !== existingApplyUrl) {
-                if (isValidValue(proposedApplyUrl) || !isValidValue(existingApplyUrl)) {
-                    diffs.push({ field: 'apply_url', old: existingApplyUrl, new: proposedApplyUrl });
-                }
-            }
-            if (proposedHelpline !== existingHelpline) {
-                if (isValidValue(proposedHelpline) || !isValidValue(existingHelpline)) {
-                    diffs.push({ field: 'helpline', old: existingHelpline, new: proposedHelpline });
-                }
+            // Amounts, links and helpline change facts on the page, so they go to the owner's inbox.
+            // Blank or zero answers ("not found") and rewordings of the same fact are dropped by the inbox.
+            const gated = [
+                ['amount_annual', item.amount_annual, data.amount_annual],
+                ['amount_min', item.amount_min, data.amount_min],
+                ['official_source', item.official_source, data.official_source],
+                ['apply_url', item.apply_url, data.apply_url],
+                ['helpline', item.helpline, data.helpline],
+            ];
+            const diffs = [];
+            for (const [field, oldValue, newValue] of gated) {
+                const outcome = dryRun
+                    ? (inbox.sameValue(field, oldValue, newValue) || inbox.isUnconfirmed(field, newValue)
+                        || inbox.validateValue(field, newValue) || inbox.isMinorRewrite(field, oldValue, newValue) ? 'skipped' : 'created')
+                    : inbox.proposeFieldChange(db, {
+                        agent: AGENT, scholarshipId: item.id, scholarshipTitle: item.title, field, oldValue, newValue,
+                        source: data.official_source || data.apply_url || 'Gemini Sweep'
+                    });
+                if (outcome === 'created' || outcome === 'superseded') diffs.push({ field, old: oldValue, new: newValue });
             }
 
             if (diffs.length > 0) {
                 pendingReviewCount++;
-                console.log(`   📝 Proposed gated changes detected:`, diffs);
-                if (!dryRun) {
-                    const detailsJson = JSON.stringify({
-                        changes: diffs,
-                        source_citation: data.official_source || data.apply_url || 'Gemini Sweep'
-                    });
-                    insertChangelog.run(item.id, item.title, 'pending_review', detailsJson);
-                }
+                console.log(`   📝 Proposed gated changes added to the inbox:`, diffs);
             } else {
                 autoUpdatedCount++;
             }
@@ -335,6 +312,15 @@ async function runEnrichment() {
 
     console.log('\n🏁 Enrichment Sweep Complete:');
     console.log(JSON.stringify(summary, null, 2));
+
+    if (!dryRun) {
+        inbox.logEvent(db, {
+            agent: AGENT,
+            kind: failedCount > 0 ? 'run_warning' : 'run_finished',
+            summary: `Enriched ${finalTargets.length} scholarships: ${pendingReviewCount} with new proposals, ${failedCount} failed`,
+            details: summary
+        });
+    }
 
     // Save summary json for Github Actions
     fs.writeFileSync(path.join(__dirname, '..', 'data', 'weekly-enrichment-summary.json'), JSON.stringify(summary, null, 2));

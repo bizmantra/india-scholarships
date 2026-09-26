@@ -1,165 +1,85 @@
+/**
+ * Review the agent inbox from the terminal (the command center in /admin does the same in the browser).
+ *
+ * Works on the local copy: run `npm run db:pull` first. Decisions are pushed to Turso at the end.
+ *
+ * Usage: node scripts/apply-reviewed-changes.js [--category=date_change|value_change|wording|new_scholarship] [--yes] [--by=name]
+ *   --yes   approve every item shown without asking (use with --category)
+ */
 const path = require('path');
 const Database = require('better-sqlite3');
 const readline = require('readline');
 const { execSync } = require('child_process');
-
-const dbPath = path.join(__dirname, '..', 'data', 'scholarships.db');
-const db = new Database(dbPath);
+const inbox = require('./lib/agent-inbox');
 
 const args = process.argv.slice(2);
+const argValue = name => args.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
 const autoApprove = args.includes('--yes') || args.includes('-y');
+const category = argValue('category');
+const actor = argValue('by') || process.env.USER || 'terminal';
 
-console.log('📝 Apply Pending Reviewed Changes');
-console.log('---------------------------------');
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-function askQuestion(query) {
-    return new Promise(resolve => rl.question(query, resolve));
-}
+const db = new Database(path.join(__dirname, '..', 'data', 'scholarships.db'));
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const ask = query => new Promise(resolve => rl.question(query, resolve));
 
 async function main() {
-    // 1. Get all pending reviews
-    const pendingLogs = db.prepare(`
-        SELECT id, scholarship_id, scholarship_title, details, timestamp 
-        FROM scholarship_changelog 
-        WHERE action_type = 'pending_review'
-        ORDER BY id ASC
-    `).all();
+    inbox.ensureAgentTables(db);
+    const pending = db.prepare(`SELECT * FROM agent_proposals WHERE status = 'pending' ${category ? 'AND category = ?' : ''}
+                                ORDER BY CASE category WHEN 'date_change' THEN 0 WHEN 'new_scholarship' THEN 1 WHEN 'value_change' THEN 2 ELSE 3 END,
+                                scholarship_id, field`).all(...(category ? [category] : []));
 
-    if (pendingLogs.length === 0) {
-        console.log('✅ No pending changes to review. Database is up to date.');
-        db.close();
-        rl.close();
-        return;
+    console.log('📝 Agent inbox review');
+    if (pending.length === 0) {
+        console.log('✅ Nothing waiting for review.');
+        return finish(0);
     }
+    console.log(`📋 ${pending.length} item(s) waiting${category ? ` in "${category}"` : ''}. Answer y = approve, n = reject, Enter = skip, q = stop.\n`);
 
-    console.log(`📋 Found ${pendingLogs.length} pending review entries:\n`);
+    let decisions = 0;
+    for (let i = 0; i < pending.length; i++) {
+        const p = pending[i];
+        console.log(`[${i + 1}/${pending.length}] ${p.scholarship_title} (${p.scholarship_id}) · ${p.category}${p.risk === 'high' ? ' · ⚠️ high risk' : ''}`);
+        if (p.kind === 'new_scholarship') {
+            const record = JSON.parse(p.payload_json || '{}');
+            console.log(`   New scholarship by ${record.provider || '—'} · ${record.amount_description || '—'} · deadline ${record.deadline || '—'}`);
+        } else {
+            console.log(`   ${p.field}: ${p.old_value || '(empty)'} → ${p.new_value}   (proposed ${p.times_proposed}×)`);
+        }
+        console.log(`   Source: ${p.source_citation || '—'}`);
 
-    let appliedCount = 0;
-    let skippedCount = 0;
-
-    for (let i = 0; i < pendingLogs.length; i++) {
-        const log = pendingLogs[i];
-        console.log(`[${i + 1}/${pendingLogs.length}] Scholarship: "${log.scholarship_title}" (ID: ${log.scholarship_id})`);
-        
-        let details = {};
+        const answer = autoApprove ? 'y' : (await ask('   Decision (y/n/Enter/q): ')).trim().toLowerCase();
+        if (answer === 'q') break;
         try {
-            details = JSON.parse(log.details);
-        } catch (e) {
-            console.log(`   ⚠️ Failed to parse changelog details: ${log.details}`);
-            continue;
-        }
-
-        const changes = details.changes || [];
-        const source = details.source_citation || 'Unknown Source';
-
-        console.log(`   Source: ${source}`);
-        console.log(`   Changes:`);
-        changes.forEach(c => {
-            console.log(`     • ${c.field}: ${c.old} -> ${c.new}`);
-        });
-
-        let approve = false;
-        if (autoApprove) {
-            approve = true;
-            console.log(`   [Auto-Approve] Applying changes...`);
-        } else {
-            const answer = await askQuestion(`   Apply these changes? (y/n/skip): `);
-            if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
-                approve = true;
+            if (answer === 'y' || answer === 'yes') {
+                if (p.kind === 'new_scholarship') inbox.approveNewScholarship(db, p, actor);
+                else inbox.approveFieldProposal(db, p, actor);
+                decisions++;
+                console.log('   ✅ Approved\n');
+            } else if (answer === 'n' || answer === 'no') {
+                inbox.rejectProposal(db, p, actor);
+                decisions++;
+                console.log('   🚫 Rejected (will not be proposed again)\n');
+            } else {
+                console.log('   ⏭️  Skipped\n');
             }
-        }
-
-        if (approve) {
-            try {
-                // Begin Transaction for safe update
-                db.transaction(() => {
-                    // Build dynamic update set
-                    changes.forEach(c => {
-                        // Validate field name to prevent SQL injection
-                        const allowedFields = ['deadline', 'deadline_description', 'amount_annual', 'amount_min', 'official_source', 'apply_url', 'helpline'];
-                        if (!allowedFields.includes(c.field)) {
-                            throw new Error(`Unauthorized field update: ${c.field}`);
-                        }
-
-                        // Determine field type for casting
-                        let value = c.new;
-                        if (c.field === 'amount_annual' || c.field === 'amount_min') {
-                            value = Number(c.new);
-                        }
-
-                        db.prepare(`
-                            UPDATE scholarships 
-                            SET ${c.field} = ?, 
-                                verified_status = 'Verified',
-                                last_verified = datetime('now')
-                            WHERE id = ?
-                        `).run(value, log.scholarship_id);
-                    });
-
-                    // Update the changelog action type so it isn't processed again
-                    db.prepare(`
-                        UPDATE scholarship_changelog 
-                        SET action_type = 'reviewed_applied' 
-                        WHERE id = ?
-                    `).run(log.id);
-                })();
-
-                console.log(`   ✅ Changes applied successfully.\n`);
-                appliedCount++;
-            } catch (err) {
-                console.error(`   ❌ Failed to apply changes: ${err.message}\n`);
-            }
-        } else {
-            console.log(`   ⏭️ Skipped.\n`);
-            skippedCount++;
+        } catch (error) {
+            console.error(`   ❌ ${error.message}\n`);
         }
     }
-
-    console.log('==================================================');
-    console.log(`🏁 Review process completed.`);
-    console.log(`   Applied: ${appliedCount}`);
-    console.log(`   Skipped: ${skippedCount}`);
-    console.log('==================================================');
-
-    db.close();
-    rl.close();
-
-    if (appliedCount > 0) {
-        let runPush = false;
-        if (autoApprove) {
-            runPush = true;
-        } else {
-            const rlPush = readline.createInterface({
-                input: process.stdin,
-                output: process.stdout
-            });
-            const askPush = (query) => new Promise(resolve => rlPush.question(query, resolve));
-            const answer = await askPush(`\nPush updated database to Turso Cloud? (y/n): `);
-            if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
-                runPush = true;
-            }
-            rlPush.close();
-        }
-
-        if (runPush) {
-            console.log('📡 Syncing local database to Turso Cloud...');
-            try {
-                execSync('node scripts/push-to-turso.js', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
-                console.log('✅ Turso synchronization complete.');
-            } catch (err) {
-                console.error('❌ Failed to sync to Turso:', err.message);
-                console.log('👉 Please manually run: node scripts/push-to-turso.js');
-            }
-        } else {
-            console.log('\n👉 Reminder: Push changes to Turso Cloud when ready:');
-            console.log('   node scripts/push-to-turso.js');
-        }
-    }
+    return finish(decisions);
 }
 
-main();
+async function finish(decisions) {
+    db.close();
+    if (decisions > 0) {
+        const push = autoApprove || /^y/i.test(await ask(`\nPush ${decisions} decision(s) to Turso now? (y/n): `));
+        if (push) execSync('node scripts/push-to-turso.js', { stdio: 'inherit', cwd: path.join(__dirname, '..') });
+        else console.log('👉 Push when ready: npm run db:push');
+    }
+    rl.close();
+}
+
+main().catch(error => {
+    console.error(`❌ ${error.message}`);
+    process.exit(1);
+});

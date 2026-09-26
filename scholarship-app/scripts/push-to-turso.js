@@ -22,12 +22,15 @@ const path = require('path');
 const fs = require('fs');
 const { resolveTarget, connect, describe } = require('./lib/turso-target');
 const { basePathFor } = require('./pull-from-turso');
+const { AGENT_TABLES } = require('./lib/agent-inbox');
 
 const dryRun = process.argv.includes('--dry-run');
 const LOCAL_DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
 
 // Tables owned by the local database and mirrored to Turso
-const SYNCED_TABLES = ['scholarships', 'scholarship_translations', 'scholarship_changelog', 'backlog_tasks', 'gsc_traffic_cache'];
+const SYNCED_TABLES = ['scholarships', 'scholarship_translations', 'scholarship_changelog', 'backlog_tasks', 'gsc_traffic_cache', ...AGENT_TABLES];
+// Agent inbox tables appear once an agent (or the migration) creates them; older local copies may not have them yet
+const OPTIONAL_TABLES = new Set(AGENT_TABLES);
 const CHUNK_SIZE = 50;
 
 // Tables written only by the live site (community features); ensured to exist, never touched otherwise
@@ -216,6 +219,8 @@ async function run() {
 
     const results = [];
     for (const table of SYNCED_TABLES) {
+        const exists = localDb.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?").get(table);
+        if (!exists && OPTIONAL_TABLES.has(table)) continue;
         results.push(await syncTable(turso, localDb, baseDb, table));
     }
     if (!dryRun) {

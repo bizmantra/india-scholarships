@@ -1,4 +1,6 @@
 name: Weekly Scholarship Data Enrichment
+# The request id lets the command center find the run it started
+run-name: "${{ github.event_name == 'workflow_dispatch' && format('Weekly Enrichment · {0}{1}', inputs.target, inputs.request_id && format(' · {0}', inputs.request_id) || '') || github.workflow }}"
 
 on:
   push:
@@ -14,6 +16,11 @@ on:
         type: choice
         options: [production, staging]
         default: production
+      request_id:
+        description: 'Set by the command center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
 
 # Scheduled/manual runs write the database, so they share one queue with the other database writers
 concurrency:

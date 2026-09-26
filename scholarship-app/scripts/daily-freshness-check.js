@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
+const inbox = require('./lib/agent-inbox');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -15,6 +16,8 @@ const db = new Database(dbPath);
 // Parse command line args
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+const AGENT = 'deadline-freshness';
+const SUMMARY_PATH = path.join(__dirname, '..', 'data', 'daily-check-summary.json');
 
 console.log(`⏰ Daily Deadline Freshness Check`);
 console.log(`- Dry Run: ${dryRun}\n`);
@@ -81,9 +84,19 @@ Provide ONLY the raw JSON object.`;
 }
 
 async function runDailyCheck() {
+    inbox.ensureAgentTables(db);
+    if (inbox.skipIfDisabled(db, AGENT)) {
+        fs.writeFileSync(SUMMARY_PATH, JSON.stringify({ skipped: true, checked: 0, pending_review: 0, check_failed: 0, changes: [], failed: [] }, null, 2));
+        db.close();
+        return;
+    }
+    const maxChecks = inbox.getSetting(db, AGENT, 'max_checks', 30);
+    const daysBefore = inbox.getSetting(db, AGENT, 'window_days_before', 14);
+    const daysAfter = inbox.getSetting(db, AGENT, 'window_days_after', 30);
+
     // 1. Get all active scholarships
     const allActive = db.prepare(`
-        SELECT id, title, slug, deadline, deadline_description, always_open, last_checked_at 
+        SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at 
         FROM scholarships 
         WHERE status = 'Active' OR status IS NULL
     `).all();
@@ -103,8 +116,8 @@ async function runDailyCheck() {
         const diffTime = deadlineDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-        // Near-deadline range: [-14 days, +30 days]
-        if (diffDays >= -14 && diffDays <= 30) {
+        // Near-deadline range: [-daysBefore, +daysAfter]
+        if (diffDays >= -daysBefore && diffDays <= daysAfter) {
             nearDeadlineTargets.push({
                 ...s,
                 diffDays,
@@ -118,7 +131,7 @@ async function runDailyCheck() {
 
     // Filter Bucket B: High traffic candidates from cache not checked in last 7 days
     const highTrafficCandidates = db.prepare(`
-        SELECT s.id, s.title, s.slug, s.deadline, s.deadline_description, s.always_open, s.last_checked_at, t.clicks, t.impressions
+        SELECT s.id, s.title, s.slug, s.provider, s.deadline, s.deadline_description, s.always_open, s.last_checked_at, t.clicks, t.impressions
         FROM scholarships s
         JOIN gsc_traffic_cache t ON s.slug = t.slug
         WHERE (s.status = 'Active' OR s.status IS NULL)
@@ -130,14 +143,14 @@ async function runDailyCheck() {
 
     // Priority 1: Add near-deadline targets up to 30
     for (const t of nearDeadlineTargets) {
-        if (targets.length >= 30) break;
+        if (targets.length >= maxChecks) break;
         targets.push(t);
         targetIds.add(t.id);
     }
 
     // Priority 2: Fill remaining slots with high-traffic not checked in last 7 days
     for (const s of highTrafficCandidates) {
-        if (targets.length >= 30) break;
+        if (targets.length >= maxChecks) break;
         if (targetIds.has(s.id)) continue;
 
         const lastChecked = s.last_checked_at ? new Date(s.last_checked_at) : null;
@@ -166,6 +179,8 @@ async function runDailyCheck() {
         WHERE id = ?
     `);
 
+    // How each proposed value was handled by the inbox (see proposeFieldChange)
+    const outcomes = { created: 0, superseded: 0, repeat: 0, unchanged: 0, unconfirmed: 0, invalid: 0, minor: 0, rejected_before: 0 };
     let pendingReviewCount = 0;
     let failedCount = 0;
     const reviewChanges = [];
@@ -186,32 +201,40 @@ async function runDailyCheck() {
             const existingDeadline = item.deadline || '';
             const existingDescription = item.deadline_description || '';
 
-            let diffs = [];
-            if (proposedDeadline !== existingDeadline) {
+            const source = data.official_source || data.apply_url || 'Gemini daily-check';
+            const propose = (field, oldValue, newValue, extra = {}) => {
+                if (dryRun) {
+                    if (inbox.sameValue(field, oldValue, newValue)) return 'unchanged';
+                    if (inbox.isUnconfirmed(field, newValue)) return 'unconfirmed';
+                    return inbox.isMinorRewrite(field, oldValue, newValue, extra) ? 'minor' : 'created';
+                }
+                return inbox.proposeFieldChange(db, {
+                    agent: AGENT, scholarshipId: item.id, scholarshipTitle: item.title,
+                    field, oldValue, newValue, source, ...extra
+                });
+            };
+
+            // A blank date means "not found", so it is never proposed (the inbox drops it)
+            const diffs = [];
+            const deadlineOutcome = propose('deadline', existingDeadline, proposedDeadline);
+            outcomes[deadlineOutcome]++;
+            if (deadlineOutcome === 'created' || deadlineOutcome === 'superseded') {
                 diffs.push({ field: 'deadline', old: existingDeadline, new: proposedDeadline });
             }
-            if (proposedDescription !== existingDescription) {
+            // A reworded description is only proposed with a date change, or when there was none (the inbox decides)
+            const dateIsChanging = ['created', 'superseded', 'repeat'].includes(deadlineOutcome);
+            const descOutcome = propose('deadline_description', existingDescription, proposedDescription, { withDateChange: dateIsChanging });
+            outcomes[descOutcome]++;
+            if (descOutcome === 'created' || descOutcome === 'superseded') {
                 diffs.push({ field: 'deadline_description', old: existingDescription, new: proposedDescription });
             }
 
             if (diffs.length > 0) {
                 pendingReviewCount++;
-                const source = data.official_source || data.apply_url || 'Gemini daily-check';
-                reviewChanges.push({
-                    title: item.title,
-                    slug: item.slug,
-                    changes: diffs,
-                    source: source
-                });
-
-                if (!dryRun) {
-                    const detailsJson = JSON.stringify({
-                        changes: diffs,
-                        source_citation: source
-                    });
-                    insertChangelog.run(item.id, item.title, 'pending_review', detailsJson);
-                }
-                console.log(`   📝 Proposed changes logged to changelog.`);
+                reviewChanges.push({ title: item.title, slug: item.slug, changes: diffs, source });
+                console.log(`   📝 New proposal added to the inbox.`);
+            } else {
+                console.log(`   ✔️  Nothing new to review (deadline: ${deadlineOutcome}).`);
             }
 
             if (!dryRun) {
@@ -239,15 +262,25 @@ async function runDailyCheck() {
         checked: targets.length,
         pending_review: pendingReviewCount,
         check_failed: failedCount,
+        outcomes,
         changes: reviewChanges,
         failed: failedRows
     };
+    if (!dryRun) {
+        inbox.logEvent(db, {
+            agent: AGENT,
+            kind: failedCount > 0 ? 'run_warning' : 'run_finished',
+            summary: `Checked ${targets.length} deadlines: ${pendingReviewCount} new proposal(s), ${outcomes.repeat} repeat(s), ` +
+                `${outcomes.unconfirmed} not found, ${failedCount} failed`,
+            details: { outcomes, failed: failedRows.map(f => f.slug) }
+        });
+    }
 
     console.log('\n🏁 Daily Check Complete:');
     console.log(JSON.stringify(summary, null, 2));
 
     // Save summary json for Github Actions email reporting
-    fs.writeFileSync(path.join(__dirname, '..', 'data', 'daily-check-summary.json'), JSON.stringify(summary, null, 2));
+    fs.writeFileSync(SUMMARY_PATH, JSON.stringify(summary, null, 2));
 
     db.close();
 }

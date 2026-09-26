@@ -11,17 +11,20 @@
  *
  * Every lead is de-duplicated against the database, researched with Gemini + Google Search
  * grounding, filtered by the sourcing gate (no coaching tests, no loans, must be active or
- * recurring), and written to data/scout/candidates/<slug>.json for human review.
+ * recurring), and saved to the agent inbox (agent_proposals, status 'pending') for human review.
+ * Candidates the owner rejected are remembered and never suggested again.
  *
- * Nothing is written to the database here. Candidates go live only after the weekly
- * pull request is merged (see scripts/publish-scout-approved.js).
+ * Nothing is published here. Approved candidates go live when the Scout Publisher runs
+ * (see scripts/publish-scout-approved.js).
  *
- * Usage: node scripts/scholarship-scout.js [--dry-run] [--max=8] [--channels=demand,web,portals,csr,news,coverage]
+ * Usage: node scripts/scholarship-scout.js [--dry-run] [--max=8] [--channels=demand,web,portals,csr,news,coverage] [--state="Bihar"]
+ *   --state  focus the web search, coverage and portal channels on one state
  */
 const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const Parser = require('rss-parser');
+const inbox = require('./lib/agent-inbox');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -33,17 +36,19 @@ if (!GEMINI_API_KEY) {
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const argValue = name => args.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
-const MAX_CANDIDATES = parseInt(argValue('max') || '8', 10);
+const AGENT = 'scholarship-scout';
 const ALL_CHANNELS = ['demand', 'web', 'portals', 'csr', 'news', 'coverage'];
-const CHANNELS = (argValue('channels') || ALL_CHANNELS.join(',')).split(',');
+const STATE_CHANNELS = ['web', 'coverage', 'portals'];
+// An empty --state= (e.g. from a workflow input left blank) means no focus
+const STATE_FOCUS = (argValue('state') || process.env.SCOUT_STATE || '').trim() || null;
+// Set in runScout() from the arguments or the owner's settings
+let MAX_CANDIDATES = 8;
+let CHANNELS = ALL_CHANNELS;
 
 const APP_DIR = path.join(__dirname, '..');
 const DB_PATH = path.join(APP_DIR, 'data', 'scholarships.db');
 const KEYWORD_DIR = path.join(APP_DIR, 'Keyword research');
 const SCOUT_DIR = path.join(APP_DIR, 'data', 'scout');
-const CANDIDATES_DIR = path.join(SCOUT_DIR, 'candidates');
-const PUBLISHED_DIR = path.join(SCOUT_DIR, 'published');
-const SEEN_PATH = path.join(SCOUT_DIR, 'seen-links.json');
 const REPORT_PATH = path.join(SCOUT_DIR, 'scout-report.md');
 
 const CHANNEL_LABELS = {
@@ -108,6 +113,12 @@ const WEB_SEARCHES = [
     'new scholarships for Indian students to study abroad for the upcoming academic year',
 ];
 const WEB_SEARCHES_PER_WEEK = 3;
+// Used instead of the rotation when a run focuses on one state
+const STATE_WEB_SEARCHES = [
+    '"{state}" ("e-kalyan" OR "welfare department" OR "higher education") scholarship notification {year} filetype:pdf',
+    '"{state}" government scholarship ("apply online" OR "last date") {year} (site:gov.in OR site:nic.in)',
+    '"{state}" (university OR foundation OR trust) scholarship "applications invited" {year} -coaching',
+];
 const CSR_PER_WEEK = 3;
 
 // ---- Channel 5: coverage matrix ----
@@ -202,16 +213,12 @@ function similarity(a, b) {
     return overlap / Math.min(A.size, B.size);
 }
 
-function readJson(filePath, fallback) {
-    try { return JSON.parse(fs.readFileSync(filePath, 'utf8')); } catch { return fallback; }
-}
-
-function listJsonTitles(dir) {
-    if (!fs.existsSync(dir)) return [];
-    return fs.readdirSync(dir).filter(f => f.endsWith('.json')).map(f => {
-        const rec = readJson(path.join(dir, f), {});
-        return { title: rec.title || f, slug: rec.slug || f.replace(/\.json$/, '') };
-    });
+// Portals for the focus state, swept every run instead of on rotation (null when there is no match)
+function statePortals() {
+    if (!STATE_FOCUS) return null;
+    const name = STATE_FOCUS.toLowerCase();
+    const matches = PORTAL_SOURCES.filter(p => p.name.toLowerCase().includes(name));
+    return matches.length ? matches : null;
 }
 
 // Same week number for the whole week, so each rotation slot is stable within a run
@@ -369,8 +376,9 @@ async function sweepLeads(sources, count, channel, knownTitles) {
 async function webLeads(knownTitles) {
     const leads = [];
     const year = new Date().getFullYear();
-    const state = rotate(PRIORITY_STATES, 1)[0];
-    for (const template of rotate(WEB_SEARCHES, WEB_SEARCHES_PER_WEEK)) {
+    const state = STATE_FOCUS || rotate(PRIORITY_STATES, 1)[0];
+    const templates = STATE_FOCUS ? STATE_WEB_SEARCHES : rotate(WEB_SEARCHES, WEB_SEARCHES_PER_WEEK);
+    for (const template of templates) {
         const query = template.replace(/\{year\}/g, year).replace(/\{state\}/g, state);
         console.log(`   Searching: ${query}`);
         const context = `Run this Google search (and close variations of it): ${query}
@@ -453,8 +461,9 @@ function coverageTargets(dbRows) {
 async function coverageLeads(dbRows, knownTitles) {
     const { states, segment } = coverageTargets(dbRows);
     const leads = [];
-    const tasks = [
-        ...states.map(s => ({ label: `${s.state} (${s.count} listed)`, context: `Find government, university and private scholarships for students who are residents of ${s.state}, India.` })),
+    const stateTask = state => ({ label: state, context: `Find government, university and private scholarships for students who are residents of ${state}, India.` });
+    const tasks = STATE_FOCUS ? [stateTask(STATE_FOCUS)] : [
+        ...states.map(s => ({ ...stateTask(s.state), label: `${s.state} (${s.count} listed)` })),
         { label: `${segment.name} (${segment.count} listed)`, context: `Find scholarships in India specifically for ${segment.name}.` },
     ];
     for (const task of tasks) {
@@ -566,10 +575,8 @@ function buildReport(accepted, rejected, channelStats) {
         ...Object.entries(channelStats).map(([ch, n]) => `| ${CHANNEL_LABELS[ch]} | ${n} |`),
         '',
         '### How to review',
-        '- **Approve all:** merge this pull request. The scholarships go live automatically within a few minutes.',
-        '- **Reject one:** open the *Files changed* tab, click `⋯` on that candidate\'s file → *Delete file*, then merge.',
-        '- **Fix a detail:** in *Files changed*, click `⋯` → *Edit file*, correct the value, commit, then merge.',
-        '- **Reject all:** close this pull request.',
+        '- Open the command center in /admin and ask "what\'s waiting on me?". Approve or reject each scholarship there.',
+        '- Approved scholarships go live when the Scout Publisher runs. Rejected ones are never suggested again.',
         '',
     ];
 
@@ -590,7 +597,6 @@ function buildReport(accepted, rejected, channelStats) {
             `| AI confidence | **${c.confidence}** |`,
             `| Missing info | ${qualityGaps(r).join(', ') || 'None ✅'} |`,
             `| Evidence | ${formatEvidence(c.lead)} |`,
-            `| File | \`scholarship-app/data/scout/candidates/${r.slug}.json\` |`,
             ''
         );
     });
@@ -601,7 +607,7 @@ function buildReport(accepted, rejected, channelStats) {
         lines.push('', '</details>', '');
     }
 
-    lines.push('_Always double-check amounts, deadlines and eligibility against the official source before merging._');
+    lines.push('_Always double-check amounts, deadlines and eligibility against the official source before approving._');
     return lines.join('\n');
 }
 
@@ -653,26 +659,36 @@ function toRecord(data) {
 }
 
 async function runScout() {
+    fs.mkdirSync(SCOUT_DIR, { recursive: true });
+
+    const db = new Database(DB_PATH);
+    inbox.ensureAgentTables(db);
+    if (inbox.skipIfDisabled(db, AGENT)) {
+        db.close();
+        if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'candidates=0\n');
+        return;
+    }
+    // Command-line values win over the owner's settings; a state focus narrows the default channels
+    MAX_CANDIDATES = parseInt(argValue('max') || inbox.getSetting(db, AGENT, 'max_candidates', 8), 10);
+    const channelArg = argValue('channels');
+    CHANNELS = channelArg ? channelArg.split(',') : STATE_FOCUS ? STATE_CHANNELS : inbox.getSetting(db, AGENT, 'channels', ALL_CHANNELS);
+
     console.log('🔭 New Scholarship Scout');
+    if (STATE_FOCUS) console.log(`- State focus: ${STATE_FOCUS}`);
     console.log(`- Dry Run: ${dryRun}`);
     console.log(`- Max candidates: ${MAX_CANDIDATES}`);
     console.log(`- Channels: ${CHANNELS.join(', ')}\n`);
-
-    fs.mkdirSync(CANDIDATES_DIR, { recursive: true });
-
-    const db = new Database(DB_PATH, { readonly: true });
     const dbRows = db.prepare(`SELECT title, slug, state, gender, caste, tags, special_conditions, keywords, scholarship_scope
                                FROM scholarships WHERE status = 'Active' OR status IS NULL`).all();
     const allSlugs = db.prepare('SELECT title, slug FROM scholarships').all();
-    db.close();
 
-    // Anything already in the database, awaiting review, or already published counts as "known"
-    const existing = [...allSlugs, ...listJsonTitles(CANDIDATES_DIR), ...listJsonTitles(PUBLISHED_DIR)];
+    // Anything already in the database, waiting in the inbox, published or rejected counts as "known"
+    const existing = [...allSlugs, ...inbox.knownProposedScholarships(db)];
     const knownTitles = existing.map(e => e.title);
     const knownKeywords = new Set();
     dbRows.forEach(r => (readJsonString(r.keywords) || []).forEach(k => knownKeywords.add(String(k).toLowerCase())));
 
-    const seenLinks = new Set(readJson(SEEN_PATH, []));
+    const seenLinks = new Set(inbox.getState(db, AGENT, 'seen_links', []));
     const freshLinks = [];
 
     // Collect leads channel by channel (order = priority when capping)
@@ -682,7 +698,7 @@ async function runScout() {
         demand: () => demandLeads(existing, knownKeywords),
         web: () => webLeads(knownTitles),
         news: () => newsLeads(seenLinks, knownTitles, freshLinks),
-        portals: () => sweepLeads(PORTAL_SOURCES, PORTALS_PER_WEEK, 'portals', knownTitles),
+        portals: () => sweepLeads(statePortals() || PORTAL_SOURCES, PORTALS_PER_WEEK, 'portals', knownTitles),
         csr: () => sweepLeads(CSR_SOURCES, CSR_PER_WEEK, 'csr', knownTitles),
         coverage: () => coverageLeads(dbRows, knownTitles),
     };
@@ -755,32 +771,36 @@ async function runScout() {
     console.log('\n' + report);
 
     if (dryRun) {
-        console.log('\n🧪 Dry run: no files written.');
+        db.close();
+        console.log('\n🧪 Dry run: nothing saved.');
         return;
     }
 
     for (const { record, confidence, lead } of accepted) {
-        const file = {
-            ...record,
-            _scout: {
-                channel: lead.channel,
-                confidence,
-                evidence: lead.news?.map(n => n.link) || [lead.via, lead.evidence].filter(Boolean),
-                discovered_at: new Date().toISOString()
-            }
-        };
-        fs.writeFileSync(path.join(CANDIDATES_DIR, `${record.slug}.json`), JSON.stringify(file, null, 2) + '\n');
+        inbox.proposeNewScholarship(db, {
+            agent: AGENT,
+            record: { ...record, gaps: qualityGaps(record) },
+            source: record.official_source,
+            confidence,
+            evidence: lead.news?.map(n => n.link) || [lead.via, lead.evidence].filter(Boolean),
+        });
     }
     // Remember processed headlines so they are not re-triaged next week (keep the list bounded)
-    const allSeen = [...seenLinks, ...freshLinks].slice(-3000);
-    fs.writeFileSync(SEEN_PATH, JSON.stringify(allSeen, null, 2) + '\n');
+    inbox.setState(db, AGENT, 'seen_links', [...seenLinks, ...freshLinks].slice(-3000));
+    inbox.logEvent(db, {
+        agent: AGENT,
+        kind: 'run_finished',
+        summary: `Found ${accepted.length} new scholarship(s) to review${STATE_FOCUS ? ` (focus: ${STATE_FOCUS})` : ''}; skipped ${rejected.length} lead(s)`,
+        details: { state: STATE_FOCUS, channels: channelStats, candidates: accepted.map(c => c.record.slug) }
+    });
+    db.close();
     fs.writeFileSync(REPORT_PATH, report + '\n');
 
     // Expose result count to GitHub Actions
     if (process.env.GITHUB_OUTPUT) {
         fs.appendFileSync(process.env.GITHUB_OUTPUT, `candidates=${accepted.length}\n`);
     }
-    console.log(`\n🏁 Scout complete: ${accepted.length} candidate(s) written to data/scout/candidates/`);
+    console.log(`\n🏁 Scout complete: ${accepted.length} candidate(s) added to the inbox`);
 }
 
 function readJsonString(value) {

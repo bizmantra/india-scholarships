@@ -1,16 +1,30 @@
 name: Publish Scout-Approved Scholarships
+# The request id lets the command center find the run it started
+run-name: "Scout Publisher · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'scholarship-app/data/scout/candidates/**'
-  workflow_dispatch: # Allows manual triggering from GitHub UI
+  schedule:
+    - cron: '30 4 * * *' # Daily 4:30 AM UTC (10:00 AM IST): publishes anything approved and not yet live
+  workflow_dispatch: # Started from the command center after an approval, or from the GitHub UI
+    inputs:
+      target:
+        description: 'Database to update (staging = test run: live site untouched)'
+        type: choice
+        options: [production, staging]
+        default: production
+      request_id:
+        description: 'Set by the command center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
 
-# Wait for any other run of this workflow so two publishes never race on the database file
+# Every workflow that writes the database shares this group, so they run one at a time
 concurrency:
   group: database-writes
   cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
 
 jobs:
   publish:
@@ -39,11 +53,12 @@ jobs:
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Insert Approved Scholarships
         id: publish
-        run: |
-          node scholarship-app/scripts/publish-scout-approved.js
+        run: node scholarship-app/scripts/publish-scout-approved.js
 
       - name: Normalize data formats
         run: node scholarship-app/scripts/clean-data-formats.js
@@ -56,36 +71,39 @@ jobs:
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Store pre-sync backup
         uses: actions/upload-artifact@v4
         with:
-          name: pre-sync-backup-production-${{ github.run_id }}
+          name: pre-sync-backup-${{ env.DB_TARGET }}-${{ github.run_id }}
           path: backups/pre-sync.db
           retention-days: 7
 
       - name: Push Database to Turso
-        run: |
-          node scholarship-app/scripts/push-to-turso.js
+        run: node scholarship-app/scripts/push-to-turso.js
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
       - name: Broadcast New Entries to Telegram
-        if: steps.publish.outputs.published != '0'
-        run: |
-          node scholarship-app/scripts/post-new-to-telegram.js
+        if: steps.publish.outputs.published != '0' && env.DB_TARGET == 'production'
+        run: node scholarship-app/scripts/post-new-to-telegram.js
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           NODE_ENV: production
 
-      # The database itself lives in Turso; git only records which candidate files were published
-      - name: Commit published candidate files
+      # The database lives in Turso; git only keeps the Telegram registry (which entries were already posted)
+      - name: Commit Telegram registry
+        if: steps.publish.outputs.published != '0' && env.DB_TARGET == 'production'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scholarship-app/data/scout scholarship-app/data/telegram-posted.json
+          git add scholarship-app/data/telegram-posted.json
           if git diff --staged --quiet; then
             echo "Nothing to commit."
           else
@@ -94,6 +112,5 @@ jobs:
           fi
 
       - name: Trigger Vercel Redeployment
-        if: steps.publish.outputs.published != '0'
-        run: |
-          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+        if: steps.publish.outputs.published != '0' && env.DB_TARGET == 'production'
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
