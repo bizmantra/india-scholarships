@@ -25,6 +25,7 @@ const path = require('path');
 const Database = require('better-sqlite3');
 const Parser = require('rss-parser');
 const inbox = require('./lib/agent-inbox');
+const { titleTokens, similarity, findDuplicate } = require('./lib/scholarship-match');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -144,7 +145,7 @@ const GENERIC_SEARCH_WORDS = new Set([
     'form', 'login', 'status', 'check', 'last', 'date', 'list', 'amount', 'eligibility', 'renewal', 'registration', 'kab', 'aayega',
     'kaise', 'kare', 'in', 'to', 'how', 'what', 'is', 'when', 'will', 'new', 'latest', 'news', 'update', 'result', 'merit', 'fresh',
     'girls', 'girl', 'boys', 'women', 'student', 'ug', 'pg', 'phd', 'btech', 'mba', 'mbbs', 'engineering', 'medical', 'diploma',
-    'class', 'th', '10th', '11th', '12th', 'college', 'university', 'school', 'pre', 'post', 'matric', 'prematric', 'postmatric',
+    'class', 'th', '10th', '11th', '12th', 'class10', 'class12', 'graduation', 'postgraduation', 'college', 'university', 'school', 'pre', 'post', 'matric', 'prematric', 'postmatric',
     'sc', 'st', 'obc', 'ews', 'bc', 'minority', 'general', 'private', 'international', 'abroad', 'free', 'full', 'fully', 'funded',
     'best', 'top', 'all', 'with', 'without', 'near', 'me', 'on', 'by', 'from', 'at', 'site', 'gov', 'www', 'com', 'org',
 ]);
@@ -198,20 +199,6 @@ function slugify(text) {
         .slice(0, 90);
 }
 
-// Normalised word set used for fuzzy duplicate detection
-const STOP_WORDS = new Set(['scholarship', 'scholarships', 'scheme', 'yojana', 'the', 'for', 'of', 'and', 'program', 'programme', 'students', 'india', '2025', '2026', '2027']);
-function titleTokens(text) {
-    return new Set(
-        (text || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter(w => w.length > 1 && !STOP_WORDS.has(w))
-    );
-}
-function similarity(a, b) {
-    const A = titleTokens(a), B = titleTokens(b);
-    if (A.size === 0 || B.size === 0) return 0;
-    let overlap = 0;
-    for (const w of A) if (B.has(w)) overlap++;
-    return overlap / Math.min(A.size, B.size);
-}
 
 // Portals for the focus state, swept every run instead of on rotation (null when there is no match)
 function statePortals() {
@@ -532,9 +519,9 @@ Write in simple English with short sentences. Provide 3 FAQs. Provide ONLY the r
     return callGemini(prompt, { grounded: true });
 }
 
-function isDuplicate(title, existing) {
-    const slug = slugify(title);
-    return existing.find(e => e.slug === slug || similarity(title, e.title) >= 0.85);
+// Matching rules (Hindi/English names, years, state and level differences) live in lib/scholarship-match.js
+function isDuplicate(title, state, existing, options) {
+    return findDuplicate({ title, state, slug: slugify(title) }, existing, options);
 }
 
 // Mirrors the main rules in content-quality-audit.js so reviewers see gaps before approving
@@ -680,7 +667,7 @@ async function runScout() {
     console.log(`- Channels: ${CHANNELS.join(', ')}\n`);
     const dbRows = db.prepare(`SELECT title, slug, state, gender, caste, tags, special_conditions, keywords, scholarship_scope
                                FROM scholarships WHERE status = 'Active' OR status IS NULL`).all();
-    const allSlugs = db.prepare('SELECT title, slug FROM scholarships').all();
+    const allSlugs = db.prepare('SELECT title, slug, state FROM scholarships').all();
 
     // Anything already in the database, waiting in the inbox, published or rejected counts as "known"
     const existing = [...allSlugs, ...inbox.knownProposedScholarships(db)];
@@ -724,11 +711,12 @@ async function runScout() {
     for (const lead of leads) {
         if (accepted.length >= MAX_CANDIDATES) break;
 
-        // The same scheme often surfaces in several channels in one run
-        if (triedNames.some(n => similarity(n, lead.name) >= 0.85)) continue;
-        triedNames.push(lead.name);
+        // The same scheme often surfaces in several channels (and under Hindi and English names) in one run
+        if (findDuplicate({ title: lead.name }, triedNames, { strictState: true })) continue;
+        triedNames.push({ title: lead.name });
 
-        const dup = isDuplicate(lead.name, existing);
+        // A lead has only a name, so a match with another state's scheme waits for research to tell its state
+        const dup = isDuplicate(lead.name, null, existing, { strictState: true });
         if (dup) {
             rejected.push({ name: lead.name, channel: lead.channel, reason: `Already listed as "${dup.title}"` });
             continue;
@@ -751,12 +739,14 @@ async function runScout() {
                 reject('Low confidence in researched details');
             } else {
                 const record = toRecord(data);
-                const researchedDup = isDuplicate(record.title, existing);
+                // `existing` includes candidates accepted earlier in this run
+                const researchedDup = isDuplicate(record.title, record.state, existing);
                 if (researchedDup) {
                     reject(`Already listed as "${researchedDup.title}"`);
                 } else {
                     accepted.push({ record, confidence: data.confidence || 'Medium', lead });
-                    existing.push({ title: record.title, slug: record.slug });
+                    existing.push({ title: record.title, slug: record.slug, state: record.state });
+                    triedNames.push({ title: record.title, state: record.state });
                     console.log(`   ✅ Candidate ready: ${record.slug}`);
                 }
             }
