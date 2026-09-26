@@ -1,0 +1,37 @@
+name: Refresh Staging Database
+
+on:
+  workflow_dispatch: # Run before testing a new or changed agent against staging
+
+concurrency:
+  group: database-writes
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Copy production into staging (production is only read)
+        run: node scholarship-app/scripts/refresh-staging.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}

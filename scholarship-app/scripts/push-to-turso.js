@@ -1,337 +1,162 @@
+/**
+ * Push local SQLite data (data/scholarships.db) to Turso — safely.
+ *
+ * Unlike the previous version, this never drops or empties a table:
+ *   - Table structure comes from the local database (no second hand-written copy).
+ *     Missing tables are created and missing columns are added on Turso.
+ *   - Only rows that are new or changed are written, as upserts in small transactions,
+ *     so the live site keeps serving every row throughout the sync.
+ *   - Rows that exist only on Turso are reported, never deleted.
+ *   - Any failure exits with a non-zero code so the workflow run shows as failed.
+ *
+ * Usage: node scripts/push-to-turso.js [--target=production|staging] [--dry-run]
+ */
 const Database = require('better-sqlite3');
-const { createClient } = require('@libsql/client');
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
+const { resolveTarget, connect, describe } = require('./lib/turso-target');
 
-const TURSO_DATABASE_URL = process.env.TURSO_DATABASE_URL;
-const TURSO_AUTH_TOKEN = process.env.TURSO_AUTH_TOKEN;
+const dryRun = process.argv.includes('--dry-run');
+const LOCAL_DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
 
-if (!TURSO_DATABASE_URL || !TURSO_AUTH_TOKEN) {
-    console.error("❌ TURSO_DATABASE_URL or TURSO_AUTH_TOKEN not found in .env.local");
-    process.exit(1);
+// Tables owned by the local database and mirrored to Turso
+const SYNCED_TABLES = ['scholarships', 'scholarship_translations', 'scholarship_changelog', 'backlog_tasks', 'gsc_traffic_cache'];
+const CHUNK_SIZE = 50;
+
+// Tables written only by the live site (community features); ensured to exist, never touched otherwise
+const COMMUNITY_DDL = [
+    `CREATE TABLE IF NOT EXISTS community_events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        scholarship_id TEXT NOT NULL,
+        event_type TEXT NOT NULL,
+        metadata_json TEXT NOT NULL,
+        session_hash TEXT NOT NULL,
+        moderation_status TEXT DEFAULT 'pending',
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    )`,
+    'CREATE INDEX IF NOT EXISTS idx_community_events_scholarship_id ON community_events(scholarship_id)',
+    'CREATE INDEX IF NOT EXISTS idx_community_events_moderation_status ON community_events(moderation_status)',
+    `CREATE TABLE IF NOT EXISTS community_signals_aggregates (
+        scholarship_id TEXT PRIMARY KEY,
+        total_events INTEGER DEFAULT 0,
+        application_count INTEGER DEFAULT 0,
+        verification_count INTEGER DEFAULT 0,
+        selected_count INTEGER DEFAULT 0,
+        payment_count INTEGER DEFAULT 0,
+        average_payment INTEGER DEFAULT 0,
+        last_activity TEXT,
+        common_issues_json TEXT
+    )`,
+    `CREATE TABLE IF NOT EXISTS community_analytics (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        event_name TEXT NOT NULL,
+        scholarship_id TEXT NOT NULL,
+        session_hash TEXT NOT NULL,
+        created_at TEXT DEFAULT CURRENT_TIMESTAMP
+    )`,
+    'CREATE INDEX IF NOT EXISTS idx_community_analytics_event_name ON community_analytics(event_name)',
+];
+
+const quote = name => `"${name.replace(/"/g, '""')}"`;
+// Stable comparison of values from better-sqlite3 and libsql (numbers, bigints, strings, null)
+const norm = v => (v === undefined || v === null ? null : typeof v === 'bigint' ? Number(v) : v);
+const rowKey = (row, pk) => pk.map(k => String(norm(row[k]))).join('\u0000');
+const sameRow = (a, b, cols) => cols.every(c => norm(a[c]) === norm(b[c]));
+
+async function ensureTable(turso, localDb, table) {
+    const localSql = localDb.prepare("SELECT sql FROM sqlite_master WHERE type='table' AND name=?").get(table);
+    if (!localSql) throw new Error(`Local database has no table "${table}"`);
+    const localCols = localDb.prepare(`PRAGMA table_info(${quote(table)})`).all();
+
+    const remote = await turso.execute({ sql: "SELECT name FROM sqlite_master WHERE type='table' AND name=?", args: [table] });
+    const actions = [];
+    if (remote.rows.length === 0) {
+        actions.push(localSql.sql);
+    } else {
+        const remoteCols = new Set((await turso.execute(`PRAGMA table_info(${quote(table)})`)).rows.map(r => r.name));
+        for (const col of localCols) {
+            if (remoteCols.has(col.name)) continue;
+            // ALTER TABLE cannot add PRIMARY KEY / UNIQUE columns; plain columns are all we ever add
+            const dflt = col.dflt_value !== null ? ` DEFAULT ${col.dflt_value}` : '';
+            actions.push(`ALTER TABLE ${quote(table)} ADD COLUMN ${quote(col.name)} ${col.type}${dflt}`);
+        }
+    }
+    // Indexes from the local database, created only if missing
+    const indexes = localDb.prepare("SELECT sql FROM sqlite_master WHERE type='index' AND tbl_name=? AND sql IS NOT NULL").all(table);
+    for (const idx of indexes) {
+        actions.push(idx.sql.replace(/^CREATE (UNIQUE )?INDEX (IF NOT EXISTS )?/i, 'CREATE $1INDEX IF NOT EXISTS '));
+    }
+
+    const schemaChanges = actions.filter(a => !/INDEX IF NOT EXISTS/i.test(a));
+    schemaChanges.forEach(a => console.log(`   🏗️  ${a.split('\n')[0].slice(0, 110)}`));
+    if (!dryRun) {
+        for (const sql of actions) await turso.execute(sql);
+    }
+    return { localCols, created: remote.rows.length === 0 };
 }
 
-const LOCAL_DB_PATH = path.join(__dirname, '..', 'data', 'scholarships.db');
-const localDb = new Database(LOCAL_DB_PATH);
+async function syncTable(turso, localDb, table) {
+    console.log(`\n📦 ${table}`);
+    const { localCols, created } = await ensureTable(turso, localDb, table);
+    const cols = localCols.map(c => c.name);
+    const pk = localCols.filter(c => c.pk).sort((a, b) => a.pk - b.pk).map(c => c.name);
+    if (pk.length === 0) throw new Error(`Table "${table}" has no primary key; cannot sync safely`);
 
-const turso = createClient({
-    url: TURSO_DATABASE_URL,
-    authToken: TURSO_AUTH_TOKEN,
-});
+    const localRows = localDb.prepare(`SELECT * FROM ${quote(table)}`).all();
+    const remoteRows = created && dryRun ? [] : (await turso.execute(`SELECT * FROM ${quote(table)}`)).rows;
+    const remoteByKey = new Map(remoteRows.map(r => [rowKey(r, pk), r]));
+
+    const inserts = [];
+    const updates = [];
+    for (const row of localRows) {
+        const remote = remoteByKey.get(rowKey(row, pk));
+        if (!remote) inserts.push(row);
+        else if (!sameRow(row, remote, cols)) updates.push(row);
+        remoteByKey.delete(rowKey(row, pk));
+    }
+    const remoteOnly = remoteByKey.size;
+
+    console.log(`   local ${localRows.length} · turso ${remoteRows.length} · new ${inserts.length} · changed ${updates.length} · only on turso ${remoteOnly}`);
+    if (remoteOnly > 0) {
+        const sample = [...remoteByKey.values()].slice(0, 5).map(r => rowKey(r, pk)).join(', ');
+        console.log(`   ⚠️  ${remoteOnly} row(s) exist only on Turso and were left untouched (e.g. ${sample})`);
+    }
+
+    const toWrite = [...inserts, ...updates];
+    if (dryRun || toWrite.length === 0) return { table, inserts: inserts.length, updates: updates.length, remoteOnly };
+
+    const nonPk = cols.filter(c => !pk.includes(c));
+    const sql = `INSERT INTO ${quote(table)} (${cols.map(quote).join(', ')}) VALUES (${cols.map(() => '?').join(', ')})
+        ON CONFLICT(${pk.map(quote).join(', ')}) DO UPDATE SET ${nonPk.map(c => `${quote(c)} = excluded.${quote(c)}`).join(', ')}`;
+    for (let i = 0; i < toWrite.length; i += CHUNK_SIZE) {
+        const chunk = toWrite.slice(i, i + CHUNK_SIZE);
+        // Each batch is one transaction: it applies fully or not at all
+        await turso.batch(chunk.map(row => ({ sql, args: cols.map(c => norm(row[c])) })), 'write');
+    }
+    console.log(`   ✅ wrote ${toWrite.length} row(s)`);
+    return { table, inserts: inserts.length, updates: updates.length, remoteOnly };
+}
 
 async function run() {
-    console.log("🏁 Starting migration from local SQLite to Turso...");
-    
-    try {
-        // --- 1. Drop existing tables on Turso ---
-        console.log("🗑️  Dropping old tables on Turso...");
-        await turso.execute("DROP TABLE IF EXISTS scholarship_translations;");
-        await turso.execute("DROP TABLE IF EXISTS scholarship_changelog;");
-        await turso.execute("DROP TABLE IF EXISTS backlog_tasks;");
-        await turso.execute("DROP TABLE IF EXISTS gsc_traffic_cache;");
-        await turso.execute("DROP TABLE IF EXISTS scholarships;");
+    const target = resolveTarget();
+    const { client: turso, url } = connect(target);
+    const localDb = new Database(LOCAL_DB_PATH, { readonly: true });
 
-        // --- 2. Recreate schemas on Turso ---
-        console.log("🏗️  Creating tables and indexes on Turso...");
-        
-        await turso.execute(`
-            CREATE TABLE scholarships (
-                id TEXT PRIMARY KEY,
-                title TEXT NOT NULL,
-                slug TEXT UNIQUE NOT NULL,
-                provider TEXT,
-                provider_type TEXT,
-                state TEXT,
-                level TEXT,
-                caste TEXT,
-                gender TEXT,
-                course_stream TEXT,
-                app_type TEXT,
-                amount_annual INTEGER,
-                amount_min INTEGER,
-                amount_description TEXT,
-                benefits TEXT,
-                income_limit INTEGER,
-                min_marks INTEGER,
-                age_limit TEXT,
-                residency_requirement TEXT,
-                docs_needed TEXT,
-                application_mode TEXT,
-                apply_url TEXT,
-                deadline TEXT,
-                deadline_description TEXT,
-                time_min INTEGER,
-                step_guide TEXT,
-                selection TEXT,
-                total_awards INTEGER,
-                renewal TEXT,
-                competitiveness TEXT,
-                verified_status TEXT,
-                last_verified TEXT,
-                official_source TEXT,
-                helpline TEXT,
-                intro_seo TEXT,
-                faq_json TEXT,
-                notes_actions TEXT,
-                keywords TEXT,
-                scholarship_type TEXT DEFAULT 'Government',
-                status TEXT DEFAULT 'Active',
-                verification_year INTEGER DEFAULT NULL,
-                show_on_homepage INTEGER DEFAULT 0,
-                is_featured INTEGER DEFAULT 0,
-                is_popular INTEGER DEFAULT 0,
-                priority_score INTEGER DEFAULT 50,
-                special_conditions TEXT DEFAULT NULL,
-                tags TEXT DEFAULT NULL,
-                thumbnail_url TEXT DEFAULT NULL,
-                created_at TEXT DEFAULT NULL,
-                scholarship_scope TEXT DEFAULT 'domestic',
-                country_of_study TEXT DEFAULT NULL,
-                always_open INTEGER DEFAULT 0,
-                last_checked_at TEXT DEFAULT NULL,
-                extra_data_json TEXT DEFAULT NULL
-            );
-        `);
+    console.log(`🔄 Sync local database → Turso (${target}: ${describe(url)})${dryRun ? ' — DRY RUN, nothing will be written' : ''}`);
 
-        // Create indexes
-        await turso.execute("CREATE INDEX idx_state ON scholarships(state);");
-        await turso.execute("CREATE INDEX idx_level ON scholarships(level);");
-        await turso.execute("CREATE INDEX idx_caste ON scholarships(caste);");
-        await turso.execute("CREATE INDEX idx_gender ON scholarships(gender);");
-        await turso.execute("CREATE INDEX idx_provider_type ON scholarships(provider_type);");
-        await turso.execute("CREATE INDEX idx_app_type ON scholarships(app_type);");
-        await turso.execute("CREATE INDEX idx_slug ON scholarships(slug);");
-
-        await turso.execute(`
-            CREATE TABLE scholarship_changelog (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                scholarship_id TEXT NOT NULL,
-                scholarship_title TEXT NOT NULL,
-                action_type TEXT NOT NULL,
-                details TEXT,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-            );
-        `);
-
-        await turso.execute(`
-            CREATE TABLE scholarship_translations (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                scholarship_id TEXT NOT NULL,
-                locale TEXT NOT NULL,
-                title TEXT,
-                amount_description TEXT,
-                benefits TEXT,
-                selection TEXT,
-                renewal TEXT,
-                step_guide TEXT,
-                faq_json TEXT,
-                intro_seo TEXT,
-                FOREIGN KEY (scholarship_id) REFERENCES scholarships(id),
-                UNIQUE(scholarship_id, locale)
-            );
-        `);
-        await turso.execute("CREATE INDEX idx_trans_lookup ON scholarship_translations(scholarship_id, locale);");
-
-        await turso.execute(`
-            CREATE TABLE backlog_tasks (
-                id TEXT PRIMARY KEY,
-                title TEXT NOT NULL,
-                description TEXT,
-                impact TEXT,
-                status TEXT,
-                type TEXT,
-                category TEXT
-            );
-        `);
-
-        await turso.execute(`
-            CREATE TABLE IF NOT EXISTS gsc_traffic_cache (
-                slug TEXT PRIMARY KEY,
-                clicks INTEGER DEFAULT 0,
-                impressions INTEGER DEFAULT 0,
-                ctr REAL DEFAULT 0.0,
-                position REAL DEFAULT 0.0,
-                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-            );
-        `);
-
-        // Recreate community tables if not exists (never drop them!)
-        await turso.execute(`
-            CREATE TABLE IF NOT EXISTS community_events (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                scholarship_id TEXT NOT NULL,
-                event_type TEXT NOT NULL,
-                metadata_json TEXT NOT NULL,
-                session_hash TEXT NOT NULL,
-                moderation_status TEXT DEFAULT 'pending',
-                created_at TEXT DEFAULT CURRENT_TIMESTAMP
-            );
-        `);
-        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_events_scholarship_id ON community_events(scholarship_id);");
-        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_events_moderation_status ON community_events(moderation_status);");
-
-        await turso.execute(`
-            CREATE TABLE IF NOT EXISTS community_signals_aggregates (
-                scholarship_id TEXT PRIMARY KEY,
-                total_events INTEGER DEFAULT 0,
-                application_count INTEGER DEFAULT 0,
-                verification_count INTEGER DEFAULT 0,
-                selected_count INTEGER DEFAULT 0,
-                payment_count INTEGER DEFAULT 0,
-                average_payment INTEGER DEFAULT 0,
-                last_activity TEXT,
-                common_issues_json TEXT
-            );
-        `);
-
-        await turso.execute(`
-            CREATE TABLE IF NOT EXISTS community_analytics (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                event_name TEXT NOT NULL,
-                scholarship_id TEXT NOT NULL,
-                session_hash TEXT NOT NULL,
-                created_at TEXT DEFAULT CURRENT_TIMESTAMP
-            );
-        `);
-        await turso.execute("CREATE INDEX IF NOT EXISTS idx_community_analytics_event_name ON community_analytics(event_name);");
-
-        // --- 3. Read data from local SQLite and insert into Turso ---
-        
-        // A. Scholarships
-        console.log("📦 Reading local scholarships...");
-        const scholarships = localDb.prepare("SELECT * FROM scholarships").all();
-        console.log(`Found ${scholarships.length} scholarships.`);
-
-        if (scholarships.length > 0) {
-            console.log("📤 Uploading scholarships to Turso...");
-            // Let's insert in chunks to avoid query size limits
-            const chunkSize = 25;
-            for (let i = 0; i < scholarships.length; i += chunkSize) {
-                const chunk = scholarships.slice(i, i + chunkSize);
-                const statements = chunk.map(s => {
-                    const keys = Object.keys(s);
-                    const columns = keys.join(', ');
-                    const placeholders = keys.map(() => '?').join(', ');
-                    const values = keys.map(k => s[k]);
-                    return {
-                        sql: `INSERT INTO scholarships (${columns}) VALUES (${placeholders})`,
-                        args: values
-                    };
-                });
-                await turso.batch(statements);
-                console.log(`  Uploaded ${i + chunk.length} / ${scholarships.length} scholarships...`);
-            }
-        }
-
-        // B. Scholarship Translations
-        console.log("📦 Reading local translations...");
-        const translations = localDb.prepare("SELECT * FROM scholarship_translations").all();
-        console.log(`Found ${translations.length} translations.`);
-
-        if (translations.length > 0) {
-            console.log("📤 Uploading translations to Turso...");
-            const chunkSize = 50;
-            for (let i = 0; i < translations.length; i += chunkSize) {
-                const chunk = translations.slice(i, i + chunkSize);
-                const statements = chunk.map(t => {
-                    // Omit 'id' so AutoIncrement takes care of it, or keep it. Let's keep it to preserve exact IDs.
-                    const keys = Object.keys(t);
-                    const columns = keys.join(', ');
-                    const placeholders = keys.map(() => '?').join(', ');
-                    const values = keys.map(k => t[k]);
-                    return {
-                        sql: `INSERT INTO scholarship_translations (${columns}) VALUES (${placeholders})`,
-                        args: values
-                    };
-                });
-                await turso.batch(statements);
-                console.log(`  Uploaded ${i + chunk.length} / ${translations.length} translations...`);
-            }
-        }
-
-        // C. Scholarship Changelog
-        console.log("📦 Reading local changelogs...");
-        const changelogs = localDb.prepare("SELECT * FROM scholarship_changelog").all();
-        console.log(`Found ${changelogs.length} changelogs.`);
-
-        if (changelogs.length > 0) {
-            console.log("📤 Uploading changelogs to Turso...");
-            const chunkSize = 50;
-            for (let i = 0; i < changelogs.length; i += chunkSize) {
-                const chunk = changelogs.slice(i, i + chunkSize);
-                const statements = chunk.map(c => {
-                    const keys = Object.keys(c);
-                    const columns = keys.join(', ');
-                    const placeholders = keys.map(() => '?').join(', ');
-                    const values = keys.map(k => c[k]);
-                    return {
-                        sql: `INSERT INTO scholarship_changelog (${columns}) VALUES (${placeholders})`,
-                        args: values
-                    };
-                });
-                await turso.batch(statements);
-                console.log(`  Uploaded ${i + chunk.length} / ${changelogs.length} changelogs...`);
-            }
-        }
-
-        // D. Backlog Tasks
-        console.log("📦 Reading local backlog tasks...");
-        const backlogTasks = localDb.prepare("SELECT * FROM backlog_tasks").all();
-        console.log(`Found ${backlogTasks.length} backlog tasks.`);
-
-        if (backlogTasks.length > 0) {
-            console.log("📤 Uploading backlog tasks to Turso...");
-            const chunkSize = 50;
-            for (let i = 0; i < backlogTasks.length; i += chunkSize) {
-                const chunk = backlogTasks.slice(i, i + chunkSize);
-                const statements = chunk.map(t => {
-                    const keys = Object.keys(t);
-                    const columns = keys.join(', ');
-                    const placeholders = keys.map(() => '?').join(', ');
-                    const values = keys.map(k => t[k]);
-                    return {
-                        sql: `INSERT INTO backlog_tasks (${columns}) VALUES (${placeholders})`,
-                        args: values
-                    };
-                });
-                await turso.batch(statements);
-                console.log(`  Uploaded ${i + chunk.length} / ${backlogTasks.length} backlog tasks...`);
-            }
-        }
-
-        // E. GSC Traffic Cache
-        console.log("📦 Reading local GSC traffic cache...");
-        const trafficCache = localDb.prepare("SELECT * FROM gsc_traffic_cache").all();
-        console.log(`Found ${trafficCache.length} traffic cache entries.`);
-
-        if (trafficCache.length > 0) {
-            console.log("📤 Uploading GSC traffic cache to Turso...");
-            const chunkSize = 50;
-            for (let i = 0; i < trafficCache.length; i += chunkSize) {
-                const chunk = trafficCache.slice(i, i + chunkSize);
-                const statements = chunk.map(tc => {
-                    const keys = Object.keys(tc);
-                    const columns = keys.join(', ');
-                    const placeholders = keys.map(() => '?').join(', ');
-                    const values = keys.map(k => tc[k]);
-                    return {
-                        sql: `INSERT INTO gsc_traffic_cache (${columns}) VALUES (${placeholders})`,
-                        args: values
-                    };
-                });
-                await turso.batch(statements);
-                console.log(`  Uploaded ${i + chunk.length} / ${trafficCache.length} traffic cache entries...`);
-            }
-        }
-
-        console.log("🎉 Migration completed successfully!");
-    } catch (error) {
-        console.error("❌ Migration failed:", error);
-    } finally {
-        localDb.close();
-        // Close turso client connection
-        turso.close();
+    const results = [];
+    for (const table of SYNCED_TABLES) {
+        results.push(await syncTable(turso, localDb, table));
     }
+    if (!dryRun) {
+        for (const sql of COMMUNITY_DDL) await turso.execute(sql);
+    }
+    localDb.close();
+
+    const written = results.reduce((n, r) => n + r.inserts + r.updates, 0);
+    console.log(`\n🏁 ${dryRun ? 'Dry run complete' : 'Sync complete'}: ${written} row(s) ${dryRun ? 'would be' : ''} written across ${results.length} tables.`);
 }
 
-run();
+run().catch(error => {
+    console.error(`❌ Sync failed: ${error.message}`);
+    process.exit(1);
+});

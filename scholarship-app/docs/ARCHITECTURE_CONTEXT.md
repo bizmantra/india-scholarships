@@ -30,6 +30,7 @@ graph TD
 *   **Deployment**: Hosted on **Vercel** with continuous deployment triggered by commits to the `main` branch of the GitHub repository (`https://github.com/bizmantra/india-scholarships.git`).
 *   **Database**:
     *   **Production**: Turso Cloud DB (SQL-based libSQL database) serves as the primary live runtime database, accessed using `@libsql/client`.
+    *   **Sync, backups and staging**: See [`DATABASE_OPERATIONS.md`](./DATABASE_OPERATIONS.md) for how data moves to Turso, the staging database, backups and the rules every script must follow (never drop Turso tables).
     *   **Local / Build Fallback**: A local SQLite file (`data/scholarships.db`) is checked directly into the git repository. When the production database has query or latency issues, or during offline local rendering, it falls back to this file (`file:data/scholarships.db`).
 *   **Search**: Fully client-side matching. The application compiles a lightweight search index of all active opportunities via `/api/search` and caches it on the edge. The `SearchModal` fetches this index once on open and performs local Javascript character-sequence filters.
 *   **APIs**: Next.js serverless route handlers (`app/api/`) handle search indexes, dynamic eligibility POST requests, subscription registrations, and community event submissions.

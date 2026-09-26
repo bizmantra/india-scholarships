@@ -1,0 +1,42 @@
+name: Daily Database Backup
+
+on:
+  schedule:
+    - cron: '47 0 * * *' # 0:47 AM UTC (6:17 AM IST), before the daily freshness check
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Back up production Turso database
+        run: node scholarship-app/scripts/backup-turso.js --target=production --out=backups/turso-production.db
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
+      # Download from this run's page (Actions → Daily Database Backup → run → Artifacts).
+      # Restore with: node scholarship-app/scripts/restore-turso.js --from=<file> --target=production --confirm-production
+      - name: Store backup (kept 30 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: turso-production-${{ github.run_id }}
+          path: backups/turso-production.db
+          retention-days: 30
