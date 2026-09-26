@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUp, List, Loader2, MessageSquare } from 'lucide-react';
+import { ArrowUp, Inbox, Loader2, MessageSquare } from 'lucide-react';
 import { MessageView } from './Cards';
 import ListView from './ListView';
 import SidePanel from './SidePanel';
@@ -14,6 +14,7 @@ export default function CommandCenterPage() {
     const busy = useStore(s => s.busy);
     const view = useStore(s => s.view);
     const status = useStore(s => s.status);
+    const summary = useStore(s => s.summary);
     const [input, setInput] = useState('');
     const bottom = useRef<HTMLDivElement>(null);
 
@@ -71,7 +72,10 @@ export default function CommandCenterPage() {
                             <MessageSquare className="h-3.5 w-3.5" />Chat
                         </button>
                         <button onClick={() => store.set({ view: 'list' })} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 ${view === 'list' ? 'bg-gray-800 text-white' : 'text-gray-500'}`}>
-                            <List className="h-3.5 w-3.5" />List
+                            <Inbox className="h-3.5 w-3.5" />Inbox
+                            {summary && summary.total > 0 && (
+                                <span className="rounded-full bg-amber-500/20 px-1.5 text-[10px] text-amber-300">{summary.total.toLocaleString('en-IN')}</span>
+                            )}
                         </button>
                     </div>
                 </div>

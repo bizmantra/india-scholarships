@@ -18,7 +18,7 @@ Typed or tapped from the suggestion chips. Matching is by fixed patterns (`app/a
 | What did agents do today? | Today's agent runs, their results and your decisions |
 | Which agents do what? | The agent list with "who does it without the agent" |
 
-The **List** view shows the same inbox as a table with checkboxes.
+The **Inbox** tab (top right, with the number waiting) shows the same inbox as a table with checkboxes.
 
 ## How it works
 
