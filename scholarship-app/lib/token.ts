@@ -105,3 +105,11 @@ export async function verifyToken(token: string, secret: string): Promise<any> {
         return null;
     }
 }
+
+/**
+ * Cookie domain for the admin session: shared across indiascholarships.in subdomains on the live site,
+ * and left unset elsewhere (localhost, Vercel preview addresses), where a foreign domain would be rejected.
+ */
+export function sessionCookieDomain(hostname: string): string | undefined {
+    return /(^|\.)indiascholarships\.in$/.test(hostname) ? '.indiascholarships.in' : undefined;
+}

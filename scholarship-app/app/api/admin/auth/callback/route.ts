@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
 import { cookies } from 'next/headers';
-import { signToken } from '@/lib/token';
+import { signToken, sessionCookieDomain } from '@/lib/token';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -83,7 +83,7 @@ export async function GET(request: Request) {
             secure: isProd,
             sameSite: 'lax',
             path: '/',
-            domain: isProd ? '.indiascholarships.in' : undefined,
+            domain: sessionCookieDomain(new URL(request.url).hostname),
             maxAge: 7 * 24 * 60 * 60 // 7 days
         });
 

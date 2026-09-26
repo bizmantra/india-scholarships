@@ -12,8 +12,16 @@ import {
     TrendingUp,
     CheckSquare,
     Home,
-    Users
+    Users,
+    MessageSquare
 } from 'lucide-react';
+
+// Set automatically by Vercel; preview deployments use the staging database
+const ENV_BADGE: Record<string, { label: string; className: string }> = {
+    production: { label: 'Live site', className: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400' },
+    preview: { label: 'Staging', className: 'bg-amber-500/10 border-amber-500/30 text-amber-300' },
+    development: { label: 'Local dev', className: 'bg-gray-500/10 border-gray-500/25 text-gray-300' },
+};
 
 interface SidebarItemProps {
     href: string;
@@ -26,7 +34,7 @@ function SidebarItem({ href, label, icon, active }: SidebarItemProps) {
     return (
         <Link
             href={href}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+            className={`flex shrink-0 items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-3 rounded-xl text-xs md:text-sm font-bold whitespace-nowrap transition-all ${
                 active
                     ? 'bg-blue-600 text-white shadow-md shadow-blue-500/10'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
@@ -40,8 +48,10 @@ function SidebarItem({ href, label, icon, active }: SidebarItemProps) {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const envBadge = ENV_BADGE[process.env.NEXT_PUBLIC_VERCEL_ENV || 'development'] || ENV_BADGE.development;
 
     const menuItems = [
+        { href: '/admin/command', label: 'Command Center', icon: <MessageSquare className="h-5 w-5" /> },
         { href: '/admin/dashboard', label: 'Dashboard', icon: <Activity className="h-5 w-5" /> },
         { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
         { href: '/admin/seo-audit', label: 'SEO Audit', icon: <FileText className="h-5 w-5" /> },
@@ -55,8 +65,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="min-h-screen bg-[#0b0f19] text-gray-100 flex flex-col md:flex-row">
             
             {/* Sidebar Navigation */}
-            <aside className="w-full md:w-64 bg-[#0d1324] border-b md:border-b-0 md:border-r border-gray-800/80 flex flex-col justify-between p-6 flex-shrink-0 z-40">
-                <div className="space-y-8">
+            {/* On phones the menu is a compact scrolling strip so the page starts on the first screen */}
+            <aside className="w-full md:w-64 bg-[#0d1324] border-b md:border-b-0 md:border-r border-gray-800/80 flex flex-col justify-between p-3 md:p-6 flex-shrink-0 z-40">
+                <div className="space-y-3 md:space-y-8">
                     {/* Header Logo */}
                     <div className="flex items-center justify-between">
                         <Link href="/admin/dashboard" className="flex items-center gap-2.5">
@@ -70,7 +81,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
 
                     {/* Menu items */}
-                    <nav className="flex flex-col gap-1.5">
+                    <nav className="flex flex-row md:flex-col gap-1.5 overflow-x-auto pb-1 md:pb-0">
                         {menuItems.map((item) => (
                             <SidebarItem
                                 key={item.href}
@@ -84,7 +95,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
 
                 {/* Footer Controls / Dev Info */}
-                <div className="mt-8 pt-6 border-t border-gray-800/60 space-y-4">
+                <div className="hidden md:block mt-8 pt-6 border-t border-gray-800/60 space-y-4">
                     <div className="flex items-center justify-between text-xs text-gray-500">
                         <span>Status:</span>
                         <span className="flex items-center gap-1.5 text-emerald-400 font-semibold uppercase tracking-wider">
@@ -112,21 +123,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="flex-1 flex flex-col min-w-0">
                 
                 {/* Top header bar */}
-                <header className="h-16 border-b border-gray-800 bg-[#0d1324]/50 backdrop-blur flex items-center justify-between px-6 sm:px-8 z-30">
+                <header className="hidden md:flex h-16 border-b border-gray-800 bg-[#0d1324]/50 backdrop-blur items-center justify-between px-6 sm:px-8 z-30">
                     <div className="flex items-center gap-4">
                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                             India Scholarships
                         </span>
                     </div>
                     <div className="flex items-center gap-3">
-                        <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] font-bold rounded-full uppercase tracking-widest">
-                            Localhost Dev Mode
+                        <span className={`px-3 py-1 border text-[10px] font-bold rounded-full uppercase tracking-widest ${envBadge.className}`}>
+                            {envBadge.label}
                         </span>
                     </div>
                 </header>
 
                 {/* Page children slot */}
-                <main className="flex-1 p-6 sm:p-8 overflow-y-auto">
+                <main className="flex-1 p-3 sm:p-8 overflow-y-auto">
                     {children}
                 </main>
 

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyToken } from './lib/token';
+import { verifyToken, sessionCookieDomain } from './lib/token';
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
@@ -48,10 +48,9 @@ export async function middleware(request: NextRequest) {
             url.searchParams.set('error', 'Session invalid or expired. Please sign in again.');
             
             const response = NextResponse.redirect(url);
-            const isProd = process.env.NODE_ENV === 'production';
             response.cookies.set('admin_session', '', {
                 path: '/',
-                domain: isProd ? '.indiascholarships.in' : undefined,
+                domain: sessionCookieDomain(request.nextUrl.hostname),
                 maxAge: 0
             });
             return response;
