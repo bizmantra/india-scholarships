@@ -6,14 +6,14 @@ import { afterDecision, api, CATEGORY_LABELS, handle, refreshActivity, refreshSu
 import { log, post, useStore, type Message, type Tone } from './store';
 
 const toneText: Record<Tone, string> = {
-    good: 'text-emerald-400',
-    warn: 'text-amber-400',
-    bad: 'text-rose-400',
-    neutral: 'text-gray-300',
+    good: 'text-cc-good',
+    warn: 'text-cc-warn',
+    bad: 'text-cc-bad',
+    neutral: 'text-cc-text-2',
 };
 
 export const Card = ({ children, accent }: { children: React.ReactNode; accent?: 'warn' | 'bad' | 'good' }) => (
-    <div className={`rounded-2xl border bg-[#0d1324] p-4 text-sm ${accent === 'warn' ? 'border-amber-500/40' : accent === 'bad' ? 'border-rose-500/40' : accent === 'good' ? 'border-emerald-500/30' : 'border-gray-800'}`}>
+    <div className={`rounded-2xl border bg-cc-panel p-4 text-sm ${accent === 'warn' ? 'border-amber-500/40' : accent === 'bad' ? 'border-rose-500/40' : accent === 'good' ? 'border-emerald-500/30' : 'border-cc-border'}`}>
         {children}
     </div>
 );
@@ -25,8 +25,8 @@ const Button = ({ children, onClick, tone = 'neutral', disabled }: { children: R
         className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all disabled:opacity-50 ${tone === 'primary'
             ? 'bg-blue-600 text-white hover:bg-blue-500'
             : tone === 'danger'
-                ? 'border border-rose-800/60 bg-rose-950/30 text-rose-300 hover:bg-rose-900/40'
-                : 'border border-gray-700 bg-gray-900 text-gray-200 hover:border-gray-500'}`}
+                ? 'border border-rose-500/40 bg-rose-500/10 text-cc-bad hover:bg-rose-500/20'
+                : 'border border-cc-border-strong bg-cc-raised text-cc-text hover:border-cc-border-strong'}`}
     >
         {children}
     </button>
@@ -35,14 +35,14 @@ const Button = ({ children, onClick, tone = 'neutral', disabled }: { children: R
 export function MessageView({ message }: { message: Message }) {
     switch (message.type) {
         case 'user':
-            return <div className="ml-auto max-w-[85%] rounded-2xl bg-blue-600/20 px-4 py-2 text-sm text-blue-100">{message.text}</div>;
+            return <div className="ml-auto max-w-[85%] rounded-2xl bg-cc-user-bubble px-4 py-2 text-sm text-cc-user-text">{message.text}</div>;
         case 'text':
             return <div className={`max-w-[95%] whitespace-pre-line text-sm leading-relaxed ${toneText[message.tone || 'neutral']}`}>{message.text}</div>;
         case 'plan':
             return (
                 <Card>
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">Plan · {message.title}</p>
-                    <ol className="list-decimal space-y-1 pl-5 text-gray-300">
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-cc-muted">Plan · {message.title}</p>
+                    <ol className="list-decimal space-y-1 pl-5 text-cc-text-2">
                         {message.steps.map(s => <li key={s}>{s}</li>)}
                     </ol>
                 </Card>
@@ -52,13 +52,13 @@ export function MessageView({ message }: { message: Message }) {
         case 'summary':
             return (
                 <Card>
-                    <p className="mb-2 font-bold text-white">{message.title}</p>
-                    <div className="divide-y divide-gray-800/70">
+                    <p className="mb-2 font-bold text-cc-text">{message.title}</p>
+                    <div className="divide-y divide-cc-border">
                         {message.lines.map((line, i) => (
                             <div key={i} className="flex items-center justify-between gap-3 py-1.5">
                                 {line.action
-                                    ? <button onClick={() => handle(line.action!)} className="text-left text-blue-300 hover:text-blue-200 hover:underline">{line.label}</button>
-                                    : <span className="whitespace-pre text-gray-300">{line.label}</span>}
+                                    ? <button onClick={() => handle(line.action!)} className="text-left text-cc-link hover:text-cc-link hover:underline">{line.label}</button>
+                                    : <span className="whitespace-pre text-cc-text-2">{line.label}</span>}
                                 <span className={`shrink-0 font-bold ${toneText[line.tone || 'neutral']}`}>{line.value}</span>
                             </div>
                         ))}
@@ -76,16 +76,16 @@ function GateCard({ message }: { message: Extract<Message, { type: 'gate' }> }) 
     const [working, setWorking] = useState(false);
     return (
         <Card accent="warn">
-            <p className="mb-1 flex items-center gap-2 font-bold text-white"><AlertTriangle className="h-4 w-4 text-amber-400" />{message.title}</p>
-            {message.body && <p className="mb-2 text-gray-400">{message.body}</p>}
+            <p className="mb-1 flex items-center gap-2 font-bold text-cc-text"><AlertTriangle className="h-4 w-4 text-cc-warn" />{message.title}</p>
+            {message.body && <p className="mb-2 text-cc-muted">{message.body}</p>}
             {message.bullets && message.bullets.length > 0 && (
-                <ul className="mb-3 list-disc space-y-0.5 pl-5 text-xs text-gray-400">
+                <ul className="mb-3 list-disc space-y-0.5 pl-5 text-xs text-cc-muted">
                     {message.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                    <li className="list-none text-gray-500">…</li>
+                    <li className="list-none text-cc-muted">…</li>
                 </ul>
             )}
             {message.resolved
-                ? <p className="text-xs font-bold text-gray-400">{message.resolved}</p>
+                ? <p className="text-xs font-bold text-cc-muted">{message.resolved}</p>
                 : (
                     <div className="flex flex-wrap gap-2">
                         {message.options.map(o => (
@@ -199,13 +199,13 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
         }
     };
 
-    if (!loaded) return <Card><Loader2 className="h-4 w-4 animate-spin text-gray-500" /></Card>;
-    if (error) return <Card accent="bad"><p className="text-rose-300">{error}</p></Card>;
-    if (groups.length === 0) return <Card><p className="text-gray-400">Nothing pending in {message.title.toLowerCase()}.</p></Card>;
+    if (!loaded) return <Card><Loader2 className="h-4 w-4 animate-spin text-cc-muted" /></Card>;
+    if (error) return <Card accent="bad"><p className="text-cc-bad">{error}</p></Card>;
+    if (groups.length === 0) return <Card><p className="text-cc-muted">Nothing pending in {message.title.toLowerCase()}.</p></Card>;
 
     return (
         <div className="space-y-3">
-            <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
+            <p className="text-xs font-bold uppercase tracking-wider text-cc-muted">
                 {message.title} · {total.toLocaleString('en-IN')} item(s){total > items.length ? `, showing the ${items.length} most urgent` : ''}
             </p>
             {visible.map(group => {
@@ -217,38 +217,38 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                 const high = group.items.some(i => i.risk === 'high');
                 return (
                     <Card key={group.key} accent={high ? 'bad' : first.category === 'date_change' ? 'warn' : undefined}>
-                        <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-gray-500">
+                        <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-cc-muted">
                             <span className="font-bold uppercase tracking-wider">{CATEGORY_LABELS[first.category] || first.category}</span>
-                            {high && <span className="rounded bg-rose-500/15 px-1.5 py-0.5 font-bold text-rose-300">Risky</span>}
+                            {high && <span className="rounded bg-rose-500/15 px-1.5 py-0.5 font-bold text-cc-bad">Risky</span>}
                             {first.days_to_deadline !== null && first.days_to_deadline !== undefined && Math.abs(first.days_to_deadline) <= 60 && (
                                 <span>{first.days_to_deadline >= 0 ? `Closes in ${first.days_to_deadline} day(s)` : `Closed ${-first.days_to_deadline} day(s) ago`}</span>
                             )}
                             {Number(first.clicks) > 0 && <span>{Number(first.clicks).toLocaleString('en-IN')} clicks</span>}
                             {first.times_proposed > 1 && <span>Proposed {first.times_proposed}×</span>}
                         </div>
-                        <p className="mb-2 font-bold text-white">
+                        <p className="mb-2 font-bold text-cc-text">
                             {first.slug
                                 ? <a href={`/scholarships/${first.slug}`} target="_blank" rel="noreferrer" className="hover:underline">{first.scholarship_title}</a>
                                 : first.scholarship_title}
                         </p>
 
                         {isNew ? (
-                            <div className="space-y-1 text-xs text-gray-300">
+                            <div className="space-y-1 text-xs text-cc-text-2">
                                 <p>{record.provider || '—'} · {record.state || 'All India'} · {record.level || '—'}</p>
                                 <p>Amount: {record.amount_description || (record.amount_annual ? `₹${Number(record.amount_annual).toLocaleString('en-IN')}` : '—')}</p>
                                 <p>Deadline: {record.deadline || record.deadline_description || '—'}</p>
-                                <p>AI confidence: <span className={evidence.confidence === 'High' ? 'text-emerald-400' : 'text-amber-400'}>{evidence.confidence || '—'}</span>
-                                    {evidence.gaps?.length ? <span className="text-gray-500"> · missing: {evidence.gaps.join(', ')}</span> : null}</p>
+                                <p>AI confidence: <span className={evidence.confidence === 'High' ? 'text-cc-good' : 'text-cc-warn'}>{evidence.confidence || '—'}</span>
+                                    {evidence.gaps?.length ? <span className="text-cc-muted"> · missing: {evidence.gaps.join(', ')}</span> : null}</p>
                             </div>
                         ) : (
                             <div className="space-y-2">
                                 {group.items.map(i => (
                                     <div key={i.id} className="text-xs">
-                                        <p className="text-gray-500">{FIELD_LABELS[i.field || ''] || i.field}</p>
+                                        <p className="text-cc-muted">{FIELD_LABELS[i.field || ''] || i.field}</p>
                                         <p className="break-words">
-                                            <span className="text-gray-500 line-through">{formatValue(i.field, i.old_value)}</span>
-                                            <span className="mx-1.5 text-gray-600">→</span>
-                                            <span className="text-gray-100">{formatValue(i.field, i.new_value)}</span>
+                                            <span className="text-cc-muted line-through">{formatValue(i.field, i.old_value)}</span>
+                                            <span className="mx-1.5 text-cc-faint">→</span>
+                                            <span className="text-cc-text">{formatValue(i.field, i.new_value)}</span>
                                         </p>
                                         <DecisionLine decision={decisions[i.id]} onUndo={() => undo(i.id)} onForce={() => decide([i.id], 'approve', true)} />
                                     </div>
@@ -257,7 +257,7 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                         )}
 
                         {first.source_citation && /^https?:/.test(first.source_citation) && (
-                            <a href={first.source_citation} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-blue-300 hover:underline">
+                            <a href={first.source_citation} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-cc-link hover:underline">
                                 Source <ExternalLink className="h-3 w-3" />
                             </a>
                         )}
@@ -287,13 +287,13 @@ const isNewScholarshipList = (m: Extract<Message, { type: 'proposals' }>) => m.q
 function DecisionLine({ decision, onUndo, onForce }: { decision?: Decision; onUndo: () => void; onForce?: () => void }) {
     if (!decision) return null;
     if (decision.state === 'approved') {
-        return <p className="mt-1 flex items-center gap-2 text-emerald-400"><CheckCircle2 className="h-3.5 w-3.5" />Approved
-            <button onClick={onUndo} className="inline-flex items-center gap-1 text-gray-400 hover:text-white"><RotateCcw className="h-3 w-3" />Undo</button></p>;
+        return <p className="mt-1 flex items-center gap-2 text-cc-good"><CheckCircle2 className="h-3.5 w-3.5" />Approved
+            <button onClick={onUndo} className="inline-flex items-center gap-1 text-cc-muted hover:text-cc-text"><RotateCcw className="h-3 w-3" />Undo</button></p>;
     }
-    if (decision.state === 'rejected') return <p className="mt-1 flex items-center gap-1.5 text-gray-400"><XCircle className="h-3.5 w-3.5" />Rejected. It won't be proposed again.</p>;
-    if (decision.state === 'undone') return <p className="mt-1 text-gray-400">{decision.note}</p>;
+    if (decision.state === 'rejected') return <p className="mt-1 flex items-center gap-1.5 text-cc-muted"><XCircle className="h-3.5 w-3.5" />Rejected. It won't be proposed again.</p>;
+    if (decision.state === 'undone') return <p className="mt-1 text-cc-muted">{decision.note}</p>;
     return (
-        <p className="mt-1 text-amber-300">
+        <p className="mt-1 text-cc-warn">
             {decision.note}
             {onForce && /changed to/.test(decision.note || '') && <button onClick={onForce} className="ml-2 underline">Apply anyway</button>}
         </p>
@@ -353,31 +353,31 @@ function RunCard({ message }: { message: Extract<Message, { type: 'run' }> }) {
     return (
         <Card accent={done ? (run.conclusion === 'success' ? 'good' : 'bad') : undefined}>
             <div className="mb-2 flex items-center justify-between gap-2">
-                <p className="font-bold text-white">{message.label}</p>
-                <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${message.target === 'staging' ? 'bg-amber-500/15 text-amber-300' : 'bg-blue-500/15 text-blue-300'}`}>{message.target}</span>
+                <p className="font-bold text-cc-text">{message.label}</p>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${message.target === 'staging' ? 'bg-amber-500/15 text-cc-warn' : 'bg-blue-500/15 text-cc-link'}`}>{message.target}</span>
             </div>
-            {!run.found && !error && <p className="flex items-center gap-2 text-gray-400"><Loader2 className="h-4 w-4 animate-spin" />Waiting for GitHub to start the run…</p>}
-            {error && <p className="text-rose-300">{error}</p>}
+            {!run.found && !error && <p className="flex items-center gap-2 text-cc-muted"><Loader2 className="h-4 w-4 animate-spin" />Waiting for GitHub to start the run…</p>}
+            {error && <p className="text-cc-bad">{error}</p>}
             {run.steps.length > 0 && (
                 <ul className="space-y-1">
                     {run.steps.map(step => (
                         <li key={step.name} className="flex items-center justify-between gap-2 text-xs">
-                            <span className="flex items-center gap-2 text-gray-300">
+                            <span className="flex items-center gap-2 text-cc-text-2">
                                 {step.status === 'completed'
-                                    ? step.conclusion === 'success' ? <Check className="h-3.5 w-3.5 text-emerald-400" />
-                                        : step.conclusion === 'skipped' ? <Circle className="h-3.5 w-3.5 text-gray-600" />
-                                        : <X className="h-3.5 w-3.5 text-rose-400" />
-                                    : step.status === 'in_progress' ? <Loader2 className="h-3.5 w-3.5 animate-spin text-blue-400" />
-                                    : <Circle className="h-3.5 w-3.5 text-gray-600" />}
-                                <span className={step.conclusion === 'skipped' ? 'text-gray-600' : ''}>{step.name}</span>
+                                    ? step.conclusion === 'success' ? <Check className="h-3.5 w-3.5 text-cc-good" />
+                                        : step.conclusion === 'skipped' ? <Circle className="h-3.5 w-3.5 text-cc-faint" />
+                                        : <X className="h-3.5 w-3.5 text-cc-bad" />
+                                    : step.status === 'in_progress' ? <Loader2 className="h-3.5 w-3.5 animate-spin text-cc-link" />
+                                    : <Circle className="h-3.5 w-3.5 text-cc-faint" />}
+                                <span className={step.conclusion === 'skipped' ? 'text-cc-faint' : ''}>{step.name}</span>
                             </span>
-                            {step.seconds !== null && step.conclusion !== 'skipped' && <span className="text-gray-600">{formatSeconds(step.seconds)}</span>}
+                            {step.seconds !== null && step.conclusion !== 'skipped' && <span className="text-cc-faint">{formatSeconds(step.seconds)}</span>}
                         </li>
                     ))}
                 </ul>
             )}
-            {run.url && <a href={run.url} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-blue-300 hover:underline">Open on GitHub <ExternalLink className="h-3 w-3" /></a>}
-            {env === 'local' && <p className="mt-2 text-[11px] text-gray-600">Started from a local session: runs use the staging database.</p>}
+            {run.url && <a href={run.url} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-cc-link hover:underline">Open on GitHub <ExternalLink className="h-3 w-3" /></a>}
+            {env === 'local' && <p className="mt-2 text-[11px] text-cc-faint">Started from a local session: runs use the staging database.</p>}
         </Card>
     );
 }
