@@ -14,7 +14,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { resolveTarget, connect, describe } = require('./lib/turso-target');
+const { resolveTarget, connect, describe, explainAuthError } = require('./lib/turso-target');
 const { backup } = require('./backup-turso');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
@@ -51,6 +51,7 @@ async function run() {
 if (require.main === module) {
     run().catch(error => {
         console.error(`❌ Pull failed: ${error.message}`);
+        try { explainAuthError(error, resolveTarget()); } catch { /* diagnostics only */ }
         process.exit(1);
     });
 }
