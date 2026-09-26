@@ -48,3 +48,6 @@ google-ads.yaml
 .claude/
 .obsidian/
 
+
+# Database backups (never commit)
+/backups

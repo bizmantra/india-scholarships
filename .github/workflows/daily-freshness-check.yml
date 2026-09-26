@@ -4,6 +4,20 @@ on:
   schedule:
     - cron: '30 1 * * *' # 1:30 AM UTC (Runs Daily 7:00 AM IST)
   workflow_dispatch: # Allows manual triggering from GitHub UI
+    inputs:
+      target:
+        description: 'Database to update (staging = test run: no git commit, live site untouched)'
+        type: choice
+        options: [production, staging]
+        default: production
+
+# Every workflow that writes the database shares this group, so they run one at a time
+concurrency:
+  group: database-writes
+  cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
 
 jobs:
   check-deadlines:
@@ -44,17 +58,24 @@ jobs:
           server_port: 465
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Daily Scholarship Deadline Verification Report"
+          subject: "${{ env.DB_TARGET == 'staging' && '[STAGING] ' || '' }}Daily Scholarship Deadline Verification Report"
           to: bizmantra@gmail.com
           from: "India Scholarships Freshness Pipeline <${{ secrets.EMAIL_USERNAME }}>"
           secure: true
           html_body: file://${{ github.workspace }}/scholarship-app/data/daily-email-body.html
 
+      - name: Normalize data formats
+        run: node scholarship-app/scripts/clean-data-formats.js
+
+      - name: Check data formats (blocks bad data from reaching Turso)
+        run: node scholarship-app/scripts/check-data-formats.js
+
       - name: Commit and push changes if updated
+        if: env.DB_TARGET == 'production'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scholarship-app/data/scholarships.db
+          git add scholarship-app/data/scholarships.db scholarship-app/data/format-exceptions.json
           if git diff --staged --quiet; then
             echo "No database changes. Skipping commit."
           else
@@ -62,9 +83,26 @@ jobs:
             git push origin main
           fi
 
+      - name: Back up Turso before syncing
+        run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Store pre-sync backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-sync-backup-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: backups/pre-sync.db
+          retention-days: 7
+
       - name: Push Database to Turso
         run: |
           node scholarship-app/scripts/push-to-turso.js
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}

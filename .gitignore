@@ -39,3 +39,6 @@ next-env.d.ts
 
 # Project specific
 .project/
+
+# Database backups (never commit)
+backups/
