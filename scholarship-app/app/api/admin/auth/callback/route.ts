@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { google } from 'googleapis';
 import { cookies } from 'next/headers';
-import { signToken, sessionCookieDomain } from '@/lib/token';
+import { signToken, sessionCookieDomain, isPreviewOrigin, PREVIEW_HANDOFF_SECONDS } from '@/lib/token';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -86,6 +86,14 @@ export async function GET(request: Request) {
             domain: sessionCookieDomain(new URL(request.url).hostname),
             maxAge: 7 * 24 * 60 * 60 // 7 days
         });
+
+        // Sign-in started on a preview (staging): hand that preview a one-minute pass for its own address
+        const returnTo = cookieStore.get('admin_return_to')?.value;
+        if (isPreviewOrigin(returnTo)) {
+            cookieStore.set('admin_return_to', '', { path: '/api/admin/auth', maxAge: 0 });
+            const pass = await signToken({ ...payload, purpose: 'preview-handoff', origin: returnTo }, jwtSecret, PREVIEW_HANDOFF_SECONDS);
+            return NextResponse.redirect(`${returnTo}/api/admin/auth/handoff?token=${encodeURIComponent(pass)}`);
+        }
 
         // Redirect to Command Center dashboard
         return NextResponse.redirect(`${origin}/admin/dashboard`);
