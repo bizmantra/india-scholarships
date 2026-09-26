@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { sessionCookieDomain } from '@/lib/token';
 
 export async function GET(request: Request) {
     const origin = new URL(request.url).origin;
@@ -13,7 +14,7 @@ export async function GET(request: Request) {
             secure: isProd,
             sameSite: 'lax',
             path: '/',
-            domain: isProd ? '.indiascholarships.in' : undefined,
+            domain: sessionCookieDomain(new URL(request.url).hostname),
             maxAge: 0 // Expire instantly
         });
     } catch (e) {
