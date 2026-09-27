@@ -9,6 +9,8 @@ export type Intent =
     | { type: 'run'; agent: string; state?: string }
     | { type: 'publish' }
     | { type: 'briefing' }
+    | { type: 'traffic' }
+    | { type: 'indexing' }
     | { type: 'today' }
     | { type: 'agents' }
     | { type: 'help' }
@@ -31,10 +33,12 @@ export function parseIntent(input: string): Intent {
     if (!text) return { type: 'help' };
 
     // "run the scout for bihar", "run the freshness check", "run enrichment"
-    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing|quality fixer|quality)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
+    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing|quality fixer|quality|traffic watchdog|watchdog|traffic|indexing agent|indexing)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
     if (run) {
         const name = run[1];
-        const agent = name.includes('quality') ? 'quality-fixer'
+        const agent = /traffic|watchdog/.test(name) ? 'traffic-watchdog'
+            : name.includes('indexing') ? 'indexing'
+            : name.includes('quality') ? 'quality-fixer'
             : name.includes('briefing') ? 'morning-briefing'
             : name.includes('publisher') ? 'scout-publisher'
             : name.includes('scout') ? 'scholarship-scout'
@@ -44,6 +48,8 @@ export function parseIntent(input: string): Intent {
     }
     if (/^publish\b/.test(text)) return { type: 'publish' };
     if (/briefing|brief me|good morning|morning update/.test(text)) return { type: 'briefing' };
+    if (/traffic|visits|clicks|how is the site|how's the site|site health/.test(text)) return { type: 'traffic' };
+    if (/index(ed|ing)?\b|google (see|found)|search engines?/.test(text)) return { type: 'indexing' };
 
     // "approve all wording updates", "reject all risky amount changes"
     const bulk = text.match(/^(approve|reject)\s+(?:all\s+)?(?:the\s+)?(.*)$/);
@@ -70,6 +76,7 @@ export function parseIntent(input: string): Intent {
 export const SUGGESTIONS = [
     'Morning briefing',
     "What's waiting on me?",
+    'How is traffic?',
     'Show risky changes',
     'Show deadline changes',
     'Show new scholarships',

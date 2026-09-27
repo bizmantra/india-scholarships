@@ -99,6 +99,8 @@ async function route(text: string) {
         case 'run': return startRun(intent.agent, intent.state);
         case 'publish': return startRun('scout-publisher');
         case 'briefing': return showBriefing();
+        case 'traffic': return showTraffic();
+        case 'indexing': return showIndexing();
         case 'today': return whatHappenedToday();
         case 'agents': return describeAgents();
         case 'help':
@@ -130,6 +132,16 @@ async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>)
     const b = found.briefing;
     const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
     post({ type: 'text', text: `Morning briefing (${when}): ${b.headline}` });
+    if (b.reports?.traffic || b.reports?.indexing) {
+        post({
+            type: 'summary',
+            title: 'Traffic and indexing',
+            lines: [
+                ...(b.reports.traffic ? [{ label: b.reports.traffic.headline, value: '', tone: (b.reports.traffic.level === 'ok' ? 'neutral' : 'bad') as 'neutral' | 'bad', action: 'How is traffic?' }] : []),
+                ...(b.reports.indexing ? [{ label: b.reports.indexing.headline, value: '', action: 'Indexing status' }] : []),
+            ],
+        });
+    }
 
     const g = b.inbox?.groups || {};
     post({
@@ -175,6 +187,75 @@ async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>)
             ...(d.closingSoon || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: s.deadline })),
             { label: 'Past deadline but still shown as open', value: String(d.pastButOpenCount ?? 0), tone: d.pastButOpenCount ? 'bad' : 'neutral', action: d.pastButOpenCount ? 'Run the freshness check' : undefined },
             ...(d.pastButOpen || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: `closed ${s.deadline}` })),
+        ],
+    });
+}
+
+// ---------- Traffic and indexing reports (latest run of each agent) ----------
+
+async function latestEvent(kind: string) {
+    const since = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 19).replace('T', ' ');
+    const { events } = await api<{ events: any[] }>(`activity?kind=${kind}&limit=1&since=${encodeURIComponent(since)}`);
+    const event = events[0];
+    return event ? { createdAt: new Date(`${String(event.created_at).replace(' ', 'T')}Z`), details: JSON.parse(event.details_json || '{}') } : null;
+}
+
+const pctText = (p: number | null | undefined) => (p === null || p === undefined ? 'n/a' : `${p >= 0 ? '+' : ''}${Math.round(p * 100)}%`);
+const toneFor = (p: number | null | undefined) => (p === null || p === undefined ? 'neutral' : p <= -0.25 ? 'bad' : p >= 0.1 ? 'good' : 'neutral') as 'bad' | 'good' | 'neutral';
+
+async function showTraffic() {
+    const found = await latestEvent('watchdog');
+    if (!found) {
+        post({ type: 'text', text: 'No traffic report yet. Say "run the traffic watchdog" to create one.' });
+        return;
+    }
+    const r = found.details;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', tone: r.level === 'bad' ? 'bad' : r.level === 'warn' ? 'warn' : 'neutral', text: `Traffic (${when}): ${r.headline}` });
+    post({
+        type: 'summary',
+        title: 'Last 7 days vs the 7 before',
+        lines: [
+            ...(r.search ? [
+                { label: `Google search clicks (${r.search.period})`, value: `${r.search.clicks} (${pctText(r.search.clicksChange)})`, tone: toneFor(r.search.clicksChange) },
+                { label: 'Google search impressions', value: `${r.search.impressions.toLocaleString('en-IN')} (${pctText(r.search.impressionsChange)})`, tone: toneFor(r.search.impressionsChange) },
+                { label: 'Average position (lower is better)', value: `${r.search.position} (was ${r.search.positionBefore})` },
+            ] : []),
+            ...(r.visits ? [{ label: 'Visits (Google Analytics)', value: `${r.visits.sessions.toLocaleString('en-IN')} (${pctText(r.visits.change)})`, tone: toneFor(r.visits.change) }] : []),
+            ...(r.health ? [{ label: 'Key pages and sitemap', value: r.health.failing?.length ? `${r.health.failing.length} failing` : `all ${r.health.checked} load`, tone: (r.health.failing?.length ? 'bad' : 'good') as 'bad' | 'good' }] : []),
+            ...(r.health?.failing || []).map((f: any) => ({ label: `  ${f.path}`, value: f.status ? `HTTP ${f.status}` : 'no answer', tone: 'bad' as const })),
+        ],
+    });
+    if (r.pages?.falling?.length || r.pages?.rising?.length) {
+        post({
+            type: 'summary',
+            title: 'Pages moving in Google search',
+            lines: [
+                ...(r.pages.falling || []).map((p: any) => ({ label: `  ↓ ${p.path}`, value: `${p.clicksBefore} → ${p.clicks} clicks`, tone: 'bad' as const })),
+                ...(r.pages.rising || []).map((p: any) => ({ label: `  ↑ ${p.path}`, value: `${p.clicksBefore} → ${p.clicks} clicks`, tone: 'good' as const })),
+            ],
+        });
+    }
+}
+
+async function showIndexing() {
+    const found = await latestEvent('indexing');
+    if (!found) {
+        post({ type: 'text', text: 'No indexing report yet. Say "run indexing" to create one.' });
+        return;
+    }
+    const r = found.details;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', text: `Indexing (${when}): ${r.headline}` });
+    post({
+        type: 'summary',
+        title: 'Search engines',
+        lines: [
+            { label: 'Changed pages sent to IndexNow (Bing and others)', value: r.submitted ? String(r.changed?.urls ?? 0) : `${r.changed?.urls ?? 0} (not sent: ${r.target === 'staging' ? 'staging' : 'test'} run)` },
+            { label: 'Sitemap re-submitted to Google', value: r.sitemapSubmitted ? 'yes' : 'no' },
+            { label: 'Key pages indexed by Google', value: `${r.inspection?.indexed ?? 0} of ${r.inspection?.tracked ?? 0}`, tone: r.inspection?.notIndexedCount ? 'warn' : 'good' },
+            ...(r.inspection?.notIndexed || []).map((p: any) => ({ label: `  ${p.path}${p.isNew ? ' (new)' : ''}`, value: p.coverageState || 'not indexed', tone: 'warn' as const })),
+            ...(r.errors || []).map((e: string) => ({ label: `  ${e}`, value: '', tone: 'bad' as const })),
         ],
     });
 }

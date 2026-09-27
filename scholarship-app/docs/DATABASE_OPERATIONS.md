@@ -67,6 +67,17 @@ The site build (`npm run build`) pulls from Turso first, so every deploy uses cu
 
 Workflows that write the production database share the `database-writes` concurrency group, so they never run at the same time; runs against staging use `database-writes-staging`, so tests never wait behind production agents. The Morning Briefing only adds one activity entry (safe alongside another sync), so it does not wait in either queue.
 
+## Releasing a change (staging first)
+
+1. Work on a branch and open a pull request.
+2. Merge the branch into the `staging` branch and test there: the staging site
+   (`india-scholarships-git-staging-…vercel.app`) uses the staging database, and agents are started with `target: staging`.
+   Nothing on the live site changes.
+3. Only then merge the pull request into `main`, which updates the live site and the production agents.
+
+New agent workflows: GitHub can only start a workflow whose file is on `main`, so a new agent is merged with its
+`schedule:` commented out, tested with `target: staging`, and switched on in a small follow-up pull request.
+
 ## Agent inbox (approvals)
 
 Agents never change facts on the site by themselves. They put proposed changes in the **agent inbox**, and the owner

@@ -41,6 +41,8 @@ const WORKFLOW_LABELS = {
     'publish-scout-approved.yml': 'Scout Publisher',
     'database-backup.yml': 'Database Backup',
     'quality-fixer.yml': 'Quality Fixer',
+    'traffic-watchdog.yml': 'Traffic Watchdog',
+    'indexing-agent.yml': 'Indexing',
 };
 
 const ACTIVE = "(s.status = 'Active' OR s.status IS NULL)";
@@ -118,6 +120,26 @@ async function runsSection(db) {
     return { runs, agentSummaries };
 }
 
+// The latest Traffic Watchdog and Indexing reports from the last day, if those agents ran
+function agentReports(db) {
+    const latest = kind => {
+        const row = db.prepare(`SELECT details_json FROM agent_events WHERE kind = ? AND created_at >= datetime('now', '-26 hours') ORDER BY id DESC LIMIT 1`).get(kind);
+        try { return row ? JSON.parse(row.details_json) : null; } catch { return null; }
+    };
+    const w = latest('watchdog');
+    const i = latest('indexing');
+    return {
+        traffic: w ? {
+            headline: w.headline, level: w.level,
+            clicks: w.search?.clicks ?? null, clicksChange: w.search?.clicksChange ?? null,
+            sessions: w.visits?.sessions ?? null, sessionsChange: w.visits?.change ?? null,
+            failingPages: (w.health?.failing || []).map(f => f.path),
+            falling: (w.pages?.falling || []).slice(0, 5),
+        } : null,
+        indexing: i ? { headline: i.headline, notIndexed: (i.inspection?.notIndexed || []).slice(0, 5) } : null,
+    };
+}
+
 function headline(b) {
     const parts = [];
     if (b.inbox.total) {
@@ -129,8 +151,10 @@ function headline(b) {
     } else {
         parts.push('Nothing is waiting for you.');
     }
-    const failed = (b.runs.runs || []).filter(r => r.status === 'completed' && r.conclusion !== 'success');
+    const failed = (b.runs.runs || []).filter(r => r.status === 'completed' && ['failure', 'timed_out', 'startup_failure'].includes(r.conclusion));
     if (b.runs.runs) parts.push(failed.length ? `${failed.length} agent run(s) failed.` : `${b.runs.runs.length} agent run(s), all fine.`);
+    if (b.reports?.traffic && b.reports.traffic.level !== 'ok') parts.push(`Traffic alert: ${b.reports.traffic.headline}`);
+    if (b.reports?.traffic?.failingPages?.length) parts.push(`${b.reports.traffic.failingPages.length} key page(s) failed to load.`);
     if (b.deadlines.pastButOpen.length) parts.push(`${b.deadlines.pastButOpen.length} scholarship(s) still show as open after their deadline.`);
     return parts.join(' ');
 }
@@ -175,6 +199,10 @@ ${b.inbox.urgent.length ? section('Decide first', list(urgent)) : ''}
 ${section('Your decisions (last 24 hours)', table([row('Approved', b.decisions.approved, '#047857'), row('Rejected', b.decisions.rejected)]))}
 ${section('Agent runs (last 24 hours)', runs)}
 ${b.runs.agentSummaries.length ? section('What the agents reported', agentNotes) : ''}
+${b.reports.traffic ? section('Traffic (last 7 days vs the 7 before)', `<p style="font-size:14px;color:#334155;margin:0">${esc(b.reports.traffic.headline)}</p>` +
+    list(b.reports.traffic.falling.map(p => `<li style="margin:4px 0">↓ ${esc(p.path)}: ${p.clicksBefore} → ${p.clicks} search clicks</li>`))) : ''}
+${b.reports.indexing ? section('Indexing', `<p style="font-size:14px;color:#334155;margin:0">${esc(b.reports.indexing.headline)}</p>` +
+    (b.reports.indexing.notIndexed.length ? list(b.reports.indexing.notIndexed.map(p => `<li style="margin:4px 0">${esc(p.path)}: ${esc(p.coverageState || 'not indexed')}</li>`)) : '')) : ''}
 ${section(`Closing in the next 7 days · ${b.deadlines.closingSoon.length}`, closing)}
 ${section(`Past deadline but still shown as open · ${b.deadlines.pastButOpen.length}`, stale + (b.deadlines.pastButOpen.length ? '<p style="font-size:13px;color:#64748b">Say "run the freshness check" in the Agent Center to re-check recent ones.</p>' : ''))}
 </div></div></body></html>`;
@@ -195,6 +223,7 @@ async function run() {
         decisions: decisionsSection(db),
         runs: await runsSection(db),
         deadlines: deadlinesSection(db),
+        reports: agentReports(db),
     };
     briefing.headline = headline(briefing);
     const target = process.env.DB_TARGET || 'production';
