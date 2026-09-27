@@ -81,6 +81,9 @@ const DEFAULT_SETTINGS = [
     ['scholarship-scout', 'channels', ['demand', 'web', 'portals', 'csr', 'news', 'coverage'], 'Discovery channels used'],
     ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
     ['quality-fixer', 'enabled', true, 'Run on schedule'],
+    ['fact-check', 'enabled', true, 'Run on schedule'],
+    ['fact-check', 'max_checks', 40, 'Scholarships fact-checked per run'],
+    ['fact-check', 'recheck_days', 28, 'Days before a checked scholarship is checked again'],
     ['traffic-watchdog', 'enabled', true, 'Run on schedule'],
     ['indexing', 'enabled', true, 'Run on schedule'],
     ['indexing', 'inspect_per_run', 40, 'Pages checked with Google URL Inspection per run'],
@@ -98,6 +101,7 @@ const FIELD_TYPES = {
     apply_url: 'url',
     helpline: 'text',
     docs_needed: 'list',
+    income_limit: 'int',
 };
 
 const PLACEHOLDERS = new Set(['', 'na', 'n/a', 'nil', 'none', 'null', 'unknown', 'not available', 'not specified', 'not found', 'tbd', 'check portal', '-', '0']);
@@ -211,7 +215,9 @@ function classify(field, oldValue, newValue, { withDateChange = false } = {}) {
  *   'superseded'     a different value was waiting; it is replaced by this one
  *   'created'        a new item in the inbox
  */
-function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field, oldValue, newValue, source, withDateChange, category: categoryOverride, allowRewording }) {
+function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field, oldValue, newValue, source, withDateChange, category: categoryOverride, allowRewording, evidence }) {
+    // evidence (from lib/research.js): { verdict, reason, source, quote, alternatives } shown on the inbox card
+    const evidenceJson = evidence ? JSON.stringify(evidence) : null;
     const before = normalizeValue(field, oldValue);
     const after = normalizeValue(field, newValue);
     if (sameValue(field, before, after)) return 'unchanged';
@@ -228,7 +234,8 @@ function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field,
     const same = pending.find(p => p.new_value === after);
     if (same) {
         db.prepare(`UPDATE agent_proposals SET times_proposed = times_proposed + 1, last_proposed_at = datetime('now'),
-                    old_value = ?, source_citation = COALESCE(?, source_citation) WHERE id = ?`).run(before, source || null, same.id);
+                    old_value = ?, source_citation = COALESCE(?, source_citation), evidence_json = COALESCE(?, evidence_json) WHERE id = ?`)
+            .run(before, source || null, evidenceJson, same.id);
         return 'repeat';
     }
     const supersede = db.prepare(`UPDATE agent_proposals SET status = 'superseded', decided_by = ?, decided_at = datetime('now'),
@@ -238,10 +245,11 @@ function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field,
     const classified = classify(field, before, after, { withDateChange });
     // An agent may file its proposals under its own inbox group (e.g. the Quality Fixer's 'missing_info')
     const category = categoryOverride || classified.category;
-    const risk = classified.risk;
-    db.prepare(`INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, category, risk, source_citation)
-                VALUES (?, 'field_change', ?, ?, ?, ?, ?, ?, ?, ?)`)
-        .run(agent, scholarshipId, scholarshipTitle, field, before, after, category, risk, source || null);
+    // Answers that disagree always need a careful look
+    const risk = evidence?.verdict === 'uncertain' ? 'high' : classified.risk;
+    db.prepare(`INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, category, risk, source_citation, evidence_json)
+                VALUES (?, 'field_change', ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+        .run(agent, scholarshipId, scholarshipTitle, field, before, after, category, risk, source || null, evidenceJson);
     return pending.length ? 'superseded' : 'created';
 }
 

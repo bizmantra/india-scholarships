@@ -1,0 +1,179 @@
+/**
+ * Evidence-backed research, shared by the AI agents (Deadline Freshness, Quality Fixer, Fact Check).
+ *
+ * For each fact the model must give the value, the specific page it came from and the exact sentence it
+ * relied on. The question is asked twice, independently; the answers are compared, and the quoted sentence is
+ * looked up on the cited page. Each fact comes back with a verdict the owner sees on the inbox card:
+ *   'verified'   both answers agree and the quote was found on the cited page
+ *   'agreed'     both answers agree, but the quote could not be confirmed (page unreachable or text differs)
+ *   'uncertain'  the answers differ (both are kept), or only one answer has a value (see reason)
+ *   'none'       neither answer found a value (nothing is proposed)
+ */
+const RUNS = 2;
+const MODEL = process.env.RESEARCH_MODEL || 'gemini-2.5-flash';
+
+const clean = v => (v === null || v === undefined ? '' : String(v).trim());
+const squash = t => clean(t).toLowerCase().replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/g, ' ').replace(/[^a-z0-9₹%]+/g, ' ').trim();
+
+// A home page is not evidence: it has to be a specific page or document
+function isSpecificSource(url) {
+    try {
+        const u = new URL(url);
+        return /^https?:$/.test(u.protocol) && (u.pathname.replace(/\/+$/, '').length > 1 || u.search.length > 1);
+    } catch {
+        return false;
+    }
+}
+
+// Government domains count as official; anything else (a document-sharing or news site) is shown as "other site"
+function isOfficialSource(url) {
+    try { return /(^|\.)(gov\.in|nic\.in)$/.test(new URL(url).host.toLowerCase()); } catch { return false; }
+}
+
+async function askOnce(prompt) {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) throw new Error('GEMINI_API_KEY is not set');
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: [{ googleSearch: {} }] }),
+        signal: AbortSignal.timeout(120000),
+    });
+    if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
+    const data = await res.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) throw new Error('Empty or non-JSON answer');
+    return JSON.parse(text.slice(start, end + 1));
+}
+
+// One retry for the empty / broken answers Gemini sometimes returns
+async function askWithRetry(prompt) {
+    try {
+        return await askOnce(prompt);
+    } catch (first) {
+        await new Promise(r => setTimeout(r, 4000));
+        return askOnce(prompt).catch(() => { throw first; });
+    }
+}
+
+// Google's search tool cites its own redirect links; follow them to the real page address
+const resolved = new Map();
+async function realUrl(url) {
+    const u = clean(url);
+    if (!/vertexaisearch\.cloud\.google\.com\/grounding-api-redirect/.test(u)) return u;
+    if (!resolved.has(u)) {
+        resolved.set(u, fetch(u, { redirect: 'manual', signal: AbortSignal.timeout(15000) })
+            .then(r => r.headers.get('location') || u)
+            .catch(() => u));
+    }
+    return resolved.get(u);
+}
+
+// Is the quoted sentence really on the cited page? (null = page could not be read)
+const pageCache = new Map();
+async function quoteOnPage(url, quote) {
+    const q = squash(quote);
+    if (!q || q.length < 12 || !isSpecificSource(url)) return false;
+    if (!pageCache.has(url)) {
+        pageCache.set(url, fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'User-Agent': 'Mozilla/5.0 (IndiaScholarships fact check)' } })
+            .then(r => (r.ok && /text|html|json/.test(r.headers.get('content-type') || '') ? r.text() : null))
+            .then(t => (t ? squash(t) : null))
+            .catch(() => null));
+    }
+    const page = await pageCache.get(url);
+    if (page === null) return null;
+    // Allow small wording differences: most of the quote's distinctive words must appear together
+    if (page.includes(q)) return true;
+    const words = q.split(' ').filter(w => w.length > 3);
+    const window = words.slice(0, 12).join(' ');
+    return window.length > 12 && page.includes(window);
+}
+
+/**
+ * fields: { name: { instruction, compare: (a, b) => boolean } }
+ * Returns { facts: { name: { value, verdict, source, quote, alternatives } }, errors }
+ */
+async function researchFacts({ subject, context = '', fields }) {
+    const names = Object.keys(fields);
+    const prompt = `Research ${subject} for Indian students.
+Use Google Search and rely ONLY on official sources: government portals (.gov.in / .nic.in), official notices or guideline PDFs,
+or the provider's own website. Never use aggregator, news or coaching sites. Never guess.
+${context}
+For EACH fact give:
+- "value": the fact (use "" when no official source states it)
+- "source_url": the SPECIFIC official page or PDF that states it (not a home page)
+- "quote": the exact sentence from that page that states it, copied word for word
+
+Respond with a single JSON object:
+{
+${names.map(n => `  "${n}": { "value": ${fields[n].instruction}, "source_url": "...", "quote": "..." }`).join(',\n')}
+}
+Provide ONLY the raw JSON object.`;
+
+    const answers = [];
+    const errors = [];
+    for (let i = 0; i < RUNS; i++) {
+        try { answers.push(await askWithRetry(prompt)); } catch (e) { errors.push(e.message.slice(0, 160)); }
+        if (i < RUNS - 1) await new Promise(r => setTimeout(r, 3000));
+    }
+
+    const facts = {};
+    for (const name of names) {
+        const got = answers.map(a => a?.[name]).filter(x => x && clean(x.value) && clean(x.value) !== '0');
+        for (const g of got) g.source_url = await realUrl(g.source_url);
+        if (got.length === 0) { facts[name] = { value: '', verdict: 'none' }; continue; }
+        const [a, b] = got;
+        const same = got.length === RUNS && (fields[name].compare || ((x, y) => squash(x) === squash(y)))(a.value, b.value);
+        // Prefer the answer whose quote checks out on a specific page
+        let best = a;
+        let verified = null;
+        for (const cand of got) {
+            const ok = await quoteOnPage(clean(cand.source_url), clean(cand.quote));
+            if (ok) { best = cand; verified = true; break; }
+            if (verified === null) verified = ok;
+        }
+        facts[name] = {
+            value: best.value,
+            verdict: same ? (verified ? 'verified' : 'agreed') : 'uncertain',
+            // Why it is uncertain: the two answers differ, or only one of them found a value
+            reason: same ? '' : got.length < RUNS ? 'only one of two answers found it' : 'the two answers differ',
+            source: clean(best.source_url),
+            quote: clean(best.quote).slice(0, 400),
+            specificSource: isSpecificSource(clean(best.source_url)),
+            officialSource: isOfficialSource(clean(best.source_url)),
+            alternatives: same ? [] : got.map(g => ({ value: g.value, source: clean(g.source_url), quote: clean(g.quote).slice(0, 300) })),
+        };
+    }
+    return { facts, errors, answered: answers.length };
+}
+
+// Comparers for common value types
+const compare = {
+    date: (a, b) => clean(a) === clean(b),
+    int: (a, b) => {
+        const x = Number(String(a).replace(/[^0-9.]/g, ''));
+        const y = Number(String(b).replace(/[^0-9.]/g, ''));
+        return x > 0 && y > 0 && Math.abs(x - y) / Math.max(x, y) < 0.02;
+    },
+    url: (a, b) => {
+        const k = v => { try { const u = new URL(clean(v)); return (u.host.replace(/^www\./, '') + u.pathname.replace(/\/+$/, '')).toLowerCase(); } catch { return clean(v).toLowerCase(); } };
+        return k(a) === k(b);
+    },
+    // Free text is not expected to match word for word; two answers that both exist count as agreeing
+    text: () => true,
+    list: (a, b) => {
+        const set = v => new Set((Array.isArray(v) ? v : String(v).split(',')).map(x => squash(x)).filter(Boolean));
+        const A = set(a), B = set(b);
+        const common = [...A].filter(x => B.has(x)).length;
+        return common / Math.max(A.size, B.size, 1) >= 0.5;
+    },
+};
+
+// What the inbox stores with a proposal
+function evidenceFor(fact) {
+    return { verdict: fact.verdict, reason: fact.reason, source: fact.source, quote: fact.quote, specificSource: fact.specificSource, officialSource: fact.officialSource, alternatives: fact.alternatives };
+}
+
+module.exports = { researchFacts, compare, evidenceFor, isSpecificSource, isOfficialSource, MODEL };

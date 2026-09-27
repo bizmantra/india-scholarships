@@ -20,6 +20,7 @@ const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
 const { auditScholarship, isLegacy, isClosedNotice, stripHtml, hasHtmlTags, HTML_FIELDS } = require('./lib/quality-rules');
+const { researchFacts, compare, evidenceFor } = require('./lib/research');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local'), quiet: true });
 
 const AGENT = 'quality-fixer';
@@ -70,31 +71,31 @@ function closedNotice(deadline, nextCycle) {
     return `Applications closed on ${closedOn}. ${next}`;
 }
 
+// How two answers are compared, per field
+const COMPARE = {
+    deadline: compare.date, amount_min: compare.int, amount_annual: compare.int,
+    apply_url: compare.url, official_source: compare.url, docs_needed: compare.list,
+};
+
+// Evidence-backed research (lib/research.js): value, official page, exact sentence, two independent answers
 async function research(s, fields) {
-    const key = process.env.GEMINI_API_KEY;
-    if (!key) throw new Error('GEMINI_API_KEY is not set');
-    const prompt = `Research the "${s.title}" scholarship by ${s.provider || 'its provider'} for Indian students${s.state ? ` (${s.state})` : ''}.
-Use Google Search and rely ONLY on official sources (government portals on .gov.in / .nic.in, official guideline PDFs, the provider's own website).
-Never guess: leave a value empty ("" or 0) when an official source does not state it.
-${s.always_open === 1 ? 'This scholarship is listed as open all year (rolling); confirm that in the deadline text if true.\n' : ''}
-Respond with a single JSON object with exactly these keys:
-{
-  ${fields.map(f => FIELD_INSTRUCTIONS[f]).join(',\n  ')},
-  "source": "the official page you used"
-}
-Provide ONLY the raw JSON object.`;
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: [{ googleSearch: {} }] }),
+    const spec = Object.fromEntries(fields.map(f => [f, {
+        instruction: FIELD_INSTRUCTIONS[f].replace(/^"[a-z_]+":\s*/, ''),
+        compare: COMPARE[f] || compare.text,
+    }]));
+    const found = await researchFacts({
+        subject: `the "${s.title}" scholarship by ${s.provider || 'its provider'}${s.state ? ` (${s.state})` : ''}`,
+        context: s.always_open === 1 ? 'This scholarship is listed as open all year (rolling); confirm that in the deadline text if true.' : '',
+        fields: spec,
     });
-    if (!res.ok) throw new Error(`Gemini API error: ${res.status} - ${(await res.text()).slice(0, 200)}`);
-    const data = await res.json();
-    const text = data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
-    const start = text.indexOf('{');
-    const end = text.lastIndexOf('}');
-    if (start === -1 || end === -1) throw new Error('No JSON in the answer');
-    return JSON.parse(text.slice(start, end + 1));
+    if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'No answer from the research model');
+    const out = { _evidence: {} };
+    for (const [f, fact] of Object.entries(found.facts)) {
+        out[f] = fact.value;
+        out._evidence[f] = evidenceFor(fact);
+    }
+    out.source = Object.values(found.facts).map(f => f.source).find(Boolean) || null;
+    return out;
 }
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -164,26 +165,28 @@ async function run() {
         }
         researchedAt[s.slug] = new Date().toISOString();
         const codes = new Set(issues.map(i => i.code));
-        const deadlineOutcome = fields.includes('deadline') ? propose(s, 'deadline', found.deadline, found.source) : null;
+        const deadlineOutcome = fields.includes('deadline') ? propose(s, 'deadline', found.deadline, found.source, { evidence: found._evidence.deadline }) : null;
         const dateChanging = ['created', 'superseded', 'repeat'].includes(deadlineOutcome);
         // Closed for this cycle and no new date: tell students so, instead of showing a past date as if it were current
         if (codes.has('expired_deadline') && !dateChanging && found.cycle_status === 'closed') {
             found.deadline_description = closedNotice(s.deadline, found.next_cycle_expected);
+            // The notice is written by the agent; its evidence is what the research said about the cycle
+            found._evidence.deadline_description = found._evidence.cycle_status;
             count('outcomes', 'closed_notice');
         }
         for (const field of fields.filter(f => f !== 'deadline' && !HELPER_FIELDS.has(f))) {
             // A description mentioning a past year is out of date even when the date itself is unchanged
             const allowRewording = field === 'deadline_description' && (codes.has('old_year') || codes.has('always_open_text') || codes.has('expired_deadline'));
-            propose(s, field, found[field], found.source, { withDateChange: dateChanging, allowRewording, fill: true });
+            propose(s, field, found[field], found._evidence[field]?.source || found.source, { withDateChange: dateChanging, allowRewording, fill: true, evidence: found._evidence[field] });
         }
         await sleep(6000); // respect Gemini rate limits
     }
 
-    function propose(s, field, value, source, { withDateChange = false, allowRewording = false, fill = false } = {}) {
+    function propose(s, field, value, source, { withDateChange = false, allowRewording = false, fill = false, evidence } = {}) {
         const empty = inbox.isUnconfirmed(field, s[field]) || Boolean(inbox.validateValue(field, s[field]));
         const options = {
             agent: AGENT, scholarshipId: s.id, scholarshipTitle: s.title, field, oldValue: s[field], newValue: value,
-            source: /^https?:\/\//.test(source || '') ? source : null, withDateChange, allowRewording,
+            source: /^https?:\/\//.test(source || '') ? source : null, withDateChange, allowRewording, evidence,
             // Fills and out-of-date text go to "Missing or outdated details"; a deadline change (and the text that
             // comes with it) stays in "Deadline changes"
             category: fill && (empty || allowRewording) && !(field === 'deadline_description' && withDateChange) ? 'missing_info' : undefined,
