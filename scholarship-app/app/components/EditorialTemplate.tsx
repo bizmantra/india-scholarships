@@ -12,9 +12,12 @@ interface Crumb {
 interface EditorialTemplateProps {
   content: EditorialContent;
   breadcrumbs: Crumb[];
+  // Extra blocks rendered right after the body (e.g. Study Abroad comparison tables, sources)
+  children?: React.ReactNode;
 }
 
 const shouldShowStudyAbroadCTA = (content: EditorialContent) => {
+  if (content.hideStudyAbroadCta) return false;
   // Target articles about PG exams, domestic scholarships, educational loans, or careers.
   const keywords = [
     'loan', 'loans', 'pg', 'postgraduate', 'gate', 'exam', 'exams',
@@ -29,7 +32,7 @@ const shouldShowStudyAbroadCTA = (content: EditorialContent) => {
 // The single shared renderer for Pillars, Articles, and Portal Guides (IS-113).
 // "kind" only tweaks small defaults (TOC visibility threshold) — every block below
 // is conditional on the corresponding optional field being present, not on kind.
-export default function EditorialTemplate({ content, breadcrumbs }: EditorialTemplateProps) {
+export default function EditorialTemplate({ content, breadcrumbs, children }: EditorialTemplateProps) {
   const showToc = content.headings.length > 0 && (content.kind === 'pillar' || content.headings.length >= 4);
 
   return (
@@ -208,6 +211,8 @@ export default function EditorialTemplate({ content, breadcrumbs }: EditorialTem
                 dangerouslySetInnerHTML={{ __html: content.body }}
               />
             )}
+
+            {children}
 
             {shouldShowStudyAbroadCTA(content) && <StudyAbroadCTA />}
 

@@ -20,6 +20,9 @@ export async function GET() {
    <sitemap>
       <loc>${baseUrl}/sitemap/taxonomies.xml</loc>
    </sitemap>
+   <sitemap>
+      <loc>${baseUrl}/sitemap/study-abroad.xml</loc>
+   </sitemap>
 </sitemapindex>`;
 
   return new NextResponse(xml, {

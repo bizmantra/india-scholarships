@@ -82,6 +82,7 @@ export interface EditorialContent {
   relatedGuides?: { title: string; href: string; meta?: string }[];
   officialUrl?: string;
   monetizationLink?: string;
+  hideStudyAbroadCta?: boolean; // true on /study-abroad pages, where the "study abroad instead?" banner makes no sense
 }
 
 // --- Adapter: PortalGuide -> EditorialContent -------------------------------------
