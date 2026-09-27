@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
+const { researchFacts, compare, evidenceFor } = require('./lib/research');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -22,65 +23,23 @@ const SUMMARY_PATH = path.join(__dirname, '..', 'data', 'daily-check-summary.jso
 console.log(`⏰ Daily Deadline Freshness Check`);
 console.log(`- Dry Run: ${dryRun}\n`);
 
-async function callGeminiForDeadline(title, provider) {
-    const prompt = `Research the official current application deadline details for the "${title}" scholarship by ${provider} in India.
-You must search Google to find the accurate, current deadline for the 2025-26 or 2026-27 application cycle.
+// What counts as "the deadline" (kept from the original instructions)
+const DEADLINE_RULES = `Use the student application submission deadline (the last date for fresh or renewal students to apply),
+not the institute (L1) or district/state (L2) verification deadline or the portal closure date, which are usually later.
+If school (Pre-Matric) and college (Post-Matric) students have different dates, use the one this scholarship is for.`;
 
-CRITICAL REQUIREMENT FOR DEADLINES:
-1. You MUST find the student application submission deadline (the last date for fresh or renewal student applications to be submitted).
-2. Do NOT use the institutional verification (L1) deadline, state/district verification (L2) deadline, or final portal closure/billing date (which are usually later). If a table of dates is listed, select the student submission date, which is always the earliest.
-3. If the portal lists separate deadlines for school (Pre-Matric) and college (Post-Matric) students, prioritize the one relevant to "${title}".
-
-You must respond with a single, valid JSON object matching the following schema:
-{
-  "deadline": "YYYY-MM-DD" (Format strictly as YYYY-MM-DD. If unknown/continuous/always open, leave empty string. Do not guess),
-  "deadline_description": "string" (A short description of the deadline period, e.g., 'Expected August 2026', 'Applications close on 31st October'),
-  "official_source": "string" (Official department/provider URL),
-  "apply_url": "string" (Official direct application form/portal link URL)
-}
-Provide ONLY the raw JSON object.`;
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-    const payload = {
-        contents: [
-            {
-                parts: [
-                    {
-                        text: prompt
-                    }
-                ]
-            }
-        ],
-        tools: [
-            {
-                googleSearch: {}
-            }
-        ],
-    };
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+// Evidence-backed research (lib/research.js): value, official page, exact sentence, two independent answers
+async function researchDeadline(item) {
+    const found = await researchFacts({
+        subject: `the "${item.title}" scholarship by ${item.provider || 'its provider'}, 2026-27 application cycle`,
+        context: DEADLINE_RULES,
+        fields: {
+            deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
+            deadline_description: { instruction: '"one short sentence about the current application window"', compare: compare.text },
         },
-        body: JSON.stringify(payload)
     });
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
-    }
-
-    const data = await response.json();
-    if (!data.candidates || data.candidates.length === 0) {
-        throw new Error("No response candidates returned from Gemini");
-    }
-
-    let contentText = data.candidates[0].content.parts[0].text.trim();
-    if (contentText.startsWith('```')) {
-        contentText = contentText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
-    }
-    return JSON.parse(contentText);
+    if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'No answer from the research model');
+    return found.facts;
 }
 
 async function runDailyCheck() {
@@ -192,8 +151,14 @@ async function runDailyCheck() {
         console.log(`   - Reason: ${item.reason}`);
 
         try {
-            const data = await callGeminiForDeadline(item.title, item.provider || 'Government');
-            console.log(`   ✅ Grounding search successful. Proposed: ${data.deadline || 'NA'}`);
+            const facts = await researchDeadline(item);
+            const data = {
+                deadline: /^\d{4}-\d{2}-\d{2}$/.test(String(facts.deadline.value || '').trim()) ? String(facts.deadline.value).trim() : '',
+                deadline_description: facts.deadline_description.value || '',
+                official_source: facts.deadline.source || facts.deadline_description.source,
+            };
+            const evidence = { deadline: evidenceFor(facts.deadline), deadline_description: evidenceFor(facts.deadline_description) };
+            console.log(`   ✅ Researched. Deadline: ${data.deadline || 'not found'} [${facts.deadline.verdict}${facts.deadline.reason ? `: ${facts.deadline.reason}` : ''}]`);
 
             const proposedDeadline = data.deadline || '';
             const proposedDescription = data.deadline_description || '';
@@ -210,7 +175,7 @@ async function runDailyCheck() {
                 }
                 return inbox.proposeFieldChange(db, {
                     agent: AGENT, scholarshipId: item.id, scholarshipTitle: item.title,
-                    field, oldValue, newValue, source, ...extra
+                    field, oldValue, newValue, source, evidence: evidence[field], ...extra
                 });
             };
 

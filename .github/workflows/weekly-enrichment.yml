@@ -1,6 +1,8 @@
-name: Weekly Scholarship Data Enrichment
+name: Weekly Maintenance
+# Search data refresh, content audit, format clean-up and Telegram. The old AI research step was removed on
+# 2026-09-27: it re-wrote page text without approval. Checking facts is now the Fact Check agent's job.
 # The request id lets the command center find the run it started
-run-name: "${{ github.event_name == 'workflow_dispatch' && format('Weekly Enrichment · {0}{1}', inputs.target, inputs.request_id && format(' · {0}', inputs.request_id) || '') || github.workflow }}"
+run-name: "${{ github.event_name == 'workflow_dispatch' && format('Weekly Maintenance · {0}{1}', inputs.target, inputs.request_id && format(' · {0}', inputs.request_id) || '') || github.workflow }}"
 
 on:
   push:
@@ -70,14 +72,6 @@ jobs:
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           NODE_ENV: production
 
-      - name: Run Grounding Enrichment (Gemini Flash)
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          node scholarship-app/scripts/enrich-all-low-ctr-gemini.js
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          NODE_ENV: production
-
       - name: Run Content Quality Audit
         run: |
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
@@ -95,25 +89,6 @@ jobs:
           node scholarship-app/scripts/audit-article-links.js --strict
         env:
           NODE_ENV: production
-
-      - name: Generate Weekly Email Body
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: |
-          node scholarship-app/scripts/generate-email-reports.js --type weekly
-
-      - name: Send Email Report
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: "Weekly Scholarship Enrichment Report"
-          to: bizmantra@gmail.com
-          from: "India Scholarships Freshness Pipeline <${{ secrets.EMAIL_USERNAME }}>"
-          secure: true
-          html_body: file://${{ github.workspace }}/scholarship-app/data/weekly-email-body.html
 
       # On push/PR runs this only fixes the local copy (nothing is pushed), so the check below can pass
       - name: Normalize data formats

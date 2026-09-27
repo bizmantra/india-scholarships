@@ -33,7 +33,7 @@ export function parseIntent(input: string): Intent {
     if (!text) return { type: 'help' };
 
     // "run the scout for bihar", "run the freshness check", "run enrichment"
-    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing|quality fixer|quality|traffic watchdog|watchdog|traffic|indexing agent|indexing)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
+    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|maintenance|fact check|morning briefing|briefing|quality fixer|quality|traffic watchdog|watchdog|traffic|indexing agent|indexing)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
     if (run) {
         const name = run[1];
         const agent = /traffic|watchdog/.test(name) ? 'traffic-watchdog'
@@ -42,7 +42,8 @@ export function parseIntent(input: string): Intent {
             : name.includes('briefing') ? 'morning-briefing'
             : name.includes('publisher') ? 'scout-publisher'
             : name.includes('scout') ? 'scholarship-scout'
-            : name.includes('enrich') ? 'weekly-enrichment'
+            : name.includes('fact') ? 'fact-check'
+            : /enrich|maintenance/.test(name) ? 'weekly-enrichment'
             : 'deadline-freshness';
         return { type: 'run', agent, state: run[2] ? titleCase(run[2]) : undefined };
     }
