@@ -9,7 +9,8 @@
  *     Fills and outdated text go to the "Missing or outdated details" group; deadline changes to "Deadline changes".
  *   - What it cannot fix is counted in its report (e.g. an old year in a title).
  *
- * Most-visited pages first; research is capped per run (setting max_research).
+ * Most-visited pages first; research is capped per run (setting max_research). Pages researched in the last
+ * recheck_days are skipped, so each run moves on to new pages instead of repeating the same ones.
  * Runs on the local copy: pull → fix → format check → push.
  *
  * Usage: node scripts/quality-fixer.js [--dry-run] [--max=30] [--only=<slug>]
@@ -107,6 +108,10 @@ async function run() {
     }
     const maxResearch = parseInt(argValue('max') || inbox.getSetting(db, AGENT, 'max_research', 30), 10);
     const only = argValue('only');
+    const recheckDays = inbox.getSetting(db, AGENT, 'recheck_days', 14);
+    // When each scholarship was last researched (agent memory), so runs rotate through the list
+    const researchedAt = inbox.getState(db, AGENT, 'researched_at', {});
+    const recentCutoff = Date.now() - recheckDays * 86400000;
 
     const rows = db.prepare(`
         SELECT s.*, COALESCE(g.clicks, 0) AS clicks FROM scholarships s
@@ -140,7 +145,9 @@ async function run() {
     // 2. Research what is missing or out of date, most-visited first
     const toResearch = failing
         .map(x => ({ ...x, fields: [...new Set(x.issues.flatMap(i => RESEARCHABLE[i.code] || []))] }))
-        .filter(x => x.fields.length > 0);
+        .filter(x => x.fields.length > 0)
+        .filter(x => only || !(researchedAt[x.s.slug] && new Date(researchedAt[x.s.slug]).getTime() > recentCutoff));
+    report.skippedRecent = failing.filter(x => !only && researchedAt[x.s.slug] && new Date(researchedAt[x.s.slug]).getTime() > recentCutoff).length;
     failing.forEach(({ issues }) => issues.filter(i => !RESEARCHABLE[i.code] && i.code !== 'contains_html').forEach(i => count('notFixable', i.code)));
 
     for (const { s, issues, fields } of toResearch.slice(0, maxResearch)) {
@@ -155,6 +162,7 @@ async function run() {
             await sleep(6000);
             continue;
         }
+        researchedAt[s.slug] = new Date().toISOString();
         const codes = new Set(issues.map(i => i.code));
         const deadlineOutcome = fields.includes('deadline') ? propose(s, 'deadline', found.deadline, found.source) : null;
         const dateChanging = ['created', 'superseded', 'repeat'].includes(deadlineOutcome);
@@ -197,8 +205,14 @@ async function run() {
     }
 
     report.leftForNextRun = Math.max(toResearch.length - maxResearch, 0);
+    // Remember what was researched (entries older than the recheck window are dropped)
+    if (!dryRun) {
+        const kept = Object.fromEntries(Object.entries(researchedAt).filter(([, at]) => new Date(at).getTime() > recentCutoff));
+        inbox.setState(db, AGENT, 'researched_at', kept);
+    }
     const summary = `Checked ${failing.length} incomplete scholarship(s): ${report.autoFixed} tidied automatically, ` +
         `${report.researched} researched, ${report.proposals} new proposal(s)` +
+        (report.skippedRecent ? `, ${report.skippedRecent} skipped (researched in the last ${recheckDays} days)` : '') +
         (report.leftForNextRun ? `, ${report.leftForNextRun} left for the next run` : '') +
         (report.failed.length ? `, ${report.failed.length} failed` : '');
     console.log(`\n🏁 ${summary}`);

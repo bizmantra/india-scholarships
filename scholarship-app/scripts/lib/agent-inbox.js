@@ -82,6 +82,7 @@ const DEFAULT_SETTINGS = [
     ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
     ['quality-fixer', 'enabled', true, 'Run on schedule'],
     ['quality-fixer', 'max_research', 30, 'Scholarships researched per run'],
+    ['quality-fixer', 'recheck_days', 14, 'Days before a researched scholarship is researched again'],
 ];
 
 // The only scholarship fields agents may propose changes to, and how their values are stored
