@@ -3,9 +3,8 @@ name: Indexing
 run-name: "Indexing · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
-  # Timer off until the staging test passes (see docs/DATABASE_OPERATIONS.md, "Releasing a change")
-  # schedule:
-  #   - cron: '30 15 * * *' # 3:30 PM UTC (9:00 PM IST), after the day's approvals
+  schedule:
+    - cron: '30 15 * * *' # 3:30 PM UTC (9:00 PM IST), after the day's approvals
   workflow_dispatch: # Started from the Agent Center or the GitHub UI
     inputs:
       target:
