@@ -3,9 +3,8 @@ name: Traffic Watchdog
 run-name: "Traffic Watchdog · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
-  # Timer off until the staging test passes (see docs/DATABASE_OPERATIONS.md, "Releasing a change")
-  # schedule:
-  #   - cron: '0 2 * * *' # 2:00 AM UTC (7:30 AM IST), before the 8 AM Morning Briefing
+  schedule:
+    - cron: '0 2 * * *' # 2:00 AM UTC (7:30 AM IST), before the 8 AM Morning Briefing
   workflow_dispatch: # Started from the Agent Center or the GitHub UI
     inputs:
       target:
