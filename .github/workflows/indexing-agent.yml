@@ -1,0 +1,75 @@
+name: Indexing
+# The request id lets the Agent Center find the run it started
+run-name: "Indexing · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
+
+on:
+  # Timer off until the staging test passes (see docs/DATABASE_OPERATIONS.md, "Releasing a change")
+  # schedule:
+  #   - cron: '30 15 * * *' # 3:30 PM UTC (9:00 PM IST), after the day's approvals
+  workflow_dispatch: # Started from the Agent Center or the GitHub UI
+    inputs:
+      target:
+        description: 'Database to write the report to (staging = test run; nothing is submitted to search engines)'
+        type: choice
+        options: [production, staging]
+        default: production
+      request_id:
+        description: 'Set by the Agent Center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
+
+# Only adds activity entries and agent memory, which is safe next to another agent's sync, so it does not queue
+concurrency:
+  group: indexing-agent-${{ inputs.target || 'production' }}
+  cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Send changed pages to search engines and check indexing
+        run: node scholarship-app/scripts/indexing-agent.js
+        env:
+          GOOGLE_SERVICES_CLIENT_EMAIL: ${{ secrets.GOOGLE_SERVICES_CLIENT_EMAIL }}
+          GOOGLE_SERVICES_PRIVATE_KEY: ${{ secrets.GOOGLE_SERVICES_PRIVATE_KEY }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+
+
+      - name: Save the report to the activity feed
+        run: node scholarship-app/scripts/push-to-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}

@@ -72,6 +72,26 @@ export const AGENTS: AgentDefinition[] = [
         order: 5,
     },
     {
+        id: 'traffic-watchdog',
+        label: 'Traffic Watchdog',
+        summary: 'Compares last week with the week before (Google search clicks, visits), lists pages losing or gaining search traffic, and checks that key pages load.',
+        workflow: 'traffic-watchdog.yml',
+        schedule: 'Daily, 7:30 AM IST',
+        humanToday: 'Open Search Console and Analytics every day and compare weeks by hand.',
+        gated: false,
+        order: 6,
+    },
+    {
+        id: 'indexing',
+        label: 'Indexing',
+        summary: 'Sends pages that changed today to IndexNow (Bing and others), re-submits the sitemap to Google, and checks with Google that key pages are indexed.',
+        workflow: 'indexing-agent.yml',
+        schedule: 'Daily, 9:00 PM IST',
+        humanToday: 'Submit changed pages in Bing and Search Console and inspect pages one by one.',
+        gated: false,
+        order: 7,
+    },
+    {
         id: 'morning-briefing',
         label: 'Morning Briefing',
         summary: 'Sums up what needs you, what the agents did, deadlines closing this week and pages still open after their deadline.',
@@ -79,8 +99,8 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 8:00 AM IST (email + Agent Center)',
         humanToday: 'Open the inbox, GitHub and the site every morning to piece together what happened.',
         gated: false,
-        order: 6,
-        dependsOn: ['deadline-freshness', 'scholarship-scout'],
+        order: 8,
+        dependsOn: ['deadline-freshness', 'scholarship-scout', 'traffic-watchdog'],
     },
     {
         id: 'database-backup',
@@ -89,7 +109,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily',
         humanToday: 'Export the database by hand.',
         gated: false,
-        order: 7,
+        order: 9,
     },
 ];
 
