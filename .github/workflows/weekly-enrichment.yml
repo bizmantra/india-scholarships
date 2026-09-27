@@ -24,7 +24,7 @@ on:
 
 # Scheduled/manual runs write the database, so they share one queue with the other database writers
 concurrency:
-  group: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && 'database-writes' || format('weekly-audit-{0}', github.ref) }}
+  group: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && format('database-writes{0}', inputs.target == 'staging' && '-staging' || '') || format('weekly-audit-{0}', github.ref) }}
   cancel-in-progress: false
 
 env:

@@ -18,9 +18,10 @@ on:
         required: false
         default: ''
 
-# Saves the briefing to the activity feed, so it waits for other database writers
+# The briefing only adds one activity entry, which is safe next to another agent's sync (new rows get fresh ids),
+# so it does not queue behind long agent runs; it only avoids overlapping with itself
 concurrency:
-  group: database-writes
+  group: morning-briefing-${{ inputs.target || 'production' }}
   cancel-in-progress: false
 
 env:

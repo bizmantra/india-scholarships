@@ -20,7 +20,7 @@ on:
 
 # Every workflow that writes the database shares this group, so they run one at a time
 concurrency:
-  group: database-writes
+  group: database-writes${{ inputs.target == 'staging' && '-staging' || '' }}
   cancel-in-progress: false
 
 env:
