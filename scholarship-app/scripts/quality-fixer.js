@@ -18,7 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
-const { auditScholarship, isLegacy, stripHtml, hasHtmlTags, HTML_FIELDS } = require('./lib/quality-rules');
+const { auditScholarship, isLegacy, isClosedNotice, stripHtml, hasHtmlTags, HTML_FIELDS } = require('./lib/quality-rules');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local'), quiet: true });
 
 const AGENT = 'quality-fixer';
@@ -31,7 +31,7 @@ const SUMMARY_PATH = path.join(__dirname, '..', 'data', 'quality-fixer-summary.j
 // Audit problems the research step can answer, and the fields it asks for
 const RESEARCHABLE = {
     missing_deadline: ['deadline', 'deadline_description'],
-    expired_deadline: ['deadline', 'deadline_description'],
+    expired_deadline: ['deadline', 'deadline_description', 'cycle_status', 'next_cycle_expected'],
     old_year: ['deadline', 'deadline_description'],
     always_open_text: ['deadline_description'],
     missing_docs: ['docs_needed'],
@@ -51,7 +51,23 @@ const FIELD_INSTRUCTIONS = {
     amount_annual: '"amount_annual": the largest annual award in rupees as a whole number, or 0 if not stated',
     apply_url: '"apply_url": the official web address where students apply (must start with http), or ""',
     official_source: '"official_source": the official page that describes the scheme (must start with http), or ""',
+    cycle_status: '"cycle_status": "open" if applications are open now or a future closing date is announced, "closed" if the current cycle has closed and no new dates are announced, "unknown" otherwise',
+    next_cycle_expected: '"next_cycle_expected": month and year the next cycle is expected to open based on the official pattern, e.g. "July 2027", or "" if not known',
 };
+
+// Answers that shape a proposal but are not page fields themselves
+const HELPER_FIELDS = new Set(['cycle_status', 'next_cycle_expected']);
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// "Applications closed on 15 August 2026. The next cycle is expected to open around July 2027."
+function closedNotice(deadline, nextCycle) {
+    const [y, m, d] = String(deadline).split('-').map(Number);
+    const closedOn = `${d} ${MONTHS[m - 1]} ${y}`;
+    const next = new RegExp(`^(${MONTHS.join('|')}) 20\\d\\d$`).test(String(nextCycle || '').trim())
+        ? `The next cycle is expected to open around ${String(nextCycle).trim()}.`
+        : 'The next cycle has not been announced yet.';
+    return `Applications closed on ${closedOn}. ${next}`;
+}
 
 async function research(s, fields) {
     const key = process.env.GEMINI_API_KEY;
@@ -142,7 +158,12 @@ async function run() {
         const codes = new Set(issues.map(i => i.code));
         const deadlineOutcome = fields.includes('deadline') ? propose(s, 'deadline', found.deadline, found.source) : null;
         const dateChanging = ['created', 'superseded', 'repeat'].includes(deadlineOutcome);
-        for (const field of fields.filter(f => f !== 'deadline')) {
+        // Closed for this cycle and no new date: tell students so, instead of showing a past date as if it were current
+        if (codes.has('expired_deadline') && !dateChanging && found.cycle_status === 'closed') {
+            found.deadline_description = closedNotice(s.deadline, found.next_cycle_expected);
+            count('outcomes', 'closed_notice');
+        }
+        for (const field of fields.filter(f => f !== 'deadline' && !HELPER_FIELDS.has(f))) {
             // A description mentioning a past year is out of date even when the date itself is unchanged
             const allowRewording = field === 'deadline_description' && (codes.has('old_year') || codes.has('always_open_text') || codes.has('expired_deadline'));
             propose(s, field, found[field], found.source, { withDateChange: dateChanging, allowRewording, fill: true });

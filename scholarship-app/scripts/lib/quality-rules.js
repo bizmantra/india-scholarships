@@ -33,6 +33,13 @@ const HTML_FIELDS = ['intro_seo', 'benefits', 'step_guide', 'selection', 'renewa
 const ROLLING_WORDS = ['rolling', 'continuous', 'year-round', 'round the year', 'throughout the year', 'always open', 'open year-round', 'any time'];
 const blankish = v => !v || ['not specified', 'na', 'contact'].includes(String(v).trim().toLowerCase());
 
+// A page whose deadline has passed is fine when it tells students the cycle is closed and what comes next,
+// e.g. "Applications closed on 15 August 2026. The next cycle is expected to open around July 2027."
+function isClosedNotice(text) {
+    const t = String(text || '');
+    return /\bclosed\b/i.test(t) && /\b(next|upcoming) (application )?(cycle|round|session|intake|year)\b/i.test(t);
+}
+
 const isInternational = s => String(s.scholarship_scope || '').toLowerCase() === 'international';
 const isLegacy = s => String(s.title || '').startsWith('[LEGACY]') || String(s.slug || '').startsWith('legacy-');
 
@@ -68,7 +75,9 @@ function auditScholarship(s, today = new Date()) {
         add('missing_deadline', 'Missing Deadline Date');
     } else {
         const date = new Date(deadlineVal);
-        if (!isNaN(date.getTime()) && date < today) add('expired_deadline', `Expired Deadline (${deadlineVal})`);
+        if (!isNaN(date.getTime()) && date < today && !isClosedNotice(s.deadline_description)) {
+            add('expired_deadline', `Expired Deadline (${deadlineVal})`);
+        }
     }
     if (hasOldYear(s.deadline_description) || hasOldYear(s.title)) {
         add('old_year', 'Old Year Reference (e.g. 2024 or 2025 in title or description)');
@@ -129,4 +138,4 @@ function stripHtml(text) {
         .trim();
 }
 
-module.exports = { auditScholarship, parseArrayField, stripHtml, hasHtmlTags, isInternational, isLegacy, HTML_FIELDS };
+module.exports = { auditScholarship, isClosedNotice, parseArrayField, stripHtml, hasHtmlTags, isInternational, isLegacy, HTML_FIELDS };
