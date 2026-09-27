@@ -80,6 +80,8 @@ const DEFAULT_SETTINGS = [
     ['scholarship-scout', 'max_candidates', 8, 'New scholarships researched per run'],
     ['scholarship-scout', 'channels', ['demand', 'web', 'portals', 'csr', 'news', 'coverage'], 'Discovery channels used'],
     ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
+    ['quality-fixer', 'enabled', true, 'Run on schedule'],
+    ['quality-fixer', 'max_research', 30, 'Scholarships researched per run'],
 ];
 
 // The only scholarship fields agents may propose changes to, and how their values are stored
@@ -91,6 +93,7 @@ const FIELD_TYPES = {
     official_source: 'url',
     apply_url: 'url',
     helpline: 'text',
+    docs_needed: 'list',
 };
 
 const PLACEHOLDERS = new Set(['', 'na', 'n/a', 'nil', 'none', 'null', 'unknown', 'not available', 'not specified', 'not found', 'tbd', 'check portal', '-', '0']);
@@ -105,9 +108,26 @@ function ensureAgentTables(db) {
 
 const asText = v => (v === null || v === undefined ? '' : String(v).trim());
 
+// A list field (docs_needed) as a JSON array of trimmed strings; accepts arrays, JSON text or older comma/line text
+function toList(value) {
+    if (Array.isArray(value)) return value.map(v => String(v).trim()).filter(Boolean);
+    const text = asText(value);
+    if (!text) return [];
+    if (text.startsWith('[')) {
+        try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) return toList(parsed); } catch { /* not JSON */ }
+    }
+    return text.split(text.includes('\n') ? '\n' : ',').map(v => v.replace(/^[-*•]\s*/, '').trim()).filter(Boolean);
+}
+
+// The text stored in agent_proposals for a value (lists become a JSON array)
+function normalizeValue(field, value) {
+    return FIELD_TYPES[field] === 'list' ? (toList(value).length ? JSON.stringify(toList(value)) : '') : asText(value);
+}
+
 // An empty or placeholder answer means "the agent could not find it", never "remove the current value"
 function isUnconfirmed(field, value) {
     const text = asText(value);
+    if (FIELD_TYPES[field] === 'list') return toList(value).length === 0;
     if (PLACEHOLDERS.has(text.toLowerCase()) || PLACEHOLDER_PHRASES.test(text)) return true;
     if (FIELD_TYPES[field] === 'int') return !(Number(text) > 0);
     return false;
@@ -118,6 +138,7 @@ const urlKey = v => { try { const u = new URL(v); return `${urlHost(v)}${u.pathn
 
 // Same value for practical purposes (links that differ only by "www.", "https" or a trailing slash)
 function sameValue(field, a, b) {
+    if (FIELD_TYPES[field] === 'list') return normalizeValue(field, a) === normalizeValue(field, b);
     if (asText(a) === asText(b)) return true;
     return FIELD_TYPES[field] === 'url' && urlKey(asText(a)) === urlKey(asText(b));
 }
@@ -132,6 +153,7 @@ function isMinorRewrite(field, oldValue, newValue, { withDateChange = false } = 
     if (isUnconfirmed(field, before) || validateValue(field, before)) return false;
     if (field === 'deadline_description') return !withDateChange;
     if (field === 'helpline') return true;
+    if (FIELD_TYPES[field] === 'list') return false;
     if (FIELD_TYPES[field] === 'url') return urlHost(before) === urlHost(asText(newValue));
     return false;
 }
@@ -145,12 +167,15 @@ function validateValue(field, value) {
     if (type === 'date' && isNaN(new Date(text).getTime())) return 'Not a real date';
     if (type === 'int' && !/^\d+$/.test(text)) return 'Must be a whole number in rupees';
     if (type === 'url' && !/^https?:\/\/\S+$/.test(text)) return 'Must be a full web address';
+    if (type === 'list' && (toList(value).length === 0 || toList(value).some(item => item.length > 200))) return 'Must be a list of short items';
     return null;
 }
 
 // Value as stored in the scholarships table
 function storedValue(field, value) {
-    return FIELD_TYPES[field] === 'int' ? Number(asText(value)) : asText(value);
+    if (FIELD_TYPES[field] === 'int') return Number(asText(value));
+    if (FIELD_TYPES[field] === 'list') return JSON.stringify(toList(value));
+    return asText(value);
 }
 
 // Inbox group (used for sorting and bulk actions) and how careful the reviewer should be
@@ -176,19 +201,19 @@ function classify(field, oldValue, newValue, { withDateChange = false } = {}) {
  *   'unchanged'      the proposed value is already live
  *   'unconfirmed'    the agent found nothing (blank/placeholder): not proposed
  *   'invalid'        the value is in the wrong format: not proposed
- *   'minor'          same fact in different words (see isMinorRewrite): not proposed
+ *   'minor'          same fact in different words (see isMinorRewrite): not proposed, unless allowRewording
  *   'rejected_before' the owner already rejected this exact value
  *   'repeat'         the same value is already waiting; its count is bumped
  *   'superseded'     a different value was waiting; it is replaced by this one
  *   'created'        a new item in the inbox
  */
-function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field, oldValue, newValue, source, withDateChange }) {
-    const before = asText(oldValue);
-    const after = asText(newValue);
+function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field, oldValue, newValue, source, withDateChange, category: categoryOverride, allowRewording }) {
+    const before = normalizeValue(field, oldValue);
+    const after = normalizeValue(field, newValue);
     if (sameValue(field, before, after)) return 'unchanged';
     if (isUnconfirmed(field, after)) return 'unconfirmed';
     if (validateValue(field, after)) return 'invalid';
-    if (isMinorRewrite(field, before, after, { withDateChange })) return 'minor';
+    if (!allowRewording && isMinorRewrite(field, before, after, { withDateChange })) return 'minor';
 
     const rejected = db.prepare(`SELECT 1 FROM agent_proposals WHERE kind = 'field_change' AND scholarship_id = ? AND field = ?
                                  AND status = 'rejected' AND new_value = ?`).get(scholarshipId, field, after);
@@ -206,7 +231,10 @@ function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field,
                                   decision_note = 'Replaced by a newer proposal' WHERE id = ?`);
     pending.forEach(p => supersede.run(`agent:${agent}`, p.id));
 
-    const { category, risk } = classify(field, before, after, { withDateChange });
+    const classified = classify(field, before, after, { withDateChange });
+    // An agent may file its proposals under its own inbox group (e.g. the Quality Fixer's 'missing_info')
+    const category = categoryOverride || classified.category;
+    const risk = classified.risk;
     db.prepare(`INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, category, risk, source_citation)
                 VALUES (?, 'field_change', ?, ?, ?, ?, ?, ?, ?, ?)`)
         .run(agent, scholarshipId, scholarshipTitle, field, before, after, category, risk, source || null);
@@ -315,6 +343,8 @@ function setState(db, agent, key, value) {
 module.exports = {
     AGENT_TABLES,
     FIELD_TYPES,
+    toList,
+    normalizeValue,
     ensureAgentTables,
     isUnconfirmed,
     isMinorRewrite,

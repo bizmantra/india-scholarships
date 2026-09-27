@@ -62,6 +62,16 @@ export const AGENTS: AgentDefinition[] = [
         dependsOn: ['scholarship-scout'],
     },
     {
+        id: 'quality-fixer',
+        label: 'Quality Fixer',
+        summary: 'Works through pages that fail the quality audit: tidies formatting itself, researches missing documents, helplines, amounts, links and outdated deadlines, and sends them to your inbox ("Missing or outdated details").',
+        workflow: 'quality-fixer.yml',
+        schedule: 'Saturday, 9:00 AM IST',
+        humanToday: 'Open the audit report, research each incomplete page on official sites and edit it by hand.',
+        gated: true,
+        order: 5,
+    },
+    {
         id: 'morning-briefing',
         label: 'Morning Briefing',
         summary: 'Sums up what needs you, what the agents did, deadlines closing this week and pages still open after their deadline.',
@@ -69,7 +79,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 8:00 AM IST (email + Agent Center)',
         humanToday: 'Open the inbox, GitHub and the site every morning to piece together what happened.',
         gated: false,
-        order: 5,
+        order: 6,
         dependsOn: ['deadline-freshness', 'scholarship-scout'],
     },
     {
@@ -79,7 +89,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily',
         humanToday: 'Export the database by hand.',
         gated: false,
-        order: 6,
+        order: 7,
     },
 ];
 

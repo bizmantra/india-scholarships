@@ -17,48 +17,25 @@ if (!fs.existsSync(DB_PATH)) {
 
 const db = new Database(DB_PATH);
 
-// Helper to check if text contains HTML tags
-function hasHtmlTags(text) {
-    if (!text) return false;
-    return /<[a-z][\s\S]*>/i.test(text);
-}
+// The per-scholarship checks live in lib/quality-rules.js (shared with the Quality Fixer agent)
+const { auditScholarship, isLegacy: legacyRecord } = require('./lib/quality-rules');
 
-// Helper to check if a text contains old year references
-function hasOldYear(text) {
-    if (!text) return false;
-    const matches = text.match(/\b(202[0-5])\b/g);
-    return matches && matches.length > 0;
-}
-
-// Safe JSON parse
-function tryParseJSON(value, fallback) {
-    if (!value || typeof value !== 'string' || value.trim() === '') {
-        return fallback;
-    }
-    try {
-        return JSON.parse(value);
-    } catch {
-        return fallback;
-    }
-}
-
-// Parse caste/docs field
-function parseArrayField(value) {
-    if (!value) return [];
-    if (Array.isArray(value)) return value;
-    const trimmed = value.trim();
-    if (trimmed === '') return [];
-    if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
-        try {
-            return JSON.parse(trimmed);
-        } catch {}
-    }
-    // Fallback: split by comma or newline
-    if (trimmed.includes('\n')) {
-        return trimmed.split('\n').map(s => s.trim()).filter(Boolean);
-    }
-    return trimmed.split(',').map(s => s.trim()).filter(Boolean);
-}
+// Which summary counter each issue adds to
+const STAT_FOR_CODE = {
+    missing_amount_annual: 'missingAmountAnnual',
+    missing_amount_min: 'missingAmountMin',
+    missing_deadline: 'missingDeadline',
+    expired_deadline: 'expiredDeadline',
+    old_year: 'oldYearReference',
+    incomplete_selection: 'incompleteSelection',
+    incomplete_renewal: 'incompleteRenewal',
+    incomplete_step_guide: 'incompleteStepGuide',
+    missing_docs: 'missingDocs',
+    missing_links: 'missingApplyUrl',
+    missing_helpline: 'missingHelpline',
+    missing_faqs: 'missingFaqs',
+    contains_html: 'containsHtml',
+};
 
 // Check for deleted or renamed slugs by comparing with git HEAD version of the database
 function checkDeletedSlugs() {
@@ -112,7 +89,8 @@ try {
     const scholarships = db.prepare('SELECT * FROM scholarships').all();
     console.log(`Loaded ${scholarships.length} scholarships from database.`);
 
-    const today = new Date('2026-06-26'); // mock date
+    const today = new Date();
+    const todayLabel = today.toISOString().split('T')[0];
     const auditData = [];
 
     const stats = {
@@ -135,169 +113,22 @@ try {
     };
 
     scholarships.forEach(s => {
-        const issues = [];
-        const isLegacy = s.title.startsWith('[LEGACY]') || s.slug.startsWith('legacy-');
+        const isLegacy = legacyRecord(s);
         if (isLegacy) stats.legacyCount++;
-
-        // For international scholarships, bypass standard domestic fields checks
-        if (s.scholarship_scope === 'international') {
-            // Check for minimal metadata completeness instead
-            if (!s.deadline || s.deadline.trim() === '') {
-                issues.push('Missing Deadline Date');
-                stats.missingDeadline++;
-            }
-            if (!s.apply_url || s.apply_url.trim() === '') {
-                issues.push('Missing / Bad Apply Link');
-                stats.missingApplyUrl++;
-            }
-            if (issues.length > 0) {
-                stats.totalIssues += issues.length;
-                auditData.push({
-                    id: s.id,
-                    slug: s.slug,
-                    title: s.title,
-                    issuesCount: issues.length,
-                    issuesList: issues.join('; ')
-                });
-            }
-            return;
-        }
-
-        // 1. Check Amount
-        const amountAnnual = s.amount_annual !== null ? Number(s.amount_annual) : null;
-        const amountMin = s.amount_min !== null ? Number(s.amount_min) : null;
-        if (amountAnnual === null || amountAnnual === 0) {
-            issues.push('Missing Annual Amount (causes "upto 0k" display)');
-            stats.missingAmountAnnual++;
-        }
-        if (amountMin === null || amountMin === 0) {
-            issues.push('Missing Min Amount');
-            stats.missingAmountMin++;
-        }
-
-        // 2. Check Deadline / Dates
-        const isAlwaysOpen = s.always_open === 1;
-        const deadlineVal = s.deadline ? s.deadline.trim() : '';
-        
-        if (isAlwaysOpen) {
-            // Checks & Balances: Ensure rolling/continuous verification keywords exist in descriptions
-            const contentToScan = [
-                s.deadline_description || '',
-                s.amount_description || '',
-                s.selection || '',
-                s.benefits || ''
-            ].join(' ').toLowerCase();
-            
-            const rollingVerifyKeywords = ['rolling', 'continuous', 'year-round', 'round the year', 'throughout the year', 'always open', 'open year-round', 'any time'];
-            const hasVerifyText = rollingVerifyKeywords.some(kw => contentToScan.includes(kw));
-            
-            if (!hasVerifyText) {
-                issues.push('Always Open marked but rolling/continuous verification text is missing in descriptions');
-            }
-        } else {
-            if (!deadlineVal || deadlineVal.toLowerCase() === 'not specified' || deadlineVal.toLowerCase() === 'na') {
-                issues.push('Missing Deadline Date');
-                stats.missingDeadline++;
-            } else {
-                // Check if deadline is a past date
-                const dlDate = new Date(deadlineVal);
-                if (!isNaN(dlDate.getTime()) && dlDate < today) {
-                    issues.push(`Expired Deadline (${deadlineVal})`);
-                    stats.expiredDeadline++;
-                }
-            }
-        }
-
-        // Check for old year reference
-        const deadlineDesc = s.deadline_description || '';
-        const titleDesc = s.title || '';
-        if (hasOldYear(deadlineDesc) || hasOldYear(titleDesc)) {
-            issues.push('Old Year Reference (e.g. 2024 or 2025 in title or description)');
-            stats.oldYearReference++;
-        }
-
-        // 3. Check Selection
-        const selection = s.selection ? s.selection.trim() : '';
-        if (!selection || selection.toLowerCase() === 'not specified' || selection.length < 15) {
-            issues.push(`Incomplete Selection Criteria (${selection ? 'too short: ' + selection.length + ' chars' : 'empty'})`);
-            stats.incompleteSelection++;
-        }
-
-        // 4. Check Renewal
-        const renewal = s.renewal ? s.renewal.trim() : '';
-        if (!renewal || renewal.toLowerCase() === 'not specified' || renewal.length < 15) {
-            issues.push(`Incomplete Renewal Policy (${renewal ? 'too short: ' + renewal.length + ' chars' : 'empty'})`);
-            stats.incompleteRenewal++;
-        }
-
-        // 5. Check Step Guide
-        const stepGuide = s.step_guide ? s.step_guide.trim() : '';
-        if (!stepGuide || stepGuide.length < 20) {
-            issues.push(`Incomplete/Missing Step Guide (${stepGuide ? 'too short: ' + stepGuide.length + ' chars' : 'empty'})`);
-            stats.incompleteStepGuide++;
-        }
-
-        // 6. Check Docs Needed
-        const docs = parseArrayField(s.docs_needed);
-        if (docs.length === 0) {
-            issues.push('Missing Required Documents');
-            stats.missingDocs++;
-        }
-
-        // 7. Check Apply URL / Official Source
-        const applyUrl = s.apply_url ? s.apply_url.trim() : '';
-        const officialSource = s.official_source ? s.official_source.trim() : '';
-        if (!applyUrl && !officialSource) {
-            issues.push('Missing Apply URL & Official Source');
-            stats.missingApplyUrl++;
-        } else {
-            if (applyUrl && !applyUrl.startsWith('http')) {
-                issues.push(`Invalid Apply URL format: "${applyUrl}"`);
-            }
-            if (officialSource && !officialSource.startsWith('http')) {
-                issues.push(`Invalid Official Source format: "${officialSource}"`);
-            }
-        }
-
-        // 8. Check Helpline
-        const helpline = s.helpline ? s.helpline.trim() : '';
-        if (!helpline || helpline.toLowerCase() === 'not specified' || helpline.toLowerCase() === 'na' || helpline.toLowerCase() === 'contact') {
-            issues.push('Missing Helpline Contact Details');
-            stats.missingHelpline++;
-        }
-
-        // 9. Check FAQs
-        const faqs = tryParseJSON(s.faq_json, []);
-        if (faqs.length === 0) {
-            issues.push('Missing FAQ Content');
-            stats.missingFaqs++;
-        }
-
-        // 10. Check HTML tags
-        let hasHtml = false;
-        ['intro_seo', 'benefits', 'step_guide', 'selection', 'renewal'].forEach(f => {
-            if (hasHtmlTags(s[f])) {
-                hasHtml = true;
-            }
+        const found = auditScholarship(s, today);
+        found.forEach(issue => { if (STAT_FOR_CODE[issue.code]) stats[STAT_FOR_CODE[issue.code]]++; });
+        if (found.length === 0) return;
+        stats.totalIssues += found.length;
+        auditData.push({
+            id: s.id,
+            slug: s.slug,
+            title: s.title,
+            provider_type: s.provider_type || 'Unknown',
+            status: s.status || 'Active',
+            isLegacy: isLegacy ? 'Yes' : 'No',
+            issuesCount: found.length,
+            issuesList: found.map(issue => issue.text)
         });
-        if (hasHtml) {
-            issues.push('Contains Unwanted Raw HTML Tags');
-            stats.containsHtml++;
-        }
-
-        if (issues.length > 0) {
-            stats.totalIssues += issues.length;
-            auditData.push({
-                id: s.id,
-                slug: s.slug,
-                title: s.title,
-                provider_type: s.provider_type || 'Unknown',
-                status: s.status || 'Active',
-                isLegacy: isLegacy ? 'Yes' : 'No',
-                issuesCount: issues.length,
-                issuesList: issues
-            });
-        }
     });
 
     // Write Markdown Report
@@ -318,7 +149,7 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Missing Annual Amount** | ${stats.missingAmountAnnual} | ${((stats.missingAmountAnnual / stats.total) * 100).toFixed(1)}% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | ${stats.missingAmountMin} | ${((stats.missingAmountMin / stats.total) * 100).toFixed(1)}% | Missing/0 minimum amount |
 | **Missing Deadline Date** | ${stats.missingDeadline} | ${((stats.missingDeadline / stats.total) * 100).toFixed(1)}% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | ${stats.expiredDeadline} | ${((stats.expiredDeadline / stats.total) * 100).toFixed(1)}% | Deadline is in the past (before 2026-06-26) |
+| **Expired Deadline** | ${stats.expiredDeadline} | ${((stats.expiredDeadline / stats.total) * 100).toFixed(1)}% | Deadline is in the past (before ${todayLabel}) |
 | **Old Year References** | ${stats.oldYearReference} | ${((stats.oldYearReference / stats.total) * 100).toFixed(1)}% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | ${stats.incompleteSelection} | ${((stats.incompleteSelection / stats.total) * 100).toFixed(1)}% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | ${stats.incompleteRenewal} | ${((stats.incompleteRenewal / stats.total) * 100).toFixed(1)}% | Missing or under 15 characters |

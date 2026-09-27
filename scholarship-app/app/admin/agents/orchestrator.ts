@@ -12,6 +12,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
     new_scholarship: 'New scholarships',
     amount_change: 'Amount changes',
     link_change: 'Link changes',
+    missing_info: 'Missing or outdated details',
     contact_change: 'Helpline updates',
     wording: 'Wording updates',
 };
@@ -204,6 +205,7 @@ async function whatsWaiting() {
             { label: 'Risky (past deadlines, amounts moving over 50%)', value: String(summary.risky), tone: summary.risky ? 'bad' : 'neutral', action: 'Show risky changes' },
             { label: CATEGORY_LABELS.amount_change, value: String(g.amount_change), action: 'Show amount changes' },
             { label: CATEGORY_LABELS.link_change, value: String(g.link_change), action: 'Show link changes' },
+            { label: 'Missing or outdated details (documents, helplines, amounts, old dates)', value: String(g.missing_info ?? 0), action: 'Show missing details' },
             { label: CATEGORY_LABELS.contact_change, value: String(g.contact_change), action: 'Show helpline updates' },
             { label: 'Wording only (same fact, new words)', value: String(g.wording), action: 'Approve all wording updates' },
             ...(summary.approvedUnpublished ? [{ label: 'Approved, waiting to be published', value: String(summary.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),

@@ -21,6 +21,7 @@ const GROUPS: { pattern: RegExp; category: string; label: string }[] = [
     { pattern: /deadline|date/, category: 'date_change', label: 'deadline changes' },
     { pattern: /amount|money|₹/, category: 'amount_change', label: 'amount changes' },
     { pattern: /link|url|website/, category: 'link_change', label: 'link changes' },
+    { pattern: /missing|details|gaps?\b|documents?/, category: 'missing_info', label: 'missing details' },
     { pattern: /helpline|contact|phone/, category: 'contact_change', label: 'helpline updates' },
     { pattern: /new scholarship|scout|candidate|find/, category: 'new_scholarship', label: 'new scholarships' },
 ];
@@ -30,10 +31,11 @@ export function parseIntent(input: string): Intent {
     if (!text) return { type: 'help' };
 
     // "run the scout for bihar", "run the freshness check", "run enrichment"
-    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
+    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing|quality fixer|quality)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
     if (run) {
         const name = run[1];
-        const agent = name.includes('briefing') ? 'morning-briefing'
+        const agent = name.includes('quality') ? 'quality-fixer'
+            : name.includes('briefing') ? 'morning-briefing'
             : name.includes('publisher') ? 'scout-publisher'
             : name.includes('scout') ? 'scholarship-scout'
             : name.includes('enrich') ? 'weekly-enrichment'

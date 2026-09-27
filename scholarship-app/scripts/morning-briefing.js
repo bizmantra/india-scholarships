@@ -28,6 +28,7 @@ const CATEGORY_LABELS = {
     new_scholarship: 'New scholarships',
     amount_change: 'Amount changes',
     link_change: 'Link changes',
+    missing_info: 'Missing or outdated details',
     contact_change: 'Helpline updates',
     wording: 'Wording updates',
 };
@@ -39,6 +40,7 @@ const WORKFLOW_LABELS = {
     'scholarship-scout.yml': 'Scholarship Scout',
     'publish-scout-approved.yml': 'Scout Publisher',
     'database-backup.yml': 'Database Backup',
+    'quality-fixer.yml': 'Quality Fixer',
 };
 
 const ACTIVE = "(s.status = 'Active' OR s.status IS NULL)";

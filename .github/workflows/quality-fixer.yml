@@ -1,0 +1,102 @@
+name: Quality Fixer
+# The request id lets the Agent Center find the run it started
+run-name: "Quality Fixer · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
+
+on:
+  schedule:
+    - cron: '30 3 * * 6' # Saturday 3:30 AM UTC (9:00 AM IST)
+  workflow_dispatch: # Started from the Agent Center or the GitHub UI
+    inputs:
+      target:
+        description: 'Database to update (staging = test run: live site untouched)'
+        type: choice
+        options: [production, staging]
+        default: production
+      request_id:
+        description: 'Set by the Agent Center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
+
+concurrency:
+  group: database-writes${{ inputs.target == 'staging' && '-staging' || '' }}
+  cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Fix and research incomplete scholarships (Gemini Flash)
+        id: fixer
+        run: node scholarship-app/scripts/quality-fixer.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Normalize data formats
+        run: node scholarship-app/scripts/clean-data-formats.js
+
+      - name: Check data formats (blocks bad data from reaching Turso)
+        run: node scholarship-app/scripts/check-data-formats.js
+
+      - name: Back up Turso before syncing
+        run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Store pre-sync backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-sync-backup-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: backups/pre-sync.db
+          retention-days: 7
+
+      # Proposals go to the inbox; only formatting tidy-ups change pages directly
+      - name: Push Database to Turso
+        run: node scholarship-app/scripts/push-to-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Show the report on the run page
+        if: always()
+        run: |
+          if [ -f scholarship-app/data/quality-fixer-summary.json ]; then
+            { echo '### Quality Fixer'; echo '```json'; cat scholarship-app/data/quality-fixer-summary.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Trigger Vercel Redeployment
+        if: steps.fixer.outputs.auto_fixed != '0' && steps.fixer.outputs.auto_fixed != '' && env.DB_TARGET == 'production'
+        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
