@@ -3,7 +3,7 @@
  *
  * Makes sure search engines see changes quickly and that important pages are actually indexed:
  *   1. Pages changed in the last day (approved changes, tidy-ups, new scholarships, new articles and news)
- *      are sent to IndexNow (Bing and other IndexNow engines). The key file is public/<key>.txt.
+ *      are sent to each IndexNow engine separately (Yandex, Bing). The key file is public/<key>.txt.
  *   2. When anything changed, the sitemap is re-submitted to Google through Search Console.
  *   3. A rotating sample of important pages (most visited, newly added, just changed) is checked with
  *      Google's URL Inspection, and pages Google has not indexed are reported.
@@ -60,15 +60,28 @@ function changedContent() {
     }
 }
 
+// Each IndexNow engine is asked separately, so one refusing (e.g. Bing before the site is verified there) does not
+// stop the others from hearing about changed pages
+const INDEXNOW_ENGINES = { Yandex: 'https://yandex.com/indexnow', Bing: 'https://www.bing.com/indexnow' };
+
 async function indexNow(urls) {
-    const res = await fetch('https://api.indexnow.org/indexnow', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-        body: JSON.stringify({ host: new URL(g.SITE).host, key: INDEXNOW_KEY, keyLocation: `${g.SITE}/${INDEXNOW_KEY}.txt`, urlList: urls }),
-        signal: AbortSignal.timeout(30000),
-    });
-    if (res.status !== 200 && res.status !== 202) throw new Error(`IndexNow answered ${res.status}: ${(await res.text()).slice(0, 140)}`);
-    return res.status;
+    const body = JSON.stringify({ host: new URL(g.SITE).host, key: INDEXNOW_KEY, keyLocation: `${g.SITE}/${INDEXNOW_KEY}.txt`, urlList: urls });
+    const results = {};
+    for (const [engine, endpoint] of Object.entries(INDEXNOW_ENGINES)) {
+        try {
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                body,
+                signal: AbortSignal.timeout(30000),
+            });
+            const accepted = res.status === 200 || res.status === 202;
+            results[engine] = accepted ? 'accepted' : `refused (${res.status}: ${(await res.text()).slice(0, 100)})`;
+        } catch (error) {
+            results[engine] = `error (${error.message.slice(0, 80)})`;
+        }
+    }
+    return results;
 }
 
 // Which pages to ask Google about this run: never checked or checked over a week ago, most important first
@@ -101,7 +114,8 @@ async function run() {
 
     // 2. Tell search engines
     if (paths.length && submit) {
-        try { report.indexNow = await indexNow(paths.map(p => `${g.SITE}${p}`)); } catch (e) { report.errors.push(`IndexNow: ${e.message}`); }
+        report.indexNow = await indexNow(paths.map(p => `${g.SITE}${p}`));
+        Object.entries(report.indexNow).filter(([, r]) => r !== 'accepted').forEach(([engine, r]) => report.errors.push(`IndexNow ${engine}: ${r}`));
         try { await g.submitSitemap(); report.sitemapSubmitted = true; } catch (e) { report.errors.push(`Sitemap: ${e.message.slice(0, 160)}`); }
     }
 
@@ -133,7 +147,11 @@ async function run() {
     };
 
     const parts = [
-        paths.length ? `${paths.length} changed page(s) ${!submit ? `would be sent (${target === 'staging' ? 'staging' : 'test'} run: nothing submitted)` : report.indexNow ? 'sent to IndexNow' : 'not accepted by IndexNow'}` : 'No page changes to send',
+        paths.length
+            ? `${paths.length} changed page(s) ${!submit
+                ? `would be sent (${target === 'staging' ? 'staging' : 'test'} run: nothing submitted)`
+                : `sent: ${Object.entries(report.indexNow || {}).map(([e, r]) => `${e} ${r === 'accepted' ? 'accepted' : 'refused'}`).join(', ')}`}`
+            : 'No page changes to send',
         `${report.inspection.indexed} of ${report.inspection.tracked} key pages indexed by Google`,
     ];
     if (notIndexed.length) parts.push(`${notIndexed.length} not indexed`);

@@ -84,7 +84,7 @@ export const AGENTS: AgentDefinition[] = [
     {
         id: 'indexing',
         label: 'Indexing',
-        summary: 'Sends pages that changed today to IndexNow (Bing and others), re-submits the sitemap to Google, and checks with Google that key pages are indexed.',
+        summary: 'Sends pages that changed today to IndexNow (Yandex and Bing, separately), re-submits the sitemap to Google, and checks with Google that key pages are indexed.',
         workflow: 'indexing-agent.yml',
         schedule: 'Daily, 9:00 PM IST',
         humanToday: 'Submit changed pages in Bing and Search Console and inspect pages one by one.',
