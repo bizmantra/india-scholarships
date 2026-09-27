@@ -1,12 +1,12 @@
-# Command Center
+# Agent Center
 
-`/admin/command` is where the owner runs the site's agents by chat: see what's waiting, approve or reject
+`/admin/agents` (Agent Center, in the admin area called Command Center) is where the owner runs the site's agents by chat: see what's waiting, approve or reject
 agent proposals, start agents and follow them live. The data side (agent inbox tables and rules) is described in
 [DATABASE_OPERATIONS.md](DATABASE_OPERATIONS.md#agent-inbox-approvals).
 
 ## Commands
 
-Typed or tapped from the suggestion chips. Matching is by fixed patterns (`app/admin/command/intents.ts`).
+Typed or tapped from the suggestion chips. Matching is by fixed patterns (`app/admin/agents/intents.ts`).
 
 | Say | What happens |
 |---|---|
@@ -40,3 +40,10 @@ The **Inbox** tab (top right, with the number waiting) shows the same inbox as a
   Actions read/write, Contents read-only. Without it, approvals still work but agents can't be started from chat.
 - The agent inbox tables are created by the first agent run after they were introduced. Until then the page says so.
   The command center never creates them itself, so an agent's first push can't clash with rows written here.
+
+## Light and dark mode
+
+The sun/moon button in the header (next to the logo on phones) switches the admin between light and dark. The choice is
+remembered on the device; until then it follows the system setting. Colours come from named tokens in `app/globals.css`
+(`bg-cc-panel`, `text-cc-muted`, …). Screens listed in `THEMED_PAGES` in `app/admin/layout.tsx` use them; other admin
+screens stay dark until they are reworked. To convert a screen, replace its fixed shades with the tokens and add it to that list.

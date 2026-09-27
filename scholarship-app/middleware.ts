@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
             const decoded = await verifyToken(sessionCookie, jwtSecret);
             if (decoded) {
                 const url = request.nextUrl.clone();
-                url.pathname = '/admin/dashboard';
+                url.pathname = '/admin/agents';
                 return NextResponse.redirect(url);
             }
         }
