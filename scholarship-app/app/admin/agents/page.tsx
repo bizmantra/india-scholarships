@@ -6,7 +6,7 @@ import { MessageView } from './Cards';
 import ListView from './ListView';
 import SidePanel from './SidePanel';
 import { SUGGESTIONS } from './intents';
-import { api, handle, refreshActivity, refreshSummary, resumeRecentRuns } from './orchestrator';
+import { api, handle, openingView, refreshActivity, refreshSummary, resumeRecentRuns } from './orchestrator';
 import { post, store, useStore, type Status } from './store';
 
 export default function AgentCenterPage() {
@@ -28,7 +28,7 @@ export default function AgentCenterPage() {
                     post({ type: 'text', tone: 'warn', text: 'The agent inbox is not set up on this database yet. The next Deadline Freshness run creates it (daily at 7 AM IST), or say "run the freshness check".' });
                     return;
                 }
-                handle("What's waiting on me?").then(() => resumeRecentRuns()).catch(() => undefined);
+                openingView().then(() => resumeRecentRuns()).catch(() => undefined);
                 refreshActivity();
             })
             .catch(e => post({ type: 'text', tone: 'bad', text: `Could not load the command center: ${e.message}` }));

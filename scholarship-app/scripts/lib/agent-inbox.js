@@ -79,6 +79,7 @@ const DEFAULT_SETTINGS = [
     ['scholarship-scout', 'enabled', true, 'Run on schedule'],
     ['scholarship-scout', 'max_candidates', 8, 'New scholarships researched per run'],
     ['scholarship-scout', 'channels', ['demand', 'web', 'portals', 'csr', 'news', 'coverage'], 'Discovery channels used'],
+    ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
 ];
 
 // The only scholarship fields agents may propose changes to, and how their values are stored
