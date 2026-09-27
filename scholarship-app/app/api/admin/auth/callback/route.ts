@@ -95,8 +95,8 @@ export async function GET(request: Request) {
             return NextResponse.redirect(`${returnTo}/api/admin/auth/handoff?token=${encodeURIComponent(pass)}`);
         }
 
-        // Redirect to Command Center dashboard
-        return NextResponse.redirect(`${origin}/admin/dashboard`);
+        // Signed in: open the Agent Center
+        return NextResponse.redirect(`${origin}/admin/agents`);
 
     } catch (err: any) {
         console.error('Error exchanging Google auth code:', err);
