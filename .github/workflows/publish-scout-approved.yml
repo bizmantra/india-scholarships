@@ -108,6 +108,8 @@ jobs:
             echo "Nothing to commit."
           else
             git commit -m "chore: publish scout-approved scholarships [skip ci]"
+            # The code may have moved on during a long run: catch up first, so the save is never rejected
+            git pull --rebase origin main
             git push origin main
           fi
 
