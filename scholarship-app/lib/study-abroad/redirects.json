@@ -1,0 +1,227 @@
+[
+  {
+    "source": "/study-abroad/index",
+    "destination": "/study-abroad",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/visas/germany-student-visa",
+    "destination": "/study-abroad/visas/germany-national-student-visa",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/programs",
+    "destination": "/study-abroad/programs/germany/ms/computer-science",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/study-in/global/archive_readme",
+    "destination": "/study-abroad",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/germany/germany-bavarian-calculator-spec",
+    "destination": "/study-abroad/tools/bavarian-grade-calculator",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/germany/germany-blocked-account-calc-spec",
+    "destination": "/study-abroad/tools/blocked-account-calculator",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/germany/germany-ects-evaluator-spec",
+    "destination": "/study-abroad/tools",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/usa/usa-wes-gpa-calculator-spec",
+    "destination": "/study-abroad/tools/bavarian-grade-calculator",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/usa/usa-i20-proof-of-funds-calc-spec",
+    "destination": "/study-abroad/tools/i20-cost-calculator",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/usa/usa-stem-opt-timeline-calc-spec",
+    "destination": "/study-abroad/tools",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/kit-karlsruhe-institute-of-technology",
+    "destination": "/study-abroad/universities/karlsruhe-institute-of-technology",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/tu-berlin-technical-university",
+    "destination": "/study-abroad/universities/tu-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/northeastern-university-boston",
+    "destination": "/study-abroad/universities/neu-northeastern-university",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/texas-a-m-university",
+    "destination": "/study-abroad/universities/tamu-texas-a-m",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/university-of-texas-dallas",
+    "destination": "/study-abroad/universities/ut-dallas-utd",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/university-at-buffalo-suny",
+    "destination": "/study-abroad/universities/suny-buffalo",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/daad-research-grants-for-doctoral-candidates",
+    "destination": "/scholarships/daad-research-grants-for-doctoral-candidates",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/daad-scholarships-germany-master-phd",
+    "destination": "/study-abroad/study-in/germany/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/esmt-berlin-mba-scholarships",
+    "destination": "/scholarships/esmt-berlin-mba-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/friedrich-ebert-foundation-scholarships",
+    "destination": "/scholarships/friedrich-ebert-foundation-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/hamburg-university-international-student-scholarships",
+    "destination": "/scholarships/hamburg-university-international-student-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/heidelberg-university-graduate-fellowships",
+    "destination": "/scholarships/heidelberg-university-graduate-fellowships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/heinrich-bll-foundation-scholarships",
+    "destination": "/scholarships/heinrich-bll-foundation-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/humboldt-research-fellowships",
+    "destination": "/scholarships/humboldt-research-fellowships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/international-max-planck-research-school-imprs-phd-fellowship",
+    "destination": "/scholarships/international-max-planck-research-school-imprs-phd-fellowship",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/kaad-scholarships",
+    "destination": "/scholarships/kaad-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/konrad-adenauer-stiftung-scholarships",
+    "destination": "/scholarships/konrad-adenauer-stiftung-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/rosa-luxemburg-foundation-scholarships",
+    "destination": "/scholarships/rosa-luxemburg-foundation-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/studienstiftung-des-deutschen-volkes-fellowships",
+    "destination": "/scholarships/studienstiftung-des-deutschen-volkes-fellowships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/technical-university-of-munich-scholarships",
+    "destination": "/scholarships/technical-university-of-munich-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/aauw-international-fellowships",
+    "destination": "/scholarships/aauw-international-fellowships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/columbia-presidential-fellowship",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/fulbright-nehru-masters-fellowship",
+    "destination": "/scholarships/fulbright-nehru-masters-fellowship",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/harvard-bhavan-fellowship",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/inlaks-shivdasani-scholarship",
+    "destination": "/scholarships/inlaks-shivdasani-scholarship",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/jn-tata-endowment-loan-scholarship",
+    "destination": "/scholarships/jn-tata-endowment-for-higher-education",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/kc-mahindra-scholarship",
+    "destination": "/scholarships/kc-mahindra-scholarship-for-post-graduate-studies-abroad",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/mit-fellowships",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/narotam-seksaria-scholarship",
+    "destination": "/scholarships/narotam-sekhsaria-postgraduate-scholarship",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/nyu-tandon-dean-fellowship",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/rd-sethna-scholarship",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/stanford-knight-hennessy",
+    "destination": "/scholarships/knight-hennessy-scholars-program",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/tamu-departmental-assistantships",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/tata-trusts-travel-grant",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  },
+  {
+    "source": "/study-abroad/scholarships/usc-trustee-fellowship",
+    "destination": "/study-abroad/study-in/usa/scholarships",
+    "permanent": false
+  }
+]

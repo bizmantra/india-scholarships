@@ -18,7 +18,10 @@
  * (see scripts/publish-scout-approved.js).
  *
  * Usage: node scripts/scholarship-scout.js [--dry-run] [--max=8] [--channels=demand,web,portals,csr,news,coverage] [--state="Bihar"]
- *   --state  focus the web search, coverage and portal channels on one state
+ *                                          [--leads-file=path.json]
+ *   --state       focus the web search, coverage and portal channels on one state
+ *   --leads-file  research only the named leads in this JSON file ([{ name, provider, evidence }]),
+ *                 e.g. scholarships carried over from the Study Abroad section
  */
 const fs = require('fs');
 const path = require('path');
@@ -40,6 +43,7 @@ const AGENT = 'scholarship-scout';
 const ALL_CHANNELS = ['demand', 'web', 'portals', 'csr', 'news', 'coverage'];
 const STATE_CHANNELS = ['web', 'coverage', 'portals'];
 // An empty --state= (e.g. from a workflow input left blank) means no focus
+const LEADS_FILE = (argValue('leads-file') || '').trim() || null;
 const STATE_FOCUS = (argValue('state') || process.env.SCOUT_STATE || '').trim() || null;
 // Set in runScout() from the arguments or the owner's settings
 let MAX_CANDIDATES = 8;
@@ -54,6 +58,7 @@ const REPORT_PATH = path.join(SCOUT_DIR, 'scout-report.md');
 const CHANNEL_LABELS = {
     demand: '🔎 Search demand',
     web: '🌐 Open web search',
+    leads: '📋 Leads file',
     portals: '🏛️ Official portal',
     csr: '🏢 CSR / competitor',
     news: '📰 News',
@@ -671,7 +676,7 @@ async function runScout() {
     // Command-line values win over the owner's settings; a state focus narrows the default channels
     MAX_CANDIDATES = parseInt(argValue('max') || inbox.getSetting(db, AGENT, 'max_candidates', 8), 10);
     const channelArg = argValue('channels');
-    CHANNELS = channelArg ? channelArg.split(',') : STATE_FOCUS ? STATE_CHANNELS : inbox.getSetting(db, AGENT, 'channels', ALL_CHANNELS);
+    CHANNELS = channelArg ? channelArg.split(',') : LEADS_FILE ? ['leads'] : STATE_FOCUS ? STATE_CHANNELS : inbox.getSetting(db, AGENT, 'channels', ALL_CHANNELS);
 
     console.log('🔭 New Scholarship Scout');
     if (STATE_FOCUS) console.log(`- State focus: ${STATE_FOCUS}`);
@@ -701,8 +706,10 @@ async function runScout() {
         portals: () => sweepLeads(statePortals() || PORTAL_SOURCES, PORTALS_PER_WEEK, 'portals', knownTitles),
         csr: () => sweepLeads(CSR_SOURCES, CSR_PER_WEEK, 'csr', knownTitles),
         coverage: () => coverageLeads(dbRows, knownTitles),
+        leads: async () => JSON.parse(fs.readFileSync(path.resolve(LEADS_FILE), 'utf8'))
+            .map(l => ({ ...l, channel: 'leads', via: l.via || `Leads file: ${path.basename(LEADS_FILE)}` })),
     };
-    for (const channel of ['demand', 'web', 'news', 'portals', 'csr', 'coverage']) {
+    for (const channel of ['leads', 'demand', 'web', 'news', 'portals', 'csr', 'coverage']) {
         if (!CHANNELS.includes(channel)) continue;
         console.log(`\n${CHANNEL_LABELS[channel]}`);
         try {
