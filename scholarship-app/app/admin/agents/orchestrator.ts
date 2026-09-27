@@ -251,7 +251,10 @@ async function showIndexing() {
         type: 'summary',
         title: 'Search engines',
         lines: [
-            { label: 'Changed pages sent to IndexNow (Bing and others)', value: r.submitted ? String(r.changed?.urls ?? 0) : `${r.changed?.urls ?? 0} (not sent: ${r.target === 'staging' ? 'staging' : 'test'} run)` },
+            { label: 'Changed pages sent to IndexNow', value: r.submitted ? String(r.changed?.urls ?? 0) : `${r.changed?.urls ?? 0} (not sent: ${r.target === 'staging' ? 'staging' : 'test'} run)` },
+            ...Object.entries(r.indexNow || {}).map(([engine, result]) => ({
+                label: `  ${engine}`, value: String(result) === 'accepted' ? 'accepted' : 'refused', tone: (String(result) === 'accepted' ? 'good' : 'warn') as 'good' | 'warn',
+            })),
             { label: 'Sitemap re-submitted to Google', value: r.sitemapSubmitted ? 'yes' : 'no' },
             { label: 'Key pages indexed by Google', value: `${r.inspection?.indexed ?? 0} of ${r.inspection?.tracked ?? 0}`, tone: r.inspection?.notIndexedCount ? 'warn' : 'good' },
             ...(r.inspection?.notIndexed || []).map((p: any) => ({ label: `  ${p.path}${p.isNew ? ' (new)' : ''}`, value: p.coverageState || 'not indexed', tone: 'warn' as const })),
