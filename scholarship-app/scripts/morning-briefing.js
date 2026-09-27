@@ -36,7 +36,8 @@ const CATEGORY_LABELS = {
 // Workflow file → agent label, for the runs list (maintenance workflows are left out)
 const WORKFLOW_LABELS = {
     'daily-freshness-check.yml': 'Deadline Freshness',
-    'weekly-enrichment.yml': 'Weekly Enrichment',
+    'weekly-enrichment.yml': 'Weekly Maintenance',
+    'fact-check.yml': 'Fact Check',
     'scholarship-scout.yml': 'Scholarship Scout',
     'publish-scout-approved.yml': 'Scout Publisher',
     'database-backup.yml': 'Database Backup',

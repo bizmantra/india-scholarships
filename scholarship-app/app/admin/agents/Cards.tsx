@@ -254,6 +254,7 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                                             <span className="mx-1.5 text-cc-faint">→</span>
                                             <span className="text-cc-text">{formatValue(i.field, i.new_value)}</span>
                                         </p>
+                                        <EvidenceLine json={i.evidence_json} field={i.field} />
                                         <DecisionLine decision={decisions[i.id]} onUndo={() => undo(i.id)} onForce={() => decide([i.id], 'approve', true)} />
                                     </div>
                                 ))}
@@ -281,6 +282,45 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
             )}
             {isNewScholarshipList(message) && Object.values(decisions).some(d => d.state === 'approved') && (
                 <Button tone="primary" onClick={() => handle('Run the scout publisher')}>Publish approved scholarships now</Button>
+            )}
+        </div>
+    );
+}
+
+// What the research found for this change: verdict, source page, the exact sentence, and both answers if they differ
+const VERDICTS: Record<string, { label: string; className: string }> = {
+    verified: { label: 'Verified: two answers agree, sentence found on the page', className: 'bg-emerald-500/10 text-cc-good' },
+    agreed: { label: 'Two answers agree (sentence not confirmed on the page)', className: 'bg-blue-500/10 text-cc-link' },
+    uncertain: { label: 'Uncertain', className: 'bg-amber-500/10 text-cc-warn' },
+};
+
+function EvidenceLine({ json, field }: { json: string | null; field: string | null }) {
+    if (!json) return <p className="mt-1 text-[11px] text-cc-faint">No evidence recorded (proposed before evidence was required)</p>;
+    let e: any;
+    try { e = JSON.parse(json); } catch { return null; }
+    if (!e?.verdict) return null;
+    const v = VERDICTS[e.verdict] || VERDICTS.uncertain;
+    let host = '';
+    try { host = new URL(e.source).host.replace(/^www\./, ''); } catch { /* no source */ }
+    return (
+        <div className="mt-1.5 space-y-1 rounded-lg border border-cc-border bg-cc-raised p-2 text-[11px]">
+            <p className="flex flex-wrap items-center gap-1.5">
+                <span className={`rounded px-1.5 py-0.5 font-bold ${v.className}`}>{v.label}{e.verdict === 'uncertain' && e.reason ? `: ${e.reason}` : ''}</span>
+                {host && (
+                    <a href={e.source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-cc-link hover:underline">
+                        {host} <ExternalLink className="h-3 w-3" />
+                    </a>
+                )}
+                {host && <span className={e.officialSource ? 'text-cc-good' : 'text-cc-warn'}>{e.officialSource ? 'official site' : 'other site'}</span>}
+                {e.specificSource === false && <span className="text-cc-warn">home page only</span>}
+            </p>
+            {e.quote && <p className="italic text-cc-text-2">"{e.quote}"</p>}
+            {Array.isArray(e.alternatives) && e.alternatives.length > 1 && (
+                <ul className="space-y-0.5 text-cc-muted">
+                    {e.alternatives.map((a: any, n: number) => (
+                        <li key={n}>Answer {n + 1}: <span className="text-cc-text-2">{formatValue(field, typeof a.value === 'string' ? a.value : JSON.stringify(a.value))}</span></li>
+                    ))}
+                </ul>
             )}
         </div>
     );
