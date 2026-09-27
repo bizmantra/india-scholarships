@@ -65,7 +65,7 @@ The site build (`npm run build`) pulls from Turso first, so every deploy uses cu
 | Publish Scout-Approved | Publishes scout candidates approved in the inbox. Started from the command center after an approval, and daily as a safety net. |
 | Refresh Staging Database | Copies production into staging (reads production only). |
 
-All workflows that write the database share the `database-writes` concurrency group, so they never run at the same time.
+Workflows that write the production database share the `database-writes` concurrency group, so they never run at the same time; runs against staging use `database-writes-staging`, so tests never wait behind production agents. The Morning Briefing only adds one activity entry (safe alongside another sync), so it does not wait in either queue.
 
 ## Agent inbox (approvals)
 
