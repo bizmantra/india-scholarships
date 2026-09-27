@@ -23,14 +23,15 @@ const fs = require('fs');
 const { resolveTarget, connect, describe } = require('./lib/turso-target');
 const { basePathFor } = require('./pull-from-turso');
 const { AGENT_TABLES } = require('./lib/agent-inbox');
+const { SA_TABLES } = require('./lib/study-abroad-tables');
 
 const dryRun = process.argv.includes('--dry-run');
 const LOCAL_DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
 
 // Tables owned by the local database and mirrored to Turso
-const SYNCED_TABLES = ['scholarships', 'scholarship_translations', 'scholarship_changelog', 'backlog_tasks', 'gsc_traffic_cache', ...AGENT_TABLES];
-// Agent inbox tables appear once an agent (or the migration) creates them; older local copies may not have them yet
-const OPTIONAL_TABLES = new Set(AGENT_TABLES);
+const SYNCED_TABLES = ['scholarships', 'scholarship_translations', 'scholarship_changelog', 'backlog_tasks', 'gsc_traffic_cache', ...AGENT_TABLES, ...SA_TABLES];
+// Agent inbox and Study Abroad tables appear once an agent (or a migration) creates them; older local copies may not have them yet
+const OPTIONAL_TABLES = new Set([...AGENT_TABLES, ...SA_TABLES]);
 const CHUNK_SIZE = 50;
 
 // Tables written only by the live site (community features); ensured to exist, never touched otherwise
