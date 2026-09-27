@@ -97,46 +97,15 @@ export async function GET() {
             });
 
         } catch (e: any) {
-            console.error('Google Analytics 4 API fetch failed, falling back to mock:', e.message);
+            console.error('Google Analytics request failed:', e.message);
+            return notConnected(`Google Analytics did not answer: ${e.message}. Check GOOGLE_ANALYTICS_PROPERTY_ID and that the service account can read the property.`);
         }
     }
 
-    // Fallback Mock Mode (returns realistic analytics data)
-    console.log('📊 GA4 API Mock mode activated.');
-    const mockTrend = [];
-    const now = new Date();
-    for (let i = 30; i >= 0; i--) {
-        const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-        const dateStr = date.toISOString().split('T')[0];
-        
-        // Random visitors between 800 - 1500
-        const randBase = Math.sin(i / 3) * 200 + 1100;
-        const users = Math.round(randBase + Math.random() * 150);
-        const pageviews = Math.round(users * (2.1 + Math.random() * 0.4));
-        const avgDuration = Math.round(110 + Math.random() * 40); // ~2 mins
+    // No made-up numbers: when the real source is unavailable, say so
+    return notConnected('Google Analytics is not configured on this server (credentials missing).');
+}
 
-        mockTrend.push({ date: dateStr, users, pageviews, avgDuration });
-    }
-
-    return NextResponse.json({
-        liveMode: false,
-        realtime: 14, // 14 active users
-        trend: mockTrend,
-        sources: [
-            { source: 'google / organic', users: 18450 },
-            { source: 'direct / none', users: 4890 },
-            { source: 't.me / telegram', users: 2450 },
-            { source: 'wa.me / whatsapp', users: 1890 },
-            { source: 'bing / organic', users: 650 }
-        ],
-        pages: [
-            { path: '/', views: 9840 },
-            { path: '/scholarships', views: 8450 },
-            { path: '/scholarships/tata-capital-pankh-scholarship', views: 4890 },
-            { path: '/scholarships/hdfc-bank-parivartan-ecss-scholarship', views: 3670 },
-            { path: '/eligibility-checker', views: 2450 },
-            { path: '/state-scholarships', views: 1890 },
-            { path: '/scholarships-in/odisha', views: 1420 }
-        ]
-    });
+function notConnected(error: string) {
+    return NextResponse.json({ error, connected: false }, { status: 503 });
 }
