@@ -5,9 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
     Activity,
-    FileText,
     Settings as SettingsIcon,
-    Globe,
     Layers,
     TrendingUp,
     CheckSquare,
@@ -57,12 +55,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
     const menuItems = [
         { href: '/admin/agents', label: 'Agent Center', icon: <Bot className="h-5 w-5" /> },
-        { href: '/admin/dashboard', label: 'Dashboard', icon: <Activity className="h-5 w-5" /> },
         { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
-        { href: '/admin/seo-audit', label: 'SEO Audit', icon: <FileText className="h-5 w-5" /> },
         { href: '/admin/content-manager', label: 'Content Manager', icon: <Layers className="h-5 w-5" /> },
         { href: '/admin/performance', label: 'Performance', icon: <TrendingUp className="h-5 w-5" /> },
-        { href: '/admin/indexing', label: 'Indexing', icon: <Globe className="h-5 w-5" /> },
         { href: '/admin/settings', label: 'Settings', icon: <SettingsIcon className="h-5 w-5" /> },
     ];
 
