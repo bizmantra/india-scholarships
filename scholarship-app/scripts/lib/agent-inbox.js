@@ -81,6 +81,9 @@ const DEFAULT_SETTINGS = [
     ['scholarship-scout', 'channels', ['demand', 'web', 'portals', 'csr', 'news', 'coverage'], 'Discovery channels used'],
     ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
     ['quality-fixer', 'enabled', true, 'Run on schedule'],
+    ['traffic-watchdog', 'enabled', true, 'Run on schedule'],
+    ['indexing', 'enabled', true, 'Run on schedule'],
+    ['indexing', 'inspect_per_run', 40, 'Pages checked with Google URL Inspection per run'],
     ['quality-fixer', 'max_research', 30, 'Scholarships researched per run'],
     ['quality-fixer', 'recheck_days', 14, 'Days before a researched scholarship is researched again'],
 ];
