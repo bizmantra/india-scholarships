@@ -109,7 +109,7 @@ export default function Performance() {
         setGaError(null);
         try {
             const res = await fetch('/api/admin/analytics');
-            if (!res.ok) throw new Error('Failed to load Google Analytics data.');
+            if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || 'Failed to load Google Analytics data.');
             const data = await res.json();
             setGaData(data);
         } catch (err: any) {
@@ -125,7 +125,7 @@ export default function Performance() {
         setAdsenseError(null);
         try {
             const res = await fetch('/api/admin/adsense');
-            if (!res.ok) throw new Error('Failed to load Google AdSense reports.');
+            if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || 'Failed to load Google AdSense reports.');
             const data = await res.json();
             setAdsenseData(data);
         } catch (err: any) {

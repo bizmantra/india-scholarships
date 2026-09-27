@@ -111,6 +111,8 @@ const nextConfig: NextConfig = {
     return [
       // The chat was renamed Agent Center
       { source: '/admin/command', destination: '/admin/agents', permanent: false },
+      // Retired admin pages (replaced by the Agent Center, the Morning Briefing and the Indexing agent)
+      ...['dashboard', 'indexing', 'seo-audit', 'moderation'].map(page => ({ source: `/admin/${page}`, destination: '/admin/agents', permanent: false })),
       ...generatedRedirects,
 
       // Year-suffixed URL redirect patterns (e.g. /scholarships/tata-2024 -> /scholarships/tata)

@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import fs from 'fs';
 import { getSearchConsoleClient } from '@/lib/google-auth';
 
 export async function GET() {
@@ -80,35 +78,15 @@ export async function GET() {
             });
 
         } catch (e: any) {
-            console.error('Google Search Console API fetch failed, falling back to local files:', e.message);
+            console.error('Search Console request failed:', e.message);
+            return notConnected(`Search Console did not answer: ${e.message}. Check the service account's access to Search Console.`);
         }
     }
 
-    // Fallback Local File Mode
-    const gscFolder = path.join(process.cwd(), 'data', 'gsc-june-2026');
+    // No made-up numbers: when the real source is unavailable, say so
+    return notConnected('Search Console is not configured on this server (credentials missing).');
+}
 
-    try {
-        const chartPath = path.join(gscFolder, 'chart.json');
-        const queriesPath = path.join(gscFolder, 'queries.json');
-
-        let chartData = [];
-        let queriesData = [];
-
-        if (fs.existsSync(chartPath)) {
-            chartData = JSON.parse(fs.readFileSync(chartPath, 'utf8'));
-        }
-
-        if (fs.existsSync(queriesPath)) {
-            queriesData = JSON.parse(fs.readFileSync(queriesPath, 'utf8'));
-        }
-
-        return NextResponse.json({
-            chart: chartData,
-            queries: queriesData.slice(0, 100) // return top 100 queries
-        });
-
-    } catch (error: any) {
-        console.error('Error loading GSC performance data API fallback:', error);
-        return NextResponse.json({ error: 'Failed to read GSC files.', details: error.message }, { status: 500 });
-    }
+function notConnected(error: string) {
+    return NextResponse.json({ error, connected: false }, { status: 503 });
 }

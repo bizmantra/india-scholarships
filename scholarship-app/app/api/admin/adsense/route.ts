@@ -94,63 +94,15 @@ export async function GET() {
             });
 
         } catch (e: any) {
-            console.error('Google AdSense API fetch failed, falling back to mock:', e.message);
+            console.error('AdSense request failed:', e.message);
+            return notConnected(`AdSense did not answer: ${e.message}. If it says invalid_grant, the saved AdSense sign-in has expired: sign in again and update GOOGLE_ADSENSE_REFRESH_TOKEN.`);
         }
     }
 
-    // Fallback Mock Mode
-    console.log('💸 AdSense API Mock mode activated.');
-    const mockDaily = [];
-    const now = new Date();
-    let mockTotalEarnings = 0;
-    let mockTotalImpressions = 0;
-    let mockTotalClicks = 0;
-    let mockTotalViews = 0;
+    // No made-up numbers: when the real source is unavailable, say so
+    return notConnected('AdSense is not configured on this server (credentials missing).');
+}
 
-    for (let i = 30; i >= 0; i--) {
-        const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-        const dateStr = date.toISOString().split('T')[0];
-
-        // Random earnings between $10 - $25 (represented in INR e.g. ₹800 - ₹2000)
-        const randBase = Math.sin(i / 5) * 300 + 1200;
-        const earnings = Math.round(randBase + Math.random() * 200);
-        const views = Math.round(earnings * (1.8 + Math.random() * 0.4));
-        const impressions = Math.round(views * 1.5);
-        const clicks = Math.round(impressions * (0.015 + Math.random() * 0.005));
-
-        mockTotalEarnings += earnings;
-        mockTotalImpressions += impressions;
-        mockTotalClicks += clicks;
-        mockTotalViews += views;
-
-        mockDaily.push({ date: dateStr, earnings, impressions, clicks, views });
-    }
-
-    const todayEarnings = Math.round(1100 + Math.random() * 300);
-    const yesterdayEarnings = Math.round(1450 + Math.random() * 200);
-
-    const averageCtr = mockTotalImpressions > 0 ? (mockTotalClicks / mockTotalImpressions) * 100 : 1.8;
-    const pageRpm = mockTotalViews > 0 ? (mockTotalEarnings / mockTotalViews) * 1000 : 450;
-
-    return NextResponse.json({
-        liveMode: false,
-        summary: {
-            today: todayEarnings,
-            yesterday: yesterdayEarnings,
-            thisMonth: Math.round(mockTotalEarnings * 0.65), // partial month
-            last30Days: mockTotalEarnings,
-            impressions: mockTotalImpressions,
-            clicks: mockTotalClicks,
-            views: mockTotalViews,
-            ctr: averageCtr.toFixed(2),
-            rpm: pageRpm.toFixed(2)
-        },
-        daily: mockDaily,
-        units: [
-            { name: 'Detail_Pages_Sticky_Footer_Banner', earnings: Math.round(mockTotalEarnings * 0.42), impressions: Math.round(mockTotalImpressions * 0.35), clicks: Math.round(mockTotalClicks * 0.45) },
-            { name: 'Detail_Pages_Sidebar_Responsive', earnings: Math.round(mockTotalEarnings * 0.28), impressions: Math.round(mockTotalImpressions * 0.30), clicks: Math.round(mockTotalClicks * 0.25) },
-            { name: 'Homepage_Top_Leaderboard', earnings: Math.round(mockTotalEarnings * 0.18), impressions: Math.round(mockTotalImpressions * 0.20), clicks: Math.round(mockTotalClicks * 0.18) },
-            { name: 'Eligibility_Checker_Responsive', earnings: Math.round(mockTotalEarnings * 0.12), impressions: Math.round(mockTotalImpressions * 0.15), clicks: Math.round(mockTotalClicks * 0.12) }
-        ]
-    });
+function notConnected(error: string) {
+    return NextResponse.json({ error, connected: false }, { status: 503 });
 }
