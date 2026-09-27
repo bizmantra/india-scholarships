@@ -60,6 +60,10 @@ jobs:
       - name: Move old proposals into the agent inbox
         run: node scholarship-app/scripts/migrate-to-agent-inbox.js
 
+      # Keeps the inbox at one pending item per scholarship and field; does nothing when there are no duplicates
+      - name: Merge duplicate inbox items
+        run: node scholarship-app/scripts/collapse-duplicate-proposals.js
+
       - name: Run Daily Deadline Verification (Gemini Flash)
         run: |
           node scholarship-app/scripts/daily-freshness-check.js

@@ -168,6 +168,8 @@ jobs:
             echo "No report changes. Skipping commit."
           else
             git commit -m "chore: automated weekly data enrichment & audit [skip ci]"
+            # The code may have moved on during a long run: catch up first, so the save is never rejected
+            git pull --rebase origin main
             git push origin main
           fi
 
