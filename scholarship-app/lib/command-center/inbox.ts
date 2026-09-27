@@ -79,6 +79,7 @@ export async function inboxSummary() {
             new_scholarship: count('new_scholarship'),
             amount_change: count('amount_change'),
             link_change: count('link_change'),
+            missing_info: count('missing_info'),
             contact_change: count('contact_change'),
             wording: count('wording'),
         },
