@@ -5,15 +5,15 @@ import { inboxReady, rows } from '@/lib/command-center/server';
 
 export const dynamic = 'force-dynamic';
 
-// The activity feed: agent events (newest first) plus, with ?runs=1, recent GitHub runs
+// The activity feed: agent events (newest first; ?kind= filters, e.g. briefing) plus, with ?runs=1, recent GitHub runs
 export async function GET(request: Request) {
     try {
         const q = new URL(request.url).searchParams;
         const since = q.get('since') || new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 19).replace('T', ' ');
         const events = (await inboxReady())
             ? rows(await getClient().execute({
-                sql: 'SELECT * FROM agent_events WHERE created_at >= ? ORDER BY id DESC LIMIT ?',
-                args: [since, Math.min(Number(q.get('limit')) || 100, 500)],
+                sql: `SELECT * FROM agent_events WHERE created_at >= ? ${q.get('kind') ? 'AND kind = ?' : ''} ORDER BY id DESC LIMIT ?`,
+                args: [since, ...(q.get('kind') ? [String(q.get('kind'))] : []), Math.min(Number(q.get('limit')) || 100, 500)],
             }))
             : [];
         let runs: any[] = [];

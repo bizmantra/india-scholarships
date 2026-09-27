@@ -97,6 +97,7 @@ async function route(text: string) {
         case 'bulk': return bulkDecision(intent.action, intent.category, intent.risk, intent.label);
         case 'run': return startRun(intent.agent, intent.state);
         case 'publish': return startRun('scout-publisher');
+        case 'briefing': return showBriefing();
         case 'today': return whatHappenedToday();
         case 'agents': return describeAgents();
         case 'help':
@@ -107,6 +108,83 @@ async function route(text: string) {
                 lines: SUGGESTIONS.map(s => ({ label: s, value: '', action: s })),
             });
     }
+}
+
+// ---------- Morning briefing ----------
+
+async function latestBriefing() {
+    const since = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 19).replace('T', ' ');
+    const { events } = await api<{ events: any[] }>(`activity?kind=briefing&limit=1&since=${encodeURIComponent(since)}`);
+    const event = events[0];
+    if (!event) return null;
+    return { createdAt: new Date(`${String(event.created_at).replace(' ', 'T')}Z`), briefing: JSON.parse(event.details_json || '{}') };
+}
+
+async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>) {
+    const found = latest === undefined ? await latestBriefing() : latest;
+    if (!found) {
+        post({ type: 'text', text: 'There is no briefing yet. It is written every day at 8:00 AM IST, or say "run the morning briefing" to write one now.' });
+        return;
+    }
+    const b = found.briefing;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', text: `Morning briefing (${when}): ${b.headline}` });
+
+    const g = b.inbox?.groups || {};
+    post({
+        type: 'summary',
+        title: `Needs you · ${b.inbox?.total ?? 0}${b.inbox?.newToday ? ` (${b.inbox.newToday} new since the day before)` : ''}`,
+        lines: [
+            ...(g.date_change ? [{ label: CATEGORY_LABELS.date_change, value: String(g.date_change), tone: 'warn' as const, action: 'Show deadline changes' }] : []),
+            ...(g.new_scholarship ? [{ label: CATEGORY_LABELS.new_scholarship, value: String(g.new_scholarship), tone: 'warn' as const, action: 'Show new scholarships' }] : []),
+            ...(b.inbox?.risky ? [{ label: 'Risky (check first)', value: String(b.inbox.risky), tone: 'bad' as const, action: 'Show risky changes' }] : []),
+            ...(b.inbox?.approvedUnpublished ? [{ label: 'Approved, not yet published', value: String(b.inbox.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),
+            ...(b.inbox?.urgent || []).map((u: any) => ({
+                label: `  ${u.title}: ${u.category === 'new_scholarship' ? 'new scholarship' : `${short(u.old_value)} → ${short(u.new_value)}`}`,
+                value: u.risk === 'high' ? 'risky' : '',
+                tone: (u.risk === 'high' ? 'bad' : 'neutral') as 'bad' | 'neutral',
+                action: u.category === 'new_scholarship' ? 'Show new scholarships' : 'Show deadline changes',
+            })),
+            { label: 'Everything waiting', value: '', action: "What's waiting on me?" },
+        ],
+    });
+
+    const runs: any[] = b.runs?.runs || [];
+    post({
+        type: 'summary',
+        title: 'Last 24 hours',
+        lines: [
+            { label: 'Your approvals', value: String(b.decisions?.approved ?? 0), tone: 'good' },
+            { label: 'Your rejections', value: String(b.decisions?.rejected ?? 0) },
+            ...runs.map(r => ({
+                label: `  ${r.label}`,
+                value: r.status === 'completed' ? (r.conclusion === 'success' ? 'done' : String(r.conclusion)) : String(r.status).replace('_', ' '),
+                tone: (r.status === 'completed' ? (r.conclusion === 'success' ? 'good' : 'bad') : 'neutral') as 'good' | 'bad' | 'neutral',
+            })),
+            ...(b.runs?.agentSummaries || []).map((e: any) => ({ label: `  ${e.summary}`, value: '' })),
+        ],
+    });
+
+    const d = b.deadlines || {};
+    post({
+        type: 'summary',
+        title: 'Deadlines',
+        lines: [
+            { label: 'Closing in the next 7 days', value: String(d.closingSoonCount ?? 0), tone: 'warn' },
+            ...(d.closingSoon || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: s.deadline })),
+            { label: 'Past deadline but still shown as open', value: String(d.pastButOpenCount ?? 0), tone: d.pastButOpenCount ? 'bad' : 'neutral', action: d.pastButOpenCount ? 'Run the freshness check' : undefined },
+            ...(d.pastButOpen || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: `closed ${s.deadline}` })),
+        ],
+    });
+}
+
+// First screen: today's briefing if there is a recent one, otherwise the inbox counts
+export async function openingView() {
+    try {
+        const latest = await latestBriefing();
+        if (latest && Date.now() - latest.createdAt.getTime() < 20 * 3600000) return showBriefing(latest);
+    } catch { /* fall back to the inbox */ }
+    return whatsWaiting();
 }
 
 async function whatsWaiting() {

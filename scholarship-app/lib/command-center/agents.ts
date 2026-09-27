@@ -62,13 +62,24 @@ export const AGENTS: AgentDefinition[] = [
         dependsOn: ['scholarship-scout'],
     },
     {
+        id: 'morning-briefing',
+        label: 'Morning Briefing',
+        summary: 'Sums up what needs you, what the agents did, deadlines closing this week and pages still open after their deadline.',
+        workflow: 'morning-briefing.yml',
+        schedule: 'Daily, 8:00 AM IST (email + Agent Center)',
+        humanToday: 'Open the inbox, GitHub and the site every morning to piece together what happened.',
+        gated: false,
+        order: 5,
+        dependsOn: ['deadline-freshness', 'scholarship-scout'],
+    },
+    {
         id: 'database-backup',
         label: 'Database Backup',
         summary: 'Backs up the production database every morning (kept 30 days).',
         schedule: 'Daily',
         humanToday: 'Export the database by hand.',
         gated: false,
-        order: 5,
+        order: 6,
     },
 ];
 

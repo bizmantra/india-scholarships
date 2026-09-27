@@ -8,6 +8,7 @@ export type Intent =
     | { type: 'bulk'; action: 'approve' | 'reject'; category: string; risk?: string; label: string }
     | { type: 'run'; agent: string; state?: string }
     | { type: 'publish' }
+    | { type: 'briefing' }
     | { type: 'today' }
     | { type: 'agents' }
     | { type: 'help' }
@@ -29,16 +30,18 @@ export function parseIntent(input: string): Intent {
     if (!text) return { type: 'help' };
 
     // "run the scout for bihar", "run the freshness check", "run enrichment"
-    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
+    const run = text.match(/^(?:please\s+)?(?:run|start|trigger)\s+(?:the\s+)?(scout publisher|publisher|scholarship scout|scout|freshness|deadline|enrichment|morning briefing|briefing)\b(?:.*?\bfor\s+([a-z .&-]+))?/);
     if (run) {
         const name = run[1];
-        const agent = name.includes('publisher') ? 'scout-publisher'
+        const agent = name.includes('briefing') ? 'morning-briefing'
+            : name.includes('publisher') ? 'scout-publisher'
             : name.includes('scout') ? 'scholarship-scout'
             : name.includes('enrich') ? 'weekly-enrichment'
             : 'deadline-freshness';
         return { type: 'run', agent, state: run[2] ? titleCase(run[2]) : undefined };
     }
     if (/^publish\b/.test(text)) return { type: 'publish' };
+    if (/briefing|brief me|good morning|morning update/.test(text)) return { type: 'briefing' };
 
     // "approve all wording updates", "reject all risky amount changes"
     const bulk = text.match(/^(approve|reject)\s+(?:all\s+)?(?:the\s+)?(.*)$/);
@@ -63,6 +66,7 @@ export function parseIntent(input: string): Intent {
 }
 
 export const SUGGESTIONS = [
+    'Morning briefing',
     "What's waiting on me?",
     'Show risky changes',
     'Show deadline changes',
