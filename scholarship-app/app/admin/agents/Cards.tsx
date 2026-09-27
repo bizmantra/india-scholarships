@@ -57,8 +57,8 @@ export function MessageView({ message }: { message: Message }) {
                         {message.lines.map((line, i) => (
                             <div key={i} className="flex items-center justify-between gap-3 py-1.5">
                                 {line.action
-                                    ? <button onClick={() => handle(line.action!)} className="text-left text-cc-link hover:text-cc-link hover:underline">{line.label}</button>
-                                    : <span className="whitespace-pre text-cc-text-2">{line.label}</span>}
+                                    ? <button onClick={() => handle(line.action!)} className="min-w-0 break-words text-left text-cc-link hover:text-cc-link hover:underline">{line.label}</button>
+                                    : <span className="min-w-0 whitespace-pre-wrap break-words text-cc-text-2">{line.label}</span>}
                                 <span className={`shrink-0 font-bold ${toneText[line.tone || 'neutral']}`}>{line.value}</span>
                             </div>
                         ))}
@@ -144,10 +144,14 @@ const FIELD_LABELS: Record<string, string> = {
     official_source: 'Official source',
     apply_url: 'Apply link',
     helpline: 'Helpline',
+    docs_needed: 'Documents needed',
 };
 
 const formatValue = (field: string | null, v: string | null) => {
     if (v === null || v === '') return '(empty)';
+    if (field === 'docs_needed' && v.startsWith('[')) {
+        try { return (JSON.parse(v) as string[]).join(' · ') || '(empty)'; } catch { /* show as text */ }
+    }
     if (field?.startsWith('amount_') && /^\d+$/.test(v)) return `₹${Number(v).toLocaleString('en-IN')}`;
     return v;
 };

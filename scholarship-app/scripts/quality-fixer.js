@@ -1,0 +1,194 @@
+/**
+ * Quality Fixer
+ *
+ * Works through the scholarships that fail the content quality audit (scripts/lib/quality-rules.js):
+ *   - Mechanical problems it fixes itself (they do not change facts): raw HTML tags in text fields.
+ *     Each fix is logged in scholarship_changelog as 'auto_fix'.
+ *   - Missing or outdated facts it researches (Gemini + Google Search, official sources only) and puts in
+ *     the owner's inbox: deadline and deadline text, documents, helpline, minimum amount, apply link.
+ *     Fills and outdated text go to the "Missing or outdated details" group; deadline changes to "Deadline changes".
+ *   - What it cannot fix is counted in its report (e.g. an old year in a title).
+ *
+ * Most-visited pages first; research is capped per run (setting max_research).
+ * Runs on the local copy: pull → fix → format check → push.
+ *
+ * Usage: node scripts/quality-fixer.js [--dry-run] [--max=30] [--only=<slug>]
+ */
+const fs = require('fs');
+const path = require('path');
+const Database = require('better-sqlite3');
+const inbox = require('./lib/agent-inbox');
+const { auditScholarship, isLegacy, stripHtml, hasHtmlTags, HTML_FIELDS } = require('./lib/quality-rules');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env.local'), quiet: true });
+
+const AGENT = 'quality-fixer';
+const args = process.argv.slice(2);
+const dryRun = args.includes('--dry-run');
+const argValue = name => args.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
+const DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
+const SUMMARY_PATH = path.join(__dirname, '..', 'data', 'quality-fixer-summary.json');
+
+// Audit problems the research step can answer, and the fields it asks for
+const RESEARCHABLE = {
+    missing_deadline: ['deadline', 'deadline_description'],
+    expired_deadline: ['deadline', 'deadline_description'],
+    old_year: ['deadline', 'deadline_description'],
+    always_open_text: ['deadline_description'],
+    missing_docs: ['docs_needed'],
+    missing_helpline: ['helpline'],
+    missing_amount_min: ['amount_min'],
+    missing_amount_annual: ['amount_annual'],
+    invalid_apply_url: ['apply_url'],
+    missing_links: ['apply_url', 'official_source'],
+};
+
+const FIELD_INSTRUCTIONS = {
+    deadline: '"deadline": "YYYY-MM-DD" the student application deadline of the CURRENT (2026-27) cycle, or "" if not officially published yet',
+    deadline_description: '"deadline_description": one short sentence about the current cycle\'s application window (no years before 2026 unless quoting a past cycle as past)',
+    docs_needed: '"docs_needed": ["document 1", "document 2", ...] the documents students must submit',
+    helpline: '"helpline": official phone number and/or email for applicant queries, or ""',
+    amount_min: '"amount_min": the smallest award in rupees as a whole number (for a fixed award, the same as the annual amount), or 0 if not stated',
+    amount_annual: '"amount_annual": the largest annual award in rupees as a whole number, or 0 if not stated',
+    apply_url: '"apply_url": the official web address where students apply (must start with http), or ""',
+    official_source: '"official_source": the official page that describes the scheme (must start with http), or ""',
+};
+
+async function research(s, fields) {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) throw new Error('GEMINI_API_KEY is not set');
+    const prompt = `Research the "${s.title}" scholarship by ${s.provider || 'its provider'} for Indian students${s.state ? ` (${s.state})` : ''}.
+Use Google Search and rely ONLY on official sources (government portals on .gov.in / .nic.in, official guideline PDFs, the provider's own website).
+Never guess: leave a value empty ("" or 0) when an official source does not state it.
+${s.always_open === 1 ? 'This scholarship is listed as open all year (rolling); confirm that in the deadline text if true.\n' : ''}
+Respond with a single JSON object with exactly these keys:
+{
+  ${fields.map(f => FIELD_INSTRUCTIONS[f]).join(',\n  ')},
+  "source": "the official page you used"
+}
+Provide ONLY the raw JSON object.`;
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: [{ googleSearch: {} }] }),
+    });
+    if (!res.ok) throw new Error(`Gemini API error: ${res.status} - ${(await res.text()).slice(0, 200)}`);
+    const data = await res.json();
+    const text = data.candidates?.[0]?.content?.parts?.map(p => p.text || '').join('') || '';
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) throw new Error('No JSON in the answer');
+    return JSON.parse(text.slice(start, end + 1));
+}
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function run() {
+    const db = new Database(DB_PATH);
+    inbox.ensureAgentTables(db);
+    if (inbox.skipIfDisabled(db, AGENT)) {
+        db.close();
+        return;
+    }
+    const maxResearch = parseInt(argValue('max') || inbox.getSetting(db, AGENT, 'max_research', 30), 10);
+    const only = argValue('only');
+
+    const rows = db.prepare(`
+        SELECT s.*, COALESCE(g.clicks, 0) AS clicks FROM scholarships s
+        LEFT JOIN gsc_traffic_cache g ON g.slug = s.slug
+        WHERE (s.status = 'Active' OR s.status IS NULL) ${only ? 'AND s.slug = ?' : ''}
+        ORDER BY clicks DESC`).all(...(only ? [only] : []));
+    const failing = rows
+        .filter(s => !isLegacy(s))
+        .map(s => ({ s, issues: auditScholarship(s) }))
+        .filter(x => x.issues.length > 0);
+    console.log(`🧹 Quality Fixer: ${failing.length} scholarship(s) fail the audit (of ${rows.length} active)`);
+
+    const report = { failing: failing.length, autoFixed: 0, researched: 0, proposals: 0, outcomes: {}, notFixable: {}, failed: [] };
+    const count = (bucket, key) => { report[bucket][key] = (report[bucket][key] || 0) + 1; };
+
+    // 1. Mechanical fixes: strip raw HTML (formatting only, facts unchanged)
+    const logFix = db.prepare(`INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details) VALUES (?, ?, 'auto_fix', ?)`);
+    for (const { s, issues } of failing) {
+        if (!issues.some(i => i.code === 'contains_html')) continue;
+        const changes = HTML_FIELDS.filter(f => hasHtmlTags(s[f])).map(f => ({ field: f, old: s[f], new: stripHtml(s[f]) }));
+        console.log(`   🧽 ${s.slug}: removed HTML from ${changes.map(c => c.field).join(', ')}`);
+        if (!dryRun) {
+            db.transaction(() => {
+                changes.forEach(c => db.prepare(`UPDATE scholarships SET ${c.field} = ? WHERE id = ?`).run(c.new, s.id));
+                logFix.run(s.id, s.title, JSON.stringify({ changes, reason: 'Removed raw HTML tags', by: `agent:${AGENT}` }));
+            })();
+        }
+        report.autoFixed++;
+    }
+
+    // 2. Research what is missing or out of date, most-visited first
+    const toResearch = failing
+        .map(x => ({ ...x, fields: [...new Set(x.issues.flatMap(i => RESEARCHABLE[i.code] || []))] }))
+        .filter(x => x.fields.length > 0);
+    failing.forEach(({ issues }) => issues.filter(i => !RESEARCHABLE[i.code] && i.code !== 'contains_html').forEach(i => count('notFixable', i.code)));
+
+    for (const { s, issues, fields } of toResearch.slice(0, maxResearch)) {
+        console.log(`🔍 ${s.slug} (${s.clicks} clicks): ${issues.map(i => i.code).join(', ')}`);
+        report.researched++;
+        let found;
+        try {
+            found = await research(s, fields);
+        } catch (error) {
+            report.failed.push({ slug: s.slug, error: error.message.slice(0, 160) });
+            console.error(`   ❌ ${error.message.slice(0, 160)}`);
+            await sleep(6000);
+            continue;
+        }
+        const codes = new Set(issues.map(i => i.code));
+        const deadlineOutcome = fields.includes('deadline') ? propose(s, 'deadline', found.deadline, found.source) : null;
+        const dateChanging = ['created', 'superseded', 'repeat'].includes(deadlineOutcome);
+        for (const field of fields.filter(f => f !== 'deadline')) {
+            // A description mentioning a past year is out of date even when the date itself is unchanged
+            const allowRewording = field === 'deadline_description' && (codes.has('old_year') || codes.has('always_open_text') || codes.has('expired_deadline'));
+            propose(s, field, found[field], found.source, { withDateChange: dateChanging, allowRewording, fill: true });
+        }
+        await sleep(6000); // respect Gemini rate limits
+    }
+
+    function propose(s, field, value, source, { withDateChange = false, allowRewording = false, fill = false } = {}) {
+        const empty = inbox.isUnconfirmed(field, s[field]) || Boolean(inbox.validateValue(field, s[field]));
+        const options = {
+            agent: AGENT, scholarshipId: s.id, scholarshipTitle: s.title, field, oldValue: s[field], newValue: value,
+            source: /^https?:\/\//.test(source || '') ? source : null, withDateChange, allowRewording,
+            // Fills and out-of-date text go to "Missing or outdated details"; a deadline change (and the text that
+            // comes with it) stays in "Deadline changes"
+            category: fill && (empty || allowRewording) && !(field === 'deadline_description' && withDateChange) ? 'missing_info' : undefined,
+        };
+        let outcome;
+        if (dryRun) {
+            outcome = inbox.sameValue(field, s[field], value) ? 'unchanged'
+                : inbox.isUnconfirmed(field, value) ? 'unconfirmed'
+                    : inbox.validateValue(field, value) ? 'invalid' : 'created';
+        } else {
+            outcome = inbox.proposeFieldChange(db, options);
+        }
+        count('outcomes', outcome);
+        if (outcome === 'created' || outcome === 'superseded') {
+            report.proposals++;
+            console.log(`   📝 ${field}: ${String(s[field] ?? '').slice(0, 40) || '(empty)'} → ${String(inbox.normalizeValue(field, value)).slice(0, 60)}`);
+        }
+        return outcome;
+    }
+
+    report.leftForNextRun = Math.max(toResearch.length - maxResearch, 0);
+    const summary = `Checked ${failing.length} incomplete scholarship(s): ${report.autoFixed} tidied automatically, ` +
+        `${report.researched} researched, ${report.proposals} new proposal(s)` +
+        (report.leftForNextRun ? `, ${report.leftForNextRun} left for the next run` : '') +
+        (report.failed.length ? `, ${report.failed.length} failed` : '');
+    console.log(`\n🏁 ${summary}`);
+    console.log(JSON.stringify(report, null, 2));
+    fs.writeFileSync(SUMMARY_PATH, JSON.stringify(report, null, 2));
+    if (!dryRun) inbox.logEvent(db, { agent: AGENT, kind: report.failed.length ? 'run_warning' : 'run_finished', summary, details: report });
+    db.close();
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `auto_fixed=${dryRun ? 0 : report.autoFixed}\n`);
+}
+
+run().catch(error => {
+    console.error(`❌ Quality Fixer failed: ${error.message}`);
+    process.exit(1);
+});
