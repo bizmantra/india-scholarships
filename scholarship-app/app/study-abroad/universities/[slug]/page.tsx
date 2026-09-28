@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, getUniversities, getUniversity, getProgramsForUniversity, getGuides, isCountry } from '@/lib/study-abroad/data';
-import { toEditorial, describe, money, yesNo, SITE, pageTitle } from '@/lib/study-abroad/content';
-import ArticlePage from '../../_components/ArticlePage';
-import { ProgramTable, Sources, LinkList, BlockHeading } from '../../_components/blocks';
+import { renderArticle, describe, money, yesNo, SITE, pageTitle } from '@/lib/study-abroad/content';
+import DetailShell, { DetailSection, KeyCard, InfoCard, SideLinks, sourceRows } from '../../_components/DetailShell';
+import { ArticleBody, Faqs, MoreLinks, jumpFor } from '../../_components/ArticleSections';
+import { ProgramTable } from '../../_components/blocks';
+import { faqJsonLd } from '../../_components/seo';
 
 export const revalidate = 86400;
 
@@ -26,35 +28,48 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
     const { slug } = await params;
     const u = await getUniversity(slug);
     if (!u || !isCountry(u.country)) notFound();
-    const country = COUNTRIES[u.country];
+    const c = COUNTRIES[u.country];
     const [programs, visas] = await Promise.all([getProgramsForUniversity(u.slug), getGuides('visa', u.country)]);
-
-    // Structured fields first; the article's own infobox rows follow
-    const facts = [
+    const tuition = money(u.tuition_per_year, u.tuition_currency);
+    const structured = [
         u.city && { label: 'Location', value: u.city },
-        money(u.tuition_per_year, u.tuition_currency) && { label: 'Tuition per year', value: money(u.tuition_per_year, u.tuition_currency)! },
+        tuition && { label: 'Tuition per year', value: tuition },
         money(u.living_cost_per_year, u.living_currency) && { label: 'Living costs per year', value: money(u.living_cost_per_year, u.living_currency)! },
         u.gre_required && { label: 'GRE', value: yesNo(u.gre_required)! },
         u.stem_opt && { label: 'STEM OPT (3-year work permit)', value: yesNo(u.stem_opt, 'Eligible', 'Not eligible')! },
         u.ranking && { label: 'Ranking', value: u.ranking },
     ].filter(Boolean) as { label: string; value: string }[];
-
-    const content = toEditorial(u, { tag: `University · ${country.name}`, extraFacts: facts });
+    const article = renderArticle(u, structured);
+    const facts = [...structured, ...article.facts];
     const crumbs = [
         { label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' },
-        { label: country.name, href: `/study-abroad/study-in/${country.slug}` },
-        { label: 'Universities', href: `/study-abroad/study-in/${country.slug}/universities` }, { label: u.name },
+        { label: c.name, href: `/study-abroad/study-in/${c.slug}` },
+        { label: 'Universities', href: `/study-abroad/study-in/${c.slug}/universities` }, { label: u.name },
     ];
+    const officialUrl = (u.official_source || '').split(/[,\s]+/).find(x => /^https?:\/\//.test(x));
     return (
-        <ArticlePage content={content} crumbs={crumbs} extraJsonLd={[{ '@context': 'https://schema.org', '@type': 'CollegeOrUniversity', name: u.name, address: u.city || undefined, url: u.official_source || undefined }]}>
+        <DetailShell crumbs={crumbs} eyebrow={`University · ${c.name}`} title={u.name}
+            subline={[u.city, article.updated && `Updated ${article.updated}`].filter(Boolean).join(' · ')}
+            facts={facts} url={`${SITE}/study-abroad/universities/${u.slug}`}
+            jump={jumpFor(article, programs.length ? [{ label: 'Programs', href: '#programs' }] : [])}
+            jsonLd={[{ '@context': 'https://schema.org', '@type': 'CollegeOrUniversity', name: u.name, address: u.city || undefined, url: officialUrl }, ...faqJsonLd(article.faqs)]}
+            sidebar={<>
+                <KeyCard label="Tuition per year" value={tuition || 'See fact box'} note={u.country === 'germany' ? 'Public universities charge a semester fee only' : null}
+                    action={officialUrl ? { href: officialUrl, label: 'Visit Official Website ↗', external: true } : null} />
+                <InfoCard rows={[{ icon: '🏛️', label: 'University', value: u.name }, ...(u.city ? [{ icon: '📍', label: 'Location', value: u.city }] : []), ...sourceRows(u.official_source, u.checked_at)]} />
+                <SideLinks links={[
+                    { href: `/study-abroad/study-in/${c.slug}/universities`, label: `All universities in ${c.name}` },
+                    { href: '/study-abroad/tools', label: 'Free cost calculators' },
+                ]} />
+            </>}>
+            <ArticleBody article={article} />
             {programs.length > 0 && (
-                <div className="my-10">
-                    <BlockHeading>Programs we track at {u.name}</BlockHeading>
+                <DetailSection id="programs" title={`Programs at ${u.name}`}>
                     <ProgramTable programs={programs} showUniversity={false} />
-                </div>
+                </DetailSection>
             )}
-            <LinkList title={`Visa guides for ${country.name}`} items={visas.slice(0, 5).map(v => ({ title: v.title, href: `/study-abroad/visas/${v.slug}` }))} />
-            <Sources source={u.official_source} checkedAt={u.checked_at} />
-        </ArticlePage>
+            <Faqs faqs={article.faqs} />
+            <MoreLinks title={`Visa guides for ${c.name}`} links={visas.slice(0, 5).map(v => ({ href: `/study-abroad/visas/${v.slug}`, title: v.title }))} />
+        </DetailShell>
     );
 }

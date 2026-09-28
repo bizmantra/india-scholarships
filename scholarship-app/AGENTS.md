@@ -7,3 +7,4 @@ Work is planned by Claude and handed off as files in `plans/`.
 3. Never commit to `main`, never push, never merge. Leave changes uncommitted on the current branch; Claude reviews and opens the PR.
 4. Never touch `.env*`, secrets, `scholarship.db`, or anything in `backups/`.
 5. When done, run `npx tsc --noEmit` and `npm run lint`, then add a `## Done` section to the plan: what you changed, and the check results.
+6. Any content work (articles, news, pillars/guides) must follow `docs/INTERNAL_LINKING_STRATEGY.md`. In particular: link editorial pages as `/guides/:slug` (never `/articles/` or `/pillars/`), set `targetMoneyLink` to the one best next step, keep `relatedScholarships` to genuinely relevant slugs, and when you set `relatedPillarSlug` also add the reverse entry to that pillar's `relatedArticleSlugs`. Run its section 12 checklist before finishing.
