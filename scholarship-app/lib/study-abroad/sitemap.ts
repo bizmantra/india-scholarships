@@ -1,8 +1,7 @@
 // URLs for /sitemap/study-abroad.xml: published Study Abroad pages only (drafts, empty countries and
-// program comparisons with too few universities are left out). URLs that redirect are left out too.
+// program comparisons with too few universities are left out)
 import type { MetadataRoute } from 'next';
 import { COUNTRIES, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
-import { REDIRECTS } from './content';
 import { TOOLS } from '@/app/study-abroad/_components/tools';
 
 export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute.Sitemap> {
@@ -12,7 +11,7 @@ export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute
     const date = (v: string | null) => (v ? new Date(v.replace(' ', 'T')) : undefined);
     const entry = (path: string, priority: number, lastModified?: Date): MetadataRoute.Sitemap[number] =>
         ({ url: `${baseUrl}/study-abroad${path}`, priority, changeFrequency: 'weekly', ...(lastModified && !Number.isNaN(lastModified.getTime()) ? { lastModified } : {}) });
-    const all = [
+    return [
         entry('', 0.9),
         ...Object.keys(COUNTRIES).flatMap(c => [
             entry(`/study-in/${c}`, 0.9),
@@ -27,5 +26,4 @@ export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute
         ...visas.map(g => entry(`/visas/${g.slug}`, 0.7, date(g.updated_at))),
         ...loans.map(g => entry(`/loans/${g.slug}`, 0.7, date(g.updated_at))),
     ];
-    return all.filter(e => !REDIRECTS.has(e.url.slice(baseUrl.length)));
 }

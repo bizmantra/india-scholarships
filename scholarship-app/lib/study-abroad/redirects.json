@@ -223,25 +223,5 @@
     "source": "/study-abroad/scholarships/usc-trustee-fellowship",
     "destination": "/study-abroad/study-in/usa/scholarships",
     "permanent": false
-  },
-  {
-    "source": "/study-abroad/study-in/germany/germany-health-insurance-setup",
-    "destination": "/study-abroad/study-in/germany/germany-health-insurance-guide",
-    "permanent": true
-  },
-  {
-    "source": "/study-abroad/study-in/usa/usa-us-education-loans-guide",
-    "destination": "/study-abroad/study-in/usa/us-education-loans-guide",
-    "permanent": true
-  },
-  {
-    "source": "/study-abroad/visas/usa-us-consulate-slot-booking-hacks",
-    "destination": "/study-abroad/visas/us-consulate-slot-booking-hacks",
-    "permanent": true
-  },
-  {
-    "source": "/study-abroad/study-in/germany/germany-student-housing-guide",
-    "destination": "/study-abroad/study-in/germany",
-    "permanent": false
   }
 ]

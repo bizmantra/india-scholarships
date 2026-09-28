@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { getFacts, factNumber } from '@/lib/study-abroad/data';
-import { SITE, pageTitle } from '@/lib/study-abroad/content';
+import { SITE } from '@/lib/study-abroad/content';
 import ToolPage from '../../_components/ToolPage';
 import BlockedAccountCalculator from '../../_components/calculators/BlockedAccountCalculator';
 
 export const revalidate = 86400;
 export const metadata: Metadata = {
-    title: pageTitle('Germany Blocked Account Calculator in INR'),
+    title: 'Germany Blocked Account Calculator in INR | IndiaScholarships',
     description: 'Calculate the rupee amount for your German blocked account (Sperrkonto), including Expatrio, Fintiba and Coracle fees and bank transfer charges.',
     alternates: { canonical: `${SITE}/study-abroad/tools/blocked-account-calculator` },
 };

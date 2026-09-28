@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getScholarshipsForCountry } from '@/lib/study-abroad/data';
-import { SITE, pageTitle } from '@/lib/study-abroad/content';
+import { SITE } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../_components/HubShell';
 import { LinkList } from '../../../_components/blocks';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
     return {
-        title: pageTitle(`Scholarships to Study in ${name} for Indian Students`),
+        title: `Scholarships to Study in ${name} for Indian Students | IndiaScholarships`,
         description: `Scholarships for Indian students to study in ${name}, with amounts, eligibility and deadlines.`,
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/scholarships` },
     };

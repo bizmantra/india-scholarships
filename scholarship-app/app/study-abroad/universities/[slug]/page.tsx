@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, getUniversities, getUniversity, getProgramsForUniversity, getGuides, isCountry } from '@/lib/study-abroad/data';
-import { toEditorial, describe, money, yesNo, SITE, pageTitle } from '@/lib/study-abroad/content';
+import { toEditorial, describe, money, yesNo, SITE } from '@/lib/study-abroad/content';
 import ArticlePage from '../../_components/ArticlePage';
 import { ProgramTable, Sources, LinkList, BlockHeading } from '../../_components/blocks';
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const u = await getUniversity(slug);
     if (!u) return {};
     return {
-        title: pageTitle(`${u.seo_title || `${u.name}: Fees, Admission & Costs for Indian Students`}`),
+        title: `${u.seo_title || `${u.name}: Fees, Admission & Costs for Indian Students`} | IndiaScholarships`,
         description: describe(u, `Fees, admission requirements and living costs at ${u.name} for Indian students.`),
         alternates: { canonical: `${SITE}/study-abroad/universities/${u.slug}` },
     };

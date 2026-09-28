@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, getGuide, getGuides, isCountry } from '@/lib/study-abroad/data';
-import { toEditorial, describe, SITE, pageTitle } from '@/lib/study-abroad/content';
+import { toEditorial, describe, SITE } from '@/lib/study-abroad/content';
 import ArticlePage from '../../../_components/ArticlePage';
 import { Sources } from '../../../_components/blocks';
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     const g = await load(country, guide);
     if (!g) return {};
     return {
-        title: pageTitle(`${g.seo_title || g.title}`),
+        title: `${g.seo_title || g.title} | IndiaScholarships`,
         description: describe(g, g.title),
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/${g.slug}` },
     };
