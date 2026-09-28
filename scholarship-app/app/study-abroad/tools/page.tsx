@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import HubShell, { breadcrumbJsonLd } from '../_components/HubShell';
-import { LinkList } from '../_components/blocks';
+import ListingShell, { ListingSection } from '../_components/ListingShell';
+import SACard, { CardGrid } from '../_components/SACard';
 import { TOOLS } from '../_components/tools';
 import { SITE } from '@/lib/study-abroad/content';
 
@@ -11,11 +11,13 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsIndex() {
-    const crumbs = [{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: 'Calculators' }];
     return (
-        <HubShell crumbs={crumbs} title="Study abroad calculators" jsonLd={[breadcrumbJsonLd(crumbs)]}
-            intro="Work out the money questions yourself, in rupees. No sign-up and no phone number needed.">
-            <LinkList items={TOOLS.map(t => ({ title: t.title, href: `/study-abroad/tools/${t.slug}`, meta: t.summary }))} />
-        </HubShell>
+        <ListingShell crumbs={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: 'Calculators' }]}
+            title="Study Abroad Calculators" intro={<>Work out the money questions yourself, in rupees. No sign-up and no phone number needed.</>}
+            stats={[{ label: 'Calculators', value: String(TOOLS.length), note: 'Free to use', tone: 'blue' }]}>
+            <ListingSection id="list" title="All Calculators">
+                <CardGrid>{TOOLS.map(t => <SACard key={t.slug} href={`/study-abroad/tools/${t.slug}`} title={t.title} subtitle={t.summary} detail={t.country ? `For ${t.country === 'usa' ? 'the USA' : 'Germany'}` : 'For any country'} cta="Open Calculator →" />)}</CardGrid>
+            </ListingSection>
+        </ListingShell>
     );
 }

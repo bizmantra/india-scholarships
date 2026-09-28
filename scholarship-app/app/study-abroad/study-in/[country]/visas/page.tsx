@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getGuides } from '@/lib/study-abroad/data';
 import { SITE } from '@/lib/study-abroad/content';
-import HubShell, { breadcrumbJsonLd } from '../../../_components/HubShell';
-import { LinkList } from '../../../_components/blocks';
+import ListingShell, { ListingSection } from '../../../_components/ListingShell';
+import SACard, { CardGrid } from '../../../_components/SACard';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
@@ -13,24 +13,22 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     const { country } = await params;
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
-    return {
-        title: `${name} Student Visa Guides for Indian Students | IndiaScholarships`,
-        description: `Step-by-step ${name} student visa guides for Indian students: documents, fees, appointments and interview preparation.`,
-        alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/visas` },
-    };
+    return { title: `Student Visa Guides for ${name} (Indian Students) | IndiaScholarships`, description: `Step-by-step ${name} student visa guides for Indian students: documents, fees, appointments and interview preparation.`, alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/visas` } };
 }
 
 export default async function Page({ params }: { params: Promise<{ country: string }> }) {
     const { country } = await params;
     if (!isCountry(country)) notFound();
-    const c = COUNTRIES[country];
-    const name = c.name;
-    const crumbs = [{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: name, href: `/study-abroad/study-in/${country}` }, { label: `Visas` }];
-    const rows = await getGuides("visa", country);
+    const name = COUNTRIES[country].name;
+    const rows = await getGuides('visa', country);
     return (
-        <HubShell crumbs={crumbs} title={`${name} student visa guides`} jsonLd={[breadcrumbJsonLd(crumbs)]}
-            intro="Documents, fees, appointment booking and interview preparation, step by step.">
-            <LinkList items={rows.map(g => ({ title: g.title, href: `/study-abroad/visas/${g.slug}`, meta: g.summary }))} />
-        </HubShell>
+        <ListingShell crumbs={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: name, href: `/study-abroad/study-in/${country}` }, { label: 'Visas' }]}
+            title={`${name} Student Visa Guides`}
+            intro={<>Documents, fees, appointment booking and interview preparation, step by step. No sign-up needed.</>}
+            stats={[{ label: 'Guides', value: String(rows.length), note: 'Free to read', tone: 'blue' }]}>
+            <ListingSection id="list" title="All Guides">
+                <CardGrid>{rows.map(g => <SACard key={g.slug} href={`/study-abroad/visas/${g.slug}`} title={g.title} subtitle={g.summary} cta="Read Guide →" />)}</CardGrid>
+            </ListingSection>
+        </ListingShell>
     );
 }

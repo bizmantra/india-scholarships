@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, getGuide, getGuides, isCountry } from '@/lib/study-abroad/data';
-import { toEditorial, describe, SITE } from '@/lib/study-abroad/content';
-import ArticlePage from '../../../_components/ArticlePage';
-import { Sources } from '../../../_components/blocks';
+import { renderArticle, describe, SITE } from '@/lib/study-abroad/content';
+import DetailShell, { KeyCard, InfoCard, SideLinks, sourceRows } from '../../../_components/DetailShell';
+import { ArticleBody, Faqs, MoreLinks, jumpFor } from '../../../_components/ArticleSections';
+import { faqJsonLd } from '../../../_components/seo';
 
 export const revalidate = 86400;
 
@@ -32,21 +33,31 @@ export default async function GuidePage({ params }: { params: Promise<{ country:
     const g = await load(country, guide);
     if (!g || !isCountry(country)) notFound();
     const c = COUNTRIES[country];
+    const article = renderArticle(g);
     const siblings = (await getGuides('guide', country)).filter(s => s.slug !== g.slug);
-    const content = toEditorial(g, { tag: `Study in ${c.name}` });
-    // Guides are related by shared words in the slug (e.g. "blocked-account", "visa")
+    // Related guides share words in the slug (e.g. "blocked-account", "visa")
     const words = new Set(g.slug.split('-').filter(w => w.length > 3 && w !== country));
-    content.relatedGuides = siblings
+    const related = siblings
         .map(s => ({ s, score: s.slug.split('-').filter(w => words.has(w)).length }))
         .filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 5)
-        .map(({ s }) => ({ title: s.title, href: `/study-abroad/study-in/${country}/${s.slug}` }));
+        .map(({ s }) => ({ href: `/study-abroad/study-in/${country}/${s.slug}`, title: s.title }));
     const crumbs = [
         { label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' },
         { label: c.name, href: `/study-abroad/study-in/${country}` }, { label: g.title },
     ];
     return (
-        <ArticlePage content={content} crumbs={crumbs}>
-            <Sources source={g.official_source} checkedAt={g.checked_at} />
-        </ArticlePage>
+        <DetailShell crumbs={crumbs} eyebrow={`Study in ${c.name} · Guide`} title={g.title}
+            subline={[article.updated && `Updated ${article.updated}`, article.readTime].filter(Boolean).join(' · ')}
+            facts={article.facts} url={`${SITE}/study-abroad/study-in/${country}/${g.slug}`}
+            jump={jumpFor(article)} jsonLd={faqJsonLd(article.faqs)}
+            sidebar={<>
+                <KeyCard label="Destination" value={c.name} note="Free guide · no sign-up" action={{ href: `/study-abroad/study-in/${country}`, label: `All ${c.name} guides →` }} />
+                <InfoCard rows={sourceRows(g.official_source, g.checked_at)} />
+                <SideLinks links={[{ href: `/study-abroad/study-in/${country}/universities`, label: `Universities in ${c.name}` }, { href: '/study-abroad/tools', label: 'Free cost calculators' }]} />
+            </>}>
+            <ArticleBody article={article} />
+            <Faqs faqs={article.faqs} />
+            <MoreLinks title="More on This Topic" links={related} />
+        </DetailShell>
     );
 }
