@@ -86,8 +86,8 @@
   },
   {
     "source": "/study-abroad/scholarships/daad-scholarships-germany-master-phd",
-    "destination": "/study-abroad/study-in/germany/scholarships",
-    "permanent": false
+    "destination": "/scholarships/daad-scholarships-for-masters-and-phd-studies-in-germany-for-indian-students",
+    "permanent": true
   },
   {
     "source": "/study-abroad/scholarships/esmt-berlin-mba-scholarships",
@@ -186,8 +186,8 @@
   },
   {
     "source": "/study-abroad/scholarships/mit-fellowships",
-    "destination": "/study-abroad/study-in/usa/scholarships",
-    "permanent": false
+    "destination": "/scholarships/mit-graduate-fellowships-assistantships-for-international-students",
+    "permanent": true
   },
   {
     "source": "/study-abroad/scholarships/narotam-seksaria-scholarship",
@@ -196,8 +196,8 @@
   },
   {
     "source": "/study-abroad/scholarships/nyu-tandon-dean-fellowship",
-    "destination": "/study-abroad/study-in/usa/scholarships",
-    "permanent": false
+    "destination": "/scholarships/nyu-tandon-school-of-engineering-merit-scholarships-and-fellowships-for-graduate-students",
+    "permanent": true
   },
   {
     "source": "/study-abroad/scholarships/rd-sethna-scholarship",
@@ -211,8 +211,8 @@
   },
   {
     "source": "/study-abroad/scholarships/tamu-departmental-assistantships",
-    "destination": "/study-abroad/study-in/usa/scholarships",
-    "permanent": false
+    "destination": "/scholarships/texas-am-graduate-assistantships-tara",
+    "permanent": true
   },
   {
     "source": "/study-abroad/scholarships/tata-trusts-travel-grant",
