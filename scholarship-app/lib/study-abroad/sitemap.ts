@@ -1,7 +1,7 @@
 // URLs for /sitemap/study-abroad.xml: published Study Abroad pages only (drafts, empty countries and
 // program comparisons with too few universities are left out). URLs that redirect are left out too.
 import type { MetadataRoute } from 'next';
-import { COUNTRIES, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
+import { LAUNCHED_COUNTRIES, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
 import { REDIRECTS } from './content';
 import { TOOLS } from '@/app/study-abroad/_components/tools';
 
@@ -14,7 +14,7 @@ export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute
         ({ url: `${baseUrl}/study-abroad${path}`, priority, changeFrequency: 'weekly', ...(lastModified && !Number.isNaN(lastModified.getTime()) ? { lastModified } : {}) });
     const all = [
         entry('', 0.9),
-        ...Object.keys(COUNTRIES).flatMap(c => [
+        ...LAUNCHED_COUNTRIES.flatMap(c => [
             entry(`/study-in/${c}`, 0.9),
             ...['universities', 'visas', 'loans', 'scholarships'].map(h => entry(`/study-in/${c}/${h}`, 0.8)),
         ]),
