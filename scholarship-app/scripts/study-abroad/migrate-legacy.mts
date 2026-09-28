@@ -63,6 +63,11 @@ const SCHOLARSHIP_SLUG_MAP: Record<string, string> = {
     'jn-tata-endowment-loan-scholarship': 'jn-tata-endowment-for-higher-education',
     'stanford-knight-hennessy': 'knight-hennessy-scholars-program',
     'narotam-seksaria-scholarship': 'narotam-sekhsaria-postgraduate-scholarship',
+    // Published from the Scout leads file on 28 Sep 2026
+    'daad-scholarships-germany-master-phd': 'daad-scholarships-for-masters-and-phd-studies-in-germany-for-indian-students',
+    'mit-fellowships': 'mit-graduate-fellowships-assistantships-for-international-students',
+    'nyu-tandon-dean-fellowship': 'nyu-tandon-school-of-engineering-merit-scholarships-and-fellowships-for-graduate-students',
+    'tamu-departmental-assistantships': 'texas-am-graduate-assistantships-tara',
 };
 // Internal documents the old app published as guide pages: kept as drafts, URLs sent to the real tool
 const INTERNAL_GUIDES: Record<string, string> = {
