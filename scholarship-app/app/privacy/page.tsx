@@ -78,13 +78,6 @@ export default function PrivacyPage() {
                     </p>
 
                     <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-                        Email Newsletter
-                    </h2>
-                    <p>
-                        If you sign up for our newsletter, your email address is stored with our email provider, <a href="https://kit.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Kit</a>, and used only to send you scholarship updates. Every email has an unsubscribe link, and you can leave the list at any time.
-                    </p>
-
-                    <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
                         How We Use Your Information
                     </h2>
                     <p>
