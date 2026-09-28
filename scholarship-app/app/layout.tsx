@@ -2,6 +2,7 @@ import { Inter, Lora } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import KitPopup from "./components/KitPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -48,6 +49,7 @@ export default function RootLayout({
         className={`${inter.variable} ${lora.variable} font-sans antialiased`}
       >
         {children}
+        <KitPopup />
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-DE8V5ECQZX"
