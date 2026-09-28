@@ -39,7 +39,7 @@ export interface SaFact {
 
 async function query<T>(sql: string, args: (string | number | null)[] = []): Promise<T[]> {
     const res = await getClient().execute({ sql, args });
-    return res.rows.map((r: any) => ({ ...r })) as T[];
+    return res.rows.map((r: Record<string, unknown>) => ({ ...r })) as unknown as T[];
 }
 
 export const getUniversities = (country?: CountrySlug) =>
@@ -78,10 +78,17 @@ export const factNumber = (facts: Record<string, SaFact>, key: string, fallback:
     return Number.isFinite(n) ? n : fallback;
 };
 
-// International scholarships from the main scholarships table
+// International scholarships from the main scholarships table, with the fields ScholarshipCard shows
+// Shape ScholarshipCard reads (see app/components/ScholarshipCard.tsx)
+export interface CardScholarship {
+    id: number; slug: string; title: string; provider: string; state: string; caste: string[];
+    amount_annual: number; amount_min?: number; deadline?: string; application_mode: string; level: string;
+    last_verified: string; created_at?: string;
+}
 export const getScholarshipsForCountry = (country: CountrySlug, limit = 100) =>
-    query<{ slug: string; title: string; provider: string | null; amount_description: string | null; deadline: string | null; level: string | null }>(
-        `SELECT slug, title, provider, amount_description, deadline, level FROM scholarships
+    query<CardScholarship>(
+        `SELECT id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at
+         FROM scholarships
          WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?
          ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, limit]);
 

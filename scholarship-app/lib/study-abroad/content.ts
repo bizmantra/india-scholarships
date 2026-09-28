@@ -1,6 +1,5 @@
-// Turns Study Abroad rows into the main site's EditorialContent, so every Study Abroad
-// article renders with the same EditorialTemplate as the site's own guides.
-import type { EditorialContent, KeyFact, Faq } from '@/lib/editorial';
+// Renders Study Abroad articles for the detail layout (app/study-abroad/_components/DetailShell.tsx).
+import type { KeyFact, Faq } from '@/lib/editorial';
 import { extractHeadings, simpleMarkdownToHtml } from '@/lib/articles';
 import { parseJson, type SaGuide, type SaUniversity } from './data';
 import redirects from './redirects.json';
@@ -61,34 +60,33 @@ function infoboxFacts(json: string | null): KeyFact[] {
     return (box?.rows || []).filter(r => r.key && r.value).map(r => ({ label: r.key, value: r.value }));
 }
 
-export function toEditorial(row: SaGuide | SaUniversity, opts: { tag: string; extraFacts?: KeyFact[] }): EditorialContent {
+export interface Article {
+    html: string;
+    headings: { id: string; text: string }[]; // h2 only, for the section pills
+    faqs: { q: string; a: string }[];
+    facts: { label: string; value: string }[]; // the article's own fact box, minus rows already shown
+    readTime: string;
+    updated: string;
+}
+
+// One Study Abroad article, ready for DetailShell
+export function renderArticle(row: SaGuide | SaUniversity, knownFacts: { label: string }[] = []): Article {
     const md = normalizeMarkdown(row.body_md || '');
     const title = 'name' in row ? row.name : row.title;
-    const faqs = parseJson<Faq[]>(row.faq_json, []);
-    // Structured facts first; infobox rows repeating a label (or just restating the name) are dropped
-    const seen = new Set((opts.extraFacts || []).map(f => f.label.toLowerCase()));
-    const keyFacts = [...(opts.extraFacts || []), ...infoboxFacts(row.infobox_json).filter(f => {
+    const seen = new Set(knownFacts.map(f => f.label.toLowerCase()));
+    const facts = infoboxFacts(row.infobox_json).filter(f => {
         const label = f.label.toLowerCase();
         if (seen.has(label) || label === 'university name' || f.value === title) return false;
         seen.add(label);
         return true;
-    })];
+    });
     return {
-        id: row.slug,
-        slug: row.slug,
-        kind: 'how-to',
-        tag: opts.tag,
-        title,
-        seoTitle: row.seo_title || undefined,
-        seoDescription: row.meta_description || row.summary || undefined,
-        date: formatDate(row.updated_at),
+        html: md ? simpleMarkdownToHtml(md) : '',
+        headings: md ? extractHeadings(md).filter(h => h.level === 2).map(h => ({ id: h.id, text: h.text.replace(/[*_`]/g, '') })) : [],
+        faqs: parseJson<Faq[]>(row.faq_json, []).filter(f => f.q && f.a),
+        facts,
         readTime: md ? readTime(md) : '',
-        author: 'IndiaScholarships Study Abroad',
-        body: md ? simpleMarkdownToHtml(md) : '',
-        headings: md ? extractHeadings(md) : [],
-        keyFacts: keyFacts.length ? keyFacts : undefined,
-        faqs: faqs.length ? faqs : undefined,
-        hideStudyAbroadCta: true,
+        updated: formatDate(row.updated_at),
     };
 }
 
@@ -106,3 +104,22 @@ export const money = (amount: number | null, currency: string | null) => {
     if (amount === 0) return 'No tuition fee';
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: currency || 'USD', maximumFractionDigits: 0 }).format(amount);
 };
+
+// A value from a university's article fact box, by the first matching label
+export function infoboxValue(json: string | null, labels: string[]): string | null {
+    const rows = infoboxFacts(json);
+    for (const label of labels) {
+        const row = rows.find(r => r.label.toLowerCase() === label.toLowerCase());
+        if (row) return row.value;
+    }
+    return null;
+}
+
+// What a university card shows: location, tuition and living costs, from fields or the fact box
+export function universityCard(u: SaUniversity) {
+    return {
+        location: u.city || infoboxValue(u.infobox_json, ['Campus Location', 'Location']),
+        tuition: money(u.tuition_per_year, u.tuition_currency) || infoboxValue(u.infobox_json, ['Tuition Fee Status', 'Out-of-State Tuition']),
+        living: infoboxValue(u.infobox_json, ['Monthly Living Expenses', 'Estimated Monthly Living Expenses']),
+    };
+}

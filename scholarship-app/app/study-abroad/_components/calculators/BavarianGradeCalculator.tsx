@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, Award, Info, RefreshCw } from "lucide-react";
+import { Calculator, Info } from "lucide-react";
 
 export default function BavarianGradeCalculator() {
   const [maxGrade, setMaxGrade] = useState<number>(10);
