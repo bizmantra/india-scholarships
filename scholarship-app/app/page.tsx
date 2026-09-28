@@ -14,12 +14,6 @@ export const metadata: Metadata = {
     languages: {
       'x-default': 'https://www.indiascholarships.in',
       'en': 'https://www.indiascholarships.in',
-      'hi': 'https://www.indiascholarships.in/hi',
-      'bn': 'https://www.indiascholarships.in/bn',
-      'ta': 'https://www.indiascholarships.in/ta',
-      'te': 'https://www.indiascholarships.in/te',
-      'or': 'https://www.indiascholarships.in/or',
-      'kn': 'https://www.indiascholarships.in/kn',
     }
   }
 };

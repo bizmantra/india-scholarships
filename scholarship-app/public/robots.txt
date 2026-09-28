@@ -1,11 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /hi/
-Disallow: /bn/
-Disallow: /ta/
-Disallow: /te/
-Disallow: /or/
-Disallow: /kn/
 Disallow: /*?q=
 Disallow: /study-abroad/out/
 

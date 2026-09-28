@@ -118,6 +118,18 @@ const nextConfig: NextConfig = {
       ...['dashboard', 'indexing', 'seo-audit', 'moderation'].map(page => ({ source: `/admin/${page}`, destination: '/admin/agents', permanent: false })),
       ...generatedRedirects,
 
+      // Localized pages (/hi, /bn, /ta, /te, /or, /kn) pulled down — translations were
+      // frozen copies that drifted out of sync with the English source and were never
+      // more than ~25% complete. 301 everything back to the English original so the
+      // indexed URLs consolidate instead of 404ing. Placed after generatedRedirects so
+      // the specific slug-rename rules above still win for renamed scholarships.
+      // See plans/ for the durable localization plan.
+      {
+        source: '/:locale(hi|bn|ta|te|or|kn)/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+
       // Year-suffixed URL redirect patterns (e.g. /scholarships/tata-2024 -> /scholarships/tata)
       {
         source: '/scholarships/:slug(.*)-(2024|2025|2026)',

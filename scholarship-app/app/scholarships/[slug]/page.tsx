@@ -27,7 +27,6 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
-import LanguageDetector from '@/app/components/LanguageDetector';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
 
@@ -218,12 +217,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             languages: {
                 'x-default': `https://www.indiascholarships.in/scholarships/${slug}`,
                 'en': `https://www.indiascholarships.in/scholarships/${slug}`,
-                'hi': `https://www.indiascholarships.in/hi/scholarships/${slug}`,
-                'bn': `https://www.indiascholarships.in/bn/scholarships/${slug}`,
-                'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}`,
-                'te': `https://www.indiascholarships.in/te/scholarships/${slug}`,
-                'or': `https://www.indiascholarships.in/or/scholarships/${slug}`,
-                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}`,
             }
         },
         openGraph: {
@@ -504,8 +497,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     <span className="text-gray-900 font-medium truncate">{scholarship.title}</span>
                 </nav>
             </div>
-
-            <LanguageDetector slug={scholarship.slug} />
 
             <script
                 type="application/ld+json"
