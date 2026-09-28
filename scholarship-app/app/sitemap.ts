@@ -13,6 +13,7 @@ import { UNIVERSITIES } from '@/lib/universities';
 import { getAllArticles } from '@/lib/articles';
 import { getAllNews } from '@/lib/news';
 import { getAllPillars } from '@/lib/pillars';
+import { studyAbroadSitemap } from '@/lib/study-abroad/sitemap';
 
 export async function generateSitemaps() {
     return [
@@ -20,6 +21,7 @@ export async function generateSitemaps() {
         { id: 'scholarships' },
         { id: 'states' },
         { id: 'taxonomies' },
+        { id: 'study-abroad' },
     ];
 }
 
@@ -35,6 +37,10 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         'apply-online',
         'renewal-process'
     ];
+
+    if (id === 'study-abroad') {
+        return studyAbroadSitemap(baseUrl);
+    }
 
     if (id === 'core') {
         const articles = getAllArticles();
