@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getPrograms, getProgram } from '@/lib/study-abroad/data';
-import { SITE, money } from '@/lib/study-abroad/content';
+import { SITE, money, pageTitle } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../../_components/HubShell';
 import { Sources, LinkList, deadlinesText } from '../../../../_components/blocks';
 
@@ -15,8 +15,9 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     const { country, university, program } = await params;
     const p = await getProgram(university, program);
     if (!p || p.country !== country) return {};
+    const base = `${p.title} at ${p.university_name}`;
     return {
-        title: `${p.title} at ${p.university_name}: Fees, Requirements & Deadlines | IndiaScholarships`,
+        title: pageTitle(base.length <= 42 ? `${base}: Fees & Deadlines` : base),
         description: `Tuition, living costs, minimum GPA, IELTS, GRE and deadlines for ${p.title} at ${p.university_name}, with the official source.`,
         alternates: { canonical: `${SITE}/study-abroad/program-detail/${country}/${university}/${program}` },
     };
