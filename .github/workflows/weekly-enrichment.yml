@@ -72,13 +72,14 @@ jobs:
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
           NODE_ENV: production
 
-      - name: Run Content Quality Audit
+      # Report only, never blocks. This audit checks the live database, not the code in the PR, so it
+      # failed every PR as soon as any deadline passed. Data gaps are fixed through the admin inbox
+      # (quality fixer, fact check, freshness check), where the owner approves each change.
+      - name: Run Content Quality Audit (report only)
         run: |
+          node scholarship-app/scripts/content-quality-audit.js
           if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "Running strict verification check..."
-            node scholarship-app/scripts/content-quality-audit.js --strict
-          else
-            node scholarship-app/scripts/content-quality-audit.js
+            sed -n '1,/^## 🔍/p' scholarship-app/data/content-quality-report.md >> "$GITHUB_STEP_SUMMARY"
           fi
         env:
           NODE_ENV: production
