@@ -243,5 +243,15 @@
     "source": "/study-abroad/study-in/germany/germany-student-housing-guide",
     "destination": "/study-abroad/study-in/germany",
     "permanent": false
+  },
+  {
+    "source": "/study-abroad/study-in/germany/germany-routes-hub-guide",
+    "destination": "/study-abroad/study-in/germany/germany-visa-routes-hub-guide",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/study-in/usa/usa-routes-hub-guide",
+    "destination": "/study-abroad/study-in/usa/usa-visa-routes-hub-guide",
+    "permanent": true
   }
 ]
