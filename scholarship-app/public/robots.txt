@@ -7,5 +7,6 @@ Disallow: /te/
 Disallow: /or/
 Disallow: /kn/
 Disallow: /*?q=
+Disallow: /study-abroad/out/
 
 Sitemap: https://www.indiascholarships.in/sitemap.xml

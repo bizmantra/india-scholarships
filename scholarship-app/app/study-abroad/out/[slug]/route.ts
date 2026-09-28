@@ -17,5 +17,7 @@ const PROVIDER_LINKS: Record<string, string> = {
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const target = PROVIDER_LINKS[slug];
-    return NextResponse.redirect(target || new URL('/study-abroad/tools', request.url), target ? 302 : 307);
+    const res = NextResponse.redirect(target || new URL('/study-abroad/tools', request.url), target ? 302 : 307);
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
 }

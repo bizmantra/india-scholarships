@@ -3,8 +3,25 @@
 import type { EditorialContent, KeyFact, Faq } from '@/lib/editorial';
 import { extractHeadings, simpleMarkdownToHtml } from '@/lib/articles';
 import { parseJson, type SaGuide, type SaUniversity } from './data';
+import redirects from './redirects.json';
 
 export const SITE = 'https://www.indiascholarships.in';
+
+// Google shows about 60 characters of a title, so the brand suffix is only added when it fits
+export const pageTitle = (title: string) => {
+    const full = `${title} | IndiaScholarships`;
+    return full.length <= 65 ? full : title;
+};
+
+// Old or misspelled URLs that redirect elsewhere (next.config.ts serves the same list)
+export const REDIRECTS = new Map(redirects.map(r => [r.source, r.destination]));
+
+// Links inside articles that point at a redirected URL go straight to the final page
+const fixLinks = (md: string) =>
+    md.replace(/\]\((\/study-abroad\/[^)\s#?]+)/g, (m, path: string) => {
+        const target = REDIRECTS.get(path.replace(/\/$/, ''));
+        return target ? `](${target}` : m;
+    });
 
 // Fenced blocks in the migrated articles are checklists or step lists written as plain text
 // ("[ ] 1. TITLE" with an indented description below). The site's converter has no code blocks,
@@ -24,7 +41,7 @@ function fencedBlockToList(block: string): string {
 
 // The migrated articles use "* " bullets, which the site's converter reads as italics
 function normalizeMarkdown(md: string): string {
-    return md
+    return fixLinks(md)
         .replace(/^```[a-z]*\n([\s\S]*?)^```\s*$/gm, (_, block) => fencedBlockToList(block))
         .replace(/^(\s*)\* /gm, '$1- ')
         .replace(/\n{3,}/g, '\n\n')

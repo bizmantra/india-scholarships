@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import HubShell, { breadcrumbJsonLd } from '../_components/HubShell';
 import { LinkList } from '../_components/blocks';
 import { TOOLS } from '../_components/tools';
-import { SITE } from '@/lib/study-abroad/content';
+import { SITE, pageTitle } from '@/lib/study-abroad/content';
 
 export const metadata: Metadata = {
-    title: 'Free Study Abroad Calculators for Indian Students | IndiaScholarships',
+    title: pageTitle('Free Study Abroad Calculators for Indian Students'),
     description: 'Free calculators for Indian students going abroad: German blocked account, US I-20 proof of funds, CGPA to German grade, and TCS on foreign remittances.',
     alternates: { canonical: `${SITE}/study-abroad/tools` },
 };
