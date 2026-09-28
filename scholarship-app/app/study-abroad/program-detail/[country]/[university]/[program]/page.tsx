@@ -15,8 +15,9 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     const { country, university, program } = await params;
     const p = await getProgram(university, program);
     if (!p || p.country !== country) return {};
+    const base = `${p.title} at ${p.university_name}`;
     return {
-        title: pageTitle(`${p.title} at ${p.university_name}: Fees, Requirements & Deadlines`),
+        title: pageTitle(base.length <= 42 ? `${base}: Fees & Deadlines` : base),
         description: `Tuition, living costs, minimum GPA, IELTS, GRE and deadlines for ${p.title} at ${p.university_name}, with the official source.`,
         alternates: { canonical: `${SITE}/study-abroad/program-detail/${country}/${university}/${program}` },
     };
