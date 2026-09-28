@@ -25,6 +25,7 @@ hubLinks:
 relatedArticleSlugs:
   - "engineering-btech-csr-scholarships"
   - "ews-income-certificate-thresholds"
+  - "how-to-apply-reliance-foundation-undergraduate-scholarship"
 takeaways:
   - "Corporate scholarships are funded by a company's CSR (Corporate Social Responsibility) budget. Private scholarships come from foundations, trusts, and NGOs that aren't tied to one company."
   - "Most corporate and private scholarships pay more than a typical government scheme, but usually run for a much shorter application window each year."
