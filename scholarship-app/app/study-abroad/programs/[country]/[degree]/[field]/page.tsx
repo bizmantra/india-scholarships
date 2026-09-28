@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getProgramCombos, getProgramsForCombo, getGuides, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
-import { SITE, money, pageTitle } from '@/lib/study-abroad/content';
+import { SITE, money } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../../_components/HubShell';
 import { ProgramTable, LinkList } from '../../../../_components/blocks';
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     const combo = (await getProgramCombos()).find(c => c.country === country && c.degree === degree && c.field === field);
     const name = `${degree.toUpperCase()} in ${label(field)} in ${COUNTRIES[country].name}`;
     return {
-        title: pageTitle(`${name}: Fees, Requirements & Deadlines Compared`),
+        title: `${name}: Fees, Requirements & Deadlines Compared | IndiaScholarships`,
         description: `Compare ${combo?.universities || ''} universities for ${name}: tuition, living costs, minimum GPA, IELTS, GRE and deadlines, from official program pages.`,
         alternates: { canonical: `${SITE}/study-abroad/programs/${country}/${degree}/${field}` },
         ...(!combo || combo.universities < MIN_INDEXABLE_UNIVERSITIES ? { robots: { index: false, follow: true } } : {}),

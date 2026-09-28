@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
-import { SITE, pageTitle } from '@/lib/study-abroad/content';
+import { SITE } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../_components/HubShell';
 import { LinkList, BlockHeading } from '../../_components/blocks';
 import { STAGES, stageOf } from '../../_components/stages';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
     return {
-        title: pageTitle(`Study in ${name} for Indian Students: Costs, Universities, Visa & Loans`),
+        title: `Study in ${name} for Indian Students: Costs, Universities, Visa & Loans | IndiaScholarships`,
         description: `Plan a Master's in ${name} from India: universities and programs, total costs, scholarships, loans, visa steps and work rules, with official sources.`,
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}` },
     };

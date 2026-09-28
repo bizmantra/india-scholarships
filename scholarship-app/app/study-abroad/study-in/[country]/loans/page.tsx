@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getGuides } from '@/lib/study-abroad/data';
-import { SITE, pageTitle } from '@/lib/study-abroad/content';
+import { SITE } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../_components/HubShell';
 import { LinkList } from '../../../_components/blocks';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
     return {
-        title: pageTitle(`Education Loans & Blocked Accounts for ${name}`),
+        title: `Education Loans & Blocked Accounts for ${name} | IndiaScholarships`,
         description: `Compare education loans and blocked accounts for studying in ${name}: fees, interest rates, collateral and tax benefits.`,
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/loans` },
     };

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getGuide, getGuides } from '@/lib/study-abroad/data';
-import { describe, SITE, pageTitle } from '@/lib/study-abroad/content';
+import { describe, SITE } from '@/lib/study-abroad/content';
 import GuideKindPage from '../../_components/GuideKindPage';
 
 export const revalidate = 86400;
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const g = await getGuide('visa', slug);
     if (!g) return {};
     return {
-        title: pageTitle(`${g.seo_title || g.title}`),
+        title: `${g.seo_title || g.title} | IndiaScholarships`,
         description: describe(g, g.title),
         alternates: { canonical: `${SITE}/study-abroad/visas/${g.slug}` },
     };
