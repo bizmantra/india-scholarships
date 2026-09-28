@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Calculator, AlertCircle, Info, ShieldCheck, ArrowRight } from "lucide-react";
+import { Calculator, Info, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function RbiLrsTcsCalculator() {
