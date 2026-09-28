@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getGuides } from '@/lib/study-abroad/data';
-import { SITE } from '@/lib/study-abroad/content';
+import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../_components/HubShell';
 import { LinkList } from '../../../_components/blocks';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
     return {
-        title: `${name} Student Visa Guides for Indian Students | IndiaScholarships`,
+        title: pageTitle(`${name} Student Visa Guides for Indian Students`),
         description: `Step-by-step ${name} student visa guides for Indian students: documents, fees, appointments and interview preparation.`,
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/visas` },
     };

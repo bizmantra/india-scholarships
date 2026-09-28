@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { COUNTRIES, getUniversities, getGuides, getFacts, getProgramCombos, getScholarshipsForCountry, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
-import { SITE } from '@/lib/study-abroad/content';
+import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from './_components/HubShell';
 import { LinkList, BlockHeading } from './_components/blocks';
 import { TOOLS } from './_components/tools';
 
 export const revalidate = 86400;
 export const metadata: Metadata = {
-    title: 'Study Abroad for Indian Students: Germany & USA Costs, Universities, Visas | IndiaScholarships',
+    title: pageTitle('Study Abroad for Indian Students: Germany & USA Costs, Universities, Visas'),
     description: 'Plan a Master\'s in Germany or the USA without agency fees or sign-ups: university costs, program comparisons, scholarships, loans, visa guides and free calculators.',
     alternates: { canonical: `${SITE}/study-abroad` },
 };
