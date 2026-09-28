@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { COUNTRIES, isCountry, getUniversities } from '@/lib/study-abroad/data';
-import { SITE, money } from '@/lib/study-abroad/content';
+import { SITE, money, pageTitle } from '@/lib/study-abroad/content';
 import HubShell, { breadcrumbJsonLd } from '../../../_components/HubShell';
 import { LinkList } from '../../../_components/blocks';
 
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     if (!isCountry(country)) return {};
     const name = COUNTRIES[country].name;
     return {
-        title: `Universities in ${name} for Indian Students: Fees & Admission | IndiaScholarships`,
+        title: pageTitle(`Universities in ${name} for Indian Students: Fees & Admission`),
         description: `Universities in ${name} for Indian students, with tuition, living costs, GRE rules and the programs we track.`,
         alternates: { canonical: `${SITE}/study-abroad/study-in/${country}/universities` },
     };
