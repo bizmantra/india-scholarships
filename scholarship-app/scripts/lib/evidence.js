@@ -141,4 +141,4 @@ async function scoreEvidence({ fact, field, title, page }) {
     return { score, band: score >= 75 ? 'strong' : score >= 50 ? 'fair' : 'weak', signals, jev: jevUsed, verdict, tier };
 }
 
-module.exports = { scoreEvidence, locateValue, currentCycle };
+module.exports = { scoreEvidence, locateValue, currentCycle, nameOnPage, window, SITE_KINDS };

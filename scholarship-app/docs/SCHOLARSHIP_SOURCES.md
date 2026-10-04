@@ -109,3 +109,30 @@ Only excerpts of public web pages are sent, never student or site data. In GitHu
 
 The weights are a starting point. After the inbox has some decisions, `node scripts/evidence-calibration.js` shows how
 scores compare with approvals and rejections so the weights can be tuned.
+
+## Source backfill
+
+`node scripts/source-backfill.js` (GitHub workflow **Source Backfill**, staging by default) finds a source page for
+every scholarship that has none saved. It never changes a deadline, amount or status, and never closes a scholarship.
+
+1. **Stage 1, link check (all scholarships, minutes).** Each scholarship's existing official-source and apply links are
+   opened. A link counts when the page can be read and is about the scholarship (its name is on the page, and Jev
+   agrees when available). Official / provider pages go to `source_pages`, platform and listing pages to
+   `secondary_sources`.
+2. **Stage 2, research (a batch per run, `--max`, highest-traffic first).** For scholarships still without an official
+   page, the same evidence-checked research the other agents use looks for one. It also asks whether an official
+   notice says the scheme has closed or been replaced.
+
+Each run continues where the last stopped (progress is remembered), and writes `data/source-backfill-report.md`
+(also shown on the workflow run page). Groups in the report:
+
+| Group | Meaning | What to do |
+|---|---|---|
+| found-official | An official or provider page is saved | Nothing |
+| found-secondary | Only a platform or listing page: provider page unconfirmed | Keep; a later run or the other agents may find the provider page |
+| ended-or-replaced | An official notice says it closed or was replaced | You decide: keep with a "no longer offered" note, or take down |
+| not-found | Nothing found even after research | You decide: possibly discontinued, renamed or never real |
+| links-dead / not-matching / home-only / no-links | Existing links unusable, not yet researched | Run again; stage 2 picks them up |
+
+Run it: GitHub, Actions, **Source Backfill**, Run workflow, keep target **staging**. Repeat until the "not yet researched"
+groups are empty.

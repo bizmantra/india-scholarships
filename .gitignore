@@ -49,3 +49,5 @@ scholarship-app/data/quality-fixer-summary.json
 scholarship-app/data/traffic-watchdog.json
 scholarship-app/data/indexing-agent.json
 scholarship-app/data/fact-check-summary.json
+scholarship-app/data/source-backfill-report.md
+scholarship-app/data/source-backfill-summary.json

@@ -1,0 +1,114 @@
+name: Source Backfill
+# The request id lets the Agent Center find the run it started
+run-name: "Source Backfill · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
+
+on:
+  # No timer: run by hand (staging first) until every scholarship has been placed (see docs/SCHOLARSHIP_SOURCES.md)
+  workflow_dispatch: # Started from the Agent Center or the GitHub UI
+    inputs:
+      target:
+        description: 'Database to update (staging = test run: live site untouched)'
+        type: choice
+        options: [staging, production]
+        default: staging
+      max:
+        description: 'Scholarships to research this run (the quick link check always covers all of them)'
+        type: string
+        default: '25'
+      request_id:
+        description: 'Set by the Agent Center to track this run (leave empty)'
+        type: string
+        required: false
+        default: ''
+
+concurrency:
+  group: database-writes${{ inputs.target == 'staging' && '-staging' || '' }}
+  cancel-in-progress: false
+
+env:
+  DB_TARGET: ${{ inputs.target || 'production' }}
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Install pdftotext (reads PDF notices)
+        run: sudo apt-get install -y poppler-utils
+
+      - name: Pull latest database from Turso
+        run: node scholarship-app/scripts/pull-from-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Find source pages (link check, then Gemini research for a batch)
+        run: node scholarship-app/scripts/source-backfill.js --max=${{ inputs.max || '25' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}  # optional: Jev adds to the evidence score; blank is fine
+
+      - name: Normalize data formats
+        run: node scholarship-app/scripts/clean-data-formats.js
+
+      - name: Check data formats (blocks bad data from reaching Turso)
+        run: node scholarship-app/scripts/check-data-formats.js
+
+      - name: Back up Turso before syncing
+        run: node scholarship-app/scripts/backup-turso.js --out=backups/pre-sync.db
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Store pre-sync backup
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-sync-backup-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: backups/pre-sync.db
+          retention-days: 7
+
+      # Only the internal source columns change; no deadline, amount or status is touched
+      - name: Push Database to Turso
+        run: node scholarship-app/scripts/push-to-turso.js
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      - name: Show the report on the run page
+        if: always()
+        run: |
+          if [ -f scholarship-app/data/source-backfill-report.md ]; then
+            cat scholarship-app/data/source-backfill-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-backfill-report-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: |
+            scholarship-app/data/source-backfill-report.md
+            scholarship-app/data/source-backfill-summary.json
+          retention-days: 30
