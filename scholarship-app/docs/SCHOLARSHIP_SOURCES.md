@@ -77,3 +77,35 @@ node scripts/build-sources-list.js
 This rebuilds the `"auto": true` provider entries (grouped by the website in each active scholarship's
 official source / apply link) and reports how many scholarships still have no specific source page. Hand-written
 entries are never touched. Run it after pulling a fresh database (`npm run db:pull`) and commit the result.
+
+## Evidence score
+
+Every proposal from Deadline Freshness, Fact Check and Quality Fixer carries an **evidence score (0-100)** on its
+inbox card, with a "How the score adds up" list. It is worked out in `scripts/lib/evidence.js`:
+
+| Signal | Points |
+|---|---|
+| Research verdict: verified / agreed / secondary / uncertain | +45 / +30 / +15 / +5 |
+| The proposed date or amount appears word for word on the cited page | +25 |
+| Page was readable but the value is not on it | -15 |
+| Source site: official / provider / platform / listing or news | +10 / +5 / 0 / -5 |
+| Specific page / home page only | +5 / -10 |
+| The scholarship's name is not on the cited page | -10 |
+| Jev: page is about this scholarship (asked about the part of the page that names it) | -10 to +10 |
+| Jev: this is the *student application* deadline (not verification, portal-closing, interview or result date) | -10 to +10 |
+| Jev: text states this amount | -8 to +8 |
+| Jev: this is the current cycle (e.g. 2026-27) | -5 to +5 |
+
+Bands: **strong** 75+, **fair** 50-74, **weak** below 50. A score under 40 files the proposal as high risk.
+
+The value check reads the cited page itself (HTML, or PDF when `pdftotext` is installed). Pages that are built by
+scripts and have almost no text count as unreadable, and then the value is simply not checked.
+
+**Jev is optional.** It is TypeSafe's hosted decision model (docs.typesafe.ai). With `TYPESAFE_API_KEY` set, it reads
+short excerpts of the cited page and answers the yes/no questions above; it can also spot a listing or news site that is
+not on our domain lists (the verdict then becomes `secondary`). Without the key the score uses the other signals only.
+Only excerpts of public web pages are sent, never student or site data. In GitHub Actions the key is the
+`TYPESAFE_API_KEY` repository secret; locally it lives in `.env.local`.
+
+The weights are a starting point. After the inbox has some decisions, `node scripts/evidence-calibration.js` shows how
+scores compare with approvals and rejections so the weights can be tuned.

@@ -294,6 +294,12 @@ const VERDICTS: Record<string, { label: string; className: string }> = {
     secondary: { label: 'Two answers agree, but no official page (platform or listing site only)', className: 'bg-amber-500/10 text-cc-warn' },
     uncertain: { label: 'Uncertain', className: 'bg-amber-500/10 text-cc-warn' },
 };
+// Evidence score (scripts/lib/evidence.js): 0-100 with the working shown
+const BANDS: Record<string, string> = {
+    strong: 'bg-emerald-500/10 text-cc-good',
+    fair: 'bg-blue-500/10 text-cc-link',
+    weak: 'bg-amber-500/10 text-cc-warn',
+};
 // What kind of site the source page is on (see scripts/lib/source-tiers.js)
 const TIER_LABELS: Record<string, string> = {
     official: 'official site', provider: 'provider site', platform: 'application platform', aggregator: 'listing site', news: 'news site',
@@ -316,10 +322,28 @@ function EvidenceLine({ json, field }: { json: string | null; field: string | nu
                         {host} <ExternalLink className="h-3 w-3" />
                     </a>
                 )}
+                {typeof e.score === 'number' && (
+                    <span className={`rounded px-1.5 py-0.5 font-bold ${BANDS[e.band] || BANDS.weak}`} title="Evidence score out of 100: see the breakdown below">
+                        Evidence {e.score}/100
+                    </span>
+                )}
                 {host && <span className={e.officialSource ? 'text-cc-good' : 'text-cc-warn'}>{e.officialSource ? 'official site' : TIER_LABELS[e.tier] || 'other site'}</span>}
                 {e.specificSource === false && <span className="text-cc-warn">home page only</span>}
             </p>
             {e.quote && <p className="italic text-cc-text-2">"{e.quote}"</p>}
+            {Array.isArray(e.signals) && e.signals.length > 0 && (
+                <details className="text-cc-muted">
+                    <summary className="cursor-pointer select-none">How the score adds up</summary>
+                    <ul className="mt-1 space-y-0.5">
+                        {e.signals.map((s: { label: string; points: number }, n: number) => (
+                            <li key={n}>
+                                <span className={`inline-block w-8 font-mono ${s.points < 0 ? 'text-cc-warn' : s.points > 0 ? 'text-cc-good' : 'text-cc-faint'}`}>{s.points > 0 ? '+' : ''}{s.points}</span>
+                                {s.label}
+                            </li>
+                        ))}
+                    </ul>
+                </details>
+            )}
             {Array.isArray(e.alternatives) && e.alternatives.length > 1 && (
                 <ul className="space-y-0.5 text-cc-muted">
                     {e.alternatives.map((a: any, n: number) => (

@@ -76,6 +76,7 @@ async function run() {
         try {
             result = await researchFacts({
                 subject: `the "${s.title}" scholarship by ${s.provider || 'its provider'}${s.state && !/all india/i.test(s.state) ? ` (${s.state})` : ''}, current (2026-27) cycle`,
+                title: s.title,
                 fields: FIELDS,
                 knownSources: sources.sourcesFor(s),
         knownSecondary: sources.secondaryFor(s),

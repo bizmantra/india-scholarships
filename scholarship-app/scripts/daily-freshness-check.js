@@ -33,6 +33,7 @@ If school (Pre-Matric) and college (Post-Matric) students have different dates, 
 async function researchDeadline(item) {
     const found = await researchFacts({
         subject: `the "${item.title}" scholarship by ${item.provider || 'its provider'}, 2026-27 application cycle`,
+        title: item.title,
         context: DEADLINE_RULES,
         knownSources: sources.sourcesFor(item),
         knownSecondary: sources.secondaryFor(item),

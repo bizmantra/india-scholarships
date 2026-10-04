@@ -10,7 +10,9 @@
  *   'uncertain'  the answers differ (both are kept), or only one answer has a value (see reason)
  *   'none'       neither answer found a value (nothing is proposed)
  */
+const { spawnSync } = require('child_process');
 const { sourceTier, isSecondaryTier, TIER_RANK } = require('./source-tiers');
+const { scoreEvidence } = require('./evidence');
 const RUNS = 2;
 const MODEL = process.env.RESEARCH_MODEL || 'gemini-2.5-flash';
 
@@ -74,19 +76,39 @@ async function realUrl(url) {
     return resolved.get(u);
 }
 
-// Is the quoted sentence really on the cited page? (null = page could not be read)
+// The cited page as { plain, sq }: readable text, and the same squashed for matching (null = could not be read).
+// PDFs are read with pdftotext when it is installed; pages with almost no text (built by scripts) count as unreadable.
 const pageCache = new Map();
+function getPage(url) {
+    if (!pageCache.has(url)) {
+        pageCache.set(url, fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'User-Agent': 'Mozilla/5.0 (IndiaScholarships fact check)' } })
+            .then(async r => {
+                if (!r.ok) return null;
+                const type = r.headers.get('content-type') || '';
+                if (/pdf/.test(type) || /\.pdf($|\?)/i.test(url)) {
+                    const out = spawnSync('pdftotext', ['-q', '-', '-'], { input: Buffer.from(await r.arrayBuffer()), maxBuffer: 20e6, timeout: 40000 });
+                    return out.status === 0 ? out.stdout.toString('utf8') : null;
+                }
+                return /text|html|json/.test(type) ? r.text() : null;
+            })
+            .then(t => {
+                if (!t) return null;
+                const plain = t.replace(/<(script|style|noscript)[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' ')
+                    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+                return plain.length < 200 ? null : { plain, sq: squash(plain) };
+            })
+            .catch(() => null));
+    }
+    return pageCache.get(url);
+}
+
+// Is the quoted sentence really on the cited page? (null = page could not be read)
 async function quoteOnPage(url, quote) {
     const q = squash(quote);
     if (!q || q.length < 12 || !isSpecificSource(url)) return false;
-    if (!pageCache.has(url)) {
-        pageCache.set(url, fetch(url, { signal: AbortSignal.timeout(20000), headers: { 'User-Agent': 'Mozilla/5.0 (IndiaScholarships fact check)' } })
-            .then(r => (r.ok && /text|html|json/.test(r.headers.get('content-type') || '') ? r.text() : null))
-            .then(t => (t ? squash(t) : null))
-            .catch(() => null));
-    }
-    const page = await pageCache.get(url);
-    if (page === null) return null;
+    const got = await getPage(url);
+    if (got === null) return null;
+    const page = got.sq;
     // Allow small wording differences: most of the quote's distinctive words must appear together
     if (page.includes(q)) return true;
     const words = q.split(' ').filter(w => w.length > 3);
@@ -98,9 +120,10 @@ async function quoteOnPage(url, quote) {
  * fields: { name: { instruction, compare: (a, b) => boolean } }
  * knownSources: official pages this scholarship's facts came from before (lib/sources.js sourcesFor), checked first
  * knownSecondary: platform / aggregator pages that list it (lib/sources.js secondaryFor), used only as leads
+ * title: the scholarship's name, so the evidence score can check the cited page is about it
  * Returns { facts: { name: { value, verdict, source, quote, alternatives } }, errors }
  */
-async function researchFacts({ subject, context = '', fields, knownSources = [], knownSecondary = [] }) {
+async function researchFacts({ subject, title = '', context = '', fields, knownSources = [], knownSecondary = [] }) {
     const names = Object.keys(fields);
     const known = knownSources.filter(Boolean).slice(0, 5);
     const startHere = known.length ? `
@@ -175,6 +198,16 @@ Provide ONLY the raw JSON object.`;
             alternatives: same ? [] : got.map(g => ({ value: g.value, source: clean(g.source_url), quote: clean(g.quote).slice(0, 300) })),
         };
     }
+    // Evidence score for each fact found (lib/evidence.js); it can also correct the verdict and site kind
+    for (const name of names) {
+        const fact = facts[name];
+        if (!fact || fact.verdict === 'none') continue;
+        const scored = await scoreEvidence({ fact, field: name, title, page: isSpecificSource(fact.source) ? await getPage(fact.source) : null });
+        fact.verdict = scored.verdict;
+        fact.tier = scored.tier;
+        if (scored.tier !== sourceTier(fact.source)) fact.reason = fact.reason || 'the page is not the provider\'s own site';
+        Object.assign(fact, { score: scored.score, band: scored.band, signals: scored.signals, jev: scored.jev });
+    }
     return { facts, errors, answered: answers.length };
 }
 
@@ -202,7 +235,7 @@ const compare = {
 
 // What the inbox stores with a proposal
 function evidenceFor(fact) {
-    return { verdict: fact.verdict, reason: fact.reason, tier: fact.tier, source: fact.source, quote: fact.quote, specificSource: fact.specificSource, officialSource: fact.officialSource, alternatives: fact.alternatives };
+    return { verdict: fact.verdict, reason: fact.reason, tier: fact.tier, score: fact.score, band: fact.band, signals: fact.signals, jev: fact.jev, source: fact.source, quote: fact.quote, specificSource: fact.specificSource, officialSource: fact.officialSource, alternatives: fact.alternatives };
 }
 
-module.exports = { researchFacts, compare, evidenceFor, isSpecificSource, isOfficialSource, MODEL };
+module.exports = { getPage, researchFacts, compare, evidenceFor, isSpecificSource, isOfficialSource, MODEL };
