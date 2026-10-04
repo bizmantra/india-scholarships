@@ -25,7 +25,7 @@ const sources = require('./lib/sources');
 const jev = require('./lib/jev');
 const { researchFacts, compare } = require('./lib/research');
 const { inspectPage } = require('./lib/source-check');
-const { isSecondaryTier } = require('./lib/source-tiers');
+const { isSecondaryTier, sourceTier } = require('./lib/source-tiers');
 
 const AGENT = 'source-backfill';
 const DB_PATH = process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
@@ -64,6 +64,22 @@ function savePage(db, row, page, facts) {
     return true;
 }
 
+// Remove saved pages that are not real sources (our own site, unresolved Google redirects, coaching sites)
+function purgeJunk(db) {
+    let removed = 0;
+    for (const column of ['source_pages', 'secondary_sources']) {
+        for (const row of db.prepare(`SELECT id, ${column} FROM scholarships WHERE ${column} IS NOT NULL AND ${column} <> ''`).all()) {
+            const pages = sources.readPages(row, column);
+            const keep = pages.filter(p => !['invalid', 'coaching'].includes(sourceTier(p.url)));
+            if (keep.length !== pages.length) {
+                removed += pages.length - keep.length;
+                if (!dryRun) db.prepare(`UPDATE scholarships SET ${column} = ? WHERE id = ?`).run(keep.length ? JSON.stringify(keep) : null, row.id);
+            }
+        }
+    }
+    if (removed) console.log(`🧹 Removed ${removed} saved page(s) that were not real sources (own site, redirect links or coaching sites)`);
+}
+
 async function stage1(db, rows, results) {
     console.log(`\n🔗 Stage 1: checking the links ${rows.length} scholarship(s) already have (Jev ${jev.enabled() ? 'on' : 'off'})`);
     let done = 0;
@@ -96,7 +112,7 @@ async function stage2(db, rows, results) {
                 context: 'The goal is to find the page that states how and when to apply. Prefer the provider or government page.',
                 fields: {
                     deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
-                    closed_notice: { instruction: '"one short sentence quoting an official notice that this scheme is closed, discontinued, or replaced by another scheme (say which), or empty if there is no such notice"', compare: compare.text },
+                    closed_notice: { instruction: '"one short sentence quoting an official notice that this scheme has been PERMANENTLY discontinued or replaced by another scheme (say which). Do NOT report that this year\'s applications are closed, not yet open, or past their deadline: that is normal. Empty if there is no such notice"', compare: compare.text },
                 },
                 knownSources: sources.sourcesFor(row),
                 knownSecondary: sources.secondaryFor(row),
@@ -106,10 +122,12 @@ async function stage2(db, rows, results) {
             const after = db.prepare('SELECT source_pages, secondary_sources FROM scholarships WHERE id = ?').get(row.id);
             const hasOfficial = sources.readPages(after).length > 0;
             const hasSecondary = sources.readPages(after, 'secondary_sources').length > 0;
-            const closed = found.facts.closed_notice?.value ? { note: found.facts.closed_notice.value, source: found.facts.closed_notice.source, verdict: found.facts.closed_notice.verdict, tier: found.facts.closed_notice.tier } : null;
+            // Only an official page, with agreeing answers, counts as a notice that the scheme has ended
+            const notice = found.facts.closed_notice;
+            const closed = notice?.value && notice.specificSource && ['official', 'provider'].includes(notice.tier) && ['verified', 'agreed'].includes(notice.verdict) ? { note: found.facts.closed_notice.value, source: found.facts.closed_notice.source, verdict: found.facts.closed_notice.verdict, tier: found.facts.closed_notice.tier } : null;
             results[row.slug] = {
                 ...results[row.slug], stage: 2, checked: today(),
-                status: closed && !hasOfficial ? 'ended-or-replaced' : hasOfficial ? 'found-official' : hasSecondary ? 'found-secondary' : 'not-found',
+                status: closed ? 'ended-or-replaced' : hasOfficial ? 'found-official' : hasSecondary ? 'found-secondary' : 'not-found',
                 ...(closed ? { closed } : {}),
             };
             console.log(`   → ${results[row.slug].status}${closed ? ` (closed notice: ${closed.note.slice(0, 80)})` : ''}`);
@@ -125,7 +143,7 @@ const GROUPS = {
     'found-official': 'An official or provider page is saved',
     'found-secondary': 'Only a platform or listing page is saved: the provider page is still unconfirmed',
     'ended-or-replaced': 'An official notice says it closed or was replaced: needs your decision',
-    'not-found': 'Nothing found even after research: possibly discontinued, renamed or never real; needs your decision',
+    'not-found': 'No readable page matching this scholarship was found. Government portals often block automated reading, so many of these are real: check by hand and decide',
     'links-dead': 'Existing links are dead or unreadable (not yet researched)',
     'not-matching': 'Existing links load but are not about this scholarship (not yet researched)',
     'home-only': 'Existing links are only home pages (not yet researched)',
@@ -158,6 +176,7 @@ async function run() {
     const db = new Database(DB_PATH);
     inbox.ensureAgentTables(db);
     sources.ensureColumn(db);
+    purgeJunk(db);
     const results = inbox.getState(db, AGENT, 'results', {});
     const clicks = Object.fromEntries(db.prepare('SELECT slug, clicks FROM gsc_traffic_cache').all().map(r => [r.slug, r.clicks]));
     const rows = db.prepare(`SELECT id, slug, title, provider, state, official_source, apply_url, source_pages, secondary_sources

@@ -9,6 +9,8 @@
  *   aggregator  explainer / listing sites: prove it exists and point to the official page, never a number on their own
  *   news        press coverage: a lead only
  *   coaching    coaching institutes and ed-tech: never a source
+ *   invalid     not a real source page: our own site (a citation of ourselves proves nothing), an unresolved
+ *               Google search redirect, or something that is not a web address
  */
 const COACHING = [
     'allen.ac.in', 'allen.in', 'fiitjee.com', 'aakash.ac.in', 'srichaitanya.net', 'pw.live', 'madeeasy.in', 'byjus.com',
@@ -18,6 +20,9 @@ const PLATFORMS = ['buddy4study.com', 'vidyasaarathi.co.in'];
 const AGGREGATORS = ['collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com', 'internshala.com', 'leverageedu.com'];
 const NEWS = ['indiatoday.in', 'timesofindia.indiatimes.com', 'hindustantimes.com', 'ndtv.com', 'news18.com', 'wikipedia.org', 'youtube.com'];
 
+// Our own site and Google's search redirects can never be a source
+const NOT_SOURCES = ['indiascholarships.in', 'vertexaisearch.cloud.google.com'];
+
 const onList = (host, list) => list.some(d => host === d || host.endsWith('.' + d));
 
 function hostOf(url) {
@@ -26,7 +31,7 @@ function hostOf(url) {
 
 function sourceTier(url) {
     const host = hostOf(url);
-    if (!host) return 'invalid';
+    if (!host || onList(host, NOT_SOURCES)) return 'invalid';
     if (onList(host, COACHING)) return 'coaching';
     if (onList(host, PLATFORMS)) return 'platform';
     if (onList(host, AGGREGATORS)) return 'aggregator';

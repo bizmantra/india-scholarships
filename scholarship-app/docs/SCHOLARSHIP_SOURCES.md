@@ -130,9 +130,12 @@ Each run continues where the last stopped (progress is remembered), and writes `
 |---|---|---|
 | found-official | An official or provider page is saved | Nothing |
 | found-secondary | Only a platform or listing page: provider page unconfirmed | Keep; a later run or the other agents may find the provider page |
-| ended-or-replaced | An official notice says it closed or was replaced | You decide: keep with a "no longer offered" note, or take down |
-| not-found | Nothing found even after research | You decide: possibly discontinued, renamed or never real |
+| ended-or-replaced | An official page says the scheme was **permanently** discontinued or replaced (a closed or not-yet-open application window does not count) | You decide: keep with a "no longer offered" note, or take down |
+| not-found | No readable page matching the scholarship was found. Government portals often block automated reading, so many of these are real schemes | Check by hand, then decide |
 | links-dead / not-matching / home-only / no-links | Existing links unusable, not yet researched | Run again; stage 2 picks them up |
 
 Run it: GitHub, Actions, **Source Backfill**, Run workflow, keep target **staging**. Repeat until the "not yet researched"
 groups are empty.
+
+**What never counts as a source:** our own site (a citation of ourselves proves nothing), unresolved Google search
+redirect links, and coaching sites. Each backfill run first removes any such pages already saved.
