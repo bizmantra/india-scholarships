@@ -35,6 +35,7 @@ async function researchDeadline(item) {
         subject: `the "${item.title}" scholarship by ${item.provider || 'its provider'}, 2026-27 application cycle`,
         context: DEADLINE_RULES,
         knownSources: sources.sourcesFor(item),
+        knownSecondary: sources.secondaryFor(item),
         fields: {
             deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
             deadline_description: { instruction: '"one short sentence about the current application window"', compare: compare.text },

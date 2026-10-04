@@ -291,7 +291,12 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
 const VERDICTS: Record<string, { label: string; className: string }> = {
     verified: { label: 'Verified: two answers agree, sentence found on the page', className: 'bg-emerald-500/10 text-cc-good' },
     agreed: { label: 'Two answers agree (sentence not confirmed on the page)', className: 'bg-blue-500/10 text-cc-link' },
+    secondary: { label: 'Two answers agree, but no official page (platform or listing site only)', className: 'bg-amber-500/10 text-cc-warn' },
     uncertain: { label: 'Uncertain', className: 'bg-amber-500/10 text-cc-warn' },
+};
+// What kind of site the source page is on (see scripts/lib/source-tiers.js)
+const TIER_LABELS: Record<string, string> = {
+    official: 'official site', provider: 'provider site', platform: 'application platform', aggregator: 'listing site', news: 'news site',
 };
 
 function EvidenceLine({ json, field }: { json: string | null; field: string | null }) {
@@ -311,7 +316,7 @@ function EvidenceLine({ json, field }: { json: string | null; field: string | nu
                         {host} <ExternalLink className="h-3 w-3" />
                     </a>
                 )}
-                {host && <span className={e.officialSource ? 'text-cc-good' : 'text-cc-warn'}>{e.officialSource ? 'official site' : 'other site'}</span>}
+                {host && <span className={e.officialSource ? 'text-cc-good' : 'text-cc-warn'}>{e.officialSource ? 'official site' : TIER_LABELS[e.tier] || 'other site'}</span>}
                 {e.specificSource === false && <span className="text-cc-warn">home page only</span>}
             </p>
             {e.quote && <p className="italic text-cc-text-2">"{e.quote}"</p>}

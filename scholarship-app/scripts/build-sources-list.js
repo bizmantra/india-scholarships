@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const { isSpecificSource } = require('./lib/research');
+const { sourceTier, isSecondaryTier } = require('./lib/source-tiers');
 const { readPages, loadRegistry, isNonOfficialSource, REGISTRY_PATH } = require('./lib/sources');
 
 const dryRun = process.argv.includes('--dry-run');
@@ -36,10 +37,12 @@ const manualHosts = new Set(manual.map(s => host(s.url)));
 const byHost = new Map();
 let noSpecific = 0;
 let noSource = 0;
+let secondaryOnly = 0;
 for (const r of rows) {
     const links = [...readPages(r).map(p => p.url), ...urls(r.official_source), ...urls(r.apply_url)];
     if (links.length === 0) noSource++;
     if (!links.some(u => isSpecificSource(u) && !isNonOfficialSource(u))) noSpecific++;
+    if (!links.some(u => !isNonOfficialSource(u)) && links.some(u => isSecondaryTier(sourceTier(u)))) secondaryOnly++;
     const h = host(urls(r.official_source)[0] || urls(r.apply_url)[0] || '');
     if (!h || isNonOfficialSource(`https://${h}`) || LINK_HOSTS.some(d => h === d || h.endsWith('.' + d))) continue;
     if (!byHost.has(h)) byHost.set(h, { providers: new Map(), states: new Set(), titles: [] });
@@ -64,11 +67,12 @@ const auto = [...byHost.entries()]
 
 registry.sources = [...manual, ...auto];
 registry.updated = new Date().toISOString().slice(0, 10);
-registry.coverage = { active_scholarships: rows.length, without_any_source: noSource, without_specific_source_page: noSpecific };
+registry.coverage = { active_scholarships: rows.length, without_any_source: noSource, without_specific_source_page: noSpecific, platform_or_listing_site_only: secondaryOnly };
 
 console.log(`Active scholarships: ${rows.length}`);
 console.log(`  no source link at all: ${noSource}`);
 console.log(`  only a home page, no specific source page: ${noSpecific - noSource}`);
+console.log(`  listed on a platform / listing site only (no official or provider link): ${secondaryOnly}`);
 console.log(`Sources list: ${manual.length} hand-written + ${auto.length} providers from the database`);
 if (!dryRun) {
     fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n');

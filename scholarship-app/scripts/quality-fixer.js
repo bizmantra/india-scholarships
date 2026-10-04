@@ -87,6 +87,7 @@ async function research(s, fields) {
     const found = await researchFacts({
         subject: `the "${s.title}" scholarship by ${s.provider || 'its provider'}${s.state ? ` (${s.state})` : ''}`,
         knownSources: sources.sourcesFor(s),
+        knownSecondary: sources.secondaryFor(s),
         context: s.always_open === 1 ? 'This scholarship is listed as open all year (rolling); confirm that in the deadline text if true.' : '',
         fields: spec,
     });
