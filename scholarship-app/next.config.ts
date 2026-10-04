@@ -126,6 +126,23 @@ const nextConfig: NextConfig = {
     }
 
     return [
+      // Old Study Abroad hostnames. Study Abroad now lives at www.indiascholarships.in/study-abroad.
+      // These only apply once the hostnames are attached to this Vercel project (until then they
+      // answer DEPLOYMENT_NOT_FOUND). They come first so they win over every other rule.
+      // The old sites had their pages at the root (/universities/..., /visas/...); the path is kept,
+      // and the root-level redirects in lib/study-abroad/redirects-root-paths.json finish the job.
+      {
+        source: '/',
+        has: [{ type: 'host', value: '(study|studyabroad)\\.indiascholarships\\.in' }],
+        destination: 'https://www.indiascholarships.in/study-abroad',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: '(study|studyabroad)\\.indiascholarships\\.in' }],
+        destination: 'https://www.indiascholarships.in/:path*',
+        permanent: true,
+      },
       // The chat was renamed Agent Center
       { source: '/admin/command', destination: '/admin/agents', permanent: false },
       // Retired admin pages (replaced by the Agent Center, the Morning Briefing and the Indexing agent)
