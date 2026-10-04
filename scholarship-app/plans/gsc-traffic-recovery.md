@@ -128,17 +128,32 @@ I checked a live sample of the URLs in every list to separate "still broken toda
 | Group | ~Count | Cause | Proposed fix |
 |---|---|---|---|
 | Old Study Abroad paths at the site root: `/universities/…`, `/visas/…`, `/loans/…`, `/tools/…`, `/study-in/…`, plus a few on `study.indiascholarships.in` | 55 | None of these are in `lib/study-abroad/redirects.json` (0 of 55) | Add redirects to the matching `/study-abroad/...` page where one exists, else the nearest hub. **Belongs to the Study Abroad track; hand over, don't do on this branch** |
-| `/scholarships-in/:state/:category` (e.g. `/scholarships-in/gujarat/pwd`) | 12 | Old state × category pages, no redirect | Redirect to `/scholarships-in/:state` |
+| `/scholarships-in/:state/:category` (e.g. `/scholarships-in/gujarat/pwd`) | 12 | **Code bug, not a missing redirect.** The page is meant to redirect empty combinations to the state hub, but a `try/catch` swallowed the redirect and returned a 404 | **Fixed on `fix/legacy-404-redirects`** |
 | `/scholarships-level/…`, `/scholarships-by-category/…`, `/scholarships-by-education/…`, `/scholarships-by-income/…` | ~16 | Old taxonomy URLs. The `/scholarships-level` ones redirect with a **temporary 307** | Make them permanent and point to the nearest current hub |
 | `/scholarships/<old-slug>` (e.g. `daad-scholarships-germany-master-phd`, `daad-research-grants-for-doctoral-candidates-3`, `jn-tata-endowment-loan-scholarship`) | 11 | Old scholarship slugs with no redirect | Add to the slug redirect list in `next.config.ts` (needs a title match per slug) |
-| `/scholarships/<slug>/<sentence of text>` | 4 | **Data bug.** 4 scholarships have a sentence typed in `apply_url` instead of a link, so the page prints a relative link and Google crawls junk URLs. Affected: `punjab-attendance-scholarship-for-sc-girls`, `australian-government-research-training-program-rtp-scholarships`, `destination-australia-scholarship`, `ontario-graduate-scholarship` | Fix the 4 records through the normal data pipeline (move the text to the "how to apply" field, set `apply_url` to the real link), and make `sanitizeApplyUrl` reject non-URLs |
+| `/scholarships/<slug>/<sentence of text>` | 4 | Old junk links. I first blamed 4 bad database records, which was wrong: the 4 scholarships these URLs came from (`holland-scholarship`, `commonwealth-masters-scholarships`, `sikshashree-scholarship-scheme-west-bengal`, `chief-minister-higher-education-scholarship-rajasthan`) now have clean links, so the data was already corrected | **No action** |
+| (separate real bug found) | 4 pages | 4 other scholarships (`punjab-attendance-scholarship-for-sc-girls`, `australian-government-research-training-program-rtp-scholarships`, `destination-australia-scholarship`, `ontario-graduate-scholarship`) have a sentence in `apply_url`. The page used that field first and hid the valid `official_source`, so they had no Apply button | **Fixed in code, no database edit** (try each field in turn). Verified: each page now has its Apply link |
 
 ### Other findings
 
 - **Redirect chains:** old locale subpage URLs take two hops (`/kn/scholarships/x/documents-required` → `/scholarships/x/documents-required` → `/scholarships/x#documents-required`). Works, but wasteful. Tidy after the Oct 19 checkpoint, not before.
 - Recommended order, given the "no structural change" freeze: (1) the NSP sitemap + redirect fix (done), (2) the 4 data records, (3) the redirects for the 12 + 16 + 11 URLs (they only touch URLs that currently 404, so they can't hurt indexed pages), (4) the Study Abroad redirects via that track.
 
-### Done so far (not pushed, no PR yet)
+### Not exported/handled, and why
 
-- Branch `fix/sitemap-nsp-redirects`: 2 commits. (a) removes the 5 redirecting NSP guide URLs from `app/sitemap.ts`; (b) points `/guides/nsp/*` and `/guides/national-scholarship-portal-nsp/*` at the NSP guide itself (the old target subpages do not exist and returned 404). TypeScript passes. Lint still reports 6 existing `no-explicit-any` errors on lines this change did not touch.
-- Branch `docs/gsc-traffic-recovery-plan`: this plan.
+- **5xx (66 rows):** all crawled in early July; all 67 now answer with a clean redirect. Fixed already. No action.
+- **Soft 404 (28 rows):** all `/scholarships-for/<level>/in/<country>` pages (2–6 scholarships each) plus `/scholarships-for/{phd,mba,masters,undergraduate}` and `/scholarships-for/in/<country>`. These are thin pages, so they belong to the Phase 3 audit (enrich, merge or noindex). **Deliberately not changed during the freeze.**
+- **Left as is:** `/scholarships/reliance-foundation-phd-scholarship` (no PhD page exists; no honest match), the Study Abroad `.md` file URL, CSS file URLs, and the 3 `study.indiascholarships.in` URLs (that hostname has to be attached to the project in Vercel for any redirect to apply; check the domain settings).
+
+### Done so far (3 code branches + this plan; nothing pushed, no PRs yet)
+
+All branched from `origin/main`. Each was type-checked; redirects and page changes were also tested on a local server.
+
+| Branch | What it does | Tested |
+|---|---|---|
+| `fix/sitemap-nsp-redirects` (2 commits) | Removes 5 redirecting NSP guide URLs from the sitemap; points old NSP subpage URLs at the guide instead of at 404s | All 852 sitemap URLs were 200 apart from these 5 |
+| `fix/legacy-404-redirects` (3 commits) | 7 old scholarship slugs and 11 old category/education/income/level URLs now redirect; catch-all for impossible `/scholarships-level/a/b` paths; empty state×category pages redirect to the state hub instead of 404; unknown level/state redirects are now permanent (were 307); All-India scholarship pages link straight to `/state-scholarships`; Apply button kept when `apply_url` holds text | 25/25 checks on a local server; Apply link verified on the 4 pages |
+| `fix/study-abroad-legacy-redirects` (1 commit) | 50 old root-level Study Abroad URLs (`/universities/…`, `/visas/…`, `/loans/…`, `/study-in/…`, a few old `/study-abroad/…`) redirect to the right new page. Uses a new hand-maintained file; the generated `redirects.json` is untouched | 50/50 exact; all destinations return 200 |
+| `docs/gsc-traffic-recovery-plan` | This plan | n/a |
+
+Merge conflicts: the three code branches each add lines to `next.config.ts` in different places; expect at most a trivial conflict when merging the second and third.
