@@ -251,12 +251,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/guides/nsp/:subpage*',
-        destination: '/guides/nsp-national-scholarship-portal-guide/:subpage*',
+        destination: '/guides/nsp-national-scholarship-portal-guide',
         permanent: true,
       },
       {
         source: '/guides/national-scholarship-portal-nsp/:subpage*',
-        destination: '/guides/nsp-national-scholarship-portal-guide/:subpage*',
+        destination: '/guides/nsp-national-scholarship-portal-guide',
         permanent: true,
       },
       // 2. Legacy State Route Pattern
