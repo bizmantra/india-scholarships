@@ -26,6 +26,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# MCP connection files hold access tokens (never commit)
+.mcp.json
+.claude/settings.local.json
+
 # Vercel
 .vercel
 
