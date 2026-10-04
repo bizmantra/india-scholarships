@@ -4,6 +4,8 @@
  * `request_id` input). Its runs, proposals and activity then show up in the command center.
  */
 
+import type { TeamId } from './teams';
+
 export interface AgentDefinition {
     id: string;                 // matches `agent` in agent_proposals / agent_events / agent_settings
     label: string;
@@ -12,6 +14,7 @@ export interface AgentDefinition {
     schedule: string;
     humanToday: string;         // what a person would have to do without the agent
     gated: boolean;             // true = its changes wait for the owner's approval
+    team?: TeamId;              // which team's page it appears on; absent = no team (e.g. the morning briefing)
     acceptsState?: boolean;     // workflow has a `state` input
     order: number;
     dependsOn?: string[];
@@ -26,6 +29,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 7:00 AM IST',
         humanToday: 'Open each official portal, find the current last date and compare it with the site.',
         gated: true,
+        team: 'data-accuracy',
         order: 1,
     },
     {
@@ -36,6 +40,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Sunday, 9:00 AM IST',
         humanToday: 'Re-read each scheme\'s official notice and compare the amounts and links with the site.',
         gated: true,
+        team: 'data-accuracy',
         order: 2,
         dependsOn: ['traffic-watchdog'],
     },
@@ -47,6 +52,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Sunday, 5:30 AM IST',
         humanToday: 'Download Search Console data and run the audit by hand.',
         gated: false,
+        team: 'data-accuracy',
         order: 2,
     },
     {
@@ -57,6 +63,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Wednesday, 8:45 AM IST',
         humanToday: 'Search portals, news and competitor sites for new schemes and research each one.',
         gated: true,
+        team: 'content-research',
         acceptsState: true,
         order: 3,
     },
@@ -68,6 +75,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 10:00 AM IST, and after approvals',
         humanToday: 'Copy each approved scholarship into the database, check its format and post it.',
         gated: false,
+        team: 'content-creation',
         order: 4,
         dependsOn: ['scholarship-scout'],
     },
@@ -79,6 +87,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Saturday, 9:00 AM IST',
         humanToday: 'Open the audit report, research each incomplete page on official sites and edit it by hand.',
         gated: true,
+        team: 'data-accuracy',
         order: 5,
     },
     {
@@ -89,6 +98,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 7:30 AM IST',
         humanToday: 'Open Search Console and Analytics every day and compare weeks by hand.',
         gated: false,
+        team: 'traffic',
         order: 6,
     },
     {
@@ -99,6 +109,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 9:00 PM IST',
         humanToday: 'Submit changed pages in Bing and Search Console and inspect pages one by one.',
         gated: false,
+        team: 'traffic',
         order: 7,
     },
     {
@@ -119,9 +130,12 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily',
         humanToday: 'Export the database by hand.',
         gated: false,
+        team: 'data-accuracy',
         order: 9,
     },
 ];
 
+export const teamOf = (agentId: string): TeamId | undefined => agentById(agentId)?.team;
+export const agentsOfTeam = (team: string) => AGENTS.filter(a => a.team === team);
 export const agentById = (id: string) => AGENTS.find(a => a.id === id);
 export const agentLabel = (id: string) => agentById(id)?.label || (id === 'command-center' ? 'Agent Center' : id);
