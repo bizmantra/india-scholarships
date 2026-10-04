@@ -97,6 +97,7 @@ export const getScholarshipsForCountry = (country: CountrySlug, limit = 100) =>
         `SELECT id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at
          FROM scholarships
          WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?
+           AND (always_open = 1 OR deadline IS NULL OR deadline NOT GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*' OR deadline >= date('now'))
          ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, limit]);
 
 export function parseJson<T>(value: string | null | undefined, fallback: T): T {
