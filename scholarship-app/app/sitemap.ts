@@ -5,9 +5,10 @@ import {
     getAllCategories,
     getIncomeRanges,
     getMajorCourses,
-    getScholarshipsByState
+    getScholarshipsByState,
+    getScholarshipsByLevelAndCountry
 } from '@/lib/db';
-import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS, MIN_INDEXABLE_HUB_RESULTS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
@@ -175,6 +176,9 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const targetCountries = ['usa', 'uk', 'canada', 'australia', 'germany', 'europe', 'japan', 'singapore'];
         for (const lvl of targetLevels) {
             for (const cnt of targetCountries) {
+                // Thin hubs are noindex and empty ones 404, so only list hubs worth indexing.
+                const found = await getScholarshipsByLevelAndCountry(lvl, cnt);
+                if (found.length < MIN_INDEXABLE_HUB_RESULTS) continue;
                 routes.push({
                     url: `${baseUrl}/scholarships-for/${lvl}/in/${cnt}`,
                     lastModified: new Date(),
