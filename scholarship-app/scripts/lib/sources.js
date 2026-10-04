@@ -133,4 +133,4 @@ function loadRegistry() {
     }
 }
 
-module.exports = { isNonOfficialSource, ensureColumn, sourcesFor, secondaryFor, remember, readPages, loadRegistry, REGISTRY_PATH };
+module.exports = { splitUrls, isNonOfficialSource, ensureColumn, sourcesFor, secondaryFor, remember, readPages, loadRegistry, REGISTRY_PATH };
