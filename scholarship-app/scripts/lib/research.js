@@ -6,9 +6,11 @@
  * looked up on the cited page. Each fact comes back with a verdict the owner sees on the inbox card:
  *   'verified'   both answers agree and the quote was found on the cited page
  *   'agreed'     both answers agree, but the quote could not be confirmed (page unreachable or text differs)
+ *   'secondary'  both answers agree, but the page is an application platform, aggregator or news site, not an official page
  *   'uncertain'  the answers differ (both are kept), or only one answer has a value (see reason)
  *   'none'       neither answer found a value (nothing is proposed)
  */
+const { sourceTier, isSecondaryTier, TIER_RANK } = require('./source-tiers');
 const RUNS = 2;
 const MODEL = process.env.RESEARCH_MODEL || 'gemini-2.5-flash';
 
@@ -94,10 +96,11 @@ async function quoteOnPage(url, quote) {
 
 /**
  * fields: { name: { instruction, compare: (a, b) => boolean } }
- * knownSources: pages this scholarship's facts came from before (lib/sources.js sourcesFor), checked first
+ * knownSources: official pages this scholarship's facts came from before (lib/sources.js sourcesFor), checked first
+ * knownSecondary: platform / aggregator pages that list it (lib/sources.js secondaryFor), used only as leads
  * Returns { facts: { name: { value, verdict, source, quote, alternatives } }, errors }
  */
-async function researchFacts({ subject, context = '', fields, knownSources = [] }) {
+async function researchFacts({ subject, context = '', fields, knownSources = [], knownSecondary = [] }) {
     const names = Object.keys(fields);
     const known = knownSources.filter(Boolean).slice(0, 5);
     const startHere = known.length ? `
@@ -106,9 +109,17 @@ ${known.map(u => `- ${u}`).join('\n')}
 Use what they state if it is for the current cycle. Search more widely only if a page is gone, is for an older
 cycle, or does not state the fact; then cite the newer page you found instead.
 ` : '';
+    const lead = knownSecondary.filter(Boolean).slice(0, 3);
+    const leads = lead.length ? `
+THESE SITES LIST THIS SCHOLARSHIP. Use them to find the official page it points to, and only as a fallback source:
+${lead.map(u => `- ${u}`).join('\n')}
+` : '';
     const prompt = `Research ${subject} for Indian students.
-${startHere}Use Google Search and rely ONLY on official sources: government portals (.gov.in / .nic.in), official notices or guideline PDFs,
-or the provider's own website. Never use aggregator, news or coaching sites. Never guess.
+${startHere}${leads}Use Google Search. Prefer official sources: government portals (.gov.in / .nic.in), official notices or guideline PDFs,
+or the provider's own website.
+If no official page states a fact, you may cite an application platform (Buddy4Study, Vidyasaarathi) or a scholarship
+listing site, with that page's own address as the source, and look for the official page it refers to. A page that only
+mentions the scholarship in passing does not count. Never use coaching-institute or ed-tech sites. Never guess.
 ${context}
 For EACH fact give:
 - "value": the fact (use "" when no official source states it)
@@ -124,7 +135,7 @@ Provide ONLY the raw JSON object.`;
     const answers = [];
     const errors = [];
     for (let i = 0; i < RUNS; i++) {
-        try { answers.push(await askWithRetry(prompt, { readPages: known.length > 0 })); } catch (e) { errors.push(e.message.slice(0, 160)); }
+        try { answers.push(await askWithRetry(prompt, { readPages: known.length + lead.length > 0 })); } catch (e) { errors.push(e.message.slice(0, 160)); }
         if (i < RUNS - 1) await new Promise(r => setTimeout(r, 3000));
     }
 
@@ -135,19 +146,28 @@ Provide ONLY the raw JSON object.`;
         if (got.length === 0) { facts[name] = { value: '', verdict: 'none' }; continue; }
         const [a, b] = got;
         const same = got.length === RUNS && (fields[name].compare || ((x, y) => squash(x) === squash(y)))(a.value, b.value);
-        // Prefer the answer whose quote checks out on a specific page
-        let best = a;
+        // The more trustworthy page wins when the two answers cite different sites
+        got.sort((x, y) => TIER_RANK[sourceTier(clean(x.source_url))] - TIER_RANK[sourceTier(clean(y.source_url))]);
+        // Prefer the answer whose quote checks out on a specific page, among answers from equally trusted sites
+        let best = got[0];
         let verified = null;
-        for (const cand of got) {
+        for (const cand of got.filter(c => sourceTier(clean(c.source_url)) === sourceTier(clean(got[0].source_url)))) {
             const ok = await quoteOnPage(clean(cand.source_url), clean(cand.quote));
             if (ok) { best = cand; verified = true; break; }
             if (verified === null) verified = ok;
         }
+        const tier = sourceTier(clean(best.source_url));
+        // Coaching sites are never a source; platform / aggregator / news pages can only ever reach 'secondary'
+        let verdict = same ? (verified ? 'verified' : 'agreed') : 'uncertain';
+        let reason = same ? '' : got.length < RUNS ? 'only one of two answers found it' : 'the two answers differ';
+        if (tier === 'coaching' || tier === 'invalid') { verdict = 'uncertain'; reason = tier === 'coaching' ? 'cited a coaching site' : 'no usable source page'; }
+        else if (same && isSecondaryTier(tier)) verdict = 'secondary';
         facts[name] = {
             value: best.value,
-            verdict: same ? (verified ? 'verified' : 'agreed') : 'uncertain',
-            // Why it is uncertain: the two answers differ, or only one of them found a value
-            reason: same ? '' : got.length < RUNS ? 'only one of two answers found it' : 'the two answers differ',
+            verdict,
+            reason,
+            tier,
+            quoteFound: verified === true,
             source: clean(best.source_url),
             quote: clean(best.quote).slice(0, 400),
             specificSource: isSpecificSource(clean(best.source_url)),
@@ -182,7 +202,7 @@ const compare = {
 
 // What the inbox stores with a proposal
 function evidenceFor(fact) {
-    return { verdict: fact.verdict, reason: fact.reason, source: fact.source, quote: fact.quote, specificSource: fact.specificSource, officialSource: fact.officialSource, alternatives: fact.alternatives };
+    return { verdict: fact.verdict, reason: fact.reason, tier: fact.tier, source: fact.source, quote: fact.quote, specificSource: fact.specificSource, officialSource: fact.officialSource, alternatives: fact.alternatives };
 }
 
 module.exports = { researchFacts, compare, evidenceFor, isSpecificSource, isOfficialSource, MODEL };

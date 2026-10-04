@@ -3,8 +3,11 @@
  *
  * scholarships.source_pages (JSON list, newest first) holds the specific pages an agent confirmed facts on:
  *   [{ "url": "...", "facts": ["deadline", "amount_min"], "confirmed": "YYYY-MM-DD" }]
- * It is internal (never shown on the site) and is updated by the agents themselves whenever research
- * confirms a fact on a specific page, so the list keeps itself current as a side effect of normal checks.
+ * scholarships.secondary_sources is the same shape plus a tier, for pages on application platforms, aggregators
+ * and news sites (see source-tiers.js). They prove a scholarship exists and lead to the official page, but are
+ * never the final word on a number.
+ * Both are internal (never shown on the site) and are updated by the agents themselves whenever research
+ * confirms a fact on a specific page, so the lists keep themselves current as a side effect of normal checks.
  *
  * data/scholarship-sources.json is the list of portals and providers checked first when looking for
  * new scholarships (see docs/SCHOLARSHIP_SOURCES.md).
@@ -12,38 +15,28 @@
 const fs = require('fs');
 const path = require('path');
 const { isSpecificSource } = require('./research');
+const { sourceTier, isSecondaryTier, hostOf } = require('./source-tiers');
 
 const MAX_PAGES = 8;
 const MAX_HINTS = 5;
 const REGISTRY_PATH = path.join(__dirname, '..', '..', 'data', 'scholarship-sources.json');
 
-// Aggregator, news and coaching sites: never a source, even when they state the fact (also used by the scout)
-const NON_OFFICIAL_DOMAINS = [
-    'buddy4study.com', 'collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com',
-    'indiatoday.in', 'timesofindia.indiatimes.com', 'hindustantimes.com', 'ndtv.com', 'news18.com', 'wikipedia.org', 'youtube.com',
-    'allen.ac.in', 'allen.in', 'fiitjee.com', 'aakash.ac.in', 'srichaitanya.net', 'pw.live', 'madeeasy.in', 'byjus.com',
-    'unacademy.com', 'vedantu.com', 'alsias.net',
-];
-function isNonOfficialSource(url) {
-    try {
-        const host = new URL(url).hostname.replace(/^www\./, '');
-        return NON_OFFICIAL_DOMAINS.some(d => host === d || host.endsWith('.' + d));
-    } catch {
-        return true;
-    }
-}
+// Anything that is not an official or provider page (platforms, aggregators, news, coaching)
+const isNonOfficialSource = url => !['official', 'provider'].includes(sourceTier(url));
 
 const clean = v => (v === null || v === undefined ? '' : String(v).trim());
 const today = () => new Date().toISOString().slice(0, 10);
 
 function ensureColumn(db) {
     const cols = db.prepare(`PRAGMA table_info(scholarships)`).all().map(c => c.name);
-    if (!cols.includes('source_pages')) db.exec(`ALTER TABLE scholarships ADD COLUMN source_pages TEXT`);
+    for (const col of ['source_pages', 'secondary_sources']) {
+        if (!cols.includes(col)) db.exec(`ALTER TABLE scholarships ADD COLUMN ${col} TEXT`);
+    }
 }
 
-function readPages(row) {
+function readPages(row, column = 'source_pages') {
     try {
-        const list = JSON.parse(row?.source_pages || '[]');
+        const list = JSON.parse(row?.[column] || '[]');
         return Array.isArray(list) ? list.filter(p => p && clean(p.url)) : [];
     } catch {
         return [];
@@ -75,32 +68,61 @@ function sourcesFor(row) {
 }
 
 /**
+ * Platform / aggregator / news pages that list this scholarship: saved ones, plus any such site already in its
+ * official source or apply link. Leads for finding the official page; never the final word on a number.
+ */
+function secondaryFor(row) {
+    const urls = [
+        ...readPages(row, 'secondary_sources').map(p => clean(p.url)),
+        ...splitUrls(row?.official_source), ...splitUrls(row?.apply_url),
+    ].filter(u => isSecondaryTier(sourceTier(u)));
+    return [...new Set(urls)].slice(0, MAX_HINTS);
+}
+
+/**
  * Save the pages research confirmed facts on (facts from lib/research.js researchFacts).
- * Only specific official pages whose answers agreed are kept: an uncertain answer, a home page or an
- * aggregator / news site is not a source.
+ * Official / provider pages go to source_pages, and need both answers to agree on a specific page.
+ * Platform, aggregator and news pages go to secondary_sources (verdict 'secondary'), tagged with their tier.
+ * Uncertain answers, home pages and coaching sites are never saved.
  * Returns the number of pages added or refreshed.
  */
 function remember(db, scholarshipId, facts, { dryRun = false } = {}) {
-    const found = new Map();
-    for (const [field, fact] of Object.entries(facts || {})) {
-        if (!fact || !['verified', 'agreed'].includes(fact.verdict) || !fact.specificSource || isNonOfficialSource(fact.source)) continue;
+    const primary = new Map();
+    const secondary = new Map();
+    for (const fact of Object.values(facts || {})) {
+        if (!fact || !fact.specificSource) continue;
         const url = clean(fact.source);
-        if (!found.has(url)) found.set(url, new Set());
-        found.get(url).add(field);
+        const tier = sourceTier(url);
+        const bucket = isSecondaryTier(tier) && fact.verdict === 'secondary' ? secondary
+            : ['official', 'provider'].includes(tier) && ['verified', 'agreed'].includes(fact.verdict) ? primary : null;
+        if (!bucket) continue;
+        if (!bucket.has(url)) bucket.set(url, new Set());
     }
-    if (found.size === 0 || dryRun) return found.size;
+    for (const [field, fact] of Object.entries(facts || {})) {
+        const url = clean(fact?.source);
+        (primary.get(url) || secondary.get(url))?.add(field);
+    }
+    const total = primary.size + secondary.size;
+    if (total === 0 || dryRun) return total;
 
-    const row = db.prepare(`SELECT source_pages FROM scholarships WHERE id = ?`).get(scholarshipId);
-    const pages = readPages(row);
-    const fresh = [];
-    for (const [url, fields] of found) {
-        const old = pages.find(p => clean(p.url) === url);
-        fresh.push({ url, facts: [...new Set([...(old?.facts || []), ...fields])], confirmed: today() });
-    }
-    const rest = pages.filter(p => !found.has(clean(p.url)));
-    const next = [...fresh, ...rest].slice(0, MAX_PAGES);
-    db.prepare(`UPDATE scholarships SET source_pages = ? WHERE id = ?`).run(JSON.stringify(next), scholarshipId);
-    return found.size;
+    const row = db.prepare(`SELECT source_pages, secondary_sources, apply_url FROM scholarships WHERE id = ?`).get(scholarshipId);
+    const save = (column, found, describe) => {
+        if (found.size === 0) return;
+        const pages = readPages(row, column);
+        const fresh = [...found].map(([url, fields]) => {
+            const old = pages.find(p => clean(p.url) === url);
+            return { url, ...describe(url), facts: [...new Set([...(old?.facts || []), ...fields])], confirmed: today() };
+        });
+        const rest = pages.filter(p => !found.has(clean(p.url)));
+        db.prepare(`UPDATE scholarships SET ${column} = ? WHERE id = ?`).run(JSON.stringify([...fresh, ...rest].slice(0, MAX_PAGES)), scholarshipId);
+    };
+    save('source_pages', primary, () => ({}));
+    // role: "apply" when this is the site students apply on, otherwise "info"
+    save('secondary_sources', secondary, url => ({
+        tier: sourceTier(url),
+        role: hostOf(url) && splitUrls(row?.apply_url).some(u => hostOf(u) === hostOf(url)) ? 'apply' : 'info',
+    }));
+    return total;
 }
 
 function loadRegistry() {
@@ -111,4 +133,4 @@ function loadRegistry() {
     }
 }
 
-module.exports = { isNonOfficialSource, NON_OFFICIAL_DOMAINS, ensureColumn, sourcesFor, remember, readPages, loadRegistry, REGISTRY_PATH };
+module.exports = { isNonOfficialSource, ensureColumn, sourcesFor, secondaryFor, remember, readPages, loadRegistry, REGISTRY_PATH };
