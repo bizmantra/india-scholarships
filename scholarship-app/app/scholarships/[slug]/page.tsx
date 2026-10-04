@@ -243,8 +243,10 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         notFound();
     }
 
-    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
-    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
+    // Try each field in turn: a few records have a sentence in apply_url, which must not
+    // hide a valid official_source (that left those pages without an Apply button).
+    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url) || sanitizeApplyUrl(scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source) || sanitizeApplyUrl(scholarship.apply_url);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 5);
     const siblingVariants = await getSiblingVariants(scholarship.id, scholarship.slug, scholarship.title);
@@ -803,7 +805,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     For {Array.isArray(scholarship.level) ? scholarship.level[0] : (String(scholarship.level || '').split(',')[0] || 'Students')}
                                     <ChevronRight className="h-4 w-4 text-gray-400" />
                                 </Link>
-                                <Link href={`/scholarships-in/${scholarship.state ? slugify(scholarship.state) : 'all-india'}`} className="flex items-center justify-between py-3 border-b border-gray-100 font-semibold text-google-blue hover:underline text-sm transition-colors">
+                                <Link href={scholarship.state && slugify(scholarship.state) !== 'all-india' ? `/scholarships-in/${slugify(scholarship.state)}` : '/state-scholarships'} className="flex items-center justify-between py-3 border-b border-gray-100 font-semibold text-google-blue hover:underline text-sm transition-colors">
                                     In {scholarship.state || 'All India'}
                                     <ChevronRight className="h-4 w-4 text-gray-400" />
                                 </Link>

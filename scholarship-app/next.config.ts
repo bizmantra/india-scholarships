@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
       { from: 'legacy-government-of-india-post-matric-scholarship-via-mahadbt', to: 'mahadbt-post-matric-scholarship-maharashtra' },
       { from: 'legacy-moovalur-ramamirtham-ammaiyar-higher-education-assurance-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
       { from: 'legacy-pudhumai-penn-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
+      // Oct 2026 GSC 404 clean-up: old slugs that still had no redirect
+      { from: 'daad-research-grants-for-doctoral-candidates-3', to: 'daad-research-grants-for-doctoral-candidates' },
+      { from: 'daad-scholarships-germany-master-phd', to: 'daad-scholarships-for-masters-and-phd-studies-in-germany-for-indian-students' },
+      { from: 'jn-tata-endowment-loan-scholarship', to: 'jn-tata-endowment-for-higher-education' },
+      { from: 'pmss-for-capfs-and-assam-rifles', to: 'pmss-capf-assam-rifles' },
+      { from: 'karnataka-epass-obc-post-matric-scholarship', to: 'post-matric-scholarship-for-obc-students-karnataka' },
+      { from: 'central-sector-scheme-of-scholarship', to: 'central-sector-scheme-of-scholarship-for-college-and-university-students' },
+      { from: 'jharkhand-post-matric-bc-scholarship', to: 'jharkhand-e-kalyan-post-matric-scholarship' },
       { from: 'legacy-sanchi-honnamma-scholarship', to: 'sanchi-honnamma-scholarship-karnataka' },
       { from: 'post-matric-scholarship-adi-dravidar-tribal-welfare-dept', to: 'pre-matric-scholarship-adi-dravidar-tribal-welfare-dept' },
       { from: 'narotam-sekhsaria-foundation-scholarship', to: 'narotam-sekhsaria-postgraduate-scholarship' },
@@ -336,6 +344,21 @@ const nextConfig: NextConfig = {
         destination: '/government-scholarships',
         permanent: true,
       },
+      // Oct 2026 GSC 404 clean-up: old taxonomy URLs (all destinations checked to return 200)
+      { source: '/scholarships-by-category/obc', destination: '/scholarships-for/obc', permanent: true },
+      { source: '/scholarships-by-category/sc', destination: '/scholarships-for/sc', permanent: true },
+      { source: '/scholarships-by-category/girls', destination: '/scholarships-for/girls', permanent: true },
+      { source: '/scholarships-by-category/minority', destination: '/scholarships-for/minority', permanent: true },
+      { source: '/scholarships-by-education/btech', destination: '/scholarships-by-course/engineering', permanent: true },
+      { source: '/scholarships-by-education/mbbs', destination: '/scholarships-by-course/medical', permanent: true },
+      { source: '/scholarships-by-education/diploma', destination: '/scholarships-level/diploma-polytechnic', permanent: true },
+      { source: '/scholarships-by-income/under-2-lakh', destination: '/scholarships-by-income', permanent: true },
+      { source: '/central government-scholarships', destination: '/government-scholarships', permanent: true },
+      { source: '/central%20government-scholarships', destination: '/government-scholarships', permanent: true },
+      { source: '/scholarships-in', destination: '/state-scholarships', permanent: true },
+      // Any /scholarships-level/ URL with more than one segment can never be a real page (the only
+      // route is /scholarships-level/[level]); these came from level text containing "/" characters.
+      { source: '/scholarships-level/:level/:rest+', destination: '/scholarships-by-education', permanent: true },
       // GSC 404 Legacy Redirects
       {
         source: '/scholarships-level/diploma/polytechnic,-iti/itc',
