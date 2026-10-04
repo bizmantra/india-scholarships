@@ -57,6 +57,9 @@ const nextConfig: NextConfig = {
     ];
 
     const stateMappings = [
+      // UP post/pre-matric schemes are split into general-sc-st / obc / minority pages, so there is no single page to point at
+      { from: 'up-pre-matric-scholarship', to: 'uttar-pradesh' },
+      { from: 'up-post-matric-intermediate-scholarship', to: 'uttar-pradesh' },
       { from: 'legacy-post-matric-tuition-fee-examination-fee-freeship', to: 'maharashtra' },
       { from: 'mp-taas-post-matric-scholarship-scstobc', to: 'madhya-pradesh' },
       { from: 'rajasthan-post-matric-scholarship-scst', to: 'rajasthan' },
@@ -268,6 +271,11 @@ const nextConfig: NextConfig = {
       {
         source: '/guides/national-scholarship-portal-nsp/:subpage*',
         destination: '/guides/nsp-national-scholarship-portal-guide',
+        permanent: true,
+      },
+      {
+        source: '/guides/pfms/:subpage*',
+        destination: '/guides/pfms-scholarship-payment-status-tracking-guide',
         permanent: true,
       },
       // 2. Legacy State Route Pattern
