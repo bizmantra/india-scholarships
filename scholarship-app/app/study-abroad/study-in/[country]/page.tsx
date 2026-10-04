@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
+import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
 import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import ListingShell, { ListingSection, type Stat } from '../../_components/ListingShell';
@@ -10,7 +10,7 @@ import { STAGES, stageOf } from '../../_components/stages';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
-export function generateStaticParams() { return Object.keys(COUNTRIES).map(country => ({ country })); }
+export function generateStaticParams() { return LAUNCHED_COUNTRIES.map(country => ({ country })); }
 
 // The numbers a family asks first, read from sa_facts
 const KEY_FACTS: Record<string, { key: string; tone: Stat['tone']; note: string }[]> = {

@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { COUNTRIES, isCountry, getScholarshipsForCountry } from '@/lib/study-abroad/data';
+import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, getScholarshipsForCountry } from '@/lib/study-abroad/data';
 import { SITE, pageTitle } from "@/lib/study-abroad/content";
 import ScholarshipCard from "@/app/components/ScholarshipCard";
 import ListingShell, { ListingSection } from '../../../_components/ListingShell';
@@ -8,7 +8,7 @@ import { CardGrid } from '../../../_components/SACard';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
-export function generateStaticParams() { return Object.keys(COUNTRIES).map(country => ({ country })); }
+export function generateStaticParams() { return LAUNCHED_COUNTRIES.map(country => ({ country })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ country: string }> }): Promise<Metadata> {
     const { country } = await params;
