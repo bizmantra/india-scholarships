@@ -30,13 +30,14 @@ function isOfficialSource(url) {
     try { return /(^|\.)(gov\.in|nic\.in)$/.test(new URL(url).host.toLowerCase()); } catch { return false; }
 }
 
-async function askOnce(prompt) {
+async function askOnce(prompt, { readPages = false } = {}) {
     const key = process.env.GEMINI_API_KEY;
     if (!key) throw new Error('GEMINI_API_KEY is not set');
     const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: [{ googleSearch: {} }] }),
+        // urlContext lets the model open the known source pages directly, alongside Google Search
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], tools: readPages ? [{ urlContext: {} }, { googleSearch: {} }] : [{ googleSearch: {} }] }),
         signal: AbortSignal.timeout(120000),
     });
     if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 160)}`);
@@ -49,12 +50,12 @@ async function askOnce(prompt) {
 }
 
 // One retry for the empty / broken answers Gemini sometimes returns
-async function askWithRetry(prompt) {
+async function askWithRetry(prompt, options) {
     try {
-        return await askOnce(prompt);
+        return await askOnce(prompt, options);
     } catch (first) {
         await new Promise(r => setTimeout(r, 4000));
-        return askOnce(prompt).catch(() => { throw first; });
+        return askOnce(prompt, options).catch(() => { throw first; });
     }
 }
 
@@ -93,12 +94,20 @@ async function quoteOnPage(url, quote) {
 
 /**
  * fields: { name: { instruction, compare: (a, b) => boolean } }
+ * knownSources: pages this scholarship's facts came from before (lib/sources.js sourcesFor), checked first
  * Returns { facts: { name: { value, verdict, source, quote, alternatives } }, errors }
  */
-async function researchFacts({ subject, context = '', fields }) {
+async function researchFacts({ subject, context = '', fields, knownSources = [] }) {
     const names = Object.keys(fields);
+    const known = knownSources.filter(Boolean).slice(0, 5);
+    const startHere = known.length ? `
+START WITH THESE PAGES, where this scholarship's details were found before. Open them first:
+${known.map(u => `- ${u}`).join('\n')}
+Use what they state if it is for the current cycle. Search more widely only if a page is gone, is for an older
+cycle, or does not state the fact; then cite the newer page you found instead.
+` : '';
     const prompt = `Research ${subject} for Indian students.
-Use Google Search and rely ONLY on official sources: government portals (.gov.in / .nic.in), official notices or guideline PDFs,
+${startHere}Use Google Search and rely ONLY on official sources: government portals (.gov.in / .nic.in), official notices or guideline PDFs,
 or the provider's own website. Never use aggregator, news or coaching sites. Never guess.
 ${context}
 For EACH fact give:
@@ -115,7 +124,7 @@ Provide ONLY the raw JSON object.`;
     const answers = [];
     const errors = [];
     for (let i = 0; i < RUNS; i++) {
-        try { answers.push(await askWithRetry(prompt)); } catch (e) { errors.push(e.message.slice(0, 160)); }
+        try { answers.push(await askWithRetry(prompt, { readPages: known.length > 0 })); } catch (e) { errors.push(e.message.slice(0, 160)); }
         if (i < RUNS - 1) await new Promise(r => setTimeout(r, 3000));
     }
 

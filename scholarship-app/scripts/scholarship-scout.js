@@ -66,41 +66,10 @@ const CHANNEL_LABELS = {
 };
 
 // ---- Channel 2 & 3: sources swept on rotation (a few per week to control API cost) ----
-const PORTAL_SOURCES = [
-    { name: 'National Scholarship Portal (NSP)', url: 'https://scholarships.gov.in' },
-    { name: 'AICTE scholarship schemes (Pragati, Saksham, Swanath)', url: 'https://www.aicte-india.org' },
-    { name: 'UGC scholarships and fellowships', url: 'https://www.ugc.gov.in' },
-    { name: 'CSIR fellowships', url: 'https://csirhrdg.res.in' },
-    { name: 'DST INSPIRE (SHE, Fellowship)', url: 'https://online-inspire.gov.in' },
-    { name: 'PM YASASVI and Ministry of Social Justice schemes', url: 'https://socialjustice.gov.in' },
-    { name: 'Karnataka State Scholarship Portal (SSP)', url: 'https://ssp.karnataka.gov.in' },
-    { name: 'Maharashtra MahaDBT', url: 'https://mahadbt.maharashtra.gov.in' },
-    { name: 'Uttar Pradesh scholarship portal', url: 'https://scholarship.up.gov.in' },
-    { name: 'West Bengal OASIS and Aikyashree', url: 'https://oasis.gov.in' },
-    { name: 'West Bengal Swami Vivekananda (SVMCM) and Medhashree', url: 'https://svmcm.wbhed.gov.in' },
-    { name: 'Andhra Pradesh Jnanabhumi', url: 'https://jnanabhumi.ap.gov.in' },
-    { name: 'Telangana ePASS', url: 'https://telanganaepass.cgg.gov.in' },
-    { name: 'Digital Gujarat scholarships', url: 'https://www.digitalgujarat.gov.in' },
-    { name: 'Bihar and Jharkhand e-Kalyan', url: 'https://ekalyan.cgg.gov.in' },
-    { name: 'Rajasthan SJE scholarship portal', url: 'https://sje.rajasthan.gov.in' },
-    { name: 'Madhya Pradesh MPTAAS and Pratibha Kiran', url: 'https://www.tribal.mp.gov.in/mptaas' },
-    { name: 'Odisha State Scholarship Portal', url: 'https://scholarship.odisha.gov.in' },
-    { name: 'Tamil Nadu scholarship schemes', url: 'https://www.tn.gov.in' },
-    { name: 'Kerala e-Grantz and state scholarships', url: 'https://egrantz.kerala.gov.in' },
-    { name: 'Punjab and Haryana scholarship portals', url: 'https://scholarships.punjab.gov.in' },
-    { name: 'Assam and North-East state scholarships', url: 'https://dhe.assam.gov.in' },
-];
-const CSR_SOURCES = [
-    { name: 'Buddy4Study (competitor listings)', url: 'https://www.buddy4study.com', competitor: true },
-    { name: 'Vidyasaarathi (NSDL CSR portal)', url: 'https://www.vidyasaarathi.co.in', competitor: true },
-    { name: 'Foundation for Excellence (FFE)', url: 'https://ffe.org' },
-    { name: 'Tata Trusts and Tata group scholarships', url: 'https://www.tatatrusts.org' },
-    { name: 'Reliance Foundation scholarships', url: 'https://www.reliancefoundation.org' },
-    { name: 'ONGC, NTPC, IOCL and other PSU scholarships', url: 'https://www.ongcindia.com' },
-    { name: 'HDFC, SBI, Kotak and other bank foundation scholarships', url: 'https://www.hdfcbank.com' },
-    { name: 'Global tech company scholarships in India (Google, Amazon, Microsoft, Adobe)', url: 'https://www.amazon.in' },
-    { name: 'Women-in-STEM scholarships (L\'Oréal, Rolls-Royce Unnati, etc.)', url: 'https://www.loreal.com' },
-];
+// The list lives in data/scholarship-sources.json (shared with the other agents; see docs/SCHOLARSHIP_SOURCES.md)
+const SOURCE_LIST = require('./lib/sources').loadRegistry().sources || [];
+const PORTAL_SOURCES = SOURCE_LIST.filter(s => s.sweep === 'portals');
+const CSR_SOURCES = SOURCE_LIST.filter(s => s.sweep === 'csr');
 const PORTALS_PER_WEEK = 4;
 
 // ---- Channel 6: open-ended web searches, not tied to any source (rotating) ----
@@ -173,20 +142,8 @@ const SOURCING_GATE = `Reject (never propose) any of these:
 - Schemes that are not currently active and not provably recurring every year (one-time PR announcements, or schemes with no application cycle in the last 3 years).`;
 
 // Domains that can point us to a scholarship but can never be its official source
-const NON_OFFICIAL_DOMAINS = [
-    'buddy4study.com', 'collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com',
-    'indiatoday.in', 'timesofindia.indiatimes.com', 'hindustantimes.com', 'ndtv.com', 'news18.com', 'wikipedia.org', 'youtube.com',
-    'allen.ac.in', 'allen.in', 'fiitjee.com', 'aakash.ac.in', 'srichaitanya.net', 'pw.live', 'madeeasy.in', 'byjus.com',
-    'unacademy.com', 'vedantu.com', 'alsias.net',
-];
-function isNonOfficialSource(url) {
-    try {
-        const host = new URL(url).hostname.replace(/^www\./, '');
-        return NON_OFFICIAL_DOMAINS.some(d => host === d || host.endsWith('.' + d));
-    } catch {
-        return true;
-    }
-}
+// Aggregator, news and coaching sites are never accepted as the source (list shared in lib/sources.js)
+const { isNonOfficialSource } = require('./lib/sources');
 
 const parser = new Parser();
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -466,7 +423,12 @@ function coverageTargets(dbRows) {
 async function coverageLeads(dbRows, knownTitles) {
     const { states, segment } = coverageTargets(dbRows);
     const leads = [];
-    const stateTask = state => ({ label: state, context: `Find government, university and private scholarships for students who are residents of ${state}, India.` });
+    const stateTask = state => {
+        // Start from the state's known portals in data/scholarship-sources.json, then widen
+        const known = SOURCE_LIST.filter(x => x.url && x.name.toLowerCase().includes(state.toLowerCase()));
+        const startHere = known.length ? `\nStart with these known official portals for ${state}: ${known.map(x => `${x.name} (${x.url})`).join('; ')}. Then search more widely.` : '';
+        return { label: state, context: `Find government, university and private scholarships for students who are residents of ${state}, India.${startHere}` };
+    };
     const tasks = STATE_FOCUS ? [stateTask(STATE_FOCUS)] : [
         ...states.map(s => ({ ...stateTask(s.state), label: `${s.state} (${s.count} listed)` })),
         { label: `${segment.name} (${segment.count} listed)`, context: `Find scholarships in India specifically for ${segment.name}.` },
