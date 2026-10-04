@@ -149,7 +149,7 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
 
                         {/* Scholarships List */}
                         <div id="scholarship-list" className="mb-20 scroll-mt-24">
-                            <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
+                            <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} includeInternational />
                         </div>
                     </main>
 
