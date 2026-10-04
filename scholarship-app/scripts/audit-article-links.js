@@ -85,7 +85,13 @@ articleFiles.forEach(relFile => {
   }
 
   // Check first-person pronouns and fake claims
-  const fpMatch = bodyText.match(/\b(I|me|my)\b/g);
+  // Lines ending in "?" are reader questions (FAQ headings like "Can I apply twice?"), not the
+  // author speaking, so they are skipped. Statements are still checked.
+  const proseWithoutQuestions = bodyText
+    .split(/\r?\n/)
+    .filter(line => !/\?[\s*_)"']*$/.test(line))
+    .join('\n');
+  const fpMatch = proseWithoutQuestions.match(/\b(I|me|my)\b/g);
   if (fpMatch) {
     contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(fpMatch)].join(', ')}`);
   }
