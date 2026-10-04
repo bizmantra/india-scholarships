@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 // Old Study Abroad URLs (merged universities, scholarships now on /scholarships, retired pages),
 // written by scripts/study-abroad/migrate-legacy.mts
 import studyAbroadRedirects from "./lib/study-abroad/redirects.json";
+// Hand-maintained (not generated): old Study Abroad URLs Google found at the site root
+// (/universities/..., /visas/..., /loans/..., /study-in/...) and a few old /study-abroad/ paths.
+import studyAbroadRootRedirects from "./lib/study-abroad/redirects-root-paths.json";
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -413,6 +416,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       ...studyAbroadRedirects,
+      ...studyAbroadRootRedirects,
       // Study Abroad: countries without content yet, and old paths with no page of their own
       { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)/:path*', destination: '/study-abroad', permanent: true },
       { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)', destination: '/study-abroad', permanent: true },
