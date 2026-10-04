@@ -14,7 +14,7 @@ const jev = require('./jev');
 async function inspectPage({ url, title }) {
     let tier = sourceTier(url);
     const out = { url, tier, specific: isSpecificSource(url), readable: false, nameShare: 0, about: null, ok: false, why: '' };
-    if (tier === 'coaching' || tier === 'invalid') { out.why = tier === 'coaching' ? 'coaching site' : 'not a web address'; return out; }
+    if (tier === 'coaching' || tier === 'invalid') { out.why = tier === 'coaching' ? 'coaching site' : 'our own site, a Google redirect, or not a web address'; return out; }
     const page = await getPage(url);
     if (!page) { out.why = 'page could not be read (dead, blocked, or built by scripts)'; return out; }
     out.readable = true;
