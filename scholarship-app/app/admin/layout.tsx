@@ -10,8 +10,14 @@ import {
     TrendingUp,
     CheckSquare,
     Home,
-    Bot
+    Bot,
+    Search,
+    Pencil,
+    ShieldCheck,
+    Lightbulb,
+    Megaphone
 } from 'lucide-react';
+import { TEAMS, type TeamId } from '@/lib/command-center/teams';
 import { THEME_BOOT_SCRIPT, ThemeToggle, useAdminTheme } from './ThemeToggle';
 
 // Set automatically by Vercel; preview deployments use the staging database
@@ -22,7 +28,7 @@ const ENV_BADGE: Record<string, { label: string; className: string }> = {
 };
 
 // Screens already built on the light/dark colours. Others stay dark until they are reworked.
-const THEMED_PAGES = ['/admin/agents'];
+const THEMED_PAGES = ['/admin/agents', '/admin/teams'];
 
 interface SidebarItemProps {
     href: string;
@@ -53,12 +59,33 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const envBadge = ENV_BADGE[process.env.NEXT_PUBLIC_VERCEL_ENV || 'development'] || ENV_BADGE.development;
     const themedPage = THEMED_PAGES.some(p => pathname === p || pathname.startsWith(`${p}/`));
 
-    const menuItems = [
-        { href: '/admin/agents', label: 'Agent Center', icon: <Bot className="h-5 w-5" /> },
-        { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
-        { href: '/admin/content-manager', label: 'Content Manager', icon: <Layers className="h-5 w-5" /> },
-        { href: '/admin/performance', label: 'Performance', icon: <TrendingUp className="h-5 w-5" /> },
-        { href: '/admin/settings', label: 'Settings', icon: <SettingsIcon className="h-5 w-5" /> },
+    const teamIcons: Record<TeamId, React.ReactNode> = {
+        'content-research': <Search className="h-5 w-5" />,
+        'content-creation': <Pencil className="h-5 w-5" />,
+        'data-accuracy': <ShieldCheck className="h-5 w-5" />,
+        strategy: <Lightbulb className="h-5 w-5" />,
+        traffic: <Megaphone className="h-5 w-5" />,
+    };
+
+    // The menu is grouped: the Inbox first, then one page per team, then the admin tools
+    const menuGroups = [
+        {
+            label: 'Overview',
+            items: [{ href: '/admin/agents', label: 'Inbox and chat', icon: <Bot className="h-5 w-5" /> }],
+        },
+        {
+            label: 'Teams',
+            items: TEAMS.map(t => ({ href: `/admin/teams/${t.id}`, label: t.label, icon: teamIcons[t.id] })),
+        },
+        {
+            label: 'Admin',
+            items: [
+                { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
+                { href: '/admin/content-manager', label: 'Content Manager', icon: <Layers className="h-5 w-5" /> },
+                { href: '/admin/performance', label: 'Performance', icon: <TrendingUp className="h-5 w-5" /> },
+                { href: '/admin/settings', label: 'Settings', icon: <SettingsIcon className="h-5 w-5" /> },
+            ],
+        },
     ];
 
     return (
@@ -84,15 +111,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
 
                     {/* Menu items */}
-                    <nav className="flex flex-row md:flex-col gap-1.5 overflow-x-auto pb-1 md:pb-0">
-                        {menuItems.map((item) => (
-                            <SidebarItem
-                                key={item.href}
-                                href={item.href}
-                                label={item.label}
-                                icon={item.icon}
-                                active={pathname === item.href || pathname.startsWith(`${item.href}/`)}
-                            />
+                    <nav className="flex flex-row md:flex-col gap-1.5 md:gap-4 overflow-x-auto pb-1 md:pb-0">
+                        {menuGroups.map(group => (
+                            <div key={group.label} className="flex flex-row md:flex-col gap-1.5">
+                                {/* Group labels only on wide screens; on phones the menu is one strip */}
+                                <span className="hidden md:block px-4 pb-1 text-[10px] font-bold uppercase tracking-widest text-cc-faint">{group.label}</span>
+                                {group.items.map((item) => (
+                                    <SidebarItem
+                                        key={item.href}
+                                        href={item.href}
+                                        label={item.label}
+                                        icon={item.icon}
+                                        active={pathname === item.href || pathname.startsWith(`${item.href}/`)}
+                                    />
+                                ))}
+                            </div>
                         ))}
                     </nav>
                 </div>

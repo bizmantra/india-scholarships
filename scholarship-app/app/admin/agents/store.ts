@@ -34,6 +34,8 @@ export interface InboxSummary {
     risky: number;
     riskyAmounts: number;
     approvedUnpublished: number;
+    // Pending items per agent, used for the team counts
+    byAgent?: Record<string, number>;
 }
 
 export interface Status {
@@ -42,7 +44,7 @@ export interface Status {
     actor: string;
     inboxReady: boolean;
     githubConfigured: boolean;
-    agents: { id: string; label: string; workflow?: string; acceptsState?: boolean; schedule: string; summary: string; humanToday: string; gated: boolean }[];
+    agents: { id: string; label: string; workflow?: string; acceptsState?: boolean; schedule: string; summary: string; humanToday: string; gated: boolean; team?: string }[];
 }
 
 interface State {
@@ -52,12 +54,14 @@ interface State {
     status: Status | null;
     busy: boolean;
     view: 'chat' | 'list';
+    // Team filter for the Inbox list (null = all teams)
+    team: string | null;
     // Bumped after any decision so open cards and lists reload
     revision: number;
 }
 
 // ---------- A tiny external store ----------
-let state: State = { messages: [], log: [], summary: null, status: null, busy: false, view: 'chat', revision: 0 };
+let state: State = { messages: [], log: [], summary: null, status: null, busy: false, view: 'chat', team: null, revision: 0 };
 const listeners = new Set<() => void>();
 
 export const store = {

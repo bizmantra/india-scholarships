@@ -18,6 +18,12 @@ export default function AgentCenterPage() {
     const [input, setInput] = useState('');
     const bottom = useRef<HTMLDivElement>(null);
 
+    // A team page links here with ?view=list&team=<id> to open the Inbox for just that team
+    useEffect(() => {
+        const q = new URLSearchParams(window.location.search);
+        if (q.get('view') === 'list' || q.get('team')) store.set({ view: 'list', team: q.get('team') });
+    }, []);
+
     // First load: where we are, what's set up, what's waiting
     useEffect(() => {
         if (store.get().status) return; // the store survives page switches within /admin
@@ -56,7 +62,7 @@ export default function AgentCenterPage() {
         <div className="flex flex-col gap-4 lg:h-[calc(100vh-8rem)]">
             <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                    <h1 className="text-xl font-black text-cc-text">Agent Center</h1>
+                    <h1 className="text-xl font-black text-cc-text">Inbox and chat</h1>
                     <p className="text-xs text-cc-muted">Ask what's waiting, approve changes and run agents.</p>
                 </div>
                 <div className="flex items-center gap-2">

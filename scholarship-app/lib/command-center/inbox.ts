@@ -70,6 +70,11 @@ export async function inboxSummary() {
     const count = (category?: string, risk?: string) => byGroup
         .filter(g => (!category || g.category === category) && (!risk || g.risk === risk))
         .reduce((n, g) => n + Number(g.n), 0);
+    const byAgent: Record<string, number> = {};
+    for (const r of rows<{ agent: string; n: number }>(await client.execute(
+        "SELECT agent, COUNT(*) AS n FROM agent_proposals WHERE status = 'pending' GROUP BY agent"))) {
+        byAgent[r.agent] = Number(r.n);
+    }
     const approvedUnpublished = Number((await client.execute(
         "SELECT COUNT(*) AS n FROM agent_proposals WHERE kind = 'new_scholarship' AND status = 'approved'")).rows[0].n);
     return {
@@ -86,15 +91,26 @@ export async function inboxSummary() {
         risky: count(undefined, 'high'),
         riskyAmounts: count('amount_change', 'high'),
         approvedUnpublished,
+        byAgent,
     };
 }
 
-export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; limit?: number; offset?: number } = {}) {
+export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; agents?: string[]; notAgents?: string[]; limit?: number; offset?: number } = {}) {
     const where = ['p.status = ?'];
     const args: any[] = [opts.status || 'pending'];
     if (opts.category) { where.push('p.category = ?'); args.push(opts.category); }
     if (opts.risk) { where.push('p.risk = ?'); args.push(opts.risk); }
     if (opts.ids?.length) { where.push(`p.id IN (${opts.ids.map(() => '?').join(',')})`); args.push(...opts.ids); }
+    if (opts.agents) {
+        // A team with no agents matches nothing (instead of everything)
+        where.push(opts.agents.length ? `p.agent IN (${opts.agents.map(() => '?').join(',')})` : '0 = 1');
+        args.push(...opts.agents);
+    }
+    if (opts.notAgents?.length) {
+        // Items from agents that belong to no team (the "Other" filter)
+        where.push(`p.agent NOT IN (${opts.notAgents.map(() => '?').join(',')})`);
+        args.push(...opts.notAgents);
+    }
     const limit = Math.min(Math.max(opts.limit || 50, 1), 1000);
     const res = await getClient().execute({
         sql: `SELECT * FROM (${LIST_SQL} WHERE ${where.join(' AND ')}) p ${URGENCY_ORDER} LIMIT ? OFFSET ?`,

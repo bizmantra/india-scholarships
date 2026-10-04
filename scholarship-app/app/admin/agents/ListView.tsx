@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
-import { afterDecision, api, CATEGORY_LABELS, short } from './orchestrator';
-import { useStore } from './store';
+import { AGENTS, agentsOfTeam } from '@/lib/command-center/agents';
+import { TEAMS } from '@/lib/command-center/teams';
+import { afterDecision, api, CATEGORY_LABELS, refreshSummary, short } from './orchestrator';
+import { store, useStore } from './store';
 
 interface Row {
     id: number;
@@ -32,15 +34,19 @@ export default function ListView() {
     const [message, setMessage] = useState('');
     const revision = useStore(s => s.revision);
     const summary = useStore(s => s.summary);
+    const team = useStore(s => s.team);
+
+    // Opening straight into the list (e.g. from a team page) can happen before the counts were loaded
+    useEffect(() => { if (!store.get().summary) refreshSummary(); }, []);
 
     useEffect(() => {
         setLoading(true);
         const q = category === 'risky' ? 'risk=high' : `category=${category}`;
-        api<{ items: Row[]; total: number }>(`inbox?${q}&limit=${PAGE}&offset=${page * PAGE}`)
+        api<{ items: Row[]; total: number }>(`inbox?${q}${team ? `&team=${team}` : ''}&limit=${PAGE}&offset=${page * PAGE}`)
             .then(r => { setRows(r.items); setTotal(r.total); setSelected(new Set()); })
             .catch(e => setMessage(e.message))
             .finally(() => setLoading(false));
-    }, [category, page, revision]);
+    }, [category, page, team, revision]);
 
     const decide = async (action: 'approve' | 'reject') => {
         const ids = [...selected];
@@ -58,14 +64,35 @@ export default function ListView() {
     const tabs = [...Object.keys(CATEGORY_LABELS), 'risky'];
     const allSelected = rows.length > 0 && rows.every(r => selected.has(r.id));
 
+    const teamCount = (ids: string[]) => ids.reduce((n, id) => n + (summary?.byAgent?.[id] ?? 0), 0);
+    const otherCount = summary?.byAgent
+        ? Object.entries(summary.byAgent).filter(([id]) => !AGENTS.some(a => a.id === id && a.team)).reduce((n, [, c]) => n + c, 0)
+        : 0;
+    const pickTeam = (id: string | null) => { store.set({ team: id }); setPage(0); setMessage(''); };
+
     return (
         <div className="flex h-full min-h-0 flex-col gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-cc-faint">Team</span>
+                {[
+                    { id: null as string | null, label: 'All teams', n: summary?.total },
+                    ...TEAMS.map(t => ({ id: t.id as string | null, label: t.label, n: summary?.byAgent ? teamCount(agentsOfTeam(t.id).map(a => a.id)) : undefined })),
+                    // Items from agents that belong to no team; only shown when there are some
+                    ...(otherCount > 0 ? [{ id: 'other' as string | null, label: 'Other', n: otherCount }] : []),
+                ].map(t => (
+                    <button key={t.id ?? 'all'} onClick={() => pickTeam(t.id)}
+                        className={`rounded-full px-3 py-1 text-xs font-bold ${team === t.id ? 'bg-cc-text text-cc-bg' : 'border border-cc-border-strong text-cc-muted hover:text-cc-text'}`}>
+                        {t.label}
+                        {t.n !== undefined && <span className="ml-1.5 opacity-70">{t.n.toLocaleString('en-IN')}</span>}
+                    </button>
+                ))}
+            </div>
             <div className="flex flex-wrap gap-2">
                 {tabs.map(t => (
                     <button key={t} onClick={() => { setCategory(t); setPage(0); setMessage(''); }}
                         className={`rounded-full px-3 py-1 text-xs font-bold ${category === t ? 'bg-blue-600 text-white' : 'border border-cc-border-strong text-cc-muted hover:text-cc-text'}`}>
                         {t === 'risky' ? 'Risky' : CATEGORY_LABELS[t]}
-                        {summary && <span className="ml-1.5 opacity-70">{t === 'risky' ? summary.risky : summary.groups[t] ?? 0}</span>}
+                        {summary && !team && <span className="ml-1.5 opacity-70">{t === 'risky' ? summary.risky : summary.groups[t] ?? 0}</span>}
                     </button>
                 ))}
             </div>
