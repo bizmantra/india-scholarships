@@ -84,10 +84,13 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
 
         const date = new Date(trimmed);
         if (!isNaN(date.getTime())) {
+            // Date-only strings parse as UTC midnight; format in UTC so viewers west of UTC
+            // do not see the previous day.
             return date.toLocaleDateString('en-IN', {
                 month: 'short',
                 day: 'numeric',
-                year: 'numeric'
+                year: 'numeric',
+                timeZone: 'UTC'
             });
         }
 
@@ -100,7 +103,10 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             return 'Amount Varies';
         }
         if (scholarship.amount_min && scholarship.amount_annual && scholarship.amount_min !== scholarship.amount_annual) {
-            return `₹${scholarship.amount_min.toLocaleString('en-IN')} - ₹${scholarship.amount_annual.toLocaleString('en-IN')}`;
+            // Some rows store min > annual; always show the range low to high.
+            const low = Math.min(scholarship.amount_min, scholarship.amount_annual);
+            const high = Math.max(scholarship.amount_min, scholarship.amount_annual);
+            return `₹${low.toLocaleString('en-IN')} - ₹${high.toLocaleString('en-IN')}`;
         }
         return `₹${scholarship.amount_annual.toLocaleString('en-IN')}`;
     };

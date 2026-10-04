@@ -61,7 +61,7 @@ export default async function StudyAbroadHome() {
                 <CardGrid>{[...deLoans, ...usLoans].map(g => <SACard key={g.slug} href={`/study-abroad/loans/${g.slug}`} title={g.title} subtitle={g.summary} detail={COUNTRIES[g.country].name} />)}</CardGrid>
             </ListingSection>
             <ListingSection id="visas" title="Student Visa Guides">
-                <CardGrid>{[...deVisas, ...usVisas].slice(0, 6).map(g => <SACard key={g.slug} href={`/study-abroad/visas/${g.slug}`} title={g.title} subtitle={g.summary} detail={COUNTRIES[g.country].name} />)}</CardGrid>
+                <CardGrid>{[...deVisas.slice(0, 3), ...usVisas.slice(0, 3)].map(g => <SACard key={g.slug} href={`/study-abroad/visas/${g.slug}`} title={g.title} subtitle={g.summary} detail={COUNTRIES[g.country].name} />)}</CardGrid>
             </ListingSection>
             <ListingSection id="scholarships" title="Scholarships for Studying Abroad">
                 <CardGrid>{[...deSch, ...usSch].map(s => <ScholarshipCard key={s.slug} scholarship={s} />)}</CardGrid>
