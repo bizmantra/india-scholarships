@@ -39,6 +39,8 @@ const only = argValue('only');
 const MAX_RESEARCH = parseInt(argValue('max') || '20', 10);
 const CONCURRENCY = 6;
 const FRESH_DAYS = 30;
+// Bump when the rules for a research outcome change: older "ended-or-replaced" / "not-found" outcomes are then redone
+const RESULTS_VERSION = 2;
 
 const today = () => new Date().toISOString().slice(0, 10);
 const daysAgo = iso => (iso ? (Date.now() - new Date(iso).getTime()) / 86400000 : Infinity);
@@ -111,6 +113,8 @@ async function stage2(db, rows, results) {
                 title: row.title,
                 context: 'The goal is to find the page that states how and when to apply. Prefer the provider or government page.',
                 fields: {
+                    // The goal is the page, not the deadline: a scheme with no published deadline still has a page
+                    scheme_page: { instruction: '"the web address of the specific official page that describes this scheme and how to apply (must start with http, not a home page)", or "" if you cannot find one', compare: compare.url },
                     deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
                     closed_notice: { instruction: '"one short sentence quoting an official notice that this scheme has been PERMANENTLY discontinued or replaced by another scheme (say which). Do NOT report that this year\'s applications are closed, not yet open, or past their deadline: that is normal. Empty if there is no such notice"', compare: compare.text },
                 },
@@ -118,7 +122,7 @@ async function stage2(db, rows, results) {
                 knownSecondary: sources.secondaryFor(row),
             });
             if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'no answer from the research model');
-            if (!dryRun) sources.remember(db, row.id, { deadline: found.facts.deadline }, {});
+            if (!dryRun) sources.remember(db, row.id, { scheme_page: found.facts.scheme_page, deadline: found.facts.deadline }, {});
             const after = db.prepare('SELECT source_pages, secondary_sources FROM scholarships WHERE id = ?').get(row.id);
             const hasOfficial = sources.readPages(after).length > 0;
             const hasSecondary = sources.readPages(after, 'secondary_sources').length > 0;
@@ -178,6 +182,12 @@ async function run() {
     sources.ensureColumn(db);
     purgeJunk(db);
     const results = inbox.getState(db, AGENT, 'results', {});
+    if (inbox.getState(db, AGENT, 'version', 1) < RESULTS_VERSION) {
+        const redo = Object.keys(results).filter(slug => ['ended-or-replaced', 'not-found', 'research-failed'].includes(results[slug].status));
+        redo.forEach(slug => delete results[slug]);
+        if (redo.length) console.log(`♻️  ${redo.length} earlier research outcome(s) were reached under older rules: checking them again`);
+        if (!dryRun) { inbox.setState(db, AGENT, 'results', results); inbox.setState(db, AGENT, 'version', RESULTS_VERSION); }
+    }
     const clicks = Object.fromEntries(db.prepare('SELECT slug, clicks FROM gsc_traffic_cache').all().map(r => [r.slug, r.clicks]));
     const rows = db.prepare(`SELECT id, slug, title, provider, state, official_source, apply_url, source_pages, secondary_sources
         FROM scholarships WHERE (status = 'Active' OR status IS NULL) ${only ? 'AND slug = ?' : ''}`).all(...(only ? [only] : []));
