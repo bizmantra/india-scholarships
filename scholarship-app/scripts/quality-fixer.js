@@ -21,6 +21,7 @@ const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
 const { auditScholarship, isLegacy, isClosedNotice, stripHtml, hasHtmlTags, HTML_FIELDS } = require('./lib/quality-rules');
 const { researchFacts, compare, evidenceFor } = require('./lib/research');
+const sources = require('./lib/sources');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local'), quiet: true });
 
 const AGENT = 'quality-fixer';
@@ -85,11 +86,12 @@ async function research(s, fields) {
     }]));
     const found = await researchFacts({
         subject: `the "${s.title}" scholarship by ${s.provider || 'its provider'}${s.state ? ` (${s.state})` : ''}`,
+        knownSources: sources.sourcesFor(s),
         context: s.always_open === 1 ? 'This scholarship is listed as open all year (rolling); confirm that in the deadline text if true.' : '',
         fields: spec,
     });
     if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'No answer from the research model');
-    const out = { _evidence: {} };
+    const out = { _evidence: {}, _facts: found.facts };
     for (const [f, fact] of Object.entries(found.facts)) {
         out[f] = fact.value;
         out._evidence[f] = evidenceFor(fact);
@@ -103,6 +105,7 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function run() {
     const db = new Database(DB_PATH);
     inbox.ensureAgentTables(db);
+    sources.ensureColumn(db);
     if (inbox.skipIfDisabled(db, AGENT)) {
         db.close();
         return;
@@ -157,6 +160,7 @@ async function run() {
         let found;
         try {
             found = await research(s, fields);
+            sources.remember(db, s.id, found._facts, { dryRun });
         } catch (error) {
             report.failed.push({ slug: s.slug, error: error.message.slice(0, 160) });
             console.error(`   ❌ ${error.message.slice(0, 160)}`);

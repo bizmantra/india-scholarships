@@ -3,6 +3,7 @@ const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
 const { researchFacts, compare, evidenceFor } = require('./lib/research');
+const sources = require('./lib/sources');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -33,17 +34,20 @@ async function researchDeadline(item) {
     const found = await researchFacts({
         subject: `the "${item.title}" scholarship by ${item.provider || 'its provider'}, 2026-27 application cycle`,
         context: DEADLINE_RULES,
+        knownSources: sources.sourcesFor(item),
         fields: {
             deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
             deadline_description: { instruction: '"one short sentence about the current application window"', compare: compare.text },
         },
     });
     if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'No answer from the research model');
+    sources.remember(db, item.id, found.facts, { dryRun });
     return found.facts;
 }
 
 async function runDailyCheck() {
     inbox.ensureAgentTables(db);
+    sources.ensureColumn(db);
     if (inbox.skipIfDisabled(db, AGENT)) {
         fs.writeFileSync(SUMMARY_PATH, JSON.stringify({ skipped: true, checked: 0, pending_review: 0, check_failed: 0, changes: [], failed: [] }, null, 2));
         db.close();
@@ -55,7 +59,8 @@ async function runDailyCheck() {
 
     // 1. Get all active scholarships
     const allActive = db.prepare(`
-        SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at 
+        SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at,
+               official_source, apply_url, source_pages
         FROM scholarships 
         WHERE status = 'Active' OR status IS NULL
     `).all();
@@ -90,7 +95,8 @@ async function runDailyCheck() {
 
     // Filter Bucket B: High traffic candidates from cache not checked in last 7 days
     const highTrafficCandidates = db.prepare(`
-        SELECT s.id, s.title, s.slug, s.provider, s.deadline, s.deadline_description, s.always_open, s.last_checked_at, t.clicks, t.impressions
+        SELECT s.id, s.title, s.slug, s.provider, s.deadline, s.deadline_description, s.always_open, s.last_checked_at,
+               s.official_source, s.apply_url, s.source_pages, t.clicks, t.impressions
         FROM scholarships s
         JOIN gsc_traffic_cache t ON s.slug = t.slug
         WHERE (s.status = 'Active' OR s.status IS NULL)

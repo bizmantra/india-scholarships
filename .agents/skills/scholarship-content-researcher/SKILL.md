@@ -14,6 +14,7 @@ Run `node scripts/list-gaps.js` inside the `scholarship-app` directory to scan `
 
 ### 2. Perform Web Research
 For each scholarship slug in `data/gaps-list.json`:
+0. Check known sources first (see `docs/SCHOLARSHIP_SOURCES.md`): open the scholarship's `source_pages`, then its `official_source` and `apply_url`. Only search further if they are gone, outdated, or do not state the fact. Save each specific official page you confirm facts on back to `source_pages`.
 1. Use `search_web` to query the official state or corporate portal (e.g., search terms: `"[Scholarship Name] eligibility criteria amount helpline 2025 2026"`).
 2. Open and read the official source URLs (prioritize domains like `.gov.in`, `ffe.org`, `tatatrusts.org`, `vidyasaarathi.co.in`, etc.).
 3. Cross-reference at least two search results to verify numbers and contact details.
