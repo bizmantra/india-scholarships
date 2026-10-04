@@ -69,6 +69,7 @@ jobs:
           node scholarship-app/scripts/daily-freshness-check.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}  # optional: Jev adds to the evidence score; blank is fine
           NODE_ENV: production
 
       - name: Generate Daily Email Body

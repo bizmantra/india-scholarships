@@ -1,17 +1,20 @@
-name: Quality Fixer
+name: Source Backfill
 # The request id lets the Agent Center find the run it started
-run-name: "Quality Fixer · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
+run-name: "Source Backfill · ${{ inputs.target || 'production' }}${{ inputs.request_id && format(' · {0}', inputs.request_id) || '' }}"
 
 on:
-  schedule:
-    - cron: '30 3 * * 6' # Saturday 3:30 AM UTC (9:00 AM IST)
+  # No timer: run by hand (staging first) until every scholarship has been placed (see docs/SCHOLARSHIP_SOURCES.md)
   workflow_dispatch: # Started from the Agent Center or the GitHub UI
     inputs:
       target:
         description: 'Database to update (staging = test run: live site untouched)'
         type: choice
-        options: [production, staging]
-        default: production
+        options: [staging, production]
+        default: staging
+      max:
+        description: 'Scholarships to research this run (the quick link check always covers all of them)'
+        type: string
+        default: '25'
       request_id:
         description: 'Set by the Agent Center to track this run (leave empty)'
         type: string
@@ -46,6 +49,9 @@ jobs:
           cd scholarship-app
           npm ci
 
+      - name: Install pdftotext (reads PDF notices)
+        run: sudo apt-get install -y poppler-utils
+
       - name: Pull latest database from Turso
         run: node scholarship-app/scripts/pull-from-turso.js
         env:
@@ -54,9 +60,8 @@ jobs:
           TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
           TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
 
-      - name: Fix and research incomplete scholarships (Gemini Flash)
-        id: fixer
-        run: node scholarship-app/scripts/quality-fixer.js
+      - name: Find source pages (link check, then Gemini research for a batch)
+        run: node scholarship-app/scripts/source-backfill.js --max=${{ inputs.max || '25' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}  # optional: Jev adds to the evidence score; blank is fine
@@ -82,7 +87,7 @@ jobs:
           path: backups/pre-sync.db
           retention-days: 7
 
-      # Proposals go to the inbox; only formatting tidy-ups change pages directly
+      # Only the internal source columns change; no deadline, amount or status is touched
       - name: Push Database to Turso
         run: node scholarship-app/scripts/push-to-turso.js
         env:
@@ -94,10 +99,16 @@ jobs:
       - name: Show the report on the run page
         if: always()
         run: |
-          if [ -f scholarship-app/data/quality-fixer-summary.json ]; then
-            { echo '### Quality Fixer'; echo '```json'; cat scholarship-app/data/quality-fixer-summary.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          if [ -f scholarship-app/data/source-backfill-report.md ]; then
+            cat scholarship-app/data/source-backfill-report.md >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - name: Trigger Vercel Redeployment
-        if: steps.fixer.outputs.auto_fixed != '0' && steps.fixer.outputs.auto_fixed != '' && env.DB_TARGET == 'production'
-        run: curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+      - name: Keep the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-backfill-report-${{ env.DB_TARGET }}-${{ github.run_id }}
+          path: |
+            scholarship-app/data/source-backfill-report.md
+            scholarship-app/data/source-backfill-summary.json
+          retention-days: 30

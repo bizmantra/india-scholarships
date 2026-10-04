@@ -245,8 +245,10 @@ function proposeFieldChange(db, { agent, scholarshipId, scholarshipTitle, field,
     const classified = classify(field, before, after, { withDateChange });
     // An agent may file its proposals under its own inbox group (e.g. the Quality Fixer's 'missing_info')
     const category = categoryOverride || classified.category;
-    // Answers that disagree always need a careful look
-    const risk = evidence?.verdict === 'uncertain' ? 'high' : classified.risk;
+    // Answers that disagree, rest on a platform / aggregator page instead of an official one, or score low on
+    // evidence (scripts/lib/evidence.js) need a careful look
+    const weak = ['uncertain', 'secondary'].includes(evidence?.verdict) || (typeof evidence?.score === 'number' && evidence.score < 40);
+    const risk = weak ? 'high' : classified.risk;
     db.prepare(`INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, category, risk, source_citation, evidence_json)
                 VALUES (?, 'field_change', ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
         .run(agent, scholarshipId, scholarshipTitle, field, before, after, category, risk, source || null, evidenceJson);
