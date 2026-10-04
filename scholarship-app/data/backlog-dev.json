@@ -990,5 +990,93 @@
     "impact": "High",
     "status": "Backlog",
     "type": "Feature, Retention"
+  },
+  {
+    "id": "IS-135",
+    "title": "Study Abroad: retire old Vercel project study-abroad-is.vercel.app (recovery #40)",
+    "description": "Cut-over was 28 Sep; fallback week is over. Redirect everything to www, then delete the project and its env vars. Needs owner go-ahead. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "High",
+    "status": "In Progress",
+    "type": "Infra"
+  },
+  {
+    "id": "IS-136",
+    "title": "Study Abroad: final backup, then destroy the study-aboard-is Turso database (recovery #41, closes #3)",
+    "description": "After #40. turso db shell study-aboard-is .dump > study-aboard-is-final.sql, then turso db destroy. Makes the leaked token useless. Needs owner go-ahead. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Infra, Security"
+  },
+  {
+    "id": "IS-137",
+    "title": "Study Abroad: add sa_* tables to data-format gate + route/link check in Agent Center (recovery #15)",
+    "description": "See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Testing"
+  },
+  {
+    "id": "IS-138",
+    "title": "Study Abroad: content cleanup of sa_* records (recovery #17-22, #27)",
+    "description": "Breadcrumb leftovers (187), visible SEO notes (75), raw div markup (61), 178 boilerplate summaries, .md filenames in summaries (11), 5 universities with no body, repeated brand in titles. Run through Agent Center as gated proposals. Re-count first: PRs #27/#28 may have fixed some. Titles review sheet: docs/study-abroad/study-abroad-titles-descriptions-review.xlsx. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content"
+  },
+  {
+    "id": "IS-139",
+    "title": "Study Abroad: real per-program data on MS CS comparison; fix KIT fee and duplicates (recovery #23, #24)",
+    "description": "See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content, Bug"
+  },
+  {
+    "id": "IS-140",
+    "title": "Study Abroad: fact-check high-risk numbers; replace hard-coded Last Verified with source_url + checked_at (recovery #28, #29)",
+    "description": "Known lead: DAAD stipend. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content, Accuracy"
+  },
+  {
+    "id": "IS-141",
+    "title": "Study Abroad: re-measure mobile LCP/TTI after merge (recovery #32)",
+    "description": "See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "Low",
+    "status": "Backlog",
+    "type": "Performance"
+  },
+  {
+    "id": "IS-142",
+    "title": "Study Abroad: tracking + rank tracking (recovery #35, #36)",
+    "description": "GSC clicks on /study-abroad/*, outbound partner clicks, ad revenue per section; add ~30 SA terms plus the expansion shortlist to rank tracking. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Analytics"
+  },
+  {
+    "id": "IS-143",
+    "title": "Study Abroad expansion E4: page templates per page type as Agent Center content specs",
+    "description": "See docs/study-abroad/STUDY_ABROAD_COUNTRY_EXPANSION_PLAN.md",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content Architecture"
+  },
+  {
+    "id": "IS-144",
+    "title": "Study Abroad expansion: launch UK (E5-E9)",
+    "description": "Hub, visa, cost guide, 12 universities, programs, UK funds + IHS calculator, scholarships, launch checklist. Waits for Phase 2 cleanup. See docs/study-abroad/STUDY_ABROAD_COUNTRY_EXPANSION_PLAN.md",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": "Feature, Content"
+  },
+  {
+    "id": "IS-145",
+    "title": "Study Abroad expansion: Canada, Australia, Ireland + comparison pages (E10-E15)",
+    "description": "Facts agent first for Canada. See docs/study-abroad/STUDY_ABROAD_COUNTRY_EXPANSION_PLAN.md",
+    "impact": "Low",
+    "status": "Parked",
+    "type": "Feature, Content"
   }
 ]
