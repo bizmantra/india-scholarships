@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, permanentRedirect, unstable_rethrow } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
@@ -65,7 +65,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
         const states = await getAllStates();
         const stateName = states.find((s: string) => slugify(s) === stateSlug);
 
-        if (!stateName) return redirect('/state-scholarships');
+        if (!stateName) return permanentRedirect('/state-scholarships');
 
         // Get scholarships for this state
         const scholarships = await getScholarshipsByState(stateName);
@@ -368,6 +368,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
             </div>
         );
     } catch (error) {
+        unstable_rethrow(error);
         return redirect('/state-scholarships');
     }
 }
