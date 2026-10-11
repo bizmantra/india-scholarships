@@ -67,7 +67,19 @@ const SA_DDL = [
         checked_at TEXT,
         status TEXT NOT NULL DEFAULT 'published',
         created_at TEXT,
-        updated_at TEXT
+        updated_at TEXT,
+        summary TEXT,
+        seo_title TEXT,
+        meta_description TEXT,
+        body_md TEXT,
+        faq_json TEXT,
+        language TEXT,
+        duration TEXT,
+        intakes TEXT,
+        english_requirements TEXT,
+        application_portal TEXT,
+        application_fee TEXT,
+        stem_designated TEXT
     )`,
     'CREATE INDEX IF NOT EXISTS idx_sa_programs_combo ON sa_programs(country, degree, field, status)',
     'CREATE INDEX IF NOT EXISTS idx_sa_programs_university ON sa_programs(university_slug)',
@@ -106,8 +118,19 @@ const SA_DDL = [
     )`,
 ];
 
+// Columns added after a table was first created: added to existing databases by ensureStudyAbroadTables
+// (local copies) and scripts/study-abroad/add-columns.mjs (Turso). Course page article fields: IS-158.
+const SA_ADDED_COLUMNS = {
+    sa_programs: ['summary', 'seo_title', 'meta_description', 'body_md', 'faq_json', 'language', 'duration', 'intakes',
+        'english_requirements', 'application_portal', 'application_fee', 'stem_designated'],
+};
+
 function ensureStudyAbroadTables(db) {
     for (const sql of SA_DDL) db.exec(sql);
+    for (const [table, columns] of Object.entries(SA_ADDED_COLUMNS)) {
+        const have = new Set(db.prepare(`PRAGMA table_info(${table})`).all().map(c => c.name));
+        for (const col of columns) if (!have.has(col)) db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} TEXT`);
+    }
 }
 
-module.exports = { SA_TABLES, SA_DDL, ensureStudyAbroadTables };
+module.exports = { SA_TABLES, SA_DDL, SA_ADDED_COLUMNS, ensureStudyAbroadTables };

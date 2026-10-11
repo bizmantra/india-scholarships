@@ -1,7 +1,7 @@
 // Renders Study Abroad articles for the detail layout (app/study-abroad/_components/DetailShell.tsx).
 import type { KeyFact, Faq } from '@/lib/editorial';
 import { extractHeadings, simpleMarkdownToHtml } from '@/lib/articles';
-import { parseJson, type SaGuide, type SaUniversity } from './data';
+import { parseJson, type SaGuide, type SaProgram, type SaUniversity } from './data';
 import redirects from './redirects.json';
 
 export const SITE = 'https://www.indiascholarships.in';
@@ -70,11 +70,12 @@ export interface Article {
 }
 
 // One Study Abroad article, ready for DetailShell
-export function renderArticle(row: SaGuide | SaUniversity, knownFacts: { label: string }[] = []): Article {
+type ArticleRow = (SaGuide | SaUniversity | SaProgram) & { infobox_json?: string | null };
+export function renderArticle(row: ArticleRow, knownFacts: { label: string }[] = []): Article {
     const md = normalizeMarkdown(row.body_md || '');
     const title = 'name' in row ? row.name : row.title;
     const seen = new Set(knownFacts.map(f => f.label.toLowerCase()));
-    const facts = infoboxFacts(row.infobox_json).filter(f => {
+    const facts = infoboxFacts(row.infobox_json ?? null).filter(f => {
         const label = f.label.toLowerCase();
         if (seen.has(label) || label === 'university name' || f.value === title) return false;
         seen.add(label);
@@ -83,10 +84,10 @@ export function renderArticle(row: SaGuide | SaUniversity, knownFacts: { label: 
     return {
         html: md ? simpleMarkdownToHtml(md) : '',
         headings: md ? extractHeadings(md).filter(h => h.level === 2).map(h => ({ id: h.id, text: h.text.replace(/[*_`]/g, '') })) : [],
-        faqs: parseJson<Faq[]>(row.faq_json, []).filter(f => f.q && f.a),
+        faqs: parseJson<Faq[]>(row.faq_json ?? null, []).filter(f => f.q && f.a),
         facts,
         readTime: md ? readTime(md) : '',
-        updated: formatDate(row.updated_at),
+        updated: formatDate(row.updated_at ?? null),
     };
 }
 
