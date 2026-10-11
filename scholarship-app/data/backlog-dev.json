@@ -1174,5 +1174,13 @@
     "impact": "Medium",
     "status": "Parked",
     "type": "Strategy"
+  },
+  {
+    "id": "IS-158",
+    "title": "Study Abroad: add article fields to course pages (sa_programs) and render them",
+    "description": "Course pages can only show a facts box today. Add summary, seo_title, meta_description, body_md, faq_json, language, duration, intakes, english_requirements, application_portal, application_fee, stem_designated to sa_programs; render article, FAQs, Course schema and byline; show 'Not published by the university' for blank fields. See docs/study-abroad/templates/COURSE_PAGE_TEMPLATE.md \u00a73.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Data"
   }
 ]
