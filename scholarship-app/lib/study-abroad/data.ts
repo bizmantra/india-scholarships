@@ -76,6 +76,51 @@ export const getProgramCombos = () =>
         `SELECT p.country, p.degree, p.field, COUNT(DISTINCT p.university_slug) AS universities ${PROGRAM_SELECT.replace('SELECT p.*, u.name AS university_name', '')}
          WHERE p.status = 'published' AND p.field IS NOT NULL GROUP BY p.country, p.degree, p.field`);
 
+// ---------- Automatic link blocks (docs/study-abroad/templates/LINKING_RULES.md) ----------
+
+export const fieldLabel = (field: string) => field.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase());
+
+/** Comparison pages (published, enough universities) for the degree + subject pairs in these programs. */
+export async function getComparisonLinks(country: CountrySlug, programs: { degree: string; field: string | null }[]) {
+    const wanted = new Set(programs.filter(p => p.field).map(p => `${p.degree}/${p.field}`));
+    if (!wanted.size) return [];
+    return (await getProgramCombos())
+        .filter(c => c.country === country && wanted.has(`${c.degree}/${c.field}`) && c.universities >= MIN_INDEXABLE_UNIVERSITIES)
+        .map(c => ({ href: `/study-abroad/programs/${c.country}/${c.degree}/${c.field}`, title: `${c.degree.toUpperCase()} in ${fieldLabel(c.field)} in ${COUNTRIES[c.country].name}`, universities: c.universities }));
+}
+
+/** 3–5 similar universities: same country, most subjects in common, then closest tuition, then name. */
+export async function getSimilarUniversities(u: Pick<SaUniversity, 'slug' | 'country' | 'tuition_per_year'>, fields: string[], limit = 5) {
+    const rows = await query<{ slug: string; name: string; city: string | null; tuition_per_year: number | null; tuition_currency: string | null; fields: string | null }>(
+        `SELECT u.slug, u.name, u.city, u.tuition_per_year, u.tuition_currency, GROUP_CONCAT(DISTINCT p.field) AS fields
+         FROM sa_universities u LEFT JOIN sa_programs p ON p.university_slug = u.slug AND p.status = 'published'
+         WHERE u.status = 'published' AND u.country = ? AND u.slug <> ? GROUP BY u.slug`, [u.country, u.slug]);
+    const mine = new Set(fields);
+    const overlap = (r: { fields: string | null }) => (r.fields || '').split(',').filter(f => mine.has(f)).length;
+    const gap = (r: { tuition_per_year: number | null }) =>
+        r.tuition_per_year != null && u.tuition_per_year != null ? Math.abs(r.tuition_per_year - u.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+    return rows
+        .sort((a, b) => overlap(b) - overlap(a) || gap(a) - gap(b) || a.name.localeCompare(b.name))
+        .slice(0, limit);
+}
+
+/** Most similar courses: same country, degree and subject; closest tuition, then the same GRE rule; never alphabetical. */
+export function rankSimilarPrograms(p: SaProgram, peers: SaProgram[], limit = 6) {
+    const greOf = (x: SaProgram) => (/not required|no\b|false/i.test(x.gre || '') ? 'no' : x.gre ? 'yes' : '');
+    const gap = (x: SaProgram) =>
+        x.tuition_per_year != null && p.tuition_per_year != null ? Math.abs(x.tuition_per_year - p.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+    return peers
+        .filter(x => x.id !== p.id)
+        .sort((a, b) => gap(a) - gap(b) || Number(greOf(b) === greOf(p)) - Number(greOf(a) === greOf(p)) || (a.university_name || '').localeCompare(b.university_name || ''))
+        .slice(0, limit);
+}
+
+// The proof-of-funds calculator for each country
+export const FUNDS_CALCULATOR: Partial<Record<CountrySlug, { href: string; label: string }>> = {
+    germany: { href: '/study-abroad/tools/blocked-account-calculator', label: 'Blocked account calculator' },
+    usa: { href: '/study-abroad/tools/i20-cost-calculator', label: 'I-20 proof of funds calculator' },
+};
+
 export async function getFacts(): Promise<Record<string, SaFact>> {
     const rows = await query<SaFact>('SELECT * FROM sa_facts');
     return Object.fromEntries(rows.map(r => [r.key, r]));
