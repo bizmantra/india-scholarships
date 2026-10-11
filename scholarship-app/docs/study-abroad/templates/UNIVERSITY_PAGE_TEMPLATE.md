@@ -104,7 +104,7 @@ Only these may repeat across pages, and each must link to the full guide:
 
 ## 7. Trust (E-E-A-T)
 
-- **Byline:** shown by the page layout: "By {author}. Facts checked {checked_at}." (Author name to be confirmed by the site owner.)
+- **Byline:** shown by the page layout: "By IndiaScholarships Editorial Team. Facts checked {checked_at}." The same byline is used on every Study Abroad page.
 - **Sources section** on every page, as above.
 - **Corrections:** when a fact changes, update the page and `checked_at`; do not leave the old figure anywhere on the page.
 - **No invented experience.** Never write "students tell us", "in our experience" or made-up examples.
