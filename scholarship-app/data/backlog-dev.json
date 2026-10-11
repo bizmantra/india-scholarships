@@ -1058,7 +1058,7 @@
   {
     "id": "IS-143",
     "title": "Study Abroad: written template + internal link rules for every page type (audit; recovery E4)",
-    "description": "Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. Page types: home, country, country lists, course comparison, university, course, guide, visa, loan, calculator, international-scholarship block. University first. Docs in docs/study-abroad/templates/. Link blocks built into layouts where possible.",
+    "description": "Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. Page types: home, country, country lists, course comparison, university, course, guide, visa, loan, calculator, international-scholarship block. University first. Docs in docs/study-abroad/templates/. Link blocks built into layouts where possible. Update: all 11 templates written in docs/study-abroad/templates/ (README is the index). Remaining work is building them into layouts and content (IS-148, IS-153, IS-158, IS-159, IS-146).",
     "impact": "Medium",
     "status": "In Progress",
     "type": "Content Architecture"
@@ -1180,6 +1180,14 @@
     "title": "Study Abroad: add article fields to course pages (sa_programs) and render them",
     "description": "Course pages can only show a facts box today. Add summary, seo_title, meta_description, body_md, faq_json, language, duration, intakes, english_requirements, application_portal, application_fee, stem_designated to sa_programs; render article, FAQs, Course schema and byline; show 'Not published by the university' for blank fields. See docs/study-abroad/templates/COURSE_PAGE_TEMPLATE.md \u00a73.",
     "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Data"
+  },
+  {
+    "id": "IS-159",
+    "title": "Study Abroad: move hub, list and comparison page text from code into the database",
+    "description": "Home, country pages, country lists and comparison pages keep their intro, guidance and FAQ text in code, so it cannot be edited or approved through the Agent Center inbox. Store per-page summary, seo_title, meta_description, body_md (intro / how to choose / step by step), faq_json and checked_at (e.g. an sa_pages table keyed by path) and render it. See docs/study-abroad/templates/README.md.",
+    "impact": "Medium",
     "status": "Backlog",
     "type": "Feature, Data"
   }
