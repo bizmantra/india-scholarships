@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import type { SaProgram } from '@/lib/study-abroad/data';
 import { money } from '@/lib/study-abroad/content';
+import { NOT_PUBLISHED, publicValue } from './LinkBlocks';
 
 export interface Provider {
     name: string; processing_fee?: string; min_interest_rate?: string; collateral_required?: boolean;
@@ -73,7 +74,8 @@ export function MockInterview({ items }: { items: { question: string; tips?: str
 const deadlinesText = (json: string | null) => {
     if (!json) return null;
     try {
-        return Object.entries(JSON.parse(json) as Record<string, string>).map(([k, v]) => `${k[0].toUpperCase()}${k.slice(1)}: ${v}`).join(' · ');
+        return Object.entries(JSON.parse(json) as Record<string, string>)
+            .map(([k, v]) => `${k[0].toUpperCase()}${k.slice(1)}: ${publicValue(v) || NOT_PUBLISHED}`).join(' · ');
     } catch { return null; }
 };
 
@@ -105,9 +107,9 @@ export function ProgramTable({ programs, showUniversity = true }: { programs: Sa
                             </td>
                             <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{money(p.tuition_per_year, p.tuition_currency) || '—'}</td>
                             <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{money(p.living_cost_per_year, p.living_currency) || '—'}</td>
-                            <td className="px-3 py-2 text-gray-700">{p.gpa_min || '—'}</td>
-                            <td className="px-3 py-2 text-gray-700">{p.ielts_min ?? '—'}</td>
-                            <td className="px-3 py-2 text-gray-700">{p.gre || '—'}</td>
+                            <td className="px-3 py-2 text-gray-700">{publicValue(p.gpa_min) || '—'}</td>
+                            <td className="px-3 py-2 text-gray-700">{publicValue(p.ielts_min != null ? String(p.ielts_min) : null) || '—'}</td>
+                            <td className="px-3 py-2 text-gray-700">{publicValue(p.gre) || '—'}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -51,6 +51,7 @@ const NEEDS_SOURCE = new Set(['tuition_per_year', 'living_cost_per_year', 'appli
 // Phrases that must never reach a page (research notes, template filler)
 const BANNED = [
     /not specified in the official source/i, /check the current/i, /not clearly stated/i, /third-party sources/i, /verify the current/i,
+    /\bnot (confirmed|stated)\b[^.]*\b(page|source)s?\b/i, /in the provided official sources?/i, /check (tum's|the) accepted/i,
     /^\s*complete 20\d\d guide to/i, /navigation breadcrumb/i, /primary seo title/i, /executive summary/i, /holy grail/i,
 ];
 

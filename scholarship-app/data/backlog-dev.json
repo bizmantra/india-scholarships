@@ -1098,9 +1098,9 @@
   {
     "id": "IS-148",
     "title": "Study Abroad: page layout fixes from audit",
-    "description": "Hide research notes on course pages; correct official-link labels/targets; similar courses by relevance not alphabet; Course schema; byline + 'facts checked' date; remove wrong 'Public universities charge a semester fee only' note; university pages list courses from sa_programs. Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. ",
+    "description": "Hide research notes on course pages; correct official-link labels/targets; similar courses by relevance not alphabet; Course schema; byline + 'facts checked' date; remove wrong 'Public universities charge a semester fee only' note; university pages list courses from sa_programs. Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K.  Update: university and course pages done in the template-layouts PR (byline + facts-checked date, wrong 'semester fee only' note removed, research notes shown as 'Not published by the university' on course, comparison and university pages, honest 'Official source' label, similar courses by tuition and GRE, Course schema). Remaining: other page types as their templates are built.",
     "impact": "High",
-    "status": "Backlog",
+    "status": "In Progress",
     "type": "Bug, SEO"
   },
   {
@@ -1190,5 +1190,13 @@
     "impact": "Medium",
     "status": "Backlog",
     "type": "Feature, Data"
+  },
+  {
+    "id": "IS-160",
+    "title": "Study Abroad: automatic link blocks for every page type (LINKING_RULES.md)",
+    "description": "Build the 'auto' links from docs/study-abroad/templates/LINKING_RULES.md into each layout. Done for university pages (comparison pages, 3-5 similar universities, scholarships for the country, cost links) and course pages (comparison, similar courses by relevance, scholarships, cost links). Remaining: home, country pages, country lists, comparison pages, guides, visa, loan and calculator pages; scholarship block on main-site pages is IS-146. Similar-university ranking improves once tuition is filled on university records.",
+    "impact": "High",
+    "status": "In Progress",
+    "type": "Feature, Internal Linking"
   }
 ]

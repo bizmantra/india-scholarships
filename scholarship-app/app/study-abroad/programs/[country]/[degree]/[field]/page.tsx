@@ -5,6 +5,7 @@ import { SITE, money, pageTitle } from '@/lib/study-abroad/content';
 import ListingShell, { ListingSection } from '../../../../_components/ListingShell';
 import SACard, { CardGrid } from '../../../../_components/SACard';
 import { ProgramTable } from '../../../../_components/blocks';
+import { publicValue } from '../../../../_components/LinkBlocks';
 
 export const revalidate = 86400;
 // Only combinations with real program records get a page; anything else is a 404
@@ -61,7 +62,7 @@ export default async function ProgramComparison({ params }: { params: Promise<{ 
                         <SACard key={p.id} href={`/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`}
                             title={p.university_name!} subtitle={p.title}
                             figure={money(p.tuition_per_year, p.tuition_currency)} figureNote={p.tuition_per_year ? 'tuition per year' : null}
-                            detail={[p.gpa_min && `GPA: ${p.gpa_min}`, p.ielts_min != null && `IELTS ${p.ielts_min}`, p.gre && `GRE: ${p.gre}`].filter(Boolean).join(' · ') || null} />
+                            detail={[publicValue(p.gpa_min) && `GPA: ${publicValue(p.gpa_min)}`, p.ielts_min != null && `IELTS ${publicValue(String(p.ielts_min))}`, publicValue(p.gre) && `GRE: ${publicValue(p.gre)}`].filter(Boolean).join(' · ') || null} />
                     ))}
                 </CardGrid>
             </ListingSection>
