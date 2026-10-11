@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-10-04
+Generated on: 2026-10-11
 Total Scholarships Audited: **504**
-Scholarships with Issues: **117** (23.2%)
+Scholarships with Issues: **118** (23.4%)
 
 ---
 
@@ -15,7 +15,7 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Missing Annual Amount** | 0 | 0.0% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 4 | 0.8% | Missing/0 minimum amount |
 | **Missing Deadline Date** | 4 | 0.8% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 70 | 13.9% | Deadline is in the past (before 2026-10-04) |
+| **Expired Deadline** | 71 | 14.1% | Deadline is in the past (before 2026-10-11) |
 | **Old Year References** | 20 | 4.0% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 0 | 0.0% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 0 | 0.0% | Missing or under 15 characters |
@@ -85,4 +85,4 @@ Here are the scholarships with the highest number of content quality issues:
 | `chief-minister-medhavi-yojana` | **Chief Minister Medhavi Yojana** | 1 | Expired Deadline (2026-09-30) |
 | `pragyan-bharati-scheme` | **Pragyan Bharati Scheme** | 1 | Missing Helpline Contact Details |
 
-*Note: Showing top 50 rows. A complete list of all 117 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 118 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
