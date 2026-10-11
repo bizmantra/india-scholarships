@@ -1018,7 +1018,7 @@
   {
     "id": "IS-138",
     "title": "Study Abroad: content cleanup of sa_* records (recovery #17-22, #27)",
-    "description": "Breadcrumb leftovers (187), visible SEO notes (75), raw div markup (61), 178 boilerplate summaries, .md filenames in summaries (11), 5 universities with no body, repeated brand in titles. Run through Agent Center as gated proposals. Re-count first: PRs #27/#28 may have fixed some. Titles review sheet: docs/study-abroad/study-abroad-titles-descriptions-review.xlsx. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "description": "Breadcrumb leftovers (187), visible SEO notes (75), raw div markup (61), 178 boilerplate summaries, .md filenames in summaries (11), 5 universities with no body, repeated brand in titles. Run through Agent Center as gated proposals. Re-count first: PRs #27/#28 may have fixed some. Titles review sheet: docs/study-abroad/study-abroad-titles-descriptions-review.xlsx. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md Update 11 Oct: breadcrumb/notes/div/.md/empty-body issues fixed by owner; 20 summaries rewritten 4 Oct. Remaining: 117 boilerplate summaries (low impact, hidden on site) and 7 thin visa/loan pages.",
     "impact": "High",
     "status": "Backlog",
     "type": "Content"
@@ -1050,17 +1050,17 @@
   {
     "id": "IS-142",
     "title": "Study Abroad: tracking + rank tracking (recovery #35, #36)",
-    "description": "GSC clicks on /study-abroad/*, outbound partner clicks, ad revenue per section; add ~30 SA terms plus the expansion shortlist to rank tracking. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md",
+    "description": "GSC clicks on /study-abroad/*, outbound partner clicks, ad revenue per section; add ~30 SA terms plus the expansion shortlist to rank tracking. See docs/study-abroad/STUDY_ABROAD_RECOVERY_PLAN.md Add: record clicks on /study-abroad/out/* provider links as GA events now. Do NOT sign up for partner programs until ~100 provider clicks/month or a few hundred monthly visits to money pages.",
     "impact": "Medium",
     "status": "Backlog",
     "type": "Analytics"
   },
   {
     "id": "IS-143",
-    "title": "Study Abroad expansion E4: page templates per page type as Agent Center content specs",
-    "description": "See docs/study-abroad/STUDY_ABROAD_COUNTRY_EXPANSION_PLAN.md",
+    "title": "Study Abroad: written template + internal link rules for every page type (audit; recovery E4)",
+    "description": "Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. Page types: home, country, country lists, course comparison, university, course, guide, visa, loan, calculator, international-scholarship block. University first. Docs in docs/study-abroad/templates/. Link blocks built into layouts where possible.",
     "impact": "Medium",
-    "status": "Backlog",
+    "status": "In Progress",
     "type": "Content Architecture"
   },
   {
@@ -1078,5 +1078,101 @@
     "impact": "Low",
     "status": "Parked",
     "type": "Feature, Content"
+  },
+  {
+    "id": "IS-146",
+    "title": "Study Abroad: link international scholarships to Study Abroad and back",
+    "description": "Add a 'Plan your study in {country}' block to all 127 international scholarship pages (country page, universities/courses it funds, calculator, visa guide). Show applicable scholarships on country, university and course pages, read from the scholarships table. 0 links today; intl pages had ~37k impressions in 90 days. Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. ",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Internal Linking"
+  },
+  {
+    "id": "IS-147",
+    "title": "Study Abroad: Agent Center inbox support for sa_* pages",
+    "description": "Proposals for sa_guides/sa_universities/sa_programs fields (body, summary, seo_title, meta, faq, infobox, tuition, deadlines, gre, official_source, checked_at), grouped per page, old/new side by side, approve/undo, instant page refresh. All content changes go through it.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Feature, Admin"
+  },
+  {
+    "id": "IS-148",
+    "title": "Study Abroad: page layout fixes from audit",
+    "description": "Hide research notes on course pages; correct official-link labels/targets; similar courses by relevance not alphabet; Course schema; byline + 'facts checked' date; remove wrong 'Public universities charge a semester fee only' note; university pages list courses from sa_programs. Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. ",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Bug, SEO"
+  },
+  {
+    "id": "IS-149",
+    "title": "Study Abroad: merge overlapping pages",
+    "description": "Redirect the two 100%-identical routes-hub pairs. Merge clusters: DAAD (main-site page owns), Fulbright, APS, Uni-Assist, GRE Germany, German language, TUM/RWTH portal guides into university pages, visa interview pages, university and course directory guides into listing pages, USA English tests, WES/GPA, education loans. Audit 11 Oct 2026: https://claude.ai/artifact/REKE2ne6NCFVTiY6htw98K. ",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "SEO, Content"
+  },
+  {
+    "id": "IS-150",
+    "title": "Study Abroad: correct known wrong figures",
+    "description": "Old \u20ac934 on 12 pages (living costs and other scholarships), 'TUM is free' on 3 guides, outdated 2024/2025 references on 4 pages. Verify each against official sources; submit via inbox.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content, Accuracy"
+  },
+  {
+    "id": "IS-151",
+    "title": "Study Abroad: titles and headings cleanup",
+    "description": "Shorten 11 titles over 65 chars (incl. home and country pages); remove 'Operational Manual', 'Master Manual', 'Hacks', 'Executive Summary' from titles/headings.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "SEO"
+  },
+  {
+    "id": "IS-152",
+    "title": "Main site: merge duplicate international scholarships",
+    "description": "Chevening (2), Commonwealth Master's (2), Fulbright-Nehru Master's (2), Rhodes (2) each exist twice and compete in Google. Keep one, 301 the other.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "SEO, Data"
+  },
+  {
+    "id": "IS-153",
+    "title": "Study Abroad: rebuild university pages to template",
+    "description": "Order by Google exposure: Michigan, San Jos\u00e9 State, UIC, UT Arlington, UT Austin, TU Darmstadt, Georgia Tech, Saarland, Buffalo, then TUM, RWTH, KIT, TU Berlin and the rest. Via inbox. Needs IS-143 and inbox.",
+    "impact": "High",
+    "status": "Backlog",
+    "type": "Content"
+  },
+  {
+    "id": "IS-154",
+    "title": "Study Abroad: course coverage",
+    "description": "Add courses that university pages mention (TUM has 4 named, 1 in DB); 5 German and 18 US universities have no course. Then subjects with demand: Data Science, Business Analytics, Engineering Management/MIS, AI (USA courses searches ~2,900/mo).",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content, Data"
+  },
+  {
+    "id": "IS-155",
+    "title": "Study Abroad: key numbers in the facts table",
+    "description": "Blocked account amount, visa fees, tuition etc. stored once in sa_facts with source_url + checked_at; pages read from it. Only 7 of 153 guide/university pages have a source today, 0 have checked dates.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Data, Accuracy"
+  },
+  {
+    "id": "IS-156",
+    "title": "Study Abroad: strengthen high-demand guides",
+    "description": "Blocked account (2,900/mo, never shown in Google), Uni-Assist (22,200/mo), APS (1,600/mo), health insurance, education loans. These are also the future partner-income pages.",
+    "impact": "Medium",
+    "status": "Backlog",
+    "type": "Content, SEO"
+  },
+  {
+    "id": "IS-157",
+    "title": "Study Abroad phase 2: growth, SEO trends, pSEO, AI and sticky features",
+    "description": "After audit actions: AI Overviews / LLM citation readiness, pSEO from the database (only with unique sourced data), shortlist/compare, cost and funding planner, deadline alerts, AI assistant on sourced data, profile matching.",
+    "impact": "Medium",
+    "status": "Parked",
+    "type": "Strategy"
   }
 ]
