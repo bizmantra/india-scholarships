@@ -31,6 +31,7 @@ const CATEGORY_LABELS = {
     missing_info: 'Missing or outdated details',
     contact_change: 'Helpline updates',
     wording: 'Wording updates',
+    study_abroad: 'Study Abroad page changes',
 };
 
 // Workflow file → agent label, for the runs list (maintenance workflows are left out)

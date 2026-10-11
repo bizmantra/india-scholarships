@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { AlertTriangle, Check, CheckCircle2, Circle, ExternalLink, Loader2, RotateCcw, X, XCircle } from 'lucide-react';
 import { afterDecision, api, CATEGORY_LABELS, handle, refreshActivity, refreshSummary, short } from './orchestrator';
 import { log, post, useStore, type Message, type Tone } from './store';
+import { LABELS as SA_LABELS, fieldType as saFieldType, parseTargetId } from '@/scripts/lib/sa-inbox';
 
 const toneText: Record<Tone, string> = {
     good: 'text-cc-good',
@@ -231,9 +232,10 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                             {first.times_proposed > 1 && <span>Proposed {first.times_proposed}×</span>}
                         </div>
                         <p className="mb-2 font-bold text-cc-text">
-                            {first.slug
-                                ? <a href={`/scholarships/${first.slug}`} target="_blank" rel="noreferrer" className="hover:underline">{first.scholarship_title}</a>
+                            {pageLink(first)
+                                ? <a href={pageLink(first)!} target="_blank" rel="noreferrer" className="hover:underline">{first.scholarship_title}</a>
                                 : first.scholarship_title}
+                            {first.kind === 'sa_field_change' && <span className="ml-2 text-[11px] font-normal text-cc-muted">{pageLink(first) || 'Study Abroad'}</span>}
                         </p>
 
                         {isNew ? (
@@ -248,13 +250,15 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                             <div className="space-y-2">
                                 {group.items.map(i => (
                                     <div key={i.id} className="text-xs">
-                                        <p className="text-cc-muted">{FIELD_LABELS[i.field || ''] || i.field}</p>
-                                        <p className="break-words">
-                                            <span className="text-cc-muted line-through">{formatValue(i.field, i.old_value)}</span>
-                                            <span className="mx-1.5 text-cc-faint">→</span>
-                                            <span className="text-cc-text">{formatValue(i.field, i.new_value)}</span>
-                                        </p>
-                                        <EvidenceLine json={i.evidence_json} field={i.field} />
+                                        {i.kind === 'sa_field_change' ? <SaChange item={i} /> : <>
+                                            <p className="text-cc-muted">{FIELD_LABELS[i.field || ''] || i.field}</p>
+                                            <p className="break-words">
+                                                <span className="text-cc-muted line-through">{formatValue(i.field, i.old_value)}</span>
+                                                <span className="mx-1.5 text-cc-faint">→</span>
+                                                <span className="text-cc-text">{formatValue(i.field, i.new_value)}</span>
+                                            </p>
+                                            <EvidenceLine json={i.evidence_json} field={i.field} />
+                                        </>}
                                         <DecisionLine decision={decisions[i.id]} onUndo={() => undo(i.id)} onForce={() => decide([i.id], 'approve', true)} />
                                     </div>
                                 ))}
@@ -283,6 +287,86 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
             {isNewScholarshipList(message) && Object.values(decisions).some(d => d.state === 'approved') && (
                 <Button tone="primary" onClick={() => handle('Run the scout publisher')}>Publish approved scholarships now</Button>
             )}
+        </div>
+    );
+}
+
+// ---------- Study Abroad page changes: short fields inline, long text as a readable diff ----------
+
+function pageLink(item: Item) {
+    if (item.kind === 'sa_field_change') {
+        try { return JSON.parse(item.payload_json || '{}').path || null; } catch { return null; }
+    }
+    return item.slug ? `/scholarships/${item.slug}` : null;
+}
+
+// FAQs and JSON shown as readable text, so the diff is about words, not brackets
+function readable(type: string | undefined, value: string | null) {
+    if (value === null || value === undefined || value === '') return '';
+    if (type === 'faq') {
+        try { return (JSON.parse(value) as { q: string; a: string }[]).map(f => `Q: ${f.q}\nA: ${f.a}`).join('\n\n'); } catch { return value; }
+    }
+    if (type === 'json') {
+        try { return JSON.stringify(JSON.parse(value), null, 2); } catch { return value; }
+    }
+    return value;
+}
+
+// Line diff (longest common subsequence); pages are a few hundred lines at most
+function lineDiff(a: string, b: string) {
+    const x = a.split('\n'), y = b.split('\n');
+    const n = x.length, m = y.length;
+    const dp: number[][] = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = x[i] === y[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const out: { t: 'same' | 'del' | 'add'; s: string }[] = [];
+    let i = 0, j = 0;
+    while (i < n && j < m) {
+        if (x[i] === y[j]) { out.push({ t: 'same', s: x[i] }); i++; j++; }
+        else if (dp[i + 1][j] >= dp[i][j + 1]) out.push({ t: 'del', s: x[i++] });
+        else out.push({ t: 'add', s: y[j++] });
+    }
+    while (i < n) out.push({ t: 'del', s: x[i++] });
+    while (j < m) out.push({ t: 'add', s: y[j++] });
+    return out;
+}
+
+const words = (t: string) => (t.trim() ? t.trim().split(/\s+/).length : 0);
+
+function SaChange({ item }: { item: Item }) {
+    const target = parseTargetId(item.scholarship_id);
+    const type = target ? saFieldType(target.table, item.field || '') : undefined;
+    const label = SA_LABELS[(item.field || '') as keyof typeof SA_LABELS] || item.field;
+    const long = type === 'markdown' || type === 'faq' || type === 'json';
+    const before = readable(type, item.old_value), after = readable(type, item.new_value);
+    if (!long) {
+        return <>
+            <p className="text-cc-muted">{label}</p>
+            <p className="break-words">
+                <span className="text-cc-muted line-through">{before || '(empty)'}</span>
+                <span className="mx-1.5 text-cc-faint">→</span>
+                <span className="text-cc-text">{after || '(empty)'}</span>
+            </p>
+        </>;
+    }
+    const diff = lineDiff(before, after);
+    const added = diff.filter(d => d.t === 'add').length, removed = diff.filter(d => d.t === 'del').length;
+    return (
+        <div>
+            <p className="text-cc-muted">{label} · {words(before).toLocaleString('en-IN')} → {words(after).toLocaleString('en-IN')} words · {added} line(s) added, {removed} removed</p>
+            <details className="mt-1 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 text-cc-link">Read the changes</summary>
+                <div className="max-h-[28rem] overflow-auto border-t border-cc-border px-2 py-1.5 font-mono text-[11px] leading-relaxed">
+                    {diff.map((d, n) => (
+                        <div key={n} className={`whitespace-pre-wrap break-words ${d.t === 'add' ? 'bg-emerald-500/10 text-cc-good' : d.t === 'del' ? 'bg-rose-500/10 text-cc-bad line-through' : 'text-cc-text-2'}`}>
+                            {d.t === 'add' ? '+ ' : d.t === 'del' ? '− ' : '  '}{d.s || ' '}
+                        </div>
+                    ))}
+                </div>
+            </details>
+            <details className="mt-1 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 text-cc-link">Read the new version in full</summary>
+                <div className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words border-t border-cc-border px-2 py-1.5 text-cc-text">{after || '(empty)'}</div>
+            </details>
         </div>
     );
 }

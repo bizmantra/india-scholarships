@@ -133,6 +133,16 @@ export const AGENTS: AgentDefinition[] = [
         team: 'data-accuracy',
         order: 9,
     },
+    {
+        id: 'content-editor',
+        label: 'Study Abroad Editor',
+        summary: 'Proposes rewritten and corrected Study Abroad pages (universities, courses, guides) written to the page templates, each with its official sources.',
+        schedule: 'When pages are rebuilt (submitted with scripts/study-abroad/propose-changes.mjs)',
+        humanToday: 'Research each page on official sites, rewrite it and edit the database by hand.',
+        gated: true,
+        team: 'content-creation',
+        order: 10,
+    },
 ];
 
 export const teamOf = (agentId: string): TeamId | undefined => agentById(agentId)?.team;
