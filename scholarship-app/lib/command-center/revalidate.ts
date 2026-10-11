@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache';
 import { slugify } from '@/lib/utils';
+import { pagePath } from '@/scripts/lib/sa-inbox';
 
 const LOCALES = ['hi', 'bn', 'ta', 'te', 'or', 'kn'];
 
@@ -27,4 +28,32 @@ export function refreshScholarshipPages(items: { slug: string; state?: string | 
         revalidatePath(path, path.startsWith('/scholarships-in/') ? 'layout' : 'page');
     }
     return [...paths];
+}
+
+/**
+ * Refresh Study Abroad pages after an approved change: the page itself plus the pages that list it
+ * (country page, country lists, comparison pages, the Study Abroad home). A changed fact (sa_facts)
+ * can appear anywhere in the section, so it refreshes the whole section.
+ */
+export function refreshStudyAbroadPages(items: { table: string; row: any }[]) {
+    const pages = new Set<string>();
+    const layouts = new Set<string>();
+    for (const { table, row } of items) {
+        if (!row) continue;
+        if (table === 'sa_facts') { layouts.add('/study-abroad'); continue; }
+        const path = pagePath(table, row);
+        if (path) pages.add(path);
+        const country = row.country;
+        if (country) layouts.add(`/study-abroad/study-in/${country}`);
+        if (table === 'sa_programs') {
+            layouts.add(`/study-abroad/programs/${row.country}`);
+            pages.add(`/study-abroad/universities/${row.university_slug}`);
+        }
+        if (table === 'sa_universities') layouts.add(`/study-abroad/programs/${row.country}`);
+        pages.add('/study-abroad');
+    }
+    for (const path of pages) revalidatePath(path, 'page');
+    // 'layout' covers every page below the path (country lists, guides, comparison pages)
+    for (const path of layouts) revalidatePath(path, 'layout');
+    return [...pages, ...layouts];
 }

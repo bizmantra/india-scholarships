@@ -15,6 +15,7 @@ Typed or tapped from the suggestion chips. Matching is by fixed patterns (`app/a
 | Show risky changes | Past deadlines and amounts moving more than 50% |
 | Approve all wording updates / Reject all risky amount changes | Asks first (gate card with samples), then decides the whole group |
 | Run the scout [for Bihar] / Run the freshness check / Run enrichment / Run the scout publisher | Starts the GitHub Actions workflow and shows its steps live |
+| Show Study Abroad changes | Cards for proposed Study Abroad page changes (universities, courses, guides, facts), one per page, with the full text diff |
 | What did agents do today? | Today's agent runs, their results and your decisions |
 | Which agents do what? | The agent list with "who does it without the agent" |
 
@@ -33,6 +34,21 @@ The **Inbox** tab (top right, with the number waiting) shows the same inbox as a
 - **Environment**: on the live site runs target production; on Vercel previews and locally they target staging.
 - **Agents are data**: `lib/command-center/agents.ts`. A new agent needs an entry there and a workflow with
   `target` and `request_id` inputs; its proposals use `scripts/lib/agent-inbox.js`.
+
+## Study Abroad pages
+
+Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) use the same inbox, with
+`kind = 'sa_field_change'` and category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
+
+- **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=staging|production] [--dry-run]`.
+  Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
+  no research notes, an official source for money and admission facts); a value you rejected is not proposed again.
+- **Cards:** one per page. Short fields show old → new; articles, FAQs and JSON show a line-by-line diff and the
+  full new version.
+- **Approving** writes the field and `updated_at`, records old and new values in the approval event (not in
+  `scholarship_changelog`, which belongs to scholarships), and refreshes the page, its country pages, comparison
+  pages and the Study Abroad home. **Undo** restores the old value if the page still shows the approved one.
+- `scripts/apply-reviewed-changes.js` (terminal) skips these items; approve them in the command center.
 
 ## Setup
 

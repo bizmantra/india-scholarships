@@ -7,16 +7,19 @@
  * activity in agent_events, and refreshes the affected pages.
  *
  * The value rules (formats, allowed fields) are shared with the agents: scripts/lib/agent-inbox.js.
+ * Study Abroad pages (kind 'sa_field_change') use scripts/lib/sa-inbox.js instead: they write the sa_*
+ * tables, and their old/new values are kept in the approval event rather than scholarship_changelog.
  */
 import { getClient } from '@/lib/db';
 import * as rules from '@/scripts/lib/agent-inbox';
-import { refreshScholarshipPages } from './revalidate';
+import * as sa from '@/scripts/lib/sa-inbox';
+import { refreshScholarshipPages, refreshStudyAbroadPages } from './revalidate';
 import { rows } from './server';
 
 export interface Proposal {
     id: number;
     agent: string;
-    kind: 'field_change' | 'new_scholarship';
+    kind: 'field_change' | 'new_scholarship' | 'sa_field_change';
     scholarship_id: string;
     scholarship_title: string;
     field: string | null;
@@ -87,6 +90,7 @@ export async function inboxSummary() {
             missing_info: count('missing_info'),
             contact_change: count('contact_change'),
             wording: count('wording'),
+            study_abroad: count(sa.CATEGORY),
         },
         risky: count(undefined, 'high'),
         riskyAmounts: count('amount_change', 'high'),
@@ -163,8 +167,55 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
     const missing = ids.filter(id => !items.some(p => Number(p.id) === id));
     missing.forEach(id => result.skipped.push({ id, title: `#${id}`, reason: 'Already decided or no longer pending' }));
 
+    // Current rows of every affected Study Abroad page, read once per table
+    const saLive = new Map<string, any>();
+    const saTargets = items.filter(p => p.kind === sa.KIND).map(p => sa.parseTargetId(p.scholarship_id)).filter(Boolean) as { table: string; key: string }[];
+    for (const table of [...new Set(saTargets.map(t => t.table))]) {
+        const target = (sa.TARGETS as Record<string, { key: string }>)[table];
+        if (!target) continue;
+        const keys = [...new Set(saTargets.filter(t => t.table === table).map(t => t.key))];
+        for (let i = 0; i < keys.length; i += 200) {
+            const chunk = keys.slice(i, i + 200);
+            const res = await client.execute({ sql: `SELECT * FROM ${table} WHERE ${target.key} IN (${chunk.map(() => '?').join(',')})`, args: chunk });
+            res.rows.forEach((r: any) => saLive.set(sa.targetId(table, String(r[target.key])), r));
+        }
+    }
+    const saTouched: { table: string; row: any }[] = [];
+
     for (const p of items) {
         const id = Number(p.id);
+        if (action === 'approve' && p.kind === sa.KIND) {
+            const target = sa.parseTargetId(p.scholarship_id);
+            const field = String(p.field);
+            const liveRow = saLive.get(p.scholarship_id);
+            if (!target || !liveRow) { result.skipped.push({ id, title: p.scholarship_title, reason: 'Page no longer exists' }); continue; }
+            const formatError = sa.validateSaValue(target.table, field, p.new_value, { source: p.source_citation });
+            if (formatError) { result.skipped.push({ id, title: p.scholarship_title, reason: `${sa.LABELS[field as keyof typeof sa.LABELS] || field}: ${formatError}` }); continue; }
+            const liveValue = liveRow[field];
+            if (!opts.force && !sa.sameSaValue(liveValue, p.old_value)) {
+                result.skipped.push({ id, title: p.scholarship_title, reason: `${sa.LABELS[field as keyof typeof sa.LABELS] || field} was changed to "${shortValue(liveValue)}" after this was proposed. Review it again.` });
+                continue;
+            }
+            const keyCol = (sa.TARGETS as Record<string, { key: string }>)[target.table].key;
+            const hasUpdatedAt = 'updated_at' in liveRow;
+            statements.push(
+                {
+                    sql: `UPDATE ${target.table} SET ${field} = ?${hasUpdatedAt ? ", updated_at = datetime('now')" : ''} WHERE ${keyCol} = ?`,
+                    args: [sa.storedSaValue(target.table, field, p.new_value), target.key],
+                },
+                {
+                    sql: "UPDATE agent_proposals SET status = 'approved', decided_by = ?, decided_at = datetime('now') WHERE id = ? AND status = 'pending'",
+                    args: [actor, id],
+                },
+                // Always one event per Study Abroad approval: undo reads the previous value from it
+                event(p.agent, 'approval', actor, `Approved ${field} for "${p.scholarship_title}" (Study Abroad)`, {
+                    proposal_id: id, table: target.table, key: target.key, field, old: liveValue ?? null, new: p.new_value, source_citation: p.source_citation,
+                }),
+            );
+            saTouched.push({ table: target.table, row: liveRow });
+            result.done.push(id);
+            continue;
+        }
         if (action === 'reject') {
             statements.push({
                 sql: "UPDATE agent_proposals SET status = 'rejected', decided_by = ?, decided_at = datetime('now'), decision_note = ? WHERE id = ? AND status = 'pending'",
@@ -235,8 +286,35 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
     for (let i = 0; i < statements.length; i += 120) {
         await client.batch(statements.slice(i, i + 120), 'write');
     }
-    result.refreshed = refreshScholarshipPages(touched);
+    result.refreshed = [...refreshScholarshipPages(touched), ...refreshStudyAbroadPages(saTouched)];
     return result;
+}
+
+/** Undo an approved Study Abroad change, if the page still shows the approved value. */
+async function undoStudyAbroad(p: Proposal, actor: string): Promise<{ ok: boolean; message: string }> {
+    const client = getClient();
+    const target = sa.parseTargetId(p.scholarship_id);
+    const field = String(p.field);
+    if (!target || !sa.fieldType(target.table, field)) return { ok: false, message: `Cannot undo changes to ${field}.` };
+    const log = await client.execute({
+        sql: `SELECT details_json FROM agent_events WHERE kind = 'approval' AND json_extract(details_json, '$.proposal_id') = ?
+              ORDER BY id DESC LIMIT 1`,
+        args: [Number(p.id)],
+    });
+    if (!log.rows[0]) return { ok: false, message: 'No record of this approval was found, so it cannot be undone automatically.' };
+    const previous = JSON.parse(String(log.rows[0].details_json)).old ?? null;
+    const keyCol = (sa.TARGETS as Record<string, { key: string }>)[target.table].key;
+    const live = await client.execute({ sql: `SELECT * FROM ${target.table} WHERE ${keyCol} = ?`, args: [target.key] });
+    const row: any = live.rows[0];
+    if (!row) return { ok: false, message: 'The page no longer exists.' };
+    if (!sa.sameSaValue(row[field], p.new_value)) return { ok: false, message: `${field} has changed again since the approval, so it was left as it is.` };
+    await client.batch([
+        { sql: `UPDATE ${target.table} SET ${field} = ?${'updated_at' in row ? ", updated_at = datetime('now')" : ''} WHERE ${keyCol} = ?`, args: [previous, target.key] },
+        { sql: "UPDATE agent_proposals SET status = 'rejected', decided_by = ?, decided_at = datetime('now'), decision_note = 'Undone after approval' WHERE id = ?", args: [actor, Number(p.id)] },
+        event(p.agent, 'undo', actor, `Undid ${field} for "${p.scholarship_title}" (Study Abroad)`, { proposal_id: Number(p.id), table: target.table, key: target.key, field }),
+    ], 'write');
+    refreshStudyAbroadPages([{ table: target.table, row }]);
+    return { ok: true, message: `${sa.LABELS[field as keyof typeof sa.LABELS] || field} for "${p.scholarship_title}" is back to the previous version.` };
 }
 
 /**
@@ -249,6 +327,7 @@ export async function undo(id: number, actor: string): Promise<{ ok: boolean; me
     const { items } = await listProposals({ ids: [id], status: 'approved' });
     const p = items[0];
     if (!p) return { ok: false, message: 'Only approved items can be undone.' };
+    if (p.kind === sa.KIND) return undoStudyAbroad(p, actor);
 
     if (p.kind === 'new_scholarship') {
         await client.batch([

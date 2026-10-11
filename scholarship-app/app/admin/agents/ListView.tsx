@@ -5,12 +5,22 @@ import { Loader2 } from 'lucide-react';
 import { AGENTS, agentsOfTeam } from '@/lib/command-center/agents';
 import { TEAMS } from '@/lib/command-center/teams';
 import { afterDecision, api, CATEGORY_LABELS, refreshSummary, short } from './orchestrator';
+import { LABELS as SA_LABELS } from '@/scripts/lib/sa-inbox';
 import { store, useStore } from './store';
+
+// Link to the page a proposal is about: the scholarship page, or the Study Abroad page from the payload
+function pageHref(r: { kind: string; slug?: string | null; payload_json?: string | null }) {
+    if (r.kind === 'sa_field_change') {
+        try { return JSON.parse(r.payload_json || '{}').path || null; } catch { return null; }
+    }
+    return r.slug ? `/scholarships/${r.slug}` : null;
+}
 
 interface Row {
     id: number;
     kind: string;
     scholarship_title: string;
+    payload_json?: string | null;
     slug: string | null;
     field: string | null;
     old_value: string | null;
@@ -118,8 +128,8 @@ export default function ListView() {
                             {rows.map(r => (
                                 <tr key={r.id} className="hover:bg-cc-raised">
                                     <td className="p-3"><input type="checkbox" checked={selected.has(r.id)} onChange={() => setSelected(s => { const n = new Set(s); if (n.has(r.id)) n.delete(r.id); else n.add(r.id); return n; })} aria-label={`Select ${r.scholarship_title}`} /></td>
-                                    <td className="p-3 font-bold text-cc-text">{r.slug ? <a href={`/scholarships/${r.slug}`} target="_blank" rel="noreferrer" className="hover:underline">{r.scholarship_title}</a> : r.scholarship_title}</td>
-                                    <td className="p-3">{r.kind === 'new_scholarship' ? 'New' : r.field}</td>
+                                    <td className="p-3 font-bold text-cc-text">{pageHref(r) ? <a href={pageHref(r)!} target="_blank" rel="noreferrer" className="hover:underline">{r.scholarship_title}</a> : r.scholarship_title}</td>
+                                    <td className="p-3">{r.kind === 'new_scholarship' ? 'New' : r.kind === 'sa_field_change' ? `Study Abroad: ${(SA_LABELS as Record<string, string>)[r.field || ''] || r.field}` : r.field}</td>
                                     <td className="p-3 text-cc-muted">{short(r.old_value)}</td>
                                     <td className="p-3">{r.kind === 'new_scholarship' ? '—' : short(r.new_value)}</td>
                                     <td className="p-3 text-cc-muted">
