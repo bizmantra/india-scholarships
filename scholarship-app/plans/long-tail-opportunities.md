@@ -8,12 +8,12 @@ Source: Search Console, 90 days to 2026-10-10 (43k queries, 3M impressions). Sta
 | # | Item | Batch | Owner | Status | Notes |
 |---|---|---|---|---|---|
 | 0 | Add 20 live pages to sitemap, delete test routes | done | Claude | PR #59 open, waiting for merge | |
-| 1 | OASIS West Bengal portal guide (split out of the Aikyashree guide; move the `oasis` alias to it) | 1 | Gemini drafts, Claude checks + builds | Built, in batch 1 PR | ~22k impressions. v2: 11/12 quotes found; Claude removed 3 unsupported claims (APB payment system, status-page field names, a deadline) |
-| 2 | Odisha State Scholarship Portal guide | 1 | Gemini drafts, Claude checks + builds | Built, in batch 1 PR | Official pages read through owner's Chrome; v2: 15/15 quotes found |
-| 2b | **Added:** scholarship pages link to their portal guide ("Scholarship Guides" section) | 1 | Claude | Built, in batch 1 PR | 82 scholarship pages get a link across 11 guides; guides were not linked from scholarship pages before |
+| 1 | OASIS West Bengal portal guide (split out of the Aikyashree guide; move the `oasis` alias to it) | 1 | Gemini drafts, Claude checks + builds | Built, PR #61 (staging test pending) | ~22k impressions. v2: 11/12 quotes found; Claude removed 3 unsupported claims (APB payment system, status-page field names, a deadline) |
+| 2 | Odisha State Scholarship Portal guide | 1 | Gemini drafts, Claude checks + builds | Built, PR #61 (staging test pending) | Official pages read through owner's Chrome; v2: 15/15 quotes found |
+| 2b | **Added:** scholarship pages link to their portal guide ("Scholarship Guides" section) | 1 | Claude | Built, PR #61 (staging test pending) | 82 scholarship pages get a link across 11 guides; guides were not linked from scholarship pages before |
 | 3 | Karnataka income limits by caste category (2A/2B/3A/3B/Cat-1) guide | 1 | Gemini drafts, Claude checks | Not started | Check overlap with Karnataka pillar first. Existing editorial guides get few impressions (see findings) |
 | 4 | ~~AP Jnanabhumi + Bihar Medhasoft guides~~ → **Merge the two duplicate Bihar post-matric articles; drop AP** | 1 | Claude | Approved 2026-10-13, not started | AP already has a portal guide + Vidya Deevena article (both ~0 impressions) |
-| 5 | "School vs college" section on existing state pages (no new URLs) | 1 | Claude | Built, in batch 1 PR | ~10k impressions. Section + 2 FAQs per state, from scholarship data |
+| 5 | "School vs college" section on existing state pages (no new URLs) | 1 | Claude | Built, PR #61 (staging test pending) | ~10k impressions. Section + 2 FAQs per state, from scholarship data |
 | 6 | Post-matric / pre-matric hub per state (~12 states with 3+ versions) | 2 (after Oct 19) | Gemini drafts intros, Claude builds | Not started | ~49k impressions. 5 existing state post-matric articles get ~0 impressions; the hub would absorb and redirect them |
 | 7 | ~~New page per class~~ → **Per-class sections and jump links on the existing class 9-12 hub** | 2 (after Oct 19) | Claude | Approved 2026-10-13, not started | Existing hub works (7.2k impressions, 250 clicks, pos 5.7); class-10/12-passed articles get ~0 |
 | 8 | State × category hubs in sitemap (only with enough scholarships) | 3 (after Phase 3 audit) | Claude | Not started | |
