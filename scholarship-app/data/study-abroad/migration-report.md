@@ -1,12 +1,12 @@
 # Study Abroad migration report
 
-Run: 2026-09-27 16:35:45. Source: old Study Abroad app database (199 records) + programs.json.
+Run: 2026-09-27 18:38:10. Source: old Study Abroad app database (199 records) + programs.json.
 
 ## Rows written
 - sa_universities: 45 (duplicates merged: 6)
 - sa_guides: 118 (guide 103, visa 11, loan 4)
 - sa_programs: 32
-- sa_facts: 14
+- sa_facts: 17
 - Scholarships: not copied. 20 redirect to the main site; 9 sent to the Scout as leads (data/study-abroad/scout-leads.json)
 
 ## Duplicate universities merged (dropped → kept)
@@ -28,7 +28,7 @@ Run: 2026-09-27 16:35:45. Source: old Study Abroad app database (199 records) + 
 - Internal documents set to draft: 7
 - Boilerplate summary ("Complete 2026 guide to…"): 137
 - Missing summary: 12
-- Facts without a source: 14
+- Facts without a source: 17
 - Programs kept as draft because their university has no page (7):
   - MS in Computer Science → needs a university page "university-of-cincinnati"
   - MS in Computer Science → needs a university page "illinois-institute-of-technology"

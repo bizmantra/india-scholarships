@@ -1,0 +1,821 @@
+{
+ "sa_guides": [
+  {
+   "slug": "germany-routes-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-routes-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "expatrio-vs-fintiba-vs-coracle",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "prodigy-vs-mpower-vs-sbi-loan-usa",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "us-f1-student-visa-application-checklist",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "aps-india-certificate-verification-step-by-step",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "collateral-free-loan-approved-universities",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-student-visa-interview-questions",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "section-80e-tax-deduction-worked-example",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-winter-vs-summer-intakes",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-uni-assist-portal-walkthrough",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-tum-munich-portal-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-rwth-aachen-portal-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-offer-acceptance-payment",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-rejection-analysis-appeal",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-multiple-offers-decision-matrix",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-initial-72hr-survival-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-anmeldung-tax-id",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-health-insurance-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-residence-permit-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-destination-overview",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-public-vs-private",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-ects-credit-mapping",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-3yr-bachelor-acceptance",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-ms-cs-directory",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-ms-data-science-directory",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-engineering-directory",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-top-public-unis-profiles",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-fsp-studienkolleg-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-testas-exam-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-gre-gmat-germany-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-tum-efv-entrance-exam-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-german-language-exams-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-scholarship-panel-interview-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-total-cost-breakdown",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-blocked-account-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-education-loans-germany",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-rbi-lrs-tcs-tax-rules",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-daad-scholarships-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-financial-emergency-plan",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-university-listing-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-master-university-profile-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-master-program-listing-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-scholarship-directory-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-daad-scholarship-master-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-visa-routes-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-aps-certificate-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-bavarian-grade-matrix",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-uni-assist-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-english-language-tests",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-german-language-levels",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-gre-gmat-waiver-directory",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-sop-europass-cv-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-bavarian-calculator-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-blocked-account-calc-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-ects-evaluator-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-national-student-visa",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-vfs-appointment-hacks",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-vfs-document-checklist",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-visa-interview-prep",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-part-time-work-rules",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-securing-werkstudent-jobs",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-job-seeker-visa-strategy",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "germany-blue-card-pr-pathway",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-fall-vs-spring-intakes",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-gradcas-commonapp-portals",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-priority-vs-rolling-deadlines",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-i20-issuance-deposit-payment",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-rejection-analysis-appeal",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-multiple-offers-decision-matrix",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-initial-72hr-survival-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-ssn-application-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-health-insurance-waiver-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-off-campus-housing-lease",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-destination-overview",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-public-vs-private-unis",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-wes-gpa-40-conversion",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-3yr-bachelor-acceptance",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-stem-opt-designated-ms-cs",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-ms-data-science-business-analytics",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-ms-engineering-management-miso",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-top-us-public-r1-unis",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-gre-quant-170-strategy",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-gre-verbal-awa-prep-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-toefl-ielts-preparation-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-duolingo-det-preparation-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-fulbright-interview-prep",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-assistantship-interview-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-total-cost-breakdown",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-i20-financial-proof-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "us-education-loans-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-assistantships-ta-ra-ga",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-fulbright-tata-scholarships",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-on-campus-jobs-20hr-rule",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-university-listing-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-master-university-profile-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-master-program-listing-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-scholarship-directory-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-fulbright-scholarship-master-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-visa-routes-hub-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-wes-credential-evaluation-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-gpa-conversion-matrix",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-toefl-ielts-duolingo-cutoffs",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-gre-gmat-waiver-directory",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-sop-lor-resume-us-standards",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-work-experience-research-paper-points",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-prerequisites-deficiency-courses",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-wes-gpa-calculator-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-i20-proof-of-funds-calc-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-stem-opt-timeline-calc-spec",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-f1-student-visa-master-guide",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-ds160-form-filing-manual",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "us-consulate-slot-booking-hacks",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-f1-visa-interview-prep-questions",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-cpt-internship-rules",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-opt-stem-opt-extension",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-h1b-lottery-cap-exempt",
+   "seo_title": null,
+   "meta_description": null
+  },
+  {
+   "slug": "usa-green-card-eb2-niw-pathways",
+   "seo_title": null,
+   "meta_description": null
+  }
+ ],
+ "sa_universities": [
+  {
+   "slug": "chemnitz-university-of-technology",
+   "seo_title": "Chemnitz University of Technology: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Chemnitz University of Technology. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "fau-erlangen-nurnberg",
+   "seo_title": "FAU Erlangen-Nürnberg (Friedrich-Alexander-Universität) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to FAU Erlangen-Nürnberg (Friedrich-Alexander-Universität). Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€800 - €950 / Month), Bavarian GPA cutoffs (2.3 Bavarian GPA or better (7.8+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "heidelberg-university",
+   "seo_title": "Heidelberg University (Ruprecht-Karls-Universität Heidelberg) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Heidelberg University (Ruprecht-Karls-Universität Heidelberg). Check tuition fees (€1,500 / Semester (State Law for Non-EU Students)), living costs (€850 - €1,050 / Month), Bavarian GPA cutoffs (2.0 Bavarian GPA or better (8.0+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "karlsruhe-institute-of-technology",
+   "seo_title": "Karlsruhe Institute of Technology (KIT) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Karlsruhe Institute of Technology (KIT). Check tuition fees (€1,500 / Semester (State Law for Non-EU Students)), living costs (€850 - €1,050 / Month), Bavarian GPA cutoffs (2.0 Bavarian GPA or better (8.0+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "leibniz-university-hannover",
+   "seo_title": "Leibniz University Hannover: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Leibniz University Hannover. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "lmu-munich-ludwig-maximilian",
+   "seo_title": "Ludwig Maximilian University of Munich (LMU Munich) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Ludwig Maximilian University of Munich (LMU Munich). Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€950 - €1,300 / Month), Bavarian GPA cutoffs (2.0 Bavarian GPA or better (8.0+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "otto-von-guericke-university-magdeburg",
+   "seo_title": "Otto von Guericke University Magdeburg: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Otto von Guericke University Magdeburg. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "rwth-aachen-university",
+   "seo_title": "RWTH Aachen University MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to RWTH Aachen University. Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€800 - €950 / Month), Bavarian GPA cutoffs (2.5 Bavarian GPA or better (7.5+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "saarland-university",
+   "seo_title": "Saarland University: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Saarland University. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "tu-berlin",
+   "seo_title": "Technical University of Berlin (TU Berlin) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Technical University of Berlin (TU Berlin). Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€900 - €1,150 / Month), Bavarian GPA cutoffs (2.3 Bavarian GPA or better (7.8+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "tu-braunschweig",
+   "seo_title": "TU Braunschweig: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to TU Braunschweig. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "tu-darmstadt",
+   "seo_title": "TU Darmstadt (Technical University of Darmstadt) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to TU Darmstadt (Technical University of Darmstadt). Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€850 - €1,050 / Month), Bavarian GPA cutoffs (2.2 Bavarian GPA or better (7.8+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "tu-dresden",
+   "seo_title": "TU Dresden (Technical University of Dresden) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to TU Dresden (Technical University of Dresden). Check tuition fees (€0 (100% Tuition-Free Public)), living costs (€700 - €850 / Month), Bavarian GPA cutoffs (2.5 Bavarian GPA or better (7.5+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "tuhh-tuhamburg",
+   "seo_title": "TU Hamburg (TUHH): MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to TU Hamburg (TUHH). Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "tum-technical-university-munich",
+   "seo_title": "Technical University of Munich (TUM) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Technical University of Munich (TUM). Check tuition fees (€2,000 - €3,000 / Semester (Non-EU Fee since 2024)), living costs (€950 - €1,300 / Month), Bavarian GPA cutoffs (2.0 Bavarian GPA or better (8.0+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "university-of-bonn",
+   "seo_title": "University of Bonn: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Bonn. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "university-of-duisburg-essen",
+   "seo_title": "University of Duisburg-Essen: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Duisburg-Essen. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "university-of-freiburg",
+   "seo_title": "University of Freiburg: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Freiburg. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "university-of-hamburg",
+   "seo_title": "University of Hamburg: MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Hamburg. Check €0 tuition, Bavarian grade cutoff (2.0 Bavarian GPA or better), Anabin H+ status (H+ (Direct Recognition)), and housing costs."
+  },
+  {
+   "slug": "university-of-stuttgart",
+   "seo_title": "University of Stuttgart MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Stuttgart. Check tuition fees (€1,500 / Semester (State Law for Non-EU Students)), living costs (€900 - €1,100 / Month), Bavarian GPA cutoffs (2.2 Bavarian GPA or better (7.8+ Indian CGPA)), and Anabin status."
+  },
+  {
+   "slug": "arizona-state-university",
+   "seo_title": "Arizona State University (ASU) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Arizona State University (ASU). Check tuition fees ($32,000 USD / year), living costs ($850 - $1,100 / month), GPA cutoffs (7.5+ Indian CGPA (3.2+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "cmu-carnegie-mellon-university",
+   "seo_title": "Carnegie Mellon University (CMU) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Carnegie Mellon University (CMU). Check tuition fees ($58,000 USD / year), living costs ($1,200 - $1,500 / month), GPA cutoffs (8.8+ Indian CGPA (3.7+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "columbia-university",
+   "seo_title": "Columbia University in the City of New York MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Columbia University in the City of New York. Check tuition fees ($64,000 USD / year), living costs ($2,000 - $2,600 / month), GPA cutoffs (8.8+ Indian CGPA (3.7+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "gatech-georgia-tech",
+   "seo_title": "Georgia Institute of Technology (Georgia Tech) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Georgia Institute of Technology (Georgia Tech). Check tuition fees ($31,000 USD / year), living costs ($1,100 - $1,400 / month), GPA cutoffs (8.5+ Indian CGPA (3.6+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "george-mason-university",
+   "seo_title": "George Mason University (GMU) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to George Mason University (GMU). Check tuition fees ($34,000 USD / year), living costs ($1,200 - $1,500 / month), GPA cutoffs (7.2+ Indian CGPA (3.0+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "neu-northeastern-university",
+   "seo_title": "Northeastern University (NEU) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Northeastern University (NEU). Check tuition fees ($48,000 USD / year), living costs ($1,500 - $2,000 / month), GPA cutoffs (8.0+ Indian CGPA (3.4+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "nyu-new-york-university",
+   "seo_title": "New York University (NYU Tandon / Courant) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to New York University (NYU Tandon / Courant). Check tuition fees ($56,000 USD / year), living costs ($1,800 - $2,500 / month), GPA cutoffs (8.0+ Indian CGPA (3.4+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "purdue-university",
+   "seo_title": "Purdue University (West Lafayette) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Purdue University (West Lafayette). Check tuition fees ($29,134 USD / year (Frozen for 12+ Years!)), living costs ($700 - $900 / month), GPA cutoffs (7.8+ Indian CGPA (3.3+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "rutgers-university",
+   "seo_title": "Rutgers University (New Brunswick) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Rutgers University (New Brunswick). Check tuition fees ($34,500 USD / year), living costs ($1,100 - $1,400 / month), GPA cutoffs (8.0+ Indian CGPA (3.4+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "san-jose-state-university",
+   "seo_title": "San Jose State University (SJSU) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to San Jose State University (SJSU). Check tuition fees ($19,500 USD / year), living costs ($1,200 - $1,600 / month), GPA cutoffs (7.8+ Indian CGPA (3.3+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "stevens-institute-of-technology",
+   "seo_title": "Stevens Institute of Technology MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Stevens Institute of Technology. Check tuition fees ($42,000 USD / year), living costs ($1,400 - $1,800 / month), GPA cutoffs (7.5+ Indian CGPA (3.2+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "stony-brook-suny",
+   "seo_title": "Stony Brook University (SUNY Stony Brook) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Stony Brook University (SUNY Stony Brook). Check tuition fees ($24,500 USD / year), living costs ($900 - $1,200 / month), GPA cutoffs (7.8+ Indian CGPA (3.3+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "suny-buffalo",
+   "seo_title": "University at Buffalo (SUNY Buffalo) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University at Buffalo (SUNY Buffalo). Check tuition fees ($23,100 USD / year), living costs ($650 - $850 / month), GPA cutoffs (7.5+ Indian CGPA (3.2+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "tamu-texas-a-m",
+   "seo_title": "Texas A&M University (College Station) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to Texas A&M University (College Station). Check tuition fees ($24,500 USD / year), living costs ($650 - $850 / month), GPA cutoffs (8.0+ Indian CGPA (3.4+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "uc-berkeley",
+   "seo_title": "University of California, Berkeley (UCB) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of California, Berkeley (UCB). Check tuition fees ($34,000 USD / year), living costs ($1,500 - $2,000 / month), GPA cutoffs (8.8+ Indian CGPA (3.7+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "uc-irvine-uci",
+   "seo_title": "University of California, Irvine (UCI) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of California, Irvine (UCI). Check tuition fees ($33,000 USD / year), living costs ($1,400 - $1,800 / month), GPA cutoffs (8.2+ Indian CGPA (3.5+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "uc-san-diego-ucsd",
+   "seo_title": "University of California, San Diego (UCSD) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of California, San Diego (UCSD). Check tuition fees ($33,500 USD / year), living costs ($1,400 - $1,800 / month), GPA cutoffs (8.5+ Indian CGPA (3.6+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "university-of-illinois-chicago",
+   "seo_title": "University of Illinois Chicago (UIC) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Illinois Chicago (UIC). Check tuition fees ($28,000 USD / year), living costs ($1,000 - $1,300 / month), GPA cutoffs (7.5+ Indian CGPA (3.2+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "uiuc-university-of-illinois-urbana-champaign",
+   "seo_title": "University of Illinois Urbana-Champaign (UIUC) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Illinois Urbana-Champaign (UIUC). Check tuition fees ($36,000 USD / year), living costs ($750 - $950 / month), GPA cutoffs (8.5+ Indian CGPA (3.6+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "umich-university-of-michigan-ann-arbor",
+   "seo_title": "University of Michigan (Ann Arbor) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Michigan (Ann Arbor). Check tuition fees ($52,000 USD / year), living costs ($1,100 - $1,400 / month), GPA cutoffs (8.5+ Indian CGPA (3.6+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "uncc-unc-charlotte",
+   "seo_title": "University of North Carolina at Charlotte (UNCC) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of North Carolina at Charlotte (UNCC). Check tuition fees ($21,000 USD / year), living costs ($650 - $850 / month), GPA cutoffs (7.0+ Indian CGPA (3.0+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "usc-university-of-southern-california",
+   "seo_title": "University of Southern California (USC) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Southern California (USC). Check tuition fees ($62,000 USD / year), living costs ($1,600 - $2,200 / month), GPA cutoffs (8.5+ Indian CGPA (3.6+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "ut-arlington-uta",
+   "seo_title": "University of Texas at Arlington (UTA) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Texas at Arlington (UTA). Check tuition fees ($20,500 USD / year), living costs ($600 - $800 / month), GPA cutoffs (7.0+ Indian CGPA (3.0+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "ut-austin",
+   "seo_title": "University of Texas at Austin (UT Austin) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Texas at Austin (UT Austin). Check tuition fees ($26,500 USD / year), living costs ($1,100 - $1,400 / month), GPA cutoffs (8.0+ Indian CGPA (3.4+ US WES GPA)), and TA/RA waivers."
+  },
+  {
+   "slug": "ut-dallas-utd",
+   "seo_title": "University of Texas at Dallas (UTD) MS Fees & Admission Rules for Indian Students 2026",
+   "meta_description": "Complete 2026 guide to University of Texas at Dallas (UTD). Check tuition fees ($29,000 USD / year), living costs ($700 - $950 / month), GPA cutoffs (7.5+ Indian CGPA (3.2+ US WES GPA)), and TA/RA waivers."
+  }
+ ]
+}

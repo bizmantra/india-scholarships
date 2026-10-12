@@ -1,0 +1,252 @@
+[
+  {
+    "source": "/loans/collateral-free-loan-approved-universities",
+    "destination": "/study-abroad/loans/collateral-free-loan-approved-universities",
+    "permanent": true
+  },
+  {
+    "source": "/loans/expatrio-vs-fintiba-vs-coracle",
+    "destination": "/study-abroad/loans/expatrio-vs-fintiba-vs-coracle",
+    "permanent": true
+  },
+  {
+    "source": "/loans/prodigy-vs-mpower-vs-sbi-loan-usa",
+    "destination": "/study-abroad/loans/prodigy-vs-mpower-vs-sbi-loan-usa",
+    "permanent": true
+  },
+  {
+    "source": "/loans/section-80e-tax-deduction-worked-example",
+    "destination": "/study-abroad/loans/section-80e-tax-deduction-worked-example",
+    "permanent": true
+  },
+  {
+    "source": "/loans/usa-routes-hub-guide",
+    "destination": "/study-abroad/study-in/usa/usa-visa-routes-hub-guide",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/aga-khan-foundation-international-scholarship-programme",
+    "destination": "/scholarships/aga-khan-foundation-international-scholarship-programme",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/chicago-booth-mba-scholarships",
+    "destination": "/scholarships/chicago-booth-mba-scholarships",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/scholarships/fulbright-nehru-masters-fellowships",
+    "destination": "/scholarships/fulbright-nehru-masters-fellowship",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/university-at-buffalo",
+    "destination": "/study-abroad/universities/suny-buffalo",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/university-of-central-missouri",
+    "destination": "/study-abroad/study-in/usa/universities",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/universities/university-of-cincinnati",
+    "destination": "/study-abroad/study-in/usa/universities",
+    "permanent": true
+  },
+  {
+    "source": "/study-abroad/visas/germany-student-visa-requirements",
+    "destination": "/study-abroad/study-in/germany/visas",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/germany",
+    "destination": "/study-abroad/study-in/germany",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/germany/loans",
+    "destination": "/study-abroad/study-in/germany/loans",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/germany/visas",
+    "destination": "/study-abroad/study-in/germany/visas",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/usa",
+    "destination": "/study-abroad/study-in/usa",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/usa/loans",
+    "destination": "/study-abroad/study-in/usa/loans",
+    "permanent": true
+  },
+  {
+    "source": "/study-in/usa/visas",
+    "destination": "/study-abroad/study-in/usa/visas",
+    "permanent": true
+  },
+  {
+    "source": "/tools/cgpa-calculator",
+    "destination": "/study-abroad/tools",
+    "permanent": true
+  },
+  {
+    "source": "/tools/income-calculator",
+    "destination": "/study-abroad/tools",
+    "permanent": true
+  },
+  {
+    "source": "/tools/loan-emi-calculator",
+    "destination": "/study-abroad/tools",
+    "permanent": true
+  },
+  {
+    "source": "/universities/arizona-state-university",
+    "destination": "/study-abroad/universities/arizona-state-university",
+    "permanent": true
+  },
+  {
+    "source": "/universities/fau-erlangen-nurnberg",
+    "destination": "/study-abroad/universities/fau-erlangen-nurnberg",
+    "permanent": true
+  },
+  {
+    "source": "/universities/heidelberg-university",
+    "destination": "/study-abroad/universities/heidelberg-university",
+    "permanent": true
+  },
+  {
+    "source": "/universities/leibniz-university-hannover",
+    "destination": "/study-abroad/universities/leibniz-university-hannover",
+    "permanent": true
+  },
+  {
+    "source": "/universities/northeastern-university-boston",
+    "destination": "/study-abroad/universities/neu-northeastern-university",
+    "permanent": true
+  },
+  {
+    "source": "/universities/otto-von-guericke-university-magdeburg",
+    "destination": "/study-abroad/universities/otto-von-guericke-university-magdeburg",
+    "permanent": true
+  },
+  {
+    "source": "/universities/purdue-university",
+    "destination": "/study-abroad/universities/purdue-university",
+    "permanent": true
+  },
+  {
+    "source": "/universities/texas-a-m-university",
+    "destination": "/study-abroad/universities/tamu-texas-a-m",
+    "permanent": true
+  },
+  {
+    "source": "/universities/tum-technical-university-munich",
+    "destination": "/study-abroad/universities/tum-technical-university-munich",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-at-buffalo",
+    "destination": "/study-abroad/universities/suny-buffalo",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-at-buffalo-suny",
+    "destination": "/study-abroad/universities/suny-buffalo",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-of-central-missouri",
+    "destination": "/study-abroad/study-in/usa/universities",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-of-cincinnati",
+    "destination": "/study-abroad/study-in/usa/universities",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-of-duisburg-essen",
+    "destination": "/study-abroad/universities/university-of-duisburg-essen",
+    "permanent": true
+  },
+  {
+    "source": "/universities/university-of-texas-dallas",
+    "destination": "/study-abroad/universities/ut-dallas-utd",
+    "permanent": true
+  },
+  {
+    "source": "/visas/aps-india-certificate-verification-step-by-step",
+    "destination": "/study-abroad/visas/aps-india-certificate-verification-step-by-step",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-interview-prep",
+    "destination": "/study-abroad/visas/germany-visa-interview-prep",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-job-seeker-visa-strategy",
+    "destination": "/study-abroad/study-in/germany/germany-job-seeker-visa-strategy",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-routes-hub-guide",
+    "destination": "/study-abroad/study-in/germany/germany-visa-routes-hub-guide",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-student-visa-interview-questions",
+    "destination": "/study-abroad/visas/germany-student-visa-interview-questions",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-student-visa-requirements",
+    "destination": "/study-abroad/study-in/germany/visas",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-student-visa-requirements-2",
+    "destination": "/study-abroad/study-in/germany/visas",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-vfs-appointment-hacks",
+    "destination": "/study-abroad/visas/germany-vfs-appointment-hacks",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-vfs-document-checklist",
+    "destination": "/study-abroad/visas/germany-vfs-document-checklist",
+    "permanent": true
+  },
+  {
+    "source": "/visas/germany-visa-interview-prep",
+    "destination": "/study-abroad/visas/germany-visa-interview-prep",
+    "permanent": true
+  },
+  {
+    "source": "/visas/us-consulate-slot-booking-hacks",
+    "destination": "/study-abroad/visas/us-consulate-slot-booking-hacks",
+    "permanent": true
+  },
+  {
+    "source": "/visas/us-f1-student-visa-application-checklist",
+    "destination": "/study-abroad/visas/us-f1-student-visa-application-checklist",
+    "permanent": true
+  },
+  {
+    "source": "/visas/usa-ds160-form-filing-manual",
+    "destination": "/study-abroad/visas/usa-ds160-form-filing-manual",
+    "permanent": true
+  },
+  {
+    "source": "/visas/usa-f1-visa-interview-prep-questions",
+    "destination": "/study-abroad/visas/usa-f1-visa-interview-prep-questions",
+    "permanent": true
+  }
+]

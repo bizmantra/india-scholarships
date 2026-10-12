@@ -63,6 +63,11 @@ const SCHOLARSHIP_SLUG_MAP: Record<string, string> = {
     'jn-tata-endowment-loan-scholarship': 'jn-tata-endowment-for-higher-education',
     'stanford-knight-hennessy': 'knight-hennessy-scholars-program',
     'narotam-seksaria-scholarship': 'narotam-sekhsaria-postgraduate-scholarship',
+    // Published from the Scout leads file on 28 Sep 2026
+    'daad-scholarships-germany-master-phd': 'daad-scholarships-for-masters-and-phd-studies-in-germany-for-indian-students',
+    'mit-fellowships': 'mit-graduate-fellowships-assistantships-for-international-students',
+    'nyu-tandon-dean-fellowship': 'nyu-tandon-school-of-engineering-merit-scholarships-and-fellowships-for-graduate-students',
+    'tamu-departmental-assistantships': 'texas-am-graduate-assistantships-tara',
 };
 // Internal documents the old app published as guide pages: kept as drafts, URLs sent to the real tool
 const INTERNAL_GUIDES: Record<string, string> = {
@@ -90,6 +95,9 @@ const SEED_FACTS = [
     ['germany.blocked_account.expatrio_setup_eur', 'Expatrio blocked account setup fee', 'germany', '119', 'EUR'],
     ['germany.blocked_account.fintiba_setup_eur', 'Fintiba blocked account setup fee', 'germany', '159', 'EUR'],
     ['germany.blocked_account.coracle_setup_eur', 'Coracle blocked account setup fee', 'germany', '99', 'EUR'],
+    ['germany.blocked_account.expatrio_monthly_eur', 'Expatrio blocked account monthly fee', 'germany', '9', 'EUR'],
+    ['germany.blocked_account.fintiba_monthly_eur', 'Fintiba blocked account monthly fee', 'germany', '9.90', 'EUR'],
+    ['germany.blocked_account.coracle_monthly_eur', 'Coracle blocked account monthly fee', 'germany', '0', 'EUR'],
     ['usa.visa.f1_mrv_fee_usd', 'US F-1 visa application (MRV) fee', 'usa', '185', 'USD'],
     ['usa.visa.sevis_i901_fee_usd', 'SEVIS I-901 fee (F-1)', 'usa', '350', 'USD'],
     ['usa.living.monthly_average_usd', 'Average monthly living cost used for estimates', 'usa', '1200', 'USD'],
@@ -230,8 +238,10 @@ const migrate = db.transaction(() => {
             city: d.location || null,
             summary: cleanSummary(u, parsed),
             seo_title: parsed?.seo_title, meta_description: parsed?.meta_description, who_for: parsed?.who_for,
-            tuition_per_year: d.tuition_usd ?? null, tuition_currency: d.tuition_usd != null ? 'USD' : null,
-            living_cost_per_year: d.living_usd ?? null, living_currency: d.living_usd != null ? 'USD' : null,
+            // The old data stored costs in USD fields for every country; only US figures are really in USD
+            // (German universities show their euro costs in the article's fact box instead)
+            tuition_per_year: usd ? d.tuition_usd ?? null : null, tuition_currency: usd && d.tuition_usd != null ? 'USD' : null,
+            living_cost_per_year: usd ? d.living_usd ?? null : null, living_currency: usd && d.living_usd != null ? 'USD' : null,
             gre_required: d.gre_required != null ? String(d.gre_required) : null,
             stem_opt: usd && d.stem_opt != null ? String(d.stem_opt) : null,
             coop_program: d.coop_program != null ? String(d.coop_program) : null,

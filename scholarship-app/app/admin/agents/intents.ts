@@ -19,6 +19,8 @@ export type Intent =
 const titleCase = (s: string) => s.trim().replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
 const GROUPS: { pattern: RegExp; category: string; label: string }[] = [
+    // First, so 'study abroad description' does not match the wording group
+    { pattern: /study abroad|abroad|universit(y|ies) pages?|course pages?|guides?\b/, category: 'study_abroad', label: 'Study Abroad changes' },
     { pattern: /wording|reword|description/, category: 'wording', label: 'wording updates' },
     { pattern: /deadline|date/, category: 'date_change', label: 'deadline changes' },
     { pattern: /amount|money|₹/, category: 'amount_change', label: 'amount changes' },
@@ -81,6 +83,7 @@ export const SUGGESTIONS = [
     'Show risky changes',
     'Show deadline changes',
     'Show new scholarships',
+    'Show Study Abroad changes',
     'Approve all wording updates',
     'Run the scout for Bihar',
     'Run the freshness check',

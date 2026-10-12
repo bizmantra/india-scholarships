@@ -26,7 +26,8 @@ const COLUMNS = [
     'residency_requirement', 'docs_needed', 'application_mode', 'apply_url', 'deadline', 'deadline_description',
     'step_guide', 'selection', 'renewal', 'competitiveness', 'verified_status', 'last_verified', 'official_source',
     'helpline', 'intro_seo', 'faq_json', 'notes_actions', 'keywords', 'scholarship_type', 'status', 'verification_year',
-    'priority_score', 'tags', 'created_at', 'scholarship_scope', 'country_of_study', 'always_open', 'last_checked_at'
+    'priority_score', 'tags', 'created_at', 'scholarship_scope', 'country_of_study', 'always_open', 'last_checked_at',
+    'source_pages', 'secondary_sources'
 ];
 const JSON_COLUMNS = new Set(['docs_needed', 'faq_json', 'keywords', 'tags']);
 
@@ -55,6 +56,7 @@ function toRow(candidate) {
 function run() {
     const db = new Database(DB_PATH);
     inbox.ensureAgentTables(db);
+    require('./lib/sources').ensureColumn(db);
     const approved = db.prepare(`SELECT * FROM agent_proposals WHERE kind = 'new_scholarship' AND status = 'approved' ORDER BY id`).all();
     if (approved.length === 0) {
         console.log('No approved candidates. Nothing to publish.');

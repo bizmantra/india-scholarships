@@ -8,6 +8,7 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
+import { getPortalGuideForScholarship } from '@/lib/portalsData';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -27,7 +28,6 @@ import {
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
-import LanguageDetector from '@/app/components/LanguageDetector';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
 
@@ -218,12 +218,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             languages: {
                 'x-default': `https://www.indiascholarships.in/scholarships/${slug}`,
                 'en': `https://www.indiascholarships.in/scholarships/${slug}`,
-                'hi': `https://www.indiascholarships.in/hi/scholarships/${slug}`,
-                'bn': `https://www.indiascholarships.in/bn/scholarships/${slug}`,
-                'ta': `https://www.indiascholarships.in/ta/scholarships/${slug}`,
-                'te': `https://www.indiascholarships.in/te/scholarships/${slug}`,
-                'or': `https://www.indiascholarships.in/or/scholarships/${slug}`,
-                'kn': `https://www.indiascholarships.in/kn/scholarships/${slug}`,
             }
         },
         openGraph: {
@@ -250,14 +244,17 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         notFound();
     }
 
-    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url || scholarship.official_source);
-    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source || scholarship.apply_url);
+    // Try each field in turn: a few records have a sentence in apply_url, which must not
+    // hide a valid official_source (that left those pages without an Apply button).
+    const cleanApplyUrl = sanitizeApplyUrl(scholarship.apply_url) || sanitizeApplyUrl(scholarship.official_source);
+    const cleanOfficialSource = sanitizeApplyUrl(scholarship.official_source) || sanitizeApplyUrl(scholarship.apply_url);
 
     const relatedScholarships = await getRelatedScholarships(scholarship.id, 5);
     const siblingVariants = await getSiblingVariants(scholarship.id, scholarship.slug, scholarship.title);
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
     const relevantNews = getNewsForScholarship(scholarship.slug);
     const bestFitPillar = getPillarForScholarship(scholarship);
+    const portalGuide = getPortalGuideForScholarship(scholarship);
 
     // Dynamic deadline check (relative to India's current date boundary)
     const today = new Date();
@@ -504,8 +501,6 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                     <span className="text-gray-900 font-medium truncate">{scholarship.title}</span>
                 </nav>
             </div>
-
-            <LanguageDetector slug={scholarship.slug} />
 
             <script
                 type="application/ld+json"
@@ -778,10 +773,16 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         )}
 
                         {/* Related guides */}
-                        {relevantArticles.length > 0 && (
+                        {(relevantArticles.length > 0 || portalGuide) && (
                             <section id="helpful-guides" className="pt-6 border-t border-gray-100">
                                 <h2 className="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b border-gray-100 font-heading">Scholarship Guides</h2>
                                 <div>
+                                    {portalGuide && (
+                                        <Link href={`/guides/${portalGuide.id}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
+                                            <span className="text-sm font-semibold text-google-blue">{portalGuide.name}: login, status check & documents</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400 shrink-0" />
+                                        </Link>
+                                    )}
                                     {relevantArticles.map((art: any) => (
                                         <Link key={art.slug} href={`/guides/${art.slug}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
                                             <span className="text-sm font-semibold text-google-blue">{art.title}</span>
@@ -812,7 +813,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                     For {Array.isArray(scholarship.level) ? scholarship.level[0] : (String(scholarship.level || '').split(',')[0] || 'Students')}
                                     <ChevronRight className="h-4 w-4 text-gray-400" />
                                 </Link>
-                                <Link href={`/scholarships-in/${scholarship.state ? slugify(scholarship.state) : 'all-india'}`} className="flex items-center justify-between py-3 border-b border-gray-100 font-semibold text-google-blue hover:underline text-sm transition-colors">
+                                <Link href={scholarship.state && slugify(scholarship.state) !== 'all-india' ? `/scholarships-in/${slugify(scholarship.state)}` : '/state-scholarships'} className="flex items-center justify-between py-3 border-b border-gray-100 font-semibold text-google-blue hover:underline text-sm transition-colors">
                                     In {scholarship.state || 'All India'}
                                     <ChevronRight className="h-4 w-4 text-gray-400" />
                                 </Link>

@@ -100,6 +100,8 @@ Rules every agent follows (enforced by `proposeFieldChange`):
 - Only these fields can be proposed: `deadline`, `deadline_description`, `amount_annual`, `amount_min`, `official_source`,
   `apply_url`, `helpline`. Values are format-checked before they are applied.
 
+Study Abroad page changes are `kind = 'sa_field_change'` rows (target `<table>:<key>` in `scholarship_id`, details in `payload_json`); see [AGENT_CENTER.md](AGENT_CENTER.md#study-abroad-pages).
+
 Approving a field change writes the scholarship, logs a `reviewed_applied` changelog entry (who approved, old and new value)
 and an activity event. Approving a scout find marks it `approved`; the Scout Publisher inserts it.
 

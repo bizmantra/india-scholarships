@@ -123,7 +123,7 @@ export function portalGuideToEditorial(guide: PortalGuide): EditorialContent {
       { label: 'Disbursement', value: guide.stats.disbursementType },
       { label: 'Verification', value: guide.stats.verificationMode },
     ],
-    checklist: guide.documents.map((d) => ({ label: `${d.name} (${d.format})`, note: d.note })),
+    checklist: guide.documents.map((d) => ({ label: d.format ? `${d.name} (${d.format})` : d.name, note: d.note })),
     steps: stepGroups.length > 0 ? stepGroups : undefined,
     schemes: guide.topSchemes.length > 0 ? guide.topSchemes : undefined,
     faqs: guide.faqs.length > 0 ? guide.faqs : undefined,

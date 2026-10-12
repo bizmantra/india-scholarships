@@ -59,6 +59,7 @@ jobs:
         run: node scholarship-app/scripts/fact-check.js
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}  # optional: Jev adds to the evidence score; blank is fine
 
       - name: Normalize data formats
         run: node scholarship-app/scripts/clean-data-formats.js

@@ -35,6 +35,10 @@ export function slugify(text: string): string {
     return slug;
 }
 
+// A study-abroad level x country hub needs at least this many scholarships to be worth
+// indexing (and listing in the sitemap); fewer is "thin" and gets noindex. Zero is a 404.
+export const MIN_INDEXABLE_HUB_RESULTS = 3;
+
 // Canonical mapping for education levels
 export const CANONICAL_LEVELS: Record<string, { label: string; rawLevels: string[]; description: string; icon: string }> = {
     'class-1-10': {

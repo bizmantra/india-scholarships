@@ -1,4 +1,10 @@
 import type { NextConfig } from "next";
+// Old Study Abroad URLs (merged universities, scholarships now on /scholarships, retired pages),
+// written by scripts/study-abroad/migrate-legacy.mts
+import studyAbroadRedirects from "./lib/study-abroad/redirects.json";
+// Hand-maintained (not generated): old Study Abroad URLs Google found at the site root
+// (/universities/..., /visas/..., /loans/..., /study-in/...) and a few old /study-abroad/ paths.
+import studyAbroadRootRedirects from "./lib/study-abroad/redirects-root-paths.json";
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -22,6 +28,14 @@ const nextConfig: NextConfig = {
       { from: 'legacy-government-of-india-post-matric-scholarship-via-mahadbt', to: 'mahadbt-post-matric-scholarship-maharashtra' },
       { from: 'legacy-moovalur-ramamirtham-ammaiyar-higher-education-assurance-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
       { from: 'legacy-pudhumai-penn-scheme', to: 'pudhumai-penn-scheme-tamil-nadu' },
+      // Oct 2026 GSC 404 clean-up: old slugs that still had no redirect
+      { from: 'daad-research-grants-for-doctoral-candidates-3', to: 'daad-research-grants-for-doctoral-candidates' },
+      { from: 'daad-scholarships-germany-master-phd', to: 'daad-scholarships-for-masters-and-phd-studies-in-germany-for-indian-students' },
+      { from: 'jn-tata-endowment-loan-scholarship', to: 'jn-tata-endowment-for-higher-education' },
+      { from: 'pmss-for-capfs-and-assam-rifles', to: 'pmss-capf-assam-rifles' },
+      { from: 'karnataka-epass-obc-post-matric-scholarship', to: 'post-matric-scholarship-for-obc-students-karnataka' },
+      { from: 'central-sector-scheme-of-scholarship', to: 'central-sector-scheme-of-scholarship-for-college-and-university-students' },
+      { from: 'jharkhand-post-matric-bc-scholarship', to: 'jharkhand-e-kalyan-post-matric-scholarship' },
       { from: 'legacy-sanchi-honnamma-scholarship', to: 'sanchi-honnamma-scholarship-karnataka' },
       { from: 'post-matric-scholarship-adi-dravidar-tribal-welfare-dept', to: 'pre-matric-scholarship-adi-dravidar-tribal-welfare-dept' },
       { from: 'narotam-sekhsaria-foundation-scholarship', to: 'narotam-sekhsaria-postgraduate-scholarship' },
@@ -43,6 +57,9 @@ const nextConfig: NextConfig = {
     ];
 
     const stateMappings = [
+      // UP post/pre-matric schemes are split into general-sc-st / obc / minority pages, so there is no single page to point at
+      { from: 'up-pre-matric-scholarship', to: 'uttar-pradesh' },
+      { from: 'up-post-matric-intermediate-scholarship', to: 'uttar-pradesh' },
       { from: 'legacy-post-matric-tuition-fee-examination-fee-freeship', to: 'maharashtra' },
       { from: 'mp-taas-post-matric-scholarship-scstobc', to: 'madhya-pradesh' },
       { from: 'rajasthan-post-matric-scholarship-scst', to: 'rajasthan' },
@@ -109,11 +126,40 @@ const nextConfig: NextConfig = {
     }
 
     return [
+      // Old Study Abroad hostnames. Study Abroad now lives at www.indiascholarships.in/study-abroad.
+      // These only apply once the hostnames are attached to this Vercel project (until then they
+      // answer DEPLOYMENT_NOT_FOUND). They come first so they win over every other rule.
+      // The old sites had their pages at the root (/universities/..., /visas/...); the path is kept,
+      // and the root-level redirects in lib/study-abroad/redirects-root-paths.json finish the job.
+      {
+        source: '/',
+        has: [{ type: 'host', value: '(study|studyabroad)\\.indiascholarships\\.in' }],
+        destination: 'https://www.indiascholarships.in/study-abroad',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: '(study|studyabroad)\\.indiascholarships\\.in' }],
+        destination: 'https://www.indiascholarships.in/:path*',
+        permanent: true,
+      },
       // The chat was renamed Agent Center
       { source: '/admin/command', destination: '/admin/agents', permanent: false },
       // Retired admin pages (replaced by the Agent Center, the Morning Briefing and the Indexing agent)
       ...['dashboard', 'indexing', 'seo-audit', 'moderation'].map(page => ({ source: `/admin/${page}`, destination: '/admin/agents', permanent: false })),
       ...generatedRedirects,
+
+      // Localized pages (/hi, /bn, /ta, /te, /or, /kn) pulled down — translations were
+      // frozen copies that drifted out of sync with the English source and were never
+      // more than ~25% complete. 301 everything back to the English original so the
+      // indexed URLs consolidate instead of 404ing. Placed after generatedRedirects so
+      // the specific slug-rename rules above still win for renamed scholarships.
+      // See plans/ for the durable localization plan.
+      {
+        source: '/:locale(hi|bn|ta|te|or|kn)/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
 
       // Year-suffixed URL redirect patterns (e.g. /scholarships/tata-2024 -> /scholarships/tata)
       {
@@ -236,12 +282,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/guides/nsp/:subpage*',
-        destination: '/guides/nsp-national-scholarship-portal-guide/:subpage*',
+        destination: '/guides/nsp-national-scholarship-portal-guide',
         permanent: true,
       },
       {
         source: '/guides/national-scholarship-portal-nsp/:subpage*',
-        destination: '/guides/nsp-national-scholarship-portal-guide/:subpage*',
+        destination: '/guides/nsp-national-scholarship-portal-guide',
+        permanent: true,
+      },
+      {
+        source: '/guides/pfms/:subpage*',
+        destination: '/guides/pfms-scholarship-payment-status-tracking-guide',
         permanent: true,
       },
       // 2. Legacy State Route Pattern
@@ -321,6 +372,21 @@ const nextConfig: NextConfig = {
         destination: '/government-scholarships',
         permanent: true,
       },
+      // Oct 2026 GSC 404 clean-up: old taxonomy URLs (all destinations checked to return 200)
+      { source: '/scholarships-by-category/obc', destination: '/scholarships-for/obc', permanent: true },
+      { source: '/scholarships-by-category/sc', destination: '/scholarships-for/sc', permanent: true },
+      { source: '/scholarships-by-category/girls', destination: '/scholarships-for/girls', permanent: true },
+      { source: '/scholarships-by-category/minority', destination: '/scholarships-for/minority', permanent: true },
+      { source: '/scholarships-by-education/btech', destination: '/scholarships-by-course/engineering', permanent: true },
+      { source: '/scholarships-by-education/mbbs', destination: '/scholarships-by-course/medical', permanent: true },
+      { source: '/scholarships-by-education/diploma', destination: '/scholarships-level/diploma-polytechnic', permanent: true },
+      { source: '/scholarships-by-income/under-2-lakh', destination: '/scholarships-by-income', permanent: true },
+      { source: '/central government-scholarships', destination: '/government-scholarships', permanent: true },
+      { source: '/central%20government-scholarships', destination: '/government-scholarships', permanent: true },
+      { source: '/scholarships-in', destination: '/state-scholarships', permanent: true },
+      // Any /scholarships-level/ URL with more than one segment can never be a real page (the only
+      // route is /scholarships-level/[level]); these came from level text containing "/" characters.
+      { source: '/scholarships-level/:level/:rest+', destination: '/scholarships-by-education', permanent: true },
       // GSC 404 Legacy Redirects
       {
         source: '/scholarships-level/diploma/polytechnic,-iti/itc',
@@ -397,18 +463,17 @@ const nextConfig: NextConfig = {
         destination: '/scholarships-by-category',
         permanent: true,
       },
-    ];
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/study-abroad',
-        destination: 'https://study-abroad-is.vercel.app/study-abroad',
-      },
-      {
-        source: '/study-abroad/:path*',
-        destination: 'https://study-abroad-is.vercel.app/study-abroad/:path*',
-      },
+      ...studyAbroadRedirects,
+      ...studyAbroadRootRedirects,
+      // Study Abroad: countries without content yet, and old paths with no page of their own
+      { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)/:path*', destination: '/study-abroad', permanent: true },
+      { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)', destination: '/study-abroad', permanent: true },
+      { source: '/study-abroad/study-in/:country(germany|usa)/costs', destination: '/study-abroad/study-in/:country', permanent: true },
+      { source: '/study-abroad/scholarships', destination: '/scholarships/international', permanent: true },
+      { source: '/study-abroad/universities', destination: '/study-abroad', permanent: true },
+      { source: '/study-abroad/visas', destination: '/study-abroad', permanent: true },
+      { source: '/study-abroad/loans', destination: '/study-abroad', permanent: true },
+      { source: '/study-abroad/study-in', destination: '/study-abroad', permanent: true },
     ];
   },
   webpack: (config) => {

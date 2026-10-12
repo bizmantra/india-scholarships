@@ -21,6 +21,8 @@ interface ScholarshipsListProps {
     showCategoryFilters?: boolean;
     initialTab?: string;
     initialCategory?: string;
+    /** Study Abroad hub pages list international scholarships; every other page hides them. */
+    includeInternational?: boolean;
 }
 
 const CATEGORIES = [
@@ -37,7 +39,8 @@ export default function ScholarshipsList({
     scholarships,
     showCategoryFilters = true,
     initialTab = 'All',
-    initialCategory = 'All'
+    initialCategory = 'All',
+    includeInternational = false
 }: ScholarshipsListProps) {
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
     const initialStatus = initialTab === 'ClosingSoon' ? 'Closing Soon' : initialTab;
@@ -94,7 +97,8 @@ export default function ScholarshipsList({
             // /scholarships/international with its own hub), so a Study Abroad scholarship
             // (different eligibility: foreign university admission, IELTS/GRE, etc.) should
             // never surface here, including in Trending/Deadlines/Recently Added.
-            if (s.scholarship_scope && String(s.scholarship_scope).toLowerCase() === 'international') {
+            // The Study Abroad hubs (/scholarships-for/<level>, /in/<country>) opt out of this.
+            if (!includeInternational && s.scholarship_scope && String(s.scholarship_scope).toLowerCase() === 'international') {
                 return false;
             }
 
@@ -155,7 +159,7 @@ export default function ScholarshipsList({
 
             return matchesCategory && matchesDeadline && matchesSearch;
         });
-    }, [scholarships, selectedCategory, selectedDeadlineStatus, searchQuery, today]);
+    }, [scholarships, selectedCategory, selectedDeadlineStatus, searchQuery, today, includeInternational]);
 
     // 2. Sort results
     const sortedScholarships = useMemo(() => {

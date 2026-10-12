@@ -5,14 +5,16 @@ import {
     getAllCategories,
     getIncomeRanges,
     getMajorCourses,
-    getScholarshipsByState
+    getScholarshipsByState,
+    getScholarshipsByLevelAndCountry
 } from '@/lib/db';
-import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
+import { slugify, CANONICAL_LEVELS, MIN_INDEXABLE_HUB_RESULTS } from '@/lib/utils';
 import { UNIVERSITIES } from '@/lib/universities';
 
 import { getAllArticles } from '@/lib/articles';
 import { getAllNews } from '@/lib/news';
 import { getAllPillars } from '@/lib/pillars';
+import { studyAbroadSitemap } from '@/lib/study-abroad/sitemap';
 
 export async function generateSitemaps() {
     return [
@@ -20,6 +22,7 @@ export async function generateSitemaps() {
         { id: 'scholarships' },
         { id: 'states' },
         { id: 'taxonomies' },
+        { id: 'study-abroad' },
     ];
 }
 
@@ -35,6 +38,10 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         'apply-online',
         'renewal-process'
     ];
+
+    if (id === 'study-abroad') {
+        return studyAbroadSitemap(baseUrl);
+    }
 
     if (id === 'core') {
         const articles = getAllArticles();
@@ -65,11 +72,6 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             '/news',
             ...newsRoutes,
             '/guides',
-            '/guides/nsp',
-            '/guides/nsp/status-check',
-            '/guides/nsp/student-login',
-            '/guides/nsp/documents-list',
-            '/guides/nsp/scholarships-list',
             '/guides/ssp-karnataka',
             '/guides/ssp-karnataka/status-check',
             '/guides/ssp-karnataka/student-login',
@@ -105,6 +107,16 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
             '/guides/e-grantz-kerala/student-login',
             '/guides/e-grantz-kerala/documents-list',
             '/guides/e-grantz-kerala/scholarships-list',
+            '/guides/oasis-west-bengal',
+            '/guides/oasis-west-bengal/status-check',
+            '/guides/oasis-west-bengal/student-login',
+            '/guides/oasis-west-bengal/documents-list',
+            '/guides/oasis-west-bengal/scholarships-list',
+            '/guides/odisha-state-scholarship-portal',
+            '/guides/odisha-state-scholarship-portal/status-check',
+            '/guides/odisha-state-scholarship-portal/student-login',
+            '/guides/odisha-state-scholarship-portal/documents-list',
+            '/guides/odisha-state-scholarship-portal/scholarships-list',
             '/guides/tracking',
             '/guides/documents',
             '/about',
@@ -174,6 +186,9 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const targetCountries = ['usa', 'uk', 'canada', 'australia', 'germany', 'europe', 'japan', 'singapore'];
         for (const lvl of targetLevels) {
             for (const cnt of targetCountries) {
+                // Thin hubs are noindex and empty ones 404, so only list hubs worth indexing.
+                const found = await getScholarshipsByLevelAndCountry(lvl, cnt);
+                if (found.length < MIN_INDEXABLE_HUB_RESULTS) continue;
                 routes.push({
                     url: `${baseUrl}/scholarships-for/${lvl}/in/${cnt}`,
                     lastModified: new Date(),

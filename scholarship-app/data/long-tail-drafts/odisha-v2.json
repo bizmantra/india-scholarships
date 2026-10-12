@@ -1,0 +1,211 @@
+{
+  "guide": {
+    "id": "odisha-state-scholarship-portal",
+    "aliases": [
+      "odisha-scholarship",
+      "ossp",
+      "scholarship-odisha-gov-in"
+    ],
+    "name": "Odisha State Scholarship Portal",
+    "state": "Odisha",
+    "fullTitle": "Odisha Scholarship Portal 2026: Login & Status Check",
+    "seoDesc": "Complete guide to the Odisha State Scholarship Portal 2026-27 (scholarship.odisha.gov.in). Learn how to check status, login, apply, and view deadlines.",
+    "officialUrl": "https://scholarship.odisha.gov.in",
+    "portalTag": "State Government Portal",
+    "description": "The Odisha State Scholarship Portal (OSSP) is an integrated platform by the Government of Odisha designed to bridge the gap between scholarship providers and seekers. It hosts various pre-matric, post-matric, and merit schemes including e-Medhabruti, Gopabandhu, and ST/SC Post-Matric scholarships.",
+    "stats": {
+      "activeSchemes": "11 Schemes Applied",
+      "beneficiaries": "9.77 Lakh+ Applicants",
+      "disbursementType": "Direct Benefit Transfer",
+      "verificationMode": "Institute & District Welfare Officer"
+    },
+    "loginSteps": [
+      {
+        "step": "01",
+        "title": "Aadhaar Authentication",
+        "desc": "Visit scholarship.odisha.gov.in and click on Registration. Enter your Aadhaar number and proceed to authenticate via OTP sent to your linked mobile number."
+      },
+      {
+        "step": "02",
+        "title": "Receive Login Credentials",
+        "desc": "After successful registration, your Unique User ID and Password will be sent to your registered mobile number and e-mail ID."
+      },
+      {
+        "step": "03",
+        "title": "Student Login",
+        "desc": "Click the login button on the portal and enter the provided User ID and password to access the scholarship application dashboard."
+      },
+      {
+        "step": "04",
+        "title": "Select Scheme & Apply",
+        "desc": "Choose your Department and Scheme. Fill in all required student, academic, eligibility, and bank details. You can save as a draft before final submission."
+      }
+    ],
+    "statusSteps": [
+      {
+        "title": "Step 1: Locate Status Section",
+        "desc": "On the homepage of the Odisha State Scholarship Portal, find the 'Know Your Status' section."
+      },
+      {
+        "title": "Step 2: Enter Details",
+        "desc": "Type in your Aadhaar number or Application No. in the text box."
+      },
+      {
+        "title": "Step 3: Verify with OTP",
+        "desc": "Click on 'Get OTP', enter the password received on your mobile, and view your current application status."
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "format": "",
+        "note": "Mandatory for registration. Name, Gender, and DOB are fetched automatically from the Aadhaar database and cannot be edited."
+      },
+      {
+        "name": "Bank Information",
+        "format": "",
+        "note": "Necessary details to be inputted during the application form filling for transferring the scholarship amount."
+      },
+      {
+        "name": "Scheme Specific Documents",
+        "format": "",
+        "note": "Relevant documents asked in the site to be uploaded while filling up the online application."
+      }
+    ],
+    "topSchemes": [
+      {
+        "name": "Post Matric Scholarship for ST Students (Odisha)",
+        "slug": "post-matric-scholarship-for-st-students-odisha",
+        "targetGroup": "ST Students",
+        "amount": "Up to ₹5,50,000/year"
+      },
+      {
+        "name": "Post Matric Scholarship for SC Students (Odisha)",
+        "slug": "post-matric-scholarship-for-sc-students-odisha",
+        "targetGroup": "SC Students",
+        "amount": "Up to ₹1,20,000/year"
+      },
+      {
+        "name": "e-Medhabruti UG Merit Scholarship (Odisha)",
+        "slug": "e-medhabruti-ug-merit-scholarship-odisha",
+        "targetGroup": "General, SC, ST, OBC, SEBC, EBC",
+        "amount": "Up to ₹10,000/year"
+      },
+      {
+        "name": "Gopabandhu Sikhya Sahayata Yojana (Odisha)",
+        "slug": "gopabandhu-sikhya-sahayata-yojana-odisha",
+        "targetGroup": "All Students",
+        "amount": "Up to ₹20,000/year"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How can I check my Odisha State Scholarship application status?",
+        "a": "Use the 'Know Your Status' feature on the portal homepage. Enter your Aadhaar number or Application No., request an OTP, and check your status."
+      },
+      {
+        "q": "What happens if I detect a mistake after submitting my application?",
+        "a": "Immediately inform the nodal person dealing with scholarships at your institute. The institute has a 'Revert' facility. Once they revert it, your application will become active in your login for editing and resubmission."
+      },
+      {
+        "q": "Can I log in without a mobile number linked to my Aadhaar?",
+        "a": "No, Aadhaar authentication is mandatory for OSSP login. You must use a mobile number seeded to your Aadhaar to receive the OTP during registration."
+      },
+      {
+        "q": "Do I have to submit hard copies of my documents to the college?",
+        "a": "It is not strictly mandatory to submit hard copies of documents to the institute on the portal level, but you can contact your concerned institute in case they require it for local verification."
+      },
+      {
+        "q": "How do I renew my scholarship on the OSSP portal?",
+        "a": "Existing users can log in using their credentials and continue by selecting either 'Renewal in new course' or 'Renewal in same course' depending on their current academic status."
+      },
+      {
+        "q": "What if my institute or course is missing from the drop-down menu?",
+        "a": "You should approach your institute and ask them to contact the District Welfare Officer (DWO) of the district where the institute is located to register the institution or branch in the portal."
+      }
+    ],
+    "helpline": {
+      "phone": "155335 / 1800-345-6770",
+      "email": "scholarshipstsc@gmail.com / scholarshipsmed@gmail.com",
+      "address": "ST & SC Development, Minorities & Backward Classes Welfare Department, Government of Odisha, Bhubaneswar-751001",
+      "hours": "9:00 AM to 5:00 PM on all Government official days"
+    }
+  },
+  "sources": [
+    {
+      "field": "stats.activeSchemes",
+      "url": "https://scholarship.odisha.gov.in/home",
+      "quote": "No. of Schemes Applied 11."
+    },
+    {
+      "field": "stats.beneficiaries",
+      "url": "https://scholarship.odisha.gov.in/home",
+      "quote": "No. of Applicants 9,77,079."
+    },
+    {
+      "field": "loginSteps[0].desc",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "The registration in Odisha State Scholarship Portal will be based on on-line Aadhaar-authentication of the student. For the purpose of Aadhaar authentication, student need to input OTP (one-time password) received in the mobile number linked with his/ her Aadhaar"
+    },
+    {
+      "field": "loginSteps[1].desc",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "Upon successful registration, Unique ID & Password will be sent to the given mobile number and e-mail ID."
+    },
+    {
+      "field": "loginSteps[2].desc",
+      "url": "https://scholarship.odisha.gov.in/how-to-apply",
+      "quote": "Login in with your User ID and Password to apply for the scheme."
+    },
+    {
+      "field": "loginSteps[3].desc",
+      "url": "https://scholarship.odisha.gov.in/home",
+      "quote": "Please select the Department name and Scheme name. Provide all necessary details I.e. Student, Academic, Eligibility & Bank information. Submit and Download the form"
+    },
+    {
+      "field": "statusSteps[1].desc",
+      "url": "https://scholarship.odisha.gov.in/home",
+      "quote": "Please enter your Aadhaar number or Application No. to check your application status. [Get OTP]"
+    },
+    {
+      "field": "faqs[1].a",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "Institute has the facility to \"Revert\" the application. Once reverted by Institute, your application will become active for editing in your login. Do the necessary correction and submit again."
+    },
+    {
+      "field": "faqs[2].a",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "None can login without using the mobile number seeded to the Aadhaar number."
+    },
+    {
+      "field": "faqs[3].a",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "It is not mandatory to submit the document with the hard copy at the institute, but in case if required they can further contact their concerned institute regarding this."
+    },
+    {
+      "field": "faqs[5].a",
+      "url": "https://scholarship.odisha.gov.in/faqs",
+      "quote": "You should immediately approach the institute to contact the District Welfare Officer (DWO) of the District where the institute is located for registration of the Institute or course/ branch under the institute."
+    },
+    {
+      "field": "helpline.phone",
+      "url": "https://scholarship.odisha.gov.in/content/contact-us",
+      "quote": "Sanjog Helpline Toll Free number (155335 /1800-345-6770)"
+    },
+    {
+      "field": "helpline.email",
+      "url": "https://scholarship.odisha.gov.in/content/contact-us",
+      "quote": "Email scholarshipstsc@gmail.com."
+    },
+    {
+      "field": "helpline.address",
+      "url": "https://scholarship.odisha.gov.in/content/contact-us",
+      "quote": "ST & SC Development, Minorities & Backward Classes Welfare Department, Government of Odisha, Bhubaneswar-751001"
+    },
+    {
+      "field": "helpline.hours",
+      "url": "https://scholarship.odisha.gov.in/content/contact-us",
+      "quote": "Is operational from 9:00 AM to 5:00 PM on all Government official days."
+    }
+  ]
+}

@@ -15,6 +15,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
     missing_info: 'Missing or outdated details',
     contact_change: 'Helpline updates',
     wording: 'Wording updates',
+    study_abroad: 'Study Abroad page changes',
 };
 
 // Asking before bulk actions above this size
@@ -150,6 +151,7 @@ async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>)
         lines: [
             ...(g.date_change ? [{ label: CATEGORY_LABELS.date_change, value: String(g.date_change), tone: 'warn' as const, action: 'Show deadline changes' }] : []),
             ...(g.new_scholarship ? [{ label: CATEGORY_LABELS.new_scholarship, value: String(g.new_scholarship), tone: 'warn' as const, action: 'Show new scholarships' }] : []),
+            ...(g.study_abroad ? [{ label: CATEGORY_LABELS.study_abroad, value: String(g.study_abroad), tone: 'warn' as const, action: 'Show Study Abroad changes' }] : []),
             ...(b.inbox?.risky ? [{ label: 'Risky (check first)', value: String(b.inbox.risky), tone: 'bad' as const, action: 'Show risky changes' }] : []),
             ...(b.inbox?.approvedUnpublished ? [{ label: 'Approved, not yet published', value: String(b.inbox.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),
             ...(b.inbox?.urgent || []).map((u: any) => ({
@@ -292,6 +294,7 @@ async function whatsWaiting() {
             { label: 'Missing or outdated details (documents, helplines, amounts, old dates)', value: String(g.missing_info ?? 0), action: 'Show missing details' },
             { label: CATEGORY_LABELS.contact_change, value: String(g.contact_change), action: 'Show helpline updates' },
             { label: 'Wording only (same fact, new words)', value: String(g.wording), action: 'Approve all wording updates' },
+            { label: CATEGORY_LABELS.study_abroad, value: String(g.study_abroad ?? 0), tone: g.study_abroad ? 'warn' : 'neutral', action: 'Show Study Abroad changes' },
             ...(summary.approvedUnpublished ? [{ label: 'Approved, waiting to be published', value: String(summary.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),
         ],
     });
@@ -325,7 +328,9 @@ async function bulkDecision(action: 'approve' | 'reject', category: string, risk
 
     const describe = (p: any) => p.kind === 'new_scholarship'
         ? p.scholarship_title
-        : `${p.scholarship_title}: ${short(p.old_value)} → ${short(p.new_value)}`;
+        : p.kind === 'sa_field_change'
+            ? `${p.scholarship_title}: ${p.field}`
+            : `${p.scholarship_title}: ${short(p.old_value)} → ${short(p.new_value)}`;
     if (sample.total <= GATE_THRESHOLD && action === 'reject') {
         const id = post({ type: 'text', text: `Rejecting ${sample.total} ${label}…` });
         await run(id);

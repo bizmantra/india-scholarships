@@ -48,6 +48,9 @@ google-ads.yaml
 .claude/
 .obsidian/
 
+# MCP connection files hold access tokens (never commit)
+.mcp.json
+
 
 # Database backups (never commit)
 /backups

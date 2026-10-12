@@ -1,0 +1,3570 @@
+{
+  "about": "Portals and providers to check FIRST when finding or updating scholarships. See docs/SCHOLARSHIP_SOURCES.md. Entries with a sweep channel are swept by the weekly scout on rotation (order matters). Provider entries are kept up to date by scripts/build-sources-list.js.",
+  "sources": [
+    {
+      "name": "National Scholarship Portal (NSP)",
+      "url": "https://scholarships.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "AICTE scholarship schemes (Pragati, Saksham, Swanath)",
+      "url": "https://www.aicte-india.org",
+      "sweep": "portals"
+    },
+    {
+      "name": "UGC scholarships and fellowships",
+      "url": "https://www.ugc.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "CSIR fellowships",
+      "url": "https://csirhrdg.res.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "DST INSPIRE (SHE, Fellowship)",
+      "url": "https://online-inspire.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "PM YASASVI and Ministry of Social Justice schemes",
+      "url": "https://socialjustice.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Karnataka State Scholarship Portal (SSP)",
+      "url": "https://ssp.karnataka.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Maharashtra MahaDBT",
+      "url": "https://mahadbt.maharashtra.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Uttar Pradesh scholarship portal",
+      "url": "https://scholarship.up.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "West Bengal OASIS and Aikyashree",
+      "url": "https://oasis.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "West Bengal Swami Vivekananda (SVMCM) and Medhashree",
+      "url": "https://svmcm.wbhed.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Andhra Pradesh Jnanabhumi",
+      "url": "https://jnanabhumi.ap.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Telangana ePASS",
+      "url": "https://telanganaepass.cgg.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Digital Gujarat scholarships",
+      "url": "https://www.digitalgujarat.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Bihar and Jharkhand e-Kalyan",
+      "url": "https://ekalyan.cgg.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Rajasthan SJE scholarship portal",
+      "url": "https://sje.rajasthan.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Madhya Pradesh MPTAAS and Pratibha Kiran",
+      "url": "https://www.tribal.mp.gov.in/mptaas",
+      "sweep": "portals"
+    },
+    {
+      "name": "Odisha State Scholarship Portal",
+      "url": "https://scholarship.odisha.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Tamil Nadu scholarship schemes",
+      "url": "https://www.tn.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Kerala e-Grantz and state scholarships",
+      "url": "https://egrantz.kerala.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Punjab and Haryana scholarship portals",
+      "url": "https://scholarships.punjab.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Assam and North-East state scholarships",
+      "url": "https://dhe.assam.gov.in",
+      "sweep": "portals"
+    },
+    {
+      "name": "Buddy4Study (competitor listings)",
+      "url": "https://www.buddy4study.com",
+      "competitor": true,
+      "sweep": "csr"
+    },
+    {
+      "name": "Vidyasaarathi (NSDL CSR portal)",
+      "url": "https://www.vidyasaarathi.co.in",
+      "competitor": true,
+      "sweep": "csr"
+    },
+    {
+      "name": "Foundation for Excellence (FFE)",
+      "url": "https://ffe.org",
+      "sweep": "csr"
+    },
+    {
+      "name": "Tata Trusts and Tata group scholarships",
+      "url": "https://www.tatatrusts.org",
+      "sweep": "csr"
+    },
+    {
+      "name": "Reliance Foundation scholarships",
+      "url": "https://www.reliancefoundation.org",
+      "sweep": "csr"
+    },
+    {
+      "name": "ONGC, NTPC, IOCL and other PSU scholarships",
+      "url": "https://www.ongcindia.com",
+      "sweep": "csr"
+    },
+    {
+      "name": "HDFC, SBI, Kotak and other bank foundation scholarships",
+      "url": "https://www.hdfcbank.com",
+      "sweep": "csr"
+    },
+    {
+      "name": "Global tech company scholarships in India (Google, Amazon, Microsoft, Adobe)",
+      "url": "https://www.amazon.in",
+      "sweep": "csr"
+    },
+    {
+      "name": "Women-in-STEM scholarships (L'Oréal, Rolls-Royce Unnati, etc.)",
+      "url": "https://www.loreal.com",
+      "sweep": "csr"
+    },
+    {
+      "name": "Government of Karnataka ",
+      "url": "https://dom.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 6,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Post-Matric Scholarship for Minorities (Karnataka)",
+        "Merit-Cum-Means (MCM) Scholarship for Minorities - Professional and Technical Courses (Karnataka)",
+        "Pre-Matric Minorities (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Karnataka ",
+      "url": "https://ssp.postmatric.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 5,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Post-Matric Scholarship for SC Students (Karnataka)",
+        "Post-Matric Scholarship for ST Students (Karnataka)",
+        "Post-Matric Scholarship for EWS/General Category (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Commonwealth Scholarship Commission",
+      "url": "https://cscuk.fcdo.gov.uk",
+      "kind": "provider",
+      "scholarships": 4,
+      "states": [],
+      "examples": [
+        "Commonwealth Master's Scholarship (UK)",
+        "Commonwealth PhD Scholarships",
+        "Commonwealth Masters Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Directorate of Collegiate Education, Government of Tamil Nadu",
+      "url": "https://tnscholarships.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 4,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "EVR Nagammai Scholarship",
+        "Scholarship for Differently Abled Students",
+        "Tamil Nadu Pre-Matric Scholarship for BC/MBC/Minorities"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Department, Government of Haryana",
+      "url": "https://harchhatravratti.highereduhry.ac.in",
+      "kind": "provider",
+      "scholarships": 4,
+      "states": [
+        "Haryana"
+      ],
+      "examples": [
+        "Haryana Post-Matric Scholarship for BC/OBC Students",
+        "Haryana State Merit Scholarship",
+        "Consolidated Stipend Scheme for SC Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Department, Government of Madhya Pradesh",
+      "url": "https://scholarshipportal.mp.nic.in",
+      "kind": "provider",
+      "scholarships": 4,
+      "states": [
+        "Madhya Pradesh"
+      ],
+      "examples": [
+        "Gaon Ki Beti Yojana (Madhya Pradesh)",
+        "Pratibha Kiran Yojana (Madhya Pradesh)",
+        "Vikramaditya Free Education Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ashoka University",
+      "url": "https://ashoka.edu.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "Young India Fellowship (Ashoka University)",
+        "Ashoka University Need-Based Financial Aid",
+        "Ashoka University Merit-Based Test Topper Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Chevening Secretariat",
+      "url": "https://chevening.org",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "Chevening Scholarship (India – UK Govt Partnered)",
+        "Chevening Scholarships",
+        "Chevening UK Government Scholarship 2027-28"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Commissioner, Scheduled Caste Development, Government of Chhattisgarh",
+      "url": "https://postmatric-scholarship.cg.nic.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "Chhattisgarh"
+      ],
+      "examples": [
+        "Chhattisgarh Post-Matric SC Scholarship",
+        "Chhattisgarh Post-Matric ST Scholarship",
+        "Chhattisgarh Post-Matric OBC Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department for the Welfare of SC/ST/OBC, Government of NCT of Delhi",
+      "url": "https://edistrict.delhigovt.nic.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "Delhi"
+      ],
+      "examples": [
+        "Delhi Post-Matric Scholarship for SC Students",
+        "Delhi Post-Matric Scholarship for OBC Students",
+        "Jai Bhim Mukhyamantri Pratibha Vikas Yojna"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Backward Classes Welfare, Government of Karnataka",
+      "url": "https://bcwd.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Post-Matric Scholarship for OBC Students (Karnataka)",
+        "Vidyasiri Food and Accommodation Scholarship for OBC Students (Karnataka)",
+        "Research Guidance PhD Fellowship for Backward Classes (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Directorate of Collegiate Education (DCE), Government of Kerala",
+      "url": "https://dcescholarship.kerala.gov.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "Kerala"
+      ],
+      "examples": [
+        "District Merit Scholarship (DMS) Kerala",
+        "Central Sector Scholarship (Kerala applicants via DCE)",
+        "Suvarna Jubilee Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Institute of Technology, Bombay",
+      "url": "https://iitb.ac.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "IIT Bombay Merit-cum-Means Scholarship",
+        "IIT Bombay Free Messing Facility (SC/ST)",
+        "IIT Bombay Tuition Fee Remission"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Institute of Technology, Kharagpur",
+      "url": "https://iitkgp.ac.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "IIT Kharagpur Merit-cum-Means Scholarship",
+        "IIT Kharagpur Endowment & Donor Scholarships",
+        "IIT Kharagpur Free Studentship and GoI Fee Remission"
+      ],
+      "auto": true
+    },
+    {
+      "name": "National Institute of Technology Karnataka (NITK), Surathkal",
+      "url": "https://nitk.ac.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "NITK Surathkal Merit-cum-Means & Merit Scholarships",
+        "NITK Surathkal Tuition Fee Remission",
+        "NITK Garrett and Memorial Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Scheduled Castes & Scheduled Tribes Welfare Department, Government of Bihar",
+      "url": "https://pmsonline.bih.nic.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Bihar Post-Matric Scholarship for SC Students",
+        "Bihar Post-Matric Scholarship for ST Students",
+        "Bihar Post-Matric PMS Scholarship 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "United States-India Educational Foundation (USIEF)",
+      "url": "https://usief.org.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "Fulbright-Nehru Master's Fellowships",
+        "Fulbright-Nehru Doctoral Research Fellowships",
+        "Fulbright-Nehru Master's Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Delhi (DU)",
+      "url": "https://du.ac.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "Delhi University Financial Support Scheme (FSS)",
+        "Delhi University All India Post-Graduate Scholarship",
+        "Delhi University Shri Ram Lubhaya Book-Grant for Blind Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Hyderabad",
+      "url": "https://uohyd.ac.in",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [],
+      "examples": [
+        "University of Hyderabad Student Assistance (UoH-SA) Scheme",
+        "University of Hyderabad UGC Non-NET Fellowship",
+        "University of Hyderabad 5th Year PhD Financial Assistance"
+      ],
+      "auto": true
+    },
+    {
+      "name": "West Bengal Minorities Development & Finance Corporation (WBMDFC)",
+      "url": "https://wbmdfc.org",
+      "kind": "provider",
+      "scholarships": 3,
+      "states": [
+        "West Bengal"
+      ],
+      "examples": [
+        "Aikyashree Pre-Matric Scholarship for Minorities (West Bengal)",
+        "Aikyashree Post-Matric Scholarship for Minorities (West Bengal)",
+        "Aikyashree Merit-cum-Means Scholarship for Minorities (West Bengal)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Adi Dravidar and Tribal Welfare Department, Government of Tamil Nadu",
+      "url": "https://tnadw.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Pre-Matric Scholarship (Adi Dravidar & Tribal Welfare Dept.)",
+        "Chief Minister’s Merit Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Anna University & CUIC",
+      "url": "https://annauniv.edu",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Anna University Alumni & Corporate Endowment Scholarships",
+        "Tamil Nadu First Graduate Concession (Anna University)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Australian Government",
+      "url": "https://dfat.gov.au",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Australia Awards Scholarships",
+        "Destination Australia Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Birla Institute of Technology and Science (BITS), Pilani",
+      "url": "https://bitsadmission.com",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "BITS Pilani Tuition-Blind Admission Scholarship",
+        "BITS Pilani Board Topper & Alumni Endowed Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "BITS Pilani",
+      "url": "https://bits-pilani.ac.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "BITSAT Scholarship 2026",
+        "BITS Pilani Institute Merit & Merit-cum-Need (MCN) Awards"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of School Education, Government of Chhattisgarh",
+      "url": "https://education.cg.nic.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Chhattisgarh"
+      ],
+      "examples": [
+        "Chief Minister Gyan Protsahan Yojana",
+        "Kanya Saksharta Protsahan Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "European Education and Culture Executive Agency (EACEA), European Commission",
+      "url": "https://erasmus-plus.ec.europa.eu",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Erasmus Mundus Joint Masters (EMJM)",
+        "Erasmus Mundus Joint Masters Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "German Academic Exchange Service (DAAD)",
+      "url": "https://daad.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "DAAD WISE — Working Internships in Science and Engineering",
+        "DAAD Scholarships for Master's and PhD Studies in Germany for Indian Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Google",
+      "url": "https://buildyourfuture.withgoogle.com",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Generation Google Scholarship (APAC-India)",
+        "Generation Google Scholarship (APAC) 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Canada",
+      "url": "https://nserc-crsng.gc.ca",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Vanier Canada Graduate Scholarships",
+        "Canada Graduate Scholarships – Master’s Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Meghalaya",
+      "url": "https://meghalayaone.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Meghalaya"
+      ],
+      "examples": [
+        "Meghalaya Chief Minister Scholarship Scheme (CMSS)",
+        "Meghalaya Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Dept, Arunachal Pradesh",
+      "url": "https://apdhte.nic.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Arunachal Pradesh"
+      ],
+      "examples": [
+        "Dorjee Khandu Merit Scholarship",
+        "Arunachal Pradesh State Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Institute of Technology, Delhi",
+      "url": "https://home.iitd.ac.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "IIT Delhi Merit-cum-Means Scholarship",
+        "IIT Delhi Free Studentship & Fee Remission"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Inlaks Shivdasani Foundation",
+      "url": "https://inlaksfoundation.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Inlaks Shivdasani Foundation Scholarship",
+        "Inlaks Shivdasani Foundation Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "JN Tata Endowment",
+      "url": "https://jntataendowment.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "JN Tata Endowment for Higher Education",
+        "J. N. Tata Endowment Loan Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "K.C. Mahindra Education Trust",
+      "url": "https://kcmet.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "KC Mahindra Scholarship for Post-Graduate Studies Abroad",
+        "Mahindra All India Talent Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Kotak Education Foundation",
+      "url": "https://kotakeducation.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Kotak Shiksha Nidhi Scholarship",
+        "Kotak Kanya Scholarship 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Education, Culture and Science, Netherlands",
+      "url": "https://studyinnl.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "NL Scholarship (Netherlands)",
+        "Holland Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Minority Affairs (MOMA), Government of India",
+      "url": "https://minorityaffairs.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Pre-Matric Scholarship Scheme for Minorities (NSP)",
+        "Post-Matric Scholarship Scheme for Minorities (NSP)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Minority Welfare Department, Govt. of Kerala",
+      "url": "https://minoritywelfare.kerala.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Kerala"
+      ],
+      "examples": [
+        "Minority Scholarship (Pre-Matric)",
+        "C.H. Mohammed Koya Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "National Institute of Technology, Tiruchirappalli",
+      "url": "https://nitt.edu",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "NIT Trichy Tuition Fee Remission",
+        "NIT Trichy RECAL Foundation Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Reliance Foundation",
+      "url": "https://scholarships.reliancefoundation.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Reliance Foundation Undergraduate Scholarship",
+        "Reliance Foundation Postgraduate Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Rhodes Trust",
+      "url": "https://rhodeshouse.ox.ac.uk",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "Rhodes Scholarship (India)",
+        "Rhodes Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sarojini Damodaran Foundation",
+      "url": "https://vidyadhan.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Ladakh",
+        "Multiple States"
+      ],
+      "examples": [
+        "Vidyadhan Ladakh Scholarship Program",
+        "Vidyadhan Scholarship Program (SDF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Scheduled Castes & Scheduled Tribes Welfare Department, Government of Bihar",
+      "url": "https://medhasoft.bih.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Chief Minister Medhavi Yojana",
+        "Mukhyamantri Medhavriti Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "State Examination Board (SEB), Government of Gujarat",
+      "url": "https://sebexam.org",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Gujarat"
+      ],
+      "examples": [
+        "Namo Saraswati Vigyan Sadhna Yojana",
+        "Gujarat National Means-cum-Merit Scholarship (NMMS)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Vellore Institute of Technology",
+      "url": "https://vit.ac.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [],
+      "examples": [
+        "VIT STARS - Support the Advancement of Rural Students Scheme",
+        "VIT B.Tech GV School Development Programme (GVSDP) Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Visvesvaraya Technological University",
+      "url": "https://vtu.ac.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "VTU Jnana Yaana Doctoral Fellowship (JYDF)",
+        "VTU SC/ST Welfare Scheme (SCSP/TSP)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "VJMNT, OBC and SBC Welfare Department, Government of Maharashtra",
+      "url": "https://mahadbt2.maharashtra.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Maharashtra"
+      ],
+      "examples": [
+        "Maharashtra Post-Matric OBC Scholarship",
+        "Dr. Panjabrao Deshmukh Vasatigruh Nirvah Bhatta Yojna"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Welfare of Scheduled Castes and Backward Classes Department, Government of Haryana",
+      "url": "https://sewa.haryana.gov.in",
+      "kind": "provider",
+      "scholarships": 2,
+      "states": [
+        "Haryana"
+      ],
+      "examples": [
+        "Haryana Post-Matric Scholarship for SC Students",
+        "Dr. Ambedkar Medhavi Chhattar Sansodhit Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "A*STAR (Agency for Science, Technology and Research)",
+      "url": "https://a-star.edu.sg",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Singapore International Graduate Award (SINGA)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "ACC Limited (CSR)",
+      "url": "https://acclimited.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Selected States"
+      ],
+      "examples": [
+        "ACC Vidyasaarathi Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Acumen India",
+      "url": "https://acumen.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Acumen India Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Adi Dravidar and Tribal Welfare Department, Government of Tamil Nadu",
+      "url": "https://adidravidar.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Tamil Nadu Post-Matric Scholarship for SC/ST"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Adi Dravidar and Tribal Welfare Department, Government of Tamil Nadu",
+      "url": "https://scholarships.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Annal Ambedkar Overseas Higher Education Scholarship Scheme (Tamil Nadu)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Aditya Birla Capital Foundation",
+      "url": "https://adityabirlacapital.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Aditya Birla Capital Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Aditya Birla Group",
+      "url": "https://adityabirlascholars.net",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Aditya Birla Scholarship Programme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Adobe India",
+      "url": "https://research.adobe.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Adobe India AI Research Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Aga Khan Foundation",
+      "url": "https://the.akdn.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Aga Khan Foundation International Scholarship Programme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Agriculture Department, Government of Karnataka",
+      "url": "https://fruits.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "CM Raitha Vidya Nidhi - Farmer's Children Scholarship (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Airports Authority of India Sports Control Board",
+      "url": "https://aai.aero",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Airports Authority of India (AAI) Sports Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Alexander von Humboldt Foundation",
+      "url": "https://humboldt-foundation.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Humboldt Research Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Aligarh Muslim University",
+      "url": "https://amu.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Aligarh Muslim University Merit & Alumni Financial Awards"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Amar Ujala Foundation",
+      "url": "https://amarujalafoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Multiple States"
+      ],
+      "examples": [
+        "Atul Maheshwari Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Amazon India & Foundation for Excellence (FFE)",
+      "url": "https://amazonfutureengineer.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Amazon Future Engineer Scholarship (India)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "American Association of University Women (AAUW)",
+      "url": "https://aauw.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "AAUW International Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Anusandhan National Research Foundation (ANRF) / SERB, DST",
+      "url": "https://serb.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "SERB-ANRF National Post-Doctoral Fellowship (N-PDF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Asian Development Bank / Government of Japan",
+      "url": "https://adb.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ADB-Japan Scholarship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Australian Government",
+      "url": "https://education.gov.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Australian Government Research Training Program (RTP) Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Australian National University (ANU)",
+      "url": "https://anu.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ANU Chancellor's International High Achiever Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Azim Premji Foundation",
+      "url": "https://azimpremjifoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Multiple States"
+      ],
+      "examples": [
+        "Azim Premji Scholarship 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Backward Classes and Extremely Backward Classes Welfare Department, Government of Bihar",
+      "url": "https://bcebc.bih.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Bihar Post Matric Scholarship (BC/EBC)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Backward Classes Welfare and Tribal Development Departments, Government of West Bengal",
+      "url": "https://adibasikalyan.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "West Bengal"
+      ],
+      "examples": [
+        "Sikshashree Scholarship Scheme (West Bengal)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Backward Classes, Most Backward Classes & Minorities Welfare Department, Government of Tamil Nadu",
+      "url": "https://escholarship.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Tamil Nadu BC/MBC/DNC Post-Matric Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Banaras Hindu University",
+      "url": "https://bhu.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "BHU Student Welfare Fund & Meal Subsidy Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Bharti Foundation",
+      "url": "https://bhartifoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Bharti Airtel Scholarship Program 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Bihar State Education Finance Corporation (BSEFC), Government of Bihar",
+      "url": "https://7nishchay-yuvaupmission.bihar.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Bihar Student Credit Card / Education Support Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Bihar State Sports Authority, Government of Bihar",
+      "url": "https://scholarship.biharsports.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Bihar State Sports Authority (BSSA) Sports Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Bosch India",
+      "url": "https://bosch.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Selected States"
+      ],
+      "examples": [
+        "Bosch CSR Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "British Council",
+      "url": "https://britishcouncil.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "British Council Scholarships for Women in STEM"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Cambridge Trust",
+      "url": "https://cambridgetrust.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Cambridge Trust Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Carleton University",
+      "url": "https://graduate.carleton.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Carleton University Graduate Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Central Board of Secondary Education (CBSE), Government of India",
+      "url": "https://cbse.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "CBSE Merit Scholarship for Single Girl Child"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Chalmers University of Technology",
+      "url": "https://chalmers.se",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Chalmers IPOET Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Chicago Booth School of Business",
+      "url": "https://chicagobooth.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Chicago Booth MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Chief Minister's Relief Fund, West Bengal",
+      "url": "https://cmrf.wb.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "West Bengal"
+      ],
+      "examples": [
+        "Nabanna Scholarship (West Bengal)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Columbia University",
+      "url": "https://gsas.columbia.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Columbia University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Cornell University",
+      "url": "https://gradschool.cornell.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Cornell University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Council of Science & Technology, Uttar Pradesh (CST-UP)",
+      "url": "https://upcst.res.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "UP CST Junior Research Assistantship (JRA)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Council of Scientific and Industrial Research (CSIR-HRDG)",
+      "url": "https://fellowams.csir.res.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "CSIR-UGC NET Junior Research Fellowship (CSIR-JRF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Dalhousie University",
+      "url": "https://dal.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Dalhousie University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Dean Students Welfare (DSW), University of Lucknow",
+      "url": "https://lkouniv.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "Lucknow University Chhatra Kalyan Scholarship (Student Welfare Fund)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department for the Welfare of SC/ST/OBC, Government of NCT of Delhi",
+      "url": "https://scstwelfare.delhi.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Delhi"
+      ],
+      "examples": [
+        "Mukhyamantri Vidyarthi Pratibha Yojna"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department for the Welfare of SC/ST/OBC, Government of NCT of Delhi",
+      "url": "https://welfareofscst.delhigovt.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Delhi"
+      ],
+      "examples": [
+        "Merit Scholarship for SC/ST/OBC Students (Higher Ed)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Biotechnology (DBT) & Regional Centre for Biotechnology (RCB)",
+      "url": "https://rcb.res.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "DBT-BET Junior Research Fellowship (DBT-JRF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of College Education, Government of Rajasthan",
+      "url": "https://hte.rajasthan.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Rajasthan"
+      ],
+      "examples": [
+        "Chief Minister Higher Education Scholarship (Rajasthan)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Empowerment of Persons with Disabilities, Government of India",
+      "url": "https://depwd.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Post-Matric Scholarship for Students with Disabilities (DEPwD)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Higher Education, Government of Punjab",
+      "url": "https://educationpunjab.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Punjab"
+      ],
+      "examples": [
+        "Punjab Chief Minister Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of School Education and Literacy, Government of Karnataka",
+      "url": "https://dsel-education.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Samagra Shikshana Karnataka Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of School Education, Government of Andhra Pradesh",
+      "url": "https://bm-sgsw.ap.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Andhra Pradesh"
+      ],
+      "examples": [
+        "Talliki Vandanam Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Social Welfare, Government of Jammu & Kashmir",
+      "url": "https://jansugam.jk.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Jammu & Kashmir"
+      ],
+      "examples": [
+        "Ladli Beti Scheme (J&K)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Sports, Government of Haryana",
+      "url": "https://sportsdeptt.haryana.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Haryana"
+      ],
+      "examples": [
+        "Haryana State Sports Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Women and Child Development and Social Welfare, Government of West Bengal",
+      "url": "https://wbkanyashree.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "West Bengal"
+      ],
+      "examples": [
+        "Kanyashree Prakalpa Scheme (K1 & K2) (West Bengal)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Department of Women and Child Development, Government of Karnataka",
+      "url": "https://dwcd.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Bhagya Lakshmi Scheme (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Directorate of Education, A&N Administration",
+      "url": "https://andaman.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Andaman and Nicobar Islands"
+      ],
+      "examples": [
+        "Andaman & Nicobar Administration Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Directorate of Higher Education, Assam",
+      "url": "https://dhe-operations.assam.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Assam"
+      ],
+      "examples": [
+        "Assam DHE Combined Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Directorate of Higher Education, Goa",
+      "url": "https://bursary.dhe.goa.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Goa"
+      ],
+      "examples": [
+        "Sant Sohirobanath Ambiye Bursary Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Dr. A.P.J. Abdul Kalam Technical University",
+      "url": "https://aktu.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "AKTU Student Welfare Fund & Fee Reimbursement Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Dr. Reddy's Foundation",
+      "url": "https://sashaktscholarship.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Dr. Reddy's Foundation Sashakt Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "DSERT Karnataka",
+      "url": "https://dsert.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "NMMS Scholarship (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "DXC Technology",
+      "url": "https://dxc.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "DXC Progressing Minds Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Education Department, Government of Gujarat",
+      "url": "https://mysy.guj.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Gujarat"
+      ],
+      "examples": [
+        "Mukhyamantri Yuva Swavalamban Yojana (MYSY)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Education Department, Government of Gujarat",
+      "url": "https://mysy.gujarat.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Gujarat"
+      ],
+      "examples": [
+        "Mukhyamantri Kanya Kelavani Nidhi (MKKN)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Education Department, Govt. of Assam",
+      "url": "https://directorateofhighereducation.assam.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Assam"
+      ],
+      "examples": [
+        "Pragyan Bharati Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Education Department, Govt. of Manipur",
+      "url": "https://manipureducation.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Manipur"
+      ],
+      "examples": [
+        "Manipur State Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Education Dept, Sikkim",
+      "url": "https://sikkim.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Sikkim"
+      ],
+      "examples": [
+        "Chief Minister (CM) Scholarship Sikkim"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Embassy of France in India / Institut Français India",
+      "url": "https://inde.campusfrance.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "France Excellence Charpak Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ernst & Young (EY India)",
+      "url": "https://ey.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "The EY Scholarship Program (Building a Better Working World)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "ESMT Berlin",
+      "url": "https://esmt.berlin",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ESMT Berlin MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "ETH Zurich",
+      "url": "https://ethz.ch",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ETH Zurich Excellence Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "European Commission",
+      "url": "https://marie-sklodowska-curie-actions.ec.europa.eu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Marie Skłodowska-Curie Actions (MSCA) Doctoral Networks"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Federal Bank Officers' Association Educational Society (FBOAES)",
+      "url": "https://federalbank.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Multiple States"
+      ],
+      "examples": [
+        "Federal Bank Hormis Memorial Foundation Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Federal Commission for Scholarships for Foreign Students (FCS) / SERI Switzerland",
+      "url": "https://go.eskas.ch",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Swiss Government Excellence Scholarships (ESKAS)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Felix Scholarship Trust",
+      "url": "https://felixscholarship.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Felix Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Foundation for Academic Excellence and Access (FAEA)",
+      "url": "https://faeaindia.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Foundation for Academic Excellence and Access (FAEA) Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "French Ministry for Europe and Foreign Affairs",
+      "url": "https://campusfrance.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Eiffel Excellence Scholarship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Friedrich-Ebert-Stiftung (FES)",
+      "url": "https://fes.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Friedrich Ebert Foundation Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Fuqua School of Business",
+      "url": "https://fuqua.duke.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Duke Fuqua MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "GAIL (India) Limited",
+      "url": "https://gailonline.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "GAIL Sports Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Gates Cambridge Trust (funded by Bill & Melinda Gates Foundation)",
+      "url": "https://gatescambridge.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Gates Cambridge Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "German Academic Exchange Service (DAAD)",
+      "url": "https://daad.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "DAAD Research Grants for Doctoral Candidates"
+      ],
+      "auto": true
+    },
+    {
+      "name": "German Academic Scholarship Foundation",
+      "url": "https://studienstiftung.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Studienstiftung des deutschen Volkes Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Godrej Group",
+      "url": "https://tomorrow-makers.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Selected States"
+      ],
+      "examples": [
+        "Godrej Scholarship (CSR Initiatives)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Karnataka ",
+      "url": "https://ksbdb.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Sandeepani Shishya Vethana Scholarship (Karnataka State Brahmin Development Board)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Odisha",
+      "url": "https://scholarships.odisha.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Odisha"
+      ],
+      "examples": [
+        "Pre Matric Scholarship for SC Students (Odisha)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Odisha",
+      "url": "https://bocboard.labdirodisha.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Odisha"
+      ],
+      "examples": [
+        "BOC Scholarship - Nirman Shramik Kalyan Yojana (Odisha)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Odisha",
+      "url": "https://ssepd.odisha.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Odisha"
+      ],
+      "examples": [
+        "Banishree Scholarship (Odisha)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Government of Ontario",
+      "url": "https://sgs.utoronto.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Ontario Graduate Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Govt. of Goa",
+      "url": "https://socialjustice.goa.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Goa"
+      ],
+      "examples": [
+        "Goa Dayanand Social Security Scheme (Students)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Group Legrand India",
+      "url": "https://legrandscholarship.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Legrand Empowering Tomorrow Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "GyanDhan",
+      "url": "https://gyandhan.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "GyanDhan Scholarship 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Haas School of Business, UC Berkeley",
+      "url": "https://haas.berkeley.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "UC Berkeley Haas MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Harvard Business School",
+      "url": "https://hbs.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Harvard Business School Need-Based Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Heidelberg University",
+      "url": "https://uni-heidelberg.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Heidelberg University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Heinrich Böll Foundation",
+      "url": "https://boell.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Heinrich Böll Foundation Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher & Technical Education, Puducherry",
+      "url": "https://dhte.py.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Puducherry"
+      ],
+      "examples": [
+        "Perunthalaivar Kamarajar Financial Assistance Scheme (PKFAS)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher and Technical Education Department, Government of Jharkhand",
+      "url": "https://mspy.jharkhand.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Jharkhand"
+      ],
+      "examples": [
+        "Mukhymantri Shiksha Protsahan Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Department, Government of Chhattisgarh",
+      "url": "https://highereducation.cg.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Chhattisgarh"
+      ],
+      "examples": [
+        "Chhattisgarh BPL Scholarship for College Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Dept, Nagaland",
+      "url": "https://scholarship.nagaland.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Nagaland"
+      ],
+      "examples": [
+        "Nagaland State Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Dept, Uttarakhand",
+      "url": "https://he.uk.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttarakhand"
+      ],
+      "examples": [
+        "Uchcha Shiksha Protsahan Chhatravriti Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Higher Education Dept., Govt. of Uttarakhand",
+      "url": "https://highereducation.uk.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttarakhand"
+      ],
+      "examples": [
+        "Uttarakhand State Merit Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Hindustan Unilever Limited (HUL)",
+      "url": "https://glowandlovelycareers.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Glow & Lovely Careers Scholarship for Women 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Honjo International Scholarship Foundation",
+      "url": "https://hisf.or.jp",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Honjo International Scholarship Foundation Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "IDFC FIRST Bank",
+      "url": "https://idfcfirstbank.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "IDFC FIRST Bank MBA Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "IIT Delhi Alumni Association & Donor Trusts",
+      "url": "https://alumni.iitd.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "IIT Delhi Alumni and Donor Endowed Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Imperial College London",
+      "url": "https://imperial.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Imperial College President's PhD Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Council of Medical Research (ICMR) & Department of Health Research",
+      "url": "https://icmr.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ICMR Junior Research Fellowship (ICMR-JRF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Institute of Technology, Madras",
+      "url": "https://iitm.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "IIT Madras Institute Tuition Fee Waiver"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Institute of Technology, Madras & IITM Alumni Association",
+      "url": "https://acr.iitm.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "IIT Madras Merit-cum-Means & Alumni Tuition Support"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Indian Oil Corporation Limited (IOCL)",
+      "url": "https://iocl.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "IndianOil Sports Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Infosys Foundation",
+      "url": "https://infosys.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Infosys Foundation STEM Stars Scholarship Program 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Infosys Foundation",
+      "url": "https://infosys.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Infosys Foundation Fellowship (select programs)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Institute of International Education (IIE) & Quad Governments",
+      "url": "https://quadfellowship.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "The Quad Fellowship (STEM Graduate Program)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "IUSSTF, SERB & WINStep Forward",
+      "url": "https://iusstf.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "S.N. Bose Scholars Program (International Research)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Jamia Millia Islamia",
+      "url": "https://jmi.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "JMI Dr. A.P.J. Abdul Kalam Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Jawaharlal Nehru University",
+      "url": "https://jnu.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Jawaharlal Nehru University Merit-cum-Means (MCM) Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Karnataka Labour Welfare Board, Government of Karnataka",
+      "url": "https://klwbapps.karnataka.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Karnataka"
+      ],
+      "examples": [
+        "Labour Department Scheme for Unorganized Workers' Children (Karnataka)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Katholischer Akademischer Ausländer-Dienst",
+      "url": "https://kaad.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "KAAD Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Kellogg School of Management",
+      "url": "https://kellogg.northwestern.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Northwestern Kellogg MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Kerala State Council for Science, Technology and Environment (KSCSTE)",
+      "url": "https://kscste.kerala.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Kerala"
+      ],
+      "examples": [
+        "Prathibha Scholarship Programme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "King's College London",
+      "url": "https://kcl.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "King's College London International Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Konrad-Adenauer-Stiftung",
+      "url": "https://kas.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Konrad-Adenauer-Stiftung Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Kotak Education Foundation",
+      "url": "https://kotakeducationfoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Maharashtra"
+      ],
+      "examples": [
+        "Kotak Junior Scholarship Program (MMR)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "KTH Royal Institute of Technology",
+      "url": "https://kth.se",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "KTH Royal Institute of Technology Tuition Fee Waivers"
+      ],
+      "auto": true
+    },
+    {
+      "name": "L'Or'éal India",
+      "url": "https://foryoungwomeninscience.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "L'Or'éal India For Young Women in Science (FYWIS) Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Larsen & Toubro (L&T)",
+      "url": "https://lntecc.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "L&T Build India Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Lee Kuan Yew Scholarship Board",
+      "url": "https://psc.gov.sg",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Lee Kuan Yew Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "LIC Golden Jubilee Foundation",
+      "url": "https://licindia.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "LIC Golden Jubilee Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "LIC Housing Finance Limited",
+      "url": "https://lichousing.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "LIC HFL Vidyadhan Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Lila Poonawalla Foundation",
+      "url": "https://lilapoonawallafoundation.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Lila Poonawalla Foundation Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "London Business School",
+      "url": "https://london.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "London Business School MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "London School of Economics (LSE)",
+      "url": "https://lse.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "LSE Graduate Support Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "M3M Foundation",
+      "url": "https://m3mfoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "M3M Foundation Lakshya Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Macquarie University",
+      "url": "https://mq.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Macquarie University Vice-Chancellor's International Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Manipal Academy of Higher Education",
+      "url": "https://manipal.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "MAHE Kalam-Pai Freeship & Scholars Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Massachusetts Institute of Technology (MIT)",
+      "url": "https://oge.mit.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "MIT Graduate Fellowships & Assistantships for International Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Max Planck Society",
+      "url": "https://mpg.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "International Max Planck Research School (IMPRS) PhD Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "McGill University",
+      "url": "https://mccallmacbainscholars.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "McCall MacBain Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Education, Culture, Sports, Science and Technology (MEXT)",
+      "url": "https://studyinjapan.go.jp",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "MEXT (Monbukagakusho) Scholarship for Research Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Education, Culture, Sports, Science and Technology (MEXT), Japan",
+      "url": "https://in.emb-japan.go.jp",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "MEXT Scholarship (Japan Government)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Education, Government of India",
+      "url": "https://pmrf.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Prime Minister's Research Fellowship (PMRF)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Minority Affairs (MOMA), Government of India",
+      "url": "https://maef.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Begum Hazrat Mahal National Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Social Justice and Empowerment",
+      "url": "https://nosmsje.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "National Overseas Scholarship for SC/ST Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Tribal Affairs",
+      "url": "https://tribal.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "National Fellowship & Scholarship for Higher Education of ST Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Youth Affairs and Sports, Government of India",
+      "url": "https://kheloindia.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Khelo India Sports Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ministry of Youth Affairs and Sports, Government of India",
+      "url": "https://topscheme.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Target Olympic Podium Scheme (TOPS)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "MIT Sloan School of Management",
+      "url": "https://mitsloan.mit.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "MIT Sloan MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Mizoram Scholarship Board",
+      "url": "https://msb.mizoram.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Mizoram"
+      ],
+      "examples": [
+        "Post-Matric Merit Scholarship (PMMS) Mizoram"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Monash University",
+      "url": "https://monash.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Monash International Leadership Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "MSCE Pune",
+      "url": "https://mscepune.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Maharashtra"
+      ],
+      "examples": [
+        "NMMS Scholarship (Maharashtra)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Nanyang Technological University (NTU)",
+      "url": "https://ntu.edu.sg",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Nanyang Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Narotam Sekhsaria Foundation",
+      "url": "https://pg.nsfoundation.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Narotam Sekhsaria Postgraduate Scholarship 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "National University of Singapore (NUS)",
+      "url": "https://nus.edu.sg",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "President's Graduate Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "NYU Stern School of Business",
+      "url": "https://stern.nyu.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "NYU Stern Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "NYU Tandon School of Engineering",
+      "url": "https://engineering.nyu.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "NYU Tandon School of Engineering Merit Scholarships and Fellowships for Graduate Students"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Oil and Natural Gas Corporation (ONGC)",
+      "url": "https://sportsscholarship.ongc.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ONGC Sports Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "ONGC Foundation",
+      "url": "https://ongcscholar.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "ONGC Scholarship (CSR)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "OP Jindal Group",
+      "url": "https://opjems.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "OP Jindal Engineering & Management Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Pierre Elliott Trudeau Foundation",
+      "url": "https://fondationtrudeau.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Pierre Elliott Trudeau Foundation Doctoral Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Planning Department, Government of Uttar Pradesh",
+      "url": "https://planning.up.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "UP Chief Minister (CM) Fellowship Programme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Princeton University",
+      "url": "https://gradschool.princeton.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Princeton University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "PRS Legislative Research",
+      "url": "https://prsindia.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "LAMP Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "PUSH Sports (in partnership with Anjum Chopra)",
+      "url": "https://pushsports.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Anjum Chopra Sports Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Queen's University",
+      "url": "https://queensu.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Queen's University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Radboud University",
+      "url": "https://ru.nl",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Radboud Scholarship Programme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Rolls-Royce India",
+      "url": "https://rolls-royce.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Rolls-Royce Wings4Her Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Rosa-Luxemburg-Stiftung",
+      "url": "https://rosalux.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Rosa Luxemburg Foundation Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Ross School of Business",
+      "url": "https://michiganross.umich.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Michigan Ross MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Saïd Business School, University of Oxford",
+      "url": "https://sbs.ox.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Oxford Pershing Square Graduate Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Savitribai Phule Pune University",
+      "url": "https://unipune.ac.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Maharashtra"
+      ],
+      "examples": [
+        "SPPU Karmaveer Bhaurao Patil Earn & Learn Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "SBI Foundation",
+      "url": "https://sbiashascholarship.co.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "SBI Platinum Jubilee Asha Scholarship 2026-27"
+      ],
+      "auto": true
+    },
+    {
+      "name": "SC Welfare Dept, Tripura",
+      "url": "https://socialwelfare.tripura.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Tripura"
+      ],
+      "examples": [
+        "Post-Matric Scholarship for SC Students (Tripura)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Scheduled Tribe, Scheduled Caste, Minority and Backward Class Welfare Department, Government of Jharkhand",
+      "url": "https://mgos.jharkhand.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Jharkhand"
+      ],
+      "examples": [
+        "Marang Gomke Jaipal Singh Munda Overseas Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Schindler India Pvt. Ltd.",
+      "url": "https://schindler.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Schindler Igniting Minds (SIM) Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "School Education Department, Government of Punjab",
+      "url": "https://ssapunjab.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Punjab"
+      ],
+      "examples": [
+        "Dr. Hargobind Khurana Scholarship Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Schwarzman Scholars & Tsinghua University",
+      "url": "https://schwarzmanscholars.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Schwarzman Scholars Program (Tsinghua University)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sciences Po",
+      "url": "https://sciencespo.fr",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Emile Boutmy Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Secondary Education & Sanskrit Shiksha Department, Government of Uttar Pradesh",
+      "url": "https://up.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "UP Sanskrit Education Scholarship (Prathama to Higher Education)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Siemens India",
+      "url": "https://new.siemens.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Selected States"
+      ],
+      "examples": [
+        "Siemens Scholarship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Simply Sport Foundation",
+      "url": "https://simplysport.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Simply Sport Girls Education and Sports Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sitaram Jindal Foundation",
+      "url": "https://sitaramjindalfoundation.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Sitaram Jindal Foundation Scholarship 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Social Justice Department, Govt. of Kerala",
+      "url": "https://sjd.kerala.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Kerala"
+      ],
+      "examples": [
+        "Blind/PH Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Social Justice Department, Maharashtra",
+      "url": "https://sjsa.maharashtra.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Maharashtra"
+      ],
+      "examples": [
+        "Savitribai Phule Pre-Matric Scholarship (SC Girls)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Social Welfare and Women Empowerment Department, Government of Tamil Nadu",
+      "url": "https://umis.tn.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Tamil Nadu"
+      ],
+      "examples": [
+        "Tamil Pudhalvan Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Social Welfare Department, Government of Bihar",
+      "url": "https://medhasoft.bih.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Bihar"
+      ],
+      "examples": [
+        "Mukhyamantri Kanya Utthan Yojana (Graduation)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sports Authority of India (SAI)",
+      "url": "https://sportsauthorityofindia.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "SAI Sports Scholarship (Legacy Scheme)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sports Branch, Directorate of Education, Government of NCT of Delhi",
+      "url": "https://edudel.nic.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Delhi"
+      ],
+      "examples": [
+        "Delhi Government Play and Progress Scheme"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Sports Department, Chandigarh Administration",
+      "url": "https://sportsdeptt.chd.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Chandigarh"
+      ],
+      "examples": [
+        "Chandigarh Sports Department Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Stanford Graduate School of Business",
+      "url": "https://gsb.stanford.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Stanford GSB Need-Based Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Stanford University",
+      "url": "https://knight-hennessy.stanford.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Knight-Hennessy Scholars Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Swedish Institute",
+      "url": "https://si.se",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Swedish Institute Scholarships for Global Professionals"
+      ],
+      "auto": true
+    },
+    {
+      "name": "TATA AIA Life Insurance",
+      "url": "https://tataaia.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "TATA AIA PARAS Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Tata Capital Limited",
+      "url": "https://tatacapital.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Tata Capital Pankh Scholarship 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Teach For India",
+      "url": "https://teachforindia.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Selected Cities"
+      ],
+      "examples": [
+        "Teach For India Fellowship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Technical Education, Skill Development & Employment Department, Government of Madhya Pradesh",
+      "url": "https://medhavikalyan.mp.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Madhya Pradesh"
+      ],
+      "examples": [
+        "Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Technical University of Munich (TUM)",
+      "url": "https://tum.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Technical University of Munich Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Texas A&M University",
+      "url": "https://grad.tamu.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Not Applicable"
+      ],
+      "examples": [
+        "Texas A&M Graduate Assistantships (TA/RA)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "The Rotary Foundation",
+      "url": "https://my.rotary.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Rotary Peace Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "TU Delft",
+      "url": "https://tudelft.nl",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Justus & Louise van Effen Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Tuck School of Business",
+      "url": "https://tuck.dartmouth.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Dartmouth Tuck MBA Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University College London (UCL)",
+      "url": "https://ucl.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "UCL Global Major Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Adelaide",
+      "url": "https://adelaide.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Adelaide Global Academic Excellence Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Amsterdam",
+      "url": "https://uva.nl",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Amsterdam Merit Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Bologna",
+      "url": "https://unibo.it",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Bologna University Study Grants"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Bristol",
+      "url": "https://bristol.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Bristol University Think Big Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of British Columbia",
+      "url": "https://you.ubc.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "UBC International Major Entrance Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Calgary",
+      "url": "https://grad.ucalgary.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Calgary Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Edinburgh",
+      "url": "https://ed.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Edinburgh Surgery Online Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Glasgow",
+      "url": "https://gla.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Glasgow International Leadership Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Groningen",
+      "url": "https://rug.nl",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Erik Bleumink Fund Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Hamburg",
+      "url": "https://uni-hamburg.de",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Hamburg University International Student Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Manchester",
+      "url": "https://manchester.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Manchester Global Source Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Melbourne",
+      "url": "https://scholarships.unimelb.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Melbourne Graduate Research Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Montreal",
+      "url": "https://admission.umontreal.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Montreal Exemption Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of New South Wales (UNSW)",
+      "url": "https://unsw.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "UNSW International Scientia Coursework Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Oxford",
+      "url": "https://ox.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Clarendon Fund Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Padua",
+      "url": "https://unipd.it",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Padua International Excellence Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Sheffield",
+      "url": "https://sheffield.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Sheffield Academy Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Sydney",
+      "url": "https://sydney.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "University of Sydney International Research Scholarship"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Technology Sydney (UTS)",
+      "url": "https://uts.edu.au",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "UTS Vice-Chancellor's International Undergraduate Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Toronto",
+      "url": "https://future.utoronto.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Lester B. Pearson International Scholarship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "University of Warwick",
+      "url": "https://warwick.ac.uk",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Warwick Chancellor's International Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "US Department of State",
+      "url": "https://humphreyfellowship.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Hubert H. Humphrey Fellowship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Uttar Pradesh Purva Sainik Kalyan Nigam Limited (UPPSKNL)",
+      "url": "https://upsainiknigam.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "UP Purva Sainik Kalyan Educational Scholarship (Class 10 & 12)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Various State & Central Ministries",
+      "url": "https://indiascholarships.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Post-Matric Scholarships in India — Complete Portal Guide 2026"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Welfare Dept, Himachal Pradesh",
+      "url": "https://esomsa.hp.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Himachal Pradesh"
+      ],
+      "examples": [
+        "Dr. Ambedkar Medhavi Chattervriti Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Western University",
+      "url": "https://registrar.uwo.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Western University President's Entrance Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Wharton School of the University of Pennsylvania",
+      "url": "https://mba.wharton.upenn.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Wharton MBA Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Wipro Consumer Care and Lighting & Wipro Cares",
+      "url": "https://santoorscholarships.com",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Multiple States"
+      ],
+      "examples": [
+        "Santoor Women's Scholarship Program"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Women and Child Development Department, Government of Chhattisgarh",
+      "url": "https://wcd.cg.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Chhattisgarh"
+      ],
+      "examples": [
+        "Noni Suraksha Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Women and Child Development Department, Government of Madhya Pradesh",
+      "url": "https://ladlilaxmi.mp.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Madhya Pradesh"
+      ],
+      "examples": [
+        "Ladli Lakshmi Yojana (Madhya Pradesh)"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Women and Child Development Department, Government of Uttar Pradesh",
+      "url": "https://mksy.up.gov.in",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [
+        "Uttar Pradesh"
+      ],
+      "examples": [
+        "Mukhyamantri Kanya Sumangala Yojana"
+      ],
+      "auto": true
+    },
+    {
+      "name": "World Bank",
+      "url": "https://worldbank.org",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Joint Japan World Bank Graduate Scholarships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "Yale University",
+      "url": "https://gsas.yale.edu",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "Yale University Graduate Fellowships"
+      ],
+      "auto": true
+    },
+    {
+      "name": "York University",
+      "url": "https://futurestudents.yorku.ca",
+      "kind": "provider",
+      "scholarships": 1,
+      "states": [],
+      "examples": [
+        "York University International Student Scholarships"
+      ],
+      "auto": true
+    }
+  ],
+  "updated": "2026-10-04",
+  "coverage": {
+    "active_scholarships": 504,
+    "without_any_source": 0,
+    "without_specific_source_page": 337
+  }
+}

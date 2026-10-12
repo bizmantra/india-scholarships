@@ -6,9 +6,10 @@ import { useState } from "react";
 interface ShareButtonsProps {
     title: string;
     url: string;
+    label?: string;
 }
 
-export default function ShareButtons({ title, url }: ShareButtonsProps) {
+export default function ShareButtons({ title, url, label = 'Share this Scholarship' }: ShareButtonsProps) {
     const [copied, setCopied] = useState(false);
 
     // We need to encode the params
@@ -70,7 +71,7 @@ export default function ShareButtons({ title, url }: ShareButtonsProps) {
             <div className="flex items-center gap-2 mb-3">
                 <Share2 className="w-4 h-4 text-gray-400" />
                 <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Share this Scholarship
+                    {label}
                 </h3>
             </div>
 

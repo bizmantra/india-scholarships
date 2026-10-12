@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ChevronDown, Menu, X, Search, ArrowRight, Globe } from 'lucide-react';
 import SearchModal from './SearchModal';
-import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
     const [showScholarshipsDropdown, setShowScholarshipsDropdown] = useState(false);
