@@ -47,6 +47,10 @@ The **Inbox** tab (top right, with the number waiting) shows the same inbox as a
 - **Stale** tag: In Progress untouched for 14 days, Backlog for 30. "Touched" means changed on this page.
 - Items can be started, finished, parked, flagged "waiting on me", given a due date and a "where we left off" note.
 - Items marked Done are hidden and counted. Merged or closed items from the 2026-10-11 cleanup are Done with a note.
+- **Morning briefing**: the 8am briefing (`scripts/morning-briefing.js`, `scripts/lib/backlog-briefing.js`) adds the three items
+  to do today, items waiting on you, items due within a week or overdue, and in-progress items quiet for 14 days, each with its
+  "where we left off" note. It reads Turso directly and read-only (the due dates and notes are not in the pulled copy), and a
+  backlog problem never stops the briefing. Its ordering is a copy of `backlog-types.ts`: change both together.
 - The old Kanban page is replaced; `/api/admin/backlog` (old route) is no longer used by any screen.
 
 ## Study Abroad pages

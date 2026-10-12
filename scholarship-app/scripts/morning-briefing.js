@@ -2,7 +2,8 @@
  * Morning Briefing
  *
  * A daily one-page summary for the owner: what needs a decision, what the agents did in the last
- * 24 hours, which scholarships close this week and which still show as open after their deadline.
+ * 24 hours, which scholarships close this week and which still show as open after their deadline,
+ * and what to pick up from the backlog today (read from Turso, see lib/backlog-briefing.js).
  *
  * Read-only on scholarship data. It saves the briefing as an agent_events row (kind 'briefing', shown
  * in the Agent Center) and writes data/morning-briefing.html for the email step.
@@ -15,6 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
+const { backlogSection } = require('./lib/backlog-briefing');
 
 const AGENT = 'morning-briefing';
 const dryRun = process.argv.includes('--dry-run');
@@ -158,6 +160,10 @@ function headline(b) {
     if (b.reports?.traffic && b.reports.traffic.level !== 'ok') parts.push(`Traffic alert: ${b.reports.traffic.headline}`);
     if (b.reports?.traffic?.failingPages?.length) parts.push(`${b.reports.traffic.failingPages.length} key page(s) failed to load.`);
     if (b.deadlines.pastButOpen.length) parts.push(`${b.deadlines.pastButOpen.length} scholarship(s) still show as open after their deadline.`);
+    const late = (b.backlog?.dueSoon || []).filter(i => i.due_in < 0).length;
+    if (late) parts.push(`${late} backlog item(s) overdue.`);
+    else if (b.backlog?.dueSoon?.length) parts.push(`${b.backlog.dueSoon.length} backlog item(s) due this week.`);
+    if (b.backlog?.today?.length) parts.push(`Backlog, next up: ${b.backlog.today[0].title}.`);
     return parts.join(' ');
 }
 
@@ -166,6 +172,19 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '
 const row = (label, value, color = '#0f172a') =>
     `<tr><td style="padding:6px 0;color:#334155">${label}</td><td style="padding:6px 0;text-align:right;font-weight:700;color:${color}">${value}</td></tr>`;
 const link = (slug, title) => slug ? `<a href="${SITE}/scholarships/${esc(slug)}" style="color:#1d4ed8;text-decoration:none">${esc(title)}</a>` : esc(title);
+
+// "overdue 2 d", "due today", "due in 3 d"
+const dueText = n => n < 0 ? `overdue ${-n} d` : n === 0 ? 'due today' : `due in ${n} d`;
+
+function backlogHtml(bl, section, list) {
+    const item = i => `<li style="margin:4px 0"><b>${esc(i.title)}</b> <span style="color:#64748b">(${esc(i.id)} · ${esc(i.impact)}${i.due_in !== null ? ` · <span style="color:${i.due_in <= 0 ? '#be123c' : '#b45309'}">${dueText(i.due_in)}</span>` : ''})</span>${i.note ? `<br><span style="color:#64748b">Where we left off: ${esc(i.note)}</span>` : ''}</li>`;
+    const parts = [section('Backlog: do next', list(bl.today.map(item)))];
+    if (bl.waiting.length) parts.push(section(`Backlog: waiting on you · ${bl.waiting.length}`, list(bl.waiting.slice(0, 5).map(item))));
+    if (bl.dueSoon.length) parts.push(section(`Backlog: due within a week or overdue · ${bl.dueSoon.length}`, list(bl.dueSoon.slice(0, 8).map(item))));
+    if (bl.stale.length) parts.push(section(`Backlog: started but gone quiet · ${bl.stale.length}`, list(bl.stale.map(i => `<li style="margin:4px 0"><b>${esc(i.title)}</b> <span style="color:#64748b">(${esc(i.id)} · ${i.idle_days} d without a change)</span></li>`))));
+    parts.push(`<p style="margin:8px 0 0"><a href="${SITE}/admin/backlog" style="color:#1d4ed8;font-size:14px;text-decoration:none">Open the Backlog (${bl.open} open)</a></p>`);
+    return parts.join('');
+}
 
 function renderHtml(b, target) {
     const section = (title, body) => `<h3 style="margin:24px 0 8px;font-size:15px;color:#0f172a">${title}</h3>${body}`;
@@ -205,6 +224,7 @@ ${b.reports.traffic ? section('Traffic (last 7 days vs the 7 before)', `<p style
     list(b.reports.traffic.falling.map(p => `<li style="margin:4px 0">↓ ${esc(p.path)}: ${p.clicksBefore} → ${p.clicks} search clicks</li>`))) : ''}
 ${b.reports.indexing ? section('Indexing', `<p style="font-size:14px;color:#334155;margin:0">${esc(b.reports.indexing.headline)}</p>` +
     (b.reports.indexing.notIndexed.length ? list(b.reports.indexing.notIndexed.map(p => `<li style="margin:4px 0">${esc(p.path)}: ${esc(p.coverageState || 'not indexed')}</li>`)) : '')) : ''}
+${b.backlog ? backlogHtml(b.backlog, section, list) : ''}
 ${section(`Closing in the next 7 days · ${b.deadlines.closingSoon.length}`, closing)}
 ${section(`Past deadline but still shown as open · ${b.deadlines.pastButOpen.length}`, stale + (b.deadlines.pastButOpen.length ? '<p style="font-size:13px;color:#64748b">Say "run the freshness check" in the Agent Center to re-check recent ones.</p>' : ''))}
 </div></div></body></html>`;
@@ -219,6 +239,7 @@ async function run() {
         return;
     }
 
+    const target = process.env.DB_TARGET || 'production';
     const briefing = {
         date: new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' }),
         inbox: inboxSection(db),
@@ -226,9 +247,9 @@ async function run() {
         runs: await runsSection(db),
         deadlines: deadlinesSection(db),
         reports: agentReports(db),
+        backlog: await backlogSection(target),
     };
     briefing.headline = headline(briefing);
-    const target = process.env.DB_TARGET || 'production';
 
     // The event carries a compact copy for the Agent Center (lists trimmed)
     const compact = {
