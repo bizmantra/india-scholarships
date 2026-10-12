@@ -164,6 +164,22 @@ async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>)
         ],
     });
 
+    const bl = b.backlog;
+    if (bl) {
+        const due = (n: number | null) => (n === null ? '' : n < 0 ? `overdue ${-n} d` : n === 0 ? 'due today' : `due in ${n} d`);
+        post({
+            type: 'summary',
+            title: `Backlog · ${bl.open} open`,
+            lines: [
+                ...(bl.today as { title: string; note: string | null; due_in: number | null; impact: string }[] || []).map(i => ({ label: `${i.title}${i.note ? `: ${i.note}` : ''}`, value: due(i.due_in) || i.impact, tone: (i.due_in !== null && i.due_in <= 0 ? 'bad' : 'neutral') as 'bad' | 'neutral' })),
+                ...(bl.waiting?.length ? [{ label: 'Waiting on you', value: String(bl.waiting.length), tone: 'warn' as const }] : []),
+                ...(bl.dueSoon?.length ? [{ label: 'Due within a week or overdue', value: String(bl.dueSoon.length), tone: 'warn' as const }] : []),
+                ...(bl.stale?.length ? [{ label: 'Started but gone quiet (14 d or more)', value: String(bl.stale.length) }] : []),
+                { label: 'Open the Backlog at /admin/backlog', value: '' },
+            ],
+        });
+    }
+
     const runs: any[] = b.runs?.runs || [];
     post({
         type: 'summary',
