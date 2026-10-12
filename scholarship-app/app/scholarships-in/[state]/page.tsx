@@ -19,6 +19,16 @@ const SUBPAGE_METRICS = {
     'renewal-process': 'Renewal'
 };
 
+// Level is free text ("Class 9-10", "UG / PG", "Post-Matric (Class 11 onwards ...)"), so match on words.
+// A scholarship can be in both lists (e.g. Class 11 to PG).
+const isForSchool = (level: string) => /class\s*\d|school|pre-?matric|post-?matric|std\b|child/i.test(level);
+const isForCollege = (level: string) => /\b(ug|pg)\b|undergrad|postgrad|graduat|diploma|polytechnic|\biti\b|ph\.?d|research|degree|professional|college|post-?matric|bachelor|master/i.test(level);
+const STAGE_LIST_LIMIT = 8;
+
+function byAmountDesc(a: any, b: any) {
+    return (b.amount_annual || 0) - (a.amount_annual || 0);
+}
+
 // Generate static params for all states
 export async function generateStaticParams() {
     const states = await getAllStates();
@@ -86,6 +96,14 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
             return isNaN(d.getTime()) || d >= today; // unparseable = assume open
         }).length;
 
+        const levelText = (s: any) => (Array.isArray(s.level) ? s.level.join(', ') : String(s.level || ''));
+        const schoolScholarships = scholarships.filter((s: any) => isForSchool(levelText(s))).sort(byAmountDesc);
+        const collegeScholarships = scholarships.filter((s: any) => isForCollege(levelText(s))).sort(byAmountDesc);
+        const stages = [
+            { key: 'school', title: `For school students (Class 1–12)`, items: schoolScholarships },
+            { key: 'college', title: `For college students (UG, PG, Diploma, ITI)`, items: collegeScholarships },
+        ].filter(stage => stage.items.length > 0);
+
         return (
             <div className="min-h-screen bg-white">
                 <Header />
@@ -114,6 +132,14 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         >
                             🎓 All Schemes
                         </a>
+                        {stages.length > 0 && (
+                            <a 
+                                href="#school-or-college"
+                                className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
+                            >
+                                🏫 School or College
+                            </a>
+                        )}
                         <a 
                             href="#comparison-matrix"
                             className="flex-shrink-0 px-4 py-2.5 rounded-full font-bold text-xs bg-gray-50 text-gray-700 hover:bg-gray-100 whitespace-nowrap transition-all"
@@ -197,6 +223,49 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                         <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {stateName} Scholarships</h2>
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
+
+                    {/* School vs college: answers "scholarship for college students in <state>" style searches */}
+                    {stages.length > 0 && (
+                        <div id="school-or-college" className="mb-16 scroll-mt-24">
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">
+                                {stateName} Scholarships for School and College Students
+                            </h2>
+                            <p className="text-sm text-gray-500 mt-1 mb-6">
+                                {schoolScholarships.length} for school students and {collegeScholarships.length} for college students, highest amount first. Some schemes cover both.
+                            </p>
+                            <div className={`grid grid-cols-1 ${stages.length > 1 ? 'md:grid-cols-2' : ''} gap-6`}>
+                                {stages.map(stage => (
+                                    <div key={stage.key} id={`${stage.key}-scholarships`} className="p-6 bg-white border border-gray-150 rounded-3xl shadow-xs scroll-mt-24">
+                                        <h3 className="text-lg font-bold text-gray-900 mb-4">
+                                            {stage.title} <span className="text-gray-400 font-medium">· {stage.items.length}</span>
+                                        </h3>
+                                        <ul className="divide-y divide-gray-100">
+                                            {stage.items.slice(0, STAGE_LIST_LIMIT).map((s: any) => (
+                                                <li key={s.id} className="py-3 flex items-start justify-between gap-4">
+                                                    <div>
+                                                        <Link href={`/scholarships/${s.slug}`} className="text-sm font-semibold text-gray-900 hover:text-google-blue transition-colors">
+                                                            {s.title}
+                                                        </Link>
+                                                        <p className="text-xs text-gray-500 mt-0.5">
+                                                            {levelText(s) || 'All levels'} · Last date: {formatDeadlineDate(s.deadline, { day: 'numeric', month: 'short' }, 'Open Now')}
+                                                        </p>
+                                                    </div>
+                                                    <span className="text-sm font-bold text-emerald-700 whitespace-nowrap">
+                                                        {s.amount_annual > 0 ? `₹${s.amount_annual.toLocaleString()}` : 'Variable'}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        {stage.items.length > STAGE_LIST_LIMIT && (
+                                            <a href="#comparison-matrix" className="inline-block mt-4 text-sm font-bold text-google-blue hover:underline">
+                                                See all {stage.items.length} in the comparison table ↓
+                                            </a>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Master Comparison Table Section */}
                     <div id="comparison-matrix" className="mb-16 scroll-mt-24">
@@ -335,6 +404,24 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                                     3. Income Certificate, and 4. Previous year marksheets.
                                 </p>
                             </div>
+                            {collegeScholarships.length > 0 && (
+                                <div>
+                                    <h3 className="font-bold text-gray-900 mb-2 text-lg">Which {stateName} scholarships are for college students?</h3>
+                                    <p className="text-gray-600 leading-relaxed">
+                                        We list {collegeScholarships.length} {stateName} scholarships for UG, PG, diploma or ITI students, including{' '}
+                                        {collegeScholarships.slice(0, 3).map((s: any) => s.title).join(', ')}.
+                                    </p>
+                                </div>
+                            )}
+                            {schoolScholarships.length > 0 && (
+                                <div>
+                                    <h3 className="font-bold text-gray-900 mb-2 text-lg">Which {stateName} scholarships are for school students?</h3>
+                                    <p className="text-gray-600 leading-relaxed">
+                                        We list {schoolScholarships.length} {stateName} scholarships for school students (Class 1–12), including{' '}
+                                        {schoolScholarships.slice(0, 3).map((s: any) => s.title).join(', ')}.
+                                    </p>
+                                </div>
+                            )}
                             <div>
                                 <h3 className="font-bold text-gray-900 mb-2 text-lg">How to apply?</h3>
                                 <p className="text-gray-600 leading-relaxed">
