@@ -1,0 +1,47 @@
+=== https://scholarship.odisha.gov.in/home (homepage, read 2026-10-13) ===
+Odisha State Scholarship Portal, Government of Odisha. Odisha State Scholarship Portal envisioned to bridge the gap between the scholarship providers and scholarship seekers thus, encouraging more students to be in the system.
+Announcements: Opening of Fresh Scholarship of Higher Education Department - AS 26-27. Opening of Banishree Scholarship for AY 2026-27. Open the Pathani Samanta Mathematics Talent (Class - 11 to 12) of SME Department AS 2025-2026. Open the Junior Merit Scholarship Scheme (Class XI) of SME Department (Fresh and Renewal) AS 2026-2027. Notice: Opening of the Portal for Fresh and Renewal Applications for the Academic Year 2026–27. Extension of dateline of Nirman Shramik Kalyan Yojana (Edn Astt) AS - 2025-26.
+Academic Year: 2026-27. No. of Applicants 9,77,079. No. of Schemes Applied 11. No. of Institutions From 14,236.
+Know Your Status: Please enter your Aadhaar number or Application No. to check your application status. [Get OTP]
+How to Apply? 1 Check Eligibility: Please go to the State Scholarship Portal. Click on the Check Eligibility. Enter the details information in the screen. You might be eligible for the following schemes. 2 Registration (One Time) or Login: Enter the Aadhaar number and proceed further. Check your registered mobile or email to get the user ID and password. Click login link at the portal and enter User ID and password to apply the scholarship. 3 Select Scheme & Apply: Please select the Department name and Scheme name. Provide all necessary details I.e. Student, Academic, Eligibility & Bank information. Submit and Download the form, then print it.
+Helpdesk: Toll Free number 155335, 1800-345-6770. Is operational from 9:00 AM to 5:00 PM on all Government official days.
+Important Links: Apply Freeship Card, View IFSC Code, List of Institutions, Check Eligibility, National Scholarship Portal, Know Your Status.
+
+=== https://scholarship.odisha.gov.in/how-to-apply ===
+STEP 1 Register at https://scholarship.odisha.gov.in/ , if you are new user. Existing user can click on the login button.
+STEP 2 Enter the Aadhaar number and Proceed.
+STEP 3 Login in with your User ID and Password to apply for the scheme.
+STEP 5 Please choose the Department name and Scheme name.
+STEP 6 Provide all necessary details like student, academic, eligibility, and bank information.
+STEP 7 Click on the "Save as draft" button to draft the information or click on "Next" button to save and proceed the scholarship form.
+STEP 8 The preview of the completed form will appear on the page. Download the forms and take its print out.
+
+=== https://scholarship.odisha.gov.in/faqs (Common FAQs) ===
+What is the dateline for submission of application? Please refer the Announcement section in the page for dateline information. There you can find department wise information.
+How do I register myself in Odisha State Scholarship Portal and create my unique ID? The registration in Odisha State Scholarship Portal will be based on on-line Aadhaar-authentication of the student. For the purpose of Aadhaar authentication, student need to input OTP (one-time password) received in the mobile number linked with his/ her Aadhaar in the State Scholarship Portal. Upon successful registration, Unique ID & Password will be sent to the given mobile number and e-mail ID. As the ID would be generated on Aadhar authentication, students are advised to ensure that their Aadhar is linked with an operational mobile number in order to receive OTP. Please provide correct Aadhaar number of self in the portal for registration. In case it is found at any stage that Aadhaar number provided by you is wrong or not yours, the application is liable to be rejected.
+What should I do if I do not find my Institute name or course/ branch name in the drop-down menu? You should immediately approach the institute to contact the District Welfare Officer (DWO) of the District where the institute is located for registration of the Institute or course/ branch under the institute. District Welfare Officer concerned will take necessary action for registration of the Institute or course/ branch in the portal and then you can apply.
+Whether I have to fill-up the on-line application in one sitting? No. Once you receive your unique login ID and password in your registered mobile number and e-mail ID, you can anytime login and create your scholarship application. You can fill-up the online application in as many sittings as you wish until you are satisfied that you have entered all the required information correctly. The portal provides facility to save/ edit your application as many times as you wish until you "Submit" your application. Once you "Submit" your application, you will not be able to modify further.
+How can the I contact the helpdesk for technical problems? For resolving the technical problems, you can reach out to the dedicated helpdesk team in Sanjog Helpline no. - 155335. Helpdesk will facilitate applicants for the issues cropped during filling up the online application form or any functional issues related with portal. If you need any more information then you can contact the Department Phone number directly, which is mentioned in the Contact us page.
+Which fields I can edit before final submission of application? You can edit all details till the time you "Submit" your application except Name, Gender and DOB which is fetched from Aadhaar database. It is therefore advised that before applying, students ensure that these details are correct in their AADHAR (including spelling of the name & surname).
+What happens if I detect any mistake in my application after submitting/ forwarding the application to the institute? You should immediately inform the nodal person dealing with Scholarships in your institute. Institute has the facility to "Revert" the application. Once reverted by Institute, your application will become active for editing in your login. Do the necessary correction and submit again.
+What if I forget my Applicant ID/ Password? You can recover your Password by clicking on "Forgot Password" in the LOGIN tab of Home Page of the portal. You will be asked for your Aadhaar number/ Applicant ID, and an OTP will be sent to your registered mobile number. Using OTP, create your new password.
+How can I change my mobile number? You can change your mobile number in the application till you finally submit the application. Once you "Submit" your application, you will not be able to modify it further.
+Can I take print-out of my application at any stage? Yes, printout of application can be taken at any stage. However, the finally locked application will have the "Barcode" over it.
+
+=== https://scholarship.odisha.gov.in/faqs (Post Matric Scholarship, ST&SC and MBC Welfare Department) ===
+What types of scholarships are available for application in the OSSP under ST & SC Development Department? The Post-Matric Scholarship Scheme is made available for ST/SC/OBC/SEBC/EBC students.
+Whether they can login without using mobile number seeded in the Aadhar Number? None can login without using the mobile number seeded to the Aadhaar number.
+What is the process of document submission? Fillup the entire form following with uploading the relevant asked documents in the site, submit the application which gets automatically reaches at institute level.
+Not being able to find institute name or course/branch name in the drop down menu? Reach out concerned institute regarding this issue. More information call Sanjog Helpline.
+They have to submit hard copy of documents along with printout of application to their concerned Institute/ college? It is not mandatory to submit the document with the hard copy at the institute, but in case if required they can further contact their concerned institute regarding this.
+Should I apply again for renewal of Scholarship (Registered Applicants)? Yes, you can continue by selecting two options displaying at your application as "Renewal in new course" and "Renewal in same course". Select accordingly to your requirement.
+Aadhaar number mandatory for State Scholarship portal login? Yes, Aadhaar number is mandatory for OSSP login.
+
+=== https://scholarship.odisha.gov.in/content/contact-us ===
+Department of School & Mass Education: Call 155335 / 1800-345-6770, Email scholarshipsmed@gmail.com.
+ST & SC Development, Minorities & Backward Classes Welfare Department, Government of Odisha, Bhubaneswar-751001: Call 155335 / 1800-345-6770, Email scholarshipstsc@gmail.com.
+Department of Agriculture and Farmers' Empowerment: Email scholarshipagri@gmail.com.
+Labour & ESI Department: Email scholarshiplabour@gmail.com.
+Higher Education Department, Bhubaneswar-751001: Call for e Medhabruti 0674(2396550), 0674(2323401), 0674(2323402), 0674(2323403), 0674(2323404). Email scholarshiphed@gmail.com.
+Skill Development and Technical Education Department, Kharavela Bhawan Bhubaneswar-751001: Email scholarshipsdtp@gmail.com.
+Sanjog Helpline Toll Free number (155335 /1800-345-6770) is operational from 9:00 AM to 5:00 PM on all official days. Direct Land line number can be reached from 11:30 AM to 5:00 PM on all government official days. Email support can be availed alternatively.

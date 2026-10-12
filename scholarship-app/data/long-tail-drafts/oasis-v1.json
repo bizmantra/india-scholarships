@@ -1,0 +1,194 @@
+{
+  "guide": {
+    "id": "oasis-west-bengal",
+    "aliases": [
+      "oasis-scholarship",
+      "oasis-portal",
+      "oasis-status"
+    ],
+    "name": "OASIS West Bengal Portal",
+    "state": "West Bengal",
+    "fullTitle": "OASIS Scholarship Portal 2026: Login, Status Check & Renewal Guide",
+    "seoDesc": "Complete guide to the OASIS West Bengal scholarship portal (oasis.gov.in) for SC/ST/OBC students. Learn how to login, track application status, and view deadlines.",
+    "officialUrl": "https://oasis.gov.in",
+    "portalTag": "State Government Portal",
+    "description": "The OASIS portal is the dedicated online scholarship system operated by the Backward Classes Welfare Department and Tribal Development Department, Government of West Bengal. It handles the application and direct disbursement of Pre-Matric and Post-Matric financial assistance exclusively for SC, ST, and OBC students domiciled in the state.",
+    "stats": {
+      "activeSchemes": "6 Active Scholarships",
+      "beneficiaries": "For SC/ST/OBC Students",
+      "disbursementType": "Aadhaar-based DBT",
+      "verificationMode": "Institute & Block/District Level"
+    },
+    "loginSteps": [
+      {
+        "step": "01",
+        "title": "Visit the Official Web Portal",
+        "desc": "Go to oasis.gov.in and select 'Student Registration' for fresh applications or 'Registered Student's Login' for renewals."
+      },
+      {
+        "step": "02",
+        "title": "Select Registration District",
+        "desc": "Choose the West Bengal district where your institution is located. If you are studying outside West Bengal, select your permanent home district."
+      },
+      {
+        "step": "03",
+        "title": "Enter User Credentials",
+        "desc": "Log in using your Application User ID, Password, and select the current applied academic year (2026-27)."
+      },
+      {
+        "step": "04",
+        "title": "Verify Details & Lock Application",
+        "desc": "Fill out your academic and bank details, upload the required scanned documents, and click 'Lock Application' to complete the process before printing the form."
+      }
+    ],
+    "statusSteps": [
+      {
+        "title": "Step 1: Open the Tracking Tool",
+        "desc": "On the OASIS portal homepage, click on the 'Track an Application' button to open the status verification page."
+      },
+      {
+        "title": "Step 2: Enter Application Details",
+        "desc": "Select the district where you registered, then enter your Application Serial Number / User ID and select the applied session."
+      },
+      {
+        "title": "Step 3: View Current Verification Stage",
+        "desc": "The portal will display your current stage, such as 'Verified by Institute', 'Pending at Block/Municipality', or 'Sent for DBT' if payment is processing."
+      }
+    ],
+    "documents": [
+      {
+        "name": "Caste Certificate",
+        "format": "PDF",
+        "note": "Valid computerised SC/ST/OBC certificate issued by a competent state authority."
+      },
+      {
+        "name": "Income Certificate",
+        "format": "PDF",
+        "note": "Issued by a BDO/SDO or Gazetted Officer clearly stating annual family income."
+      },
+      {
+        "name": "Previous Exam Marksheet",
+        "format": "PDF",
+        "note": "Copy of the marksheet for the last qualifying examination passed."
+      },
+      {
+        "name": "Bank Account Details",
+        "format": "PDF",
+        "note": "First page of the passbook with account number and IFSC; the account must be Aadhaar-seeded."
+      },
+      {
+        "name": "Residence & Identity Proof",
+        "format": "PDF",
+        "note": "Aadhaar Card, Voter ID, or Khadya Sathi Card serving as proof of domicile."
+      }
+    ],
+    "topSchemes": [
+      {
+        "name": "Oasis Pre-Matric Scholarship for SC Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-sc-students-west-bengal",
+        "targetGroup": "SC Students (Classes 9 & 10)",
+        "amount": "Up to ₹4,500/year"
+      },
+      {
+        "name": "Oasis Pre-Matric Scholarship for ST Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-st-students-west-bengal",
+        "targetGroup": "ST Students (Classes 9 & 10)",
+        "amount": "Up to ₹4,500/year"
+      },
+      {
+        "name": "Oasis Pre-Matric Scholarship for OBC Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-obc-students-west-bengal",
+        "targetGroup": "OBC Students (Classes 9 & 10)",
+        "amount": "Up to ₹3,500/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for SC Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-sc-students-west-bengal",
+        "targetGroup": "SC Students (Class 11 to PG)",
+        "amount": "Up to ₹12,000/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for ST Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-st-students-west-bengal",
+        "targetGroup": "ST Students (Class 11 to PG)",
+        "amount": "Up to ₹12,000/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for OBC Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-obc-students-west-bengal",
+        "targetGroup": "OBC Students (Class 11 to PG)",
+        "amount": "Up to ₹7,500/year"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "What is the last date to apply for the OASIS scholarship 2026?",
+        "a": "The deadline for completing applications for the 2026-27 academic cycle is October 31, 2026. Students should monitor the official portal for any date extensions."
+      },
+      {
+        "q": "How can I check my OASIS scholarship payment status?",
+        "a": "Click on 'Track an Application' on the OASIS website. Enter your Application Serial Number and applied session. If the status says 'Sent to Bank for DBT', you should check your Aadhaar-linked bank account statement for the credit."
+      },
+      {
+        "q": "Are minority students eligible to apply on the OASIS portal?",
+        "a": "No, minority students must apply through the Aikyashree Portal. High-merit general category students can apply through the SVMCM portal. OASIS is exclusively for SC, ST, and OBC students."
+      },
+      {
+        "q": "What does 'Pending at Block/Municipality Level' mean on the status track?",
+        "a": "It means your school or college has successfully verified your application and forwarded it to the local administrative level (Block Development Officer or Municipality) for final approval."
+      },
+      {
+        "q": "What district should students studying outside West Bengal select during login?",
+        "a": "If you are a permanent resident of West Bengal studying in another state, you must select your permanent home district in West Bengal when registering or logging in to the portal."
+      }
+    ],
+    "helpline": {
+      "phone": "+91-8420023311 / +91-8420023322",
+      "email": "bcwoasis@gmail.com",
+      "address": "Backward Classes Welfare Department, Administrative Building, SDO Bidhannagar, 4th Floor, DJ-4, Salt Lake, Sector- II, Kolkata - 700091",
+      "hours": "10:00 AM to 5:00 PM (Working Days)"
+    }
+  },
+  "sources": [
+    {
+      "field": "guide.officialUrl",
+      "url": "https://oasis.gov.in",
+      "quote": "Oasis Scholarship Portal : http://www.oasis.gov.in"
+    },
+    {
+      "field": "guide.description",
+      "url": "https://oasis.gov.in",
+      "quote": "Run by, Backward Classes Welfare Department and Tribal Development Department, Government of West Bengal."
+    },
+    {
+      "field": "guide.loginSteps[1].desc",
+      "url": "https://oasis.gov.in",
+      "quote": "Students who are studying outside West Bengal should select the district of their permanent address."
+    },
+    {
+      "field": "guide.statusSteps[0].desc",
+      "url": "https://oasis.gov.in",
+      "quote": "After filling all these details click on check status option... Track Oasis Scholarship Status"
+    },
+    {
+      "field": "guide.documents[1].note",
+      "url": "https://oasis.gov.in",
+      "quote": "Income Certificate from a gazetted officer."
+    },
+    {
+      "field": "guide.helpline.phone",
+      "url": "https://oasis.gov.in",
+      "quote": "Helpline Number : +91 84200 23311"
+    },
+    {
+      "field": "guide.helpline.email",
+      "url": "https://oasis.gov.in",
+      "quote": "Email : bcwoasis@gmail.com"
+    },
+    {
+      "field": "guide.helpline.address",
+      "url": "https://wb.gov.in",
+      "quote": "Backward Classes Welfare Department ... Administrative Building, SDO Bidhannagar, 4th Floor, DJ-4, Salt Lake, Sector- II, Kolkata - 700091"
+    }
+  ]
+}

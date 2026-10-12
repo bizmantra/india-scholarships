@@ -8,6 +8,7 @@ export const revalidate = 86400; // Align server revalidation to 24 hours
 import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
+import { getPortalGuideForScholarship } from '@/lib/portalsData';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
 import {
     Calendar,
@@ -253,6 +254,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const relevantArticles = getArticlesForScholarship(scholarship.slug);
     const relevantNews = getNewsForScholarship(scholarship.slug);
     const bestFitPillar = getPillarForScholarship(scholarship);
+    const portalGuide = getPortalGuideForScholarship(scholarship);
 
     // Dynamic deadline check (relative to India's current date boundary)
     const today = new Date();
@@ -771,10 +773,16 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                         )}
 
                         {/* Related guides */}
-                        {relevantArticles.length > 0 && (
+                        {(relevantArticles.length > 0 || portalGuide) && (
                             <section id="helpful-guides" className="pt-6 border-t border-gray-100">
                                 <h2 className="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b border-gray-100 font-heading">Scholarship Guides</h2>
                                 <div>
+                                    {portalGuide && (
+                                        <Link href={`/guides/${portalGuide.id}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
+                                            <span className="text-sm font-semibold text-google-blue">{portalGuide.name}: login, status check & documents</span>
+                                            <ChevronRight className="h-4 w-4 text-gray-400 shrink-0" />
+                                        </Link>
+                                    )}
                                     {relevantArticles.map((art: any) => (
                                         <Link key={art.slug} href={`/guides/${art.slug}`} className="flex items-center justify-between gap-4 py-3 border-b border-gray-100 hover:underline transition-colors">
                                             <span className="text-sm font-semibold text-google-blue">{art.title}</span>

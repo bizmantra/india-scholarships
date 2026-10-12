@@ -22,6 +22,8 @@ const MAJOR_PORTALS = [
     { title: 'MahaDBT Post-Matric Portal', tag: 'Maharashtra', url: '/guides/mahadbt', color: 'bg-amber-50 text-amber-700 border-amber-100' },
     { title: 'e-Kalyan Welfare Portal', tag: 'Jharkhand / Bihar', url: '/guides/e-kalyan-jharkhand', color: 'bg-purple-50 text-purple-700 border-purple-100' },
     { title: 'Aikyashree Portal', tag: 'West Bengal', url: '/guides/aikyashree-west-bengal', color: 'bg-red-50 text-red-700 border-red-100' },
+    { title: 'OASIS SC/ST/OBC Portal', tag: 'West Bengal', url: '/guides/oasis-west-bengal', color: 'bg-rose-50 text-rose-700 border-rose-100' },
+    { title: 'Odisha State Scholarship Portal', tag: 'Odisha', url: '/guides/odisha-state-scholarship-portal', color: 'bg-orange-50 text-orange-700 border-orange-100' },
     { title: 'Digital Gujarat Portal', tag: 'Gujarat', url: '/guides/digital-gujarat', color: 'bg-cyan-50 text-cyan-700 border-cyan-100' },
 ];
 
