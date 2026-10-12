@@ -275,6 +275,13 @@ const nextConfig: NextConfig = {
       // DIFFERENT slug than the article's own (e.g. digital-gujarat-scholarship-portal-guide
       // -> digital-gujarat-mysy) — Next.js redirects match in array order, first wins, so the
       // specific overrides have to be checked before this generic same-slug catch-all.
+      // Long-tail item 4 (2026-10-13): two near-identical Bihar post-matric articles competed with
+      // each other. Keep bihar-postmatric-pms-guide (the one that ranks); the other is removed.
+      {
+        source: '/:prefix(articles|guides)/bihar-post-matric-pms-scholarship-guide',
+        destination: '/guides/bihar-postmatric-pms-guide',
+        permanent: true,
+      },
       {
         source: '/articles/:slug',
         destination: '/guides/:slug',
