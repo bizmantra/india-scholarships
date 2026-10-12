@@ -108,6 +108,13 @@ and an activity event. Approving a scout find marks it `approved`; the Scout Pub
 Before the inbox, proposals were `scholarship_changelog` rows with `action_type = 'pending_review'`.
 `scripts/migrate-to-agent-inbox.js` moves them (it runs at the start of every Deadline Freshness run and does nothing once they are moved).
 
+### Backlog side table
+
+`backlog_tasks` is synced like the scholarship tables. The Backlog page adds one Turso-only table, `cc_backlog_meta`
+(`task_id`, `due_date`, `note`, `waiting`, `updated_at`), created on first use and **not** in `SYNCED_TABLES`, so
+`push-to-turso.js` never reads or overwrites it. Staging refreshes copy it with every other table. The first time it is
+created, every existing item gets `updated_at = 2026-10-11` (the day the backlog was reviewed), so "stale" counts from then.
+
 ## Required secrets
 
 - GitHub Actions: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `TURSO_STAGING_DATABASE_URL`, `TURSO_STAGING_AUTH_TOKEN`

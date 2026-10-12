@@ -35,6 +35,20 @@ The **Inbox** tab (top right, with the number waiting) shows the same inbox as a
 - **Agents are data**: `lib/command-center/agents.ts`. A new agent needs an entry there and a workflow with
   `target` and `request_id` inputs; its proposals use `scripts/lib/agent-inbox.js`.
 
+## Backlog
+
+`/admin/backlog` is the owner's list of what to pick up next, read from the Turso table `backlog_tasks`
+(`lib/command-center/backlog.ts`, API `GET/PATCH/POST /api/admin/command/backlog`).
+
+- **Tabs** come from the `category` column (`dev`, `content`, and any new category that has open items, e.g. `study-abroad`
+  with `SA-` ids). A new category needs no code: add an item with that category and its tab appears.
+- **Order** (`lib/command-center/backlog-types.ts`, `buildSections`): waiting-on-you items first, then "Do next" (the top five
+  open items): due within a week first, then Critical → Low, then In Progress before not started, ties by item number.
+- **Stale** tag: In Progress untouched for 14 days, Backlog for 30. "Touched" means changed on this page.
+- Items can be started, finished, parked, flagged "waiting on me", given a due date and a "where we left off" note.
+- Items marked Done are hidden and counted. Merged or closed items from the 2026-10-11 cleanup are Done with a note.
+- The old Kanban page is replaced; `/api/admin/backlog` (old route) is no longer used by any screen.
+
 ## Study Abroad pages
 
 Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) use the same inbox, with
