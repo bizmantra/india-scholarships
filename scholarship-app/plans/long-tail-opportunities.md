@@ -7,7 +7,7 @@ Source: Search Console, 90 days to 2026-10-10 (43k queries, 3M impressions). Sta
 
 | # | Item | Batch | Owner | Status | Notes |
 |---|---|---|---|---|---|
-| 0 | Add 20 live pages to sitemap, delete test routes | done | Claude | PR #59 open, waiting for merge | |
+| 0 | Add 20 live pages to sitemap, delete test routes | done | Claude | Merged (PR #59) | |
 | 1 | OASIS West Bengal portal guide (split out of the Aikyashree guide; move the `oasis` alias to it) | 1 | Gemini drafts, Claude checks + builds | PR #61, staging passed, waiting for merge | ~22k impressions. v2: 11/12 quotes found; Claude removed 3 unsupported claims (APB payment system, status-page field names, a deadline) |
 | 2 | Odisha State Scholarship Portal guide | 1 | Gemini drafts, Claude checks + builds | PR #61, staging passed, waiting for merge | Official pages read through owner's Chrome; v2: 15/15 quotes found |
 | 2b | **Added:** scholarship pages link to their portal guide ("Scholarship Guides" section) | 1 | Claude | PR #61, staging passed, waiting for merge | 82 scholarship pages get a link across 11 guides; guides were not linked from scholarship pages before |
@@ -40,3 +40,4 @@ Claude reviews anything unmatched, fixes, builds and opens the PR.
 - 2026-10-12: table created (items 0–8). Items 4 and 7 changed after finding existing content; item 2 blocked.
 - 2026-10-13: owner approved changes to 4 and 7. Item 2 unblocked (portal opens in owner's Chrome). Items 1, 2, 5 built; item 2b added (guide links on scholarship pages).
 - 2026-10-13: PR #61 on staging (deployment 5df640b) passed: new guides, alias redirects, guide links on scholarship pages, school/college section, sitemap.
+- 2026-10-13: PR #59 merged. PR #61 had a sitemap conflict with it (both added guide URLs in the same place); resolved by keeping both.
