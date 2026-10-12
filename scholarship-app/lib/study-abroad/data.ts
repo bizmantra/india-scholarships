@@ -38,6 +38,10 @@ export interface SaProgram {
     living_cost_per_year: number | null; living_currency: string | null; gpa_min: string | null;
     ielts_min: number | null; gre: string | null; location: string | null; application_deadlines: string | null;
     official_source: string | null; checked_at: string | null; university_name?: string;
+    // Article fields (IS-158); absent on databases not yet migrated with scripts/study-abroad/add-columns.mjs
+    summary?: string | null; seo_title?: string | null; meta_description?: string | null; body_md?: string | null; faq_json?: string | null;
+    language?: string | null; duration?: string | null; intakes?: string | null; english_requirements?: string | null;
+    application_portal?: string | null; application_fee?: string | null; stem_designated?: string | null; updated_at?: string | null;
 }
 export interface SaFact {
     key: string; label: string; country: string | null; value: string; unit: string | null;

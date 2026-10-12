@@ -42,7 +42,7 @@ Shared rules (sourcing, tone, trust, byline) are the same as the [university tem
 
 ## 3. Database fields
 
-Fields that exist today in `sa_programs`, and fields to add (code change, separate PR).
+All fields below exist in `sa_programs` (the article fields were added for IS-158; existing databases get them from `scripts/study-abroad/add-columns.mjs`). The layout shows the article, FAQs and the extra facts as soon as they are filled.
 
 | Field | Exists | Rule |
 |---|---|---|
@@ -57,18 +57,18 @@ Fields that exist today in `sa_programs`, and fields to add (code change, separa
 | `application_deadlines` | Yes | JSON per intake. |
 | `official_source` | Yes | The program's own official page, not a fees or general page. |
 | `checked_at` | Yes | Date facts were checked. |
-| `summary` | **Add** | 1–2 sentences, under 200 characters, leading with the most useful fact. |
-| `seo_title` | **Add** | Under 65 characters. Pattern: `{Program} at {University short name}: Fees, GRE & Deadlines`. |
-| `meta_description` | **Add** | 140–160 characters. |
-| `body_md` | **Add** | Sections 1–8 and 10. |
-| `faq_json` | **Add** | Section 9. |
-| `language` | **Add** | "English", "German", "German and English". |
-| `duration` | **Add** | e.g. "4 semesters (120 ECTS)" or "2 years (30 credits)". |
-| `intakes` | **Add** | "Winter, Summer" / "Fall, Spring". |
-| `english_requirements` | **Add** | All accepted tests and minimums, e.g. "IELTS 6.5, TOEFL iBT 88, or degree taught ≥50% in English". |
-| `application_portal` | **Add** | "Uni-Assist", "TUMonline", "GradCAS", university portal URL. |
-| `application_fee` | **Add** | Amount and currency, if any. |
-| `stem_designated` | **Add (USA)** | true / false / blank. |
+| `summary` | Yes (IS-158) | 1–2 sentences, under 200 characters, leading with the most useful fact. |
+| `seo_title` | Yes (IS-158) | Under 65 characters. Pattern: `{Program} at {University short name}: Fees, GRE & Deadlines`. |
+| `meta_description` | Yes (IS-158) | 140–160 characters. |
+| `body_md` | Yes (IS-158) | Sections 1–8 and 10. |
+| `faq_json` | Yes (IS-158) | Section 9. |
+| `language` | Yes (IS-158) | "English", "German", "German and English". |
+| `duration` | Yes (IS-158) | e.g. "4 semesters (120 ECTS)" or "2 years (30 credits)". |
+| `intakes` | Yes (IS-158) | "Winter, Summer" / "Fall, Spring". |
+| `english_requirements` | Yes (IS-158) | All accepted tests and minimums, e.g. "IELTS 6.5, TOEFL iBT 88, or degree taught ≥50% in English". |
+| `application_portal` | Yes (IS-158) | "Uni-Assist", "TUMonline", "GradCAS", university portal URL. |
+| `application_fee` | Yes (IS-158) | Amount and currency, if any. |
+| `stem_designated` | Yes (IS-158, USA) | true / false / blank. |
 
 **Display rule for missing values:** when a field is blank, the page shows "Not published by the university" with the official link, never a note about our research.
 
