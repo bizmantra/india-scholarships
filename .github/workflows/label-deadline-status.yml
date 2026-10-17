@@ -1,0 +1,58 @@
+name: Label Deadline Status
+
+# One-off (CNT-111): label the month-end deadlines as confirmed / expected / unknown.
+# Dry run unless "apply" is ticked. Run it on staging first, check the preview, then on production.
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Database to label (staging = test run)'
+        type: choice
+        options: [staging, production]
+        default: staging
+      apply:
+        description: 'Write the changes (leave off for a dry run that only prints)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: database-writes${{ inputs.target == 'staging' && '-staging' || '' }}
+  cancel-in-progress: false
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scholarship-app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd scholarship-app
+          npm ci
+
+      - name: Label the deadlines
+        run: node scholarship-app/scripts/label-deadline-status.js --target=${{ inputs.target }} ${{ inputs.apply && '--apply' || '' }}
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          TURSO_STAGING_DATABASE_URL: ${{ secrets.TURSO_STAGING_DATABASE_URL }}
+          TURSO_STAGING_AUTH_TOKEN: ${{ secrets.TURSO_STAGING_AUTH_TOKEN }}
+
+      # The rows as they were before the change, to put back by hand if needed
+      - name: Keep the old rows (30 days)
+        if: ${{ inputs.apply }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: deadline-status-before-${{ inputs.target }}-${{ github.run_id }}
+          path: scholarship-app/backups/deadline-status-before-*.json
+          retention-days: 30
