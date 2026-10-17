@@ -10,7 +10,7 @@
  * Study Abroad pages (kind 'sa_field_change') use scripts/lib/sa-inbox.js instead: they write the sa_*
  * tables, and their old/new values are kept in the approval event rather than scholarship_changelog.
  */
-import { getClient } from '@/lib/db';
+import { getClient, scholarshipsHasColumn } from '@/lib/db';
 import * as rules from '@/scripts/lib/agent-inbox';
 import * as sa from '@/scripts/lib/sa-inbox';
 import { refreshScholarshipPages, refreshStudyAbroadPages } from './revalidate';
@@ -152,6 +152,8 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
     const { items } = await listProposals({ ids, limit: 1000 });
     const result: DecideResult = { done: [], skipped: [], refreshed: [] };
     const statements: { sql: string; args: any[] }[] = [];
+    // Older databases may not have the deadline_status column yet
+    const hasDeadlineStatus = await scholarshipsHasColumn('deadline_status');
     const touched: { slug: string; state?: string | null }[] = [];
     const perItemEvents = items.length <= 3;
 
@@ -253,7 +255,7 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
         statements.push(
             {
                 // An approved deadline has a source behind it, so it stops being an estimate ("expected") or unknown
-                sql: `UPDATE scholarships SET ${field} = ?, verified_status = 'Verified', last_verified = datetime('now')${field === 'deadline' ? ", deadline_status = 'confirmed'" : ''} WHERE id = ?`,
+                sql: `UPDATE scholarships SET ${field} = ?, verified_status = 'Verified', last_verified = datetime('now')${field === 'deadline' && hasDeadlineStatus ? ", deadline_status = 'confirmed'" : ''} WHERE id = ?`,
                 args: [rules.storedValue(field, p.new_value), p.scholarship_id],
             },
             {
@@ -351,11 +353,12 @@ export async function undo(id: number, actor: string): Promise<{ ok: boolean; me
     if (!rules.sameValue(field, live.rows[0]?.value, p.new_value)) {
         return { ok: false, message: `${field} has changed again since the approval, so it was left as it is.` };
     }
+    const hasDeadlineStatus = await scholarshipsHasColumn('deadline_status');
     const restored = rules.FIELD_TYPES[field as keyof typeof rules.FIELD_TYPES] === 'int' && previous !== '' ? Number(previous) : previous;
     await client.batch([
         {
             // Back to a non-date value: go back to "expected" if an estimate is on file, otherwise "unknown"
-            sql: `UPDATE scholarships SET ${field} = ?${field === 'deadline' && !/^\d{4}-\d{2}-\d{2}$/.test(String(restored))
+            sql: `UPDATE scholarships SET ${field} = ?${field === 'deadline' && hasDeadlineStatus && !/^\d{4}-\d{2}-\d{2}$/.test(String(restored))
                 ? ", deadline_status = CASE WHEN deadline_expected IS NOT NULL AND deadline_expected <> '' THEN 'expected' ELSE 'unknown' END"
                 : ''} WHERE id = ?`,
             args: [restored, p.scholarship_id],
