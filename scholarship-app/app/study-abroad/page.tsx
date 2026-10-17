@@ -37,7 +37,7 @@ export default async function StudyAbroadHome() {
             jump={[{ label: '🌍 Countries', href: '#countries' }, { label: '🎓 Programs', href: '#programs' }, { label: '🧮 Calculators', href: '#calculators' }, { label: '💰 Loans', href: '#loans' }, { label: '🛂 Visas', href: '#visas' }, { label: '🏅 Scholarships', href: '#scholarships' }]}>
             <ListingSection id="countries" title="Choose Your Destination">
                 <CardGrid>
-                    <SACard href="/study-abroad/study-in/germany" title="Study in Germany" subtitle="Most public universities charge no tuition, only a semester fee."
+                    <SACard href="/study-abroad/study-in/germany" title="Study in Germany" subtitle="Tuition varies by university and programme; check fees before you plan your budget."
                         figure={fmt(facts['germany.blocked_account.annual_eur']?.value, 'EUR')} figureNote="blocked account per year"
                         detail={`${deUnis.length} universities · ${deVisas.length} visa guides`} cta="Explore Germany →" />
                     <SACard href="/study-abroad/study-in/usa" title="Study in the USA" subtitle="STEM graduates can work for up to 3 years on OPT."

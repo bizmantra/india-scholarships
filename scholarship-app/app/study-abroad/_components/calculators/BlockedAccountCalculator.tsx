@@ -35,15 +35,6 @@ export default function BlockedAccountCalculator({ monthlyWithdrawalEur, bufferE
     return () => clearTimeout(timer);
   }, [months, eurToInr, customBuffer, totalBlockedEur]);
 
-  const trackProviderClick = (providerName: string, grandTotalInr: number) => {
-    const customWindow = typeof window !== 'undefined' ? (window as unknown as CustomWindow) : null;
-    if (customWindow && customWindow.gtag) {
-      customWindow.gtag('event', 'click_provider_website', {
-        provider_name: providerName, estimated_total_inr: grandTotalInr, destination_country: 'germany',
-      });
-    }
-  };
-
   const formatINR = (amount: number) =>
     new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
   const formatEUR = (amount: number) =>
@@ -138,7 +129,6 @@ export default function BlockedAccountCalculator({ monthlyWithdrawalEur, bufferE
                   <td className="py-2.5 px-3">
                     <a
                       href={`/study-abroad/out/${provider.id}`} target="_blank" rel="sponsored nofollow noopener"
-                      onClick={() => trackProviderClick(provider.name, grandTotalInr)}
                       className="text-[#0645ad] hover:underline text-xs font-semibold"
                     >
                       Explore →
@@ -163,7 +153,7 @@ export default function BlockedAccountCalculator({ monthlyWithdrawalEur, bufferE
         <div className="py-3 border-b border-[#F1F5F9]">
           <h5 className="font-bold text-[#0F172A] text-sm">Do I still need one if I hold a DAAD scholarship or a loan?</h5>
           <p className="text-sm text-[#64748B] mt-1 leading-relaxed">
-            No. An official award letter for a recognized scholarship (e.g. DAAD) covering at least €992/month exempts you. An Indian education loan sanction letter also works as valid financial proof — you don&apos;t have to deposit the money upfront.
+            A German or EU scholarship covering at least {formatEUR(monthlyWithdrawalEur)} a month may replace a blocked account. An education loan is additional proof; it does not automatically replace the blocked account. Check the <a href="https://india.diplo.de/in-en/service/2546328-2546328" target="_blank" rel="noopener noreferrer" className="underline">German Missions in India visa FAQ</a> for the rules that apply to you.
           </p>
         </div>
         <div className="py-3">
