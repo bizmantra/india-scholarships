@@ -9,7 +9,7 @@ import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
 import { getPortalGuideForScholarship } from '@/lib/portalsData';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, deadlineDisplay } from '@/lib/utils';
 import {
     Calendar,
     Users,
@@ -582,7 +582,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <WikiInfobox 
                                 title={scholarship.title}
                                 amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
-                                deadline={isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short' }, 'Check portal')}
+                                deadline={deadlineDisplay(scholarship, { day: 'numeric', month: 'short' }, 'Check portal')}
                                 eligibility={buildEligibilitySummary()}
                                 provider={scholarship.provider}
                                 applyUrl={cleanApplyUrl || ''}
@@ -862,8 +862,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
                                 <div className="text-[10px] font-black uppercase tracking-wider text-red-700 mb-0.5">Application Deadline</div>
                                 <div className="text-xl font-black text-red-700 font-heading">
-                                    {isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
+                                    {deadlineDisplay(scholarship, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
                                 </div>
+                                {scholarship.deadline_status === 'expected' && (
+                                    <div className="text-[10px] text-red-600 mt-1 font-semibold leading-normal">
+                                        Not yet confirmed on the official site. Check the portal before you plan around it.
+                                    </div>
+                                )}
                                 {scholarship.deadline_description && (
                                     <div className="text-[10px] text-red-600 mt-1 italic leading-normal">
                                         {scholarship.deadline_description}

@@ -150,7 +150,7 @@ export async function getScholarshipsCatalog() {
     const client = getClient();
     const res = await client.execute(`
         SELECT id, title, slug, provider, provider_type, state, level, caste, gender,
-               amount_annual, amount_min, amount_description, deadline, always_open,
+               amount_annual, amount_min, amount_description, deadline, deadline_status, deadline_expected, always_open,
                status, is_featured, is_popular, priority_score, thumbnail_url,
                scholarship_type, scholarship_scope, country_of_study, last_verified,
                income_limit, created_at, application_mode

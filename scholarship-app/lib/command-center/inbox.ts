@@ -252,7 +252,8 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
         }
         statements.push(
             {
-                sql: `UPDATE scholarships SET ${field} = ?, verified_status = 'Verified', last_verified = datetime('now') WHERE id = ?`,
+                // An approved deadline has a source behind it, so it stops being an estimate ("expected") or unknown
+                sql: `UPDATE scholarships SET ${field} = ?, verified_status = 'Verified', last_verified = datetime('now')${field === 'deadline' ? ", deadline_status = 'confirmed'" : ''} WHERE id = ?`,
                 args: [rules.storedValue(field, p.new_value), p.scholarship_id],
             },
             {
@@ -352,7 +353,13 @@ export async function undo(id: number, actor: string): Promise<{ ok: boolean; me
     }
     const restored = rules.FIELD_TYPES[field as keyof typeof rules.FIELD_TYPES] === 'int' && previous !== '' ? Number(previous) : previous;
     await client.batch([
-        { sql: `UPDATE scholarships SET ${field} = ? WHERE id = ?`, args: [restored, p.scholarship_id] },
+        {
+            // Back to a non-date value: go back to "expected" if an estimate is on file, otherwise "unknown"
+            sql: `UPDATE scholarships SET ${field} = ?${field === 'deadline' && !/^\d{4}-\d{2}-\d{2}$/.test(String(restored))
+                ? ", deadline_status = CASE WHEN deadline_expected IS NOT NULL AND deadline_expected <> '' THEN 'expected' ELSE 'unknown' END"
+                : ''} WHERE id = ?`,
+            args: [restored, p.scholarship_id],
+        },
         {
             sql: "INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details) VALUES (?, ?, 'undo', ?)",
             args: [p.scholarship_id, p.scholarship_title, JSON.stringify({ changes: [{ field, old: p.new_value, new: previous }], undone_by: actor, proposal_id: id })],

@@ -115,6 +115,23 @@ Before the inbox, proposals were `scholarship_changelog` rows with `action_type 
 `push-to-turso.js` never reads or overwrites it. Staging refreshes copy it with every other table. The first time it is
 created, every existing item gets `updated_at = 2026-10-11` (the day the backlog was reviewed), so "stale" counts from then.
 
+### Deadline status (CNT-111)
+
+A date is only shown to students as a deadline when it is confirmed. Two columns on `scholarships` say how far to trust it:
+
+| `deadline_status` | `deadline` | `deadline_expected` | Shown as |
+|---|---|---|---|
+| empty or `confirmed` | the date | empty | "Deadline: 31 Oct 2026" (as before) |
+| `expected` | empty | the estimated date | "Expected ~31 Oct 2026", not counted in closing-soon lists |
+| `unknown` | empty | the old date, for the record | "Check Official Portal" |
+| `rolling` | empty | empty | "Open Year-Round" (set `always_open = 1` too) |
+
+Empty `deadline` is the existing convention for "no fixed date" (`clean-data-formats.js` turns "Not specified" into empty), so every list,
+filter and "closing soon" query already treats these rows correctly. Approving a deadline proposal in the inbox sets `confirmed`
+(`lib/command-center/inbox.ts`, `scripts/lib/agent-inbox.js`); undoing it goes back to `expected` or `unknown`.
+`scripts/label-deadline-status.js` did the first labelling (dry run by default); `check-data-formats.js` checks both columns.
+New columns on an older local copy: run `npm run db:pull`.
+
 ## Required secrets
 
 - GitHub Actions: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `TURSO_STAGING_DATABASE_URL`, `TURSO_STAGING_AUTH_TOKEN`
