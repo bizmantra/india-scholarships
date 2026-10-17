@@ -282,7 +282,11 @@ function approveFieldProposal(db, proposal, actor) {
 
     let changelogId;
     db.transaction(() => {
-        db.prepare(`UPDATE scholarships SET ${proposal.field} = ?, verified_status = 'Verified', last_verified = datetime('now') WHERE id = ?`)
+        // An approved deadline has a source behind it, so it stops being an estimate ("expected") or unknown.
+        // Older local copies may not have the column yet.
+        const confirmsDeadline = proposal.field === 'deadline'
+            && db.prepare('PRAGMA table_info(scholarships)').all().some(c => c.name === 'deadline_status');
+        db.prepare(`UPDATE scholarships SET ${proposal.field} = ?, verified_status = 'Verified', last_verified = datetime('now')${confirmsDeadline ? ", deadline_status = 'confirmed'" : ''} WHERE id = ?`)
             .run(storedValue(proposal.field, proposal.new_value), proposal.scholarship_id);
         changelogId = db.prepare(`INSERT INTO scholarship_changelog (scholarship_id, scholarship_title, action_type, details) VALUES (?, ?, 'reviewed_applied', ?)`)
             .run(proposal.scholarship_id, proposal.scholarship_title, JSON.stringify({
