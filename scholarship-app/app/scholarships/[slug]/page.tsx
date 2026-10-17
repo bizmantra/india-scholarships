@@ -30,6 +30,7 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
+import StudyAbroadPlan from '@/app/components/StudyAbroadPlan';
 
 
 const SUBPAGE_NAV = [
@@ -764,6 +765,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 </div>
                             </section>
                         )}
+
+                        <StudyAbroadPlan scope={scholarship.scholarship_scope} countryOfStudy={scholarship.country_of_study} />
 
                         {/* Related news */}
                         {relevantNews.length > 0 && (
