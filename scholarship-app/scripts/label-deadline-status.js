@@ -20,7 +20,9 @@ const fs = require('fs');
 const path = require('path');
 const { resolveTarget, connect, describe } = require('./lib/turso-target');
 
-const MONTH_END = ['2026-10-31', '2026-11-30'];
+// The four dates scripts/boost-6month-scholarships.js (commit 81f33d6, 2026-08-07) assigned to every expired or empty
+// deadline by keyword in the slug: 11-30 (state and post-matric), 10-15 (Rhodes, Chevening...), 12-31 (corporate), 10-31 (the rest)
+const MONTH_END = ['2026-10-31', '2026-11-30', '2026-12-31', '2026-10-15'];
 
 // Read on the official page on 2026-10-17: scholarships.gov.in (NSP) "Student Application Open till : 31-10-2026"
 const CONFIRMED_BY_OFFICIAL_PAGE = {
@@ -61,7 +63,7 @@ async function run() {
 
     const res = await client.execute({
         sql: `SELECT id, slug, title, deadline, deadline_description, always_open${hasColumns ? ', deadline_status' : ''}
-              FROM scholarships WHERE status = 'Active' AND deadline IN (?, ?)`,
+              FROM scholarships WHERE status = 'Active' AND deadline IN (${MONTH_END.map(() => '?').join(', ')})`,
         args: MONTH_END,
     });
     const rows = res.rows.map(r => ({ ...r })).filter(r => !r.deadline_status);
