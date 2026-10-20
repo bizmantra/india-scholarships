@@ -9,6 +9,7 @@ import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
 import { getPortalGuideForScholarship } from '@/lib/portalsData';
+import { SCHOLARSHIP_SEARCH_ALIASES } from '@/lib/constants';
 import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, deadlineDisplay } from '@/lib/utils';
 import {
     Calendar,
@@ -106,9 +107,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (TITLE_OVERRIDES[slug]) {
         seoTitle = TITLE_OVERRIDES[slug].replace('{year}', String(year));
     } else if (slug === 'pm-yashasvi-scholarship') {
+        // "YASASVI" is the official spelling; many students search "Yashasvi", so the title carries both.
         seoTitle = isDeadlinePassed
-            ? `PM Yashasvi Scholarship Scheme ${year}: Eligibility, Amount & Details`
-            : `PM Yashasvi Scholarship Scheme ${year}: Apply Online, Last Date & Eligibility`;
+            ? `PM YASASVI (Yashasvi) Scholarship ${year}: Eligibility & Amount`
+            : `PM YASASVI (Yashasvi) Scholarship ${year}: Apply Online & Last Date`;
     } else if (slug === 'sitaram-jindal-foundation-scholarship') {
         seoTitle = isDeadlinePassed
             ? `Sitaram Jindal Foundation Scholarship ${year}: Eligibility & Last Date Details`
@@ -221,9 +223,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
     }
 
+    let seoDescription = scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`;
+    if (slug === 'pm-yashasvi-scholarship') {
+        seoDescription = 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.';
+    }
+
     return {
         title: seoTitle,
-        description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
+        description: seoDescription,
         alternates: {
             canonical: `https://www.indiascholarships.in/scholarships/${slug}`,
             languages: {
@@ -266,6 +273,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const relevantNews = getNewsForScholarship(scholarship.slug);
     const bestFitPillar = getPillarForScholarship(scholarship);
     const portalGuide = getPortalGuideForScholarship(scholarship);
+    const searchAliases = SCHOLARSHIP_SEARCH_ALIASES[scholarship.slug] || [];
 
     // Dynamic deadline check (relative to India's current date boundary)
     const today = new Date();
@@ -315,6 +323,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         '@context': 'https://schema.org',
         '@type': 'FinancialAid',
         name: scholarship.title,
+        ...(searchAliases.length > 0 && { alternateName: searchAliases }),
         description: scholarship.intro_seo || scholarship.title,
         amount: {
             '@type': 'MonetaryAmount',
@@ -577,6 +586,9 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <h1 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-ink)] font-heading mb-2 tracking-tight leading-tight">
                                 {scholarship.title}
                             </h1>
+                            {searchAliases.length > 0 && (
+                                <p className="text-sm text-[var(--color-ink-soft)] mb-1">Also known as: {searchAliases.join(', ')}</p>
+                            )}
                             <p className="text-sm font-medium text-[var(--color-ink-soft)] mb-8">{scholarship.provider}{scholarship.state ? ` · ${scholarship.state}` : ''}</p>
 
                             {/* Minimalist Gov/Wiki Infobox */}

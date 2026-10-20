@@ -28,3 +28,11 @@ export const HELPLINE_FALLBACKS = {
   SSP_KARNATAKA: "080-22634300",     // SSP Karnataka Helpdesk
   MAHADBT: "022-49150800",          // MahaDBT Maharashtra Helpdesk
 };
+
+// 🔎 OTHER NAMES PEOPLE SEARCH FOR A SCHEME
+// Google treats spellings like "Yasasvi" and "Yashasvi" as different words, so a page
+// only shows up for a spelling it actually contains. These are shown on the page
+// ("Also known as"), added to the meta description and to the structured data.
+export const SCHOLARSHIP_SEARCH_ALIASES: Record<string, string[]> = {
+  'pm-yashasvi-scholarship': ['PM YASASVI', 'PM Yashasvi', 'PM Yashaswi', 'Yasasvi Scholarship', 'Yashasvi Scholarship'],
+};
