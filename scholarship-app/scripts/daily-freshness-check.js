@@ -59,10 +59,11 @@ async function runDailyCheck() {
     const daysBefore = inbox.getSetting(db, AGENT, 'window_days_before', 14);
     const daysAfter = inbox.getSetting(db, AGENT, 'window_days_after', 30);
 
-    // 1. Get all active scholarships
+    // 1. Get all active scholarships (deadline_status / deadline_expected: older local copies may not have them yet)
+    const hasDeadlineStatus = db.prepare('PRAGMA table_info(scholarships)').all().some(c => c.name === 'deadline_status');
     const allActive = db.prepare(`
         SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at,
-               official_source, apply_url, source_pages
+               official_source, apply_url, source_pages${hasDeadlineStatus ? ', deadline_status, deadline_expected' : ''}
         FROM scholarships 
         WHERE status = 'Active' OR status IS NULL
     `).all();
@@ -74,9 +75,11 @@ async function runDailyCheck() {
     const nearDeadlineTargets = [];
     for (const s of allActive) {
         if (s.always_open === 1 || s.always_open === true) continue;
-        if (!s.deadline) continue;
+        // An "expected" row keeps its estimate in deadline_expected: when that date is near, the real one is worth finding
+        const windowDate = s.deadline || (s.deadline_status === 'expected' ? s.deadline_expected : '');
+        if (!windowDate) continue;
 
-        const deadlineDate = new Date(s.deadline);
+        const deadlineDate = new Date(windowDate);
         if (isNaN(deadlineDate.getTime())) continue;
 
         const diffTime = deadlineDate - today;
@@ -108,14 +111,30 @@ async function runDailyCheck() {
     const targets = [];
     const targetIds = new Set();
 
-    // Priority 1: Add near-deadline targets up to 30
+    // Priority 1: deadlines labelled "unknown" or "expected" (CNT-111) are the ones students cannot trust, so they get
+    // most of the remaining slots, busiest pages first. Each one is checked once a week at most.
+    const unconfirmedSlots = inbox.getSetting(db, AGENT, 'unconfirmed_slots', 20);
+    const trafficBySlug = new Map(highTrafficCandidates.map(r => [r.slug, r.clicks || 0]));
+    const unconfirmed = allActive
+        .filter(s => ['unknown', 'expected'].includes(s.deadline_status) && s.always_open !== 1 && !targetIds.has(s.id))
+        .filter(s => !s.last_checked_at || (today - new Date(s.last_checked_at)) >= 7 * 24 * 60 * 60 * 1000)
+        .sort((a, b) => (trafficBySlug.get(b.slug) || 0) - (trafficBySlug.get(a.slug) || 0));
+    let unconfirmedAdded = 0;
+    for (const s of unconfirmed) {
+        if (targets.length >= maxChecks || unconfirmedAdded >= unconfirmedSlots) break;
+        targets.push({ ...s, reason: `Unconfirmed deadline (${s.deadline_status})` });
+        targetIds.add(s.id);
+        unconfirmedAdded++;
+    }
+
+    // Priority 2: Add near-deadline targets up to 30
     for (const t of nearDeadlineTargets) {
         if (targets.length >= maxChecks) break;
         targets.push(t);
         targetIds.add(t.id);
     }
 
-    // Priority 2: Fill remaining slots with high-traffic not checked in last 7 days
+    // Priority 3: Fill remaining slots with high-traffic not checked in last 7 days
     for (const s of highTrafficCandidates) {
         if (targets.length >= maxChecks) break;
         if (targetIds.has(s.id)) continue;
@@ -132,7 +151,14 @@ async function runDailyCheck() {
 
     console.log(`🎯 Selection results:`);
     console.log(`   - Near-deadline matching rows: ${nearDeadlineTargets.length}`);
+    console.log(`   - Unconfirmed deadlines waiting (unknown or expected, not checked this week): ${unconfirmed.length}; added today: ${unconfirmedAdded}`);
     console.log(`   - Selected total targets: ${targets.length}`);
+    if (args.includes('--select-only')) {
+        targets.forEach((t, i) => console.log(`   ${String(i + 1).padStart(2)}. ${t.slug} | ${t.reason}`));
+        console.log('Select-only: nothing was researched or written.');
+        db.close();
+        return;
+    }
     console.log(`👉 Starting sweep of targets...\n`);
 
     const insertChangelog = db.prepare(`
@@ -167,6 +193,14 @@ async function runDailyCheck() {
             };
             const evidence = { deadline: evidenceFor(facts.deadline), deadline_description: evidenceFor(facts.deadline_description) };
             console.log(`   ✅ Researched. Deadline: ${data.deadline || 'not found'} [${facts.deadline.verdict}${facts.deadline.reason ? `: ${facts.deadline.reason}` : ''}]`);
+
+            // A row labelled unknown or expected has no confirmed date. An "uncertain" answer (no usable source page, a coaching
+            // site, or only one of two answers) is often the old default echoed back, and approving it would mark a guess "confirmed".
+            // Only an official page ("verified", "agreed") or a platform page ("secondary", always high risk) is proposed.
+            if (['unknown', 'expected'].includes(item.deadline_status) && data.deadline && facts.deadline.verdict === 'uncertain') {
+                console.log(`   ⏭️  Not proposing ${data.deadline}: the answer is uncertain and this deadline is unconfirmed.`);
+                data.deadline = '';
+            }
 
             const proposedDeadline = data.deadline || '';
             const proposedDescription = data.deadline_description || '';

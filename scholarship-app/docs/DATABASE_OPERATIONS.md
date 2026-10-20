@@ -132,6 +132,11 @@ filter and "closing soon" query already treats these rows correctly. Approving a
 `scripts/label-deadline-status.js` did the first labelling (dry run by default); `check-data-formats.js` checks both columns.
 New columns on an older local copy: run `npm run db:pull`.
 
+**Who chases the unconfirmed ones.** The daily Deadline Freshness agent (`scripts/daily-freshness-check.js`) gives up to `unconfirmed_slots`
+(default 20 of its 30 daily checks, setting in `agent_settings`) to rows labelled `unknown` or `expected`, busiest pages first, each at most once a week.
+An "expected" row whose estimate falls inside the near-deadline window is also checked. A found date goes to the inbox with its source;
+approving it marks the row `confirmed`. `node scripts/daily-freshness-check.js --select-only` prints who would be checked without researching or writing.
+
 **Never fill in a deadline in bulk.** The month-end dates came from `scripts/boost-6month-scholarships.js`, which assigned a date by slug
 keyword to every expired row (now retired and refuses to run). A deadline is only written from an official page, through the inbox, with the
 source shown. If a date is not known, leave `deadline` empty and set `deadline_status` to `unknown`.
