@@ -69,6 +69,16 @@ const TITLE_OVERRIDES: Record<string, string> = {
     'rajasthan-post-matric-scholarship-obc': 'Rajasthan Post Matric Scholarship OBC {year}: Last Date',
     'post-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Post Matric Scholarship {year} for OBC/SEBC',
     'e-medhabruti-pg-merit-scholarship-odisha': 'Odisha e-Medhabruti PG Merit Scholarship {year}: Last Date',
+    // Both spellings in the title, so searches for either one match (see SCHOLARSHIP_SEARCH_ALIASES).
+    'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree (Kanyasree) Prakalpa {year}: K1, K2 Apply & Status',
+    'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (Vidyasri) Scholarship Karnataka {year}: Apply & Status',
+};
+
+// Meta descriptions that name the other spellings people search. Others use the page's intro.
+const DESCRIPTION_OVERRIDES: Record<string, string> = {
+    'pm-yashasvi-scholarship': 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.',
+    'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree Prakalpa (also spelled Kanyasree) for girls in West Bengal: K1 and K2 eligibility, amount, how to apply and check status on wbkanyashree.gov.in.',
+    'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (also spelled Vidyasri) food and accommodation scholarship for backward class students in Karnataka: eligibility, amount, how to apply on SSP.',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -189,10 +199,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = isDeadlinePassed
             ? `Karnataka Post Matric Scholarship for Minorities ${year}: Details & Login`
             : `Karnataka Post Matric Scholarship for Minorities ${year}: Login & Apply Online`;
-    } else if (slug === 'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka') {
-        seoTitle = isDeadlinePassed
-            ? `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Status`
-            : `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Apply Online & Status`;
     } else if (slug === 'post-matric-scholarship-for-st-students-karnataka') {
         seoTitle = isDeadlinePassed
             ? `Karnataka Post Matric ST Scholarship ${year}: Registration Portal & Details`
@@ -223,10 +229,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
     }
 
-    let seoDescription = scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`;
-    if (slug === 'pm-yashasvi-scholarship') {
-        seoDescription = 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.';
-    }
+    const seoDescription = DESCRIPTION_OVERRIDES[slug] || scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`;
 
     return {
         title: seoTitle,
