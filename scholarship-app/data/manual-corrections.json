@@ -2,11 +2,18 @@
   "_about": "Human-reviewed field values. Applied by scripts/clean-data-formats.js on every agent run (only when the value differs), and logged to scholarship_changelog. extra_data_json values are merged into the existing JSON object.",
   "up-postmatric-dashmotar-scholarship": {
     "income_limit": 200000,
-    "extra_data_json": { "income_limit_note": "₹2.5 lakh for SC/ST" },
+    "extra_data_json": {
+      "income_limit_note": "₹2.5 lakh for SC/ST"
+    },
     "_reviewed": "2026-09-26: ₹2 lakh for General, OBC and Minority; ₹2.5 lakh for SC/ST (confirmed by site owner)"
   },
   "bihar-postmatric-pms-scholarship": {
     "income_limit": 300000,
     "_reviewed": "2026-09-26: ₹3 lakh annual family income (confirmed by site owner against official guidelines)"
+  },
+  "krishi-vidya-nidhi-yojana-odisha": {
+    "intro_seo": "Krishi Vidya Nidhi Yojana Odisha: tuition and hostel fee support for children of CM-KISAN farmers in medical, engineering, nursing and other courses.",
+    "source_pages": "[{\"url\": \"https://inpr.odisha.gov.in/sites/default/files/2025-03/News-AgFE_28032025EEEE.pdf\", \"facts\": [\"amount_description\", \"eligibility\"], \"confirmed\": \"2026-10-21\"}]",
+    "_reviewed": "2026-10-21 (CNT-112): the old text said 'up to ₹10,000/year', which no source supports. Official press release (Odisha Information & Public Relations, 28-03-2025): fee support, actual course fee in government institutions, capped per course in private ones (B.Tech ₹60,000, M.Tech ₹66,000, MBA ₹65,000, medical 4-5 yrs ₹37,950, B.Pharma ₹35,000, nursing ₹19,450, 2-yr medical ₹58,000, architecture ₹60,000), for sons/daughters of CM-KISAN beneficiaries. NOT changed: amount_annual 100000 / amount_min 5000 / the ₹1,00,000 premier-institution cap, which appear only on secondary sites and are not confirmed on an official page."
   }
 }
