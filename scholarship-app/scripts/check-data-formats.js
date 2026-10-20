@@ -27,6 +27,10 @@ const RULES = [
     { field: 'amount_annual', test: v => v === null || Number.isInteger(v), expect: 'a whole number in rupees' },
     { field: 'amount_min', test: v => v === null || Number.isInteger(v), expect: 'a whole number in rupees' },
     { field: 'deadline', test: v => v === null || v === '' || ISO_DATE.test(v), expect: 'YYYY-MM-DD or empty' },
+    // deadline_status says how far to trust the deadline; deadline_expected keeps an estimate while deadline stays empty.
+    // Both are undefined on local copies from before they existed.
+    { field: 'deadline_status', test: v => v === undefined || v === null || v === '' || ['confirmed', 'expected', 'rolling', 'unknown'].includes(v), expect: 'confirmed, expected, rolling, unknown or empty' },
+    { field: 'deadline_expected', test: v => v === undefined || v === null || v === '' || ISO_DATE.test(v), expect: 'YYYY-MM-DD or empty' },
     { field: 'scholarship_scope', test: v => v === 'Domestic' || v === 'International', expect: '"Domestic" or "International"' },
     { field: 'docs_needed', test: v => v === null || v === '' || isJsonArray(v), expect: 'a JSON list, e.g. ["Aadhaar Card"]' },
     { field: 'faq_json', test: v => v === null || v === '' || isJsonArray(v), expect: 'a JSON list of {question, answer}' },

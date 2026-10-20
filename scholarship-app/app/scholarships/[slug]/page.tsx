@@ -10,7 +10,7 @@ import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
 import { getPortalGuideForScholarship } from '@/lib/portalsData';
 import { SCHOLARSHIP_SEARCH_ALIASES } from '@/lib/constants';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, deadlineDisplay } from '@/lib/utils';
 import {
     Calendar,
     Users,
@@ -31,6 +31,7 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
+import StudyAbroadPlan from '@/app/components/StudyAbroadPlan';
 
 
 const SUBPAGE_NAV = [
@@ -52,6 +53,24 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
+// Titles rewritten on 2026-10-17 (IS-36): short enough to show in full in Google (about 60 characters), scheme and state first,
+// worded like the searches that reach each page. One title per page, true whether or not the deadline has passed,
+// with no dates or amounts. {year} becomes the page's verification year. See plans/is-36-title-drafts-2026-10-13.md.
+const TITLE_OVERRIDES: Record<string, string> = {
+    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha {year}: Last Date & Apply',
+    'up-post-matric-other-than-intermediate-general-sc-st': 'UP Post Matric (Other Than Inter) General/SC/ST {year}',
+    'chief-minister-higher-education-scholarship-rajasthan': 'Rajasthan CM Scholarship {year}: Last Date & Eligibility',
+    'up-post-matric-other-than-intermediate-obc': 'UP Post Matric (Other Than Inter) OBC {year}: Login',
+    'infosys-foundation-stem-stars-scholarship-program': 'Infosys STEM Stars Scholarship {year}: Eligibility & Apply',
+    'up-post-matric-outside-state-general-sc-st': 'UP Scholarship for Students Studying Outside UP {year}',
+    'mp-gaon-ki-beti-yojana': 'Gaon Ki Beti Yojana MP {year}: Last Date & Apply Online',
+    'pre-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Pre Matric Scholarship {year} for OBC/SEBC',
+    'tamil-nadu-post-matric-scholarship-for-scst': 'Tamil Nadu Post Matric Scholarship SC/ST {year}: Apply',
+    'rajasthan-post-matric-scholarship-obc': 'Rajasthan Post Matric Scholarship OBC {year}: Last Date',
+    'post-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Post Matric Scholarship {year} for OBC/SEBC',
+    'e-medhabruti-pg-merit-scholarship-odisha': 'Odisha e-Medhabruti PG Merit Scholarship {year}: Last Date',
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const scholarship = await getScholarshipBySlug(slug);
@@ -85,8 +104,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const statusLabel = isDeadlinePassed ? 'Closed' : 'Open';
 
     // Specific brand overrides for June & July high-opportunity keywords
-    // "YASASVI" is the official spelling; many students search "Yashasvi", so the title carries both.
-    if (slug === 'pm-yashasvi-scholarship') {
+    if (TITLE_OVERRIDES[slug]) {
+        seoTitle = TITLE_OVERRIDES[slug].replace('{year}', String(year));
+    } else if (slug === 'pm-yashasvi-scholarship') {
+        // "YASASVI" is the official spelling; many students search "Yashasvi", so the title carries both.
         seoTitle = isDeadlinePassed
             ? `PM YASASVI (Yashasvi) Scholarship ${year}: Eligibility & Amount`
             : `PM YASASVI (Yashasvi) Scholarship ${year}: Apply Online & Last Date`;
@@ -140,22 +161,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = isDeadlinePassed
             ? `Nabanna Scholarship ${year}: Eligibility & Submission Guide`
             : `Nabanna Scholarship ${year}: Application Form, Eligibility & Submission Guide`;
-    } else if (slug === 'krishi-vidya-nidhi-yojana-odisha') {
-        seoTitle = `Krishi Vidya Nidhi Yojana Odisha ${year}: Benefit Amount & Eligibility Check`;
-    } else if (slug === 'post-matric-scholarship-for-obcsebc-students-odisha') {
-        seoTitle = isDeadlinePassed
-            ? `Odisha Post Matric OBC/SEBC Scholarship ${year}: Details & Eligibility`
-            : `Odisha Post Matric OBC/SEBC Scholarship ${year}: Apply Online & Deadlines`;
     } else if (slug === 'post-matric-scholarship-for-st-students-odisha') {
         seoTitle = isDeadlinePassed
             ? `Odisha Post Matric ST Scholarship ${year}: Details & Eligibility`
             : `Odisha Post Matric ST Scholarship ${year}: Eligibility, Last Date & Apply`;
     } else if (slug === 'boc-scholarship-nirman-shramik-kalyan-yojana-odisha') {
         seoTitle = `Odisha BOC Scholarship ${year}: Nirman Shramik Kalyan Yojana Details`;
-    } else if (slug === 'chief-minister-higher-education-scholarship-rajasthan') {
-        seoTitle = isDeadlinePassed
-            ? `Rajasthan Chief Minister Higher Education Scholarship ${year}: Eligibility & Details`
-            : `Rajasthan Chief Minister Higher Education Scholarship ${year}: Apply Online & Status`;
     } else if (slug === 'e-medhabruti-ug-merit-scholarship-odisha') {
         seoTitle = isDeadlinePassed
             ? `e-Medhabruti UG Merit Scholarship Odisha ${year}: Details & Renewal`
@@ -584,7 +595,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <WikiInfobox 
                                 title={scholarship.title}
                                 amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
-                                deadline={isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short' }, 'Check portal')}
+                                deadline={deadlineDisplay(scholarship, { day: 'numeric', month: 'short' }, 'Check portal')}
                                 eligibility={buildEligibilitySummary()}
                                 provider={scholarship.provider}
                                 applyUrl={cleanApplyUrl || ''}
@@ -767,6 +778,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </section>
                         )}
 
+                        <StudyAbroadPlan scope={scholarship.scholarship_scope} countryOfStudy={scholarship.country_of_study} />
+
                         {/* Related news */}
                         {relevantNews.length > 0 && (
                             <section id="portal-updates" className="pt-6 border-t border-gray-100">
@@ -864,8 +877,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
                                 <div className="text-[10px] font-black uppercase tracking-wider text-red-700 mb-0.5">Application Deadline</div>
                                 <div className="text-xl font-black text-red-700 font-heading">
-                                    {isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
+                                    {deadlineDisplay(scholarship, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
                                 </div>
+                                {scholarship.deadline_status === 'expected' && (
+                                    <div className="text-[10px] text-red-600 mt-1 font-semibold leading-normal">
+                                        Not yet confirmed on the official site. Check the portal before you plan around it.
+                                    </div>
+                                )}
                                 {scholarship.deadline_description && (
                                     <div className="text-[10px] text-red-600 mt-1 italic leading-normal">
                                         {scholarship.deadline_description}

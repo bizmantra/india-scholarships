@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { COUNTRIES, getUniversities, getUniversity, getProgramsForUniversity, getGuides, isCountry, getComparisonLinks, getSimilarUniversities, getScholarshipsForCountry } from '@/lib/study-abroad/data';
+import { COUNTRIES, getUniversities, getUniversity, getProgramsForUniversity, getGuides, isCountry, getComparisonLinks, getSimilarUniversities } from '@/lib/study-abroad/data';
 import { renderArticle, describe, money, yesNo, SITE, pageTitle } from '@/lib/study-abroad/content';
 import DetailShell, { DetailSection, KeyCard, InfoCard, SideLinks, sourceRows } from '../../_components/DetailShell';
 import { ArticleBody, Faqs, MoreLinks, jumpFor } from '../../_components/ArticleSections';
 import { ProgramTable } from '../../_components/blocks';
 import { faqJsonLd } from '../../_components/seo';
-import { bylineText, costLinks, EDITORIAL_TEAM, ScholarshipLinks } from '../../_components/LinkBlocks';
+import { bylineText, costLinks, EDITORIAL_TEAM } from '../../_components/LinkBlocks';
 
 export const revalidate = 86400;
 
@@ -30,7 +30,7 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
     const u = await getUniversity(slug);
     if (!u || !isCountry(u.country)) notFound();
     const c = COUNTRIES[u.country];
-    const [programs, visas, scholarships] = await Promise.all([getProgramsForUniversity(u.slug), getGuides('visa', u.country), getScholarshipsForCountry(u.country, 4)]);
+    const [programs, visas] = await Promise.all([getProgramsForUniversity(u.slug), getGuides('visa', u.country)]);
     const fields = [...new Set(programs.map(p => p.field).filter((f): f is string => !!f))];
     const [comparisons, similar] = await Promise.all([getComparisonLinks(u.country, programs), getSimilarUniversities(u, fields)]);
     const tuition = money(u.tuition_per_year, u.tuition_currency);
@@ -81,7 +81,10 @@ export default async function UniversityPage({ params }: { params: Promise<{ slu
                 href: `/study-abroad/universities/${x.slug}`, title: x.name,
                 meta: [x.city, money(x.tuition_per_year, x.tuition_currency) && `Tuition ${money(x.tuition_per_year, x.tuition_currency)} a year`].filter(Boolean).join(' · ') || null,
             }))} />
-            <ScholarshipLinks country={u.country} scholarships={scholarships} />
+            <MoreLinks id="scholarships" title={`Explore funding for study in ${c.name}`} links={[{
+                href: `/study-abroad/study-in/${c.slug}/scholarships`, title: `Scholarships for ${c.name}`,
+                meta: 'Check each scholarship’s university, degree and course eligibility',
+            }]} />
             <Faqs faqs={article.faqs} />
             <MoreLinks title={`Visa guides for ${c.name}`} links={visas.slice(0, 5).map(v => ({ href: `/study-abroad/visas/${v.slug}`, title: v.title }))} />
         </DetailShell>
