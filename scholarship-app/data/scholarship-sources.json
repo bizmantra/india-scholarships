@@ -3559,6 +3559,36 @@
         "York University International Student Scholarships"
       ],
       "auto": true
+    },
+    {
+      "name": "Indian Council of Social Science Research (ICSSR)",
+      "url": "https://www.icssr.org",
+      "kind": "provider",
+      "notes": "Doctoral, post-doctoral and contingency fellowships for social science researchers. Calls usually June to August; applications on app.icssr.org."
+    },
+    {
+      "name": "Jawaharlal Nehru Memorial Fund (JNMF)",
+      "url": "https://jnmf.in",
+      "kind": "provider",
+      "notes": "Scholarship for doctoral studies (Indian and other Asian nationals). Annual call, usually closes end of August."
+    },
+    {
+      "name": "IIT Bombay alumni giving (WINGS and other donor scholarships)",
+      "url": "https://acr.iitbombay.org",
+      "kind": "provider",
+      "notes": "Alumni-funded scholarships for IIT Bombay students, e.g. WINGS for women in STEM (from 2026-27)."
+    },
+    {
+      "name": "Mahindra Truck and Bus (Saarthi Abhiyaan)",
+      "url": "https://www.mahindratruckandbus.com",
+      "kind": "provider",
+      "notes": "Saarthi Abhiyaan scholarships for truck drivers' daughters; announced in press releases each November."
+    },
+    {
+      "name": "Samarthanam Trust for the Disabled",
+      "url": "https://samarthanam.org",
+      "kind": "provider",
+      "notes": "Fee and assistive-device support for UG and PG students with disabilities; notices circulate through colleges (e.g. IIT Dharwad, 2026-27)."
     }
   ],
   "updated": "2026-10-04",

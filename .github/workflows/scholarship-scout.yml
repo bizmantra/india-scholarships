@@ -17,6 +17,11 @@ on:
         type: string
         required: false
         default: ''
+      leads_file:
+        description: 'Research only the leads in this file (optional), e.g. scholarship-app/data/scout/leads-2026-10-20.json'
+        type: string
+        required: false
+        default: ''
       request_id:
         description: 'Set by the command center to track this run (leave empty)'
         type: string
@@ -68,6 +73,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Passed as a variable, never pasted into the command, so any text is safe
           SCOUT_STATE: ${{ inputs.state }}
+          SCOUT_LEADS_FILE: ${{ inputs.leads_file }}
           NODE_ENV: production
 
       - name: Show the scout report on the run page

@@ -21,6 +21,7 @@
  *                                          [--leads-file=path.json]
  *   --state       focus the web search, coverage and portal channels on one state
  *   --leads-file  research only the named leads in this JSON file ([{ name, provider, evidence }]),
+ *                 (or SCOUT_LEADS_FILE, set by the workflow's leads_file input)
  *                 e.g. scholarships carried over from the Study Abroad section
  */
 const fs = require('fs');
@@ -43,7 +44,7 @@ const AGENT = 'scholarship-scout';
 const ALL_CHANNELS = ['demand', 'web', 'portals', 'csr', 'news', 'coverage'];
 const STATE_CHANNELS = ['web', 'coverage', 'portals'];
 // An empty --state= (e.g. from a workflow input left blank) means no focus
-const LEADS_FILE = (argValue('leads-file') || '').trim() || null;
+const LEADS_FILE = (argValue('leads-file') || process.env.SCOUT_LEADS_FILE || '').trim() || null;
 const STATE_FOCUS = (argValue('state') || process.env.SCOUT_STATE || '').trim() || null;
 // Set in runScout() from the arguments or the owner's settings
 let MAX_CANDIDATES = 8;
