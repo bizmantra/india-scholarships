@@ -1,3 +1,17 @@
+/**
+ * RETIRED 2026-10-18 (CNT-111). Do not run.
+ *
+ * This script (commit 81f33d6, 2026-08-07) gave every expired or empty deadline a made-up date chosen by keywords in the
+ * slug (2026-11-30 for state / post-matric schemes, 2026-10-15 for Rhodes / Chevening and similar, 2026-12-31 for corporate
+ * schemes, 2026-10-31 for everything else). Students saw those as real deadlines. About 300 scholarships ended up with one
+ * of those dates and have since been labelled "expected" or "unknown" (scripts/label-deadline-status.js).
+ * It also set verification_year to 2026-27 on every row, status to 'Open' and a default helpline.
+ *
+ * Deadlines come only from an official page, through the inbox, with the source shown (docs/SCHOLARSHIP_SOURCES.md).
+ */
+console.error('This script is retired: it invented deadlines. See the note at the top of the file.');
+process.exit(1);
+
 const path = require('path');
 const Database = require('better-sqlite3');
 

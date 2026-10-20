@@ -132,6 +132,10 @@ filter and "closing soon" query already treats these rows correctly. Approving a
 `scripts/label-deadline-status.js` did the first labelling (dry run by default); `check-data-formats.js` checks both columns.
 New columns on an older local copy: run `npm run db:pull`.
 
+**Never fill in a deadline in bulk.** The month-end dates came from `scripts/boost-6month-scholarships.js`, which assigned a date by slug
+keyword to every expired row (now retired and refuses to run). A deadline is only written from an official page, through the inbox, with the
+source shown. If a date is not known, leave `deadline` empty and set `deadline_status` to `unknown`.
+
 ## Required secrets
 
 - GitHub Actions: `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `TURSO_STAGING_DATABASE_URL`, `TURSO_STAGING_AUTH_TOKEN`
