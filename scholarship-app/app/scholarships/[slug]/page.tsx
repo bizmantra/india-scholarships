@@ -77,6 +77,17 @@ const TITLE_OVERRIDES: Record<string, string> = {
     'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) UG Scholarship Odisha {year}: Apply',
     'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) PG Scholarship Odisha {year}: Last Date',
     'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (Medhavruti) Technical Scholarship Odisha {year}',
+    'sikshashree-scholarship-scheme-west-bengal': 'Sikshashree (Shikshashree) Scholarship West Bengal {year}',
+    'pudhumai-penn-scheme-tamil-nadu': 'Pudhumai Penn (Puthumai Pen) Scheme {year}: Apply Online',
+    'tamil-pudhalvan-scheme': 'Tamil Pudhalvan (Puthalvan) Scheme {year}: Apply Online',
+    'ladli-lakshmi-yojana-mp': 'Ladli Lakshmi (Laxmi) Yojana MP {year}: Apply Online',
+    'bhagya-lakshmi-scheme-karnataka': 'Bhagya Lakshmi (Bhagyalakshmi) Scheme Karnataka {year}',
+    'haryana-kalpana-chawla-chhatravritti-yojna': 'Kalpana Chawla Chhatravritti (Chhatravriti) Haryana {year}',
+    'uchcha-shiksha-protsahan-chhatravriti-yojana': 'Uchcha Shiksha Protsahan Chhatravriti Uttarakhand {year}',
+    'jagananna-vidya-deevena-ap': 'Jagananna Vidya Deevena (Devena) {year}: Apply & Status',
+    'jagananna-vasathi-deevena-ap': 'Jagananna Vasathi Deevena (Vasati Devena) {year}: Status',
+    'mahadbt-post-matric-scholarship-maharashtra': 'MahaDBT (Maha DBT) Post Matric Scholarship {year}: Apply',
+    'kerala-kscste-prathibha-scholarship': 'KSCSTE Prathibha (Pratibha) Scholarship Kerala {year}',
 };
 
 // Meta descriptions that name the other spellings people search. Others use the page's intro.
@@ -90,6 +101,18 @@ const DESCRIPTION_OVERRIDES: Record<string, string> = {
     'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) UG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
     'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) PG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
     'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) technical and professional scholarship in Odisha: eligibility, amount, last date, how to apply on SSP.',
+    'talliki-vandanam-scheme-ap': 'Talliki Vandanam (also spelled Thalliki Vandanam) scheme in Andhra Pradesh: eligibility, amount, payment status and how to check your name.',
+    'sikshashree-scholarship-scheme-west-bengal': 'Sikshashree (also spelled Shikshashree) scholarship for SC and ST students in West Bengal: eligibility, amount, documents and how to apply online.',
+    'pudhumai-penn-scheme-tamil-nadu': 'Pudhumai Penn (also spelled Puthumai Pen) scheme for girls from government schools in Tamil Nadu: eligibility, amount and how to apply online.',
+    'tamil-pudhalvan-scheme': 'Tamil Pudhalvan (also spelled Tamil Puthalvan) scheme for boys from government schools in Tamil Nadu: eligibility, amount and how to apply online.',
+    'ladli-lakshmi-yojana-mp': 'Ladli Lakshmi Yojana (also spelled Ladli Laxmi) for girls in Madhya Pradesh: eligibility, benefits, documents and how to apply online.',
+    'bhagya-lakshmi-scheme-karnataka': 'Bhagya Lakshmi (also spelled Bhagyalakshmi or Bhagya Laxmi) scheme for girls in Karnataka: eligibility, benefits, documents and how to apply.',
+    'haryana-kalpana-chawla-chhatravritti-yojna': 'Kalpana Chawla Chhatravritti Yojana (also spelled Chhatravriti or Chatravriti) in Haryana: eligibility, amount, last date and how to apply online.',
+    'uchcha-shiksha-protsahan-chhatravriti-yojana': 'Uchcha Shiksha Protsahan Chhatravriti Yojana (also spelled Uchch or Chhatravritti) in Uttarakhand: eligibility, amount, last date and how to apply.',
+    'jagananna-vidya-deevena-ap': 'Jagananna Vidya Deevena (also spelled Vidya Devena) fee reimbursement in Andhra Pradesh: eligibility, amount, payment status and how to apply.',
+    'jagananna-vasathi-deevena-ap': 'Jagananna Vasathi Deevena (also spelled Vasati Devena) hostel and food support in Andhra Pradesh: eligibility, amount, payment status and how to apply.',
+    'mahadbt-post-matric-scholarship-maharashtra': 'MahaDBT (also written Maha DBT) post matric scholarship in Maharashtra: eligibility, documents, last date, login and how to apply online.',
+    'kerala-kscste-prathibha-scholarship': 'KSCSTE Prathibha (also spelled Pratibha) scholarship for science students in Kerala: eligibility, amount, last date and how to apply online.',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -172,8 +195,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `Azim Premji Scholarship ${year}: ₹30,000/Year | Eligibility & Apply Online`;
     } else if (slug === 'talliki-vandanam-scheme-ap') {
         seoTitle = isDeadlinePassed
-            ? `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Eligibility & Status`
-            : `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Apply & Check Status`;
+            ? `Talliki (Thalliki) Vandanam ${year}: ₹15,000 | Eligibility & Status`
+            : `Talliki (Thalliki) Vandanam ${year}: ₹15,000 | Apply & Check Status`;
     } else if (slug === 'lic-golden-jubilee-scholarship') {
         seoTitle = isDeadlinePassed
             ? `LIC Golden Jubilee Scholarship ${year}: Eligibility & Last Date Details`
