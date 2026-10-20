@@ -194,6 +194,14 @@ async function runDailyCheck() {
             const evidence = { deadline: evidenceFor(facts.deadline), deadline_description: evidenceFor(facts.deadline_description) };
             console.log(`   ✅ Researched. Deadline: ${data.deadline || 'not found'} [${facts.deadline.verdict}${facts.deadline.reason ? `: ${facts.deadline.reason}` : ''}]`);
 
+            // A row labelled unknown or expected has no confirmed date. An "uncertain" answer (no usable source page, a coaching
+            // site, or only one of two answers) is often the old default echoed back, and approving it would mark a guess "confirmed".
+            // Only an official page ("verified", "agreed") or a platform page ("secondary", always high risk) is proposed.
+            if (['unknown', 'expected'].includes(item.deadline_status) && data.deadline && facts.deadline.verdict === 'uncertain') {
+                console.log(`   ⏭️  Not proposing ${data.deadline}: the answer is uncertain and this deadline is unconfirmed.`);
+                data.deadline = '';
+            }
+
             const proposedDeadline = data.deadline || '';
             const proposedDescription = data.deadline_description || '';
 
