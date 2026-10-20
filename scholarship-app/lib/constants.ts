@@ -35,4 +35,6 @@ export const HELPLINE_FALLBACKS = {
 // ("Also known as"), added to the meta description and to the structured data.
 export const SCHOLARSHIP_SEARCH_ALIASES: Record<string, string[]> = {
   'pm-yashasvi-scholarship': ['PM YASASVI', 'PM Yashasvi', 'PM Yashaswi', 'Yasasvi Scholarship', 'Yashasvi Scholarship'],
+  'kanyashree-prakalpa-scheme-west-bengal': ['Kanyashree', 'Kanyasree', 'Kanyashri', 'Kanyasri', 'Kanya Shree', 'কন্যাশ্রী প্রকল্প'],
+  'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': ['Vidyasiri', 'Vidyasri', 'Vidya Siri', 'Vidhyasiri', 'ವಿದ್ಯಾಸಿರಿ'],
 };
