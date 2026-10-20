@@ -13,16 +13,27 @@
 
 | Bucket | Examples (impressions / month-ish) | Meaning |
 |---|---|---|
-| **State cash-benefit schemes that are not scholarships** | `mmvy` 87k, `e kalyan` 75k, `mmvy portal` 13k, `kanya utthan yojana` family ~15k combined, `krishi vidya nidhi yojana` 3k, `mukhyamantri medhavi vidyarthi yojana` 6k, `green passage scheme odisha` 579 | Students already reach us for incentives, loans and welfare schemes. Many are likely served by thin pages. |
+| **State cash-benefit schemes** | `mmvy` 87k (MP Mukhyamantri Medhavi Vidyarthi Yojana), `e kalyan` 75k (Jharkhand), `mmvy portal` 13k, `kanya utthan yojana` family ~15k combined, `krishi vidya nidhi yojana` 3k, `green passage scheme odisha` 579 | Students reach us for incentives and welfare schemes. **Correction (follow-up check): pages for these already exist and rank at positions 4-5, but click-through is very low (see below).** |
 | **Scholarship exams** | `nmms` 5.3k, `nmms karnataka` 3.5k, `trti result` 1k, Maharashtra 5th/8th scholarship exam (hundreds of long-tail variants in Keyword Stats) | A separate content type: exam notice, syllabus, dates, result, merit list. |
 | **College fees** | `bits pilani fees` 11k (position 1.1), `bits pilani mba fees` 2.5k, `...fees for 4 years btech` 1.8k | We already rank #1 for fee queries, so fee pages are proven demand. |
 | **Provider and brand names** | `sitaram jindal foundation` 5k, `faea` 5.8k, `tata capital pankh`, `agaram foundation` | Provider hubs (partly covered by the corporate pillar). |
 
 ## Recommended new content, ranked
 
-### 1. State education-incentive and loan schemes hub (new content type: "schemes", not scholarships)
+### 1. State education-incentive and loan schemes hub
+> **Update after checking the live page data:** the scheme pages already exist (MMVY, Kanya Utthan, Krishi Vidya Nidhi, Bihar Student Credit Card, e-Kalyan). They rank around position 4-5 but get very few clicks:
+>
+> | Page | Impressions | CTR |
+> |---|---|---|
+> | MMVY (MP) | 300k | 0.64% |
+> | Kanya Utthan (graduation) | 191k | 1.77% |
+> | Jharkhand e-Kalyan | 114k | 0.16% |
+> | Krishi Vidya Nidhi (Odisha) | 63k | 1.32% |
+>
+> The bigger win is rewriting titles and descriptions on these pages, plus a hub that links them. A new page type is secondary.
+
 - **Why:** the largest untapped cluster. `mmvy` and `e kalyan` alone are about 160k impressions, and we are on page 1 to 2 only because of nearby pages.
-- **Pages:** Bihar Mukhyamantri Kanya Utthan Yojana (graduation), Bihar Student Credit Card, MMVY (Jharkhand), Krishi Vidya Nidhi, Medhavi Vidyarthi Yojana (MP), and similar state schemes. Add a "Cash incentives and loans by state" index.
+- **Pages:** Bihar Mukhyamantri Kanya Utthan Yojana (graduation), Bihar Student Credit Card, MMVY (Madhya Pradesh), Krishi Vidya Nidhi, Medhavi Vidyarthi Yojana (MP), and similar state schemes. Add a "Cash incentives and loans by state" index.
 - **Watch-out:** amounts conflict between sources. Kanya Utthan graduation shows ₹25,000 on one aggregator and ₹50,000 elsewhere. Confirm on the official Medhasoft or department page before publishing, per AGENTS.md rules.
 - **Effort:** low. Reuses the existing scholarship page template.
 
