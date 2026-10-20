@@ -37,4 +37,10 @@ export const SCHOLARSHIP_SEARCH_ALIASES: Record<string, string[]> = {
   'pm-yashasvi-scholarship': ['PM YASASVI', 'PM Yashasvi', 'PM Yashaswi', 'Yasasvi Scholarship', 'Yashasvi Scholarship'],
   'kanyashree-prakalpa-scheme-west-bengal': ['Kanyashree', 'Kanyasree', 'Kanyashri', 'Kanyasri', 'Kanya Shree', 'কন্যাশ্রী প্রকল্প'],
   'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': ['Vidyasiri', 'Vidyasri', 'Vidya Siri', 'Vidhyasiri', 'ವಿದ್ಯಾಸಿರಿ'],
+  'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'aikyashree-post-matric-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'e-medhabruti-ug-merit-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
+  'e-medhabruti-pg-merit-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
+  'e-medhabruti-technical-professional-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
 };

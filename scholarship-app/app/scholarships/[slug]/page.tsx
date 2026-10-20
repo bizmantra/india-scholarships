@@ -68,10 +68,15 @@ const TITLE_OVERRIDES: Record<string, string> = {
     'tamil-nadu-post-matric-scholarship-for-scst': 'Tamil Nadu Post Matric Scholarship SC/ST {year}: Apply',
     'rajasthan-post-matric-scholarship-obc': 'Rajasthan Post Matric Scholarship OBC {year}: Last Date',
     'post-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Post Matric Scholarship {year} for OBC/SEBC',
-    'e-medhabruti-pg-merit-scholarship-odisha': 'Odisha e-Medhabruti PG Merit Scholarship {year}: Last Date',
     // Both spellings in the title, so searches for either one match (see SCHOLARSHIP_SEARCH_ALIASES).
     'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree (Kanyasree) Prakalpa {year}: K1, K2 Apply & Status',
     'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (Vidyasri) Scholarship Karnataka {year}: Apply & Status',
+    'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Merit-cum-Means Scholarship {year}: Apply',
+    'aikyashree-post-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Post Matric Scholarship {year}: Apply',
+    'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Pre Matric Scholarship {year}: Apply',
+    'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) UG Scholarship Odisha {year}: Apply',
+    'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) PG Scholarship Odisha {year}: Last Date',
+    'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (Medhavruti) Technical Scholarship Odisha {year}',
 };
 
 // Meta descriptions that name the other spellings people search. Others use the page's intro.
@@ -79,6 +84,12 @@ const DESCRIPTION_OVERRIDES: Record<string, string> = {
     'pm-yashasvi-scholarship': 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.',
     'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree Prakalpa (also spelled Kanyasree) for girls in West Bengal: K1 and K2 eligibility, amount, how to apply and check status on wbkanyashree.gov.in.',
     'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (also spelled Vidyasri) food and accommodation scholarship for backward class students in Karnataka: eligibility, amount, how to apply on SSP.',
+    'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) merit-cum-means scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'aikyashree-post-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) post matric scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) pre matric scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) UG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
+    'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) PG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
+    'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) technical and professional scholarship in Odisha: eligibility, amount, last date, how to apply on SSP.',
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -177,10 +188,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `Odisha Post Matric ST Scholarship ${year}: Eligibility, Last Date & Apply`;
     } else if (slug === 'boc-scholarship-nirman-shramik-kalyan-yojana-odisha') {
         seoTitle = `Odisha BOC Scholarship ${year}: Nirman Shramik Kalyan Yojana Details`;
-    } else if (slug === 'e-medhabruti-ug-merit-scholarship-odisha') {
-        seoTitle = isDeadlinePassed
-            ? `e-Medhabruti UG Merit Scholarship Odisha ${year}: Details & Renewal`
-            : `e-Medhabruti UG Merit Scholarship Odisha ${year}: Apply Online, Last Date & Renewal`;
     } else if (slug === 'mukhyamantri-yuva-swavalamban-yojana-mysy') {
         seoTitle = isDeadlinePassed
             ? `MYSY Scholarship Gujarat ${year}: Details, Document List & Status`
