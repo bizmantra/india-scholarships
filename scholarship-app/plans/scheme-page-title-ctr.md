@@ -57,7 +57,16 @@ Current titles are set in `app/scholarships/[slug]/page.tsx` (`TITLE_OVERRIDES`,
 - Each slug above has an entry.
 
 ## Questions
-(agent writes here if blocked)
+None. All 7 schemes researched and verified against their respective state and official portals.
 
 ## Done
-(agent fills in when finished)
+1. Researched all 7 target scheme pages on their official government portals (`medhavikalyan.mp.gov.in`, `medhasoft.bihar.gov.in`, `ekalyan.cgg.gov.in`, `scholarship.odisha.gov.in`, `edistrict.delhigov.nic.in`, `7nishchay-yuvaupmission.bihar.gov.in`).
+2. Confirmed query search intents from search console data (portal login, status check, amount, last date, apply online) and aligned each title to lead with the dominant user search intent without promising unhosted direct login actions.
+3. Created `data/scheme-title-proposals.json` containing 2 title options (<= 60 chars each, preserving `{year}`) and 1 meta description (<= 155 chars) per scheme, along with aliases, official URLs, confirmation dates, and editorial notes.
+4. Fact checks and confirmations:
+   - **Kanya Utthan (Graduation)**: Confirmed the discrepancy between older batches / myScheme citing ₹25,000 and the updated Medhasoft ₹50,000 allowance for post-April 2021 graduates. As directed, omitted any monetary figure from the title options to eliminate confusion, focusing on Medhasoft portal status and registration.
+   - **Mukhyamantri Vidyarthi Pratibha Yojna**: Confirmed this is a Delhi state scheme under the Department for the Welfare of SC/ST/OBC on the Delhi e-District portal (not MP as mislabelled in old DB intro text). Confirmed ₹5,000 (Class 9-10) and ₹10,000 (Class 11-12) allowances.
+   - **Krishi Vidya Nidhi Yojana (Odisha)**: Grounded in the top search query for amount (`krishi vidya nidhi yojana scholarship amount`, 2.8k searches), citing the verified amount up to ₹1 Lakh per year.
+   - **BOC / Nirman Shramik**: Included both "Nirman Shramik" and "BOC" in title options for dual-intent coverage with confirmed ₹2,000 to ₹40,000 assistance.
+   - **Bihar Student Credit Card**: Ensured both "BSCC" and "Student Credit Card" are included in titles with the ₹4 Lakh loan limit.
+5. All character limits verified: all 14 title options are between 54 and 60 characters; all 7 meta descriptions are between 149 and 153 characters.

@@ -1,0 +1,180 @@
+[
+  {
+    "slug": "mukhyamantri-medhavi-vidyarthi-yojana-mmvy",
+    "intent": "login",
+    "currentTitle": "MMVY Scholarship {year}: Apply Online, Eligibility, Last Date & Amount",
+    "titleOptions": [
+      "MMVY Portal Login & Scholarship {year}: Apply & Status",
+      "MMVY Scholarship {year}: Portal Login Guide, Status & Form"
+    ],
+    "description": "MMVY (Mukhyamantri Medhavi Vidyarthi Yojana) MP guide: portal login links, application status, eligibility, full fee waiver rules and online form steps.",
+    "alsoKnownAs": [
+      "MMVY",
+      "Medhavi Chhatra Yojana",
+      "Mukhyamantri Medhavi Chhatra Yojana",
+      "Medhavi Kalyan Portal"
+    ],
+    "officialPage": {
+      "url": "https://medhavikalyan.mp.gov.in/MMVY.aspx",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "amount",
+        "status",
+        "eligibility"
+      ]
+    },
+    "notes": "Search volume is dominated by 'mmvy' (87k) and 'mmvy portal' (13k) / 'mmvy student login'. Top intent is portal navigation/login and status tracking. Full tuition fee waiver is offered for government colleges and up to ₹1.5 Lakh/yr for private engineering institutions under Department of Technical Education MP."
+  },
+  {
+    "slug": "mukhyamantri-kanya-utthan-yojana-graduation",
+    "intent": "status",
+    "currentTitle": "Mukhyamantri Kanya Utthan Yojana (Graduation) {year}: Apply Online, Portal Login & Status Check",
+    "titleOptions": [
+      "Kanya Utthan Graduation {year}: Status & Apply on Medhasoft",
+      "Kanya Utthan Yojana Graduation {year}: Status Check & Apply"
+    ],
+    "description": "Mukhyamantri Kanya Utthan Yojana (Graduation) Bihar: check payment status, student list and online application steps on the official Medhasoft portal.",
+    "alsoKnownAs": [
+      "Mukhyamantri Balika Snatak Protsahan Yojana",
+      "Kanya Utthan Snatak",
+      "Medhasoft Graduation Scholarship",
+      "MKUY Graduation"
+    ],
+    "officialPage": {
+      "url": "https://medhasoft.bihar.gov.in",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "status",
+        "portal"
+      ]
+    },
+    "notes": "Amount discrepancy noted: older batches/myScheme cite ₹25,000 whereas Medhasoft guidelines for post-April 2021 graduates state ₹50,000 (intermediate +2 gets ₹25,000). Per instructions, the title omits any amount to avoid ambiguity and focuses on high-intent terms: status check, student list verification, and Medhasoft online application."
+  },
+  {
+    "slug": "jharkhand-e-kalyan-post-matric-scholarship",
+    "intent": "login",
+    "currentTitle": "e-Kalyan Jharkhand Scholarship {year}: Fee Reimbursement | Apply & Last Date",
+    "titleOptions": [
+      "e-Kalyan Jharkhand {year}: Student Login, Status & Apply",
+      "e-Kalyan Scholarship Jharkhand {year}: Login & Status Check"
+    ],
+    "description": "Jharkhand e-Kalyan post-matric scholarship: student login links, application status check, eligibility for SC/ST/BC, fee reimbursement and last date.",
+    "alsoKnownAs": [
+      "e-Kalyan",
+      "eKalyan Jharkhand",
+      "Jharkhand eKalyan",
+      "e-Kalyan Post Matric"
+    ],
+    "officialPage": {
+      "url": "https://ekalyan.cgg.gov.in/",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "status",
+        "portal"
+      ]
+    },
+    "notes": "75k monthly searches are for 'e kalyan' looking for the student login portal. Titles lead directly with 'Student Login' and 'Status Check' while pointing to verified procedural guidance."
+  },
+  {
+    "slug": "krishi-vidya-nidhi-yojana-odisha",
+    "intent": "amount",
+    "currentTitle": "Krishi Vidya Nidhi Yojana Odisha {year}: Last Date & Apply",
+    "titleOptions": [
+      "Krishi Vidya Nidhi {year}: Up to ₹1 Lakh Amount & Apply",
+      "Krishi Vidya Nidhi Yojana Odisha {year}: Amount & Apply"
+    ],
+    "description": "Krishi Vidya Nidhi Yojana Odisha (CM-KISAN): scholarship amount up to ₹1 Lakh/year for professional courses, eligibility, hostel grants and online apply.",
+    "alsoKnownAs": [
+      "KVNY",
+      "KALIA Scholarship",
+      "KALIA Chhatrabruti",
+      "Krishi Vidya Nidhi Scholarship"
+    ],
+    "officialPage": {
+      "url": "https://scholarship.odisha.gov.in",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "amount",
+        "status"
+      ]
+    },
+    "notes": "Top query with highest search ranking and impression velocity is 'krishi vidya nidhi yojana scholarship amount' (2.8k, position 2.4). Titles lead with the confirmed amount (up to ₹1 Lakh/year or actual tuition for govt colleges + hostel allowances up to ₹1,200/month for wards of CM-KISAN beneficiaries)."
+  },
+  {
+    "slug": "boc-scholarship-nirman-shramik-kalyan-yojana-odisha",
+    "intent": "apply",
+    "currentTitle": "Odisha BOC Scholarship {year}: Nirman Shramik Kalyan Yojana Details",
+    "titleOptions": [
+      "Nirman Shramik BOC Scholarship Odisha {year}: Apply & Status",
+      "BOC Nirman Shramik Scholarship Odisha {year}: Apply Online"
+    ],
+    "description": "Odisha Nirman Shramik (BOC) scholarship: ₹2,000-₹40,000 for construction workers' children. Check eligibility, documents and online portal apply steps.",
+    "alsoKnownAs": [
+      "BOC Scholarship",
+      "Nirman Shramik Scholarship",
+      "Nirman Shramik Kalyan Yojana",
+      "Odisha Construction Worker Scholarship"
+    ],
+    "officialPage": {
+      "url": "https://scholarship.odisha.gov.in",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "amount",
+        "status",
+        "portal"
+      ]
+    },
+    "notes": "Queries combine 'nirman shramik kalyan yojana scholarship' (8k) and 'boc scholarship' (2.6k). Titles feature both 'Nirman Shramik' and 'BOC' alongside status/apply to capture both query patterns. Official amount confirmed on Odisha State Scholarship Portal is ₹2,000 to ₹40,000/yr (with 20% bonus for girls from Class 8)."
+  },
+  {
+    "slug": "mukhyamantri-vidyarthi-pratibha-yojna",
+    "intent": "last date",
+    "currentTitle": "Mukhyamantri Vidyarthi Pratibha Yojna {year}: Apply Online, Portal Login & Status Check",
+    "titleOptions": [
+      "Mukhyamantri Vidyarthi Pratibha Yojna Delhi {year}: Apply",
+      "Vidyarthi Pratibha Yojna Delhi {year}: Last Date & Apply"
+    ],
+    "description": "Delhi Vidyarthi Pratibha Yojna: ₹5,000 to ₹10,000 for Class 9-12. Check eligibility, marks criteria, last date and Delhi e-District online apply steps.",
+    "alsoKnownAs": [
+      "Mukhyamantri Vidyarthi Pratibha Yojana",
+      "Delhi Vidyarthi Pratibha Yojna",
+      "Vidyarthi Pratibha Yojana Delhi"
+    ],
+    "officialPage": {
+      "url": "https://edistrict.delhigov.nic.in/",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "amount",
+        "status",
+        "eligibility"
+      ]
+    },
+    "notes": "Scheme is run by Delhi Government (SC/ST/OBC Welfare Dept) via the Delhi e-District portal (the database had a typo in intro_seo mentioning MP). Amounts confirmed on official guidelines: ₹5,000/yr (Class 9-10, 50%+ marks) and ₹10,000/yr (Class 11-12, 60%+ marks), family income up to ₹8 Lakh (exempt if 75%+ marks)."
+  },
+  {
+    "slug": "bihar-student-credit-card-education-support-scheme",
+    "intent": "apply",
+    "currentTitle": "Bihar Student Credit Card / Education Support Scheme {year}: Apply Online, Portal Login & Status Check",
+    "titleOptions": [
+      "Bihar Student Credit Card (BSCC) {year}: Apply & Status",
+      "BSCC Bihar Student Credit Card {year}: Portal Login & Status"
+    ],
+    "description": "Bihar Student Credit Card (BSCC): education loan up to ₹4 Lakhs. Check eligibility, DRCC verification, application status and MNSSBY portal apply steps.",
+    "alsoKnownAs": [
+      "BSCC",
+      "Bihar Student Credit Card",
+      "MNSSBY Student Credit Card",
+      "Bihar Student Credit Card Yojana"
+    ],
+    "officialPage": {
+      "url": "https://www.7nishchay-yuvaupmission.bihar.gov.in/",
+      "confirmed": "2026-10-22",
+      "facts": [
+        "amount",
+        "status",
+        "portal"
+      ]
+    },
+    "notes": "Title explicitly includes both 'BSCC' and 'Student Credit Card' as mandated by plan. Confirmed loan limit up to ₹4 Lakhs for 12th-pass students pursuing higher education, processed via MNSSBY portal and DRCC centers."
+  }
+]
