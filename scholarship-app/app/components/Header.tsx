@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X, Search, ArrowRight, Globe } from 'lucide-react';
 import SearchModal from './SearchModal';
+import StudyAbroadNav from './StudyAbroadNav';
 
 export default function Header() {
     const [showScholarshipsDropdown, setShowScholarshipsDropdown] = useState(false);
@@ -13,6 +14,8 @@ export default function Header() {
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
+    const pathname = usePathname() ?? '';
+    const inStudyAbroad = pathname === '/study-abroad' || pathname.startsWith('/study-abroad/');
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -32,6 +35,7 @@ export default function Header() {
     };
 
     return (
+        <>
         <header className="sticky top-0 z-50 w-full border-b border-[#E2E2E8] bg-white/95 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 
@@ -49,6 +53,14 @@ export default function Header() {
                     <span className="text-xl font-extrabold tracking-tight text-ink font-heading group-hover:text-brand transition-colors">
                         IndiaScholarships
                     </span>
+                    {inStudyAbroad && (
+                        <>
+                            <span className="hidden sm:block h-6 w-px bg-[#E2E2E8]" aria-hidden="true" />
+                            <span className="hidden sm:inline-flex items-center rounded-full bg-violet-50 px-3 py-1 text-sm font-bold text-violet-800 whitespace-nowrap">
+                                Study Abroad
+                            </span>
+                        </>
+                    )}
                 </Link>
 
                 {/* Centered Search Bar (Desktop) */}
@@ -101,7 +113,7 @@ export default function Header() {
                                                 <Link href="/scholarships-by-income" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Income Limit</Link>
                                                 <Link href="/scholarships-by-university" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By University</Link>
                                                 <Link href="/scholarships-by-course" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">By Course</Link>
-                                                <Link href="/scholarships/international" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Study Abroad</Link>
+                                                <Link href="/scholarships/international" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-gray-700 hover:bg-surface-gray hover:text-google-blue transition-colors">Scholarships Abroad</Link>
                                                 <Link href="/guides" className="px-3 py-1.5 rounded-xl text-xs font-semibold text-brand hover:bg-brand-soft transition-colors">All Scholarship Guides →</Link>
                                             </div>
                                         </div>
@@ -152,9 +164,9 @@ export default function Header() {
                         <Link href="/guides" className="transition-colors hover:text-google-blue">
                             Guides
                         </Link>
-                        <a href="/study-abroad" target="_blank" rel="noopener noreferrer" className="transition-all text-brand hover:text-brand-dark font-extrabold flex items-center gap-1">
+                        <Link href="/study-abroad" className={`transition-all font-extrabold flex items-center gap-1 ${inStudyAbroad ? 'text-violet-800' : 'text-brand hover:text-brand-dark'}`}>
                             Study Abroad 🌍
-                        </a>
+                        </Link>
                         <Link href="/news" className="transition-colors hover:text-google-blue">
                             News
                         </Link>
@@ -241,10 +253,8 @@ export default function Header() {
                         </Link>
 
                         {/* Study Abroad Guides & Tools Link */}
-                        <a
+                        <Link
                             href="/study-abroad"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             onClick={() => setShowMobileMenu(false)}
                             className="flex items-center justify-between gap-3 p-3.5 bg-brand-soft border border-blue-100 rounded-2xl text-xs font-extrabold text-brand hover:bg-blue-100/70 transition-all shadow-xs"
                         >
@@ -253,7 +263,7 @@ export default function Header() {
                                 <span>Study Abroad Guides & Tools 🌍</span>
                             </span>
                             <ArrowRight className="h-4 w-4 shrink-0 text-brand" />
-                        </a>
+                        </Link>
 
                         {/* 2. Browse Category Chips */}
                         <div className="space-y-2">
@@ -313,7 +323,7 @@ export default function Header() {
                                     onClick={() => setShowMobileMenu(false)}
                                     className="px-3.5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full text-xs font-semibold transition-colors"
                                 >
-                                    ✈️ Study Abroad
+                                    ✈️ Scholarships Abroad
                                 </Link>
                                 <Link
                                     href="/scholarships-for/sports"
@@ -428,5 +438,7 @@ export default function Header() {
             {/* Global Search Dialog Modal temporarily disabled (search rolled back) */}
             {/* <SearchModal isOpen={showSearch} onClose={() => setShowSearch(false)} /> */}
         </header>
+        {inStudyAbroad && <StudyAbroadNav pathname={pathname} />}
+        </>
     );
 }
