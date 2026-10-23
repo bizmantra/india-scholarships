@@ -1,6 +1,6 @@
 ---
 title: "INSPIRE-SHE Scholarship Paused for Redesign: No New Call Yet, What Science Students Should Do"
-date: "2026-10-24"
+date: "2026-10-23"
 author: "IndiaScholarships Editorial Team"
 tag: "Central Scheme"
 targetMoneyLink: "/scholarships/inspire-scholarship-for-higher-education-she"
