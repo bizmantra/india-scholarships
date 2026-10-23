@@ -28,7 +28,7 @@ const ENV_BADGE: Record<string, { label: string; className: string }> = {
 };
 
 // Screens already built on the light/dark colours. Others stay dark until they are reworked.
-const THEMED_PAGES = ['/admin/agents', '/admin/teams'];
+const THEMED_PAGES = ['/admin/agents', '/admin/teams', '/admin/backlog'];
 
 interface SidebarItemProps {
     href: string;
@@ -71,7 +71,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const menuGroups = [
         {
             label: 'Overview',
-            items: [{ href: '/admin/agents', label: 'Inbox and chat', icon: <Bot className="h-5 w-5" /> }],
+            items: [
+                { href: '/admin/agents', label: 'Inbox and chat', icon: <Bot className="h-5 w-5" /> },
+                { href: '/admin/backlog', label: 'Backlog', icon: <CheckSquare className="h-5 w-5" /> },
+            ],
         },
         {
             label: 'Teams',
@@ -80,7 +83,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {
             label: 'Admin',
             items: [
-                { href: '/admin/backlog', label: 'Backlog Manager', icon: <CheckSquare className="h-5 w-5" /> },
                 { href: '/admin/content-manager', label: 'Content Manager', icon: <Layers className="h-5 w-5" /> },
                 { href: '/admin/performance', label: 'Performance', icon: <TrendingUp className="h-5 w-5" /> },
                 { href: '/admin/settings', label: 'Settings', icon: <SettingsIcon className="h-5 w-5" /> },

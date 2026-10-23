@@ -2,7 +2,7 @@ import { notFound, redirect, permanentRedirect, unstable_rethrow } from 'next/na
 import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
-import { slugify, formatDeadlineDate } from '@/lib/utils';
+import { slugify, deadlineDisplay } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { getNewsForState } from '@/lib/news';
@@ -247,7 +247,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                                                             {s.title}
                                                         </Link>
                                                         <p className="text-xs text-gray-500 mt-0.5">
-                                                            {levelText(s) || 'All levels'} · Last date: {formatDeadlineDate(s.deadline, { day: 'numeric', month: 'short' }, 'Open Now')}
+                                                            {levelText(s) || 'All levels'} · Last date: {deadlineDisplay(s, { day: 'numeric', month: 'short' }, 'Check portal')}
                                                         </p>
                                                     </div>
                                                     <span className="text-sm font-bold text-emerald-700 whitespace-nowrap">
@@ -307,7 +307,7 @@ export default async function StateHubPage({ params }: { params: Promise<{ state
                                                     {s.amount_annual > 0 ? `₹${s.amount_annual.toLocaleString()}` : 'Variable'}
                                                 </td>
                                                 <td className="p-4 pr-6 text-xs text-gray-500 whitespace-nowrap">
-                                                    {formatDeadlineDate(s.deadline, { day: 'numeric', month: 'short' }, 'Open Now')}
+                                                    {deadlineDisplay(s, { day: 'numeric', month: 'short' }, 'Check portal')}
                                                 </td>
                                             </tr>
                                         ))}

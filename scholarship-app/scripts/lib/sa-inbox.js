@@ -39,6 +39,9 @@ const FIELDS = {
     sa_programs: {
         title: 'text', location: 'text', tuition_per_year: 'int', tuition_currency: 'currency', living_cost_per_year: 'int', living_currency: 'currency',
         gpa_min: 'text', ielts_min: 'number', gre: 'text', application_deadlines: 'json', official_source: 'url', checked_at: 'date', status: 'status',
+        summary: 'summary', seo_title: 'seo_title', meta_description: 'meta_description', body_md: 'markdown', faq_json: 'faq',
+        language: 'text', duration: 'text', intakes: 'text', english_requirements: 'text', application_portal: 'text',
+        application_fee: 'text', stem_designated: 'text',
     },
     sa_facts: {
         label: 'text', value: 'text', unit: 'text', official_source: 'url', checked_at: 'date', recheck_after: 'date', notes: 'text',
@@ -46,7 +49,8 @@ const FIELDS = {
 };
 
 // Money and admission facts need an official source on the proposal itself
-const NEEDS_SOURCE = new Set(['tuition_per_year', 'living_cost_per_year', 'application_deadlines', 'gre_required', 'gre', 'gpa_min', 'ielts_min', 'value']);
+const NEEDS_SOURCE = new Set(['tuition_per_year', 'living_cost_per_year', 'application_deadlines', 'gre_required', 'gre', 'gpa_min', 'ielts_min', 'value',
+    'english_requirements', 'application_fee', 'stem_designated']);
 
 // Phrases that must never reach a page (research notes, template filler)
 const BANNED = [
@@ -61,7 +65,8 @@ const LABELS = {
     living_currency: 'Living cost currency', gre_required: 'GRE required', gre: 'GRE', gpa_min: 'Minimum grade', ielts_min: 'IELTS minimum',
     stem_opt: 'STEM OPT', application_deadlines: 'Deadlines', infobox_json: 'Facts box', body_md: 'Article', faq_json: 'FAQs', related_json: 'Related links',
     official_source: 'Official source', checked_at: 'Facts checked', status: 'Status', label: 'Label', value: 'Value', unit: 'Unit',
-    recheck_after: 'Re-check after', notes: 'Notes',
+    recheck_after: 'Re-check after', notes: 'Notes', language: 'Teaching language', duration: 'Length', intakes: 'Intakes',
+    english_requirements: 'English requirements', application_portal: 'Where to apply', application_fee: 'Application fee', stem_designated: 'STEM designated',
 };
 
 const asText = v => (v === null || v === undefined ? '' : String(v));

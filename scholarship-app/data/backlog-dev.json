@@ -1178,9 +1178,9 @@
   {
     "id": "IS-158",
     "title": "Study Abroad: add article fields to course pages (sa_programs) and render them",
-    "description": "Course pages can only show a facts box today. Add summary, seo_title, meta_description, body_md, faq_json, language, duration, intakes, english_requirements, application_portal, application_fee, stem_designated to sa_programs; render article, FAQs, Course schema and byline; show 'Not published by the university' for blank fields. See docs/study-abroad/templates/COURSE_PAGE_TEMPLATE.md \u00a73.",
+    "description": "Course pages can only show a facts box today. Add summary, seo_title, meta_description, body_md, faq_json, language, duration, intakes, english_requirements, application_portal, application_fee, stem_designated to sa_programs; render article, FAQs, Course schema and byline; show 'Not published by the university' for blank fields. See docs/study-abroad/templates/COURSE_PAGE_TEMPLATE.md \u00a73. Update: columns, inbox rules and page rendering in the course-fields PR. After merge, run scripts/study-abroad/add-columns.mjs --target=production to add the columns on Turso (adds 12 empty TEXT columns, no data change).",
     "impact": "High",
-    "status": "Backlog",
+    "status": "In Progress",
     "type": "Feature, Data"
   },
   {

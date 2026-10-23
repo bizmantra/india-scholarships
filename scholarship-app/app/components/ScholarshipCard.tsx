@@ -13,6 +13,8 @@ interface Scholarship {
     amount_annual: number;
     amount_min?: number;
     deadline?: string;
+    deadline_status?: string | null;
+    deadline_expected?: string | null;
     application_mode: string;
     level: string;
     last_verified: string;
@@ -97,6 +99,17 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
         return trimmed;
     };
 
+    // An estimated date reads "Expected ~31 Oct 2026", never as a deadline
+    const deadlineText = () => {
+        if (scholarship.deadline_status === 'expected' && scholarship.deadline_expected) {
+            const date = new Date(`${scholarship.deadline_expected}T00:00:00Z`);
+            if (!isNaN(date.getTime())) {
+                return `Expected ~${date.toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}`;
+            }
+        }
+        return formatDeadline(scholarship.deadline);
+    };
+
     // Format amount
     const formatAmount = () => {
         if (!scholarship.amount_annual) {
@@ -133,7 +146,7 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-slate-200">
                     <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
                     <span className="text-slate-600 font-medium">
-                        Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
+                        Deadline: <strong className="text-slate-900">{deadlineText()}</strong>
                     </span>
                 </div>
             </Link>
@@ -163,7 +176,7 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mb-3">
                 <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
                 <span className="text-slate-600">
-                    Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
+                    Deadline: <strong className="text-slate-900">{deadlineText()}</strong>
                 </span>
             </div>
 

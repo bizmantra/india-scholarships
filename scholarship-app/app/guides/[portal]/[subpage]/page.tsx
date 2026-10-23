@@ -58,6 +58,11 @@ const PORTAL_SUBPAGES: Record<string, { titleSuffix: string, descPrefix: string,
     }
 };
 
+// A hand-written title for one portal page, keyed "portal-id/subpage"; every other page keeps the generated title
+const GUIDE_TITLE_OVERRIDES: Record<string, string> = {
+    'e-kalyan-jharkhand/student-login': 'e-Kalyan Jharkhand Student Login 2026: Steps & Help',
+};
+
 const PORTAL_NAV_ITEMS = [
     { key: 'overview', label: 'Overview', icon: LayoutGrid, href: '' },
     { key: 'student-login', label: 'Student Login', icon: UserCheck, href: '/student-login' },
@@ -100,7 +105,8 @@ export async function generateMetadata({ params }: { params: Promise<{ portal: s
         };
     }
 
-    const pageTitle = `${data.name} ${subConfig.titleSuffix} | IndiaScholarships`;
+    // Rewritten on 2026-10-17 (IS-36): the searches are "e kalyan student login", and the generated title was 97 characters
+    const pageTitle = GUIDE_TITLE_OVERRIDES[`${data.id}/${subpage}`] || `${data.name} ${subConfig.titleSuffix} | IndiaScholarships`;
     const pageDesc = `${subConfig.descPrefix} ${data.name}. Official portal steps, guidelines, and troubleshooting.`;
 
     return {

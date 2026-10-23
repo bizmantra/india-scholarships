@@ -9,7 +9,8 @@ import { getArticlesForScholarship } from '@/lib/articles';
 import { getNewsForScholarship } from '@/lib/news';
 import { getPillarForScholarship } from '@/lib/pillars';
 import { getPortalGuideForScholarship } from '@/lib/portalsData';
-import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate } from '@/lib/utils';
+import { SCHOLARSHIP_SEARCH_ALIASES } from '@/lib/constants';
+import { getCanonicalSlugForLevel, getCanonicalSlugForIncome, getCanonicalSlugForCategory, slugify, getScholarshipTypeRoute, sanitizeApplyUrl, formatDeadlineDate, deadlineDisplay } from '@/lib/utils';
 import {
     Calendar,
     Users,
@@ -30,6 +31,7 @@ import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
+import StudyAbroadPlan from '@/app/components/StudyAbroadPlan';
 
 
 const SUBPAGE_NAV = [
@@ -51,6 +53,81 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
+// Titles rewritten on 2026-10-17 (IS-36): short enough to show in full in Google (about 60 characters), scheme and state first,
+// worded like the searches that reach each page. One title per page, true whether or not the deadline has passed,
+// with no dates or amounts. {year} becomes the page's verification year. See plans/is-36-title-drafts-2026-10-13.md.
+const TITLE_OVERRIDES: Record<string, string> = {
+    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy': 'MMVY Portal Login & Scholarship {year}: Apply & Status',
+    'mukhyamantri-kanya-utthan-yojana-graduation': 'Kanya Utthan Yojana Graduation {year}: Status Check & Apply',
+    'jharkhand-e-kalyan-post-matric-scholarship': 'e-Kalyan Jharkhand {year}: Student Login, Status & Apply',
+    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha {year}: Amount & Apply',
+    'boc-scholarship-nirman-shramik-kalyan-yojana-odisha': 'BOC Nirman Shramik Scholarship Odisha {year}: Apply Online',
+    'mukhyamantri-vidyarthi-pratibha-yojna': 'Mukhyamantri Vidyarthi Pratibha Yojna Delhi {year}: Apply',
+    'bihar-student-credit-card-education-support-scheme': 'Bihar Student Credit Card (BSCC) {year}: Apply & Status',
+    'up-post-matric-other-than-intermediate-general-sc-st': 'UP Post Matric (Other Than Inter) General/SC/ST {year}',
+    'chief-minister-higher-education-scholarship-rajasthan': 'Rajasthan CM Scholarship {year}: Last Date & Eligibility',
+    'up-post-matric-other-than-intermediate-obc': 'UP Post Matric (Other Than Inter) OBC {year}: Login',
+    'infosys-foundation-stem-stars-scholarship-program': 'Infosys STEM Stars Scholarship {year}: Eligibility & Apply',
+    'up-post-matric-outside-state-general-sc-st': 'UP Scholarship for Students Studying Outside UP {year}',
+    'mp-gaon-ki-beti-yojana': 'Gaon Ki Beti Yojana MP {year}: Last Date & Apply Online',
+    'pre-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Pre Matric Scholarship {year} for OBC/SEBC',
+    'tamil-nadu-post-matric-scholarship-for-scst': 'Tamil Nadu Post Matric Scholarship SC/ST {year}: Apply',
+    'rajasthan-post-matric-scholarship-obc': 'Rajasthan Post Matric Scholarship OBC {year}: Last Date',
+    'post-matric-scholarship-for-obcsebc-students-odisha': 'Odisha Post Matric Scholarship {year} for OBC/SEBC',
+    // Both spellings in the title, so searches for either one match (see SCHOLARSHIP_SEARCH_ALIASES).
+    'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree (Kanyasree) Prakalpa {year}: K1, K2 Apply & Status',
+    'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (Vidyasri) Scholarship Karnataka {year}: Apply & Status',
+    'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Merit-cum-Means Scholarship {year}: Apply',
+    'aikyashree-post-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Post Matric Scholarship {year}: Apply',
+    'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (Aikyasree) Pre Matric Scholarship {year}: Apply',
+    'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) UG Scholarship Odisha {year}: Apply',
+    'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (Medhavruti) PG Scholarship Odisha {year}: Last Date',
+    'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (Medhavruti) Technical Scholarship Odisha {year}',
+    'sikshashree-scholarship-scheme-west-bengal': 'Sikshashree (Shikshashree) Scholarship West Bengal {year}',
+    'pudhumai-penn-scheme-tamil-nadu': 'Pudhumai Penn (Puthumai Pen) Scheme {year}: Apply Online',
+    'tamil-pudhalvan-scheme': 'Tamil Pudhalvan (Puthalvan) Scheme {year}: Apply Online',
+    'ladli-lakshmi-yojana-mp': 'Ladli Lakshmi (Laxmi) Yojana MP {year}: Apply Online',
+    'bhagya-lakshmi-scheme-karnataka': 'Bhagya Lakshmi (Bhagyalakshmi) Scheme Karnataka {year}',
+    'haryana-kalpana-chawla-chhatravritti-yojna': 'Kalpana Chawla Chhatravritti (Chhatravriti) Haryana {year}',
+    'uchcha-shiksha-protsahan-chhatravriti-yojana': 'Uchcha Shiksha Protsahan Chhatravriti Uttarakhand {year}',
+    'jagananna-vidya-deevena-ap': 'Jagananna Vidya Deevena (Devena) {year}: Apply & Status',
+    'jagananna-vasathi-deevena-ap': 'Jagananna Vasathi Deevena (Vasati Devena) {year}: Status',
+    'mahadbt-post-matric-scholarship-maharashtra': 'MahaDBT (Maha DBT) Post Matric Scholarship {year}: Apply',
+    'kerala-kscste-prathibha-scholarship': 'KSCSTE Prathibha (Pratibha) Scholarship Kerala {year}',
+};
+
+// Meta descriptions that name the other spellings people search. Others use the page's intro.
+const DESCRIPTION_OVERRIDES: Record<string, string> = {
+    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy': 'MMVY (Mukhyamantri Medhavi Vidyarthi Yojana) in Madhya Pradesh: how to log in to the official portal, check status, eligibility and apply online.',
+    'mukhyamantri-kanya-utthan-yojana-graduation': 'Mukhyamantri Kanya Utthan Yojana (Graduation) Bihar: eligibility, documents, how to apply and check status on the official Medhasoft portal.',
+    'jharkhand-e-kalyan-post-matric-scholarship': 'Jharkhand e-Kalyan post-matric scholarship: how to log in, check application status, eligibility for SC/ST/BC students and last date.',
+    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha scholarship for children of CM-KISAN beneficiaries: amount by course, eligibility, documents and how to apply.',
+    'boc-scholarship-nirman-shramik-kalyan-yojana-odisha': 'Odisha BOC (Nirman Shramik Kalyan Yojana) scholarship for construction workers\' children: eligibility, documents and how to apply online.',
+    'mukhyamantri-vidyarthi-pratibha-yojna': 'Delhi Mukhyamantri Vidyarthi Pratibha Yojna for Class 9-12: eligibility, marks criteria, last date and how to apply on Delhi e-District.',
+    'bihar-student-credit-card-education-support-scheme': 'Bihar Student Credit Card (BSCC) education loan up to ₹4 lakh: eligibility, DRCC verification, application status and how to apply online.',
+    'pm-yashasvi-scholarship': 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.',
+    'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree Prakalpa (also spelled Kanyasree) for girls in West Bengal: K1 and K2 eligibility, amount, how to apply and check status on wbkanyashree.gov.in.',
+    'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (also spelled Vidyasri) food and accommodation scholarship for backward class students in Karnataka: eligibility, amount, how to apply on SSP.',
+    'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) merit-cum-means scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'aikyashree-post-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) post matric scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': 'Aikyashree (also spelled Aikyasree) pre matric scholarship for minority students in West Bengal: eligibility, amount, last date and how to apply online.',
+    'e-medhabruti-ug-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) UG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
+    'e-medhabruti-pg-merit-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) PG merit scholarship in Odisha: eligibility, amount, last date and how to apply on the State Scholarship Portal.',
+    'e-medhabruti-technical-professional-scholarship-odisha': 'e-Medhabruti (also spelled Medhavruti) technical and professional scholarship in Odisha: eligibility, amount, last date, how to apply on SSP.',
+    'talliki-vandanam-scheme-ap': 'Talliki Vandanam (also spelled Thalliki Vandanam) scheme in Andhra Pradesh: eligibility, amount, payment status and how to check your name.',
+    'sikshashree-scholarship-scheme-west-bengal': 'Sikshashree (also spelled Shikshashree) scholarship for SC and ST students in West Bengal: eligibility, amount, documents and how to apply online.',
+    'pudhumai-penn-scheme-tamil-nadu': 'Pudhumai Penn (also spelled Puthumai Pen) scheme for girls from government schools in Tamil Nadu: eligibility, amount and how to apply online.',
+    'tamil-pudhalvan-scheme': 'Tamil Pudhalvan (also spelled Tamil Puthalvan) scheme for boys from government schools in Tamil Nadu: eligibility, amount and how to apply online.',
+    'ladli-lakshmi-yojana-mp': 'Ladli Lakshmi Yojana (also spelled Ladli Laxmi) for girls in Madhya Pradesh: eligibility, benefits, documents and how to apply online.',
+    'bhagya-lakshmi-scheme-karnataka': 'Bhagya Lakshmi (also spelled Bhagyalakshmi or Bhagya Laxmi) scheme for girls in Karnataka: eligibility, benefits, documents and how to apply.',
+    'haryana-kalpana-chawla-chhatravritti-yojna': 'Kalpana Chawla Chhatravritti Yojana (also spelled Chhatravriti or Chatravriti) in Haryana: eligibility, amount, last date and how to apply online.',
+    'uchcha-shiksha-protsahan-chhatravriti-yojana': 'Uchcha Shiksha Protsahan Chhatravriti Yojana (also spelled Uchch or Chhatravritti) in Uttarakhand: eligibility, amount, last date and how to apply.',
+    'jagananna-vidya-deevena-ap': 'Jagananna Vidya Deevena (also spelled Vidya Devena) fee reimbursement in Andhra Pradesh: eligibility, amount, payment status and how to apply.',
+    'jagananna-vasathi-deevena-ap': 'Jagananna Vasathi Deevena (also spelled Vasati Devena) hostel and food support in Andhra Pradesh: eligibility, amount, payment status and how to apply.',
+    'mahadbt-post-matric-scholarship-maharashtra': 'MahaDBT (also written Maha DBT) post matric scholarship in Maharashtra: eligibility, documents, last date, login and how to apply online.',
+    'kerala-kscste-prathibha-scholarship': 'KSCSTE Prathibha (also spelled Pratibha) scholarship for science students in Kerala: eligibility, amount, last date and how to apply online.',
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const scholarship = await getScholarshipBySlug(slug);
@@ -84,10 +161,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const statusLabel = isDeadlinePassed ? 'Closed' : 'Open';
 
     // Specific brand overrides for June & July high-opportunity keywords
-    if (slug === 'pm-yashasvi-scholarship') {
+    if (TITLE_OVERRIDES[slug]) {
+        seoTitle = TITLE_OVERRIDES[slug].replace('{year}', String(year));
+    } else if (slug === 'pm-yashasvi-scholarship') {
+        // "YASASVI" is the official spelling; many students search "Yashasvi", so the title carries both.
         seoTitle = isDeadlinePassed
-            ? `PM Yashasvi Scholarship Scheme ${year}: Eligibility, Amount & Details`
-            : `PM Yashasvi Scholarship Scheme ${year}: Apply Online, Last Date & Eligibility`;
+            ? `PM YASASVI (Yashasvi) Scholarship ${year}: Eligibility & Amount`
+            : `PM YASASVI (Yashasvi) Scholarship ${year}: Apply Online & Last Date`;
     } else if (slug === 'sitaram-jindal-foundation-scholarship') {
         seoTitle = isDeadlinePassed
             ? `Sitaram Jindal Foundation Scholarship ${year}: Eligibility & Last Date Details`
@@ -128,8 +208,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `Azim Premji Scholarship ${year}: ₹30,000/Year | Eligibility & Apply Online`;
     } else if (slug === 'talliki-vandanam-scheme-ap') {
         seoTitle = isDeadlinePassed
-            ? `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Eligibility & Status`
-            : `Talliki Vandanam Scheme ${year}: ₹15,000 Child Allowance | Apply & Check Status`;
+            ? `Talliki (Thalliki) Vandanam ${year}: ₹15,000 | Eligibility & Status`
+            : `Talliki (Thalliki) Vandanam ${year}: ₹15,000 | Apply & Check Status`;
     } else if (slug === 'lic-golden-jubilee-scholarship') {
         seoTitle = isDeadlinePassed
             ? `LIC Golden Jubilee Scholarship ${year}: Eligibility & Last Date Details`
@@ -138,26 +218,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = isDeadlinePassed
             ? `Nabanna Scholarship ${year}: Eligibility & Submission Guide`
             : `Nabanna Scholarship ${year}: Application Form, Eligibility & Submission Guide`;
-    } else if (slug === 'krishi-vidya-nidhi-yojana-odisha') {
-        seoTitle = `Krishi Vidya Nidhi Yojana Odisha ${year}: Benefit Amount & Eligibility Check`;
-    } else if (slug === 'post-matric-scholarship-for-obcsebc-students-odisha') {
-        seoTitle = isDeadlinePassed
-            ? `Odisha Post Matric OBC/SEBC Scholarship ${year}: Details & Eligibility`
-            : `Odisha Post Matric OBC/SEBC Scholarship ${year}: Apply Online & Deadlines`;
     } else if (slug === 'post-matric-scholarship-for-st-students-odisha') {
         seoTitle = isDeadlinePassed
             ? `Odisha Post Matric ST Scholarship ${year}: Details & Eligibility`
             : `Odisha Post Matric ST Scholarship ${year}: Eligibility, Last Date & Apply`;
     } else if (slug === 'boc-scholarship-nirman-shramik-kalyan-yojana-odisha') {
         seoTitle = `Odisha BOC Scholarship ${year}: Nirman Shramik Kalyan Yojana Details`;
-    } else if (slug === 'chief-minister-higher-education-scholarship-rajasthan') {
-        seoTitle = isDeadlinePassed
-            ? `Rajasthan Chief Minister Higher Education Scholarship ${year}: Eligibility & Details`
-            : `Rajasthan Chief Minister Higher Education Scholarship ${year}: Apply Online & Status`;
-    } else if (slug === 'e-medhabruti-ug-merit-scholarship-odisha') {
-        seoTitle = isDeadlinePassed
-            ? `e-Medhabruti UG Merit Scholarship Odisha ${year}: Details & Renewal`
-            : `e-Medhabruti UG Merit Scholarship Odisha ${year}: Apply Online, Last Date & Renewal`;
     } else if (slug === 'mukhyamantri-yuva-swavalamban-yojana-mysy') {
         seoTitle = isDeadlinePassed
             ? `MYSY Scholarship Gujarat ${year}: Details, Document List & Status`
@@ -176,10 +242,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         seoTitle = isDeadlinePassed
             ? `Karnataka Post Matric Scholarship for Minorities ${year}: Details & Login`
             : `Karnataka Post Matric Scholarship for Minorities ${year}: Login & Apply Online`;
-    } else if (slug === 'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka') {
-        seoTitle = isDeadlinePassed
-            ? `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Status`
-            : `Vidyasiri Scholarship Karnataka ${year}: Food & Accommodation Apply Online & Status`;
     } else if (slug === 'post-matric-scholarship-for-st-students-karnataka') {
         seoTitle = isDeadlinePassed
             ? `Karnataka Post Matric ST Scholarship ${year}: Registration Portal & Details`
@@ -210,9 +272,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             : `${cleanTitle} ${year}: Application Form, Eligibility & Selection List`;
     }
 
+    const seoDescription = DESCRIPTION_OVERRIDES[slug] || scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`;
+
     return {
         title: seoTitle,
-        description: scholarship.intro_seo?.substring(0, 160) || `${scholarship.title} details including eligibility, benefits, income limit, application process, and official source.`,
+        description: seoDescription,
         alternates: {
             canonical: `https://www.indiascholarships.in/scholarships/${slug}`,
             languages: {
@@ -255,6 +319,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const relevantNews = getNewsForScholarship(scholarship.slug);
     const bestFitPillar = getPillarForScholarship(scholarship);
     const portalGuide = getPortalGuideForScholarship(scholarship);
+    const searchAliases = SCHOLARSHIP_SEARCH_ALIASES[scholarship.slug] || [];
 
     // Dynamic deadline check (relative to India's current date boundary)
     const today = new Date();
@@ -304,6 +369,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
         '@context': 'https://schema.org',
         '@type': 'FinancialAid',
         name: scholarship.title,
+        ...(searchAliases.length > 0 && { alternateName: searchAliases }),
         description: scholarship.intro_seo || scholarship.title,
         amount: {
             '@type': 'MonetaryAmount',
@@ -566,13 +632,16 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <h1 className="text-3xl sm:text-4xl font-extrabold text-[var(--color-ink)] font-heading mb-2 tracking-tight leading-tight">
                                 {scholarship.title}
                             </h1>
+                            {searchAliases.length > 0 && (
+                                <p className="text-sm text-[var(--color-ink-soft)] mb-1">Also known as: {searchAliases.join(', ')}</p>
+                            )}
                             <p className="text-sm font-medium text-[var(--color-ink-soft)] mb-8">{scholarship.provider}{scholarship.state ? ` · ${scholarship.state}` : ''}</p>
 
                             {/* Minimalist Gov/Wiki Infobox */}
                             <WikiInfobox 
                                 title={scholarship.title}
                                 amount={formatAmount(scholarship.amount_annual, scholarship.amount_description)}
-                                deadline={isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short' }, 'Check portal')}
+                                deadline={deadlineDisplay(scholarship, { day: 'numeric', month: 'short' }, 'Check portal')}
                                 eligibility={buildEligibilitySummary()}
                                 provider={scholarship.provider}
                                 applyUrl={cleanApplyUrl || ''}
@@ -755,6 +824,8 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </section>
                         )}
 
+                        <StudyAbroadPlan scope={scholarship.scholarship_scope} countryOfStudy={scholarship.country_of_study} />
+
                         {/* Related news */}
                         {relevantNews.length > 0 && (
                             <section id="portal-updates" className="pt-6 border-t border-gray-100">
@@ -852,8 +923,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
                                 <div className="text-[10px] font-black uppercase tracking-wider text-red-700 mb-0.5">Application Deadline</div>
                                 <div className="text-xl font-black text-red-700 font-heading">
-                                    {isAlwaysOpen ? 'Open Year-Round' : formatDeadlineDate(scholarship.deadline, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
+                                    {deadlineDisplay(scholarship, { day: 'numeric', month: 'short', year: 'numeric' }, 'Check Portal')}
                                 </div>
+                                {scholarship.deadline_status === 'expected' && (
+                                    <div className="text-[10px] text-red-600 mt-1 font-semibold leading-normal">
+                                        Not yet confirmed on the official site. Check the portal before you plan around it.
+                                    </div>
+                                )}
                                 {scholarship.deadline_description && (
                                     <div className="text-[10px] text-red-600 mt-1 italic leading-normal">
                                         {scholarship.deadline_description}
