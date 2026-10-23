@@ -117,7 +117,7 @@ export async function inboxSummary() {
     };
 }
 
-export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; agents?: string[]; notAgents?: string[]; limit?: number; offset?: number } = {}) {
+export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; agents?: string[]; notAgents?: string[]; agentPrefix?: string; limit?: number; offset?: number } = {}) {
     const where = ['p.status = ?'];
     const args: any[] = [opts.status || 'pending'];
     if (opts.category) { where.push('p.category = ?'); args.push(opts.category); }
@@ -127,6 +127,11 @@ export async function listProposals(opts: { category?: string; risk?: string; st
         // A team with no agents matches nothing (instead of everything)
         where.push(opts.agents.length ? `p.agent IN (${opts.agents.map(() => '?').join(',')})` : '0 = 1');
         args.push(...opts.agents);
+    }
+    if (opts.agentPrefix) {
+        // Escaped so a prefix cannot act as a wildcard
+        where.push("p.agent LIKE ? ESCAPE '\\'");
+        args.push(opts.agentPrefix.replace(/[\\%_]/g, c => '\\' + c) + '%');
     }
     if (opts.notAgents?.length) {
         // Items from agents that belong to no team (the "Other" filter)
