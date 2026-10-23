@@ -87,3 +87,18 @@ The sun/moon button in the header (next to the logo on phones) switches the admi
 remembered on the device; until then it follows the system setting. Colours come from named tokens in `app/globals.css`
 (`bg-cc-panel`, `text-cc-muted`, …). Screens listed in `THEMED_PAGES` in `app/admin/layout.tsx` use them; other admin
 screens stay dark until they are reworked. To convert a screen, replace its fixed shades with the tokens and add it to that list.
+
+## Hermes bridge (staging only)
+
+Hermes Agent (a separate assistant on the owner's Mac) can add proposals to the inbox and, when the owner approves in Hermes,
+decide them. Code: `lib/command-center/hermes-bridge.ts`, route `POST /api/hermes/bridge` (outside `/api/admin`, guarded by bearer tokens).
+
+- **Off by default.** `agent_settings` `hermes-bridge` / `enabled` must be `true`; setting it back to `false` is the kill switch.
+- **Staging and local only.** On production the route answers 403 unless `HERMES_BRIDGE_ALLOW_PRODUCTION=1` is set on purpose.
+- **Two tokens** (env): `HERMES_BRIDGE_PROPOSE_TOKEN` (propose, list) and `HERMES_BRIDGE_DECIDE_TOKEN` (approve, reject).
+- **Proposals** are scholarship field changes only (same field and value rules as the agents). The old value is read from the
+  database, never trusted from the caller. Agent name is `hermes-<profile>`. A proposal without a quote from the source page is `high` risk.
+- **Approvals** go through `decide()` with actor `owner-via-hermes`, so the changelog, the "changed since" guard and Undo work as usual.
+  Hermes cannot approve: anything `high` risk, date or amount changes without a source link and quote, proposals from other agents,
+  and anything past `max_approvals_per_day` (default 20). Those must be approved in the Command Center.
+- Study Abroad changes and new scholarships are not supported by the bridge yet.
