@@ -1,27 +1,32 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUp, Inbox, Loader2, MessageSquare } from 'lucide-react';
-import { MessageView } from './Cards';
+import React, { useEffect, useState } from 'react';
+import { Activity, MessageSquare } from 'lucide-react';
+import AskPanel from './AskPanel';
 import ListView from './ListView';
 import SidePanel from './SidePanel';
-import { SUGGESTIONS } from './intents';
-import { api, handle, openingView, refreshActivity, refreshSummary, resumeRecentRuns } from './orchestrator';
-import { post, store, useStore, type Status } from './store';
+import { api, openingView, refreshActivity, refreshSummary, resumeRecentRuns } from './orchestrator';
+import { post, store, type Status } from './store';
+
+const ACTIVITY_KEY = 'cc-activity-open';
 
 export default function AgentCenterPage() {
-    const messages = useStore(s => s.messages);
-    const busy = useStore(s => s.busy);
-    const view = useStore(s => s.view);
-    const status = useStore(s => s.status);
-    const summary = useStore(s => s.summary);
-    const [input, setInput] = useState('');
-    const bottom = useRef<HTMLDivElement>(null);
+    // The activity panel is closed until asked for; the choice is remembered on this device
+    const [activityOpen, setActivityOpen] = useState(false);
 
-    // A team page links here with ?view=list&team=<id> to open the Inbox for just that team
     useEffect(() => {
-        const q = new URLSearchParams(window.location.search);
-        if (q.get('view') === 'list' || q.get('team')) store.set({ view: 'list', team: q.get('team') });
+        try { setActivityOpen(localStorage.getItem(ACTIVITY_KEY) === '1'); } catch { /* storage blocked: stays closed */ }
+    }, []);
+
+    const toggleActivity = () => setActivityOpen(open => {
+        try { localStorage.setItem(ACTIVITY_KEY, open ? '0' : '1'); } catch { /* not remembered; still switches */ }
+        return !open;
+    });
+
+    // A link can open the Inbox for just one team: ?team=<id>
+    useEffect(() => {
+        const team = new URLSearchParams(window.location.search).get('team');
+        if (team) store.set({ team });
     }, []);
 
     // First load: where we are, what's set up, what's waiting
@@ -50,79 +55,28 @@ export default function AgentCenterPage() {
         return () => clearInterval(timer);
     }, []);
 
-    useEffect(() => { bottom.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages.length]);
-
-    const send = (text: string) => {
-        if (busy || !text.trim()) return;
-        setInput('');
-        handle(text);
-    };
+    const headerButton = 'flex items-center gap-1.5 rounded-lg border border-cc-border px-3 py-1.5 text-xs font-bold hover:border-cc-border-strong hover:text-cc-text';
 
     return (
         <div className="flex flex-col gap-4 lg:h-[calc(100vh-8rem)]">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                    <h1 className="text-xl font-black text-cc-text">Inbox and chat</h1>
-                    <p className="text-xs text-cc-muted">Ask what's waiting, approve changes and run agents.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    {status && (
-                        <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest ${status.environment === 'production'
-                            ? 'border border-emerald-500/25 bg-emerald-500/10 text-cc-good'
-                            : 'border border-amber-500/30 bg-amber-500/10 text-cc-warn'}`}>
-                            {status.environment === 'production' ? 'Live site' : status.environment === 'staging' ? 'Staging' : 'Local copy'}
-                        </span>
-                    )}
-                    <div className="flex rounded-lg border border-cc-border p-0.5 text-xs font-bold">
-                        <button onClick={() => store.set({ view: 'chat' })} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 ${view === 'chat' ? 'bg-cc-raised text-cc-text' : 'text-cc-muted'}`}>
-                            <MessageSquare className="h-3.5 w-3.5" />Chat
-                        </button>
-                        <button onClick={() => store.set({ view: 'list' })} className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 ${view === 'list' ? 'bg-cc-raised text-cc-text' : 'text-cc-muted'}`}>
-                            <Inbox className="h-3.5 w-3.5" />Inbox
-                            {summary && summary.total > 0 && (
-                                <span className="rounded-full bg-amber-500/20 px-1.5 text-[10px] text-cc-warn">{summary.total.toLocaleString('en-IN')}</span>
-                            )}
-                        </button>
-                    </div>
-                </div>
+            <div className="flex items-center justify-end gap-2">
+                <button onClick={toggleActivity} aria-pressed={activityOpen} className={`${headerButton} ${activityOpen ? 'bg-cc-raised text-cc-text' : 'text-cc-muted'}`}>
+                    <Activity className="h-3.5 w-3.5" />Activity
+                </button>
+                <button onClick={() => store.set({ askOpen: true })} className={`${headerButton} bg-blue-600 text-white hover:text-white`}>
+                    <MessageSquare className="h-3.5 w-3.5" />Ask
+                </button>
             </div>
 
-            <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-                {view === 'list' ? <ListView /> : (
-                    <section className="flex min-h-[70vh] min-w-0 flex-col rounded-2xl border border-cc-border bg-cc-bg lg:min-h-0">
-                        <div className="min-h-0 flex-1 space-y-4 overflow-y-auto p-4 sm:p-5">
-                            {messages.map(m => <MessageView key={m.id} message={m} />)}
-                            {busy && <Loader2 className="h-4 w-4 animate-spin text-cc-muted" />}
-                            <div ref={bottom} />
-                        </div>
-                        <div className="border-t border-cc-border p-3">
-                            <div className="mb-2 flex gap-2 overflow-x-auto pb-1">
-                                {SUGGESTIONS.map(s => (
-                                    <button key={s} onClick={() => send(s)} disabled={busy}
-                                        className="shrink-0 rounded-full border border-cc-border px-3 py-1 text-[11px] text-cc-muted hover:border-cc-border-strong hover:text-cc-text disabled:opacity-40">
-                                        {s}
-                                    </button>
-                                ))}
-                            </div>
-                            <form onSubmit={e => { e.preventDefault(); send(input); }} className="flex items-center gap-2">
-                                <input
-                                    value={input}
-                                    onChange={e => setInput(e.target.value)}
-                                    placeholder="What's waiting on me?"
-                                    className="min-w-0 flex-1 rounded-xl border border-cc-border bg-cc-panel px-4 py-2.5 text-sm text-cc-text placeholder:text-cc-faint focus:border-blue-600 focus:outline-none"
-                                />
-                                <button type="submit" disabled={busy || !input.trim()} aria-label="Send"
-                                    className="rounded-xl bg-blue-600 p-2.5 text-white hover:bg-blue-500 disabled:opacity-40">
-                                    <ArrowUp className="h-4 w-4" />
-                                </button>
-                            </form>
-                        </div>
-                    </section>
+            <div className={`grid min-h-0 flex-1 grid-cols-[minmax(0,1fr)] gap-4 ${activityOpen ? 'lg:grid-cols-[minmax(0,1fr)_320px]' : ''}`}>
+                <ListView />
+                {activityOpen && (
+                    <aside className="h-[420px] lg:h-auto lg:min-h-0">
+                        <SidePanel />
+                    </aside>
                 )}
-                <aside className="h-[420px] lg:h-auto lg:min-h-0">
-                    <SidePanel />
-                </aside>
             </div>
+            <AskPanel />
         </div>
     );
 }

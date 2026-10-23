@@ -16,6 +16,8 @@ export default function ListView() {
     const team = useStore(s => s.team);
 
     useEffect(() => { if (!store.get().summary) refreshSummary(); }, []);
+    // A team can be set after first render (from a ?team= link)
+    useEffect(() => { if (team) setMode('all'); }, [team]);
 
     const teamCount = (ids: string[]) => ids.reduce((n, id) => n + (summary?.byAgent?.[id] ?? 0), 0);
     const otherCount = summary?.byAgent
