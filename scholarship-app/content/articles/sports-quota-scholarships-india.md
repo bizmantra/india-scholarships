@@ -13,8 +13,10 @@ relatedScholarships:
   - "ongc-sports-scholarship-scheme"
   - "indianoil-sports-scholarship-scheme"
   - "aai-sports-scholarship-scheme"
+  - "target-olympic-podium-scheme"
 takeaways:
   - "Khelo India is the flagship government scheme, offering an annual stipend to identified athletes regardless of family income."
+  - "The Target Olympic Podium Scheme (TOPS) supports elite athletes who are medal prospects for the Olympics and Paralympics."
   - "PSU sports scholarships (ONGC, IndianOil, AAI) require state or national-level participation certificates, not just district-level events."
   - "Most sports scholarships can be combined with a regular academic scholarship since they come from separate quotas."
 checklist:
@@ -33,6 +35,7 @@ Athletes competing at the state or national level have several dedicated funding
 
 | Scheme | Eligible Level | Funded By |
 | :--- | :--- | :--- |
+| [Target Olympic Podium Scheme (TOPS)](/scholarships/target-olympic-podium-scheme) | Core and Development group athletes picked for Olympic and Paralympic medal prospects (allowance per official TOPS rules) | Government (Ministry of Youth Affairs & Sports) |
 | [Khelo India Sports Scholarship Scheme](/scholarships/khelo-india-sports-scholarship-scheme) | State to national level, identified talent pool | Government (Ministry of Youth Affairs & Sports) |
 | [ONGC Sports Scholarship Scheme](/scholarships/ongc-sports-scholarship-scheme) | National-level participants in select disciplines | ONGC CSR |
 | [IndianOil Sports Scholarship Scheme](/scholarships/indianoil-sports-scholarship-scheme) | State/national athletes in Olympic disciplines | IndianOil CSR |

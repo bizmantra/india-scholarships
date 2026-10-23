@@ -9,11 +9,13 @@ author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"
 targetMoneyLink: "/scholarships-level/phd"
 relatedScholarships:
+  - "csir-ugc-net-junior-research-fellowship-jrf"
   - "mahatma-jyothiba-phule-overseas-vidya-nidhi-bcebc"
   - "ambedkar-overseas-vidya-nidhi-scst"
   - "jn-tata-endowment-for-higher-education"
 takeaways:
   - "CSIR-NET (science) and UGC-NET (humanities/social sciences/commerce) are the two main national-level PhD fellowship qualifying exams."
+  - "Qualifying CSIR-UGC NET JRF awards ₹37,000 monthly for the first two years (JRF) and ₹42,000 monthly for subsequent years (SRF) plus allowances; confirm the latest rates in the official circular."
   - "PMRF (Prime Minister's Research Fellowship) offers a significantly higher stipend but is restricted to students from top-tier institutes (IITs, IISc, NITs, IIITs)."
   - "Category-specific overseas PhD funding schemes exist for SC/ST/OBC students, covering tuition and living costs abroad."
 checklist:
@@ -28,7 +30,7 @@ checklist:
 
 PhD funding in India runs through three primary channels, and picking the right one depends on your subject area and target institute tier:
 
-1. **CSIR-NET / UGC-NET JRF**: The standard national fellowship route — CSIR-NET for science subjects, UGC-NET for humanities, social sciences, and commerce.
+1. **CSIR-NET / UGC-NET JRF**: The standard national fellowship route — CSIR-NET for science subjects and UGC-NET for humanities, social sciences, and commerce. For the stipend and eligibility, see the [CSIR-UGC NET Junior Research Fellowship page](/scholarships/csir-ugc-net-junior-research-fellowship-jrf).
 2. **PMRF (Prime Minister's Research Fellowship)**: A high-value fellowship restricted to students entering PhD programs at IITs, IISc, NITs, and select IIITs, offering a substantially higher monthly stipend than standard NET-JRF.
 3. **Institute/Category-Specific Fellowships**: University-specific research assistantships, plus dedicated overseas PhD schemes for SC/ST/OBC students.
 
