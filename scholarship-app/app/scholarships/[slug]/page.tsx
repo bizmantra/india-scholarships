@@ -57,7 +57,13 @@ export async function generateStaticParams() {
 // worded like the searches that reach each page. One title per page, true whether or not the deadline has passed,
 // with no dates or amounts. {year} becomes the page's verification year. See plans/is-36-title-drafts-2026-10-13.md.
 const TITLE_OVERRIDES: Record<string, string> = {
-    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha {year}: Last Date & Apply',
+    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy': 'MMVY Portal Login & Scholarship {year}: Apply & Status',
+    'mukhyamantri-kanya-utthan-yojana-graduation': 'Kanya Utthan Yojana Graduation {year}: Status Check & Apply',
+    'jharkhand-e-kalyan-post-matric-scholarship': 'e-Kalyan Jharkhand {year}: Student Login, Status & Apply',
+    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha {year}: Amount & Apply',
+    'boc-scholarship-nirman-shramik-kalyan-yojana-odisha': 'BOC Nirman Shramik Scholarship Odisha {year}: Apply Online',
+    'mukhyamantri-vidyarthi-pratibha-yojna': 'Mukhyamantri Vidyarthi Pratibha Yojna Delhi {year}: Apply',
+    'bihar-student-credit-card-education-support-scheme': 'Bihar Student Credit Card (BSCC) {year}: Apply & Status',
     'up-post-matric-other-than-intermediate-general-sc-st': 'UP Post Matric (Other Than Inter) General/SC/ST {year}',
     'chief-minister-higher-education-scholarship-rajasthan': 'Rajasthan CM Scholarship {year}: Last Date & Eligibility',
     'up-post-matric-other-than-intermediate-obc': 'UP Post Matric (Other Than Inter) OBC {year}: Login',
@@ -92,6 +98,13 @@ const TITLE_OVERRIDES: Record<string, string> = {
 
 // Meta descriptions that name the other spellings people search. Others use the page's intro.
 const DESCRIPTION_OVERRIDES: Record<string, string> = {
+    'mukhyamantri-medhavi-vidyarthi-yojana-mmvy': 'MMVY (Mukhyamantri Medhavi Vidyarthi Yojana) in Madhya Pradesh: how to log in to the official portal, check status, eligibility and apply online.',
+    'mukhyamantri-kanya-utthan-yojana-graduation': 'Mukhyamantri Kanya Utthan Yojana (Graduation) Bihar: eligibility, documents, how to apply and check status on the official Medhasoft portal.',
+    'jharkhand-e-kalyan-post-matric-scholarship': 'Jharkhand e-Kalyan post-matric scholarship: how to log in, check application status, eligibility for SC/ST/BC students and last date.',
+    'krishi-vidya-nidhi-yojana-odisha': 'Krishi Vidya Nidhi Yojana Odisha scholarship for children of CM-KISAN beneficiaries: amount by course, eligibility, documents and how to apply.',
+    'boc-scholarship-nirman-shramik-kalyan-yojana-odisha': 'Odisha BOC (Nirman Shramik Kalyan Yojana) scholarship for construction workers\' children: eligibility, documents and how to apply online.',
+    'mukhyamantri-vidyarthi-pratibha-yojna': 'Delhi Mukhyamantri Vidyarthi Pratibha Yojna for Class 9-12: eligibility, marks criteria, last date and how to apply on Delhi e-District.',
+    'bihar-student-credit-card-education-support-scheme': 'Bihar Student Credit Card (BSCC) education loan up to ₹4 lakh: eligibility, DRCC verification, application status and how to apply online.',
     'pm-yashasvi-scholarship': 'PM YASASVI (also spelled PM Yashasvi) scholarship for OBC, EBC and DNT students: eligibility, amount, last date and how to apply on the National Scholarship Portal.',
     'kanyashree-prakalpa-scheme-west-bengal': 'Kanyashree Prakalpa (also spelled Kanyasree) for girls in West Bengal: K1 and K2 eligibility, amount, how to apply and check status on wbkanyashree.gov.in.',
     'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': 'Vidyasiri (also spelled Vidyasri) food and accommodation scholarship for backward class students in Karnataka: eligibility, amount, how to apply on SSP.',
