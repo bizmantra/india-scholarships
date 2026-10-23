@@ -7,6 +7,7 @@
     "build": "node scripts/pull-from-turso.js --if-configured && USE_LOCAL_DB=true next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --test lib/command-center/",
     "db:pull": "node scripts/pull-from-turso.js",
     "db:push": "node scripts/push-to-turso.js"
   },

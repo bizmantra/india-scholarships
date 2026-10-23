@@ -6,8 +6,9 @@ import { useParams } from 'next/navigation';
 import { ExternalLink, Loader2 } from 'lucide-react';
 import { agentsOfTeam } from '@/lib/command-center/agents';
 import { teamById } from '@/lib/command-center/teams';
+import InboxQueue from '../../agents/InboxQueue';
 import { api } from '../../agents/orchestrator';
-import type { InboxSummary } from '../../agents/store';
+import { store, useStore, type InboxSummary } from '../../agents/store';
 
 interface EventRow {
     id: number;
@@ -32,7 +33,8 @@ export default function TeamPage() {
     const { team: teamId } = useParams<{ team: string }>();
     const team = teamById(teamId);
     const agents = team ? agentsOfTeam(team.id) : [];
-    const [summary, setSummary] = useState<InboxSummary | null>(null);
+    // The shared summary: the queue below and this page's count both read it, so they change together after a decision
+    const summary = useStore(st => st.summary);
     const [events, setEvents] = useState<EventRow[]>([]);
     const [ready, setReady] = useState(true);
     const [error, setError] = useState('');
@@ -49,7 +51,7 @@ export default function TeamPage() {
                     api<{ events: EventRow[] }>(`activity?team=${team.id}&since=${encodeURIComponent(since)}&limit=200`),
                 ]);
                 if (!alive) return;
-                setSummary(s);
+                store.set({ summary: s });
                 setEvents(a.events);
                 setError('');
             } catch (e) {
@@ -82,7 +84,7 @@ export default function TeamPage() {
     const newest = events[0];
 
     return (
-        <div className="mx-auto flex max-w-4xl flex-col gap-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6">
             <div>
                 <h1 className="text-xl font-black text-cc-text">{team.label}</h1>
                 <p className="text-sm text-cc-muted">{team.goal}</p>
@@ -96,11 +98,10 @@ export default function TeamPage() {
             {error && <p className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-cc-bad">{error}</p>}
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <Link href={`/admin/agents?view=list&team=${team.id}`} className="rounded-xl border border-cc-border bg-cc-panel p-4 hover:border-cc-border-strong">
+                <div className="rounded-xl border border-cc-border bg-cc-panel p-4">
                     <div className="text-xs text-cc-muted">Waiting for you</div>
-                    <div className="mt-1 text-2xl font-black text-cc-text">{loading ? '…' : waiting.toLocaleString('en-IN')}</div>
-                    <div className="mt-1 text-[11px] text-blue-600">Open in Inbox</div>
-                </Link>
+                    <div className="mt-1 text-2xl font-black text-cc-text">{loading && !summary ? '…' : waiting.toLocaleString('en-IN')}</div>
+                </div>
                 <div className="rounded-xl border border-cc-border bg-cc-panel p-4">
                     <div className="text-xs text-cc-muted">Agents</div>
                     <div className="mt-1 text-2xl font-black text-cc-text">{agents.length}</div>
@@ -110,6 +111,13 @@ export default function TeamPage() {
                     <div className="mt-1 text-2xl font-black text-cc-text">{loading ? '…' : newest ? timeAgo(newest.created_at) : 'None in 30 days'}</div>
                 </div>
             </div>
+
+            {waiting > 0 && (
+                <section>
+                    <h2 className="mb-2 text-sm font-bold text-cc-text">Waiting for you</h2>
+                    <InboxQueue key={team.id} team={team.id} />
+                </section>
+            )}
 
             <section>
                 <h2 className="mb-2 text-sm font-bold text-cc-text">Agents</h2>

@@ -196,8 +196,9 @@ export async function decideFromHermes(ids: number[], action: 'approve' | 'rejec
 }
 
 export async function pendingForHermes(limit = 50) {
-    const { items } = await listProposals({ status: 'pending', limit: 200 } as any);
-    return (items as any[]).filter(p => String(p.agent).startsWith(AGENT_PREFIX)).slice(0, limit).map(p => ({
+    // Filtered in the query: the inbox holds hundreds of other agents' items that would otherwise fill the page first
+    const { items } = await listProposals({ status: 'pending', agentPrefix: AGENT_PREFIX, limit });
+    return (items as any[]).map(p => ({
         id: Number(p.id), agent: p.agent, title: p.scholarship_title, field: p.field, old: p.old_value, new: p.new_value,
         category: p.category, risk: p.risk, source: p.source_citation, evidence: safeJson(p.evidence_json),
         can_approve_from_hermes: approvalBlock(p) === null, why_not: approvalBlock(p),

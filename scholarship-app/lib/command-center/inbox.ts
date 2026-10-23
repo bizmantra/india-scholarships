@@ -82,10 +82,17 @@ export async function inboxSummary() {
     const count = (category?: string, risk?: string) => byGroup
         .filter(g => (!category || g.category === category) && (!risk || g.risk === risk))
         .reduce((n, g) => n + Number(g.n), 0);
+    // Pending items per agent, per category and risky: lets any team show counts that match its list
     const byAgent: Record<string, number> = {};
-    for (const r of rows<{ agent: string; n: number }>(await client.execute(
-        "SELECT agent, COUNT(*) AS n FROM agent_proposals WHERE status = 'pending' GROUP BY agent"))) {
-        byAgent[r.agent] = Number(r.n);
+    const byAgentCategory: Record<string, Record<string, number>> = {};
+    const byAgentRisky: Record<string, number> = {};
+    for (const r of rows<{ agent: string; category: string; risk: string; n: number }>(await client.execute(
+        "SELECT agent, category, risk, COUNT(*) AS n FROM agent_proposals WHERE status = 'pending' GROUP BY agent, category, risk"))) {
+        const n = Number(r.n);
+        byAgent[r.agent] = (byAgent[r.agent] ?? 0) + n;
+        byAgentCategory[r.agent] = byAgentCategory[r.agent] ?? {};
+        byAgentCategory[r.agent][r.category] = (byAgentCategory[r.agent][r.category] ?? 0) + n;
+        if (r.risk === 'high') byAgentRisky[r.agent] = (byAgentRisky[r.agent] ?? 0) + n;
     }
     const approvedUnpublished = Number((await client.execute(
         "SELECT COUNT(*) AS n FROM agent_proposals WHERE kind = 'new_scholarship' AND status = 'approved'")).rows[0].n);
@@ -105,10 +112,12 @@ export async function inboxSummary() {
         riskyAmounts: count('amount_change', 'high'),
         approvedUnpublished,
         byAgent,
+        byAgentCategory,
+        byAgentRisky,
     };
 }
 
-export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; agents?: string[]; notAgents?: string[]; limit?: number; offset?: number } = {}) {
+export async function listProposals(opts: { category?: string; risk?: string; status?: string; ids?: number[]; agents?: string[]; notAgents?: string[]; agentPrefix?: string; limit?: number; offset?: number } = {}) {
     const where = ['p.status = ?'];
     const args: any[] = [opts.status || 'pending'];
     if (opts.category) { where.push('p.category = ?'); args.push(opts.category); }
@@ -118,6 +127,11 @@ export async function listProposals(opts: { category?: string; risk?: string; st
         // A team with no agents matches nothing (instead of everything)
         where.push(opts.agents.length ? `p.agent IN (${opts.agents.map(() => '?').join(',')})` : '0 = 1');
         args.push(...opts.agents);
+    }
+    if (opts.agentPrefix) {
+        // Escaped so a prefix cannot act as a wildcard
+        where.push("p.agent LIKE ? ESCAPE '\\'");
+        args.push(opts.agentPrefix.replace(/[\\%_]/g, c => '\\' + c) + '%');
     }
     if (opts.notAgents?.length) {
         // Items from agents that belong to no team (the "Other" filter)
