@@ -389,7 +389,7 @@ const TIER_LABELS: Record<string, string> = {
     official: 'official site', provider: 'provider site', platform: 'application platform', aggregator: 'listing site', news: 'news site',
 };
 
-function EvidenceLine({ json, field }: { json: string | null; field: string | null }) {
+export function EvidenceLine({ json, field }: { json: string | null; field: string | null }) {
     if (!json) return <p className="mt-1 text-[11px] text-cc-faint">No evidence recorded (proposed before evidence was required)</p>;
     let e: any;
     try { e = JSON.parse(json); } catch { return null; }

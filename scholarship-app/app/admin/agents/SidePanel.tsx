@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { handle, CATEGORY_LABELS } from './orchestrator';
-import { useStore } from './store';
+import { store, useStore } from './store';
 
 const kindColor = { ok: 'text-cc-good', warn: 'text-cc-warn', error: 'text-cc-bad', tool: 'text-cc-link', info: 'text-cc-muted' } as const;
 
@@ -56,7 +56,7 @@ export default function SidePanel() {
                                 </div>
                             </div>
                         )}
-                        <button onClick={() => handle("What's waiting on me?")} className="w-full rounded-lg border border-cc-border-strong px-3 py-2 font-bold text-cc-text hover:border-cc-border-strong">
+                        <button onClick={() => { store.set({ askOpen: true }); handle("What's waiting on me?"); }} className="w-full rounded-lg border border-cc-border-strong px-3 py-2 font-bold text-cc-text hover:border-cc-border-strong">
                             Review in chat
                         </button>
                         {status && (

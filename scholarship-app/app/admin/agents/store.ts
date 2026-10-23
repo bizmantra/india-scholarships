@@ -36,6 +36,9 @@ export interface InboxSummary {
     approvedUnpublished: number;
     // Pending items per agent, used for the team counts
     byAgent?: Record<string, number>;
+    // Pending items per agent by category, and risky ones per agent, for counts that match each team's list
+    byAgentCategory?: Record<string, Record<string, number>>;
+    byAgentRisky?: Record<string, number>;
 }
 
 export interface Status {
@@ -53,7 +56,8 @@ interface State {
     summary: InboxSummary | null;
     status: Status | null;
     busy: boolean;
-    view: 'chat' | 'list';
+    // The Ask panel (chat) is closed until opened, from the Ask button or a "Review in chat" link
+    askOpen: boolean;
     // Team filter for the Inbox list (null = all teams)
     team: string | null;
     // Bumped after any decision so open cards and lists reload
@@ -61,7 +65,7 @@ interface State {
 }
 
 // ---------- A tiny external store ----------
-let state: State = { messages: [], log: [], summary: null, status: null, busy: false, view: 'chat', team: null, revision: 0 };
+let state: State = { messages: [], log: [], summary: null, status: null, busy: false, askOpen: false, team: null, revision: 0 };
 const listeners = new Set<() => void>();
 
 export const store = {
