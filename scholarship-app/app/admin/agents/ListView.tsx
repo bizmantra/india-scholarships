@@ -7,6 +7,7 @@ import { TEAMS } from '@/lib/command-center/teams';
 import { afterDecision, api, CATEGORY_LABELS, refreshSummary, short } from './orchestrator';
 import { LABELS as SA_LABELS } from '@/scripts/lib/sa-inbox';
 import { store, useStore } from './store';
+import NeedsYou from './NeedsYou';
 
 // Link to the page a proposal is about: the scholarship page, or the Study Abroad page from the payload
 function pageHref(r: { kind: string; slug?: string | null; payload_json?: string | null }) {
@@ -36,6 +37,8 @@ const PAGE = 50;
 // The same inbox as the chat, as a plain table. Uses the same decide endpoint.
 export default function ListView() {
     const [category, setCategory] = useState('date_change');
+    // "Needs you" is the short list that matters; "Everything" is the full table. A team page opens straight into the table.
+    const [mode, setMode] = useState<'needs' | 'all'>(store.get().team ? 'all' : 'needs');
     const [page, setPage] = useState(0);
     const [rows, setRows] = useState<Row[]>([]);
     const [total, setTotal] = useState(0);
@@ -80,8 +83,27 @@ export default function ListView() {
         : 0;
     const pickTeam = (id: string | null) => { store.set({ team: id }); setPage(0); setMessage(''); };
 
+    const modeToggle = (
+        <div className="flex gap-1 text-xs">
+            {([['needs', 'Needs you'], ['all', `Everything${summary ? ` (${summary.total.toLocaleString('en-IN')})` : ''}`]] as const).map(([id, label]) => (
+                <button key={id} onClick={() => setMode(id)}
+                    className={`rounded-full px-3 py-1 font-bold ${mode === id ? 'bg-blue-600 text-white' : 'border border-cc-border-strong text-cc-muted hover:text-cc-text'}`}>{label}</button>
+            ))}
+        </div>
+    );
+
+    if (mode === 'needs') {
+        return (
+            <div className="flex h-full min-h-0 flex-col gap-3">
+                {modeToggle}
+                <NeedsYou onShowAll={() => setMode('all')} />
+            </div>
+        );
+    }
+
     return (
         <div className="flex h-full min-h-0 flex-col gap-3">
+            {modeToggle}
             <div className="flex flex-wrap items-center gap-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-cc-faint">Team</span>
                 {[

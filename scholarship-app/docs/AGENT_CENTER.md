@@ -19,7 +19,13 @@ Typed or tapped from the suggestion chips. Matching is by fixed patterns (`app/a
 | What did agents do today? | Today's agent runs, their results and your decisions |
 | Which agents do what? | The agent list with "who does it without the agent" |
 
-The **Inbox** tab (top right, with the number waiting) shows the same inbox as a table with checkboxes.
+The **Inbox** tab (top right, with the number waiting) opens on **Needs you**: the few items worth a decision now, each with its evidence
+(verdict, score, source link and the quoted sentence) beside Approve and Reject. A second button, **Everything**, shows the whole inbox as a table with checkboxes.
+
+**Needs you** (`needsYou()` in `lib/command-center/inbox.ts`, `GET /api/admin/command/inbox?view=needs`) lists: *Closing soon* (a proposed deadline within the
+next 3 weeks, nearest first), *Weak evidence* (other deadline changes the agent was unsure about, busiest pages first) and *New scholarships* found by the scout.
+Everything else is counted, not listed. The table and the chat cards sort by the live deadline, or by the proposed date when the live one is blank, so
+upcoming deadlines come first and weak-evidence items no longer sit above the rest.
 
 ## How it works
 
