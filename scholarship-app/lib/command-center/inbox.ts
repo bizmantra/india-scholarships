@@ -42,6 +42,8 @@ export interface Proposal {
     live_deadline?: string | null;
     clicks?: number | null;
     days_to_deadline?: number | null;
+    // For a deadline proposal: days from today to the PROPOSED date (the live deadline may be blank)
+    proposed_days?: number | null;
 }
 
 export interface DecideResult {
@@ -53,15 +55,22 @@ export interface DecideResult {
 const LIST_SQL = `
     SELECT p.*, s.slug, s.state, s.deadline AS live_deadline, COALESCE(g.clicks, 0) AS clicks,
            CASE WHEN s.deadline GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
-                THEN CAST(julianday(s.deadline) - julianday(date('now')) AS INTEGER) END AS days_to_deadline
+                THEN CAST(julianday(s.deadline) - julianday(date('now')) AS INTEGER) END AS days_to_deadline,
+           CASE WHEN p.field = 'deadline' AND p.new_value GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
+                THEN CAST(julianday(p.new_value) - julianday(date('now')) AS INTEGER) END AS proposed_days
     FROM agent_proposals p
     LEFT JOIN scholarships s ON s.id = p.scholarship_id
     LEFT JOIN gsc_traffic_cache g ON g.slug = s.slug`;
 
-// Most urgent first: deadlines coming up soonest (within 60 days), then pages with the most search traffic
+// Most urgent first: deadlines coming up soonest (within 60 days, using the live deadline, or the proposed date when
+// the live one is blank), then ones that passed in the last 14 days, then pages with the most search traffic.
+// Weak-evidence ("risky") items come after the others at the same urgency, so they no longer bury the good ones.
 const URGENCY_ORDER = `
-    ORDER BY CASE p.risk WHEN 'high' THEN 0 ELSE 1 END,
-             CASE WHEN days_to_deadline BETWEEN -14 AND 60 THEN days_to_deadline ELSE 999 END,
+    ORDER BY CASE
+               WHEN COALESCE(days_to_deadline, proposed_days) BETWEEN 0 AND 60 THEN COALESCE(days_to_deadline, proposed_days)
+               WHEN COALESCE(days_to_deadline, proposed_days) BETWEEN -14 AND -1 THEN 100 - COALESCE(days_to_deadline, proposed_days)
+               ELSE 999 END,
+             CASE p.risk WHEN 'high' THEN 1 ELSE 0 END,
              clicks DESC, p.id`;
 
 export async function inboxSummary() {
@@ -122,6 +131,43 @@ export async function listProposals(opts: { category?: string; risk?: string; st
     });
     const countRes = await getClient().execute({ sql: `SELECT COUNT(*) AS n FROM agent_proposals p WHERE ${where.join(' AND ')}`, args });
     return { items: rows<Proposal>(res), total: Number(countRes.rows[0].n) };
+}
+
+// What the owner can read at a glance on a "Needs you" card
+export interface Evidence { verdict?: string; reason?: string; score?: number; band?: string; source?: string; quote?: string; tier?: string }
+export type NeedsItem = Proposal & { evidence: Evidence | null };
+
+function evidenceOf(p: Proposal): Evidence | null {
+    try {
+        const e = JSON.parse(p.evidence_json || 'null');
+        return e ? { verdict: e.verdict, reason: e.reason, score: e.score, band: e.band, source: e.source, quote: e.quote, tier: e.tier } : null;
+    } catch { return null; }
+}
+
+/**
+ * The few pending items worth a person's attention now, instead of the whole inbox:
+ *   closing   deadline proposals whose proposed date is within the next 3 weeks (nearest first)
+ *   weak      other deadline proposals with weak evidence, busiest pages first (check the source before approving)
+ *   newFinds  scholarships the scout found
+ * Everything else is counted, not listed.
+ */
+export async function needsYou() {
+    const client = getClient();
+    const run = async (where: string, order: string, limit: number) => {
+        const res = await client.execute({ sql: `SELECT * FROM (${LIST_SQL} WHERE p.status = 'pending' AND ${where}) p ORDER BY ${order} LIMIT ${limit}`, args: [] });
+        return rows<Proposal>(res).map(p => ({ ...p, evidence: evidenceOf(p) })) as NeedsItem[];
+    };
+    const closing = await run(
+        "p.kind = 'field_change' AND p.field = 'deadline' AND p.new_value GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND CAST(julianday(p.new_value) - julianday(date('now')) AS INTEGER) BETWEEN 0 AND 21",
+        'proposed_days ASC, clicks DESC', 30);
+    const closingIds = closing.map(p => Number(p.id));
+    const weak = await run(
+        `p.kind = 'field_change' AND p.field = 'deadline' AND p.risk = 'high'${closingIds.length ? ` AND p.id NOT IN (${closingIds.join(',')})` : ''}`,
+        'clicks DESC, p.id', 20);
+    const newFinds = await run("p.kind = 'new_scholarship'", 'p.id DESC', 20);
+    const shown = new Set([...closing, ...weak, ...newFinds].map(p => Number(p.id)));
+    const total = Number((await client.execute("SELECT COUNT(*) AS n FROM agent_proposals WHERE status = 'pending'")).rows[0].n);
+    return { closing, weak, newFinds, shown: shown.size, total, rest: total - shown.size };
 }
 
 // All pending ids in a group, for bulk commands ("approve all wording updates")
