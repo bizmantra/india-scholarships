@@ -70,6 +70,8 @@ Ask your institute's research or fellowship cell for the exact format. They hand
 | **System** | CSIR's fellowship management system, run through your institute | UGC web portal run with Canara Bank |
 | **Who registers you** | Your institute | Your institute links your record using maker/checker logins |
 
+Both agencies revised the stipend in 2023: ₹37,000 a month for the first two years (JRF) and ₹42,000 a month after upgrade to SRF. The yearly contingency grant differs between CSIR and UGC, so read the figure in your own award letter.
+
 For UGC awards, you do not need a Canara Bank account. The fellowship goes to the bank account you give, in your own name. Make sure the account is linked to Aadhaar and your name matches your award letter.
 
 ---
