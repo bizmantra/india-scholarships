@@ -77,6 +77,8 @@ const DEFAULT_SETTINGS = [
     ['deadline-freshness', 'window_days_after', 30, 'Check deadlines coming up within this many days'],
     ['weekly-enrichment', 'enabled', true, 'Run on schedule'],
     ['scholarship-scout', 'enabled', true, 'Run on schedule'],
+    ['hermes-bridge', 'enabled', false, 'Let Hermes add proposals and the owner approve them from Hermes (kill switch)'],
+    ['hermes-bridge', 'max_approvals_per_day', 20, 'Most approvals that can go live from Hermes in one day'],
     ['scholarship-scout', 'max_candidates', 8, 'New scholarships researched per run'],
     ['scholarship-scout', 'channels', ['demand', 'web', 'portals', 'csr', 'news', 'coverage'], 'Discovery channels used'],
     ['morning-briefing', 'enabled', true, 'Send the daily briefing email'],
