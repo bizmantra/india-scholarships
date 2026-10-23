@@ -36,6 +36,9 @@ export interface InboxSummary {
     approvedUnpublished: number;
     // Pending items per agent, used for the team counts
     byAgent?: Record<string, number>;
+    // Pending items per agent by category, and risky ones per agent, for counts that match each team's list
+    byAgentCategory?: Record<string, Record<string, number>>;
+    byAgentRisky?: Record<string, number>;
 }
 
 export interface Status {

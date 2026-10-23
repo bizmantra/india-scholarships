@@ -82,10 +82,17 @@ export async function inboxSummary() {
     const count = (category?: string, risk?: string) => byGroup
         .filter(g => (!category || g.category === category) && (!risk || g.risk === risk))
         .reduce((n, g) => n + Number(g.n), 0);
+    // Pending items per agent, per category and risky: lets any team show counts that match its list
     const byAgent: Record<string, number> = {};
-    for (const r of rows<{ agent: string; n: number }>(await client.execute(
-        "SELECT agent, COUNT(*) AS n FROM agent_proposals WHERE status = 'pending' GROUP BY agent"))) {
-        byAgent[r.agent] = Number(r.n);
+    const byAgentCategory: Record<string, Record<string, number>> = {};
+    const byAgentRisky: Record<string, number> = {};
+    for (const r of rows<{ agent: string; category: string; risk: string; n: number }>(await client.execute(
+        "SELECT agent, category, risk, COUNT(*) AS n FROM agent_proposals WHERE status = 'pending' GROUP BY agent, category, risk"))) {
+        const n = Number(r.n);
+        byAgent[r.agent] = (byAgent[r.agent] ?? 0) + n;
+        byAgentCategory[r.agent] = byAgentCategory[r.agent] ?? {};
+        byAgentCategory[r.agent][r.category] = (byAgentCategory[r.agent][r.category] ?? 0) + n;
+        if (r.risk === 'high') byAgentRisky[r.agent] = (byAgentRisky[r.agent] ?? 0) + n;
     }
     const approvedUnpublished = Number((await client.execute(
         "SELECT COUNT(*) AS n FROM agent_proposals WHERE kind = 'new_scholarship' AND status = 'approved'")).rows[0].n);
@@ -105,6 +112,8 @@ export async function inboxSummary() {
         riskyAmounts: count('amount_change', 'high'),
         approvedUnpublished,
         byAgent,
+        byAgentCategory,
+        byAgentRisky,
     };
 }
 
