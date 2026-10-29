@@ -34,7 +34,7 @@ jobs:
         working-directory: scholarship-app
         run: node --test scripts/study-abroad/verify-sources.test.mjs
 
-      - name: Pre-flight: check the sample proposals file if one is committed
+      - name: "Pre-flight: check the sample proposals file if one is committed"
         working-directory: scholarship-app
         run: |
           if [ -f scripts/study-abroad/proposals/sample-check.json ]; then
