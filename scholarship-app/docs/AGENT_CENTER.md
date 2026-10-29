@@ -46,11 +46,20 @@ upcoming deadlines come first and weak-evidence items no longer sit above the re
 `/admin/backlog` is the owner's list of what to pick up next, read from the Turso table `backlog_tasks`
 (`lib/command-center/backlog.ts`, API `GET/PATCH/POST /api/admin/command/backlog`).
 
-- **Tabs** come from the `category` column (`dev`, `content`, and any new category that has open items, e.g. `study-abroad`
-  with `SA-` ids). A new category needs no code: add an item with that category and its tab appears.
+- **Teams** are the `category` column. Seven fixed teams (`TEAMS` in `backlog-types.ts`): Dev, Content research, Content creation,
+  Data, Strategy, SEO, Growth / Distribution. Older categories (`content`, `study-abroad`) keep their tab while they have open items;
+  each card has a Team menu to move it to a team. A new item's id prefix comes from `PREFIXES` in `backlog.ts`.
+- **Statuses**: Backlog, Ready (queued for an agent), In Progress, Review (an agent says it is finished), Done, Parked.
+  An item in Review counts as waiting on the owner and goes stale after 7 days (Ready 14, In Progress 14, Backlog 30).
+- **Assignee** (Owner, Claude, Antigravity, Codex) and **Link** (a pull request address or a plan file path) per item. Both live in the
+  side table `cc_backlog_meta`; the columns are added on first use if the table predates them.
+- **Board** (`/admin/backlog/board`, List | Board switch at the top of both pages): columns Backlog, Ready, In Progress, Review and
+  Done (finished in the last 14 days); Parked can be shown. Drag a card to another column or use its Move to menu (works on phones and
+  with a keyboard). Moving to Done asks first. A failed save puts the card back. Filters: team, assignee, waiting on me.
+  Drag and drop uses `@dnd-kit/core`; the sorting and filter rules are in `backlog-types.ts` (`boardColumns`) with tests.
 - **Order** (`lib/command-center/backlog-types.ts`, `buildSections`): waiting-on-you items first, then "Do next" (the top five
   open items): due within a week first, then Critical → Low, then In Progress before not started, ties by item number.
-- **Stale** tag: In Progress untouched for 14 days, Backlog for 30. "Touched" means changed on this page.
+- **Stale** tag: see the limits above. "Touched" means changed on this page.
 - Items can be started, finished, parked, flagged "waiting on me", given a due date and a "where we left off" note.
 - Items marked Done are hidden and counted. Merged or closed items from the 2026-10-11 cleanup are Done with a note.
 - **Morning briefing**: the 8am briefing (`scripts/morning-briefing.js`, `scripts/lib/backlog-briefing.js`) adds the three items
@@ -80,6 +89,22 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
   Actions read/write, Contents read-only. Without it, approvals still work but agents can't be started from chat.
 - The agent inbox tables are created by the first agent run after they were introduced. Until then the page says so.
   The command center never creates them itself, so an agent's first push can't clash with rows written here.
+
+## Agent backlog API
+
+Claude, Antigravity and Codex read their queue and report progress on the backlog without a browser session. Code:
+`lib/command-center/backlog-agent.ts` (database) and `backlog-agent-rules.ts` (the rules, tested), route `/api/agents/backlog`
+(outside `/api/admin`, guarded by a bearer token).
+
+- **Off by default.** Turn it on with `INSERT OR REPLACE INTO agent_settings (agent, key, value_json) VALUES ('backlog-api', 'enabled', 'true')`
+  on the target database; set it to `'false'` to switch it off again. The token is the env var `AGENT_BACKLOG_TOKEN` (not set = always refused).
+- `GET ?agent=Claude` lists that agent's open items (`&all=1` lists every open item). `POST` adds an item to Backlog (at most 20 a day
+  per agent; a note "Added by <agent>" is appended). `PATCH` moves one of the agent's own items.
+- **What an agent can do:** move its own Ready item to In Progress, move its own In Progress item to Review (a link is required),
+  and edit the note and link. **It cannot:** set Done, Parked or Backlog, change impact, due date, team or assignee, or touch an item
+  assigned to someone else. Only the owner moves work to Ready and assigns it. Review is the owner's checkpoint.
+- Every agent write is recorded in `agent_events` (agent `backlog-api`, actor `agent:<name>`).
+- The rule agents follow is in the repo's `AGENTS.md`.
 
 ## Light and dark mode
 

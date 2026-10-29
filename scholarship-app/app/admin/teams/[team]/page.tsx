@@ -88,6 +88,7 @@ export default function TeamPage() {
             <div>
                 <h1 className="text-xl font-black text-cc-text">{team.label}</h1>
                 <p className="text-sm text-cc-muted">{team.goal}</p>
+                <Link href={`/admin/backlog/board?team=${team.id}`} className="mt-1 inline-block text-xs font-bold text-blue-600 hover:underline">Open this team&apos;s backlog board</Link>
             </div>
 
             {!ready && (
