@@ -1,6 +1,6 @@
 # Command Center: work board (kanban) and AI assistant
 
-Written 2026-10-29. Status: PLAN, decisions made 2026-10-29 (see Decisions). Not yet built.
+Written 2026-10-29. Status: IN PROGRESS. Decisions made 2026-10-29 (see Decisions). Built on branch `claude/hopeful-sagan-6ytmp9`: Part 1 (data and teams), Part 2 (board, with drag and drop), the sidebar teams, and Part 4 (agent API and the `AGENTS.md` rule). Not built: Part 3 (Gemini assistant) and Part 5 (freeform research jobs). No pull request yet.
 Replaces the idea of moving work tracking to Notion. Notion keeps the Decision Log and Atlas; the live work queue lives here.
 
 ## Goal

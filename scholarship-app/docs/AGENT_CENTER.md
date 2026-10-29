@@ -90,6 +90,22 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
 - The agent inbox tables are created by the first agent run after they were introduced. Until then the page says so.
   The command center never creates them itself, so an agent's first push can't clash with rows written here.
 
+## Agent backlog API
+
+Claude, Antigravity and Codex read their queue and report progress on the backlog without a browser session. Code:
+`lib/command-center/backlog-agent.ts` (database) and `backlog-agent-rules.ts` (the rules, tested), route `/api/agents/backlog`
+(outside `/api/admin`, guarded by a bearer token).
+
+- **Off by default.** Turn it on with `INSERT OR REPLACE INTO agent_settings (agent, key, value_json) VALUES ('backlog-api', 'enabled', 'true')`
+  on the target database; set it to `'false'` to switch it off again. The token is the env var `AGENT_BACKLOG_TOKEN` (not set = always refused).
+- `GET ?agent=Claude` lists that agent's open items (`&all=1` lists every open item). `POST` adds an item to Backlog (at most 20 a day
+  per agent; a note "Added by <agent>" is appended). `PATCH` moves one of the agent's own items.
+- **What an agent can do:** move its own Ready item to In Progress, move its own In Progress item to Review (a link is required),
+  and edit the note and link. **It cannot:** set Done, Parked or Backlog, change impact, due date, team or assignee, or touch an item
+  assigned to someone else. Only the owner moves work to Ready and assigns it. Review is the owner's checkpoint.
+- Every agent write is recorded in `agent_events` (agent `backlog-api`, actor `agent:<name>`).
+- The rule agents follow is in the repo's `AGENTS.md`.
+
 ## Light and dark mode
 
 The sun/moon button in the header (next to the logo on phones) switches the admin between light and dark. The choice is
