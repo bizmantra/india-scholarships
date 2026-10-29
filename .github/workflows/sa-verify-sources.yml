@@ -36,7 +36,12 @@ jobs:
 
       - name: Pre-flight: check the sample proposals file if one is committed
         working-directory: scholarship-app
-        run: test -f scripts/study-abroad/proposals/sample-check.json && node scripts/study-abroad/check-proposals.mjs scripts/study-abroad/proposals/sample-check.json || echo "no sample proposals file"
+        run: |
+          if [ -f scripts/study-abroad/proposals/sample-check.json ]; then
+            node scripts/study-abroad/check-proposals.mjs scripts/study-abroad/proposals/sample-check.json
+          else
+            echo "no sample proposals file committed"
+          fi
 
       - name: Check registered facts against official pages
         working-directory: scholarship-app
