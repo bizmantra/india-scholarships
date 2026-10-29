@@ -179,7 +179,7 @@ Stop relying on AI to confirm facts. A registered fact passes only if its exact 
 
 ### Design
 - `data/study-abroad/source-checks.json`: one entry per verified fact (`url`, `quote`, `value`, `checked_on`). A person reads the page and adds the entry; code checks it from then on.
-- `data/study-abroad/official-domains.json`: the only hosts allowed. Subdomains count; lookalikes do not.
+- `data/study-abroad/official-domains.json`: the only hosts allowed (51 domains: government and embassy sites, plus the universities own domains taken from existing rows, judged by domain name). Subdomains count; lookalikes do not. Providers are never added.
 - `scripts/lib/source-verify.mjs`: pure functions (normalise, strip HTML, host check, validate, check). No AI, no database.
 - `scripts/study-abroad/verify-sources.mjs`: CLI. Exit 1 on a mismatch or a disallowed host. A page that cannot be fetched is `unverifiable` (reported, not failed; `--strict` fails it).
 - `.github/workflows/sa-verify-sources.yml`: on PRs that touch these files and every Monday.

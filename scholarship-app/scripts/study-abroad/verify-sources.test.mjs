@@ -133,3 +133,13 @@ test('checkProposals fails a fact whose source is a provider, and only warns for
     assert.equal(r.warnings.length, 1);
     assert.equal(r.warnings[0].key, 'tum');
 });
+
+// Guard: the committed allowlist must not admit the commercial providers we rejected.
+import { readFileSync } from 'node:fs';
+test('the official allowlist excludes commercial blocked-account providers', () => {
+    const allowedList = JSON.parse(readFileSync(new URL('../../data/study-abroad/official-domains.json', import.meta.url), 'utf8')).domains;
+    for (const url of ['https://www.expatrio.com/blocked-account', 'https://www.fintiba.com/blocked-account-germany', 'https://help.coracle.de/']) {
+        assert.equal(hostAllowed(url, allowedList), false, url);
+    }
+    assert.equal(hostAllowed('https://www.tum.de/en/studies/fees', allowedList), true);
+});
