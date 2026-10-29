@@ -127,3 +127,7 @@ decide them. Code: `lib/command-center/hermes-bridge.ts`, route `POST /api/herme
   Hermes cannot approve: anything `high` risk, date or amount changes without a source link and quote, proposals from other agents,
   and anything past `max_approvals_per_day` (default 20). Those must be approved in the Command Center.
 - Study Abroad changes and new scholarships are not supported by the bridge yet.
+
+### Quote check (Hermes bridge)
+
+When Hermes proposes a change, the server opens the source page itself and records `quote_check` in the evidence: `found`, `not_found` (the proposal becomes high risk) or `unchecked` (page needs scripts, is a PDF, or could not be fetched). Date and amount changes can only be approved from Hermes when the check says `found`; otherwise approve them in the Command Center after reading the page. Added after proposal #2825, whose quote was stitched from two different schemes.

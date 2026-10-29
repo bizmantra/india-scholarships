@@ -10,12 +10,15 @@
  *   - off by default: agent_settings hermes-bridge/enabled must be true (the kill switch)
  *   - staging and local only, unless HERMES_BRIDGE_ALLOW_PRODUCTION=1 is set on purpose
  *   - proposals: only existing scholarships' fields that agents may change; the old value is read from the database
+ *   - proposals: the server re-reads the source page and records whether the quote is really on it (quote_check);
+ *     a quote that is not there makes the proposal high risk
  *   - approvals: only hermes-* proposals; never risk 'high'; date and amount changes need an official source link
  *     and a quote; at most max_approvals_per_day per day; every approval is undoable from the Command Center
  */
 import { getClient } from '@/lib/db';
 import * as rules from '@/scripts/lib/agent-inbox';
 import { decide, listProposals } from './inbox';
+import { checkQuote } from './quote-check';
 import { environment, inboxReady, rows } from './server';
 
 export const BRIDGE_ACTOR = 'owner-via-hermes';
@@ -101,17 +104,20 @@ export async function propose(input: ProposeInput): Promise<ProposeResult> {
     });
     if (rejected.rows.length) return { status: 'rejected_before' };
 
+    // Look at the page ourselves: an agent's quote is only a claim until it is found on the source page
+    const quoteCheck = input.quote ? await checkQuote(source, input.quote) : 'unchecked';
     const evidence = JSON.stringify({
-        verdict: input.confidence === 'low' ? 'uncertain' : 'official',
+        verdict: input.confidence === 'low' || quoteCheck === 'not_found' ? 'uncertain' : 'official',
         source,
         quote: input.quote || null,
+        quote_check: quoteCheck,
         seen_on: input.seen_on || null,
         confidence: input.confidence || null,
         proposed_by: agent,
     });
     // Without a quote the owner cannot check the claim from the card, so it is marked for a careful look
     const classified = rules.classify(field, before, after);
-    const risk = !input.quote || input.confidence === 'low' ? 'high' : classified.risk;
+    const risk = !input.quote || input.confidence === 'low' || quoteCheck === 'not_found' ? 'high' : classified.risk;
 
     const pending = rows<{ id: number; new_value: string }>(await client.execute({
         sql: "SELECT id, new_value FROM agent_proposals WHERE kind = 'field_change' AND scholarship_id = ? AND field = ? AND status = 'pending' ORDER BY id DESC",
@@ -155,8 +161,10 @@ export function approvalBlock(p: { agent: string; kind: string; category: string
     if (p.risk === 'high') return 'High-risk change: approve it in the Command Center';
     if (p.category === 'date_change' || p.category === 'amount_change') {
         let quote: string | null = null;
-        try { quote = JSON.parse(p.evidence_json || '{}').quote || null; } catch { /* no evidence */ }
+        let check: string | null = null;
+        try { const ev = JSON.parse(p.evidence_json || '{}'); quote = ev.quote || null; check = ev.quote_check || null; } catch { /* no evidence */ }
         if (!p.source_citation || !quote) return 'Date and amount changes need a source link and a quote from the page';
+        if (check !== 'found') return 'The quote could not be found on the source page by the server: approve it in the Command Center after checking the page';
     }
     return null;
 }
