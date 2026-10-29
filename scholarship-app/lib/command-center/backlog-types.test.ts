@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildSections, isOpen, sortByPriority, staleDays, TEAM_IDS, categoryLabel, type BacklogItem } from './backlog-types.ts';
+import {
+    boardColumns, buildSections, categoryLabel, isOpen, matchesFilters, moveChange, NO_FILTERS, sortByPriority, staleDays, TEAM_IDS,
+    type BacklogItem,
+} from './backlog-types.ts';
 
 const NOW = Date.parse('2026-10-30T00:00:00Z');
 
@@ -51,4 +54,44 @@ test('the seven teams are fixed and labelled; older categories get a readable la
     assert.equal(categoryLabel('growth'), 'Growth / Distribution');
     assert.equal(categoryLabel('content'), 'Content (unsorted)');
     assert.equal(categoryLabel('study-abroad'), 'Study abroad');
+});
+
+test('board: Done shows only the last 14 days, newest first; Parked is its own list', () => {
+    const cols = boardColumns([
+        item({ id: 'IS-1', status: 'Done', updated_at: '2026-10-29 10:00:00' }),
+        item({ id: 'IS-2', status: 'Done', updated_at: '2026-10-30 00:00:00' }),
+        item({ id: 'IS-3', status: 'Done', updated_at: '2026-10-10 00:00:00' }),
+        item({ id: 'IS-4', status: 'Parked' }),
+    ], NO_FILTERS, NOW);
+    assert.deepEqual(cols.Done.map(i => i.id), ['IS-2', 'IS-1']);
+    assert.deepEqual(cols.Parked.map(i => i.id), ['IS-4']);
+});
+
+test('board: open columns hold their status and follow the Backlog order', () => {
+    const cols = boardColumns([
+        item({ id: 'IS-1', status: 'Ready', impact: 'Low' }), item({ id: 'IS-2', status: 'Ready', impact: 'Critical' }), item({ id: 'IS-3', status: 'Review' }),
+    ], NO_FILTERS, NOW);
+    assert.deepEqual(cols.Ready.map(i => i.id), ['IS-2', 'IS-1']);
+    assert.deepEqual(cols.Review.map(i => i.id), ['IS-3']);
+    assert.equal(cols.Backlog.length, 0);
+});
+
+test('filters: team, assignee, nobody and waiting-on-me', () => {
+    const seo = item({ id: 'SEO-1', category: 'seo', assignee: 'Claude' });
+    const dev = item({ id: 'IS-1' });
+    const review = item({ id: 'IS-2', status: 'Review' });
+    const flagged = item({ id: 'IS-3', waiting: true });
+    assert.equal(matchesFilters(seo, { ...NO_FILTERS, team: 'seo' }), true);
+    assert.equal(matchesFilters(dev, { ...NO_FILTERS, team: 'seo' }), false);
+    assert.equal(matchesFilters(seo, { ...NO_FILTERS, assignee: 'Claude' }), true);
+    assert.equal(matchesFilters(seo, { ...NO_FILTERS, assignee: 'Codex' }), false);
+    assert.equal(matchesFilters(dev, { ...NO_FILTERS, assignee: 'none' }), true);
+    assert.equal(matchesFilters(seo, { ...NO_FILTERS, assignee: 'none' }), false);
+    assert.deepEqual([dev, review, flagged].filter(i => matchesFilters(i, { ...NO_FILTERS, waitingOnly: true })).map(i => i.id), ['IS-2', 'IS-3']);
+});
+
+test('moving a card to Done or Parked clears the waiting flag; other moves only change the status', () => {
+    assert.deepEqual(moveChange('Done'), { status: 'Done', waiting: false });
+    assert.deepEqual(moveChange('Parked'), { status: 'Parked', waiting: false });
+    assert.deepEqual(moveChange('Review'), { status: 'Review' });
 });

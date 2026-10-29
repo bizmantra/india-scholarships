@@ -1,31 +1,13 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronDown, ChevronRight, Loader2, Plus } from 'lucide-react';
 import {
-    BACKLOG_ASSIGNEES, BACKLOG_IMPACTS, buildSections, categoryLabel, daysUntil, isOpen, plainDescription, staleDays, TEAMS, TEAM_IDS,
+    BACKLOG_ASSIGNEES, BACKLOG_IMPACTS, buildSections, categoryLabel, isOpen, plainDescription, staleDays, TEAMS, TEAM_IDS,
     type BacklogAssignee, type BacklogChange, type BacklogImpact, type BacklogItem,
 } from '@/lib/command-center/backlog-types';
 import { api } from '../agents/orchestrator';
-
-const IMPACT_STYLE: Record<BacklogImpact, string> = {
-    Critical: 'bg-rose-500/10 border-rose-500/30 text-cc-bad',
-    High: 'bg-amber-500/10 border-amber-500/30 text-cc-warn',
-    Medium: 'bg-blue-500/10 border-blue-500/25 text-cc-link',
-    Low: 'bg-cc-raised border-cc-border text-cc-muted',
-};
-
-const Pill = ({ className, children }: { className: string; children: React.ReactNode }) => (
-    <span className={`rounded-full border px-2 py-0.5 text-[10px] font-bold ${className}`}>{children}</span>
-);
-
-function dueLabel(due: string | null) {
-    const left = daysUntil(due);
-    if (left === null) return null;
-    if (left < 0) return { text: `Overdue ${-left} d`, className: 'bg-rose-500/10 border-rose-500/30 text-cc-bad' };
-    if (left === 0) return { text: 'Due today', className: 'bg-rose-500/10 border-rose-500/30 text-cc-bad' };
-    return { text: `Due in ${left} d`, className: left <= 7 ? 'bg-amber-500/10 border-amber-500/30 text-cc-warn' : 'bg-cc-raised border-cc-border text-cc-muted' };
-}
+import { dueLabel, IMPACT_STYLE, Pill, useBacklog, ViewToggle } from './shared';
 
 type OnChange = (id: string, change: BacklogChange) => Promise<void>;
 
@@ -166,36 +148,12 @@ function Section({ title, hint, items, onChange, collapsed, openId, onToggle }: 
 
 // What to pick up next, for every team (a tab appears for any team or older category that has open items)
 export default function BacklogPage() {
-    const [items, setItems] = useState<BacklogItem[]>([]);
+    const { items, loading, error, setError, load, change } = useBacklog();
     const [tab, setTab] = useState('all');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
     const [adding, setAdding] = useState(false);
     const [openId, setOpenId] = useState<string | null>(null);
     const toggle = (id: string) => setOpenId(cur => (cur === id ? null : id));
     const [draft, setDraft] = useState({ title: '', description: '', impact: 'Medium' as BacklogImpact, due_date: '', category: 'dev' });
-
-    const load = useCallback(async () => {
-        try {
-            setItems((await api<{ items: BacklogItem[] }>('backlog')).items);
-            setError('');
-        } catch (e) {
-            setError((e as Error).message);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-    useEffect(() => { load(); }, [load]);
-
-    const change = useCallback(async (id: string, patch: BacklogChange) => {
-        try {
-            await api('backlog', { method: 'PATCH', body: JSON.stringify({ id, ...patch }) });
-            setError('');
-        } catch (e) {
-            setError((e as Error).message);
-        }
-        await load();
-    }, [load]);
 
     const tabs = useMemo(() => {
         const ids = [...new Set(items.map(i => i.category))]
@@ -229,9 +187,12 @@ export default function BacklogPage() {
                     <h1 className="text-xl font-black text-cc-text">Backlog</h1>
                     <p className="text-sm text-cc-muted">What to pick up next. Start at the top. Anything due within a week comes first, then Critical, High, Medium and Low, with work already started ahead of work not started.</p>
                 </div>
-                <button onClick={() => setAdding(a => !a)} className="flex shrink-0 items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-2 text-xs font-bold text-white">
-                    <Plus className="h-4 w-4" /> Add
-                </button>
+                <div className="flex shrink-0 items-center gap-2">
+                    <ViewToggle />
+                    <button onClick={() => setAdding(a => !a)} className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-2 text-xs font-bold text-white">
+                        <Plus className="h-4 w-4" /> Add
+                    </button>
+                </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5">

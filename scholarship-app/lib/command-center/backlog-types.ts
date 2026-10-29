@@ -132,3 +132,45 @@ export function buildSections(items: BacklogItem[], now = Date.now()): BacklogSe
 
 // The description without the "[date cleanup] …" notes that the 2026-10-11 cleanup appended
 export const plainDescription = (text: string) => text.split(/(?:^|\n\n)\[\d{4}-\d{2}-\d{2} cleanup\]/)[0].trim();
+
+// ---- Board (kanban) ----
+
+// Parked is not a normal column: the board shows it only when asked
+export const BOARD_STATUSES: readonly BacklogStatus[] = ['Backlog', 'Ready', 'In Progress', 'Review', 'Done'];
+export const DONE_VISIBLE_DAYS = 14;
+
+export interface BoardFilters {
+    team: string; // 'all' or a category
+    assignee: string; // 'all', 'none' (nobody) or an assignee
+    waitingOnly: boolean; // only items waiting on the owner (the flag, or in Review)
+}
+
+export const NO_FILTERS: BoardFilters = { team: 'all', assignee: 'all', waitingOnly: false };
+
+export function matchesFilters(item: BacklogItem, f: BoardFilters): boolean {
+    if (f.team !== 'all' && item.category !== f.team) return false;
+    if (f.assignee === 'none' ? item.assignee !== null : f.assignee !== 'all' && item.assignee !== f.assignee) return false;
+    if (f.waitingOnly && !(item.waiting || item.status === 'Review')) return false;
+    return true;
+}
+
+// The cards in each column. Open columns follow the Backlog order; Done shows what finished in the last two weeks, newest first.
+export function boardColumns(items: BacklogItem[], f: BoardFilters, now = Date.now()): Record<BacklogStatus, BacklogItem[]> {
+    const kept = items.filter(i => matchesFilters(i, f));
+    const column = (status: BacklogStatus) => kept.filter(i => i.status === status);
+    return {
+        Backlog: sortByPriority(column('Backlog'), now),
+        Ready: sortByPriority(column('Ready'), now),
+        'In Progress': sortByPriority(column('In Progress'), now),
+        Review: sortByPriority(column('Review'), now),
+        Done: column('Done')
+            .filter(i => daysSince(i.updated_at, now) <= DONE_VISIBLE_DAYS)
+            .sort((a, b) => parseUtc(b.updated_at) - parseUtc(a.updated_at) || a.id.localeCompare(b.id, undefined, { numeric: true })),
+        Parked: sortByPriority(column('Parked'), now),
+    };
+}
+
+// What moving a card to a column changes: finished or parked work is no longer waiting on the owner
+export function moveChange(to: BacklogStatus): BacklogChange {
+    return to === 'Done' || to === 'Parked' ? { status: to, waiting: false } : { status: to };
+}
