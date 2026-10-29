@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { Suspense, useCallback, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { DndContext, DragOverlay, MouseSensor, TouchSensor, pointerWithin, rectIntersection, useDraggable, useDroppable, useSensor, useSensors } from '@dnd-kit/core';
 import type { CollisionDetection, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { Loader2 } from 'lucide-react';
@@ -106,9 +107,11 @@ function Column({ status, items, onChange }: { status: BacklogStatus; items: Bac
 }
 
 // The backlog as columns. Drag a card to another column, or use its "Move to" menu (works on phones and with a keyboard)
-export default function BacklogBoardPage() {
+function BacklogBoard() {
     const { items, setItems, loading, error, setError, load } = useBacklog();
-    const [filters, setFilters] = useState<BoardFilters>(NO_FILTERS);
+    // A team page links here with ?team=<id>
+    const startTeam = useSearchParams().get('team');
+    const [filters, setFilters] = useState<BoardFilters>({ ...NO_FILTERS, team: startTeam || 'all' });
     const [showParked, setShowParked] = useState(false);
     const [dragging, setDragging] = useState<BacklogItem | null>(null);
 
@@ -213,5 +216,13 @@ export default function BacklogBoardPage() {
                 </DndContext>
             )}
         </div>
+    );
+}
+
+export default function BacklogBoardPage() {
+    return (
+        <Suspense fallback={null}>
+            <BacklogBoard />
+        </Suspense>
     );
 }
