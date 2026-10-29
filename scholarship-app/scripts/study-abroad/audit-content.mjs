@@ -18,7 +18,7 @@
  * Usage:
  *   node scripts/study-abroad/audit-content.mjs [--target=staging|production] [--baseline]
  */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -100,6 +100,49 @@ function generateMarkdownReport(target, url, summary, pages, issues) {
     return md;
 }
 
+function mergeBaselinePages(existingPages, newPages) {
+    const map = new Map();
+    for (const p of existingPages || []) {
+        map.set(`${p.table}/${p.id}`, {
+            table: p.table,
+            id: p.id,
+            path: p.path,
+            errors: Array.isArray(p.errors) ? [...p.errors] : [],
+            warnings: Array.isArray(p.warnings) ? [...p.warnings] : [],
+        });
+    }
+    for (const p of newPages || []) {
+        const key = `${p.table}/${p.id}`;
+        if (!map.has(key)) {
+            map.set(key, {
+                table: p.table,
+                id: p.id,
+                path: p.path,
+                errors: Array.isArray(p.errors) ? [...p.errors] : [],
+                warnings: Array.isArray(p.warnings) ? [...p.warnings] : [],
+            });
+        } else {
+            const entry = map.get(key);
+            entry.path = entry.path || p.path;
+            const existingErrCodes = new Set(entry.errors.map(e => e.code));
+            for (const err of p.errors || []) {
+                if (!existingErrCodes.has(err.code)) {
+                    entry.errors.push(err);
+                    existingErrCodes.add(err.code);
+                }
+            }
+            const existingWarnCodes = new Set(entry.warnings.map(w => w.code));
+            for (const warn of p.warnings || []) {
+                if (!existingWarnCodes.has(warn.code)) {
+                    entry.warnings.push(warn);
+                    existingWarnCodes.add(warn.code);
+                }
+            }
+        }
+    }
+    return Array.from(map.values()).sort((a, b) => `${a.table}/${a.id}`.localeCompare(`${b.table}/${b.id}`));
+}
+
 async function run() {
     const target = resolveTarget();
     const shouldWriteBaseline = process.argv.includes('--baseline') || process.argv.includes('--generate-baseline');
@@ -152,8 +195,20 @@ async function run() {
 
     // 3. Write baseline if requested
     if (shouldWriteBaseline) {
-        writeFileSync(BASELINE_JSON_PATH, JSON.stringify(pages, null, 2), 'utf8');
-        console.log(`🎯 Generated baseline: ${BASELINE_JSON_PATH} (${pages.length} baseline pages)`);
+        let baselinePages = pages;
+        const overwriteBaseline = process.argv.includes('--overwrite-baseline');
+        if (!overwriteBaseline && existsSync(BASELINE_JSON_PATH)) {
+            try {
+                const existing = JSON.parse(readFileSync(BASELINE_JSON_PATH, 'utf8'));
+                if (Array.isArray(existing)) {
+                    baselinePages = mergeBaselinePages(existing, pages);
+                }
+            } catch {
+                // If existing baseline is malformed, fall back to current target pages
+            }
+        }
+        writeFileSync(BASELINE_JSON_PATH, JSON.stringify(baselinePages, null, 2), 'utf8');
+        console.log(`🎯 Generated baseline: ${BASELINE_JSON_PATH} (${baselinePages.length} baseline pages)`);
     }
 
     console.log(`\n✅ Audit complete.`);

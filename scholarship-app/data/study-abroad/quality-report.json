@@ -1,5 +1,297 @@
 [
   {
+    "page": "/study-abroad/universities/chemnitz-university-of-technology",
+    "table": "sa_universities",
+    "id": "chemnitz-university-of-technology",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/fau-erlangen-nurnberg",
+    "table": "sa_universities",
+    "id": "fau-erlangen-nurnberg",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/heidelberg-university",
+    "table": "sa_universities",
+    "id": "heidelberg-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/leibniz-university-hannover",
+    "table": "sa_universities",
+    "id": "leibniz-university-hannover",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/otto-von-guericke-university-magdeburg",
+    "table": "sa_universities",
+    "id": "otto-von-guericke-university-magdeburg",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/saarland-university",
+    "table": "sa_universities",
+    "id": "saarland-university",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-berlin",
+    "table": "sa_universities",
+    "id": "tu-berlin",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-braunschweig",
+    "table": "sa_universities",
+    "id": "tu-braunschweig",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-darmstadt",
+    "table": "sa_universities",
+    "id": "tu-darmstadt",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-dresden",
+    "table": "sa_universities",
+    "id": "tu-dresden",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tuhh-tuhamburg",
+    "table": "sa_universities",
+    "id": "tuhh-tuhamburg",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-bonn",
+    "table": "sa_universities",
+    "id": "university-of-bonn",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-duisburg-essen",
+    "table": "sa_universities",
+    "id": "university-of-duisburg-essen",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-freiburg",
+    "table": "sa_universities",
+    "id": "university-of-freiburg",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-hamburg",
+    "table": "sa_universities",
+    "id": "university-of-hamburg",
+    "rules": [
+      1
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-stuttgart",
+    "table": "sa_universities",
+    "id": "university-of-stuttgart",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/universities/arizona-state-university",
     "table": "sa_universities",
     "id": "arizona-state-university",
@@ -66,6 +358,28 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/universities/gatech-georgia-tech",
+    "table": "sa_universities",
+    "id": "gatech-georgia-tech",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/universities/george-mason-university",
     "table": "sa_universities",
     "id": "george-mason-university",
@@ -83,6 +397,34 @@
         "rule": 3,
         "code": "banned_phrase",
         "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/neu-northeastern-university",
+    "table": "sa_universities",
+    "id": "neu-northeastern-university",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
       }
     ],
     "warnings": []
@@ -132,6 +474,28 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/universities/stevens-institute-of-technology",
+    "table": "sa_universities",
+    "id": "stevens-institute-of-technology",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/universities/stony-brook-suny",
     "table": "sa_universities",
     "id": "stony-brook-suny",
@@ -149,6 +513,34 @@
         "rule": 3,
         "code": "banned_phrase",
         "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/suny-buffalo",
+    "table": "sa_universities",
+    "id": "suny-buffalo",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
       }
     ],
     "warnings": []
@@ -317,6 +709,28 @@
     "page": "/study-abroad/universities/usc-university-of-southern-california",
     "table": "sa_universities",
     "id": "usc-university-of-southern-california",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/ut-arlington-uta",
+    "table": "sa_universities",
+    "id": "ut-arlington-uta",
     "rules": [
       1,
       3
@@ -2580,6 +2994,34 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/study-in/usa/usa-h1b-lottery-cap-exempt",
+    "table": "sa_guides",
+    "id": "usa-h1b-lottery-cap-exempt",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/study-in/usa/usa-green-card-eb2-niw-pathways",
     "table": "sa_guides",
     "id": "usa-green-card-eb2-niw-pathways",
@@ -2608,9 +3050,79 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/universities/karlsruhe-institute-of-technology",
+    "table": "sa_universities",
+    "id": "karlsruhe-institute-of-technology",
+    "rules": [
+      3
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/lmu-munich-ludwig-maximilian",
+    "table": "sa_universities",
+    "id": "lmu-munich-ludwig-maximilian",
+    "rules": [
+      3
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/rwth-aachen-university",
+    "table": "sa_universities",
+    "id": "rwth-aachen-university",
+    "rules": [
+      3
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/universities/purdue-university",
     "table": "sa_universities",
     "id": "purdue-university",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/ut-austin",
+    "table": "sa_universities",
+    "id": "ut-austin",
     "rules": [
       3,
       4
@@ -2740,6 +3252,28 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/study-in/germany/germany-blocked-account-manual",
+    "table": "sa_guides",
+    "id": "germany-blocked-account-manual",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/study-in/germany/germany-daad-scholarships-guide",
     "table": "sa_guides",
     "id": "germany-daad-scholarships-guide",
@@ -2806,9 +3340,53 @@
     "warnings": []
   },
   {
+    "page": "/study-abroad/study-in/germany/germany-aps-certificate-guide",
+    "table": "sa_guides",
+    "id": "germany-aps-certificate-guide",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "page": "/study-abroad/study-in/germany/germany-bavarian-grade-matrix",
     "table": "sa_guides",
     "id": "germany-bavarian-grade-matrix",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-english-language-tests",
+    "table": "sa_guides",
+    "id": "germany-english-language-tests",
     "rules": [
       3,
       4
@@ -3086,9 +3664,9 @@
     "warnings": []
   },
   {
-    "page": "/study-abroad/study-in/germany/germany-blocked-account-manual",
-    "table": "sa_guides",
-    "id": "germany-blocked-account-manual",
+    "page": "/study-abroad/program-detail/usa/neu-northeastern-university/northeastern-university-boston-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "northeastern-university-boston-ms-in-computer-science",
     "rules": [
       4
     ],
@@ -3096,7 +3674,7 @@
       {
         "rule": 4,
         "code": "missing_source",
-        "message": "Missing official_source for money/visa data"
+        "message": "Missing checked_at for money/visa data"
       }
     ],
     "warnings": []
@@ -3120,6 +3698,38 @@
   {
     "page": null,
     "table": "sa_facts",
+    "id": "germany.blocked_account.annual_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.monthly_withdrawal_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
     "id": "germany.blocked_account.buffer_eur",
     "rules": [
       4
@@ -3136,7 +3746,39 @@
   {
     "page": null,
     "table": "sa_facts",
+    "id": "germany.aps.fee_inr",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
     "id": "germany.vfs.service_fee_inr",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.visa.national_fee_eur",
     "rules": [
       4
     ],
@@ -3264,6 +3906,38 @@
   {
     "page": null,
     "table": "sa_facts",
+    "id": "usa.visa.f1_mrv_fee_usd",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "usa.visa.sevis_i901_fee_usd",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
     "id": "usa.living.monthly_average_usd",
     "rules": [
       4
@@ -3294,400 +3968,6 @@
     "warnings": []
   },
   {
-    "page": "/study-abroad/universities/chemnitz-university-of-technology",
-    "table": "sa_universities",
-    "id": "chemnitz-university-of-technology",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/fau-erlangen-nurnberg",
-    "table": "sa_universities",
-    "id": "fau-erlangen-nurnberg",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/leibniz-university-hannover",
-    "table": "sa_universities",
-    "id": "leibniz-university-hannover",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/lmu-munich-ludwig-maximilian",
-    "table": "sa_universities",
-    "id": "lmu-munich-ludwig-maximilian",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/otto-von-guericke-university-magdeburg",
-    "table": "sa_universities",
-    "id": "otto-von-guericke-university-magdeburg",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/rwth-aachen-university",
-    "table": "sa_universities",
-    "id": "rwth-aachen-university",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/saarland-university",
-    "table": "sa_universities",
-    "id": "saarland-university",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/tu-berlin",
-    "table": "sa_universities",
-    "id": "tu-berlin",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/tu-braunschweig",
-    "table": "sa_universities",
-    "id": "tu-braunschweig",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/tu-darmstadt",
-    "table": "sa_universities",
-    "id": "tu-darmstadt",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/tu-dresden",
-    "table": "sa_universities",
-    "id": "tu-dresden",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/tuhh-tuhamburg",
-    "table": "sa_universities",
-    "id": "tuhh-tuhamburg",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/university-of-bonn",
-    "table": "sa_universities",
-    "id": "university-of-bonn",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/university-of-duisburg-essen",
-    "table": "sa_universities",
-    "id": "university-of-duisburg-essen",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/university-of-hamburg",
-    "table": "sa_universities",
-    "id": "university-of-hamburg",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/heidelberg-university",
-    "table": "sa_universities",
-    "id": "heidelberg-university",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/karlsruhe-institute-of-technology",
-    "table": "sa_universities",
-    "id": "karlsruhe-institute-of-technology",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/university-of-freiburg",
-    "table": "sa_universities",
-    "id": "university-of-freiburg",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/universities/university-of-stuttgart",
-    "table": "sa_universities",
-    "id": "university-of-stuttgart",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
-      },
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
     "page": "/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik",
     "table": "sa_programs",
     "id": "tu-berlin-m-sc-computer-science-informatik",
@@ -3698,12 +3978,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3719,12 +3999,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3740,7 +4020,33 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "university-of-stuttgart-ms-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3756,12 +4062,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3777,12 +4083,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3798,12 +4104,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3819,12 +4125,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3840,12 +4146,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3861,12 +4167,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3882,12 +4188,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3903,12 +4209,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3924,28 +4230,12 @@
       {
         "rule": 5,
         "code": "identical_money_tuition_per_year",
-        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
       },
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
-      }
-    ],
-    "warnings": []
-  },
-  {
-    "page": "/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science",
-    "table": "sa_programs",
-    "id": "university-of-stuttgart-ms-in-computer-science",
-    "rules": [
-      5
-    ],
-    "errors": [
-      {
-        "rule": 5,
-        "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3961,7 +4251,7 @@
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []
@@ -3977,7 +4267,7 @@
       {
         "rule": 5,
         "code": "identical_money_living_cost_per_year",
-        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
       }
     ],
     "warnings": []

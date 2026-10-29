@@ -1,41 +1,61 @@
 # Study Abroad Content Quality Report
 
-**Target:** `production` (libsql://india-scholarships-***.aws-ap-south-1.turso.io)
-**Generated at:** 2026-10-29T12:38:21.872Z
+**Target:** `staging` (libsql://india-scholarships-staging-***.aws-ap-south-1.turso.io)
+**Generated at:** 2026-10-29T15:26:18.716Z
 **Pages Checked:** 177 published pages (45 universities, 108 guides, 24 programs) + 41 facts
-**Total Issues:** 389 error(s) (blockers), 0 warning(s) (review)
-**Pages Flagged:** 168 with errors, 0 with warnings
+**Total Issues:** 408 error(s) (blockers), 0 warning(s) (review)
+**Pages Flagged:** 184 with errors, 0 with warnings
 
 ## Summary by Rule
 
 | Rule | Description | Severity | Issues Count |
 |---|---|---|---|
-| Rule 1 | Boilerplate summary (`complete 20xx guide to`), > 220 chars, empty | Error | 96 |
+| Rule 1 | Boilerplate summary (`complete 20xx guide to`), > 220 chars, empty | Error | 118 |
 | Rule 2 | seo_title > 70, meta_description outside 110–170, duplicate seo_title | Error | 4 |
-| Rule 3 | Banned phrases in body_md, summary, faq_json | Error | 104 |
-| Rule 4 | Money/visa fields without official_source or checked_at | Error | 120 |
+| Rule 3 | Banned phrases in body_md, summary, faq_json | Error | 123 |
+| Rule 4 | Money/visa fields without official_source or checked_at | Error | 133 |
 | Rule 4 | Facts checked_at older than 90 days | Warning | 0 |
-| Rule 5 | Identical money values repeated across 4+ in country (recovery #23) | Error | 63 |
+| Rule 5 | Identical money values repeated across 4+ in country (recovery #23) | Error | 28 |
 | Rule 6 | Internal links to non-existent routes or unlaunched countries | Error | 2 |
 | Rule 7 | Published sa_programs whose university_slug is missing or draft | Error | 0 |
 
 ### Key Backlog Metrics
 
-- **Boilerplate guide summaries:** 69 (expected ~78 in spec)
-- **Boilerplate university summaries:** 16 (expected ~17 in spec)
-- **Published guides without sources/checked_at:** 105 (expected ~105 in spec)
+- **Boilerplate guide summaries:** 70 (expected ~78 in spec)
+- **Boilerplate university summaries:** 37 (expected ~17 in spec)
+- **Published guides without sources/checked_at:** 108 (expected ~105 in spec)
 
 ## Errors (Blockers)
 
 | Table | ID | Page Path | Rule | Issue Code | Details |
 |---|---|---|---|---|---|
+| `sa_universities` | `chemnitz-university-of-technology` | `/study-abroad/universities/chemnitz-university-of-technology` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `fau-erlangen-nurnberg` | `/study-abroad/universities/fau-erlangen-nurnberg` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `heidelberg-university` | `/study-abroad/universities/heidelberg-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `leibniz-university-hannover` | `/study-abroad/universities/leibniz-university-hannover` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `otto-von-guericke-university-magdeburg` | `/study-abroad/universities/otto-von-guericke-university-magdeburg` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `saarland-university` | `/study-abroad/universities/saarland-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `tu-berlin` | `/study-abroad/universities/tu-berlin` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `tu-braunschweig` | `/study-abroad/universities/tu-braunschweig` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `tu-darmstadt` | `/study-abroad/universities/tu-darmstadt` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `tu-dresden` | `/study-abroad/universities/tu-dresden` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `tuhh-tuhamburg` | `/study-abroad/universities/tuhh-tuhamburg` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `university-of-bonn` | `/study-abroad/universities/university-of-bonn` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `university-of-duisburg-essen` | `/study-abroad/universities/university-of-duisburg-essen` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `university-of-freiburg` | `/study-abroad/universities/university-of-freiburg` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `university-of-hamburg` | `/study-abroad/universities/university-of-hamburg` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `university-of-stuttgart` | `/study-abroad/universities/university-of-stuttgart` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `arizona-state-university` | `/study-abroad/universities/arizona-state-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `cmu-carnegie-mellon-university` | `/study-abroad/universities/cmu-carnegie-mellon-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `columbia-university` | `/study-abroad/universities/columbia-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `gatech-georgia-tech` | `/study-abroad/universities/gatech-georgia-tech` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `george-mason-university` | `/study-abroad/universities/george-mason-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `neu-northeastern-university` | `/study-abroad/universities/neu-northeastern-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `nyu-new-york-university` | `/study-abroad/universities/nyu-new-york-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `rutgers-university` | `/study-abroad/universities/rutgers-university` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `stevens-institute-of-technology` | `/study-abroad/universities/stevens-institute-of-technology` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `stony-brook-suny` | `/study-abroad/universities/stony-brook-suny` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `suny-buffalo` | `/study-abroad/universities/suny-buffalo` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `tamu-texas-a-m` | `/study-abroad/universities/tamu-texas-a-m` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `uc-berkeley` | `/study-abroad/universities/uc-berkeley` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `uc-irvine-uci` | `/study-abroad/universities/uc-irvine-uci` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
@@ -44,6 +64,7 @@
 | `sa_universities` | `umich-university-of-michigan-ann-arbor` | `/study-abroad/universities/umich-university-of-michigan-ann-arbor` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `uncc-unc-charlotte` | `/study-abroad/universities/uncc-unc-charlotte` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `usc-university-of-southern-california` | `/study-abroad/universities/usc-university-of-southern-california` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_universities` | `ut-arlington-uta` | `/study-abroad/universities/ut-arlington-uta` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_universities` | `ut-dallas-utd` | `/study-abroad/universities/ut-dallas-utd` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `germany-routes-hub-guide` | `/study-abroad/study-in/germany/germany-routes-hub-guide` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `usa-routes-hub-guide` | `/study-abroad/study-in/usa/usa-routes-hub-guide` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
@@ -124,19 +145,33 @@
 | `sa_guides` | `usa-f1-visa-interview-prep-questions` | `/study-abroad/visas/usa-f1-visa-interview-prep-questions` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `usa-cpt-internship-rules` | `/study-abroad/study-in/usa/usa-cpt-internship-rules` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `usa-opt-stem-opt-extension` | `/study-abroad/study-in/usa/usa-opt-stem-opt-extension` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
+| `sa_guides` | `usa-h1b-lottery-cap-exempt` | `/study-abroad/study-in/usa/usa-h1b-lottery-cap-exempt` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `usa-green-card-eb2-niw-pathways` | `/study-abroad/study-in/usa/usa-green-card-eb2-niw-pathways` | Rule 1 | `boilerplate_summary` | Boilerplate summary: matches (/^\s*complete 20\d\d guide to/i) |
 | `sa_guides` | `germany-routes-hub-guide` | `/study-abroad/study-in/germany/germany-routes-hub-guide` | Rule 2 | `empty_seo_title` | SEO title is empty |
 | `sa_guides` | `germany-routes-hub-guide` | `/study-abroad/study-in/germany/germany-routes-hub-guide` | Rule 2 | `meta_description_length` | Meta description length is 0 characters (expected 110–170) |
 | `sa_guides` | `usa-routes-hub-guide` | `/study-abroad/study-in/usa/usa-routes-hub-guide` | Rule 2 | `empty_seo_title` | SEO title is empty |
 | `sa_guides` | `usa-routes-hub-guide` | `/study-abroad/study-in/usa/usa-routes-hub-guide` | Rule 2 | `meta_description_length` | Meta description length is 0 characters (expected 110–170) |
+| `sa_universities` | `fau-erlangen-nurnberg` | `/study-abroad/universities/fau-erlangen-nurnberg` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `heidelberg-university` | `/study-abroad/universities/heidelberg-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `karlsruhe-institute-of-technology` | `/study-abroad/universities/karlsruhe-institute-of-technology` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `lmu-munich-ludwig-maximilian` | `/study-abroad/universities/lmu-munich-ludwig-maximilian` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `rwth-aachen-university` | `/study-abroad/universities/rwth-aachen-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `tu-berlin` | `/study-abroad/universities/tu-berlin` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `tu-darmstadt` | `/study-abroad/universities/tu-darmstadt` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `tu-dresden` | `/study-abroad/universities/tu-dresden` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `university-of-stuttgart` | `/study-abroad/universities/university-of-stuttgart` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `arizona-state-university` | `/study-abroad/universities/arizona-state-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `cmu-carnegie-mellon-university` | `/study-abroad/universities/cmu-carnegie-mellon-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `columbia-university` | `/study-abroad/universities/columbia-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `gatech-georgia-tech` | `/study-abroad/universities/gatech-georgia-tech` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `george-mason-university` | `/study-abroad/universities/george-mason-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `neu-northeastern-university` | `/study-abroad/universities/neu-northeastern-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `nyu-new-york-university` | `/study-abroad/universities/nyu-new-york-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `purdue-university` | `/study-abroad/universities/purdue-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `rutgers-university` | `/study-abroad/universities/rutgers-university` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `stevens-institute-of-technology` | `/study-abroad/universities/stevens-institute-of-technology` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `stony-brook-suny` | `/study-abroad/universities/stony-brook-suny` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `suny-buffalo` | `/study-abroad/universities/suny-buffalo` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `tamu-texas-a-m` | `/study-abroad/universities/tamu-texas-a-m` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `uc-berkeley` | `/study-abroad/universities/uc-berkeley` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `uc-irvine-uci` | `/study-abroad/universities/uc-irvine-uci` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
@@ -145,6 +180,8 @@
 | `sa_universities` | `umich-university-of-michigan-ann-arbor` | `/study-abroad/universities/umich-university-of-michigan-ann-arbor` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `uncc-unc-charlotte` | `/study-abroad/universities/uncc-unc-charlotte` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `usc-university-of-southern-california` | `/study-abroad/universities/usc-university-of-southern-california` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `ut-arlington-uta` | `/study-abroad/universities/ut-arlington-uta` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_universities` | `ut-austin` | `/study-abroad/universities/ut-austin` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_universities` | `ut-dallas-utd` | `/study-abroad/universities/ut-dallas-utd` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-routes-hub-guide` | `/study-abroad/study-in/germany/germany-routes-hub-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `usa-routes-hub-guide` | `/study-abroad/study-in/usa/usa-routes-hub-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
@@ -167,6 +204,7 @@
 | `sa_guides` | `germany-german-language-exams-guide` | `/study-abroad/study-in/germany/germany-german-language-exams-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-scholarship-panel-interview-guide` | `/study-abroad/study-in/germany/germany-scholarship-panel-interview-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-total-cost-breakdown` | `/study-abroad/study-in/germany/germany-total-cost-breakdown` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_guides` | `germany-blocked-account-manual` | `/study-abroad/study-in/germany/germany-blocked-account-manual` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-education-loans-germany` | `/study-abroad/study-in/germany/germany-education-loans-germany` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-rbi-lrs-tcs-tax-rules` | `/study-abroad/study-in/germany/germany-rbi-lrs-tcs-tax-rules` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-daad-scholarships-guide` | `/study-abroad/study-in/germany/germany-daad-scholarships-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
@@ -174,8 +212,10 @@
 | `sa_guides` | `germany-university-listing-hub-guide` | `/study-abroad/study-in/germany/germany-university-listing-hub-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-daad-scholarship-master-guide` | `/study-abroad/study-in/germany/germany-daad-scholarship-master-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-visa-routes-hub-guide` | `/study-abroad/study-in/germany/germany-visa-routes-hub-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_guides` | `germany-aps-certificate-guide` | `/study-abroad/study-in/germany/germany-aps-certificate-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-bavarian-grade-matrix` | `/study-abroad/study-in/germany/germany-bavarian-grade-matrix` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-uni-assist-manual` | `/study-abroad/study-in/germany/germany-uni-assist-manual` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_guides` | `germany-english-language-tests` | `/study-abroad/study-in/germany/germany-english-language-tests` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-german-language-levels` | `/study-abroad/study-in/germany/germany-german-language-levels` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-gre-gmat-waiver-directory` | `/study-abroad/study-in/germany/germany-gre-gmat-waiver-directory` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-sop-europass-cv-guide` | `/study-abroad/study-in/germany/germany-sop-europass-cv-guide` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
@@ -232,6 +272,7 @@
 | `sa_guides` | `usa-f1-visa-interview-prep-questions` | `/study-abroad/visas/usa-f1-visa-interview-prep-questions` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `usa-cpt-internship-rules` | `/study-abroad/study-in/usa/usa-cpt-internship-rules` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `usa-opt-stem-opt-extension` | `/study-abroad/study-in/usa/usa-opt-stem-opt-extension` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
+| `sa_guides` | `usa-h1b-lottery-cap-exempt` | `/study-abroad/study-in/usa/usa-h1b-lottery-cap-exempt` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `usa-green-card-eb2-niw-pathways` | `/study-abroad/study-in/usa/usa-green-card-eb2-niw-pathways` | Rule 3 | `banned_phrase` | Contains banned phrase matching /executive summary/i in body_md |
 | `sa_guides` | `germany-routes-hub-guide` | `/study-abroad/study-in/germany/germany-routes-hub-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `usa-routes-hub-guide` | `/study-abroad/study-in/usa/usa-routes-hub-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
@@ -268,7 +309,7 @@
 | `sa_guides` | `germany-german-language-exams-guide` | `/study-abroad/study-in/germany/germany-german-language-exams-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-scholarship-panel-interview-guide` | `/study-abroad/study-in/germany/germany-scholarship-panel-interview-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-total-cost-breakdown` | `/study-abroad/study-in/germany/germany-total-cost-breakdown` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
-| `sa_guides` | `germany-blocked-account-manual` | `/study-abroad/study-in/germany/germany-blocked-account-manual` | Rule 4 | `missing_source` | Missing official_source for money/visa data |
+| `sa_guides` | `germany-blocked-account-manual` | `/study-abroad/study-in/germany/germany-blocked-account-manual` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-education-loans-germany` | `/study-abroad/study-in/germany/germany-education-loans-germany` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-rbi-lrs-tcs-tax-rules` | `/study-abroad/study-in/germany/germany-rbi-lrs-tcs-tax-rules` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-daad-scholarships-guide` | `/study-abroad/study-in/germany/germany-daad-scholarships-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
@@ -277,8 +318,10 @@
 | `sa_guides` | `germany-scholarship-directory-hub-guide` | `/study-abroad/study-in/germany/germany-scholarship-directory-hub-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-daad-scholarship-master-guide` | `/study-abroad/study-in/germany/germany-daad-scholarship-master-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-visa-routes-hub-guide` | `/study-abroad/study-in/germany/germany-visa-routes-hub-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_guides` | `germany-aps-certificate-guide` | `/study-abroad/study-in/germany/germany-aps-certificate-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-bavarian-grade-matrix` | `/study-abroad/study-in/germany/germany-bavarian-grade-matrix` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-uni-assist-manual` | `/study-abroad/study-in/germany/germany-uni-assist-manual` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_guides` | `germany-english-language-tests` | `/study-abroad/study-in/germany/germany-english-language-tests` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-german-language-levels` | `/study-abroad/study-in/germany/germany-german-language-levels` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-gre-gmat-waiver-directory` | `/study-abroad/study-in/germany/germany-gre-gmat-waiver-directory` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `germany-sop-europass-cv-guide` | `/study-abroad/study-in/germany/germany-sop-europass-cv-guide` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
@@ -337,13 +380,22 @@
 | `sa_guides` | `usa-f1-visa-interview-prep-questions` | `/study-abroad/visas/usa-f1-visa-interview-prep-questions` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `usa-cpt-internship-rules` | `/study-abroad/study-in/usa/usa-cpt-internship-rules` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `usa-opt-stem-opt-extension` | `/study-abroad/study-in/usa/usa-opt-stem-opt-extension` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_guides` | `usa-h1b-lottery-cap-exempt` | `/study-abroad/study-in/usa/usa-h1b-lottery-cap-exempt` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_guides` | `usa-green-card-eb2-niw-pathways` | `/study-abroad/study-in/usa/usa-green-card-eb2-niw-pathways` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_universities` | `neu-northeastern-university` | `/study-abroad/universities/neu-northeastern-university` | Rule 4 | `missing_source` | Missing checked_at for money/visa data |
 | `sa_universities` | `purdue-university` | `/study-abroad/universities/purdue-university` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_universities` | `suny-buffalo` | `/study-abroad/universities/suny-buffalo` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_universities` | `tamu-texas-a-m` | `/study-abroad/universities/tamu-texas-a-m` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_universities` | `ut-austin` | `/study-abroad/universities/ut-austin` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_universities` | `ut-dallas-utd` | `/study-abroad/universities/ut-dallas-utd` | Rule 4 | `missing_source` | Missing checked_at for money/visa data |
+| `sa_programs` | `northeastern-university-boston-ms-in-computer-science` | `/study-abroad/program-detail/usa/neu-northeastern-university/northeastern-university-boston-ms-in-computer-science` | Rule 4 | `missing_source` | Missing checked_at for money/visa data |
 | `sa_programs` | `northeastern-university-boston-ms-in-information-systems` | `/study-abroad/program-detail/usa/neu-northeastern-university/northeastern-university-boston-ms-in-information-systems` | Rule 4 | `missing_source` | Missing checked_at for money/visa data |
+| `sa_facts` | `germany.blocked_account.annual_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_facts` | `germany.blocked_account.monthly_withdrawal_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.blocked_account.buffer_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_facts` | `germany.aps.fee_inr` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.vfs.service_fee_inr` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_facts` | `germany.visa.national_fee_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.fx.eur_inr` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.blocked_account.expatrio_setup_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.blocked_account.fintiba_setup_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
@@ -351,71 +403,38 @@
 | `sa_facts` | `germany.blocked_account.expatrio_monthly_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.blocked_account.fintiba_monthly_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `germany.blocked_account.coracle_monthly_eur` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_facts` | `usa.visa.f1_mrv_fee_usd` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
+| `sa_facts` | `usa.visa.sevis_i901_fee_usd` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `usa.living.monthly_average_usd` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
 | `sa_facts` | `usa.fx.usd_inr` | `-` | Rule 4 | `missing_source` | Missing official_source and checked_at for money/visa data |
-| `sa_universities` | `chemnitz-university-of-technology` | `/study-abroad/universities/chemnitz-university-of-technology` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `fau-erlangen-nurnberg` | `/study-abroad/universities/fau-erlangen-nurnberg` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `leibniz-university-hannover` | `/study-abroad/universities/leibniz-university-hannover` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `lmu-munich-ludwig-maximilian` | `/study-abroad/universities/lmu-munich-ludwig-maximilian` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `otto-von-guericke-university-magdeburg` | `/study-abroad/universities/otto-von-guericke-university-magdeburg` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `rwth-aachen-university` | `/study-abroad/universities/rwth-aachen-university` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `saarland-university` | `/study-abroad/universities/saarland-university` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `tu-berlin` | `/study-abroad/universities/tu-berlin` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `tu-braunschweig` | `/study-abroad/universities/tu-braunschweig` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `tu-darmstadt` | `/study-abroad/universities/tu-darmstadt` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `tu-dresden` | `/study-abroad/universities/tu-dresden` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `tuhh-tuhamburg` | `/study-abroad/universities/tuhh-tuhamburg` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `university-of-bonn` | `/study-abroad/universities/university-of-bonn` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `university-of-duisburg-essen` | `/study-abroad/universities/university-of-duisburg-essen` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `university-of-hamburg` | `/study-abroad/universities/university-of-hamburg` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 15 universities in germany |
-| `sa_universities` | `heidelberg-university` | `/study-abroad/universities/heidelberg-university` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (3000) repeated across 4 universities in germany |
-| `sa_universities` | `karlsruhe-institute-of-technology` | `/study-abroad/universities/karlsruhe-institute-of-technology` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (3000) repeated across 4 universities in germany |
-| `sa_universities` | `university-of-freiburg` | `/study-abroad/universities/university-of-freiburg` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (3000) repeated across 4 universities in germany |
-| `sa_universities` | `university-of-stuttgart` | `/study-abroad/universities/university-of-stuttgart` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (3000) repeated across 4 universities in germany |
-| `sa_universities` | `chemnitz-university-of-technology` | `/study-abroad/universities/chemnitz-university-of-technology` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `fau-erlangen-nurnberg` | `/study-abroad/universities/fau-erlangen-nurnberg` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `heidelberg-university` | `/study-abroad/universities/heidelberg-university` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `karlsruhe-institute-of-technology` | `/study-abroad/universities/karlsruhe-institute-of-technology` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `leibniz-university-hannover` | `/study-abroad/universities/leibniz-university-hannover` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `lmu-munich-ludwig-maximilian` | `/study-abroad/universities/lmu-munich-ludwig-maximilian` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `otto-von-guericke-university-magdeburg` | `/study-abroad/universities/otto-von-guericke-university-magdeburg` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `rwth-aachen-university` | `/study-abroad/universities/rwth-aachen-university` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `tu-berlin` | `/study-abroad/universities/tu-berlin` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `tu-braunschweig` | `/study-abroad/universities/tu-braunschweig` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `tu-darmstadt` | `/study-abroad/universities/tu-darmstadt` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `tu-dresden` | `/study-abroad/universities/tu-dresden` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `tuhh-tuhamburg` | `/study-abroad/universities/tuhh-tuhamburg` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `university-of-bonn` | `/study-abroad/universities/university-of-bonn` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `university-of-duisburg-essen` | `/study-abroad/universities/university-of-duisburg-essen` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `university-of-freiburg` | `/study-abroad/universities/university-of-freiburg` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `university-of-hamburg` | `/study-abroad/universities/university-of-hamburg` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_universities` | `university-of-stuttgart` | `/study-abroad/universities/university-of-stuttgart` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 18 universities in germany |
-| `sa_programs` | `tu-berlin-m-sc-computer-science-informatik` | `/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `tu-dresden-m-sc-computer-science` | `/study-abroad/program-detail/germany/tu-dresden/tu-dresden-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `saarland-university-msc-in-computer-science-informatics` | `/study-abroad/program-detail/germany/saarland-university/saarland-university-msc-in-computer-science-informatics` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `tu-darmstadt-msc-computer-science` | `/study-abroad/program-detail/germany/tu-darmstadt/tu-darmstadt-msc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `fau-erlangen-nurnberg-ms-in-computer-science` | `/study-abroad/program-detail/germany/fau-erlangen-nurnberg/fau-erlangen-nurnberg-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `university-of-duisburg-essen-m-sc-computer-science` | `/study-abroad/program-detail/germany/university-of-duisburg-essen/university-of-duisburg-essen-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `tu-braunschweig-ms-in-computer-science` | `/study-abroad/program-detail/germany/tu-braunschweig/tu-braunschweig-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `university-of-hamburg-msc-data-science-and-artificial-intelligence` | `/study-abroad/program-detail/germany/university-of-hamburg/university-of-hamburg-msc-data-science-and-artificial-intelligence` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `leibniz-university-hannover-msc-in-computer-science` | `/study-abroad/program-detail/germany/leibniz-university-hannover/leibniz-university-hannover-msc-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `otto-von-guericke-university-magdeburg-ms-in-computer-science` | `/study-abroad/program-detail/germany/otto-von-guericke-university-magdeburg/otto-von-guericke-university-magdeburg-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `chemnitz-university-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/chemnitz-university-of-technology/chemnitz-university-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `rwth-aachen-master-computer-science` | `/study-abroad/program-detail/germany/rwth-aachen-university/rwth-aachen-master-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 12 programs in germany |
-| `sa_programs` | `tu-berlin-m-sc-computer-science-informatik` | `/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `tu-dresden-m-sc-computer-science` | `/study-abroad/program-detail/germany/tu-dresden/tu-dresden-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `university-of-stuttgart-ms-in-computer-science` | `/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `karlsruhe-institute-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/karlsruhe-institute-of-technology/karlsruhe-institute-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `tu-darmstadt-msc-computer-science` | `/study-abroad/program-detail/germany/tu-darmstadt/tu-darmstadt-msc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `fau-erlangen-nurnberg-ms-in-computer-science` | `/study-abroad/program-detail/germany/fau-erlangen-nurnberg/fau-erlangen-nurnberg-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `university-of-duisburg-essen-m-sc-computer-science` | `/study-abroad/program-detail/germany/university-of-duisburg-essen/university-of-duisburg-essen-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `tu-braunschweig-ms-in-computer-science` | `/study-abroad/program-detail/germany/tu-braunschweig/tu-braunschweig-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `university-of-hamburg-msc-data-science-and-artificial-intelligence` | `/study-abroad/program-detail/germany/university-of-hamburg/university-of-hamburg-msc-data-science-and-artificial-intelligence` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `leibniz-university-hannover-msc-in-computer-science` | `/study-abroad/program-detail/germany/leibniz-university-hannover/leibniz-university-hannover-msc-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `otto-von-guericke-university-magdeburg-ms-in-computer-science` | `/study-abroad/program-detail/germany/otto-von-guericke-university-magdeburg/otto-von-guericke-university-magdeburg-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `chemnitz-university-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/chemnitz-university-of-technology/chemnitz-university-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `tum-technical-university-of-munich-m-sc-informatics` | `/study-abroad/program-detail/germany/tum-technical-university-munich/tum-technical-university-of-munich-m-sc-informatics` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
-| `sa_programs` | `rwth-aachen-master-computer-science` | `/study-abroad/program-detail/germany/rwth-aachen-university/rwth-aachen-master-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 14 programs in germany |
+| `sa_programs` | `tu-berlin-m-sc-computer-science-informatik` | `/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `tu-dresden-m-sc-computer-science` | `/study-abroad/program-detail/germany/tu-dresden/tu-dresden-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `saarland-university-msc-in-computer-science-informatics` | `/study-abroad/program-detail/germany/saarland-university/saarland-university-msc-in-computer-science-informatics` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `university-of-stuttgart-ms-in-computer-science` | `/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `tu-darmstadt-msc-computer-science` | `/study-abroad/program-detail/germany/tu-darmstadt/tu-darmstadt-msc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `fau-erlangen-nurnberg-ms-in-computer-science` | `/study-abroad/program-detail/germany/fau-erlangen-nurnberg/fau-erlangen-nurnberg-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `university-of-duisburg-essen-m-sc-computer-science` | `/study-abroad/program-detail/germany/university-of-duisburg-essen/university-of-duisburg-essen-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `tu-braunschweig-ms-in-computer-science` | `/study-abroad/program-detail/germany/tu-braunschweig/tu-braunschweig-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `university-of-hamburg-msc-data-science-and-artificial-intelligence` | `/study-abroad/program-detail/germany/university-of-hamburg/university-of-hamburg-msc-data-science-and-artificial-intelligence` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `leibniz-university-hannover-msc-in-computer-science` | `/study-abroad/program-detail/germany/leibniz-university-hannover/leibniz-university-hannover-msc-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `otto-von-guericke-university-magdeburg-ms-in-computer-science` | `/study-abroad/program-detail/germany/otto-von-guericke-university-magdeburg/otto-von-guericke-university-magdeburg-ms-in-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `chemnitz-university-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/chemnitz-university-of-technology/chemnitz-university-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `rwth-aachen-master-computer-science` | `/study-abroad/program-detail/germany/rwth-aachen-university/rwth-aachen-master-computer-science` | Rule 5 | `identical_money_tuition_per_year` | Identical tuition_per_year (0) repeated across 13 programs in germany |
+| `sa_programs` | `tu-berlin-m-sc-computer-science-informatik` | `/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `tu-dresden-m-sc-computer-science` | `/study-abroad/program-detail/germany/tu-dresden/tu-dresden-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `saarland-university-msc-in-computer-science-informatics` | `/study-abroad/program-detail/germany/saarland-university/saarland-university-msc-in-computer-science-informatics` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `university-of-stuttgart-ms-in-computer-science` | `/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `karlsruhe-institute-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/karlsruhe-institute-of-technology/karlsruhe-institute-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `tu-darmstadt-msc-computer-science` | `/study-abroad/program-detail/germany/tu-darmstadt/tu-darmstadt-msc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `fau-erlangen-nurnberg-ms-in-computer-science` | `/study-abroad/program-detail/germany/fau-erlangen-nurnberg/fau-erlangen-nurnberg-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `university-of-duisburg-essen-m-sc-computer-science` | `/study-abroad/program-detail/germany/university-of-duisburg-essen/university-of-duisburg-essen-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `tu-braunschweig-ms-in-computer-science` | `/study-abroad/program-detail/germany/tu-braunschweig/tu-braunschweig-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `university-of-hamburg-msc-data-science-and-artificial-intelligence` | `/study-abroad/program-detail/germany/university-of-hamburg/university-of-hamburg-msc-data-science-and-artificial-intelligence` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `leibniz-university-hannover-msc-in-computer-science` | `/study-abroad/program-detail/germany/leibniz-university-hannover/leibniz-university-hannover-msc-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `otto-von-guericke-university-magdeburg-ms-in-computer-science` | `/study-abroad/program-detail/germany/otto-von-guericke-university-magdeburg/otto-von-guericke-university-magdeburg-ms-in-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `chemnitz-university-of-technology-m-sc-computer-science` | `/study-abroad/program-detail/germany/chemnitz-university-of-technology/chemnitz-university-of-technology-m-sc-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `tum-technical-university-of-munich-m-sc-informatics` | `/study-abroad/program-detail/germany/tum-technical-university-munich/tum-technical-university-of-munich-m-sc-informatics` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
+| `sa_programs` | `rwth-aachen-master-computer-science` | `/study-abroad/program-detail/germany/rwth-aachen-university/rwth-aachen-master-computer-science` | Rule 5 | `identical_money_living_cost_per_year` | Identical living_cost_per_year (11904) repeated across 15 programs in germany |
 | `sa_guides` | `germany-university-listing-hub-guide` | `/study-abroad/study-in/germany/germany-university-listing-hub-guide` | Rule 6 | `broken_internal_link` | Internal link points to non-existent route: /study-abroad/study-in/germany/germany-master-university-profile-guide |
 | `sa_guides` | `usa-university-listing-hub-guide` | `/study-abroad/study-in/usa/usa-university-listing-hub-guide` | Rule 6 | `broken_internal_link` | Internal link points to non-existent route: /study-abroad/study-in/usa/usa-master-university-profile-guide |
 

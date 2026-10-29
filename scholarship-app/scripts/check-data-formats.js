@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Format gate: fails (exit 1) if any scholarship or Study Abroad row has a field in a format the site cannot handle,
  * or if Study Abroad content violates quality rules (Spec D3) unless the issue is in data/study-abroad/quality-baseline.json.
@@ -21,7 +20,6 @@ const dbArg = process.argv.find(a => a.startsWith('--db='));
 const DB_PATH = dbArg ? dbArg.split('=')[1] : process.env.LOCAL_DB_PATH || path.join(__dirname, '..', 'data', 'scholarships.db');
 const EXCEPTIONS_PATH = path.join(__dirname, '..', 'data', 'format-exceptions.json');
 const QUALITY_BASELINE_PATH = path.join(__dirname, '..', 'data', 'study-abroad', 'quality-baseline.json');
-
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const isJsonArray = v => {
