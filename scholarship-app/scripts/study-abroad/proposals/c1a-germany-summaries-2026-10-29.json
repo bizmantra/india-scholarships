@@ -1,0 +1,152 @@
+{
+  "agent": "content-editor",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "germany-public-vs-private",
+      "fields": {
+        "summary": "For Indian students weighing German university options, public universities charge €0 tuition and enroll 90% of students, while private institutions charge €10,000 to €20,000 yearly."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-rejection-analysis-appeal",
+      "fields": {
+        "summary": "Written for Indian applicants evaluating an Ablehnungsbescheid; explains how to challenge credit or prerequisite evaluation errors via a formal Widerspruch filed within 30 days."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-residence-permit-guide",
+      "fields": {
+        "summary": "A guide for Indian students arriving on a Subtype D visa to convert their entry sticker into a 2-year electronic residence permit (eAT) at the local Ausländerbehörde and set up a Girokonto."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-routes-hub-guide",
+      "fields": {
+        "summary": "Navigates the 5-stage German immigration path for Indian families, covering Section 16b student visas, 140 full work days, the 18-month job seeker visa, and EU Blue Card transitions."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-rwth-aachen-portal-manual",
+      "fields": {
+        "summary": "Covers the RWTHonline portal for Indian engineering applicants, detailing RWTH Aachen's €0 tuition policy and strict mandatory GRE cutoffs (75th percentile Quant) for MS Computer Science."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-scholarship-directory-hub-guide",
+      "fields": {
+        "summary": "Explains major funding options for Indian Master's students in Germany, including DAAD scholarships, political foundation stipends (€992 monthly), and the merit-based Deutschlandstipendium."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-scholarship-panel-interview-guide",
+      "fields": {
+        "summary": "Prepares Indian scholarship applicants for 20- to 30-minute DAAD and university selection panel interviews, focusing on defending research proposals and career goals before academic evaluators."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-sop-europass-cv-guide",
+      "fields": {
+        "summary": "Guides Indian applicants on structuring technical, academic SOPs focused on curriculum modules and thesis projects alongside European tabular Europass CVs for German university admissions."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-testas-exam-guide",
+      "fields": {
+        "summary": "Details the TestAS aptitude exam for Indian applicants to German universities, explaining its lifetime score validity, 110-minute Core Test, and subject-specific modules offered in English or German."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-top-public-unis-profiles",
+      "fields": {
+        "summary": "Profiles 15 leading German public universities for Indian students, comparing TU9 research institutions with universities of applied sciences across tuition fees, living costs, and application portals."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-total-cost-breakdown",
+      "fields": {
+        "summary": "Breaks down the 2-year expenses for Indian families funding a Master's degree in Germany, showing how tuition-free public universities keep total living and blocked-account costs around ₹22.5 to ₹25 Lakhs."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-tum-efv-entrance-exam-guide",
+      "fields": {
+        "summary": "Explains TUM's 100-point Master's Aptitude Assessment (EFV) for Indian STEM applicants, detailing Stage 1 grade and ECTS scoring alongside Stage 2 written entrance exams for scores between 50 and 69."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-tum-munich-portal-manual",
+      "fields": {
+        "summary": "Step-by-step guide for Indian students applying to TUM Munich via TUMonline, highlighting the mandatory Uni-Assist VPD certificate requirement and the strict May 31st Winter application deadline."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-manual",
+      "fields": {
+        "summary": "Walks Indian applicants through Uni-Assist degree evaluation, explaining the difference between standard submissions and VPD certificates alongside application fees (€75 first university, €30 each extra)."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-portal-walkthrough",
+      "fields": {
+        "summary": "Provides a walkthrough of the my.uni-assist.de portal for Indian students, covering account setup, single-vault PDF document uploads (max 10 MB), application fee payments, and status tracking."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-university-listing-hub-guide",
+      "fields": {
+        "summary": "A directory overview helping Indian students filter over 400 German institutions, contrasting tuition-free TU9 research universities and applied sciences institutions against fee-charging private colleges."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-vfs-appointment-hacks",
+      "fields": {
+        "summary": "Explains VFS Global booking mechanics for Indian students applying for a Subtype D visa, highlighting strict consular jurisdiction rules and the mandatory Consular Services Portal reference code requirement."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-vfs-document-checklist",
+      "fields": {
+        "summary": "Checklist for Indian students attending VFS Germany visa appointments, detailing the mandatory two-set physical folder layout (originals and photocopies), unstapled stacking order, and Videx form requirements."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-visa-interview-prep",
+      "fields": {
+        "summary": "Focuses on German student visa interviews for Indian applicants, outlining consular questions on course curriculum, document alignment, and proving €11,904 funding without mentioning part-time jobs."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-visa-routes-hub-guide",
+      "fields": {
+        "summary": "Outlines the German immigration timeline for Indian students, detailing Section 16b study visas, 140-day Werkstudent work rights, the 18-month job seeker permit, and fast-track PR."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-winter-vs-summer-intakes",
+      "fields": {
+        "summary": "Compares Winter and Summer semester intakes for Indian graduates, highlighting application deadlines (July 15 vs. January 15) and noting that Winter hosts 85% of English-taught Master's courses in Germany."
+      }
+    }
+  ]
+}
