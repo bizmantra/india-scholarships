@@ -1,0 +1,264 @@
+{
+  "agent": "content-editor",
+  "changes": [
+    {
+      "table": "sa_universities",
+      "key": "arizona-state-university",
+      "fields": {
+        "summary": "Based in Tempe, Arizona State University is known for tech innovation near Silicon Desert. Out-of-state tuition is $32,000 per year, dropping to $16,000 with a departmental TA or RA award."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "cmu-carnegie-mellon-university",
+      "fields": {
+        "summary": "Carnegie Mellon University in Pittsburgh is renowned for computer science and robotics. Tuition is $58,000 per year, and master's admissions typically expect an 8.8+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "chemnitz-university-of-technology",
+      "fields": {
+        "summary": "Chemnitz University of Technology offers tuition-free master's degrees in computer science and engineering. Students pay only a €250 to €350 semester fee and need a 2.0 Bavarian GPA or better."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "columbia-university",
+      "fields": {
+        "summary": "Located in New York City, Columbia University connects engineering master's students with Wall Street tech roles. Annual tuition is $64,000, with admissions seeking an 8.8+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "fau-erlangen-nurnberg",
+      "fields": {
+        "summary": "FAU Erlangen-Nürnberg in Bavaria partners closely with Siemens Healthineers and Fraunhofer IIS. All consecutive master's programs are tuition-free (€0) with a 2.3 Bavarian GPA admission cutoff."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "george-mason-university",
+      "fields": {
+        "summary": "Situated in Fairfax, Virginia near Washington D.C., George Mason University specializes in cybersecurity and cloud computing. Out-of-state tuition is $34,000 per year with a 7.2+ CGPA target."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "gatech-georgia-tech",
+      "fields": {
+        "summary": "Georgia Tech in Atlanta is celebrated for computer science and engineering research in Tech Square. International graduate tuition is $31,000 per year, requiring an 8.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "heidelberg-university",
+      "fields": {
+        "summary": "Heidelberg University, Germany's oldest university, is renowned for medical technology and data science. Non-EU international students pay €1,500 per semester under state law, with a 2.0 Bavarian GPA cutoff."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "leibniz-university-hannover",
+      "fields": {
+        "summary": "Studying in Hannover at Leibniz University gives engineering and CS students tuition-free public education. The semester contribution is €250 to €350, with entry requiring a 2.0 Bavarian GPA or better."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "nyu-new-york-university",
+      "fields": {
+        "summary": "NYU Tandon and Courant in New York City train graduates for Silicon Alley tech and Wall Street finance roles. Annual tuition is $56,000, with master's applicants needing an 8.0+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "neu-northeastern-university",
+      "fields": {
+        "summary": "Northeastern University in Boston is famous for its 4 to 8-month paid co-op work program. International graduate tuition is $48,000 per year, with target admission cutoffs at an 8.0+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "otto-von-guericke-university-magdeburg",
+      "fields": {
+        "summary": "Magdeburg's Otto von Guericke University provides state-funded, tuition-free master's degrees in computer and data science. Students pay €250 to €350 per semester and require an APS certificate."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "rutgers-university",
+      "fields": {
+        "summary": "Rutgers University in New Brunswick sits 45 minutes from New York City, excelling in computer science and pharma tech. Out-of-state graduate tuition is $34,500 per year with an 8.0+ Indian CGPA target."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "saarland-university",
+      "fields": {
+        "summary": "Saarland University in Saarbrücken is a recognized center for computer science and artificial intelligence. Master's courses are 100% tuition-free, requiring a 2.0 Bavarian GPA cutoff and APS."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "stevens-institute-of-technology",
+      "fields": {
+        "summary": "Facing Midtown Manhattan from Hoboken, New Jersey, Stevens Institute of Technology excels in financial engineering. Annual tuition is $42,000, with typical admission requiring a 7.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "stony-brook-suny",
+      "fields": {
+        "summary": "Stony Brook University on Long Island co-manages Brookhaven National Laboratory and offers top-rated computer science programs. Out-of-state tuition is $24,500 per year, targeting a 7.8+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-braunschweig",
+      "fields": {
+        "summary": "TU Braunschweig is a TU9 research institution in Lower Saxony known for mobility systems and mechanical engineering. Tuition is €0, with students paying a €250 to €350 semester transit fee."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-darmstadt",
+      "fields": {
+        "summary": "Just 20 minutes from Frankfurt, TU Darmstadt is a TU9 leader in cybersecurity and artificial intelligence. All consecutive master's degrees are tuition-free (€0) with a 2.2 Bavarian GPA cutoff."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-dresden",
+      "fields": {
+        "summary": "Dresden's TU9 flagship anchors Europe's Silicon Saxony semiconductor cluster alongside TSMC and Bosch. Master's degrees carry zero tuition fees (€0) and require a 2.5 Bavarian GPA or better."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tuhh-tuhamburg",
+      "fields": {
+        "summary": "Hamburg's TUHH specializes in engineering, logistics, and computer science degrees. International master's students pay €0 in tuition, covering only a €250 to €350 semester fee that includes transit."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-berlin",
+      "fields": {
+        "summary": "Technical University of Berlin sits in Germany's capital, connecting students to its startup hub. Master's programs in engineering and AI charge €0 tuition and require a 2.3 Bavarian GPA or better."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tamu-texas-a-m",
+      "fields": {
+        "summary": "Texas A&M University in College Station combines a massive alumni network with renowned engineering programs. Out-of-state tuition is $24,500 per year, with target admissions at an 8.0+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "suny-buffalo",
+      "fields": {
+        "summary": "University at Buffalo is the flagship of the SUNY system, valued for affordable engineering and data science degrees. Annual out-of-state tuition is $23,100, targeting a 7.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-bonn",
+      "fields": {
+        "summary": "Renowned for mathematics and computer science, the University of Bonn is a public German research institution. Master's tuition is €0, with students paying a €250 to €350 semester fee and needing APS."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "uc-berkeley",
+      "fields": {
+        "summary": "UC Berkeley in the San Francisco Bay Area is a global leader in electrical engineering, computer science, and AI. Out-of-state tuition is $34,000 per year, with admissions expecting an 8.8+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "uc-irvine-uci",
+      "fields": {
+        "summary": "University of California, Irvine features the Donald Bren School of ICS, offering top computer science degrees. Annual out-of-state tuition is $33,000, with master's admissions seeking an 8.2+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "uc-san-diego-ucsd",
+      "fields": {
+        "summary": "Overlooking the Pacific in La Jolla, UCSD is celebrated for computer science, Qualcomm wireless research, and biotech. Graduate tuition is $33,500 per year, targeting an 8.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-duisburg-essen",
+      "fields": {
+        "summary": "Operating across Duisburg and Essen, this public university offers tuition-free (€0) engineering and data science degrees. Semester fees are approximately €250 to €350, with entry requiring a 2.0 Bavarian GPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-freiburg",
+      "fields": {
+        "summary": "The University of Freiburg in southwest Germany is known for computer science and embedded systems. Tuition is €0 per year on the page, with a €250 to €350 semester fee and a 2.0 Bavarian GPA target."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-hamburg",
+      "fields": {
+        "summary": "Northern Germany's University of Hamburg provides tuition-free master's education in data science and computer science. Students pay €250 to €350 per semester for public transit, requiring an APS certificate."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "uiuc-university-of-illinois-urbana-champaign",
+      "fields": {
+        "summary": "UIUC in Urbana-Champaign houses the Grainger College of Engineering, renowned for computer science and supercomputing. Annual out-of-state tuition is $36,000, with admissions seeking an 8.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "umich-university-of-michigan-ann-arbor",
+      "fields": {
+        "summary": "University of Michigan in Ann Arbor is recognized for top-10 engineering programs and research facilities. Out-of-state graduate tuition is $52,000 per year, targeting an 8.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "uncc-unc-charlotte",
+      "fields": {
+        "summary": "UNC Charlotte sits in the second-largest US banking hub, providing strong placement in financial technology. Graduate tuition is $21,000 per year, with a flexible 7.0+ Indian CGPA cutoff."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "usc-university-of-southern-california",
+      "fields": {
+        "summary": "USC's Viterbi School in Los Angeles connects engineering students directly to Silicon Beach tech firms. Annual tuition is $62,000, with competitive admissions expecting an 8.5+ Indian CGPA."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-stuttgart",
+      "fields": {
+        "summary": "Located in Germany's automotive capital, the University of Stuttgart excels in simulation and vehicle technology. Non-EU students pay €1,500 per semester under state law, with a 2.2 Bavarian GPA cutoff."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "ut-arlington-uta",
+      "fields": {
+        "summary": "University of Texas at Arlington offers affordable engineering degrees in the Dallas-Fort Worth metroplex. Out-of-state tuition is $20,500 per year, dropping to $10,000 with a scholarship waiver."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "ut-dallas-utd",
+      "fields": {
+        "summary": "Positioned in Richardson's Telecom Corridor, UT Dallas is popular for engineering and IT placements in DFW. Out-of-state tuition is $29,000 per year, reduced to $13,500 with a Dean's Scholarship."
+      }
+    }
+  ]
+}

@@ -60,7 +60,14 @@ Every published guide and university has a specific, honest summary.
 - A spot check of 5 pages: the summary does not claim anything the page does not say.
 
 ### Questions / Done
-(agent fills in)
+- **Batch C1c Done (2026-10-29)**:
+  - Real staging count: 37 published universities with boilerplate summary starting with "Complete 20" (out of 45 published total; 8 already had specific summaries).
+  - Generated specific summaries for all 37 pages following `CONTENT_RULES.md` and `UNIVERSITY_PAGE_TEMPLATE.md` (city, academic reputation / what it is known for, concrete tuition fee or admission cutoff from existing page text, <= 220 chars, no boilerplate, distinct first 5 words).
+  - Proposal file: `scripts/study-abroad/proposals/c1c-university-summaries-2026-10-29.json` (agent `content-editor`).
+  - Dry run against staging: 0 refusals, 0 errors (`Proposed 37, already waiting 0, unchanged 0, refused 0`).
+  - Submitted to staging: 37 proposals created in `agent_proposals`.
+  - Verification & spot-checks: 0 refusals; no two summaries start with the same five words; 5 sample pages spot-checked against live body and infobox facts.
+  - Notes saved to `scripts/study-abroad/proposals/c1c-notes.md`.
 
 ---
 
