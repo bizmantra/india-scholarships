@@ -86,3 +86,50 @@ test('run() exit code 0 when unverifiable, 1 under --strict', async () => {
     assert.equal((await run({ fetchImpl: down, log: () => {} })).code, 0);
     assert.equal((await run({ fetchImpl: down, strictMode: true, log: () => {} })).code, 1);
 });
+
+// Proposal pre-flight (checkProposals). Pure: pageFor is a fake.
+import { checkProposals } from '../lib/source-verify.mjs';
+
+const registry = { entries: [{ ...entry, fact_key: 'usa.visa.sevis_i901_fee_usd' }] };
+const livePage = async () => page(entry.quote);
+
+test('checkProposals passes a value that matches the registry and a live quote', async () => {
+    const r = await checkProposals([{ table: 'sa_facts', key: 'usa.visa.sevis_i901_fee_usd', fields: { value: '$350', official_source: 'https://www.ice.gov/sevis/i901' } }],
+        { registry, allowed: ALLOWED, pageFor: livePage });
+    assert.deepEqual(r.failures, []);
+});
+
+test('checkProposals refuses a fact with no registry entry', async () => {
+    const r = await checkProposals([{ table: 'sa_facts', key: 'germany.visa.national_fee_eur', fields: { value: '75' } }],
+        { registry, allowed: ALLOWED, pageFor: livePage });
+    assert.equal(r.failures.length, 1);
+    assert.match(r.failures[0].reason, /no entry/);
+});
+
+test('checkProposals refuses a value that differs from the registry', async () => {
+    const r = await checkProposals([{ table: 'sa_facts', key: 'usa.visa.sevis_i901_fee_usd', fields: { value: '$385' } }],
+        { registry, allowed: ALLOWED, pageFor: livePage });
+    assert.match(r.failures[0].reason, /does not match/);
+});
+
+test('checkProposals refuses a registry value whose quote has left the live page', async () => {
+    const r = await checkProposals([{ table: 'sa_facts', key: 'usa.visa.sevis_i901_fee_usd', fields: { value: '$350' } }],
+        { registry, allowed: ALLOWED, pageFor: async () => page('$385') });
+    assert.match(r.failures[0].reason, /fail: quote not found/);
+});
+
+test('checkProposals refuses an unverifiable page for a fact value', async () => {
+    const r = await checkProposals([{ table: 'sa_facts', key: 'usa.visa.sevis_i901_fee_usd', fields: { value: '$350' } }],
+        { registry, allowed: ALLOWED, pageFor: async () => null });
+    assert.match(r.failures[0].reason, /unverifiable/);
+});
+
+test('checkProposals fails a fact whose source is a provider, and only warns for a university source', async () => {
+    const r = await checkProposals([
+        { table: 'sa_facts', key: 'germany.blocked_account.expatrio_setup_eur', fields: { official_source: 'https://www.expatrio.com/blocked-account' } },
+        { table: 'sa_universities', key: 'tum', fields: { tuition_per_year: '6000', official_source: 'https://www.tum.de/fees' } },
+    ], { registry, allowed: ALLOWED, pageFor: livePage });
+    assert.equal(r.failures.length, 1);
+    assert.equal(r.warnings.length, 1);
+    assert.equal(r.warnings[0].key, 'tum');
+});

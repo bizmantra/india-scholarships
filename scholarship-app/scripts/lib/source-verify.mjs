@@ -94,3 +94,45 @@ export async function fetchPage(url, { fetchImpl = fetch, timeoutMs = 20000 } = 
         return null;
     }
 }
+
+const normValue = v => normalizeText(v);
+
+/**
+ * Pre-flight for a proposals file (same shape as propose-changes.mjs input). Pure apart from pageFor.
+ *   registry: { entries: [...] }   allowed: [domains]   pageFor(url) -> html | null
+ * Rules:
+ *   - sa_facts "value" change: needs a registry entry for that fact_key with the same value, and its
+ *     quote must be on the live page. Unverifiable pages fail (a value cannot be confirmed without one).
+ *   - sa_facts "official_source": host must be on the allowlist.
+ *   - any other source host not on the allowlist: warning only (owner decides when to extend the list).
+ * Returns { failures: [{key, field, reason}], warnings: [{key, field, reason}] }.
+ */
+export async function checkProposals(changes, { registry, allowed, pageFor }) {
+    const failures = [];
+    const warnings = [];
+    const entries = (registry && registry.entries) || [];
+    for (const change of changes || []) {
+        const { table, key } = change;
+        const fields = change.fields || {};
+        const sourceUrls = [change.source, fields.official_source].filter(Boolean);
+
+        if (table === 'sa_facts' && fields.value !== undefined) {
+            const entry = entries.find(e => e.fact_key === key);
+            if (!entry) {
+                failures.push({ key, field: 'value', reason: 'no entry in data/study-abroad/source-checks.json for this fact; add one after reading the official page' });
+            } else if (normValue(entry.value) !== normValue(fields.value)) {
+                failures.push({ key, field: 'value', reason: `proposed value "${fields.value}" does not match the registry value "${entry.value}"` });
+            } else {
+                const result = checkEntry(entry, await pageFor(entry.url), allowed);
+                if (result.status !== 'pass') failures.push({ key, field: 'value', reason: `${result.status}: ${result.reason}` });
+            }
+        }
+        for (const url of sourceUrls) {
+            if (!hostAllowed(url, allowed)) {
+                const severity = table === 'sa_facts' ? failures : warnings;
+                severity.push({ key, field: 'source', reason: `${url} is not on the official allowlist` });
+            }
+        }
+    }
+    return { failures, warnings };
+}

@@ -9,6 +9,7 @@ on:
       - 'scholarship-app/data/study-abroad/official-domains.json'
       - 'scholarship-app/scripts/lib/source-verify.mjs'
       - 'scholarship-app/scripts/study-abroad/verify-sources*.mjs'
+      - 'scholarship-app/scripts/study-abroad/check-proposals.mjs'
       - '.github/workflows/sa-verify-sources.yml'
   schedule:
     - cron: '20 4 * * 1' # Monday 04:20 UTC
@@ -32,6 +33,10 @@ jobs:
       - name: Offline tests for the checker
         working-directory: scholarship-app
         run: node --test scripts/study-abroad/verify-sources.test.mjs
+
+      - name: Pre-flight: check the sample proposals file if one is committed
+        working-directory: scholarship-app
+        run: test -f scripts/study-abroad/proposals/sample-check.json && node scripts/study-abroad/check-proposals.mjs scripts/study-abroad/proposals/sample-check.json || echo "no sample proposals file"
 
       - name: Check registered facts against official pages
         working-directory: scholarship-app

@@ -188,7 +188,7 @@ Stop relying on AI to confirm facts. A registered fact passes only if its exact 
 Proposals from agents are not yet checked against the registry; the next step is to make `propose-changes.mjs` refuse a `source` that is not in the registry or on the allowlist.
 
 ### How to check it works
-- `node --test scripts/study-abroad/verify-sources.test.mjs` (13 offline tests).
+- `node --test scripts/study-abroad/verify-sources.test.mjs` (19 offline tests).
 - `node scripts/study-abroad/verify-sources.mjs` (live: the ICE I-901 page passes).
 
 ### Done
