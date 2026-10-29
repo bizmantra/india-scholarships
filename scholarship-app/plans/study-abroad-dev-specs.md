@@ -71,10 +71,32 @@ Let an agent propose a **new** `sa_universities`, `sa_guides`, `sa_programs` or 
 New countries going live, nav changes, sitemap changes (drafts are already excluded; verify, do not rebuild).
 
 ### Questions
-(agent writes here if blocked)
+- Note on staging environment: `TURSO_STAGING_DATABASE_URL` is stored in GitHub Actions secrets / Vercel Preview environment and was not present in the local `.env.local` file. In accordance with rule 4 ("never touch `.env*`, secrets, scholarship.db, or anything in backups/") and the strict rule to never write to production, live remote queries against Turso staging could not be executed locally; all database schema operations, inbox approval/undo lifecycle, dedup, and gate checks were thoroughly validated locally with an in-memory LibSQL database and unit assertions matching Turso. Staging verification will occur on the preview deployment created from the PR.
 
 ### Done
-(agent fills in when finished)
+- `scripts/lib/sa-inbox.js`:
+  - Added `NEW_KIND` ('sa_new_page'), `REQUIRED` columns per table from DDL, `TABLE_COLUMNS`, and `BOILERPLATE_SUMMARY`.
+  - Added `validateNewRow` validating required columns, slug regex (`^[a-z0-9]+(-[a-z0-9]+)*$`), known countries from `countries.ts`, guide kinds, program university_slug existence, money field sources, unknown columns, and banned phrases.
+  - Added `validatePublishRow` enforcing whole-row validity, non-boilerplate summary, money/visa official sources and dates, and banned phrase checks.
+- `lib/command-center/inbox.ts`:
+  - Added `'sa_new_page'` to `Proposal.kind` union.
+  - Handled `sa_new_page` approval in `decide()`: validates row, checks non-existence, forces `status = 'draft'`, sets server `created_at`/`updated_at`, executes INSERT, logs approval event with timestamp.
+  - Added publish gate in `decide()` for `status → published` proposals on `sa_field_change`, calling `validatePublishRow`.
+  - Added `undoSaNewPage` in `undo()`: deletes draft row only if status is still `'draft'` and `updated_at` has not changed since approval; refuses otherwise ("page has changed since").
+- `app/admin/agents/InboxQueue.tsx`:
+  - Added `sa_new_page` support to `pageHref`, displayed "Study Abroad: New page (draft)" in field column, '—' in now column, summary preview in proposed column, and JSON preview in expanded details.
+- `app/admin/agents/Cards.tsx`:
+  - Added grouping and card rendering for `sa_new_page` with "New page (draft)" badge, table, title, country, first 300 characters of summary, field count, official source link, and "Preview JSON" expander.
+- `scripts/study-abroad/propose-changes.mjs`:
+  - Added support for `{ "table", "key", "create": true, "fields": {...} }`.
+  - Added validation with `validateNewRow`, printing errors per row in `--dry-run`.
+  - Implemented deduplication (bumps identical pending, refuses rejected identical, supersedes older pending).
+- `docs/AGENT_CENTER.md`:
+  - Added documentation on `sa_new_page` proposal format, validation rules, draft lifecycle, publish gate, and undo conditions.
+- Verification:
+  - Validated with unit test script covering valid row, missing summary, bad slug, duplicate key, unknown university slug, banned phrase, missing source on money fields, boilerplate summary in publish gate, approval with draft status, and undo deletion/refusal.
+  - `npx tsc --noEmit` passed with 0 errors.
+  - ESLint passed clean on all touched files.
 
 ---
 
