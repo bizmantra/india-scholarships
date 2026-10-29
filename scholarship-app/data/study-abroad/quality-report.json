@@ -1,0 +1,3985 @@
+[
+  {
+    "page": "/study-abroad/universities/arizona-state-university",
+    "table": "sa_universities",
+    "id": "arizona-state-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/cmu-carnegie-mellon-university",
+    "table": "sa_universities",
+    "id": "cmu-carnegie-mellon-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/columbia-university",
+    "table": "sa_universities",
+    "id": "columbia-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/george-mason-university",
+    "table": "sa_universities",
+    "id": "george-mason-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/nyu-new-york-university",
+    "table": "sa_universities",
+    "id": "nyu-new-york-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/rutgers-university",
+    "table": "sa_universities",
+    "id": "rutgers-university",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/stony-brook-suny",
+    "table": "sa_universities",
+    "id": "stony-brook-suny",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tamu-texas-a-m",
+    "table": "sa_universities",
+    "id": "tamu-texas-a-m",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/uc-berkeley",
+    "table": "sa_universities",
+    "id": "uc-berkeley",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/uc-irvine-uci",
+    "table": "sa_universities",
+    "id": "uc-irvine-uci",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/uc-san-diego-ucsd",
+    "table": "sa_universities",
+    "id": "uc-san-diego-ucsd",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/uiuc-university-of-illinois-urbana-champaign",
+    "table": "sa_universities",
+    "id": "uiuc-university-of-illinois-urbana-champaign",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/umich-university-of-michigan-ann-arbor",
+    "table": "sa_universities",
+    "id": "umich-university-of-michigan-ann-arbor",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/uncc-unc-charlotte",
+    "table": "sa_universities",
+    "id": "uncc-unc-charlotte",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/usc-university-of-southern-california",
+    "table": "sa_universities",
+    "id": "usc-university-of-southern-california",
+    "rules": [
+      1,
+      3
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/ut-dallas-utd",
+    "table": "sa_universities",
+    "id": "ut-dallas-utd",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-routes-hub-guide",
+    "table": "sa_guides",
+    "id": "germany-routes-hub-guide",
+    "rules": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 2,
+        "code": "empty_seo_title",
+        "message": "SEO title is empty"
+      },
+      {
+        "rule": 2,
+        "code": "meta_description_length",
+        "message": "Meta description length is 0 characters (expected 110–170)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-routes-hub-guide",
+    "table": "sa_guides",
+    "id": "usa-routes-hub-guide",
+    "rules": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 2,
+        "code": "empty_seo_title",
+        "message": "SEO title is empty"
+      },
+      {
+        "rule": 2,
+        "code": "meta_description_length",
+        "message": "Meta description length is 0 characters (expected 110–170)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-winter-vs-summer-intakes",
+    "table": "sa_guides",
+    "id": "germany-winter-vs-summer-intakes",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-uni-assist-portal-walkthrough",
+    "table": "sa_guides",
+    "id": "germany-uni-assist-portal-walkthrough",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-tum-munich-portal-manual",
+    "table": "sa_guides",
+    "id": "germany-tum-munich-portal-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-rwth-aachen-portal-manual",
+    "table": "sa_guides",
+    "id": "germany-rwth-aachen-portal-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-rejection-analysis-appeal",
+    "table": "sa_guides",
+    "id": "germany-rejection-analysis-appeal",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-multiple-offers-decision-matrix",
+    "table": "sa_guides",
+    "id": "germany-multiple-offers-decision-matrix",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-initial-72hr-survival-guide",
+    "table": "sa_guides",
+    "id": "germany-initial-72hr-survival-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-health-insurance-guide",
+    "table": "sa_guides",
+    "id": "germany-health-insurance-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-residence-permit-guide",
+    "table": "sa_guides",
+    "id": "germany-residence-permit-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-public-vs-private",
+    "table": "sa_guides",
+    "id": "germany-public-vs-private",
+    "rules": [
+      1,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-top-public-unis-profiles",
+    "table": "sa_guides",
+    "id": "germany-top-public-unis-profiles",
+    "rules": [
+      1,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-testas-exam-guide",
+    "table": "sa_guides",
+    "id": "germany-testas-exam-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-gre-gmat-germany-guide",
+    "table": "sa_guides",
+    "id": "germany-gre-gmat-germany-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-tum-efv-entrance-exam-guide",
+    "table": "sa_guides",
+    "id": "germany-tum-efv-entrance-exam-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-scholarship-panel-interview-guide",
+    "table": "sa_guides",
+    "id": "germany-scholarship-panel-interview-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-total-cost-breakdown",
+    "table": "sa_guides",
+    "id": "germany-total-cost-breakdown",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-education-loans-germany",
+    "table": "sa_guides",
+    "id": "germany-education-loans-germany",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-rbi-lrs-tcs-tax-rules",
+    "table": "sa_guides",
+    "id": "germany-rbi-lrs-tcs-tax-rules",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-university-listing-hub-guide",
+    "table": "sa_guides",
+    "id": "germany-university-listing-hub-guide",
+    "rules": [
+      1,
+      3,
+      4,
+      6
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      },
+      {
+        "rule": 6,
+        "code": "broken_internal_link",
+        "message": "Internal link points to non-existent route: /study-abroad/study-in/germany/germany-master-university-profile-guide"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-scholarship-directory-hub-guide",
+    "table": "sa_guides",
+    "id": "germany-scholarship-directory-hub-guide",
+    "rules": [
+      1,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-visa-routes-hub-guide",
+    "table": "sa_guides",
+    "id": "germany-visa-routes-hub-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-uni-assist-manual",
+    "table": "sa_guides",
+    "id": "germany-uni-assist-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-sop-europass-cv-guide",
+    "table": "sa_guides",
+    "id": "germany-sop-europass-cv-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/germany-national-student-visa",
+    "table": "sa_guides",
+    "id": "germany-national-student-visa",
+    "rules": [
+      1,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/germany-vfs-appointment-hacks",
+    "table": "sa_guides",
+    "id": "germany-vfs-appointment-hacks",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/germany-vfs-document-checklist",
+    "table": "sa_guides",
+    "id": "germany-vfs-document-checklist",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/germany-visa-interview-prep",
+    "table": "sa_guides",
+    "id": "germany-visa-interview-prep",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-part-time-work-rules",
+    "table": "sa_guides",
+    "id": "germany-part-time-work-rules",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-securing-werkstudent-jobs",
+    "table": "sa_guides",
+    "id": "germany-securing-werkstudent-jobs",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-job-seeker-visa-strategy",
+    "table": "sa_guides",
+    "id": "germany-job-seeker-visa-strategy",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-fall-vs-spring-intakes",
+    "table": "sa_guides",
+    "id": "usa-fall-vs-spring-intakes",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-gradcas-commonapp-portals",
+    "table": "sa_guides",
+    "id": "usa-gradcas-commonapp-portals",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-priority-vs-rolling-deadlines",
+    "table": "sa_guides",
+    "id": "usa-priority-vs-rolling-deadlines",
+    "rules": [
+      1,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-i20-issuance-deposit-payment",
+    "table": "sa_guides",
+    "id": "usa-i20-issuance-deposit-payment",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-rejection-analysis-appeal",
+    "table": "sa_guides",
+    "id": "usa-rejection-analysis-appeal",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-multiple-offers-decision-matrix",
+    "table": "sa_guides",
+    "id": "usa-multiple-offers-decision-matrix",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-initial-72hr-survival-guide",
+    "table": "sa_guides",
+    "id": "usa-initial-72hr-survival-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-ssn-application-guide",
+    "table": "sa_guides",
+    "id": "usa-ssn-application-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-health-insurance-waiver-guide",
+    "table": "sa_guides",
+    "id": "usa-health-insurance-waiver-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-off-campus-housing-lease",
+    "table": "sa_guides",
+    "id": "usa-off-campus-housing-lease",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-destination-overview",
+    "table": "sa_guides",
+    "id": "usa-destination-overview",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-public-vs-private-unis",
+    "table": "sa_guides",
+    "id": "usa-public-vs-private-unis",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-wes-gpa-40-conversion",
+    "table": "sa_guides",
+    "id": "usa-wes-gpa-40-conversion",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-3yr-bachelor-acceptance",
+    "table": "sa_guides",
+    "id": "usa-3yr-bachelor-acceptance",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-stem-opt-designated-ms-cs",
+    "table": "sa_guides",
+    "id": "usa-stem-opt-designated-ms-cs",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-ms-data-science-business-analytics",
+    "table": "sa_guides",
+    "id": "usa-ms-data-science-business-analytics",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-ms-engineering-management-miso",
+    "table": "sa_guides",
+    "id": "usa-ms-engineering-management-miso",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-top-us-public-r1-unis",
+    "table": "sa_guides",
+    "id": "usa-top-us-public-r1-unis",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-gre-quant-170-strategy",
+    "table": "sa_guides",
+    "id": "usa-gre-quant-170-strategy",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-gre-verbal-awa-prep-guide",
+    "table": "sa_guides",
+    "id": "usa-gre-verbal-awa-prep-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-toefl-ielts-preparation-guide",
+    "table": "sa_guides",
+    "id": "usa-toefl-ielts-preparation-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-duolingo-det-preparation-guide",
+    "table": "sa_guides",
+    "id": "usa-duolingo-det-preparation-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-fulbright-interview-prep",
+    "table": "sa_guides",
+    "id": "usa-fulbright-interview-prep",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-assistantship-interview-guide",
+    "table": "sa_guides",
+    "id": "usa-assistantship-interview-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-total-cost-breakdown",
+    "table": "sa_guides",
+    "id": "usa-total-cost-breakdown",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-i20-financial-proof-manual",
+    "table": "sa_guides",
+    "id": "usa-i20-financial-proof-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/us-education-loans-guide",
+    "table": "sa_guides",
+    "id": "us-education-loans-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-assistantships-ta-ra-ga",
+    "table": "sa_guides",
+    "id": "usa-assistantships-ta-ra-ga",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-fulbright-tata-scholarships",
+    "table": "sa_guides",
+    "id": "usa-fulbright-tata-scholarships",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-on-campus-jobs-20hr-rule",
+    "table": "sa_guides",
+    "id": "usa-on-campus-jobs-20hr-rule",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-university-listing-hub-guide",
+    "table": "sa_guides",
+    "id": "usa-university-listing-hub-guide",
+    "rules": [
+      1,
+      3,
+      4,
+      6
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      },
+      {
+        "rule": 6,
+        "code": "broken_internal_link",
+        "message": "Internal link points to non-existent route: /study-abroad/study-in/usa/usa-master-university-profile-guide"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-scholarship-directory-hub-guide",
+    "table": "sa_guides",
+    "id": "usa-scholarship-directory-hub-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-fulbright-scholarship-master-guide",
+    "table": "sa_guides",
+    "id": "usa-fulbright-scholarship-master-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-visa-routes-hub-guide",
+    "table": "sa_guides",
+    "id": "usa-visa-routes-hub-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-wes-credential-evaluation-manual",
+    "table": "sa_guides",
+    "id": "usa-wes-credential-evaluation-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-gpa-conversion-matrix",
+    "table": "sa_guides",
+    "id": "usa-gpa-conversion-matrix",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-toefl-ielts-duolingo-cutoffs",
+    "table": "sa_guides",
+    "id": "usa-toefl-ielts-duolingo-cutoffs",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-gre-gmat-waiver-directory",
+    "table": "sa_guides",
+    "id": "usa-gre-gmat-waiver-directory",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-sop-lor-resume-us-standards",
+    "table": "sa_guides",
+    "id": "usa-sop-lor-resume-us-standards",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-work-experience-research-paper-points",
+    "table": "sa_guides",
+    "id": "usa-work-experience-research-paper-points",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-prerequisites-deficiency-courses",
+    "table": "sa_guides",
+    "id": "usa-prerequisites-deficiency-courses",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/usa-f1-student-visa-master-guide",
+    "table": "sa_guides",
+    "id": "usa-f1-student-visa-master-guide",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/usa-ds160-form-filing-manual",
+    "table": "sa_guides",
+    "id": "usa-ds160-form-filing-manual",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/us-consulate-slot-booking-hacks",
+    "table": "sa_guides",
+    "id": "us-consulate-slot-booking-hacks",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/usa-f1-visa-interview-prep-questions",
+    "table": "sa_guides",
+    "id": "usa-f1-visa-interview-prep-questions",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-cpt-internship-rules",
+    "table": "sa_guides",
+    "id": "usa-cpt-internship-rules",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-opt-stem-opt-extension",
+    "table": "sa_guides",
+    "id": "usa-opt-stem-opt-extension",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/usa/usa-green-card-eb2-niw-pathways",
+    "table": "sa_guides",
+    "id": "usa-green-card-eb2-niw-pathways",
+    "rules": [
+      1,
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/purdue-university",
+    "table": "sa_universities",
+    "id": "purdue-university",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-offer-acceptance-payment",
+    "table": "sa_guides",
+    "id": "germany-offer-acceptance-payment",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-anmeldung-tax-id",
+    "table": "sa_guides",
+    "id": "germany-anmeldung-tax-id",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-destination-overview",
+    "table": "sa_guides",
+    "id": "germany-destination-overview",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-fsp-studienkolleg-guide",
+    "table": "sa_guides",
+    "id": "germany-fsp-studienkolleg-guide",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-german-language-exams-guide",
+    "table": "sa_guides",
+    "id": "germany-german-language-exams-guide",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-daad-scholarships-guide",
+    "table": "sa_guides",
+    "id": "germany-daad-scholarships-guide",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-financial-emergency-plan",
+    "table": "sa_guides",
+    "id": "germany-financial-emergency-plan",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-daad-scholarship-master-guide",
+    "table": "sa_guides",
+    "id": "germany-daad-scholarship-master-guide",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-bavarian-grade-matrix",
+    "table": "sa_guides",
+    "id": "germany-bavarian-grade-matrix",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-german-language-levels",
+    "table": "sa_guides",
+    "id": "germany-german-language-levels",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-gre-gmat-waiver-directory",
+    "table": "sa_guides",
+    "id": "germany-gre-gmat-waiver-directory",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-blue-card-pr-pathway",
+    "table": "sa_guides",
+    "id": "germany-blue-card-pr-pathway",
+    "rules": [
+      3,
+      4
+    ],
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/loans/expatrio-vs-fintiba-vs-coracle",
+    "table": "sa_guides",
+    "id": "expatrio-vs-fintiba-vs-coracle",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/loans/prodigy-vs-mpower-vs-sbi-loan-usa",
+    "table": "sa_guides",
+    "id": "prodigy-vs-mpower-vs-sbi-loan-usa",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/us-f1-student-visa-application-checklist",
+    "table": "sa_guides",
+    "id": "us-f1-student-visa-application-checklist",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/aps-india-certificate-verification-step-by-step",
+    "table": "sa_guides",
+    "id": "aps-india-certificate-verification-step-by-step",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/loans/collateral-free-loan-approved-universities",
+    "table": "sa_guides",
+    "id": "collateral-free-loan-approved-universities",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/visas/germany-student-visa-interview-questions",
+    "table": "sa_guides",
+    "id": "germany-student-visa-interview-questions",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/loans/section-80e-tax-deduction-worked-example",
+    "table": "sa_guides",
+    "id": "section-80e-tax-deduction-worked-example",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-ects-credit-mapping",
+    "table": "sa_guides",
+    "id": "germany-ects-credit-mapping",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-3yr-bachelor-acceptance",
+    "table": "sa_guides",
+    "id": "germany-3yr-bachelor-acceptance",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-ms-cs-directory",
+    "table": "sa_guides",
+    "id": "germany-ms-cs-directory",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-ms-data-science-directory",
+    "table": "sa_guides",
+    "id": "germany-ms-data-science-directory",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-engineering-directory",
+    "table": "sa_guides",
+    "id": "germany-engineering-directory",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/study-in/germany/germany-blocked-account-manual",
+    "table": "sa_guides",
+    "id": "germany-blocked-account-manual",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/usa/neu-northeastern-university/northeastern-university-boston-ms-in-information-systems",
+    "table": "sa_programs",
+    "id": "northeastern-university-boston-ms-in-information-systems",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.buffer_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.vfs.service_fee_inr",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.fx.eur_inr",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.expatrio_setup_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.fintiba_setup_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.coracle_setup_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.expatrio_monthly_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.fintiba_monthly_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "germany.blocked_account.coracle_monthly_eur",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "usa.living.monthly_average_usd",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": null,
+    "table": "sa_facts",
+    "id": "usa.fx.usd_inr",
+    "rules": [
+      4
+    ],
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/chemnitz-university-of-technology",
+    "table": "sa_universities",
+    "id": "chemnitz-university-of-technology",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/fau-erlangen-nurnberg",
+    "table": "sa_universities",
+    "id": "fau-erlangen-nurnberg",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/leibniz-university-hannover",
+    "table": "sa_universities",
+    "id": "leibniz-university-hannover",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/lmu-munich-ludwig-maximilian",
+    "table": "sa_universities",
+    "id": "lmu-munich-ludwig-maximilian",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/otto-von-guericke-university-magdeburg",
+    "table": "sa_universities",
+    "id": "otto-von-guericke-university-magdeburg",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/rwth-aachen-university",
+    "table": "sa_universities",
+    "id": "rwth-aachen-university",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/saarland-university",
+    "table": "sa_universities",
+    "id": "saarland-university",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-berlin",
+    "table": "sa_universities",
+    "id": "tu-berlin",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-braunschweig",
+    "table": "sa_universities",
+    "id": "tu-braunschweig",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-darmstadt",
+    "table": "sa_universities",
+    "id": "tu-darmstadt",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tu-dresden",
+    "table": "sa_universities",
+    "id": "tu-dresden",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/tuhh-tuhamburg",
+    "table": "sa_universities",
+    "id": "tuhh-tuhamburg",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-bonn",
+    "table": "sa_universities",
+    "id": "university-of-bonn",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-duisburg-essen",
+    "table": "sa_universities",
+    "id": "university-of-duisburg-essen",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-hamburg",
+    "table": "sa_universities",
+    "id": "university-of-hamburg",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/heidelberg-university",
+    "table": "sa_universities",
+    "id": "heidelberg-university",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/karlsruhe-institute-of-technology",
+    "table": "sa_universities",
+    "id": "karlsruhe-institute-of-technology",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-freiburg",
+    "table": "sa_universities",
+    "id": "university-of-freiburg",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/universities/university-of-stuttgart",
+    "table": "sa_universities",
+    "id": "university-of-stuttgart",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/tu-berlin/tu-berlin-m-sc-computer-science-informatik",
+    "table": "sa_programs",
+    "id": "tu-berlin-m-sc-computer-science-informatik",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/tu-dresden/tu-dresden-m-sc-computer-science",
+    "table": "sa_programs",
+    "id": "tu-dresden-m-sc-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/saarland-university/saarland-university-msc-in-computer-science-informatics",
+    "table": "sa_programs",
+    "id": "saarland-university-msc-in-computer-science-informatics",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/tu-darmstadt/tu-darmstadt-msc-computer-science",
+    "table": "sa_programs",
+    "id": "tu-darmstadt-msc-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/fau-erlangen-nurnberg/fau-erlangen-nurnberg-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "fau-erlangen-nurnberg-ms-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/university-of-duisburg-essen/university-of-duisburg-essen-m-sc-computer-science",
+    "table": "sa_programs",
+    "id": "university-of-duisburg-essen-m-sc-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/tu-braunschweig/tu-braunschweig-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "tu-braunschweig-ms-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/university-of-hamburg/university-of-hamburg-msc-data-science-and-artificial-intelligence",
+    "table": "sa_programs",
+    "id": "university-of-hamburg-msc-data-science-and-artificial-intelligence",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/leibniz-university-hannover/leibniz-university-hannover-msc-in-computer-science",
+    "table": "sa_programs",
+    "id": "leibniz-university-hannover-msc-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/otto-von-guericke-university-magdeburg/otto-von-guericke-university-magdeburg-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "otto-von-guericke-university-magdeburg-ms-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/chemnitz-university-of-technology/chemnitz-university-of-technology-m-sc-computer-science",
+    "table": "sa_programs",
+    "id": "chemnitz-university-of-technology-m-sc-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/rwth-aachen-university/rwth-aachen-master-computer-science",
+    "table": "sa_programs",
+    "id": "rwth-aachen-master-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 12 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/university-of-stuttgart/university-of-stuttgart-ms-in-computer-science",
+    "table": "sa_programs",
+    "id": "university-of-stuttgart-ms-in-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/karlsruhe-institute-of-technology/karlsruhe-institute-of-technology-m-sc-computer-science",
+    "table": "sa_programs",
+    "id": "karlsruhe-institute-of-technology-m-sc-computer-science",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "page": "/study-abroad/program-detail/germany/tum-technical-university-munich/tum-technical-university-of-munich-m-sc-informatics",
+    "table": "sa_programs",
+    "id": "tum-technical-university-of-munich-m-sc-informatics",
+    "rules": [
+      5
+    ],
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 14 programs in germany"
+      }
+    ],
+    "warnings": []
+  }
+]
