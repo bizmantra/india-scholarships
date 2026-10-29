@@ -17,23 +17,9 @@
     },
     {
       "table": "sa_universities",
-      "key": "chemnitz-university-of-technology",
-      "fields": {
-        "summary": "Chemnitz University of Technology offers tuition-free master's degrees in computer science and engineering. Students pay only a €250 to €350 semester fee and need a 2.0 Bavarian GPA or better."
-      }
-    },
-    {
-      "table": "sa_universities",
       "key": "columbia-university",
       "fields": {
         "summary": "Located in New York City, Columbia University connects engineering master's students with Wall Street tech roles. Annual tuition is $64,000, with admissions seeking an 8.8+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "fau-erlangen-nurnberg",
-      "fields": {
-        "summary": "FAU Erlangen-Nürnberg in Bavaria partners closely with Siemens Healthineers and Fraunhofer IIS. All consecutive master's programs are tuition-free (€0) with a 2.3 Bavarian GPA admission cutoff."
       }
     },
     {
@@ -45,27 +31,6 @@
     },
     {
       "table": "sa_universities",
-      "key": "gatech-georgia-tech",
-      "fields": {
-        "summary": "Georgia Tech in Atlanta is celebrated for computer science and engineering research in Tech Square. International graduate tuition is $31,000 per year, requiring an 8.5+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "heidelberg-university",
-      "fields": {
-        "summary": "Heidelberg University, Germany's oldest university, is renowned for medical technology and data science. Non-EU international students pay €1,500 per semester under state law, with a 2.0 Bavarian GPA cutoff."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "leibniz-university-hannover",
-      "fields": {
-        "summary": "Studying in Hannover at Leibniz University gives engineering and CS students tuition-free public education. The semester contribution is €250 to €350, with entry requiring a 2.0 Bavarian GPA or better."
-      }
-    },
-    {
-      "table": "sa_universities",
       "key": "nyu-new-york-university",
       "fields": {
         "summary": "NYU Tandon and Courant in New York City train graduates for Silicon Alley tech and Wall Street finance roles. Annual tuition is $56,000, with master's applicants needing an 8.0+ Indian CGPA."
@@ -73,30 +38,9 @@
     },
     {
       "table": "sa_universities",
-      "key": "neu-northeastern-university",
-      "fields": {
-        "summary": "Northeastern University in Boston is famous for its 4 to 8-month paid co-op work program. International graduate tuition is $48,000 per year, with target admission cutoffs at an 8.0+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "otto-von-guericke-university-magdeburg",
-      "fields": {
-        "summary": "Magdeburg's Otto von Guericke University provides state-funded, tuition-free master's degrees in computer and data science. Students pay €250 to €350 per semester and require an APS certificate."
-      }
-    },
-    {
-      "table": "sa_universities",
       "key": "rutgers-university",
       "fields": {
         "summary": "Rutgers University in New Brunswick sits 45 minutes from New York City, excelling in computer science and pharma tech. Out-of-state graduate tuition is $34,500 per year with an 8.0+ Indian CGPA target."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "saarland-university",
-      "fields": {
-        "summary": "Saarland University in Saarbrücken is a recognized center for computer science and artificial intelligence. Master's courses are 100% tuition-free, requiring a 2.0 Bavarian GPA cutoff and APS."
       }
     },
     {
@@ -115,58 +59,9 @@
     },
     {
       "table": "sa_universities",
-      "key": "tu-braunschweig",
-      "fields": {
-        "summary": "TU Braunschweig is a TU9 research institution in Lower Saxony known for mobility systems and mechanical engineering. Tuition is €0, with students paying a €250 to €350 semester transit fee."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "tu-darmstadt",
-      "fields": {
-        "summary": "Just 20 minutes from Frankfurt, TU Darmstadt is a TU9 leader in cybersecurity and artificial intelligence. All consecutive master's degrees are tuition-free (€0) with a 2.2 Bavarian GPA cutoff."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "tu-dresden",
-      "fields": {
-        "summary": "Dresden's TU9 flagship anchors Europe's Silicon Saxony semiconductor cluster alongside TSMC and Bosch. Master's degrees carry zero tuition fees (€0) and require a 2.5 Bavarian GPA or better."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "tuhh-tuhamburg",
-      "fields": {
-        "summary": "Hamburg's TUHH specializes in engineering, logistics, and computer science degrees. International master's students pay €0 in tuition, covering only a €250 to €350 semester fee that includes transit."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "tu-berlin",
-      "fields": {
-        "summary": "Technical University of Berlin sits in Germany's capital, connecting students to its startup hub. Master's programs in engineering and AI charge €0 tuition and require a 2.3 Bavarian GPA or better."
-      }
-    },
-    {
-      "table": "sa_universities",
       "key": "tamu-texas-a-m",
       "fields": {
         "summary": "Texas A&M University in College Station combines a massive alumni network with renowned engineering programs. Out-of-state tuition is $24,500 per year, with target admissions at an 8.0+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "suny-buffalo",
-      "fields": {
-        "summary": "University at Buffalo is the flagship of the SUNY system, valued for affordable engineering and data science degrees. Annual out-of-state tuition is $23,100, targeting a 7.5+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "university-of-bonn",
-      "fields": {
-        "summary": "Renowned for mathematics and computer science, the University of Bonn is a public German research institution. Master's tuition is €0, with students paying a €250 to €350 semester fee and needing APS."
       }
     },
     {
@@ -188,27 +83,6 @@
       "key": "uc-san-diego-ucsd",
       "fields": {
         "summary": "Overlooking the Pacific in La Jolla, UCSD is celebrated for computer science, Qualcomm wireless research, and biotech. Graduate tuition is $33,500 per year, targeting an 8.5+ Indian CGPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "university-of-duisburg-essen",
-      "fields": {
-        "summary": "Operating across Duisburg and Essen, this public university offers tuition-free (€0) engineering and data science degrees. Semester fees are approximately €250 to €350, with entry requiring a 2.0 Bavarian GPA."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "university-of-freiburg",
-      "fields": {
-        "summary": "The University of Freiburg in southwest Germany is known for computer science and embedded systems. Tuition is €0 per year on the page, with a €250 to €350 semester fee and a 2.0 Bavarian GPA target."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "university-of-hamburg",
-      "fields": {
-        "summary": "Northern Germany's University of Hamburg provides tuition-free master's education in data science and computer science. Students pay €250 to €350 per semester for public transit, requiring an APS certificate."
       }
     },
     {
@@ -241,23 +115,149 @@
     },
     {
       "table": "sa_universities",
+      "key": "ut-dallas-utd",
+      "fields": {
+        "summary": "Positioned in Richardson's Telecom Corridor, UT Dallas is popular for engineering and IT placements in DFW. Out-of-state tuition is $29,000 per year, reduced to $13,500 with a Dean's Scholarship."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "chemnitz-university-of-technology",
+      "fields": {
+        "summary": "Chemnitz University of Technology charges no tuition, only a €341.40 semester fee. Key English Master's like Web Engineering accept IELTS 5.5 or MOI letters via the EduApplication Portal."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-bonn",
+      "fields": {
+        "summary": "University of Bonn charges no tuition, only a €363.07 semester fee. M.Sc. CS requires CEFR C1 English, strict ECTS in math and theoretical CS, and direct portal application."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-hamburg",
+      "fields": {
+        "summary": "University of Hamburg is tuition-free with a €402 semester fee (including transit pass). MSc Data Science and AI requires IELTS 6.5, 24 ECTS math and STiNE application."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tuhh-tuhamburg",
+      "fields": {
+        "summary": "TUHH charges no tuition, only a €400.00 semester fee with Deutschlandticket. Apply directly online with a pre-check; IELTS 6.5 or TOEFL 90 required (GRE disregarded)."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-braunschweig",
+      "fields": {
+        "summary": "TU Braunschweig charges no tuition, only a €472.50 semester fee. Its MSc Computer Science is taught in German; English-taught Master's like Data Science close on 15 March for non-EU applicants."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-duisburg-essen",
+      "fields": {
+        "summary": "UDE charges no tuition, only a €367.80 semester fee. International Engineering (ISE) Master programs require German GPA 3.0, B2 English, and direct application."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-freiburg",
+      "fields": {
+        "summary": "University of Freiburg charges €1,500/semester tuition for non-EU students plus a €190 semester fee. Direct portal application; Computer Science needs IELTS 7.0 and APS."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "leibniz-university-hannover",
+      "fields": {
+        "summary": "Leibniz University Hannover charges no tuition, only a €453.16 semester fee. Master in Computer Science offers an English track requiring CEFR C1, a uni-assist VPD, and application by 31 May (winter) or 30 November."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "otto-von-guericke-university-magdeburg",
+      "fields": {
+        "summary": "OVGU Magdeburg charges no tuition, only a €329.30 semester fee. Its MSc Computer Science is taught in German; English-taught Data and Knowledge Engineering closes on 15 May. Apply via uni-assist."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "saarland-university",
+      "fields": {
+        "summary": "Saarland charges no tuition, only a €412.30 semester fee. Its MSc Computer Science needs GRE or GATE, IELTS 7.0 (no MOI) and grades of 75%+ in the top 10% of your class."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "heidelberg-university",
+      "fields": {
+        "summary": "Heidelberg charges non-EU students €1,500 a semester plus a €189.80 semester fee. You apply in heiCO with an APS certificate; the MSc Data and Computer Science deadline is 15 March."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-dresden",
+      "fields": {
+        "summary": "TU Dresden charges no tuition, only €361 a semester. Its English-taught MSc Computer Science needs IELTS 7.0 or TOEFL 100, 90 credits in set subjects and applications by 31 May."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-berlin",
+      "fields": {
+        "summary": "TU Berlin charges no tuition, only a €379.06 semester fee. Its MSc Computer Science is taught in English with open admission, but needs set computer science and maths credits and a uni-assist VPD."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tu-darmstadt",
+      "fields": {
+        "summary": "TU Darmstadt charges no tuition, only a €402.68 semester fee. You apply in TUCaN (not uni-assist); Computer Science needs IELTS 7.0 and may need an entrance exam."
+      }
+    },
+    {
+      "table": "sa_universities",
       "key": "university-of-stuttgart",
       "fields": {
-        "summary": "Located in Germany's automotive capital, the University of Stuttgart excels in simulation and vehicle technology. Non-EU students pay €1,500 per semester under state law, with a 2.2 Bavarian GPA cutoff."
+        "summary": "University of Stuttgart charges €1,500/semester tuition for non-EU students plus a €184 semester fee. MS Computer Science requires C1 English (IELTS 7.0) via C@MPUS."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "fau-erlangen-nurnberg",
+      "fields": {
+        "summary": "FAU Erlangen-Nürnberg charges €0 tuition for winter 2026/27, then €4,000/semester for non-EU students from summer 2027. Apply via campo; M.Sc. AI requires GRE/GATE and an online test."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "gatech-georgia-tech",
+      "fields": {
+        "summary": "Georgia Tech charges international students $16,540 a semester on most Master's programs and asks for $57,025 for the I-20. A 3-year Indian degree needs a Master's too."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "neu-northeastern-university",
+      "fields": {
+        "summary": "Northeastern's Khoury College charges $1,922 per credit hour (2026–27) and asks for $59,449 for the MS CS I-20. 3-year degrees are accepted; no GRE or WES needed."
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "suny-buffalo",
+      "fields": {
+        "summary": "UB charges international graduate students $14,914.86 a semester (fall 2026) and asks for $57,200 for the I-20. GRE is optional for MS Computer Science, which needs a four-year degree."
       }
     },
     {
       "table": "sa_universities",
       "key": "ut-arlington-uta",
       "fields": {
-        "summary": "University of Texas at Arlington offers affordable engineering degrees in the Dallas-Fort Worth metroplex. Out-of-state tuition is $20,500 per year, dropping to $10,000 with a scholarship waiver."
-      }
-    },
-    {
-      "table": "sa_universities",
-      "key": "ut-dallas-utd",
-      "fields": {
-        "summary": "Positioned in Richardson's Telecom Corridor, UT Dallas is popular for engineering and IT placements in DFW. Out-of-state tuition is $29,000 per year, reduced to $13,500 with a Dean's Scholarship."
+        "summary": "UT Arlington's 2026–27 average cost is $44,720 a year for non-resident graduate students; CSE needs GRE 305+ and doesn't accept 3-year degrees."
       }
     }
   ]
