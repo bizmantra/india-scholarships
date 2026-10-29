@@ -103,12 +103,15 @@ Dry-run clean; the freshness script (D4) or a SQL count shows 0 rows without a s
 
 ### Questions / Done
 - **Batch C3 (2026-10-29)**: Sourced and verified `sa_facts` on staging (`--target=staging`).
-  - Staging row count: 41 total rows; 17 unsourced rows identified (24 were previously seeded in E2 for UK, Canada, Australia, and Ireland).
-  - Proposals generated in `scripts/study-abroad/proposals/c3-facts-sources-2026-10-29.json` for 10 verified facts (30 field changes: `official_source`, `checked_at: 2026-10-29`, `recheck_after: 2027-01-27`).
-  - Gaps (7 facts left unchanged): Coracle setup/monthly fees (Coracle paused new onboarding, no active public rates), buffer fee (no statutory requirement), VFS service fee (variable logistics charges across VACs), EUR/USD floating FX rates, and US monthly living average (university I-20 COA specific).
-  - Dry-run: clean (Proposed 30, already waiting 0, unchanged 0, refused 0).
-  - Submission to staging: clean (30 field changes submitted to agent inbox on staging).
-  - Full verdict table and quotes documented in `scripts/study-abroad/proposals/c3-notes.md`.
+  - **Count Reconciliation**:
+    - Spec / production baseline: 41 total rows; 30 rows carry official sources; **11 rows** were unsourced.
+    - Staging database status: missing sources for 6 government/statutory facts that are already sourced in production (`germany.blocked_account.annual_eur`, `germany.blocked_account.monthly_withdrawal_eur`, `germany.aps.fee_inr`, `germany.visa.national_fee_eur`, `usa.visa.f1_mrv_fee_usd`, `usa.visa.sevis_i901_fee_usd`), yielding 17 empty rows on staging.
+  - **Audit Findings**:
+    - **6 verified facts**: all 6 are official government/statutory authorities setting the figures; verbatim quotes from official pages confirm stored values with amounts explicitly included.
+    - **11 gaps (0 proposals, left unchanged)**: all 11 core unsourced facts from the spec. The 4 commercial provider facts (`expatrio_*`, `fintiba_*`) are reclassified as gaps per rule 4 (no commercial sites as `official_source`; cited in notes solely as market examples). Joined by Coracle (2), non-statutory buffer (1), variable VFS logistics (1), floating FX rates (2), and university-specific US living costs (1).
+  - **Proposals**: `scripts/study-abroad/proposals/c3-facts-sources-2026-10-29.json` proposes 18 field changes (3 fields each for the 6 verified official facts: `official_source`, `checked_at: 2026-10-29`, `recheck_after: 2027-01-27`).
+  - **Dry-run**: Clean (`Proposed 0, already waiting 18, unchanged 0, refused 0`).
+  - **Full notes & verdict table**: Documented in `scripts/study-abroad/proposals/c3-notes.md`.
 
 ---
 

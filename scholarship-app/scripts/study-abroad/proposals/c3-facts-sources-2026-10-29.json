@@ -44,46 +44,6 @@
     },
     {
       "table": "sa_facts",
-      "key": "germany.blocked_account.expatrio_setup_eur",
-      "source": "https://www.expatrio.com/blocked-account",
-      "fields": {
-        "official_source": "https://www.expatrio.com/blocked-account",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.blocked_account.expatrio_monthly_eur",
-      "source": "https://www.expatrio.com/blocked-account",
-      "fields": {
-        "official_source": "https://www.expatrio.com/blocked-account",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.blocked_account.fintiba_setup_eur",
-      "source": "https://www.fintiba.com/blocked-account-germany",
-      "fields": {
-        "official_source": "https://www.fintiba.com/blocked-account-germany",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.blocked_account.fintiba_monthly_eur",
-      "source": "https://www.fintiba.com/blocked-account-germany",
-      "fields": {
-        "official_source": "https://www.fintiba.com/blocked-account-germany",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
       "key": "usa.visa.f1_mrv_fee_usd",
       "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/fees-visa-services.html",
       "fields": {
