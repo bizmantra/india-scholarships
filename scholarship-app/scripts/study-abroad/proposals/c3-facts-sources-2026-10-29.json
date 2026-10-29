@@ -4,56 +4,6 @@
   "changes": [
     {
       "table": "sa_facts",
-      "key": "germany.blocked_account.annual_eur",
-      "source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-      "fields": {
-        "official_source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.blocked_account.monthly_withdrawal_eur",
-      "source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-      "fields": {
-        "official_source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.aps.fee_inr",
-      "source": "https://aps-india.de/",
-      "fields": {
-        "official_source": "https://aps-india.de/",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "germany.visa.national_fee_eur",
-      "source": "https://www.auswaertiges-amt.de/en/visa-and-service/visa-faqs/03-visa-fees-node",
-      "fields": {
-        "official_source": "https://www.auswaertiges-amt.de/en/visa-and-service/visa-faqs/03-visa-fees-node",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
-      "key": "usa.visa.f1_mrv_fee_usd",
-      "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/fees-visa-services.html",
-      "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/fees-visa-services.html",
-        "checked_at": "2026-10-29",
-        "recheck_after": "2027-01-27"
-      }
-    },
-    {
-      "table": "sa_facts",
       "key": "usa.visa.sevis_i901_fee_usd",
       "source": "https://www.ice.gov/sevis/i901",
       "fields": {
