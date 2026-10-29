@@ -11,6 +11,7 @@
  * tables, and their old/new values are kept in the approval event rather than scholarship_changelog.
  */
 import { getClient, scholarshipsHasColumn } from '@/lib/db';
+import { COUNTRIES } from '@/lib/study-abroad/countries';
 import * as rules from '@/scripts/lib/agent-inbox';
 import * as sa from '@/scripts/lib/sa-inbox';
 import { refreshScholarshipPages, refreshStudyAbroadPages } from './revalidate';
@@ -257,12 +258,17 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
                 result.skipped.push({ id, title: p.scholarship_title, reason: `Page already exists in ${target.table}` });
                 continue;
             }
-            let rowData: Record<string, unknown>;
+            let rawRowData: Record<string, unknown>;
             try {
-                rowData = JSON.parse(p.new_value || '{}');
+                rawRowData = JSON.parse(p.new_value || '{}');
             } catch {
                 result.skipped.push({ id, title: p.scholarship_title, reason: 'Proposal payload is not valid JSON' });
                 continue;
+            }
+
+            const rowData: Record<string, unknown> = {};
+            for (const [k, v] of Object.entries(rawRowData)) {
+                rowData[k] = sa.toText ? sa.toText(v) : (v === null || v === undefined ? '' : typeof v === 'string' ? v : JSON.stringify(v));
             }
 
             // For sa_programs, check university_slug exists
@@ -274,6 +280,7 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
 
             const validationError = sa.validateNewRow(target.table, rowData, {
                 universityExists: () => universityExists,
+                countries: new Set(Object.keys(COUNTRIES)),
             });
             if (validationError) {
                 result.skipped.push({ id, title: p.scholarship_title, reason: validationError });

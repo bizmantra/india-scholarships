@@ -114,6 +114,7 @@ const LABELS = {
 };
 
 const asText = v => (v === null || v === undefined ? '' : String(v));
+const toText = v => (v === null || v === undefined ? '' : typeof v === 'string' ? v : JSON.stringify(v));
 
 function fieldType(table, field) {
     return FIELDS[table] && FIELDS[table][field];
@@ -123,7 +124,7 @@ function fieldType(table, field) {
 function validateSaValue(table, field, value, { source } = {}) {
     const type = fieldType(table, field);
     if (!type) return `${field} cannot be changed through the inbox`;
-    const text = asText(value).trim();
+    const text = toText(value).trim();
     if (BANNED.some(rx => rx.test(text))) return 'contains research notes or template filler that must not appear on the page';
     if (NEEDS_SOURCE.has(field) && !/^https?:\/\//.test(asText(source))) return 'needs an official source link on the proposal';
     switch (type) {
@@ -177,7 +178,7 @@ function validateSaValue(table, field, value, { source } = {}) {
 /** The value as stored in the sa_* table. */
 function storedSaValue(table, field, value) {
     const type = fieldType(table, field);
-    const text = asText(value).trim();
+    const text = toText(value).trim();
     if (type === 'int') return text === '' ? null : Number(text);
     if (type === 'number') return text === '' ? null : Number(text);
     if ((type === 'json' || type === 'faq') && text) return JSON.stringify(JSON.parse(text));
@@ -228,29 +229,29 @@ function validateNewRow(table, row, opts = {}) {
     const reqCols = REQUIRED[table] || [];
     for (const col of reqCols) {
         const val = row[col];
-        if (val === undefined || val === null || asText(val).trim() === '') {
+        if (val === undefined || val === null || toText(val).trim() === '') {
             return `missing required column: ${col}`;
         }
     }
 
     // Key uniqueness
     const keyCol = TARGETS[table].key;
-    const key = asText(row[keyCol]).trim();
+    const key = toText(row[keyCol]).trim();
     if (opts.keyExists && opts.keyExists(key)) {
         return `duplicate key: "${key}" already exists`;
     }
 
     // Slug check (universities, guides, programs)
     if (row.slug !== undefined && row.slug !== null) {
-        if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(asText(row.slug).trim())) {
+        if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(toText(row.slug).trim())) {
             return 'slug must match ^[a-z0-9]+(-[a-z0-9]+)*$';
         }
     }
 
     // Country check
-    if (row.country !== undefined && row.country !== null && asText(row.country).trim() !== '') {
-        const countries = KNOWN_COUNTRIES;
-        if (!countries.has(asText(row.country).trim().toLowerCase())) {
+    if (row.country !== undefined && row.country !== null && toText(row.country).trim() !== '') {
+        const countries = opts.countries || KNOWN_COUNTRIES;
+        if (!countries.has(toText(row.country).trim().toLowerCase())) {
             return `unknown country: "${row.country}"`;
         }
     } else if (table !== 'sa_facts') {
@@ -259,7 +260,7 @@ function validateNewRow(table, row, opts = {}) {
 
     // Guides kind check
     if (table === 'sa_guides') {
-        const kind = asText(row.kind).trim();
+        const kind = toText(row.kind).trim();
         if (!['guide', 'visa', 'loan'].includes(kind)) {
             return 'kind must be "guide", "visa" or "loan"';
         }
@@ -267,7 +268,7 @@ function validateNewRow(table, row, opts = {}) {
 
     // Programs university_slug check
     if (table === 'sa_programs') {
-        const uniSlug = asText(row.university_slug).trim();
+        const uniSlug = toText(row.university_slug).trim();
         if (opts.universityExists && !opts.universityExists(uniSlug)) {
             return `unknown university_slug: "${row.university_slug}"`;
         }
@@ -277,21 +278,22 @@ function validateNewRow(table, row, opts = {}) {
     const moneyFields = ['tuition_per_year', 'living_cost_per_year', 'application_fee', 'value'];
     for (const col of moneyFields) {
         const val = row[col];
-        if (val !== undefined && val !== null && asText(val).trim() !== '') {
-            if (!row.official_source || !/^https?:\/\/\S+$/.test(asText(row.official_source).trim())) {
+        if (val !== undefined && val !== null && toText(val).trim() !== '') {
+            if (!row.official_source || !/^https?:\/\/\S+$/.test(toText(row.official_source).trim())) {
                 return `missing source on a money field: ${col} requires official_source`;
             }
-            if (!row.checked_at || !/^\d{4}-\d{2}-\d{2}$/.test(asText(row.checked_at).trim())) {
+            if (!row.checked_at || !/^\d{4}-\d{2}-\d{2}$/.test(toText(row.checked_at).trim())) {
                 return `missing source on a money field: ${col} requires checked_at date`;
             }
         }
     }
 
     // Banned phrases and field formatting checks
-    for (const [col, val] of Object.entries(row)) {
-        if (val === undefined || val === null) continue;
+    for (const [col, rawVal] of Object.entries(row)) {
+        if (rawVal === undefined || rawVal === null) continue;
         if (['created_at', 'updated_at', 'status'].includes(col)) continue;
-        const text = asText(val).trim();
+        const val = toText(rawVal);
+        const text = val.trim();
         if (BANNED.some(rx => rx.test(text))) {
             return `${col} contains research notes or template filler that must not appear on the page`;
         }
@@ -342,9 +344,10 @@ function validatePublishRow(table, row, opts = {}) {
     }
 
     // 4. No banned phrases
-    for (const [col, val] of Object.entries(row)) {
-        if (val === undefined || val === null) continue;
-        const text = asText(val).trim();
+    for (const [col, rawVal] of Object.entries(row)) {
+        if (rawVal === undefined || rawVal === null) continue;
+        const val = toText(rawVal);
+        const text = val.trim();
         if (BANNED.some(rx => rx.test(text))) {
             return `cannot publish: ${col} contains research notes or template filler`;
         }
@@ -356,7 +359,7 @@ function validatePublishRow(table, row, opts = {}) {
 
     // 5. For sa_programs, check university_slug exists
     if (table === 'sa_programs' && opts.universityExists) {
-        if (!opts.universityExists(asText(row.university_slug).trim())) {
+        if (!opts.universityExists(toText(row.university_slug).trim())) {
             return `cannot publish: university_slug "${row.university_slug}" does not exist in sa_universities`;
         }
     }
@@ -365,8 +368,8 @@ function validatePublishRow(table, row, opts = {}) {
 }
 
 module.exports = {
-    TARGETS, FIELDS, LABELS, NEEDS_SOURCE, BANNED, REQUIRED, TABLE_COLUMNS, BOILERPLATE_SUMMARY,
-    fieldType, validateSaValue, storedSaValue, sameSaValue, pagePath, targetId, parseTargetId,
+    TARGETS, FIELDS, LABELS, NEEDS_SOURCE, BANNED, REQUIRED, TABLE_COLUMNS, BOILERPLATE_SUMMARY, KNOWN_COUNTRIES,
+    fieldType, toText, validateSaValue, storedSaValue, sameSaValue, pagePath, targetId, parseTargetId,
     validateNewRow, validatePublishRow,
     KIND: 'sa_field_change', NEW_KIND, CATEGORY: 'study_abroad',
 };

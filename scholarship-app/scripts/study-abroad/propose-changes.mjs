@@ -54,7 +54,11 @@ for (const change of input.changes || []) {
         const row = (await client.execute({ sql: `SELECT * FROM ${table} WHERE ${meta.key} = ?`, args: [key] })).rows[0];
         if (row) { console.log(`✗ ${table}:${key}: page already exists`); refused++; continue; }
 
-        const fields = { ...(change.fields || {}) };
+        const rawFields = change.fields || {};
+        const fields = {};
+        for (const [k, v] of Object.entries(rawFields)) {
+            fields[k] = toText(v);
+        }
         if (!fields[meta.key]) fields[meta.key] = key;
         const source = change.source || fields.official_source || input.source || null;
         if (source && !fields.official_source) fields.official_source = source;
