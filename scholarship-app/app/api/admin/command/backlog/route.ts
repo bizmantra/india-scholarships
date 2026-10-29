@@ -17,7 +17,7 @@ export async function GET() {
     }
 }
 
-// { id, status?, impact?, due_date?, note?, waiting? }
+// { id, status?, impact?, due_date?, note?, waiting?, assignee?, link?, category? }
 export async function PATCH(request: Request) {
     try {
         const { id, ...change } = await request.json();
@@ -29,7 +29,7 @@ export async function PATCH(request: Request) {
     }
 }
 
-// { category, title, description?, impact?, due_date? }
+// { category, title, description?, impact?, due_date?, status?, assignee?, link? }
 export async function POST(request: Request) {
     try {
         const id = await addBacklogItem(await request.json());
