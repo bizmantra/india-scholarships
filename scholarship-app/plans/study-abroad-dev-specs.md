@@ -169,3 +169,28 @@ Know which money/visa numbers are stale or unsourced, and queue them for re-chec
 - Recovery #40/#41: confirm the old Vercel project `study-abroad-is` only redirects, delete it, take a final dump of the `study-aboard-is` Turso database, then destroy it (closes the leaked-token item #3).
 - Decide whether the Hermes bridge ever runs on production (`HERMES_BRIDGE_ALLOW_PRODUCTION`). Not part of D2.
 - Country order decision (UK → Canada → Australia → Ireland) in `STUDY_ABROAD_COUNTRY_EXPANSION_PLAN.md` §7.
+
+---
+
+## D6. Deterministic source checks (added 2026-10-29)
+
+### Goal
+Stop relying on AI to confirm facts. A registered fact passes only if its exact quote is still on its official page and contains the value. Runs in CI on every change to the registry and weekly.
+
+### Design
+- `data/study-abroad/source-checks.json`: one entry per verified fact (`url`, `quote`, `value`, `checked_on`). A person reads the page and adds the entry; code checks it from then on.
+- `data/study-abroad/official-domains.json`: the only hosts allowed. Subdomains count; lookalikes do not.
+- `scripts/lib/source-verify.mjs`: pure functions (normalise, strip HTML, host check, validate, check). No AI, no database.
+- `scripts/study-abroad/verify-sources.mjs`: CLI. Exit 1 on a mismatch or a disallowed host. A page that cannot be fetched is `unverifiable` (reported, not failed; `--strict` fails it).
+- `.github/workflows/sa-verify-sources.yml`: on PRs that touch these files and every Monday.
+
+### Not in scope
+Proposals from agents are not yet checked against the registry; the next step is to make `propose-changes.mjs` refuse a `source` that is not in the registry or on the allowlist.
+
+### How to check it works
+- `node --test scripts/study-abroad/verify-sources.test.mjs` (13 offline tests).
+- `node scripts/study-abroad/verify-sources.mjs` (live: the ICE I-901 page passes).
+
+### Done
+- Built with the seed entry `usa-sevis-i901-f-m`. Tests and the live run pass.
+- The Sperrkonto, APS, visa-fee and travel.state.gov facts are not registered: no live page supports their figures yet (see PR 97 notes).
