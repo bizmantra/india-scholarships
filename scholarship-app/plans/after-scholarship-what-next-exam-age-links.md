@@ -118,10 +118,10 @@ Implemented 2026-10-30, committed and opened as a PR from `feat/after-scholarshi
 - `npx tsc --noEmit`: no errors in the changed files. Three errors remain in `app/admin/backlog/board/page.tsx` because `@dnd-kit/core` is declared in `package.json` but missing from the local `node_modules`; not related to this change.
 - `eslint` on the three changed code files: 90 problems on `main`, 94 with this change. The 4 extra are `react-hooks/error-boundaries` ("Avoid constructing JSX within try/catch") from the banner JSX inside the category page's existing `try` block, the same violation the page already had. Repo-wide lint already fails on thousands of problems and CI does not gate on it.
 - Partner URLs `https://indiacalculators.org/exams/` and `/ssc-cgl-age-limit/` returned HTTP 200 on 2026-10-30. The three internal guide slugs exist.
-- Exam facts (SSC CGL 18-32 as on 1 Aug 2026, UPSC CSE 21-32 as on 1 Aug 2026, IBPS PO 20-30 as on 1 Jul 2026) agree across coaching-site sources only; no official notification was checked. SSC CGL limits vary by post (18-27, 18-30, 18-32), so the table shows the highest.
+- Exam limits were cross-checked against the official 2026 notices (IBPS CRP PO/MT-XVI, UPSC CSE notice 05/2026, SSC CGL notice); the owner reviews the PDFs. The guide table now shows stable rules without dated cutoffs: SSC CGL "up to 32, varies by post", UPSC 21-32, IBPS PO 20-30, with OBC-NCL +3 and SC/ST +5.
 - `scripts/audit-article-links.js --strict` (the CI `enrich` check) rejected `/guides/documents`, which is a page route but not an article slug; the link was removed.
 - Not run: dev-server smoke test, which is still owed before merge.
 
 ### Open points
 
-- UPSC CSE 2026 and IBPS PO 2026 application windows have already closed; the guide's table is "2026 cycle". Decide whether to reword for the next cycle before publishing.
+- All three 2026 application windows have closed, so the guide no longer quotes 2026 cutoff dates. Review the limits each year.
