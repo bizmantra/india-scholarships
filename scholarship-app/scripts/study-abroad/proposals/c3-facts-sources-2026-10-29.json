@@ -1,6 +1,5 @@
 {
   "agent": "content-editor",
-  "source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
   "changes": [
     {
       "table": "sa_facts",

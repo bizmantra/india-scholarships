@@ -102,16 +102,17 @@ Same method as C2 for the 11 rows without a source. Each row is a proposal on `s
 Dry-run clean; the freshness script (D4) or a SQL count shows 0 rows without a source.
 
 ### Questions / Done
-- **Batch C3 (2026-10-29)**: Sourced and verified `sa_facts` on staging (`--target=staging`).
+- **Batch C3 (2026-10-29, trimmed 2026-10-30 after review)**: one fact proposed; everything else is a gap.
   - **Count Reconciliation**:
     - Spec / production baseline: 41 total rows; 30 rows carry official sources; **11 rows** were unsourced.
-    - Staging database status: missing sources for 6 government/statutory facts that are already sourced in production (`germany.blocked_account.annual_eur`, `germany.blocked_account.monthly_withdrawal_eur`, `germany.aps.fee_inr`, `germany.visa.national_fee_eur`, `usa.visa.f1_mrv_fee_usd`, `usa.visa.sevis_i901_fee_usd`), yielding 17 empty rows on staging.
-  - **Audit Findings**:
-    - **6 verified facts**: all 6 are official government/statutory authorities setting the figures; verbatim quotes from official pages confirm stored values with amounts explicitly included.
-    - **11 gaps (0 proposals, left unchanged)**: all 11 core unsourced facts from the spec. The 4 commercial provider facts (`expatrio_*`, `fintiba_*`) are reclassified as gaps per rule 4 (no commercial sites as `official_source`; cited in notes solely as market examples). Joined by Coracle (2), non-statutory buffer (1), variable VFS logistics (1), floating FX rates (2), and university-specific US living costs (1).
-  - **Proposals**: `scripts/study-abroad/proposals/c3-facts-sources-2026-10-29.json` proposes 18 field changes (3 fields each for the 6 verified official facts: `official_source`, `checked_at: 2026-10-29`, `recheck_after: 2027-01-27`).
-  - **Dry-run**: Clean (`Proposed 0, already waiting 18, unchanged 0, refused 0`).
-  - **Full notes & verdict table**: Documented in `scripts/study-abroad/proposals/c3-notes.md`.
+    - Staging database status: 17 rows without a source, because staging also lacks the sources production holds for 6 government/statutory facts (`germany.blocked_account.annual_eur`, `germany.blocked_account.monthly_withdrawal_eur`, `germany.aps.fee_inr`, `germany.visa.national_fee_eur`, `usa.visa.f1_mrv_fee_usd`, `usa.visa.sevis_i901_fee_usd`).
+  - **Result: 1 verified, 18 gaps, 0 corrections.**
+    - **Verified (1)**: `usa.visa.sevis_i901_fee_usd` — ice.gov fee table reads "I-901 SEVIS Fee F or M visa applicants (full payment) $350". Re-checked on 2026-10-30 (HTTP 200); the proposal keeps the date it was first verified, 2026-10-29.
+    - **Gaps (18, unchanged, no proposal)**: all 11 core unsourced facts from the spec, plus 7 more that staging also lacks a source for. Reasons: commercial provider pricing is never an `official_source` (Expatrio ×2, Fintiba ×2, Coracle ×2); the Federal Foreign Office blocked-account page carries no euro amount; the APS page states no fee; the visa-fees page returns 404; `travel.state.gov` returns 403 to every client we have (the $185 MRV quote could not be re-confirmed); the buffer, VFS logistics fee, FX rates and US living-cost figure have no statutory source.
+  - **Proposals**: `scripts/study-abroad/proposals/c3-facts-sources-2026-10-29.json` now carries a single change — `official_source`, `checked_at: 2026-10-29`, `recheck_after: 2027-01-27` for `usa.visa.sevis_i901_fee_usd`.
+  - **Staging inbox cleanup (2026-10-30)**: the first submission left 27 pending proposals on staging for the 9 fact keys that the trimmed batch no longer supports (ids 2933–2959). They were marked `superseded` (`decided_by = system:replaced`, note "withdrawn: C3 batch trimmed to the one fact whose quote is on the live official page"). Only ids 2960–2962 (`usa.visa.sevis_i901_fee_usd`) remain pending for the owner.
+  - **Dry-run**: `Proposed 0, already waiting 3, unchanged 0, refused 0.` (The 3 are the SEVIS proposals already sitting in the staging inbox.)
+  - **Full notes & verdict table**: `scripts/study-abroad/proposals/c3-notes.md`.
 
 ---
 
