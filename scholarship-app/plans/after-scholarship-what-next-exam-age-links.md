@@ -95,8 +95,7 @@ All three inline links open in a new tab and carry `rel="noopener noreferrer"`.
    - 3–6 internal links, all editorial links as `/guides/:slug`:
      `/guides/pfms-scholarship-payment-status-tracking-guide`,
      `/guides/nsp-national-scholarship-portal-guide`,
-     `/guides/state-income-domicile-certificate-guide`, plus `/guides/documents` and
-     `/scholarships-by-category`. The outbound partner link appears once inline and once through
+     `/guides/state-income-domicile-certificate-guide`, plus `/scholarships-by-category`. The outbound partner link appears once inline and once through
      the CTA.
    - Facts: base limits 32 / 32 / 30 for General-EWS; OBC-NCL +3; SC/ST +5; cutoffs 1 Aug 2026
      (SSC CGL, UPSC CSE) and 1 Jul 2026 (IBPS PO). The guide tells the reader to confirm each
@@ -120,6 +119,7 @@ Implemented 2026-10-30, committed and opened as a PR from `feat/after-scholarshi
 - `eslint` on the three changed code files: 90 problems on `main`, 94 with this change. The 4 extra are `react-hooks/error-boundaries` ("Avoid constructing JSX within try/catch") from the banner JSX inside the category page's existing `try` block, the same violation the page already had. Repo-wide lint already fails on thousands of problems and CI does not gate on it.
 - Partner URLs `https://indiacalculators.org/exams/` and `/ssc-cgl-age-limit/` returned HTTP 200 on 2026-10-30. The three internal guide slugs exist.
 - Exam facts (SSC CGL 18-32 as on 1 Aug 2026, UPSC CSE 21-32 as on 1 Aug 2026, IBPS PO 20-30 as on 1 Jul 2026) agree across coaching-site sources only; no official notification was checked. SSC CGL limits vary by post (18-27, 18-30, 18-32), so the table shows the highest.
+- `scripts/audit-article-links.js --strict` (the CI `enrich` check) rejected `/guides/documents`, which is a page route but not an article slug; the link was removed.
 - Not run: dev-server smoke test, which is still owed before merge.
 
 ### Open points

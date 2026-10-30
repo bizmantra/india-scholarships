@@ -46,7 +46,7 @@ The [National Scholarship Portal guide](/guides/nsp-national-scholarship-portal-
 
 Income, caste and domicile certificates have validity windows, and an expired certificate is one of the most common reasons a renewal is rejected. Get the replacement before the portal opens rather than after the objection is raised.
 
-The [state income and domicile certificate guide](/guides/state-income-domicile-certificate-guide) lists what each certificate needs, and the [document checklist](/guides/documents) shows what the portal expects to see when you upload.
+The [state income and domicile certificate guide](/guides/state-income-domicile-certificate-guide) lists what each certificate needs and how long it stays valid.
 
 ## 4. Plan the government exam attempt
 
