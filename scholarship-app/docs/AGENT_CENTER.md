@@ -76,6 +76,13 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
 - **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=staging|production] [--dry-run]`.
   Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
   no research notes, an official source for money and admission facts); a value you rejected is not proposed again.
+  **Sources are checked too** (Spec D6): a change's `source`, the file's default `source`, and any
+  `official_source` value must be on the host allowlist in `data/study-abroad/official-domains.json`
+  (subdomains count, lookalikes do not) or be an exact URL registered in
+  `data/study-abroad/source-checks.json`. A refused source prints the reason, counts as refused, and that
+  change is not proposed (the script exits non-zero when nothing was proposed). A `sa_facts` `value` change
+  also needs a registry entry whose value matches and whose quote is on the live page. Add a new official
+  domain to `official-domains.json` (owner confirms) before citing it.
 - **Cards:** one per page. Short fields show old → new; articles, FAQs and JSON show a line-by-line diff and the
   full new version.
 - **Approving** writes the field and `updated_at`, records old and new values in the approval event (not in

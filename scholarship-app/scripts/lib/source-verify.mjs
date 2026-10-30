@@ -7,6 +7,10 @@
  *   2. the quote appears on the page (whitespace, case and quote marks normalised),
  *   3. the expected value appears inside that quote.
  * No AI is involved. A page that cannot be fetched is "unverifiable", not a pass.
+ *
+ * The same file also gates proposal sources for scripts/study-abroad/propose-changes.mjs
+ * (`proposalSourceVerdict`, `checkProposalSources`): a proposed `source` or `official_source`
+ * must be on the host allowlist or be an exact URL registered in source-checks.json.
  */
 
 const NAMED_ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', ndash: '–', mdash: '—', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“' };
@@ -29,7 +33,7 @@ export function htmlToText(html) {
 /** Comparable form of a piece of text: one set of spaces, straight quotes, lower case. */
 export function normalizeText(text) {
     return String(text || '')
-        .replace(/[   ]/g, ' ')
+        .replace(/[   ]/g, ' ')
         .replace(/[‘’]/g, "'")
         .replace(/[“”]/g, '"')
         .replace(/\s+/g, ' ')
@@ -135,4 +139,79 @@ export async function checkProposals(changes, { registry, allowed, pageFor }) {
         }
     }
     return { failures, warnings };
+}
+
+/** True when the URL is registered exactly as a source-checks.json entry URL. */
+export function registeredSource(url, registry) {
+    const wanted = String(url || '');
+    if (!wanted) return false;
+    return ((registry && registry.entries) || []).some(entry => String(entry.url || '') === wanted);
+}
+
+/**
+ * Verdict for one proposal source URL (the D6 next step).
+ *   accepted: true when the host is on the official allowlist (subdomains count) or the exact URL is a
+ *             registered registry entry URL.
+ *   warning:  set when it is accepted only because of the registry, not because of the host.
+ */
+export function proposalSourceVerdict(url, { allowed = [], registry } = {}) {
+    if (!url) return { accepted: false, warning: null };
+    if (hostAllowed(url, allowed)) return { accepted: true, warning: null };
+    if (registeredSource(url, registry)) {
+        return {
+            accepted: true,
+            warning: `source is registered in source-checks.json but its host is not on the official allowlist (${url}); extend official-domains.json if this domain will be cited again`,
+        };
+    }
+    return { accepted: false, warning: null };
+}
+
+/**
+ * Proposal pre-flight used by scripts/study-abroad/propose-changes.mjs. Pure apart from pageFor.
+ *   changes: the proposals file's "changes" array (change.source overrides defaultSource)
+ *   defaultSource: the proposals file's top-level "source"
+ *   pageFor: called only for a sa_facts "value" change (no fetch for the plain host check)
+ * Refuses (does not warn) an unallowlisted/unregistered source, because a proposal with an unofficial
+ * citation must not reach the inbox. Returns { refusals: [{table, key, field, reason}], warnings: [...] };
+ * field === null means the whole change is refused.
+ */
+export async function checkProposalSources(changes, { allowed = [], registry, defaultSource = null, pageFor } = {}) {
+    const refusals = [];
+    const warnings = [];
+    const sourceReason = url => `source host not on the official allowlist and not in source-checks.json (${url})`;
+
+    for (const change of changes || []) {
+        const { table, key } = change;
+        const fields = change.fields || {};
+        const citation = change.source || defaultSource || null;
+
+        if (citation) {
+            const verdict = proposalSourceVerdict(citation, { allowed, registry });
+            if (!verdict.accepted) {
+                refusals.push({ table, key, field: null, reason: sourceReason(citation) });
+                continue; // a refused citation must not fetch a page or propose any field of this row
+            }
+            if (verdict.warning) warnings.push({ table, key, field: 'source', reason: verdict.warning });
+        }
+
+        if (Object.prototype.hasOwnProperty.call(fields, 'official_source')) {
+            const url = fields.official_source === null || fields.official_source === undefined ? '' : String(fields.official_source).trim();
+            // A non-URL value is left to sa-inbox.validateSaValue, which has the specific message for it.
+            if (/^https?:\/\//i.test(url)) {
+                const verdict = proposalSourceVerdict(url, { allowed, registry });
+                if (!verdict.accepted) refusals.push({ table, key, field: 'official_source', reason: sourceReason(url) });
+                else if (verdict.warning) warnings.push({ table, key, field: 'official_source', reason: verdict.warning });
+            }
+        }
+
+        if (table === 'sa_facts' && fields.value !== undefined) {
+            if (!pageFor) throw new Error('checkProposalSources needs pageFor for a sa_facts value change');
+            const { failures } = await checkProposals([{ ...change, source: citation }], { registry, allowed, pageFor });
+            // Source verdicts are already covered above; keep checkProposals' value verdicts.
+            for (const failure of failures) {
+                if (failure.field === 'value') refusals.push({ table, key, field: 'value', reason: failure.reason });
+            }
+        }
+    }
+    return { refusals, warnings };
 }
