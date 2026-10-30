@@ -3,7 +3,7 @@
 Short log of what changed on the site and in the tooling, newest first. Written for AI agents
 (Antigravity, Codex) that start each run with no memory. **Whoever merges a feature adds one line here.**
 
-Last updated: 2026-10-13.
+Last updated: 2026-10-30. Merges #74-#101 since Oct 13 are not itemised below yet.
 
 ## What agents must do differently now
 
@@ -17,6 +17,9 @@ Last updated: 2026-10-13.
 - **Never touch** `.env*`, `scholarship.db`, `backups/`, `.mcp.json`. Claude builds features; agents do content/research from a plan file only.
 
 ## Merged to main
+
+**Oct 30**
+- Docs cleanup: browser profiles, `scratch/`, one-off exports and old backups removed from git; stale docs moved to `docs/archive/`, `data/archive/`, `plans/archive/`; `GEMINI.md` now points to `AGENTS.md`.
 
 **Oct 13**
 - #61, #62 Long-tail pages: OASIS and Odisha portal guides, guide links on scholarship pages, school/college section on state pages. Duplicate Bihar post-matric articles merged; Karnataka income-limit takeaway corrected.
