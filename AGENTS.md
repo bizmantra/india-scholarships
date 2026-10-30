@@ -10,19 +10,6 @@ Before researching a scholarship (new or existing), read `scholarship-app/docs/S
   portal or provider to `scholarship-sources.json`. Platform and listing pages (Buddy4Study, Careers360, …) go to
   `secondary_sources`, never `source_pages`; never use coaching sites; never change a number on a secondary page alone.
 
-## Working from the Command Center backlog
+## Task tracking: Notion Project Hub (replaces the old backlog files)
 
-The owner's work queue is the Command Center backlog (`/admin/backlog`, board at `/admin/backlog/board`), not `task.md`.
-Statuses: Backlog, Ready, In Progress, Review, Done, Parked. The owner moves an item to **Ready** and assigns it; only then is it yours.
-
-When the owner assigns you an item (Assignee = your name: Claude, Antigravity or Codex), and the agent API is available
-(`AGENT_BACKLOG_TOKEN` is set; API at `<site>/api/agents/backlog`, see `scholarship-app/docs/AGENT_CENTER.md`):
-
-1. List your items: `GET /api/agents/backlog?agent=<You>`. Take a **Ready** item that is assigned to you.
-2. Set it to **In Progress** (`PATCH` with `status`) before you start.
-3. When you finish, `PATCH` it to **Review** with `link` set to the pull request address (or the plan file path), and put one line in `note` saying what to check.
-4. Never set Done, Parked or Backlog, and never change impact, due date, team or assignee. The owner approves in Review.
-5. Found work nobody asked for? `POST` a new item (it lands in Backlog); do not start it.
-
-If the API is not available (no token, switched off, offline), carry on with the task and say in your final message which item you
-worked on, so the owner can update the board. Never block the work on the backlog.
+The `backlog-*.md/json` files and the old Notion IS Dev / IS Content Backlogs are retired (2026-10-30). All work is tracked in the Notion Tasks database: https://app.notion.com/p/c4bdba8c6f794c64a649f02d117ad6fe . Follow the agent instructions at https://app.notion.com/p/4082e0a03f1e81f59841e7c38d16633e (Owner = Claude Code / Codex / AI Coding; Project = IndiaScholarships or StudyAbroad; update Status, Last update, Source, and add a handoff comment). Never delete tasks.
