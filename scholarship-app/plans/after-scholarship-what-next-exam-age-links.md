@@ -118,9 +118,9 @@ Implemented 2026-10-30, committed and opened as a PR from `feat/after-scholarshi
 - `npx tsc --noEmit`: no errors in the changed files. Three errors remain in `app/admin/backlog/board/page.tsx` because `@dnd-kit/core` is declared in `package.json` but missing from the local `node_modules`; not related to this change.
 - `eslint` on the three changed code files: 90 problems on `main`, 94 with this change. The 4 extra are `react-hooks/error-boundaries` ("Avoid constructing JSX within try/catch") from the banner JSX inside the category page's existing `try` block, the same violation the page already had. Repo-wide lint already fails on thousands of problems and CI does not gate on it.
 - Partner URLs `https://indiacalculators.org/exams/` and `/ssc-cgl-age-limit/` returned HTTP 200 on 2026-10-30. The three internal guide slugs exist.
-- Exam limits were cross-checked against the official 2026 notices (IBPS CRP PO/MT-XVI, UPSC CSE notice 05/2026, SSC CGL notice); the owner reviews the PDFs. The guide table now shows stable rules without dated cutoffs: SSC CGL "up to 32, varies by post", UPSC 21-32, IBPS PO 20-30, with OBC-NCL +3 and SC/ST +5.
+- Exam limits were compared with search excerpts of the official 2026 notices (IBPS CRP PO/MT-XVI, UPSC CSE notice 05/2026, SSC CGL notice); the full PDFs were not read, so the owner confirms them. The guide table now shows stable rules without dated cutoffs: SSC CGL "up to 32, varies by post", UPSC 21-32, IBPS PO 20-30, with OBC-NCL +3 and SC/ST +5.
 - `scripts/audit-article-links.js --strict` (the CI `enrich` check) rejected `/guides/documents`, which is a page route but not an article slug; the link was removed.
-- Not run: dev-server smoke test, which is still owed before merge.
+- Smoke test on the Vercel preview (2026-10-30): footer and tools card present; banner on obc/sc/st/sc-st/ews with the right copy and absent on minority/pwd/general/mba; guide and its internal links return 200; guide listed on /guides and in the core sitemap; outbound links carry `target="_blank"` and `rel="noopener noreferrer"`. The owner reviewed the preview pages.
 
 ### Open points
 
