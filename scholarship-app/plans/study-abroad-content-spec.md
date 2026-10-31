@@ -60,7 +60,11 @@ Every published guide and university has a specific, honest summary.
 - A spot check of 5 pages: the summary does not claim anything the page does not say.
 
 ### Questions / Done
-(agent fills in)
+- **Batch C1b (2026-10-29)**: Replaced boilerplate "Complete 2026 guide to…" summaries for all 49 published USA guides in `sa_guides` on staging.
+  - Proposals generated in 3 files: `scripts/study-abroad/proposals/c1b-usa-summaries-1-2026-10-29.json` (20), `c1b-usa-summaries-2-2026-10-29.json` (20), `c1b-usa-summaries-3-2026-10-29.json` (9).
+  - Dry-run: 0 refusals. All 49 proposals submitted cleanly to the staging inbox.
+  - Length check: all <= 220 characters; no duplicate first 5 words; 0 skipped.
+  - 5-page factual spot-check documented in `scripts/study-abroad/proposals/c1b-notes.md`.
 
 ---
 
