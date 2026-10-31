@@ -15,7 +15,9 @@ import {
     Pencil,
     ShieldCheck,
     Lightbulb,
-    Megaphone
+    Megaphone,
+    Code,
+    Globe
 } from 'lucide-react';
 import { TEAMS, type TeamId } from '@/lib/command-center/teams';
 import { THEME_BOOT_SCRIPT, ThemeToggle, useAdminTheme } from './ThemeToggle';
@@ -60,11 +62,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const themedPage = THEMED_PAGES.some(p => pathname === p || pathname.startsWith(`${p}/`));
 
     const teamIcons: Record<TeamId, React.ReactNode> = {
+        dev: <Code className="h-5 w-5" />,
         'content-research': <Search className="h-5 w-5" />,
         'content-creation': <Pencil className="h-5 w-5" />,
-        'data-accuracy': <ShieldCheck className="h-5 w-5" />,
+        data: <ShieldCheck className="h-5 w-5" />,
         strategy: <Lightbulb className="h-5 w-5" />,
-        traffic: <Megaphone className="h-5 w-5" />,
+        seo: <Globe className="h-5 w-5" />,
+        growth: <Megaphone className="h-5 w-5" />,
     };
 
     // The menu is grouped: the Inbox first, then one page per team, then the admin tools

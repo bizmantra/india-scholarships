@@ -1,0 +1,79 @@
+{
+  "agent": "content-editor",
+  "notes": "C2b USA half: official_source + checked_at for 8 published guides, each URL fetched today (2026-10-30) and the quote re-checked against the saved page. Source DB: staging.",
+  "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "usa-opt-stem-opt-extension",
+      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-cpt-internship-rules",
+      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-on-campus-jobs-20hr-rule",
+      "source": "https://www.ice.gov/sevis/employment",
+      "fields": {
+        "official_source": "https://www.ice.gov/sevis/employment",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ssn-application-guide",
+      "source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-initial-72hr-survival-guide",
+      "source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-i20-financial-proof-manual",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-h1b-lottery-cap-exempt",
+      "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-green-card-eb2-niw-pathways",
+      "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+        "checked_at": "2026-10-30"
+      }
+    }
+  ]
+}

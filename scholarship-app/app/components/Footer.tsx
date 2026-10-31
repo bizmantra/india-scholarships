@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <footer className="border-t bg-[#0f172a] text-slate-400 py-16">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="relative w-12 h-12 overflow-hidden rounded-xl bg-white/10 p-1">
@@ -48,6 +48,21 @@ export default function Footer() {
                             <li><Link href="/private-scholarships" className="hover:text-white transition-colors">Private Scholarships</Link></li>
                             <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
                             <li><a href="https://t.me/IndiaScholarships1" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-bold transition-colors flex items-center gap-1">Telegram Channel ⚡</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold text-sm mb-4">What next</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li>
+                                <a
+                                    href="https://indiacalculators.org/exams/?utm_source=indiascholarships&utm_medium=referral&utm_campaign=footer"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 hover:text-blue-300 font-bold transition-colors flex items-center gap-1"
+                                >
+                                    Government exam age limits →
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

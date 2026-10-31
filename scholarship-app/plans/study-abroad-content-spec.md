@@ -60,6 +60,11 @@ Every published guide and university has a specific, honest summary.
 - A spot check of 5 pages: the summary does not claim anything the page does not say.
 
 ### Questions / Done
+- **Batch C1b (2026-10-29)**: Replaced boilerplate "Complete 2026 guide to…" summaries for all 49 published USA guides in `sa_guides` on staging.
+  - Proposals generated in 3 files: `scripts/study-abroad/proposals/c1b-usa-summaries-1-2026-10-29.json` (20), `c1b-usa-summaries-2-2026-10-29.json` (20), `c1b-usa-summaries-3-2026-10-29.json` (9).
+  - Dry-run: 0 refusals. All 49 proposals submitted cleanly to the staging inbox.
+  - Length check: all <= 220 characters; no duplicate first 5 words; 0 skipped.
+  - 5-page factual spot-check documented in `scripts/study-abroad/proposals/c1b-notes.md`.
 - **Batch C1c Done (2026-10-29)**:
   - Database counts: Turso Production is current/master, where 16 published universities retain boilerplate summaries (29 already have specific summaries). Turso Staging was an unrefreshed snapshot with 37 boilerplate summaries.
   - Proposals file: `scripts/study-abroad/proposals/c1c-university-summaries-2026-10-29.json` covers all 37 pages on staging.
@@ -92,7 +97,11 @@ Every published guide has `official_source` and `checked_at`, and every number i
 - Findings note lists, per page: verified, corrected, or gap.
 
 ### Questions / Done
-(agent fills in)
+- **C2a Germany (2026-10-30)** — 12 verified, 1 corrected, 15 gaps. 26 published Germany guides not checked yet (listed in `scripts/study-abroad/proposals/c2a-notes.md`). Verdicts, quotes and fetch dates are in that note; the two proposals files are `c2a-sources-germany-2026-10-30.json` (24 field changes) and `c2a-corrections-germany-2026-10-30.json` (3 field changes, separate because it moves a number). Dry run against staging: `Proposed 24 … refused 0` and `Proposed 3 … refused 0`.
+  - Correction: B1 German shortens the EU Blue Card route to permanent residence from **27** (not 33) months to 21 (§ 18c Abs. 2 AufenthG). The replacement article also renames its `## Executive Summary: …` heading, because `scripts/lib/sa-inbox.js` refuses any article containing that phrase — the same rename will be needed on the remaining guides that still use it.
+  - Blocked by the same validator rule for wording-only proposals: 20 published USA articles and several German ones still carry an `## Executive Summary` heading.
+  - Gaps worth naming: every `daad.de` URL returns 403 today, so the three DAAD guides stay unsourced; VFS pages are commercial, so the two VFS guides are gaps; `make-it-in-germany.com` answers with a bot-challenge page.
+- **C2b USA (2026-10-30)** — 8 verified, 1 corrected, 13 gaps; 33 published USA guides not checked yet. The correction moves the I-765 paper fee from $410 to $520 (USCIS Form G-1055, edition 10/26/26: "General filing for initial, replacement, or renewal Paper Filing: $520"; online filing stays $470). `travel.state.gov` still returns 403, so the five F-1/DS-160/interview pages and the $185 MRV fee stay gaps.
 
 ---
 
@@ -108,7 +117,17 @@ Same method as C2 for the 11 rows without a source. Each row is a proposal on `s
 Dry-run clean; the freshness script (D4) or a SQL count shows 0 rows without a source.
 
 ### Questions / Done
-(agent fills in)
+- **Batch C3 (2026-10-29, trimmed 2026-10-30 after review)**: one fact proposed; everything else is a gap.
+  - **Count Reconciliation**:
+    - Spec / production baseline: 41 total rows; 30 rows carry official sources; **11 rows** were unsourced.
+    - Staging database status: 17 rows without a source, because staging also lacks the sources production holds for 6 government/statutory facts (`germany.blocked_account.annual_eur`, `germany.blocked_account.monthly_withdrawal_eur`, `germany.aps.fee_inr`, `germany.visa.national_fee_eur`, `usa.visa.f1_mrv_fee_usd`, `usa.visa.sevis_i901_fee_usd`).
+  - **Result: 1 verified, 18 gaps, 0 corrections.**
+    - **Verified (1)**: `usa.visa.sevis_i901_fee_usd` — ice.gov fee table reads "I-901 SEVIS Fee F or M visa applicants (full payment) $350". Re-checked on 2026-10-30 (HTTP 200); the proposal keeps the date it was first verified, 2026-10-29.
+    - **Gaps (18, unchanged, no proposal)**: all 11 core unsourced facts from the spec, plus 7 more that staging also lacks a source for. Reasons: commercial provider pricing is never an `official_source` (Expatrio ×2, Fintiba ×2, Coracle ×2); the Federal Foreign Office blocked-account page carries no euro amount; the APS page states no fee; the visa-fees page returns 404; `travel.state.gov` returns 403 to every client we have (the $185 MRV quote could not be re-confirmed); the buffer, VFS logistics fee, FX rates and US living-cost figure have no statutory source.
+  - **Proposals**: `scripts/study-abroad/proposals/c3-facts-sources-2026-10-29.json` now carries a single change — `official_source`, `checked_at: 2026-10-29`, `recheck_after: 2027-01-27` for `usa.visa.sevis_i901_fee_usd`.
+  - **Staging inbox cleanup (2026-10-30)**: the first submission left 27 pending proposals on staging for the 9 fact keys that the trimmed batch no longer supports (ids 2933–2959). They were marked `superseded` (`decided_by = system:replaced`, note "withdrawn: C3 batch trimmed to the one fact whose quote is on the live official page"). Only ids 2960–2962 (`usa.visa.sevis_i901_fee_usd`) remain pending for the owner.
+  - **Dry-run**: `Proposed 0, already waiting 3, unchanged 0, refused 0.` (The 3 are the SEVIS proposals already sitting in the staging inbox.)
+  - **Full notes & verdict table**: `scripts/study-abroad/proposals/c3-notes.md`.
 
 ---
 
