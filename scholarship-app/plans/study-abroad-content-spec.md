@@ -60,6 +60,14 @@ Every published guide and university has a specific, honest summary.
 - A spot check of 5 pages: the summary does not claim anything the page does not say.
 
 ### Questions / Done
+#### Batch C1a (Germany Guides) — Done 2026-10-29
+- Target count on staging: 21 published Germany guides with boilerplate summaries (`summary LIKE 'Complete 20%'`) out of 54 total published Germany guides.
+- Output file: `scripts/study-abroad/proposals/c1a-germany-summaries-2026-10-29.json` with 21 guide summary proposals.
+- Dry-run: 0 refusals (`Proposed 21, already waiting 0, unchanged 0, refused 0. (dry run: nothing written)`).
+- Staging submission: Submitted 21 proposals to the staging agent inbox using `content-editor` agent.
+- Checks: All summaries ≤ 220 chars; no summaries start with "Complete 2026 guide to"; no two summaries share the first five words; 5-page spot check confirmed no new facts beyond existing `body_md`.
+- Findings & Notes: Documented in `scripts/study-abroad/proposals/c1a-notes.md`.
+
 - **Batch C1b (2026-10-29)**: Replaced boilerplate "Complete 2026 guide to…" summaries for all 49 published USA guides in `sa_guides` on staging.
   - Proposals generated in 3 files: `scripts/study-abroad/proposals/c1b-usa-summaries-1-2026-10-29.json` (20), `c1b-usa-summaries-2-2026-10-29.json` (20), `c1b-usa-summaries-3-2026-10-29.json` (9).
   - Dry-run: 0 refusals. All 49 proposals submitted cleanly to the staging inbox.
