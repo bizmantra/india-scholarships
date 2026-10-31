@@ -181,9 +181,9 @@ for (const change of input.changes || []) {
         const sourceRefusal = refusedChange && refusedChange.fields.get(field);
         if (sourceRefusal) { console.log(`  ✗ ${field}: ${sourceRefusal}`); refused++; continue; }
         const newValue = toText(raw);
-        const error = sa.validateSaValue(table, field, newValue, { source });
-        if (error) { console.log(`  ✗ ${field}: ${error}`); refused++; continue; }
         const oldValue = row[field] === null || row[field] === undefined ? null : String(row[field]);
+        const error = sa.validateSaValue(table, field, newValue, { source, previous: oldValue });
+        if (error) { console.log(`  ✗ ${field}: ${error}`); refused++; continue; }
         if (sa.sameSaValue(oldValue, newValue)) { console.log(`  = ${field}: already live`); unchanged++; continue; }
 
         const targetId = sa.targetId(table, key);

@@ -91,6 +91,7 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
 - **Publish gate:** approving a `status → published` field change runs full-row validation (all required columns, no boilerplate summaries, no banned phrases, all money/visa fields sourced).
 - **Approving & Undo:** approving writes the row or field and records values in `agent_events`. **Undo** restores the old value for field changes, or deletes the draft row for new pages (only while the row remains in `draft` status and untouched since approval).
 - `scripts/apply-reviewed-changes.js` (terminal) skips these items; approve them in the command center.
+- **A banned phrase that is already on the page does not block an unrelated edit.** The check refuses a phrase the change *introduces*; a value that already contains one (the legacy `## Executive Summary` heading on 123 published pages, for example) can still be corrected. The D3 audit keeps reporting the existing ones.
 
 ## Setup
 
