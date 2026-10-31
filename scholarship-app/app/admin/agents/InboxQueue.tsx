@@ -11,7 +11,7 @@ import { store, useStore } from './store';
 
 // Link to the page a proposal is about: the scholarship page, or the Study Abroad page from the payload
 function pageHref(r: { kind: string; slug?: string | null; payload_json?: string | null }) {
-    if (r.kind === 'sa_field_change') {
+    if (r.kind === 'sa_field_change' || r.kind === 'sa_new_page') {
         try { return JSON.parse(r.payload_json || '{}').path || null; } catch { return null; }
     }
     return r.slug ? `/scholarships/${r.slug}` : null;
@@ -136,9 +136,28 @@ export default function InboxQueue({ team }: { team: string | null }) {
                                             </div>
                                             <div className="mt-0.5 text-[11px] font-normal text-cc-muted">{reasonLine({ ...r, agentLabel: agentLabel(r.agent) })}</div>
                                         </td>
-                                        <td className="p-3">{r.kind === 'new_scholarship' ? 'New' : r.kind === 'sa_field_change' ? `Study Abroad: ${(SA_LABELS as Record<string, string>)[r.field || ''] || r.field}` : r.field}</td>
-                                        <td className="p-3 text-cc-muted">{short(r.old_value)}</td>
-                                        <td className="p-3">{r.kind === 'new_scholarship' ? '—' : short(r.new_value)}</td>
+                                        <td className="p-3">
+                                            {r.kind === 'new_scholarship'
+                                                ? 'New'
+                                                : r.kind === 'sa_new_page'
+                                                    ? 'Study Abroad: New page (draft)'
+                                                    : r.kind === 'sa_field_change'
+                                                        ? `Study Abroad: ${(SA_LABELS as Record<string, string>)[r.field || ''] || r.field}`
+                                                        : r.field}
+                                        </td>
+                                        <td className="p-3 text-cc-muted">{r.kind === 'sa_new_page' ? '—' : short(r.old_value)}</td>
+                                        <td className="p-3">
+                                            {r.kind === 'new_scholarship'
+                                                ? '—'
+                                                : r.kind === 'sa_new_page'
+                                                    ? (() => {
+                                                        try {
+                                                            const f = JSON.parse(r.new_value || '{}');
+                                                            return f.summary ? short(f.summary) : `${Object.keys(f).length} fields`;
+                                                        } catch { return 'Draft row'; }
+                                                    })()
+                                                    : short(r.new_value)}
+                                        </td>
                                         <td className="p-3 text-cc-muted">
                                             {r.risk === 'high' && <span className="mr-2 text-cc-bad">Risky</span>}
                                             {r.days_to_deadline !== null && Math.abs(r.days_to_deadline) <= 60 && <span className="mr-2">{r.days_to_deadline}d</span>}
@@ -151,7 +170,19 @@ export default function InboxQueue({ team }: { team: string | null }) {
                                     <tr key={`${r.id}-evidence`} className="bg-cc-panel">
                                         <td />
                                         <td colSpan={COLUMNS - 1} className="px-3 pb-3">
-                                            <EvidenceLine json={r.evidence_json} field={r.field} />
+                                            {r.kind === 'sa_new_page' ? (
+                                                <div className="mt-1 space-y-2 text-xs">
+                                                    <p className="font-medium text-cc-text">New page (draft)</p>
+                                                    <details className="rounded-lg border border-cc-border bg-cc-raised">
+                                                        <summary className="cursor-pointer select-none px-2 py-1 text-cc-link">Preview JSON</summary>
+                                                        <pre className="max-h-48 overflow-auto border-t border-cc-border p-2 font-mono text-[11px] leading-relaxed text-cc-text">
+                                                            {(() => { try { return JSON.stringify(JSON.parse(r.new_value || '{}'), null, 2); } catch { return r.new_value; } })()}
+                                                        </pre>
+                                                    </details>
+                                                </div>
+                                            ) : (
+                                                <EvidenceLine json={r.evidence_json} field={r.field} />
+                                            )}
                                             {href && <a href={href} target="_blank" rel="noreferrer" className="mt-2 inline-block text-[11px] text-cc-link hover:underline">Open the page</a>}
                                         </td>
                                     </tr>

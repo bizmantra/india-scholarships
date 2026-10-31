@@ -1,0 +1,50 @@
+name: Study Abroad source check
+
+# Deterministic check (no AI, no secrets, no database): every registered fact must still appear
+# verbatim on its official page. Runs on changes to the registry or the checker, and weekly.
+on:
+  pull_request:
+    paths:
+      - 'scholarship-app/data/study-abroad/source-checks.json'
+      - 'scholarship-app/data/study-abroad/official-domains.json'
+      - 'scholarship-app/scripts/lib/source-verify.mjs'
+      - 'scholarship-app/scripts/study-abroad/verify-sources*.mjs'
+      - 'scholarship-app/scripts/study-abroad/check-proposals.mjs'
+      - '.github/workflows/sa-verify-sources.yml'
+  schedule:
+    - cron: '20 4 * * 1' # Monday 04:20 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Offline tests for the checker
+        working-directory: scholarship-app
+        run: node --test scripts/study-abroad/verify-sources.test.mjs
+
+      - name: "Pre-flight: check the sample proposals file if one is committed"
+        working-directory: scholarship-app
+        run: |
+          if [ -f scripts/study-abroad/proposals/sample-check.json ]; then
+            node scripts/study-abroad/check-proposals.mjs scripts/study-abroad/proposals/sample-check.json
+          else
+            echo "no sample proposals file committed"
+          fi
+
+      - name: Check registered facts against official pages
+        working-directory: scholarship-app
+        # Unverifiable pages (network or 403/404) are reported but do not fail the run.
+        # A quote that is no longer on the page, or a host off the allowlist, does.
+        run: node scripts/study-abroad/verify-sources.mjs

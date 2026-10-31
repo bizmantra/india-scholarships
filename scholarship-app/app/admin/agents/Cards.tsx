@@ -130,7 +130,11 @@ type Decision = { state: 'approved' | 'rejected' | 'skipped' | 'undone' | 'error
 function groupByScholarship(items: Item[]) {
     const groups: { key: string; items: Item[] }[] = [];
     for (const item of items) {
-        const key = item.kind === 'new_scholarship' ? `new-${item.id}` : item.scholarship_id;
+        const key = item.kind === 'new_scholarship'
+            ? `new-${item.id}`
+            : item.kind === 'sa_new_page'
+                ? `sa-new-${item.id}`
+                : item.scholarship_id;
         const group = groups.find(g => g.key === key);
         if (group) group.items.push(item); else groups.push({ key, items: [item] });
     }
@@ -217,13 +221,14 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                 const first = group.items[0];
                 const pendingIds = group.items.filter(i => !decisions[i.id] || decisions[i.id].state === 'error').map(i => i.id);
                 const isNew = first.kind === 'new_scholarship';
+                const isSaNew = first.kind === 'sa_new_page';
                 const record = isNew ? JSON.parse(first.payload_json || '{}') : null;
                 const evidence = JSON.parse(first.evidence_json || '{}');
                 const high = group.items.some(i => i.risk === 'high');
                 return (
                     <Card key={group.key} accent={high ? 'bad' : first.category === 'date_change' ? 'warn' : undefined}>
                         <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-cc-muted">
-                            <span className="font-bold uppercase tracking-wider">{CATEGORY_LABELS[first.category] || first.category}</span>
+                            <span className="font-bold uppercase tracking-wider">{isSaNew ? 'New page (draft)' : (CATEGORY_LABELS[first.category] || first.category)}</span>
                             {high && <span className="rounded bg-rose-500/15 px-1.5 py-0.5 font-bold text-cc-bad">Risky</span>}
                             {first.days_to_deadline !== null && first.days_to_deadline !== undefined && Math.abs(first.days_to_deadline) <= 60 && (
                                 <span>{first.days_to_deadline >= 0 ? `Closes in ${first.days_to_deadline} day(s)` : `Closed ${-first.days_to_deadline} day(s) ago`}</span>
@@ -235,10 +240,13 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                             {pageLink(first)
                                 ? <a href={pageLink(first)!} target="_blank" rel="noreferrer" className="hover:underline">{first.scholarship_title}</a>
                                 : first.scholarship_title}
+                            {isSaNew && <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-semibold text-cc-warn">Draft</span>}
                             {first.kind === 'sa_field_change' && <span className="ml-2 text-[11px] font-normal text-cc-muted">{pageLink(first) || 'Study Abroad'}</span>}
                         </p>
 
-                        {isNew ? (
+                        {isSaNew ? (
+                            <SaNewPageCard item={first} />
+                        ) : isNew ? (
                             <div className="space-y-1 text-xs text-cc-text-2">
                                 <p>{record.provider || '—'} · {record.state || 'All India'} · {record.level || '—'}</p>
                                 <p>Amount: {record.amount_description || (record.amount_annual ? `₹${Number(record.amount_annual).toLocaleString('en-IN')}` : '—')}</p>
@@ -265,12 +273,12 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
                             </div>
                         )}
 
-                        {first.source_citation && /^https?:/.test(first.source_citation) && (
+                        {!isSaNew && first.source_citation && /^https?:/.test(first.source_citation) && (
                             <a href={first.source_citation} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-cc-link hover:underline">
                                 Source <ExternalLink className="h-3 w-3" />
                             </a>
                         )}
-                        {isNew && <DecisionLine decision={decisions[first.id]} onUndo={() => undo(first.id)} />}
+                        {(isNew || isSaNew) && <DecisionLine decision={decisions[first.id]} onUndo={() => undo(first.id)} />}
 
                         {pendingIds.length > 0 && (
                             <div className="mt-3 flex flex-wrap gap-2">
@@ -294,10 +302,48 @@ function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposa
 // ---------- Study Abroad page changes: short fields inline, long text as a readable diff ----------
 
 function pageLink(item: Item) {
-    if (item.kind === 'sa_field_change') {
+    if (item.kind === 'sa_field_change' || item.kind === 'sa_new_page') {
         try { return JSON.parse(item.payload_json || '{}').path || null; } catch { return null; }
     }
     return item.slug ? `/scholarships/${item.slug}` : null;
+}
+
+function SaNewPageCard({ item }: { item: Item }) {
+    let fields: Record<string, unknown> = {};
+    try { fields = JSON.parse(item.new_value || '{}'); } catch { /* invalid json */ }
+    const target = parseTargetId(item.scholarship_id);
+    const table = target?.table || '';
+    const country = fields.country ? String(fields.country).toUpperCase() : '';
+    const summary = fields.summary ? String(fields.summary) : (fields.value ? String(fields.value) : fields.notes ? String(fields.notes) : '');
+    const summaryPreview = summary.length > 300 ? summary.slice(0, 300) + '…' : summary;
+    const fieldCount = Object.keys(fields).length;
+    const source = (typeof fields.official_source === 'string' ? fields.official_source : null) || item.source_citation;
+
+    return (
+        <div className="space-y-2 text-xs text-cc-text-2">
+            <div className="flex flex-wrap items-center gap-2 text-cc-muted">
+                <span className="font-semibold text-cc-text">{table}</span>
+                {country && <span>· {country}</span>}
+                <span>· {fieldCount} fields</span>
+            </div>
+            {summaryPreview && (
+                <p className="leading-relaxed text-cc-text-2">{summaryPreview}</p>
+            )}
+            {source && /^https?:\/\//.test(source) && (
+                <div>
+                    <a href={source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-cc-link hover:underline">
+                        Official source <ExternalLink className="h-3 w-3" />
+                    </a>
+                </div>
+            )}
+            <details className="mt-2 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 font-medium text-cc-link">Preview JSON</summary>
+                <pre className="max-h-60 overflow-auto border-t border-cc-border p-2 font-mono text-[11px] leading-relaxed text-cc-text">
+                    {JSON.stringify(fields, null, 2)}
+                </pre>
+            </details>
+        </div>
+    );
 }
 
 // FAQs and JSON shown as readable text, so the diff is about words, not brackets

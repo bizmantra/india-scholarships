@@ -1,31 +1,13 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronDown, ChevronRight, Loader2, Plus } from 'lucide-react';
 import {
-    BACKLOG_IMPACTS, buildSections, categoryLabel, daysUntil, plainDescription, staleDays,
-    type BacklogChange, type BacklogImpact, type BacklogItem,
+    BACKLOG_ASSIGNEES, BACKLOG_IMPACTS, buildSections, categoryLabel, isOpen, plainDescription, staleDays, TEAMS, TEAM_IDS,
+    type BacklogAssignee, type BacklogChange, type BacklogImpact, type BacklogItem,
 } from '@/lib/command-center/backlog-types';
 import { api } from '../agents/orchestrator';
-
-const IMPACT_STYLE: Record<BacklogImpact, string> = {
-    Critical: 'bg-rose-500/10 border-rose-500/30 text-cc-bad',
-    High: 'bg-amber-500/10 border-amber-500/30 text-cc-warn',
-    Medium: 'bg-blue-500/10 border-blue-500/25 text-cc-link',
-    Low: 'bg-cc-raised border-cc-border text-cc-muted',
-};
-
-const Pill = ({ className, children }: { className: string; children: React.ReactNode }) => (
-    <span className={`rounded-full border px-2 py-0.5 text-[10px] font-bold ${className}`}>{children}</span>
-);
-
-function dueLabel(due: string | null) {
-    const left = daysUntil(due);
-    if (left === null) return null;
-    if (left < 0) return { text: `Overdue ${-left} d`, className: 'bg-rose-500/10 border-rose-500/30 text-cc-bad' };
-    if (left === 0) return { text: 'Due today', className: 'bg-rose-500/10 border-rose-500/30 text-cc-bad' };
-    return { text: `Due in ${left} d`, className: left <= 7 ? 'bg-amber-500/10 border-amber-500/30 text-cc-warn' : 'bg-cc-raised border-cc-border text-cc-muted' };
-}
+import { dueLabel, IMPACT_STYLE, Pill, useBacklog, ViewToggle } from './shared';
 
 type OnChange = (id: string, change: BacklogChange) => Promise<void>;
 
@@ -34,6 +16,8 @@ function Card({ item, onChange, open, onToggle }: { item: BacklogItem; onChange:
     const [note, setNote] = useState(item.note || '');
     const [busy, setBusy] = useState(false);
     useEffect(() => setNote(item.note || ''), [item.note]);
+    const [link, setLink] = useState(item.link || '');
+    useEffect(() => setLink(item.link || ''), [item.link]);
 
     const due = dueLabel(item.due_date);
     const stale = staleDays(item);
@@ -50,6 +34,9 @@ function Card({ item, onChange, open, onToggle }: { item: BacklogItem; onChange:
                         <span className="text-[11px] font-bold text-cc-faint">{item.id}</span>
                         <Pill className={IMPACT_STYLE[item.impact]}>{item.impact}</Pill>
                         {item.status === 'In Progress' && <Pill className="bg-emerald-500/10 border-emerald-500/25 text-cc-good">In progress</Pill>}
+                        {item.status === 'Ready' && <Pill className="bg-blue-500/10 border-blue-500/25 text-cc-link">Ready</Pill>}
+                        {item.status === 'Review' && <Pill className="bg-amber-500/10 border-amber-500/30 text-cc-warn">In review</Pill>}
+                        {item.assignee && <Pill className="bg-cc-raised border-cc-border text-cc-text-2">{item.assignee}</Pill>}
                         {item.waiting && <Pill className="bg-amber-500/10 border-amber-500/30 text-cc-warn">Waiting on you</Pill>}
                         {due && <Pill className={due.className}>{due.text}</Pill>}
                         {stale !== null && <Pill className="bg-cc-raised border-cc-border text-cc-muted">Not touched for {stale} d</Pill>}
@@ -57,6 +44,7 @@ function Card({ item, onChange, open, onToggle }: { item: BacklogItem; onChange:
                     <div className="mt-1 text-sm font-bold text-cc-text">{item.title}</div>
                     {!open && why && <div className="mt-0.5 line-clamp-2 text-xs text-cc-muted">{why}</div>}
                     {item.note && <div className="mt-1 text-xs text-cc-text-2"><span className="font-bold">Where we left off:</span> {item.note}</div>}
+                    {item.link && <div className="mt-1 truncate text-xs text-cc-link">{item.link}</div>}
                 </div>
             </button>
             {open && (
@@ -73,12 +61,15 @@ function Card({ item, onChange, open, onToggle }: { item: BacklogItem; onChange:
                         <button disabled={busy || note === (item.note || '')} onClick={() => act({ note })} className={button}>Save note</button>
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
-                        {item.status !== 'In Progress' && <button disabled={busy} onClick={() => act({ status: 'In Progress' })} className={button}>Start</button>}
+                        {(item.status === 'Backlog' || item.status === 'Parked') && <button disabled={busy} onClick={() => act({ status: 'Ready' })} className={button}>Make ready</button>}
+                        {item.status !== 'In Progress' && item.status !== 'Review' && <button disabled={busy} onClick={() => act({ status: 'In Progress' })} className={button}>Start</button>}
+                        {item.status === 'Review' && <button disabled={busy} onClick={() => act({ status: 'In Progress' })} className={button}>Send back</button>}
+                        {(item.status === 'In Progress' || item.status === 'Ready') && <button disabled={busy} onClick={() => act({ status: 'Review' })} className={button}>Move to review</button>}
                         {item.status !== 'Backlog' && item.status !== 'Done' && <button disabled={busy} onClick={() => act({ status: 'Backlog' })} className={button}>Back to later</button>}
-                        {item.status !== 'Done' && <button disabled={busy} onClick={() => act({ status: 'Done', waiting: false })} className={button}>Mark done</button>}
+                        {item.status !== 'Done' && <button disabled={busy} onClick={() => act({ status: 'Done', waiting: false })} className={button}>{item.status === 'Review' ? 'Approve and mark done' : 'Mark done'}</button>}
                         {item.status !== 'Parked' && <button disabled={busy} onClick={() => act({ status: 'Parked', waiting: false })} className={button}>Park</button>}
                         {item.status === 'Parked' && <button disabled={busy} onClick={() => act({ status: 'Backlog' })} className={button}>Bring back</button>}
-                        {(item.status === 'Backlog' || item.status === 'In Progress') && (
+                        {isOpen(item.status) && item.status !== 'Review' && (
                             <button disabled={busy} onClick={() => act({ waiting: !item.waiting })} className={button}>
                                 {item.waiting ? 'Not waiting on me' : 'Waiting on me'}
                             </button>
@@ -102,6 +93,36 @@ function Card({ item, onChange, open, onToggle }: { item: BacklogItem; onChange:
                                 {BACKLOG_IMPACTS.map(i => <option key={i}>{i}</option>)}
                             </select>
                         </label>
+                        <label className="flex items-center gap-1.5">Assigned to
+                            <select
+                                value={item.assignee || ''}
+                                onChange={e => act({ assignee: (e.target.value || null) as BacklogAssignee | null })}
+                                className="rounded-lg border border-cc-border bg-cc-bg px-2 py-1 text-xs text-cc-text"
+                            >
+                                <option value="">Nobody</option>
+                                {BACKLOG_ASSIGNEES.map(a => <option key={a}>{a}</option>)}
+                            </select>
+                        </label>
+                        <label className="flex items-center gap-1.5">Team
+                            <select
+                                value={item.category}
+                                onChange={e => act({ category: e.target.value })}
+                                className="rounded-lg border border-cc-border bg-cc-bg px-2 py-1 text-xs text-cc-text"
+                            >
+                                {!TEAM_IDS.includes(item.category) && <option value={item.category}>{categoryLabel(item.category)}</option>}
+                                {TEAMS.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+                            </select>
+                        </label>
+                    </div>
+                    <div className="flex gap-2">
+                        <input
+                            value={link}
+                            onChange={e => setLink(e.target.value)}
+                            placeholder="Link: pull request address or plan file (plans/...)"
+                            maxLength={300}
+                            className="min-w-0 flex-1 rounded-lg border border-cc-border bg-cc-bg px-3 py-1.5 text-xs text-cc-text"
+                        />
+                        <button disabled={busy || link === (item.link || '')} onClick={() => act({ link })} className={button}>Save link</button>
                     </div>
                 </div>
             )}
@@ -125,48 +146,26 @@ function Section({ title, hint, items, onChange, collapsed, openId, onToggle }: 
     );
 }
 
-// What to pick up next, for the Dev and Content backlogs (a tab appears for any other category that has items)
+// What to pick up next, for every team (a tab appears for any team or older category that has open items)
 export default function BacklogPage() {
-    const [items, setItems] = useState<BacklogItem[]>([]);
+    const { items, loading, error, setError, load, change } = useBacklog();
     const [tab, setTab] = useState('all');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
     const [adding, setAdding] = useState(false);
     const [openId, setOpenId] = useState<string | null>(null);
     const toggle = (id: string) => setOpenId(cur => (cur === id ? null : id));
     const [draft, setDraft] = useState({ title: '', description: '', impact: 'Medium' as BacklogImpact, due_date: '', category: 'dev' });
 
-    const load = useCallback(async () => {
-        try {
-            setItems((await api<{ items: BacklogItem[] }>('backlog')).items);
-            setError('');
-        } catch (e) {
-            setError((e as Error).message);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-    useEffect(() => { load(); }, [load]);
-
-    const change = useCallback(async (id: string, patch: BacklogChange) => {
-        try {
-            await api('backlog', { method: 'PATCH', body: JSON.stringify({ id, ...patch }) });
-            setError('');
-        } catch (e) {
-            setError((e as Error).message);
-        }
-        await load();
-    }, [load]);
-
     const tabs = useMemo(() => {
         const ids = [...new Set(items.map(i => i.category))]
             .filter(c => items.some(i => i.category === c && i.status !== 'Done'));
-        return ids.sort((a, b) => (a === 'dev' ? -1 : b === 'dev' ? 1 : a === 'content' ? -1 : b === 'content' ? 1 : a.localeCompare(b)));
+        // Teams in their fixed order, then any older category (content, study-abroad, ...) by name
+        const rank = (c: string) => { const i = TEAM_IDS.indexOf(c); return i === -1 ? TEAM_IDS.length : i; };
+        return ids.sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
     }, [items]);
 
     const visible = tab === 'all' ? items : items.filter(i => i.category === tab);
     const sections = useMemo(() => buildSections(visible), [visible]);
-    const openCount = (c: string) => items.filter(i => (c === 'all' || i.category === c) && (i.status === 'Backlog' || i.status === 'In Progress')).length;
+    const openCount = (c: string) => items.filter(i => (c === 'all' || i.category === c) && isOpen(i.status)).length;
 
     const add = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -188,9 +187,12 @@ export default function BacklogPage() {
                     <h1 className="text-xl font-black text-cc-text">Backlog</h1>
                     <p className="text-sm text-cc-muted">What to pick up next. Start at the top. Anything due within a week comes first, then Critical, High, Medium and Low, with work already started ahead of work not started.</p>
                 </div>
-                <button onClick={() => setAdding(a => !a)} className="flex shrink-0 items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-2 text-xs font-bold text-white">
-                    <Plus className="h-4 w-4" /> Add
-                </button>
+                <div className="flex shrink-0 items-center gap-2">
+                    <ViewToggle />
+                    <button onClick={() => setAdding(a => !a)} className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-2 text-xs font-bold text-white">
+                        <Plus className="h-4 w-4" /> Add
+                    </button>
+                </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5">
@@ -212,7 +214,7 @@ export default function BacklogPage() {
                     <div className="flex flex-wrap items-center gap-2 text-xs text-cc-muted">
                         {tab === 'all' && (
                             <select value={draft.category} onChange={e => setDraft({ ...draft, category: e.target.value })} className="rounded-lg border border-cc-border bg-cc-bg px-2 py-1.5 text-xs text-cc-text">
-                                {(tabs.length ? tabs : ['dev', 'content']).map(c => <option key={c} value={c}>{categoryLabel(c)}</option>)}
+                                {TEAMS.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
                             </select>
                         )}
                         <select value={draft.impact} onChange={e => setDraft({ ...draft, impact: e.target.value as BacklogImpact })} className="rounded-lg border border-cc-border bg-cc-bg px-2 py-1.5 text-xs text-cc-text">
