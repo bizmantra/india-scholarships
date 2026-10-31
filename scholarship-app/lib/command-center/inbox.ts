@@ -11,6 +11,7 @@
  * tables, and their old/new values are kept in the approval event rather than scholarship_changelog.
  */
 import { getClient, scholarshipsHasColumn } from '@/lib/db';
+import { COUNTRIES } from '@/lib/study-abroad/countries';
 import * as rules from '@/scripts/lib/agent-inbox';
 import * as sa from '@/scripts/lib/sa-inbox';
 import { refreshScholarshipPages, refreshStudyAbroadPages } from './revalidate';
@@ -19,7 +20,7 @@ import { rows } from './server';
 export interface Proposal {
     id: number;
     agent: string;
-    kind: 'field_change' | 'new_scholarship' | 'sa_field_change';
+    kind: 'field_change' | 'new_scholarship' | 'sa_field_change' | 'sa_new_page';
     scholarship_id: string;
     scholarship_title: string;
     field: string | null;
@@ -231,7 +232,7 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
 
     // Current rows of every affected Study Abroad page, read once per table
     const saLive = new Map<string, any>();
-    const saTargets = items.filter(p => p.kind === sa.KIND).map(p => sa.parseTargetId(p.scholarship_id)).filter(Boolean) as { table: string; key: string }[];
+    const saTargets = items.filter(p => p.kind === sa.KIND || p.kind === sa.NEW_KIND).map(p => sa.parseTargetId(p.scholarship_id)).filter(Boolean) as { table: string; key: string }[];
     for (const table of [...new Set(saTargets.map(t => t.table))]) {
         const target = (sa.TARGETS as Record<string, { key: string }>)[table];
         if (!target) continue;
@@ -246,6 +247,79 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
 
     for (const p of items) {
         const id = Number(p.id);
+        if (action === 'approve' && p.kind === sa.NEW_KIND) {
+            const target = sa.parseTargetId(p.scholarship_id);
+            if (!target || !(sa.TARGETS as Record<string, { key: string }>)[target.table]) {
+                result.skipped.push({ id, title: p.scholarship_title, reason: 'Invalid target page' });
+                continue;
+            }
+            const liveRow = saLive.get(p.scholarship_id);
+            if (liveRow) {
+                result.skipped.push({ id, title: p.scholarship_title, reason: `Page already exists in ${target.table}` });
+                continue;
+            }
+            let rawRowData: Record<string, unknown>;
+            try {
+                rawRowData = JSON.parse(p.new_value || '{}');
+            } catch {
+                result.skipped.push({ id, title: p.scholarship_title, reason: 'Proposal payload is not valid JSON' });
+                continue;
+            }
+
+            const rowData: Record<string, unknown> = {};
+            for (const [k, v] of Object.entries(rawRowData)) {
+                rowData[k] = sa.toText ? sa.toText(v) : (v === null || v === undefined ? '' : typeof v === 'string' ? v : JSON.stringify(v));
+            }
+
+            // For sa_programs, check university_slug exists
+            let universityExists = true;
+            if (target.table === 'sa_programs' && rowData.university_slug) {
+                const uRes = await client.execute({ sql: 'SELECT 1 FROM sa_universities WHERE slug = ?', args: [String(rowData.university_slug)] });
+                universityExists = !!uRes.rows[0];
+            }
+
+            const validationError = sa.validateNewRow(target.table, rowData, {
+                universityExists: () => universityExists,
+                countries: new Set(Object.keys(COUNTRIES)),
+            });
+            if (validationError) {
+                result.skipped.push({ id, title: p.scholarship_title, reason: validationError });
+                continue;
+            }
+
+            // Status is forced to draft on insert, ignoring any status in payload
+            const nowIso = new Date().toISOString().replace('T', ' ').slice(0, 19);
+            const keyCol = (sa.TARGETS as Record<string, { key: string }>)[target.table].key;
+            const toInsert: Record<string, unknown> = {
+                ...rowData,
+                [keyCol]: target.key,
+                status: 'draft',
+                created_at: nowIso,
+                updated_at: nowIso,
+            };
+
+            const cols = Object.keys(toInsert);
+            const args = cols.map(c => sa.storedSaValue(target.table, c, toInsert[c]));
+
+            statements.push(
+                {
+                    sql: `INSERT INTO ${target.table} (${cols.join(', ')}) VALUES (${cols.map(() => '?').join(', ')})`,
+                    args,
+                },
+                {
+                    sql: "UPDATE agent_proposals SET status = 'approved', decided_by = ?, decided_at = datetime('now') WHERE id = ? AND status = 'pending'",
+                    args: [actor, id],
+                },
+                event(p.agent, 'approval', actor, `Approved new page for "${p.scholarship_title}" (Study Abroad, draft)`, {
+                    proposal_id: id, table: target.table, key: target.key, kind: sa.NEW_KIND, updated_at: nowIso,
+                }),
+            );
+            saTouched.push({ table: target.table, row: toInsert });
+            saLive.set(p.scholarship_id, toInsert);
+            result.done.push(id);
+            continue;
+        }
+
         if (action === 'approve' && p.kind === sa.KIND) {
             const target = sa.parseTargetId(p.scholarship_id);
             const field = String(p.field);
@@ -258,6 +332,23 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
                 result.skipped.push({ id, title: p.scholarship_title, reason: `${sa.LABELS[field as keyof typeof sa.LABELS] || field} was changed to "${shortValue(liveValue)}" after this was proposed. Review it again.` });
                 continue;
             }
+
+            // Publish gate: validate whole row when publishing
+            if (field === 'status' && p.new_value === 'published') {
+                let universityExists = true;
+                if (target.table === 'sa_programs' && liveRow.university_slug) {
+                    const uRes = await client.execute({ sql: 'SELECT 1 FROM sa_universities WHERE slug = ?', args: [liveRow.university_slug] });
+                    universityExists = !!uRes.rows[0];
+                }
+                const publishError = sa.validatePublishRow(target.table, { ...liveRow, status: 'published' }, {
+                    universityExists: () => universityExists,
+                });
+                if (publishError) {
+                    result.skipped.push({ id, title: p.scholarship_title, reason: publishError });
+                    continue;
+                }
+            }
+
             const keyCol = (sa.TARGETS as Record<string, { key: string }>)[target.table].key;
             const hasUpdatedAt = 'updated_at' in liveRow;
             statements.push(
@@ -285,7 +376,9 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
             });
             if (perItemEvents) statements.push(event(p.agent, 'rejection', actor, p.kind === 'new_scholarship'
                 ? `Rejected new scholarship "${p.scholarship_title}"`
-                : `Rejected ${p.field} for "${p.scholarship_title}": ${shortValue(p.new_value)}`, { proposal_id: id }));
+                : p.kind === sa.NEW_KIND
+                    ? `Rejected new page "${p.scholarship_title}" (Study Abroad)`
+                    : `Rejected ${p.field} for "${p.scholarship_title}": ${shortValue(p.new_value)}`, { proposal_id: id }));
             result.done.push(id);
             continue;
         }
@@ -380,6 +473,46 @@ async function undoStudyAbroad(p: Proposal, actor: string): Promise<{ ok: boolea
     return { ok: true, message: `${sa.LABELS[field as keyof typeof sa.LABELS] || field} for "${p.scholarship_title}" is back to the previous version.` };
 }
 
+/** Undo an approved Study Abroad new page creation: deletes the row only if still draft and untouched. */
+async function undoSaNewPage(p: Proposal, actor: string): Promise<{ ok: boolean; message: string }> {
+    const client = getClient();
+    const target = sa.parseTargetId(p.scholarship_id);
+    if (!target) return { ok: false, message: 'Cannot undo: invalid target page.' };
+    const meta = (sa.TARGETS as Record<string, { key: string }>)[target.table];
+    if (!meta) return { ok: false, message: `Cannot undo: unknown table ${target.table}.` };
+
+    const log = await client.execute({
+        sql: `SELECT details_json FROM agent_events WHERE kind = 'approval' AND json_extract(details_json, '$.proposal_id') = ?
+              ORDER BY id DESC LIMIT 1`,
+        args: [Number(p.id)],
+    });
+    if (!log.rows[0]) return { ok: false, message: 'No record of this approval was found, so it cannot be undone automatically.' };
+
+    let savedUpdatedAt: string | null = null;
+    try {
+        const details = JSON.parse(String(log.rows[0].details_json));
+        savedUpdatedAt = details.updated_at ?? null;
+    } catch { /* ignore */ }
+
+    const live = await client.execute({ sql: `SELECT * FROM ${target.table} WHERE ${meta.key} = ?`, args: [target.key] });
+    const row = live.rows[0] as Record<string, unknown> | undefined;
+    if (!row) return { ok: false, message: 'The page no longer exists.' };
+    if (row.status !== 'draft') {
+        return { ok: false, message: 'The page is no longer draft, so it cannot be undone.' };
+    }
+    if (savedUpdatedAt && row.updated_at && row.updated_at !== savedUpdatedAt) {
+        return { ok: false, message: 'page has changed since' };
+    }
+
+    await client.batch([
+        { sql: `DELETE FROM ${target.table} WHERE ${meta.key} = ?`, args: [target.key] },
+        { sql: "UPDATE agent_proposals SET status = 'rejected', decided_by = ?, decided_at = datetime('now'), decision_note = 'Undone after approval' WHERE id = ?", args: [actor, Number(p.id)] },
+        event(p.agent, 'undo', actor, `Undid new page "${p.scholarship_title}" (Study Abroad)`, { proposal_id: Number(p.id), table: target.table, key: target.key }),
+    ], 'write');
+    refreshStudyAbroadPages([{ table: target.table, row }]);
+    return { ok: true, message: `New page "${p.scholarship_title}" has been deleted.` };
+}
+
 /**
  * Undo an approval. A field change is reverted only if the page still shows the approved value.
  * The proposal is then marked rejected, so the agent will not propose that value again.
@@ -391,6 +524,7 @@ export async function undo(id: number, actor: string): Promise<{ ok: boolean; me
     const p = items[0];
     if (!p) return { ok: false, message: 'Only approved items can be undone.' };
     if (p.kind === sa.KIND) return undoStudyAbroad(p, actor);
+    if (p.kind === sa.NEW_KIND) return undoSaNewPage(p, actor);
 
     if (p.kind === 'new_scholarship') {
         await client.batch([

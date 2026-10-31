@@ -71,16 +71,18 @@ upcoming deadlines come first and weak-evidence items no longer sit above the re
 ## Study Abroad pages
 
 Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) use the same inbox, with
-`kind = 'sa_field_change'` and category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
+`kind = 'sa_field_change'` for existing page updates and `kind = 'sa_new_page'` for creating new draft pages, both under category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
 
 - **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=staging|production] [--dry-run]`.
   Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
   no research notes, an official source for money and admission facts); a value you rejected is not proposed again.
-- **Cards:** one per page. Short fields show old → new; articles, FAQs and JSON show a line-by-line diff and the
-  full new version.
-- **Approving** writes the field and `updated_at`, records old and new values in the approval event (not in
-  `scholarship_changelog`, which belongs to scholarships), and refreshes the page, its country pages, comparison
-  pages and the Study Abroad home. **Undo** restores the old value if the page still shows the approved one.
+- **New draft pages (`sa_new_page`):** agents propose new rows by setting `"create": true` in changes JSON with the row's `fields`.
+  Required columns per table, valid slug pattern, known country in `countries.ts`, and sources on money facts are strictly enforced.
+  Approving inserts the row with `status = 'draft'` (drafts return 404 and are not visible publicly).
+- **Cards:** one per page or new draft proposal. Field changes show old → new (short fields) or line diff (articles, FAQs, JSON).
+  New draft proposals show the table, title, country, summary preview, field count, official source link, and a "Preview JSON" expander.
+- **Publish gate:** approving a `status → published` field change runs full-row validation (all required columns, no boilerplate summaries, no banned phrases, all money/visa fields sourced).
+- **Approving & Undo:** approving writes the row or field and records values in `agent_events`. **Undo** restores the old value for field changes, or deletes the draft row for new pages (only while the row remains in `draft` status and untouched since approval).
 - `scripts/apply-reviewed-changes.js` (terminal) skips these items; approve them in the command center.
 
 ## Setup
