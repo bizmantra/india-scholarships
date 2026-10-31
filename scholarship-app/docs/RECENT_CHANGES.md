@@ -18,6 +18,9 @@ Last updated: 2026-10-30. Merges #74-#101 since Oct 13 are not itemised below ye
 
 ## Merged to main
 
+**Oct 31**
+- `docs/PROJECT_CONTEXT.md`: shared context for all assistants (roles, how work ships, standing decisions, traps). `AGENTS.md` now says to read it first and keep it updated.
+
 **Oct 30**
 - Docs cleanup: browser profiles, `scratch/`, one-off exports and old backups removed from git; stale docs moved to `docs/archive/`, `data/archive/`, `plans/archive/`; `GEMINI.md` now points to `AGENTS.md`.
 
