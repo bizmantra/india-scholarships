@@ -120,12 +120,23 @@ function fieldType(table, field) {
     return FIELDS[table] && FIELDS[table][field];
 }
 
-/** Error message for a value that cannot go live, or null when it is fine. */
-function validateSaValue(table, field, value, { source } = {}) {
+/**
+ * Error message for a value that cannot go live, or null when it is fine.
+ * `previous` is the value the page holds now (omit it when creating a row). A banned phrase that is already
+ * there is carried forward instead of blocking an unrelated edit - 123 published pages still have a legacy
+ * "## Executive Summary" heading and would otherwise be un-editable. A phrase the change introduces is refused,
+ * and the D3 audit keeps reporting the existing ones.
+ * @param {string} table
+ * @param {string} field
+ * @param {unknown} value
+ * @param {{ source?: string|null, previous?: unknown }} [options]
+ */
+function validateSaValue(table, field, value, { source, previous } = {}) {
     const type = fieldType(table, field);
     if (!type) return `${field} cannot be changed through the inbox`;
     const text = toText(value).trim();
-    if (BANNED.some(rx => rx.test(text))) return 'contains research notes or template filler that must not appear on the page';
+    const before = toText(previous);
+    if (BANNED.some(rx => rx.test(text) && !rx.test(before))) return 'contains research notes or template filler that must not appear on the page';
     if (NEEDS_SOURCE.has(field) && !/^https?:\/\//.test(asText(source))) return 'needs an official source link on the proposal';
     switch (type) {
         case 'summary':

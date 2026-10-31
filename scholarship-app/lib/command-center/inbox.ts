@@ -325,7 +325,7 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
             const field = String(p.field);
             const liveRow = saLive.get(p.scholarship_id);
             if (!target || !liveRow) { result.skipped.push({ id, title: p.scholarship_title, reason: 'Page no longer exists' }); continue; }
-            const formatError = sa.validateSaValue(target.table, field, p.new_value, { source: p.source_citation });
+            const formatError = sa.validateSaValue(target.table, field, p.new_value, { source: p.source_citation, previous: liveRow[field] });
             if (formatError) { result.skipped.push({ id, title: p.scholarship_title, reason: `${sa.LABELS[field as keyof typeof sa.LABELS] || field}: ${formatError}` }); continue; }
             const liveValue = liveRow[field];
             if (!opts.force && !sa.sameSaValue(liveValue, p.old_value)) {

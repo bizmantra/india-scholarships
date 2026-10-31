@@ -122,9 +122,9 @@ for (const change of input.changes || []) {
 
     for (const [field, raw] of Object.entries(change.fields || {})) {
         const newValue = toText(raw);
-        const error = sa.validateSaValue(table, field, newValue, { source });
-        if (error) { console.log(`  ✗ ${field}: ${error}`); refused++; continue; }
         const oldValue = row[field] === null || row[field] === undefined ? null : String(row[field]);
+        const error = sa.validateSaValue(table, field, newValue, { source, previous: oldValue });
+        if (error) { console.log(`  ✗ ${field}: ${error}`); refused++; continue; }
         if (sa.sameSaValue(oldValue, newValue)) { console.log(`  = ${field}: already live`); unchanged++; continue; }
 
         const targetId = sa.targetId(table, key);
