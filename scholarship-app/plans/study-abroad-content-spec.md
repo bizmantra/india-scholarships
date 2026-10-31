@@ -86,7 +86,11 @@ Every published guide has `official_source` and `checked_at`, and every number i
 - Findings note lists, per page: verified, corrected, or gap.
 
 ### Questions / Done
-(agent fills in)
+- **C2a Germany (2026-10-30)** — 12 verified, 1 corrected, 15 gaps. 26 published Germany guides not checked yet (listed in `scripts/study-abroad/proposals/c2a-notes.md`). Verdicts, quotes and fetch dates are in that note; the two proposals files are `c2a-sources-germany-2026-10-30.json` (24 field changes) and `c2a-corrections-germany-2026-10-30.json` (3 field changes, separate because it moves a number). Dry run against staging: `Proposed 24 … refused 0` and `Proposed 3 … refused 0`.
+  - Correction: B1 German shortens the EU Blue Card route to permanent residence from **27** (not 33) months to 21 (§ 18c Abs. 2 AufenthG). The replacement article also renames its `## Executive Summary: …` heading, because `scripts/lib/sa-inbox.js` refuses any article containing that phrase — the same rename will be needed on the remaining guides that still use it.
+  - Blocked by the same validator rule for wording-only proposals: 20 published USA articles and several German ones still carry an `## Executive Summary` heading.
+  - Gaps worth naming: every `daad.de` URL returns 403 today, so the three DAAD guides stay unsourced; VFS pages are commercial, so the two VFS guides are gaps; `make-it-in-germany.com` answers with a bot-challenge page.
+- **C2b USA (2026-10-30)** — 8 verified, 1 corrected, 13 gaps; 33 published USA guides not checked yet. The correction moves the I-765 paper fee from $410 to $520 (USCIS Form G-1055, edition 10/26/26: "General filing for initial, replacement, or renewal Paper Filing: $520"; online filing stays $470). `travel.state.gov` still returns 403, so the five F-1/DS-160/interview pages and the $185 MRV fee stay gaps.
 
 ---
 
