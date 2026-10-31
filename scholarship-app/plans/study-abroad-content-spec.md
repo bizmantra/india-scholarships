@@ -73,6 +73,13 @@ Every published guide and university has a specific, honest summary.
   - Dry-run: 0 refusals. All 49 proposals submitted cleanly to the staging inbox.
   - Length check: all <= 220 characters; no duplicate first 5 words; 0 skipped.
   - 5-page factual spot-check documented in `scripts/study-abroad/proposals/c1b-notes.md`.
+- **Batch C1c Done (2026-10-29)**:
+  - Database counts: Turso Production is current/master, where 16 published universities retain boilerplate summaries (29 already have specific summaries). Turso Staging was an unrefreshed snapshot with 37 boilerplate summaries.
+  - Proposals file: `scripts/study-abroad/proposals/c1c-university-summaries-2026-10-29.json` covers all 37 pages on staging.
+  - Review revisions: 20 proposals containing extrapolated generic semester fees (€250–€350) or unverified grade matrix cutoffs were rejected in the staging inbox and rewritten using strictly verified figures from the page data (e.g., TU Dresden €361, Chemnitz €341.40, GT $16,540 / $57,025 I-20, NEU $1,922/credit / $59,449 I-20, UB $14,914.86 / $57,200 I-20, UTA $44,720 / GRE 305+).
+  - Dry run & staging submission: clean (20 revised proposals proposed, 17 approved earlier waiting as pending, 0 refusals).
+  - All 37 summaries meet length (<= 220 chars), specificity, and distinct first 5 words requirements.
+  - Detailed audit notes recorded in `scripts/study-abroad/proposals/c1c-notes.md`.
 
 ---
 
