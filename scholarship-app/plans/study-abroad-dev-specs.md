@@ -251,13 +251,45 @@ Stop relying on AI to confirm facts. A registered fact passes only if its exact 
 - `scripts/study-abroad/verify-sources.mjs`: CLI. Exit 1 on a mismatch or a disallowed host. A page that cannot be fetched is `unverifiable` (reported, not failed; `--strict` fails it).
 - `.github/workflows/sa-verify-sources.yml`: on PRs that touch these files and every Monday.
 
-### Not in scope
-Proposals from agents are not yet checked against the registry; the next step is to make `propose-changes.mjs` refuse a `source` that is not in the registry or on the allowlist.
+### Proposal source gate (done; replaces the old "Not in scope")
+
+`scripts/study-abroad/propose-changes.mjs` now refuses a proposal whose `source` (per change, or the file's
+default `source`) or `fields.official_source` is neither on the `official-domains.json` host allowlist nor an
+exact URL registered in `source-checks.json`. The refusal prints the reason and is counted in the existing
+"refused" total; the script exits non-zero when nothing was proposed (unchanged convention). `sa_facts` `value`
+changes keep using `checkProposals()` unchanged: a registry entry for the fact key is required, the proposed
+value must match it, and its quote must be on the live page (an unfetchable page fails; it is not softened to a
+warning). No page is fetched for the plain host check. A source that is only registered (its host is not
+allowlisted) is accepted with a warning so the allowlist can be extended.
+
+The gate covers **D1 create mode too**: a `create: true` row whose change citation or `official_source` fails is
+refused before the row is validated or any DB read happens, so an unallowlisted source cannot be smuggled in as
+part of a new page. Because the gate treats a `sa_facts` row's `value` like any other fact value, **proposing a
+new `sa_facts` row also needs an entry in `source-checks.json`** (the same rule an existing fact value change
+follows). New universities, guides and programs are unaffected by that registry rule; their `official_source`
+only has to be allowlisted.
+
+**After this merges, content batches must use allowlisted sources**, or the owner extends
+`official-domains.json` (owner-confirmed, never a provider).
 
 ### How to check it works
-- `node --test scripts/study-abroad/verify-sources.test.mjs` (19 offline tests).
+
+- `node --test scripts/study-abroad/verify-sources.test.mjs` (20 offline tests).
+- `node --test scripts/study-abroad/propose-sources.test.mjs` (19 offline tests: an allowlisted and a registered
+  source pass; an unallowlisted host, a lookalike host, a bad `create: true` row and a `sa_facts` value with no
+  registry entry are refused; the plain host check makes no fetch).
 - `node scripts/study-abroad/verify-sources.mjs` (live: the ICE I-901 page passes).
 
+### Questions
+
+None.
+
 ### Done
+
 - Built with the seed entry `usa-sevis-i901-f-m`. Tests and the live run pass.
 - The Sperrkonto, APS, visa-fee and travel.state.gov facts are not registered: no live page supports their figures yet (see PR 97 notes).
+- Proposal source gate added on branch `feat/sa-proposal-source-check` (handoff item 7). Before/after `--dry-run`
+  output is in that PR; staging was used, `--dry-run` only, no writes.
+- Merged with `origin/main` after PR 95 (D1 create mode) landed: the gate now also runs on create proposals, and
+  the create branch of `propose-changes.mjs` consults it. `node scripts/study-abroad/test-d1.mjs` still passes
+  (16 checks), and the quoted checks in this section are re-run on the merged tree.
