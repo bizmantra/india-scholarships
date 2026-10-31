@@ -1,0 +1,145 @@
+{
+  "agent": "content-editor",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "us-consulate-slot-booking-hacks",
+      "fields": {
+        "summary": "For Indian students booking US visa appointments: you must schedule two separate dates on usvisascheduling.com, starting with OFC biometrics before your consular interview."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "us-education-loans-guide",
+      "fields": {
+        "summary": "A comparison for Indian families funding a US master's degree, contrasting secured SBI INR loans against collateral-free USD loans from Prodigy and Mpower."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-3yr-bachelor-acceptance",
+      "fields": {
+        "summary": "Guidance for Indian 3-year bachelor's graduates (B.Sc, B.Com, BCA): over 60% of top US universities accept three-year degrees from NAAC Grade A accredited colleges."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-assistantship-interview-guide",
+      "fields": {
+        "summary": "Written for Indian STEM applicants pursuing research assistantships: securing an RA or TA position can award in-state tuition waivers and monthly stipends up to $2,500."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-assistantships-ta-ra-ga",
+      "fields": {
+        "summary": "Explains how Indian master's students can work 20 hours weekly as graduate assistants to earn monthly stipends and qualify for in-state tuition waivers at public universities."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-cpt-internship-rules",
+      "fields": {
+        "summary": "Helps Indian F-1 students plan off-campus internships: you must complete one full academic year (nine months) in the US before becoming eligible for paid CPT authorization."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-destination-overview",
+      "fields": {
+        "summary": "An overview for Indian families planning US master's studies, detailing tuition ranges from $22,000 at public state universities to over $35,000 at private institutions."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ds160-form-filing-manual",
+      "fields": {
+        "summary": "Walks Indian applicants through Form DS-160, detailing why personal history, SEVIS ID, and university school codes must match your official Form I-20 exactly."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-duolingo-det-preparation-guide",
+      "fields": {
+        "summary": "Prep strategy for Indian students taking the Duolingo English Test: costs roughly $59 and delivers certified test scores to US universities within 48 hours."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-f1-student-visa-master-guide",
+      "fields": {
+        "summary": "Step-by-step roadmap for Indian offer holders preparing for the 3-to-5 minute F-1 visa interview and satisfying INA Section 214(b) non-immigrant intent rules."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-f1-visa-interview-prep-questions",
+      "fields": {
+        "summary": "Interview preparation for Indian visa applicants: learn how to answer common consular questions concisely and demonstrate strong ties to India to avoid 214(b) refusals."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-fall-vs-spring-intakes",
+      "fields": {
+        "summary": "Advises Indian applicants choosing between Fall and Spring intakes: Fall students gain summer CPT internship eligibility after two semesters, unlike Spring arrivals."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-fulbright-interview-prep",
+      "fields": {
+        "summary": "Preparation advice for shortlisted Indian scholars facing the 20-minute USIEF panel interview in New Delhi for the Fulbright-Nehru Master's Fellowship."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-fulbright-scholarship-master-guide",
+      "fields": {
+        "summary": "Covers the Fulbright-Nehru Fellowship for Indian graduates, detailing full tuition coverage, monthly stipends, and the mandatory two-year home residence rule on J-1 visas."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-gpa-conversion-matrix",
+      "fields": {
+        "summary": "Shows Indian students how university marks and 10-point CGPA scores translate to the US 4.0 GPA scale under WES and AACRAO credit-weighted conversion standards."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-gradcas-commonapp-portals",
+      "fields": {
+        "summary": "Navigates application systems like GradCAS, ApplyTexas, and Slate for Indian applicants, outlining departmental fees from $65 to $150 per university submission."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-gre-gmat-waiver-directory",
+      "fields": {
+        "summary": "Directory for Indian master's applicants seeking GRE waivers: discover top US universities with test-optional policies that save the $220 exam registration fee."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-gre-quant-170-strategy",
+      "fields": {
+        "summary": "Study blueprint for Indian engineering students targeting 165 to 170 on GRE Quant, using high percentiles to strengthen admissions profiles with moderate undergraduate CGPAs."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-gre-verbal-awa-prep-guide",
+      "fields": {
+        "summary": "Preparation methods for Indian students targeting 155+ in GRE Verbal and 4.5+ in AWA, focusing on contextual logic and essay structure to reach a 320+ combined score."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-green-card-eb2-niw-pathways",
+      "fields": {
+        "summary": "Explores self-petitioned US permanent residency options for Indian STEM graduates, including EB-2 NIW and EB-1A pathways that bypass employer PERM labor certification."
+      }
+    }
+  ]
+}

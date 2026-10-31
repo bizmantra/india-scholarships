@@ -46,11 +46,20 @@ upcoming deadlines come first and weak-evidence items no longer sit above the re
 `/admin/backlog` is the owner's list of what to pick up next, read from the Turso table `backlog_tasks`
 (`lib/command-center/backlog.ts`, API `GET/PATCH/POST /api/admin/command/backlog`).
 
-- **Tabs** come from the `category` column (`dev`, `content`, and any new category that has open items, e.g. `study-abroad`
-  with `SA-` ids). A new category needs no code: add an item with that category and its tab appears.
+- **Teams** are the `category` column. Seven fixed teams (`TEAMS` in `backlog-types.ts`): Dev, Content research, Content creation,
+  Data, Strategy, SEO, Growth / Distribution. Older categories (`content`, `study-abroad`) keep their tab while they have open items;
+  each card has a Team menu to move it to a team. A new item's id prefix comes from `PREFIXES` in `backlog.ts`.
+- **Statuses**: Backlog, Ready (queued for an agent), In Progress, Review (an agent says it is finished), Done, Parked.
+  An item in Review counts as waiting on the owner and goes stale after 7 days (Ready 14, In Progress 14, Backlog 30).
+- **Assignee** (Owner, Claude, Antigravity, Codex) and **Link** (a pull request address or a plan file path) per item. Both live in the
+  side table `cc_backlog_meta`; the columns are added on first use if the table predates them.
+- **Board** (`/admin/backlog/board`, List | Board switch at the top of both pages): columns Backlog, Ready, In Progress, Review and
+  Done (finished in the last 14 days); Parked can be shown. Drag a card to another column or use its Move to menu (works on phones and
+  with a keyboard). Moving to Done asks first. A failed save puts the card back. Filters: team, assignee, waiting on me.
+  Drag and drop uses `@dnd-kit/core`; the sorting and filter rules are in `backlog-types.ts` (`boardColumns`) with tests.
 - **Order** (`lib/command-center/backlog-types.ts`, `buildSections`): waiting-on-you items first, then "Do next" (the top five
   open items): due within a week first, then Critical → Low, then In Progress before not started, ties by item number.
-- **Stale** tag: In Progress untouched for 14 days, Backlog for 30. "Touched" means changed on this page.
+- **Stale** tag: see the limits above. "Touched" means changed on this page.
 - Items can be started, finished, parked, flagged "waiting on me", given a due date and a "where we left off" note.
 - Items marked Done are hidden and counted. Merged or closed items from the 2026-10-11 cleanup are Done with a note.
 - **Morning briefing**: the 8am briefing (`scripts/morning-briefing.js`, `scripts/lib/backlog-briefing.js`) adds the three items
@@ -62,17 +71,27 @@ upcoming deadlines come first and weak-evidence items no longer sit above the re
 ## Study Abroad pages
 
 Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) use the same inbox, with
-`kind = 'sa_field_change'` and category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
+`kind = 'sa_field_change'` for existing page updates and `kind = 'sa_new_page'` for creating new draft pages, both under category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
 
 - **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=staging|production] [--dry-run]`.
   Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
   no research notes, an official source for money and admission facts); a value you rejected is not proposed again.
-- **Cards:** one per page. Short fields show old → new; articles, FAQs and JSON show a line-by-line diff and the
-  full new version.
-- **Approving** writes the field and `updated_at`, records old and new values in the approval event (not in
-  `scholarship_changelog`, which belongs to scholarships), and refreshes the page, its country pages, comparison
-  pages and the Study Abroad home. **Undo** restores the old value if the page still shows the approved one.
+  **Sources are checked too** (Spec D6): a change's `source`, the file's default `source`, and any
+  `official_source` value (including one inside a new-page row) must be on the host allowlist in
+  `data/study-abroad/official-domains.json` (subdomains count, lookalikes do not) or be an exact URL
+  registered in `data/study-abroad/source-checks.json`. A refused source prints the reason, counts as
+  refused, and that change is not proposed (the script exits non-zero when nothing was proposed). A
+  `sa_facts` `value` change also needs a registry entry whose value matches and whose quote is on the live
+  page. Add a new official domain to `official-domains.json` (owner confirms) before citing it.
+- **New draft pages (`sa_new_page`):** agents propose new rows by setting `"create": true` in changes JSON with the row's `fields`.
+  Required columns per table, valid slug pattern, known country in `countries.ts`, and sources on money facts are strictly enforced.
+  Approving inserts the row with `status = 'draft'` (drafts return 404 and are not visible publicly).
+- **Cards:** one per page or new draft proposal. Field changes show old → new (short fields) or line diff (articles, FAQs, JSON).
+  New draft proposals show the table, title, country, summary preview, field count, official source link, and a "Preview JSON" expander.
+- **Publish gate:** approving a `status → published` field change runs full-row validation (all required columns, no boilerplate summaries, no banned phrases, all money/visa fields sourced).
+- **Approving & Undo:** approving writes the row or field and records values in `agent_events`. **Undo** restores the old value for field changes, or deletes the draft row for new pages (only while the row remains in `draft` status and untouched since approval).
 - `scripts/apply-reviewed-changes.js` (terminal) skips these items; approve them in the command center.
+- **A banned phrase that is already on the page does not block an unrelated edit.** The check refuses a phrase the change *introduces*; a value that already contains one (the legacy `## Executive Summary` heading on 123 published pages, for example) can still be corrected. The D3 audit keeps reporting the existing ones.
 
 ## Setup
 
@@ -80,6 +99,22 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
   Actions read/write, Contents read-only. Without it, approvals still work but agents can't be started from chat.
 - The agent inbox tables are created by the first agent run after they were introduced. Until then the page says so.
   The command center never creates them itself, so an agent's first push can't clash with rows written here.
+
+## Agent backlog API
+
+Claude, Antigravity and Codex read their queue and report progress on the backlog without a browser session. Code:
+`lib/command-center/backlog-agent.ts` (database) and `backlog-agent-rules.ts` (the rules, tested), route `/api/agents/backlog`
+(outside `/api/admin`, guarded by a bearer token).
+
+- **Off by default.** Turn it on with `INSERT OR REPLACE INTO agent_settings (agent, key, value_json) VALUES ('backlog-api', 'enabled', 'true')`
+  on the target database; set it to `'false'` to switch it off again. The token is the env var `AGENT_BACKLOG_TOKEN` (not set = always refused).
+- `GET ?agent=Claude` lists that agent's open items (`&all=1` lists every open item). `POST` adds an item to Backlog (at most 20 a day
+  per agent; a note "Added by <agent>" is appended). `PATCH` moves one of the agent's own items.
+- **What an agent can do:** move its own Ready item to In Progress, move its own In Progress item to Review (a link is required),
+  and edit the note and link. **It cannot:** set Done, Parked or Backlog, change impact, due date, team or assignee, or touch an item
+  assigned to someone else. Only the owner moves work to Ready and assigns it. Review is the owner's checkpoint.
+- Every agent write is recorded in `agent_events` (agent `backlog-api`, actor `agent:<name>`).
+- The rule agents follow is in the repo's `AGENTS.md`.
 
 ## Light and dark mode
 
@@ -102,3 +137,7 @@ decide them. Code: `lib/command-center/hermes-bridge.ts`, route `POST /api/herme
   Hermes cannot approve: anything `high` risk, date or amount changes without a source link and quote, proposals from other agents,
   and anything past `max_approvals_per_day` (default 20). Those must be approved in the Command Center.
 - Study Abroad changes and new scholarships are not supported by the bridge yet.
+
+### Quote check (Hermes bridge)
+
+When Hermes proposes a change, the server opens the source page itself and records `quote_check` in the evidence: `found`, `not_found` (the proposal becomes high risk) or `unchecked` (page needs scripts, is a PDF, or could not be fetched). Date and amount changes can only be approved from Hermes when the check says `found`; otherwise approve them in the Command Center after reading the page. Added after proposal #2825, whose quote was stitched from two different schemes.
