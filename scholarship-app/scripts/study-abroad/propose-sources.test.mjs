@@ -28,6 +28,35 @@ const run = (changes, options = {}) => checkProposalSources(changes, { allowed: 
 
 // --- The plain host/URL check (no fetch) -------------------------------------------------------
 
+// --- create mode (Spec D1): a new page row carries its own official_source and is gated too -----
+
+test('a new page (create) with an allowlisted official_source is not refused', async () => {
+    const r = await run([{
+        create: true, table: 'sa_universities', key: 'new-uni',
+        fields: { slug: 'new-uni', name: 'New Uni', official_source: 'https://www.tum.de/en/studies/fees' },
+    }]);
+    assert.deepEqual(r.refusals, []);
+});
+
+test('a new page (create) with a provider official_source is refused', async () => {
+    const r = await run([{
+        create: true, table: 'sa_universities', key: 'new-uni',
+        fields: { slug: 'new-uni', name: 'New Uni', official_source: 'https://www.expatrio.com/blocked-account' },
+    }]);
+    assert.equal(r.refusals.length, 1);
+    assert.equal(r.refusals[0].field, 'official_source');
+});
+
+test('a new page (create) whose change-level source is a provider is refused as a whole row', async () => {
+    const r = await run([{
+        create: true, table: 'sa_facts', key: 'new.fact', source: 'https://www.expatrio.com/blocked-account',
+        fields: { official_source: 'https://www.ice.gov/sevis/i901', value: '$350' },
+    }]);
+    assert.equal(r.refusals.length, 1);
+    assert.equal(r.refusals[0].field, null);
+    assert.match(r.refusals[0].reason, /expatrio\.com/);
+});
+
 test('an allowlisted host passes, including a subdomain', async () => {
     const r = await run([{ table: 'sa_universities', key: 'tum', source: 'https://www.tum.de/en/studies/fees', fields: { summary: 'A summary.' } }]);
     assert.deepEqual(r.refusals, []);

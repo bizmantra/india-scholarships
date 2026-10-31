@@ -86,6 +86,82 @@ for (const change of input.changes || []) {
     const id = `${table}:${key}`;
     const meta = sa.TARGETS[table];
     if (!meta) { console.log(`✗ ${table}: not a Study Abroad table`); refused++; continue; }
+
+    if (change.create) {
+        // Propose creating a new page/row
+        // A source refused by the D6 gate must not create a row either: the row's own official_source
+        // (or the change/file citation that would become it) is not an official page.
+        const gateForChange = refusals.get(id);
+        if (gateForChange) {
+            const reason = gateForChange.changeReason || [...gateForChange.fields.values()][0];
+            console.log(`  ✗ source: ${reason}`);
+            refused++;
+            continue;
+        }
+
+        const row = (await client.execute({ sql: `SELECT * FROM ${table} WHERE ${meta.key} = ?`, args: [key] })).rows[0];
+        if (row) { console.log(`✗ ${table}:${key}: page already exists`); refused++; continue; }
+
+        for (const warning of sourceWarnings.get(id) || []) console.log(`  ⚠ ${warning}`);
+        const rawFields = change.fields || {};
+        const fields = {};
+        for (const [k, v] of Object.entries(rawFields)) {
+            fields[k] = toText(v);
+        }
+        if (!fields[meta.key]) fields[meta.key] = key;
+        const source = change.source || fields.official_source || input.source || null;
+        if (source && !fields.official_source) fields.official_source = source;
+
+        let uniExists = true;
+        if (table === 'sa_programs' && fields.university_slug) {
+            const u = (await client.execute({ sql: 'SELECT 1 FROM sa_universities WHERE slug = ?', args: [fields.university_slug] })).rows[0];
+            uniExists = !!u;
+        }
+
+        const error = sa.validateNewRow(table, fields, {
+            universityExists: () => uniExists,
+        });
+        if (error) {
+            console.log(`✗ ${table}:${key}: ${error}`);
+            refused++;
+            continue;
+        }
+
+        const targetId = sa.targetId(table, key);
+        const title = String(fields[meta.title] || key);
+        const path = sa.pagePath(table, fields);
+        const newValue = JSON.stringify(fields);
+        console.log(`\nNew page (draft): ${title}${path ? `  ${path}` : ''}`);
+
+        const existing = (await client.execute({
+            sql: `SELECT id, status, new_value FROM agent_proposals WHERE kind = ? AND scholarship_id = ? AND status IN ('pending', 'rejected')`,
+            args: [sa.NEW_KIND, targetId],
+        })).rows;
+
+        if (existing.some(p => p.status === 'rejected' && sa.sameSaValue(p.new_value, newValue))) {
+            console.log(`  ✗ you rejected this exact new page before`); refused++; continue;
+        }
+        const samePending = existing.find(p => p.status === 'pending' && sa.sameSaValue(p.new_value, newValue));
+        if (samePending) {
+            if (!dryRun) await client.execute({ sql: "UPDATE agent_proposals SET times_proposed = times_proposed + 1, last_proposed_at = datetime('now') WHERE id = ?", args: [samePending.id] });
+            console.log(`  ↻ already waiting (#${samePending.id})`); bumped++; continue;
+        }
+        const statements = existing.filter(p => p.status === 'pending').map(p => ({
+            sql: "UPDATE agent_proposals SET status = 'superseded', decided_by = 'system:replaced', decided_at = datetime('now') WHERE id = ?",
+            args: [p.id],
+        }));
+        statements.push({
+            sql: `INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, payload_json, category, risk, source_citation, evidence_json)
+                  VALUES (?, ?, ?, ?, '__new__', '', ?, ?, ?, 'normal', ?, NULL)`,
+            args: [input.agent || 'content-editor', sa.NEW_KIND, targetId, title, newValue,
+                JSON.stringify({ table, key, path }), sa.CATEGORY, source],
+        });
+        if (!dryRun) await client.batch(statements, 'write');
+        console.log(`  + New page (draft)${statements.length > 1 ? ' (replaces the earlier pending version)' : ''}`);
+        proposed++;
+        continue;
+    }
+
     const row = (await client.execute({ sql: `SELECT * FROM ${table} WHERE ${meta.key} = ?`, args: [key] })).rows[0];
     if (!row) { console.log(`✗ ${table}:${key}: no such page`); refused++; continue; }
     const title = String(row[meta.title] || key);

@@ -71,10 +71,36 @@ Let an agent propose a **new** `sa_universities`, `sa_guides`, `sa_programs` or 
 New countries going live, nav changes, sitemap changes (drafts are already excluded; verify, do not rebuild).
 
 ### Questions
-(agent writes here if blocked)
+- Note on staging environment: `TURSO_STAGING_DATABASE_URL` is stored in GitHub Actions secrets / Vercel Preview environment and was not present in the local `.env.local` file. In accordance with rule 4 ("never touch `.env*`, secrets, scholarship.db, or anything in backups/") and the strict rule to never write to production, live remote queries against Turso staging could not be executed locally; all database schema operations, inbox approval/undo lifecycle, dedup, and gate checks were thoroughly validated locally with an in-memory LibSQL database and unit assertions matching Turso. Staging verification will occur on the preview deployment created from the PR.
 
 ### Done
-(agent fills in when finished)
+- `scripts/lib/sa-inbox.js`:
+  - Added `NEW_KIND` ('sa_new_page'), `REQUIRED` columns per table from DDL, `TABLE_COLUMNS`, and `BOILERPLATE_SUMMARY`.
+  - Added `toText` helper converting nested objects/arrays (e.g. `faq_json`, `infobox_json`) to valid JSON strings.
+  - Added `KNOWN_COUNTRIES` static Set matching `lib/study-abroad/countries.ts` (`germany`, `usa`, `uk`, `canada`, `australia`, `ireland`), with `opts.countries` override support.
+  - Added `validateNewRow` validating required columns, slug regex (`^[a-z0-9]+(-[a-z0-9]+)*$`), known countries, guide kinds, program university_slug existence, money field sources, unknown columns, and banned phrases.
+  - Added `validatePublishRow` enforcing whole-row validity, non-boilerplate summary, money/visa official sources and dates, and banned phrase checks.
+- `lib/command-center/inbox.ts`:
+  - Added `'sa_new_page'` to `Proposal.kind` union.
+  - Handled `sa_new_page` approval in `decide()`: normalizes nested fields with `sa.toText()`, validates row (passing `new Set(Object.keys(COUNTRIES))`), checks non-existence, forces `status = 'draft'`, sets server `created_at`/`updated_at`, executes INSERT, logs approval event with timestamp.
+  - Added publish gate in `decide()` for `status → published` proposals on `sa_field_change`, calling `validatePublishRow`.
+  - Added `undoSaNewPage` in `undo()`: deletes draft row only if status is still `'draft'` and `updated_at` has not changed since approval; refuses otherwise ("page has changed since").
+- `app/admin/agents/InboxQueue.tsx`:
+  - Added `sa_new_page` support to `pageHref`, displayed "Study Abroad: New page (draft)" in field column, '—' in now column, summary preview in proposed column, and JSON preview in expanded details.
+- `app/admin/agents/Cards.tsx`:
+  - Added grouping and card rendering for `sa_new_page` with "New page (draft)" badge, table, title, country, first 300 characters of summary, field count, official source link, and "Preview JSON" expander.
+- `scripts/study-abroad/propose-changes.mjs`:
+  - Added support for `{ "table", "key", "create": true, "fields": {...} }` converting nested fields via `toText()`.
+  - Added validation with `validateNewRow`, printing errors per row in `--dry-run`.
+  - Implemented deduplication (bumps identical pending, refuses rejected identical, supersedes older pending).
+- `docs/AGENT_CENTER.md`:
+  - Added documentation on `sa_new_page` proposal format, validation rules, draft lifecycle, publish gate, and undo conditions.
+- `scripts/study-abroad/test-d1.mjs`:
+  - Committed end-to-end unit and regression test suite covering valid row, nested array `faq_json` and object `infobox_json`, missing summary, bad slug, duplicate key, unknown university slug, banned phrase, missing source on money fields, boilerplate summary in publish gate, approval with draft status and parsed JSON, and undo deletion/refusal.
+- Verification:
+  - Validated with `node scripts/study-abroad/test-d1.mjs` (all tests passing).
+  - `npx tsc --noEmit` passed with 0 errors.
+  - ESLint passed clean on all touched files.
 
 ---
 
@@ -195,15 +221,22 @@ value must match it, and its quote must be on the live page (an unfetchable page
 warning). No page is fetched for the plain host check. A source that is only registered (its host is not
 allowlisted) is accepted with a warning so the allowlist can be extended.
 
+The gate covers **D1 create mode too**: a `create: true` row whose change citation or `official_source` fails is
+refused before the row is validated or any DB read happens, so an unallowlisted source cannot be smuggled in as
+part of a new page. Because the gate treats a `sa_facts` row's `value` like any other fact value, **proposing a
+new `sa_facts` row also needs an entry in `source-checks.json`** (the same rule an existing fact value change
+follows). New universities, guides and programs are unaffected by that registry rule; their `official_source`
+only has to be allowlisted.
+
 **After this merges, content batches must use allowlisted sources**, or the owner extends
 `official-domains.json` (owner-confirmed, never a provider).
 
 ### How to check it works
 
 - `node --test scripts/study-abroad/verify-sources.test.mjs` (20 offline tests).
-- `node --test scripts/study-abroad/propose-sources.test.mjs` (16 offline tests: an allowlisted and a registered
-  source pass; an unallowlisted host, a lookalike host and a `sa_facts` value with no registry entry are refused;
-  the plain host check makes no fetch).
+- `node --test scripts/study-abroad/propose-sources.test.mjs` (19 offline tests: an allowlisted and a registered
+  source pass; an unallowlisted host, a lookalike host, a bad `create: true` row and a `sa_facts` value with no
+  registry entry are refused; the plain host check makes no fetch).
 - `node scripts/study-abroad/verify-sources.mjs` (live: the ICE I-901 page passes).
 
 ### Questions
@@ -216,3 +249,6 @@ None.
 - The Sperrkonto, APS, visa-fee and travel.state.gov facts are not registered: no live page supports their figures yet (see PR 97 notes).
 - Proposal source gate added on branch `feat/sa-proposal-source-check` (handoff item 7). Before/after `--dry-run`
   output is in that PR; staging was used, `--dry-run` only, no writes.
+- Merged with `origin/main` after PR 95 (D1 create mode) landed: the gate now also runs on create proposals, and
+  the create branch of `propose-changes.mjs` consults it. `node scripts/study-abroad/test-d1.mjs` still passes
+  (16 checks), and the quoted checks in this section are re-run on the merged tree.
