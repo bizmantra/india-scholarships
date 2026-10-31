@@ -73,8 +73,9 @@ upcoming deadlines come first and weak-evidence items no longer sit above the re
 Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) use the same inbox, with
 `kind = 'sa_field_change'` for existing page updates and `kind = 'sa_new_page'` for creating new draft pages, both under category `study_abroad`. Rules: `scripts/lib/sa-inbox.js`.
 
-- **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=staging|production] [--dry-run]`.
-  Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
+- **Submitting:** `node scripts/study-abroad/propose-changes.mjs <changes.json> [--target=production|staging] [--dry-run]`.
+  **Content batches submit to `production`** (the inbox the owner actually reviews); `staging` is for testing features
+  and agent code, and its proposals are wiped by the next `refresh-staging.js`. Nothing changes on the site until approved. Values are checked first (allowed fields, lengths, valid FAQ JSON,
   no research notes, an official source for money and admission facts); a value you rejected is not proposed again.
   **Sources are checked too** (Spec D6): a change's `source`, the file's default `source`, and any
   `official_source` value (including one inside a new-page row) must be on the host allowlist in

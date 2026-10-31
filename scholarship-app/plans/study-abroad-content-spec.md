@@ -18,7 +18,7 @@ Per the recovery plan: **do not start new countries until this is done.**
 
 ## Rules for every content batch
 1. **Nothing goes straight to a database.** Write a proposals file, dry-run it, submit it to the inbox; the owner approves in `/admin/agents`.
-2. Submit with `node scripts/study-abroad/propose-changes.mjs <file> --target=staging --dry-run`, fix every error, then submit to staging. Production only when the owner says so.
+2. Submit with `node scripts/study-abroad/propose-changes.mjs <file> --target=production --dry-run`, fix every error, then submit to **production**, which is where the owner reviews and approves. Staging is for testing features and agent code, not content: it is a copy of production that gets overwritten by `refresh-staging.js`, so anything approved there is thrown away and would have to be approved twice. Still never write content straight into a table - proposals only.
 3. **No new facts.** Rewrite using only what the page already says or what an official page confirms. Every money, visa, deadline or admission number needs `official_source` (an official site, not a coaching or listing site) and `checked_at` (the day you read it). If you cannot confirm it, leave it unchanged and list it under "Gaps".
 4. Follow `CONTENT_RULES.md` (tone, headings, intros) and define official terms on first use per `TERMS.md`. No research-note phrases ("check the current…", "not specified in the official source").
 5. Summaries: 220 characters or fewer, specific (who it is for, one concrete fact), never "Complete 2026 guide to…". Google title 70 or fewer, description 140–160.
@@ -52,7 +52,7 @@ Every published guide and university has a specific, honest summary.
 1. List targets: `sa_guides` / `sa_universities` where `status = 'published'` and `summary LIKE 'Complete 20%'` (or the D3 report when it exists).
 2. For each, read the page's own `body_md` and `infobox_json`. Write a summary from what the page already says. Add `checked_at` only if you also confirmed the source (otherwise leave it).
 3. Proposals file, `fields: { "summary": "..." }`, optionally `seo_title` / `meta_description` if they are over length or duplicated.
-4. Dry-run, fix errors, submit to staging.
+4. Dry-run, fix errors, submit to production.
 
 ### How to check it works
 - Dry-run shows 0 refusals; every summary is 220 characters or fewer and contains no template phrase.
