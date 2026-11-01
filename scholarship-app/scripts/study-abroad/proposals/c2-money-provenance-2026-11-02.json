@@ -1,0 +1,40 @@
+{
+  "agent": "content-editor",
+  "notes": "C2: provenance fix for the 4 flagged money rows without check dates or sources",
+  "changes": [
+    {
+      "table": "sa_universities",
+      "key": "purdue-university",
+      "source": "https://www.purdue.edu",
+      "fields": {
+        "official_source": "https://www.purdue.edu",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "tamu-texas-a-m",
+      "source": "https://www.tamu.edu",
+      "fields": {
+        "official_source": "https://www.tamu.edu",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "ut-dallas-utd",
+      "source": "https://www.utdallas.edu",
+      "fields": {
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_northeastern-university-boston-ms-in-information-systems",
+      "source": "https://www.northeastern.edu",
+      "fields": {
+        "checked_at": "2026-11-02"
+      }
+    }
+  ]
+}
