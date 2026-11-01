@@ -155,12 +155,20 @@ filesToAudit.forEach(relFile => {
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
 
+  // Strip official US immigration form designations from pronoun checks using explicit allowlist
+  // Allowed form numbers: I-20, I-94, I-129, I-134, I-485, I-539, I-765, I-797, I-901 (with optional letter suffix and optional plural 's')
+  const formAllowlistRegex = /\bI-(?:20|94|129[A-Za-z]?|134|485|539|765|797[A-Za-z]?|901)s?\b/g;
+  // In targeted mode (checkProse), check the full text (including question headings) so new articles have 0 pronouns.
+  // In global legacy mode (!checkProse), preserve compatibility with legacy FAQ headings ending in '?'.
+  const textToScanForPronouns = checkProse ? bodyText : proseWithoutQuestions;
+  const proseForPronouns = textToScanForPronouns.replace(formAllowlistRegex, 'FORM');
+
   const forbiddenFound = [];
-  if (/\bI\b/.test(proseWithoutQuestions)) {
+  if (/\bI\b/.test(proseForPronouns)) {
     forbiddenFound.push('I');
   }
   const lowP = checkProse ? ['me', 'my', 'our', 'we'] : ['me', 'my'];
-  const otherMatches = proseWithoutQuestions.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+  const otherMatches = proseForPronouns.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
   if (otherMatches) {
     otherMatches.forEach(m => forbiddenFound.push(m.toLowerCase()));
   }
@@ -169,10 +177,23 @@ filesToAudit.forEach(relFile => {
     contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(forbiddenFound)].join(', ')}`);
   }
 
-  // Fake editorial claims
-  const fakeMatch = bodyText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
+  // Fake editorial claims (body and frontmatter)
+  const allAuditedText = checkProse ? `${rawContent}` : bodyText;
+  const fakeMatch = allAuditedText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
   if (fakeMatch) {
     contentIssues.push(`Forbidden fake editorial claim(s): ${[...new Set(fakeMatch)].join(', ')}`);
+  }
+
+  // Frontmatter pronoun checks when strict prose is enabled
+  if (checkProse && yamlText) {
+    const yamlForPronouns = yamlText.replace(formAllowlistRegex, 'FORM');
+    const fmForbidden = [];
+    if (/\bI\b/.test(yamlForPronouns)) fmForbidden.push('I');
+    const fmOther = yamlForPronouns.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+    if (fmOther) fmOther.forEach(m => fmForbidden.push(m.toLowerCase()));
+    if (fmForbidden.length > 0) {
+      contentIssues.push(`Forbidden frontmatter pronoun(s): ${[...new Set(fmForbidden)].join(', ')}`);
+    }
   }
 
   // Strict prose: sentence length & paragraph length
