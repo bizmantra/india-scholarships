@@ -38,7 +38,7 @@ Review all verified options on the [IndiaScholarships Study Abroad Hub](/study-a
 
 The JN Tata Endowment is one of India's oldest educational trusts. Founded in 1892, it supports Indian graduates pursuing postgraduate education abroad.
 
-Selected scholars receive loan assistance up to **₹10,00,000**. The trust can also award up to **₹7,50,000** for top academic performers.
+Selected scholars receive loan assistance up to **₹10,00,000**. The trust also awards an additional gift scholarship up to **₹7,50,000**.
 
 Key guidelines:
 - **Eligible Courses**: Master's, PhD, and postdoctoral programs in all academic disciplines.

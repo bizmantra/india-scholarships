@@ -155,22 +155,18 @@ filesToAudit.forEach(relFile => {
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
 
-  if (checkProse) {
-    const fpMatch = proseWithoutQuestions.match(/\bI\b|\b(me|my|our|we)\b/gi);
-    if (fpMatch) {
-      const filtered = fpMatch.filter(w => w === 'I' || /^(me|my|our|we)$/i.test(w));
-      if (filtered.length > 0) {
-        contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(filtered.map(w => w === 'I' ? 'I' : w.toLowerCase()))].join(', ')}`);
-      }
-    }
-  } else {
-    const fpMatch = proseWithoutQuestions.match(/\bI\b|\b(me|my)\b/gi);
-    if (fpMatch) {
-      const filtered = fpMatch.filter(w => w === 'I' || /^(me|my)$/i.test(w));
-      if (filtered.length > 0) {
-        contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(filtered.map(w => w === 'I' ? 'I' : w.toLowerCase()))].join(', ')}`);
-      }
-    }
+  const forbiddenFound = [];
+  if (/\bI\b/.test(proseWithoutQuestions)) {
+    forbiddenFound.push('I');
+  }
+  const lowP = checkProse ? ['me', 'my', 'our', 'we'] : ['me', 'my'];
+  const otherMatches = proseWithoutQuestions.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+  if (otherMatches) {
+    otherMatches.forEach(m => forbiddenFound.push(m.toLowerCase()));
+  }
+
+  if (forbiddenFound.length > 0) {
+    contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(forbiddenFound)].join(', ')}`);
   }
 
   // Fake editorial claims
@@ -194,11 +190,12 @@ filesToAudit.forEach(relFile => {
       }
       if (inCode || !trimmed || trimmed.startsWith('#') || trimmed.startsWith('|')) continue;
 
-      let cleanLine = trimmed.replace(/^[-*>\d.)]+\s+/, '');
+      let cleanLine = trimmed.replace(/^(?:[-*>]|\d{1,2}[.)]|[a-zA-Z][.)])\s+/, '');
       cleanLine = cleanLine
         .replace(/\bNo\.(?=\s+[0-9A-Z])/g, 'No@DOT@')
         .replace(/(?:\b[A-Za-z]{1,4}\.){2,}/g, m => m.replace(/\./g, '@DOT@'))
-        .replace(/\b(e\.g\.|i\.e\.|vs\.|approx\.|viz\.|Rs\.|etc\.|Dr\.|Govt\.|Ltd\.|Pvt\.|Prof\.)/gi, m => m.replace(/\./g, '@DOT@'));
+        .replace(/\b(e\.g\.|i\.e\.|vs\.|approx\.|viz\.|Rs\.)/gi, m => m.replace(/\./g, '@DOT@'))
+        .replace(/\b(etc|Ltd|Govt|Pvt|Prof|Dr)\.(?=\s+[a-z])/gi, m => m.replace(/\./g, '@DOT@'));
 
       const segments = cleanLine.split(/(?:[.?!]+[\s\r\n]+|:\s+)/);
       for (const seg of segments) {
@@ -227,7 +224,7 @@ filesToAudit.forEach(relFile => {
       let currentProse = [];
       const proseBlocks = [];
       for (const line of lines) {
-        if (/^[-*+>\d.)]+\s+/.test(line)) {
+        if (/^(?:[-*+>]|\d{1,2}[.)]|[a-zA-Z][.)])\s+/.test(line)) {
           if (currentProse.length > 0) {
             proseBlocks.push(currentProse);
             currentProse = [];
@@ -351,16 +348,6 @@ function matchAppRoute(routePath) {
     if (dynamicDir) {
       currentDir = path.join(currentDir, dynamicDir.name);
       continue;
-    }
-
-    // Check last segment as file
-    const isLast = i === parts.length - 1;
-    if (isLast) {
-      const pageFile = entries.find(e => e.isFile() && (
-        e.name === `${part}.tsx` || e.name === `${part}.ts` ||
-        (e.name.startsWith('[') && (e.name.endsWith('.tsx') || e.name.endsWith('.ts')))
-      ));
-      if (pageFile) return true;
     }
 
     return false;
