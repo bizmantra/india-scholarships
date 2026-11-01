@@ -92,7 +92,7 @@ Trust scholarships also provide valuable financial backing. Explore the [JN Tata
 
 Follow this orderly workflow when transferring university tuition or maintenance funds abroad:
 
-1. **Obtain University Invoice**: Request the official payment letter showing university wire details. An IBAN or SWIFT code identifies foreign recipient university accounts.
+1. **Obtain University Invoice**: Request the official payment letter showing university wire details. An IBAN or account number identifies recipient university accounts.
 2. **Complete Form A2**: Fill out Form A2, the statutory declaration for purchasing foreign exchange.
 3. **Submit LRS Declaration**: Declare cumulative foreign exchange remittances made during the current fiscal year.
 4. **Attach Educational Proof**: Provide your unconditional university admission letter and passport copy.
