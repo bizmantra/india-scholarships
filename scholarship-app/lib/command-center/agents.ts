@@ -134,6 +134,16 @@ export const AGENTS: AgentDefinition[] = [
         order: 9,
     },
     {
+        id: 'sa-facts-freshness',
+        label: 'Study Abroad Facts',
+        summary: 'Flags Study Abroad money and visa numbers with no official source, no check date, a check older than 90 days, or a passed re-check date, plus published pages showing money figures with no provenance. It only flags; the re-check is proposed through the Hermes bridge or propose-changes.mjs.',
+        schedule: 'On demand: node scripts/study-abroad/facts-freshness.mjs --target=production',
+        humanToday: 'Open every official page behind each fee, fund and visa number and write down the amount and the day it was read.',
+        gated: true,
+        team: 'data',
+        order: 11,
+    },
+    {
         id: 'content-editor',
         label: 'Study Abroad Editor',
         summary: 'Proposes rewritten and corrected Study Abroad pages (universities, courses, guides) written to the page templates, each with its official sources.',

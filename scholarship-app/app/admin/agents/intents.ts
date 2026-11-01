@@ -11,6 +11,7 @@ export type Intent =
     | { type: 'briefing' }
     | { type: 'traffic' }
     | { type: 'indexing' }
+    | { type: 'saFacts' }
     | { type: 'today' }
     | { type: 'agents' }
     | { type: 'help' }
@@ -53,6 +54,8 @@ export function parseIntent(input: string): Intent {
     if (/briefing|brief me|good morning|morning update/.test(text)) return { type: 'briefing' };
     if (/traffic|visits|clicks|how is the site|how's the site|site health/.test(text)) return { type: 'traffic' };
     if (/index(ed|ing)?\b|google (see|found)|search engines?/.test(text)) return { type: 'indexing' };
+    // Before the Study Abroad group, which matches any "study abroad" wording
+    if (/facts?\s*(freshness|worklist)|stale|unsourced/.test(text) && /study abroad|abroad|facts?/.test(text)) return { type: 'saFacts' };
 
     // "approve all wording updates", "reject all risky amount changes"
     const bulk = text.match(/^(approve|reject)\s+(?:all\s+)?(?:the\s+)?(.*)$/);
@@ -84,6 +87,7 @@ export const SUGGESTIONS = [
     'Show deadline changes',
     'Show new scholarships',
     'Show Study Abroad changes',
+    'Study Abroad facts freshness',
     'Approve all wording updates',
     'Run the scout for Bihar',
     'Run the freshness check',

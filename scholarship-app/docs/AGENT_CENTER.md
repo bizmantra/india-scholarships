@@ -92,6 +92,12 @@ Study Abroad pages (`sa_universities`, `sa_programs`, `sa_guides`, `sa_facts`) u
 - **Publish gate:** approving a `status → published` field change runs full-row validation (all required columns, no boilerplate summaries, no banned phrases, all money/visa fields sourced).
 - **Approving & Undo:** approving writes the row or field and records values in `agent_events`. **Undo** restores the old value for field changes, or deletes the draft row for new pages (only while the row remains in `draft` status and untouched since approval).
 - `scripts/apply-reviewed-changes.js` (terminal) skips these items; approve them in the command center.
+- **Facts freshness:** `node scripts/study-abroad/facts-freshness.mjs --target=production` (read-only) flags every
+  `sa_facts` row with no `official_source`, no `checked_at`, a check older than 90 days or a passed `recheck_after`,
+  and every published university/program that shows money figures with no provenance. It writes
+  `data/study-abroad/facts-worklist.json`; the Agent Center row **Study Abroad Facts** ("Study Abroad facts freshness"
+  in the chat) shows the counts from that file. It only flags: re-checking is done by proposing through the Hermes
+  bridge or `propose-changes.mjs`.
 - **A banned phrase that is already on the page does not block an unrelated edit.** The check refuses a phrase the change *introduces*; a value that already contains one (the legacy `## Executive Summary` heading on 123 published pages, for example) can still be corrected. The D3 audit keeps reporting the existing ones.
 
 ## Setup
