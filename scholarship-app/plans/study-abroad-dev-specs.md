@@ -130,7 +130,27 @@ Hermes can propose Study Abroad edits (and read their state) the same way it pro
 - Kill switch (`agent_settings hermes-bridge enabled=false`) still returns the existing refusal.
 
 ### Questions
+None.
+
 ### Done
+- `proposeSa` added to `lib/command-center/hermes-bridge.ts`: `{ profile, table, key, field, new_value, source, quote?, seen_on?, confidence? }`,
+  validated with `sa.validateSaValue` / `sa.sameSaValue` and the same skip rules as `propose-changes.mjs` (unchanged, rejected
+  before, supersede a pending one). `create: true` with `fields` validates through `sa.validateNewRow` and writes an
+  `sa_new_page` proposal, which becomes a draft only when the owner approves it.
+- Risk rules live in the pure module `lib/command-center/hermes-sa.ts`: a new page, a `status` change, no quote,
+  `confidence: low`, or a quote the server cannot find on the page are all `high`. A money/visa/admission field with no
+  quote is refused outright rather than proposed as high risk, so a fee change can never sit in the queue with no evidence.
+- `approvalBlock` now answers for Study Abroad: a normal-risk `sa_field_change` may be approved from Hermes; an
+  `sa_new_page` and every `status` change say "approve it in the Command Center". The scholarship rules are untouched.
+- `list` adds `kind`, `table` and `key` so Hermes can tell what it is looking at.
+- **Safety fix found while building this:** the bridge trusted `VERCEL_ENV` alone, but a Vercel preview reports
+  "preview" while its `TURSO_DATABASE_URL` may still be production (the same root cause as the Study Abroad queue being
+  invisible in previews). `bridgeBlockedReason` now also refuses when the connected database is not the staging one (or a
+  local copy), unless `HERMES_BRIDGE_ALLOW_PRODUCTION=1` is set on purpose.
+- Tests: `lib/command-center/hermes-sa.test.ts`, 13 cases (risk classification, what may be approved from Hermes, the
+  database guard). `npm test` → 45 passing.
+- **Not verified:** a live `propose_sa` round-trip through the route. That needs the bridge switched on plus a deployment
+  pointed at the staging database — which is exactly what the new guard refuses to guess at.
 
 ---
 
