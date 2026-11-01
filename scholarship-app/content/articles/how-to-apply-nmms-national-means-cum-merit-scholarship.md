@@ -114,9 +114,14 @@ The ministry pays through Direct Benefit Transfer (DBT) into the student's bank 
 
 ## 2026-27 Dates
 
-State boards have published their 2026-27 NMMS notices, but we have not yet confirmed the application and exam dates from the notices themselves. Check your state board's website or ask your school headmaster for the exact last date.
+Dates differ by state. Check your state board's notice before you act.
 
----
+**Karnataka (confirmed from the KSEAB circular and its extension notice):**
+
+- Online application through the school login closes on **7 November 2026**. It was first set for 30 October and then extended.
+- State exam: **20 December 2026**.
+
+**Gujarat and Maharashtra:** We could not confirm the 2026-27 application and exam dates from the official notices. Check your state board's notice board, or ask your headmaster for the exact last date. Maharashtra's 2026-27 cycle has a late-fee window, so do not assume the regular deadline still applies.
 
 ## Frequently Asked Questions
 
