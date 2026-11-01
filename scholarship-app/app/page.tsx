@@ -34,7 +34,9 @@ export default async function Home() {
       closingSoon={closingSoon}
       trending={trending}
       totalStates={stats.stateCount}
-      totalScholarships={stats.total}
+      totalScholarships={Number(stats.total)}
+      governmentCount={Number(stats.govCount)}
+      privateCount={Number(stats.privateCount)}
       featuredPillars={featuredPillars.map((p) => ({ title: p.title, slug: p.slug }))}
     />
   );
