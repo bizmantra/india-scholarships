@@ -20,7 +20,6 @@ checklist:
   - "Valid Indian passport copy (first and last pages)"
   - "Class 10 and Class 12 board marksheets and passing certificates"
   - "All semester undergraduate marksheets and provisional degree certificate"
-  - "Aadhaar card copy linked to an active mobile number"
   - "Official university professor or registrar email address for verification"
   - "English proficiency score card or German language certificate if available"
 ---
@@ -90,7 +89,7 @@ Follow this structured sequence to secure your verification certificate without 
 
 1. **Online Account Creation**: Register a candidate profile on the official website (`aps-india.de`).
 2. **Select Candidate Category**: Pick the category matching your completed academic degree.
-3. **Pay Processing Fee**: Transfer **₹18,000** via net banking and record the transaction number.
+3. **Pay Processing Fee**: Transfer **₹18,000** via NEFT or RTGS to the official account.
 4. **Submit Academic Transcripts**: Provide verified semester marksheets and institutional contact information.
 5. **Courier Document Dossier**: Dispatch printed registration forms and certified copies to New Delhi.
 6. **Professor Email Verification**: Notify university faculty to respond to official verification emails promptly.
@@ -104,7 +103,7 @@ European master's applicants can also research the [Erasmus Mundus Joint Masters
 
 Processing durations vary depending on document completeness and institutional responsiveness:
 - **Standard Turnaround**: Verification normally requires between **3 to 6 weeks**.
-- **Peak Admission Seasons**: Applications during peak months from May to August take up to **eight weeks**.
+- **Peak Seasons**: Applications from May to August take up to **eight weeks**.
 - **Early Preparation**: Initiate the verification process at least three months before university application deadlines.
 
 Following document verification, applicants must open a German blocked account for visas.
