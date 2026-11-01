@@ -38,7 +38,7 @@ Review all verified options on the [IndiaScholarships Study Abroad Hub](/study-a
 
 The JN Tata Endowment is one of India's oldest educational trusts. Founded in 1892, it supports Indian graduates pursuing postgraduate education abroad.
 
-Selected scholars receive loan assistance up to **₹10,00,000**. The trust also awards an additional gift scholarship up to **₹7,50,000** for top performers.
+Selected scholars receive loan assistance up to **₹10,00,000**. The trust can also award up to **₹7,50,000** for top academic performers.
 
 Key guidelines:
 - **Eligible Courses**: Master's, PhD, and postdoctoral programs in all academic disciplines.
@@ -79,7 +79,7 @@ The trust awards scholarships annually to ambitious Indian graduates:
 
 Key eligibility requirements:
 - **Degree Requirement**: First-class degree or equivalent diploma from a recognized university.
-- **Admission Status**: Candidates must hold an admission offer or have applied abroad.
+- **Admission Status**: Candidates must hold an admission offer. Alternatively, candidates must have applied to a reputable foreign institution.
 - **Interview Location**: Shortlisted applicants must attend final interviews conducted in July.
 
 Check full documentation criteria on the [KC Mahindra Scholarship Page](/scholarships/kc-mahindra-scholarship-for-post-graduate-studies-abroad).

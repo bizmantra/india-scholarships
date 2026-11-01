@@ -72,10 +72,10 @@ Estimate total university living and tuition budgets using the [US Study Cost Ca
 
 Applicants must meet all statutory requirements on the application closing date:
 
-1. **Academic Qualification**: Candidates must hold at least **60% marks** or equivalent CGPA in their qualifying degree.
-2. **Age Threshold**: Candidates must be under **35 years of age** on April first of the selection year.
+1. **Academic Qualification**: Candidates must hold at least **60% marks** in their qualifying bachelor's or master's degree.
+2. **Age Threshold**: Candidates must be below **35 years of age** on April first of the selection year.
 3. **Income Ceiling**: Total family income from all sources must be below **₹6,00,000 per annum**. Family income includes earnings of the applicant, parents, and spouse.
-4. **Sibling Limit**: Maximum two children per family can receive awards under this scheme.
+4. **Sibling Limit**: Not more than two children from the same parent or guardian can receive awards.
 
 ---
 

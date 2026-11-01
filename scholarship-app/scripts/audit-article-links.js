@@ -70,13 +70,7 @@ const validToolRoutes = new Set([
   '/tools/eligibility-checker',
   '/tools/deadline-calendar',
   '/tools/income-calculator',
-  '/tools/education-loan-emi-calculator',
-  '/study-abroad',
-  '/study-abroad/tools/i20-cost-calculator',
-  '/study-abroad/tools/blocked-account-calculator',
-  '/study-abroad/tools/rbi-lrs-tcs-calculator',
-  '/study-abroad/study-in/usa',
-  '/study-abroad/study-in/germany'
+  '/tools/education-loan-emi-calculator'
 ]);
 
 // Parse CLI arguments
@@ -91,7 +85,7 @@ for (let i = 0; i < rawArgs.length; i++) {
     targetedFiles.push(rawArgs[i + 1]);
     i++;
   } else if (arg.startsWith('--file=')) {
-    targetedFiles.push(arg.split('=')[1]);
+    targetedFiles.push(arg.substring(arg.indexOf('=') + 1));
   } else if (arg.endsWith('.md') && !arg.startsWith('--')) {
     targetedFiles.push(arg);
   }
@@ -104,12 +98,10 @@ let filesToAudit = [];
 if (isTargeted) {
   filesToAudit = targetedFiles.map(filePath => {
     let resolved = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
-    // Find relative path to content/
     const contentDir = path.join(projectRoot, 'content');
     if (resolved.startsWith(contentDir)) {
       return path.relative(contentDir, resolved);
     }
-    // Fallback if provided as relative to projectRoot or content
     if (filePath.startsWith('content/')) {
       return filePath.replace(/^content\//, '');
     }
@@ -131,14 +123,15 @@ const summary = {
   articlesWithBrokenLinks: 0,
   articlesWithThinContent: 0,
   totalBrokenLinks: 0,
+  missingFiles: 0,
   details: []
 };
 
 filesToAudit.forEach(relFile => {
   const filePath = path.isAbsolute(relFile) ? relFile : path.join(projectRoot, 'content', relFile);
   if (!fs.existsSync(filePath)) {
-    console.error(`Error: File not found: ${filePath}`);
-    summary.articlesWithThinContent++;
+    console.error(`❌ TARGET FILE NOT FOUND: ${filePath}`);
+    summary.missingFiles++;
     summary.details.push({
       file: relFile,
       slug: path.basename(relFile, '.md'),
@@ -165,23 +158,27 @@ filesToAudit.forEach(relFile => {
     contentIssues.push(`Thin content: Only ${wordCount} words (minimum required: ${minWords}+ words)`);
   }
 
-  // Pronoun verification
+  // Pronoun verification (case-sensitive 'I', case-insensitive 'me/my/our/we')
   const proseWithoutQuestions = bodyText
     .split(/\r?\n/)
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
 
   if (checkProse) {
-    // Strict mode: check all 1st person pronouns: I, me, my, our, we
-    const fpMatch = proseWithoutQuestions.match(/\b(I|me|my|our|we)\b/gi);
+    const fpMatch = proseWithoutQuestions.match(/\bI\b|\b(me|my|our|we)\b/gi);
     if (fpMatch) {
-      contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(fpMatch.map(p => p.toLowerCase()))].join(', ')}`);
+      const filtered = fpMatch.filter(w => w === 'I' || /^(me|my|our|we)$/i.test(w));
+      if (filtered.length > 0) {
+        contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(filtered.map(w => w === 'I' ? 'I' : w.toLowerCase()))].join(', ')}`);
+      }
     }
   } else {
-    // Global mode: check I, me, my
-    const fpMatch = proseWithoutQuestions.match(/\b(I|me|my)\b/g);
+    const fpMatch = proseWithoutQuestions.match(/\bI\b|\b(me|my)\b/gi);
     if (fpMatch) {
-      contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(fpMatch)].join(', ')}`);
+      const filtered = fpMatch.filter(w => w === 'I' || /^(me|my)$/i.test(w));
+      if (filtered.length > 0) {
+        contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(filtered.map(w => w === 'I' ? 'I' : w.toLowerCase()))].join(', ')}`);
+      }
     }
   }
 
@@ -206,10 +203,11 @@ filesToAudit.forEach(relFile => {
       }
       if (inCode || !trimmed || trimmed.startsWith('#') || trimmed.startsWith('|')) continue;
 
-      let cleanLine = trimmed.replace(/^[-*>\d.]+\s+/, '');
+      let cleanLine = trimmed.replace(/^[-*>\d.)]+\s+/, '');
       cleanLine = cleanLine
-        .replace(/(?:\b[A-Za-z]\.){2,}/g, m => m.replace(/\./g, '@DOT@'))
-        .replace(/\b(e\.g\.|i\.e\.|vs\.|approx\.|viz\.|Rs\.|No\.)/gi, m => m.replace(/\./g, '@DOT@'));
+        .replace(/\bNo\.(?=\s+[0-9A-Z])/g, 'No@DOT@')
+        .replace(/(?:\b[A-Za-z]{1,4}\.){2,}/g, m => m.replace(/\./g, '@DOT@'))
+        .replace(/\b(e\.g\.|i\.e\.|vs\.|approx\.|viz\.|Rs\.|etc\.|Dr\.|Govt\.|Ltd\.|Pvt\.|Prof\.)/gi, m => m.replace(/\./g, '@DOT@'));
 
       const segments = cleanLine.split(/(?:[.?!]+[\s\r\n]+|:\s+)/);
       for (const seg of segments) {
@@ -238,7 +236,7 @@ filesToAudit.forEach(relFile => {
       let currentProse = [];
       const proseBlocks = [];
       for (const line of lines) {
-        if (/^[-*+>\d.]+\s+/.test(line)) {
+        if (/^[-*+>\d.)]+\s+/.test(line)) {
           if (currentProse.length > 0) {
             proseBlocks.push(currentProse);
             currentProse = [];
@@ -341,7 +339,12 @@ function checkUrl(url, context, brokenLinks) {
 }
 
 function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
-  const cleanPath = pathStr.split('#')[0];
+  // Normalize path: strip fragment (#), query (?), and trailing slash
+  let cleanPath = pathStr.split('#')[0].split('?')[0].trim();
+  if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+  if (!cleanPath) cleanPath = '/';
 
   // 1. Generic redirect check across next.config.ts
   const redirect = redirects.find(r => r.source === cleanPath);
@@ -388,6 +391,19 @@ function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
         reason: "Guide slug '" + guideSlug + "' not found (must be a valid Portal Guide, Article, or Pillar)."
       });
     }
+  } else if (cleanPath.startsWith('/study-abroad')) {
+    const subRoute = cleanPath.replace('/study-abroad', '').replace(/^\//, '');
+    const pagePath = subRoute 
+      ? path.join(projectRoot, 'app', 'study-abroad', subRoute)
+      : path.join(projectRoot, 'app', 'study-abroad');
+    const exists = fs.existsSync(pagePath) || fs.existsSync(`${pagePath}.tsx`) || fs.existsSync(path.join(pagePath, 'page.tsx'));
+    if (!exists) {
+      brokenLinks.push({
+        context,
+        url: rawUrl,
+        reason: `Study Abroad page '${cleanPath}' DOES NOT EXIST in app/study-abroad/`
+      });
+    }
   } else if (cleanPath.startsWith('/tools/')) {
     const isExactTool = validToolRoutes.has(cleanPath);
     const pagePath = path.join(projectRoot, 'app', cleanPath);
@@ -423,7 +439,7 @@ console.log(`Total Broken Links Identified: ${summary.totalBrokenLinks}`);
 
 if (db) db.close();
 
-const shouldFail = (isStrict || isTargeted) && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0);
+const shouldFail = (isStrict || isTargeted) && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0 || summary.missingFiles > 0);
 if (shouldFail) {
   console.error(`\n❌ Strict Quality Check Failed: Found articles with formatting/link issues.`);
   process.exit(1);
