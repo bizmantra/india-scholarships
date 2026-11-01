@@ -1,13 +1,31 @@
 'use client';
 
 import React, { useState } from 'react';
-import { handle, CATEGORY_LABELS } from './orchestrator';
-import { store, useStore } from './store';
+import { afterDecision, api, failureMessage, handle, CATEGORY_LABELS } from './orchestrator';
+import { store, useStore, type LogEntry } from './store';
 
 const kindColor = { ok: 'text-cc-good', warn: 'text-cc-warn', error: 'text-cc-bad', tool: 'text-cc-link', info: 'text-cc-muted' } as const;
 
 export default function SidePanel() {
     const [tab, setTab] = useState<'activity' | 'summary'>('activity');
+    // Result of an undo pressed on a feed line, keyed by the event it came from
+    const [undoNote, setUndoNote] = useState<Record<number, string>>({});
+    const [undoing, setUndoing] = useState<number | null>(null);
+
+    // Undo straight from the activity feed: an approval whose card is long gone
+    const undoFromFeed = async (entry: LogEntry) => {
+        if (!entry.eventId || !entry.proposalId) return;
+        setUndoing(entry.eventId);
+        try {
+            const r = await api<{ ok: boolean; message: string }>('undo', { method: 'POST', body: JSON.stringify({ id: entry.proposalId }) });
+            setUndoNote(n => ({ ...n, [entry.eventId!]: r.message }));
+            afterDecision();
+        } catch (e) {
+            setUndoNote(n => ({ ...n, [entry.eventId!]: failureMessage(e) }));
+        } finally {
+            setUndoing(null);
+        }
+    };
     const logEntries = useStore(s => s.log);
     const summary = useStore(s => s.summary);
     const status = useStore(s => s.status);
@@ -32,6 +50,18 @@ export default function SidePanel() {
                                     <li key={i} className="border-b border-cc-border pb-2 text-xs">
                                         <p className="mb-0.5 text-[10px] uppercase tracking-wider text-cc-faint">{e.time} · {e.agent} · {e.system}</p>
                                         <p className={kindColor[e.kind]}>{e.text}</p>
+                                        {e.proposalId && e.eventId && (
+                                            <p className="mt-1 text-[11px] text-cc-muted">
+                                                {undoNote[e.eventId]
+                                                    ? undoNote[e.eventId]
+                                                    : (
+                                                        <button onClick={() => undoFromFeed(e)} disabled={undoing === e.eventId}
+                                                            className="rounded border border-cc-border-strong px-2 py-0.5 font-bold text-cc-muted hover:text-cc-text disabled:opacity-40">
+                                                            {undoing === e.eventId ? 'Undoing…' : 'Undo'}
+                                                        </button>
+                                                    )}
+                                            </p>
+                                        )}
                                     </li>
                                 ))}
                             </ul>

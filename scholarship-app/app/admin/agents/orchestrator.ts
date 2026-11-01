@@ -42,6 +42,26 @@ export async function refreshSummary() {
     }
 }
 
+// The single proposal an approval event refers to, when it can be undone from the activity feed.
+// A bulk approval carries proposal_ids (several), so it is not undoable from its own line.
+function undoableProposalId(e: { kind?: string; details_json?: string | null }): number | null {
+    if (e.kind !== 'approval') return null;
+    try {
+        const details = JSON.parse(String(e.details_json || 'null')) || {};
+        const ids = Array.isArray(details.proposal_ids) ? details.proposal_ids
+            : details.proposal_id !== undefined && details.proposal_id !== null ? [details.proposal_id] : [];
+        return ids.length === 1 && Number.isInteger(Number(ids[0])) ? Number(ids[0]) : null;
+    } catch {
+        return null;
+    }
+}
+
+/** The message the server sent when it refused, else the thrown error's. */
+export function failureMessage(e: unknown): string {
+    const data = (e as { data?: { message?: string; error?: string } })?.data;
+    return data?.message || data?.error || (e instanceof Error ? e.message : String(e));
+}
+
 export async function refreshActivity() {
     try {
         const { events } = await api<{ events: any[] }>('activity?limit=60');
@@ -52,6 +72,8 @@ export async function refreshActivity() {
                 system: e.actor?.startsWith('agent:') ? 'GitHub Actions' : 'Command center',
                 kind: /warning|failed/.test(e.kind) ? 'warn' : /error/.test(e.kind) ? 'error' : /approval|finished|published/.test(e.kind) ? 'ok' : 'info',
                 text: e.summary,
+                eventId: Number(e.id) || undefined,
+                proposalId: undoableProposalId(e),
             })),
         });
     } catch { /* the panel keeps what it has */ }

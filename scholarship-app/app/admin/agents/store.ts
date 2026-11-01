@@ -26,6 +26,9 @@ export interface LogEntry {
     system: string;
     kind: 'tool' | 'info' | 'ok' | 'warn' | 'error';
     text: string;
+    eventId?: number;
+    // Set only for an approval event that points at exactly one proposal, so the feed can offer Undo
+    proposalId?: number | null;
 }
 
 export interface InboxSummary {
