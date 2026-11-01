@@ -52,6 +52,7 @@ The owner is not an engineer. Explain in plain language and check before large d
 - Merging `origin/main` into a worktree may need `--no-autostash`.
 - **Never print or commit secrets.** Check that a key exists by counting lines or length only. Keep `.env*` and `.mcp.json` out of git.
 - **Turso is the master database.** Never drop Turso tables; follow the rules in `DATABASE_OPERATIONS.md`. Some Command Center tables are created on first use and are not synced.
+- **The committed `data/scholarships.db.backup` is old.** It has no `sa_*` tables, so `USE_LOCAL_DB=true next build` fails while collecting the Study Abroad pages (`no such table: sa_guides`) — not a bug in your change. Run `npm run db:pull` for a current copy before trusting a local production build; `next dev` against the backup still renders scholarship pages. (Checked 2026-11-01.)
 - Official Indian scholarship portals are often JavaScript-rendered and unreadable by plain fetch. Use a browser, not a simple page fetch. "Could not read" is not "does not exist".
 - When you give another AI a list of existing content to compare against, give the full list, not a truncated one. A cut-off list made Antigravity pitch pages that already existed.
 - Local SQLite scripts can fail on newer Node versions until `npm rebuild better-sqlite3`.
