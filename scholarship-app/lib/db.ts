@@ -670,17 +670,34 @@ export async function getSiblingVariants(currentId: string | number, slug: strin
 }
 
 // Get global stats for pillar pages
+// The 28 states and 8 union territories. `state` also holds "All India", "Selected Cities", blanks and spelling
+// variants, so a plain COUNT(DISTINCT state) overstates coverage.
+const INDIAN_STATES_AND_UTS = new Set([
+    'andhra pradesh', 'arunachal pradesh', 'assam', 'bihar', 'chhattisgarh', 'goa', 'gujarat', 'haryana',
+    'himachal pradesh', 'jharkhand', 'karnataka', 'kerala', 'madhya pradesh', 'maharashtra', 'manipur',
+    'meghalaya', 'mizoram', 'nagaland', 'odisha', 'punjab', 'rajasthan', 'sikkim', 'tamil nadu', 'telangana',
+    'tripura', 'uttar pradesh', 'uttarakhand', 'west bengal',
+    'andaman and nicobar islands', 'chandigarh', 'dadra and nagar haveli and daman and diu', 'delhi',
+    'jammu and kashmir', 'ladakh', 'lakshadweep', 'puducherry',
+]);
+
 export async function getScholarshipStats() {
     const client = getClient();
     const res = await client.execute(`
-        SELECT 
+        SELECT
             COUNT(*) as total,
-            COUNT(DISTINCT state) as stateCount,
             SUM(CASE WHEN scholarship_type = 'Government' THEN 1 ELSE 0 END) as govCount,
             SUM(CASE WHEN scholarship_type = 'Private' OR scholarship_type = 'Corporate' THEN 1 ELSE 0 END) as privateCount
         FROM scholarships
+        WHERE status = 'Active'
     `);
-    return res.rows[0];
+    const stateRes = await client.execute(`SELECT DISTINCT state FROM scholarships WHERE status = 'Active' AND state IS NOT NULL`);
+    const covered = new Set(
+        stateRes.rows
+            .map((r: any) => String(r.state).toLowerCase().replace(/&/g, 'and').trim())
+            .filter((s: string) => INDIAN_STATES_AND_UTS.has(s))
+    );
+    return { ...res.rows[0], stateCount: covered.size };
 }
 
 // Get scholarships by course cluster (e.g., Engineering, Medical)
@@ -982,10 +999,13 @@ export async function getRecentlyAddedScholarships(limit: number = 6) {
 // Get scholarships closing soon
 export async function getClosingSoonScholarships(limit: number = 6) {
     const client = getClient();
+    // Only dates confirmed from an official page; "expected" dates are estimates and do not belong under "closing soon".
+    const confirmedOnly = (await scholarshipsHasColumn('deadline_status')) ? "AND deadline_status = 'confirmed'" : '';
     const res = await client.execute({
         sql: `
             SELECT * FROM scholarships
             WHERE status = 'Active'
+            ${confirmedOnly}
             AND (LOWER(scholarship_scope) IS NOT 'international')
             AND (always_open IS NULL OR always_open = 0)
             AND deadline IS NOT NULL
