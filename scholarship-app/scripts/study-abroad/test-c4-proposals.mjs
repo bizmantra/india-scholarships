@@ -47,14 +47,28 @@ for (const change of c4Input.changes) {
     if (pubErr) console.error(`  ✗ Publish Gate Error on ${key}:`, pubErr);
     assert.strictEqual(pubErr, null, `validatePublishRow failed for ${key}`);
 
-    // Arithmetic checks
+    // Comprehensive arithmetic verification across all 6 universities
     if (key === 'illinois-institute-of-technology') {
         assert.strictEqual(fields.tuition_per_year, 1851 * 18, 'IIT tuition math must equal 1851 * 18');
+        assert.strictEqual(fields.tuition_per_year + 4336 + fields.living_cost_per_year, 54454, 'IIT COA math');
     }
     if (key === 'university-of-central-missouri') {
         assert.strictEqual(fields.tuition_per_year, 520 * 15, 'UCM annual tuition math must equal 520 * 15');
         const infoboxBudget = parseInt(fields.infobox_json.rows.find(r => r.key.includes('Estimated Annual Budget')).value.replace(/[^0-9]/g, ''), 10);
         assert.strictEqual(infoboxBudget, 23100, 'UCM infobox budget must match $23,100');
+    }
+    if (key === 'northern-illinois-university') {
+        assert.strictEqual(fields.tuition_per_year + 2800 + fields.living_cost_per_year, 31900, 'NIU COA math');
+    }
+    if (key === 'university-of-cincinnati') {
+        assert.strictEqual(fields.tuition_per_year + 2600 + fields.living_cost_per_year, 45200, 'UC COA math');
+    }
+    if (key === 'university-of-north-texas') {
+        assert.strictEqual(fields.tuition_per_year + fields.living_cost_per_year + 3926, 42067, 'UNT COA math');
+    }
+    if (key === 'wright-state-university') {
+        assert.strictEqual(fields.tuition_per_year + 3784 + fields.living_cost_per_year, 30240, 'Wright State COA math');
+        assert.strictEqual(fields.tuition_per_year, 7728 * 2, 'Wright State semester tuition math');
     }
 
     console.log(`  ✓ Validation and arithmetic checks passed for ${key}`);

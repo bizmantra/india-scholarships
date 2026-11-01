@@ -14,9 +14,9 @@
     {
       "table": "sa_universities",
       "key": "tamu-texas-a-m",
-      "source": "https://sbs.tamu.edu/",
+      "source": "https://aggie.tamu.edu/billing-and-payments/cost-of-attendance",
       "fields": {
-        "official_source": "https://sbs.tamu.edu/",
+        "official_source": "https://aggie.tamu.edu/billing-and-payments/cost-of-attendance",
         "checked_at": "2026-11-02"
       }
     },
