@@ -7,7 +7,7 @@ date: "2026-07-29"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/tools/eligibility-checker"
+targetMoneyLink: "/eligibility-checker"
 relatedScholarships:
   - "khelo-india-sports-scholarship-scheme"
   - "ongc-sports-scholarship-scheme"
@@ -57,7 +57,7 @@ Khelo India works differently: athletes are identified through the Khelo India t
 2. **Register with your state sports council** even if you already compete nationally; several schemes cross-check state registration.
 3. **Apply well before your sporting season ends** — many PSU schemes have a fixed annual application window tied to the financial year.
 
-Check eligibility for both sports and academic scholarships together on our [Eligibility Checker](/tools/eligibility-checker).
+Check eligibility for both sports and academic scholarships together on our [Eligibility Checker](/eligibility-checker).
 
 ## Detailed Step-by-Step Application Procedure
 

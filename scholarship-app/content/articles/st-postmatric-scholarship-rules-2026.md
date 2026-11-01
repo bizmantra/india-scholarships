@@ -30,7 +30,7 @@ The ST Post-Matric Scholarship is a Ministry of Tribal Affairs scheme that funds
 
 It reimburses tuition fees, pays a monthly maintenance allowance, and in many states adds a separate hostel or mess allowance for students staying away from home.
 
-> 💡 **Pro Tip**: Use the [/tools/eligibility-checker](/tools/eligibility-checker) to see whether your state's tribal welfare department runs a supplementary scheme on top of the central benefit.
+> 💡 **Pro Tip**: Use the [/eligibility-checker](/eligibility-checker) to see whether your state's tribal welfare department runs a supplementary scheme on top of the central benefit.
 
 ---
 

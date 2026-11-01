@@ -30,7 +30,7 @@ Economically Weaker Section (EWS) status applies to General category students wh
 
 The central EWS reservation ceiling is ₹8 Lakh per annum, but this figure is meant primarily for admission and job reservation — most EWS scholarship schemes (state and private) apply a much stricter income cutoff, often ₹2.5–4 Lakh.
 
-> 💡 **Pro Tip**: Don't assume your ₹8L EWS certificate qualifies you for every scheme — check the scholarship-specific income limit using the [/tools/eligibility-checker](/tools/eligibility-checker).
+> 💡 **Pro Tip**: Don't assume your ₹8L EWS certificate qualifies you for every scheme — check the scholarship-specific income limit using the [/eligibility-checker](/eligibility-checker).
 
 ---
 

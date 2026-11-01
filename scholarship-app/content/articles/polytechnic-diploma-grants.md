@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"
-targetMoneyLink: "/scholarships-by-education/diploma"
+targetMoneyLink: "/scholarships-level/diploma-polytechnic"
 relatedScholarships:
   - "sudakshya-scheme-for-girls-itipolyechnic"
   - "aicte-pragati-scholarship-for-girl-students"

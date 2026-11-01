@@ -64,7 +64,7 @@ The National Overseas Scholarship offers extensive financial coverage:
 
 Living allowances disburse in periodic installments through official Indian embassy channels.
 
-Estimate total university living and tuition budgets using our [US Study Cost Calculator](/study-abroad/tools/i20-cost-calculator).
+Estimate total university living and tuition budgets using the [US Study Cost Calculator](/study-abroad/tools/i20-cost-calculator).
 
 ---
 
@@ -72,10 +72,10 @@ Estimate total university living and tuition budgets using our [US Study Cost Ca
 
 Applicants must meet all statutory requirements on the application closing date:
 
-1. **Academic Qualification**: Candidates must hold at least **60% marks** or an equivalent CGPA in their qualifying bachelor's or master's degree.
-2. **Age Threshold**: Candidates must be below **35 years of age** on the first day of April in the selection year.
+1. **Academic Qualification**: Candidates must hold at least **60% marks** or equivalent CGPA in their qualifying degree.
+2. **Age Threshold**: Candidates must be below **35 years of age** on April first of the selection year.
 3. **Income Ceiling**: Total family income from all sources must be below **₹6,00,000 per annum**. Family income includes earnings of the applicant, parents, and spouse.
-4. **Sibling Limit**: Not more than two children from the same parent or guardian can receive awards under this scheme.
+4. **Sibling Limit**: Not more than two children from the same parent or guardian can receive awards.
 
 ---
 
@@ -88,7 +88,7 @@ A critical requirement is the institutional ranking rule. The Ministry enforces 
 - Offers from unranked institutions or universities ranked beyond 500 face immediate rejection.
 - The admission offer letter must be **unconditional**. Conditional offers requiring additional language tests or academic prerequisites are not accepted.
 
-Students planning studies in North America can explore universities in our [Study in USA Hub](/study-abroad/study-in/usa).
+Students planning studies in North America can explore universities in the [Study in USA Hub](/study-abroad/study-in/usa).
 
 ---
 
@@ -99,10 +99,10 @@ The Ministry manages the entire application process through an official online p
 1. **Portal Registration**: Create a candidate profile on the official portal (`nosmsje.gov.in`).
 2. **Profile Verification**: Enter your Aadhaar number for demographic validation.
 3. **Upload Academic Documents**: Upload degree marksheets, certificates, and your valid Indian passport copy.
-4. **Attach Admission Proof**: Upload your unconditional admission letter confirming course name, duration, and tuition fee schedule.
+4. **Attach Admission Proof**: Upload the unconditional admission letter confirming course name, duration, and fee schedule.
 5. **Income Certificate Submission**: Upload a valid family income certificate issued by a state revenue authority.
 6. **Final Submission**: Review all entered details carefully and submit before the portal cutoff date.
 
-Track deadlines and application cycles across top foreign opportunities on our [Study Abroad Portal](/study-abroad).
+Track deadlines and application cycles across top foreign opportunities on the [Study Abroad Portal](/study-abroad).
 
 Verify your profile against central and state quotas using the [Scholarship Eligibility Checker](/eligibility-checker).

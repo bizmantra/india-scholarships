@@ -6,7 +6,7 @@ date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/scholarships-by-category/girls"
+targetMoneyLink: "/scholarships-for/girls"
 relatedScholarships:
   - "cbse-merit-scholarship-for-single-girl-child"
   - "aicte-pragati-scholarship-for-girl-students"
@@ -57,7 +57,7 @@ It covers female students enrolled in first-year Post-Graduate master courses.
 The University Grants Commission (UGC) supports single girl children doing a full-time Ph.D.
 See the stipend and eligibility on the [UGC Savitribai Jyotirao Phule Single Girl Child Fellowship](/scholarships/ugc-savitribai-jyotirao-phule-single-girl-child-fellowship).
 
-You can view all female schemes on our [Scholarships for Girls Hub](/scholarships-by-category/girls).
+You can view all female schemes on our [Scholarships for Girls Hub](/scholarships-for/girls).
 
 ---
 
