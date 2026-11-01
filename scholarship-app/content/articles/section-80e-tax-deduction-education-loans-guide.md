@@ -20,7 +20,7 @@ relatedScholarships:
   - "national-overseas-scholarship-for-scst-students"
 takeaways:
   - "Section 80E provides an uncapped income tax deduction on education loan interest."
-  - "Under Section 80E(2), borrowers deduct interest across eight consecutive assessment years."
+  - "Under Section 80E(2), borrowers deduct interest across eight consecutive assessment or tax years."
   - "Eligible lenders include banking companies, notified financial institutions, and approved charitable institutions."
 checklist:
   - "Annual loan interest certificate issued by the lending bank"
@@ -48,19 +48,17 @@ Section 80E provides tax deductions exclusively on educational loan interest.
 
 Taxpayers claim this deduction under Chapter VI-A during tax filing.
 
-Operational tax filings follow Section 80E of the Income-tax Act, 1961.
+For assessments covering financial years through FY 2025-26, filings follow Section 80E.
 
-Under direct tax reforms, the Income-tax Act, 2025 modernizes statutory structures.
+Under the Income-tax Act, 2025, this deduction corresponds to Section 129.
 
-This deduction corresponds to Section 129 under the modernized 2025 Act framework.
+The 2025 Act adopts tax year terminology while preserving identical eight-year deduction rules.
 
-The core eligibility boundaries and eight-year duration remain identical across both statutes.
+Both statutes require opting out of default simplified regimes to claim interest deductions.
 
-The benefit applies strictly under the Old Tax Regime framework.
+Under the 1961 Act, taxpayers must select the Old Tax Regime.
 
-The New Tax Regime under Section 115BAC does not allow this deduction.
-
-Taxpayers must select the Old Tax Regime to claim interest deductions.
+Under the 2025 Act, filers must select the regular non-concessional tax schedule.
 
 Tax savings apply directly against total gross taxable income.
 

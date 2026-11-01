@@ -137,7 +137,7 @@ Financial readiness typically combines liquid deposits with formal credit approv
 
 - **Liquid Cash Reserves**: Immediate funds in savings bank accounts and fixed deposit receipts.
 - **Formal Credit Commitments**: Education loan sanction letters issued by approved banking institutions.
-- **Withdrawable Retirement Funds**: Documented provident fund balances eligible for educational withdrawal.
+- **Permitted Retirement Accounts**: Documented provident fund balances where partial educational withdrawal is formally permitted.
 - **Prestigious External Awards**: Trust scholarships such as the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
 
 Non-liquid physical assets do not count as ready funds for first-year expenses:
@@ -187,7 +187,7 @@ The following scenario models an Indian graduate student attending a two-year Ma
 | **Parental Savings Account** | $14,000 | ₹11,90,000 | Liquid Cash Balance | Covers 31.8% of Year 1 deficit |
 | **Total First-Year Funding** | **$44,000** | **₹37,40,000** | Fully Funded Year 1 | **100% of Year 1 covered** |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Cash Reserve | Year 2 reserve buffer |
-| **Documented Sponsor Income** | $29,400 | ₹25,00,000 | Annual Taxable Income | Year 2 recurring capacity |
+| **Documented Sponsor Income** | $29,411 | ₹25,00,000 | Annual Taxable Income | Year 2 recurring capacity |
 | **Total Second-Year Backing** | **$45,411** | **₹38,60,000** | Ongoing Financial Pool | Meets Year 2 funding standard |
 
 In this scenario, confirmed first-year funding reaches the exact $44,000 net requirement.
@@ -197,6 +197,8 @@ The $30,000 loan disbursement and $14,000 cash savings cover first-year costs co
 To satisfy 9 FAM 402.5-5(G), the sponsor demonstrates credible prospects for the second year.
 
 The family maintains $16,000 in fixed deposits and shows ₹25,00,000 in annual taxable salary.
+
+Consular officers evaluate recurring parental salary alongside household living expenses when judging second-year capacity.
 
 Together, these reserves and recurring earnings cover the projected second-year cost of $44,000.
 

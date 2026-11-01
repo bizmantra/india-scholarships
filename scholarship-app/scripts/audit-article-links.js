@@ -156,8 +156,8 @@ filesToAudit.forEach(relFile => {
     .join('\n');
 
   // Strip official US immigration form designations from pronoun checks using explicit allowlist
-  // Allowed form numbers: I-20, I-94, I-129, I-134, I-485, I-765, I-797, I-901 (with optional letter suffix)
-  const formAllowlistRegex = /\bI-(?:20|94|129[A-Za-z]?|134|485|765|797[A-Za-z]?|901)\b/g;
+  // Allowed form numbers: I-20, I-94, I-129, I-134, I-485, I-765, I-797, I-901 (with optional letter suffix and optional plural 's')
+  const formAllowlistRegex = /\bI-(?:20|94|129[A-Za-z]?|134|485|765|797[A-Za-z]?|901)s?\b/g;
   // In targeted mode (checkProse), check the full text (including question headings) so new articles have 0 pronouns.
   // In global legacy mode (!checkProse), preserve compatibility with legacy FAQ headings ending in '?'.
   const textToScanForPronouns = checkProse ? bodyText : proseWithoutQuestions;
