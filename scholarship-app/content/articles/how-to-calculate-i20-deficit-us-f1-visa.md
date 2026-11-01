@@ -21,7 +21,7 @@ relatedScholarships:
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
 takeaways:
   - "The I-20 deficit equals Item 7 estimated expenses minus confirmed Item 8 funding."
-  - "Experienced visa advisors recommend liquid assets covering 1.5x to 2x the net deficit."
+  - "International student advisors recommend liquid assets covering 1.5x to 2x the net deficit."
   - "Approved liquid funds include savings balances, fixed deposits, and bank loan sanction letters."
 checklist:
   - "Official Form I-20 signed by Designated School Official"
@@ -150,7 +150,7 @@ Top scholars can pursue the [KC Mahindra Scholarship for Post-Graduate Studies A
 
 Consular officers compare applicant interview statements with the written DS-160 application.
 
-Unresolved discrepancies can lead to visa refusal under Section 214(b) of the Immigration Act.
+Unresolved discrepancies can lead to visa refusal under INA Section 214(b).
 
 Applicants must avoid these critical financial errors:
 - **Payer Inconsistencies**: Naming self-funding on DS-160 while presenting a parent bank loan.
@@ -180,7 +180,7 @@ The following scenario models an Indian graduate student attending a two-year Ma
 | **Education Loan Sanction** | $30,000 | ₹25,50,000 | Liquid Bank Loan | Covers 68.2% of deficit |
 | **Parental Savings Account** | $14,000 | ₹11,90,000 | Liquid Cash Asset | Covers 31.8% of deficit |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Reserve Asset | Second-year buffer reserve |
-| **Pre-Approved Trust Loan** | $10,000 | ₹8,50,000 | Trust Loan Scholarship | Supplementary liquid reserve |
+| **Pre-Approved Trust Award** | $10,000 | ₹8,50,000 | Trust Loan-Scholarship | Supplementary liquid reserve |
 | **Total Liquid Portfolio** | **$70,000** | **₹59,50,000** | Combined Liquid Funds | **1.59x deficit coverage** |
 
 In this scenario, total available liquid funds reach $70,000.

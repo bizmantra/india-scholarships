@@ -142,6 +142,8 @@ The 30% slab produces an effective tax rate of 31.2%.
 
 Calculations assume an illustrative 9.5% annual interest rate on the initial loan principal.
 
+These calculations assume the full interest deduction falls within the marginal tax slab.
+
 | Loan Amount | Annual Interest Paid | 20% Slab Savings (20.8%) | 30% Slab Savings (31.2%) | 5-Year Savings (30% Slab) |
 | :--- | :--- | :--- | :--- | :--- |
 | ₹10,00,000 | ₹95,000 | ₹19,760 | ₹29,640 | ₹1,48,200 |
