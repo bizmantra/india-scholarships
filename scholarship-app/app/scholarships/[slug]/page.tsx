@@ -30,6 +30,7 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import ShareButtons from '@/app/components/ShareButtons';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
+import PartnerJobsBox from '@/app/components/PartnerJobsBox';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
 import StudyAbroadPlan from '@/app/components/StudyAbroadPlan';
 
@@ -875,6 +876,13 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                                 </div>
                             </section>
                         )}
+
+                        {/* One contextual link out to the jobs tracker for the same qualification */}
+                        <PartnerJobsBox
+                            level={scholarship.level}
+                            campaign="scholarship-page"
+                            className="mt-10 mb-10"
+                        />
 
                         {/* Discover more */}
                         <section>
