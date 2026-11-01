@@ -155,8 +155,8 @@ filesToAudit.forEach(relFile => {
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
 
-  // Strip official US immigration form designations (e.g. I-20, I-134) from pronoun checks
-  const proseForPronouns = proseWithoutQuestions.replace(/\bI-\d+\b/g, 'FORM');
+  // Strip official US immigration form designations (e.g. I-20, I-134, I-797C) from pronoun checks
+  const proseForPronouns = proseWithoutQuestions.replace(/\bI-\d+[A-Za-z]?\b/g, 'FORM');
 
   const forbiddenFound = [];
   if (/\bI\b/.test(proseForPronouns)) {

@@ -1,8 +1,8 @@
 ---
 id: "ART-127"
-title: "Section 80E Tax Deduction on Education Loans: Rules & Worked Examples"
+title: "How to Claim Section 80E Tax Deduction on Education Loans: Rules & Worked Examples"
 slug: "section-80e-tax-deduction-education-loans-guide"
-description: "Complete guide to Section 80E income tax deduction on higher education loan interest, approved financial institutions, eligibility, and worked tax-saving examples."
+description: "Complete guide to claiming Section 80E income tax deduction on higher education loan interest, approved financial institutions, eligibility, and worked tax-saving examples."
 category: "financial-aid"
 tags:
   - "section-80e"
@@ -76,7 +76,7 @@ Interest payments made after eight years receive zero tax benefits.
 
 Principal repayments cannot be claimed under Section 80C either.
 
-Planning an accelerated eight-year repayment schedule maximizes total tax benefits.
+Borrowers should service interest within the eight-year window to maximize total tax benefits.
 
 ---
 
@@ -89,14 +89,14 @@ Loans from unauthorized lenders cannot yield tax deductions.
 Statutory rules explicitly define eligible lenders into three categories:
 - **Scheduled Commercial Banks**: Public, private, and foreign banks governed by the Banking Regulation Act.
 - **Notified Financial Institutions**: Institutions explicitly notified by the Central Government in the Official Gazette.
-- **Approved Charitable Institutions**: Educational trusts and charities recognized under the Income Tax Act.
-- **Ineligible Lenders**: Loans from private individuals, employers, and non-notified lenders do not qualify.
+- **Approved Charitable Institutions**: Educational trusts and charities recognized under Section 80G(2)(a).
+- **Ineligible Lenders**: Loans from unapproved private lenders, friends, relatives, and non-notified platforms do not qualify.
 
 Borrowers must verify that their sanction letter specifies an eligible banking institution.
 
 Compare approved student loan programs in the [Study Abroad Loans Guide](/study-abroad#loans).
 
-Proper lender selection protects eligibility for valuable annual tax write-offs.
+Review central portal verification workflows in the [National Scholarship Portal Guide](/guides/nsp).
 
 ---
 
@@ -104,14 +104,13 @@ Proper lender selection protects eligibility for valuable annual tax write-offs.
 
 Tax laws restrict Section 80E claims to individual taxpayers.
 
-Hindu Undivided Families and corporate entities cannot claim this relief.
-
-The claimant must service interest payments from taxable income.
-
+The loan must be sanctioned in the taxpayer's name for designated beneficiaries:
 - **Self**: Students earning taxable income can claim deductions for self-study loans.
 - **Spouse**: An individual can claim deductions for loans funding a spouse.
 - **Children**: Parents can claim deductions for education loans supporting their children.
 - **Legal Guardian**: Legal guardians can claim interest deductions for dependent wards.
+
+Each co-borrower claims deductions strictly for interest amounts paid from their taxable income.
 
 The loan must support recognized post-secondary higher education programs.
 
@@ -123,6 +122,8 @@ Review overseas academic pathways through the [Study Abroad Portal](/study-abroa
 
 Discover government funding through the [Scholarship Eligibility Checker](/eligibility-checker).
 
+Check regional opportunities on the [Delhi Scholarships Hub](/scholarships-in/delhi).
+
 ---
 
 ## Worked Tax Savings Examples Across Slabs
@@ -133,11 +134,13 @@ Higher tax brackets deliver greater monetary savings from Section 80E.
 
 All calculations include the standard 4% Health and Education Cess.
 
+Calculations exclude surcharges that apply to taxable incomes over ₹50 Lakh.
+
 The 20% slab produces an effective tax rate of 20.8%.
 
 The 30% slab produces an effective tax rate of 31.2%.
 
-Calculations assume an illustrative 9.5% annual interest rate.
+Calculations assume an illustrative 9.5% annual interest rate on the initial loan principal.
 
 | Loan Amount | Annual Interest Paid | 20% Slab Savings (20.8%) | 30% Slab Savings (31.2%) | 5-Year Savings (30% Slab) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -153,13 +156,15 @@ Actual annual savings taper down as borrowers amortize their loan principal.
 
 A borrower servicing ₹3,80,000 interest saves ₹1,18,560 each year.
 
-Total tax savings exceed ₹5,90,000 over five years of repayment.
+Total tax savings can exceed ₹5,90,000 over five years of repayment.
 
-Tax relief substantially lowers the effective interest rate on student debt.
-
-High-achieving applicants can also target competitive scholarship funding opportunities.
+Eligible SC and ST applicants can also explore dedicated government funding programs.
 
 Review full details on the [National Overseas Scholarship NOS](/scholarships/national-overseas-scholarship-for-scst-students).
+
+Eligible state scholars can also explore the [Marang Gomke Jaipal Singh Munda Overseas Scholarship](/scholarships/marang-gomke-jaipal-singh-munda-overseas-scholarship).
+
+Andhra Pradesh applicants can pursue the [Ambedkar Overseas Vidya Nidhi](/scholarships/ambedkar-overseas-vidya-nidhi-scst).
 
 ---
 
@@ -211,8 +216,6 @@ Careful adherence to tax rules ensures uninterrupted tax savings.
 - **Claiming Beyond Eight Years**: Interest payments past eight consecutive assessment years receive zero relief.
 - **Claiming Principal Repayments**: The Income Tax Department disallows principal amounts because Section 80E covers interest only.
 
-Both co-borrowers cannot claim the same interest payment twice.
-
-Only the person paying interest from income claims the deduction.
+Wrongful principal claims risk disallowance and penalties for under-reporting income under Section 270A.
 
 Maintaining clean financial documentation ensures smooth tax filing every year.

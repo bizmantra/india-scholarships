@@ -52,7 +52,7 @@ Two key items determine student financial eligibility at the visa interview:
 - **Item 7 (Estimated Costs)**: Total initial program costs projected by the university.
 - **Item 8 (Student Funding)**: Financial resources pledged to meet those expenses.
 
-Item 7 outlines expenses for an initial term of up to 9 to 12 months:
+Item 7 outlines expenses for an initial term of 9 to 12 months:
 - **Tuition and Fees**: Academic charges assessed by the academic institution.
 - **Living Expenses**: Estimated costs for housing, meals, and local transport.
 - **Dependent Expenses**: Additional funds required if dependents accompany the student.
@@ -65,6 +65,8 @@ Item 8 records confirmed funding sources:
 - **On-Campus Employment**: Approved student earnings from on-campus positions.
 
 Compare universities and expense guidelines across the [Study in USA Hub](/study-abroad/study-in/usa).
+
+Review central portal verification workflows in the [National Scholarship Portal Guide](/guides/nsp).
 
 ---
 
@@ -92,22 +94,32 @@ Examine funding options in the comprehensive [Study Abroad Loans Guide](/study-a
 
 ## 3. Planning Buffers: The 1.5x to 2x Liquid Coverage Heuristic
 
-Under Section 214(b) of the Immigration and Nationality Act, applicants must demonstrate non-immigrant intent.
+Under INA Section 214(b), applicants face a statutory presumption of immigrant intent.
 
-Officers evaluate whether students possess sufficient funds to complete their studies without working illegally.
+To overcome this presumption, applicants must prove non-immigrant intent and show sufficient liquid funds.
 
-Experienced advisors recommend maintaining liquid funds equal to 1.5 to 2 times the net deficit.
+Federal regulation 8 CFR 214.2(f)(9) restricts on-campus student employment to 20 hours weekly during terms.
+
+Off-campus employment remains strictly prohibited throughout the student's initial academic year.
+
+Under 9 FAM 402.5-5(G), officers review readily available funds for the first year of study.
+
+Officers also review credible prospects of meeting subsequent educational costs.
+
+Advisors recommend maintaining liquid funds covering 1.5 to 2 times the net deficit.
 
 This planning heuristic provides three vital safeguards:
 - **First-Year Protection**: Immediate liquid coverage for all first-year tuition and living bills.
 - **Second-Year Buffer**: Documented assets showing ability to fund subsequent program semesters.
 - **Emergency Reserve**: Surplus capital protecting against inflation and currency exchange shifts.
 
-A student facing a $44,000 deficit needs $66,000 to $88,000 in liquid backing.
+A student facing a $44,000 deficit targets $66,000 to $88,000 in liquid backing.
 
 This surplus shows economic stability without needing unauthorized off-campus employment.
 
 Evaluate student financial preparedness using the [Scholarship Eligibility Checker](/eligibility-checker).
+
+Check regional opportunities on the [Delhi Scholarships Hub](/scholarships-in/delhi).
 
 ---
 
@@ -138,7 +150,7 @@ Top scholars can pursue the [KC Mahindra Scholarship for Post-Graduate Studies A
 
 Consular officers compare applicant interview statements with the written DS-160 application.
 
-Discrepancies trigger immediate refusals under Section 214(b) of the Immigration and Nationality Act.
+Unresolved discrepancies can lead to visa refusal under Section 214(b) of the Immigration Act.
 
 Applicants must avoid these critical financial errors:
 - **Payer Inconsistencies**: Naming self-funding on DS-160 while presenting a parent bank loan.
@@ -157,7 +169,7 @@ Keep bank certificates arranged neatly in a single accessible presentation folde
 
 The following scenario models an Indian graduate student attending a two-year Master program:
 
-| Cost or Asset Category | Amount in USD | Amount in INR (@ ₹85/USD) | Classification | Impact on I-20 Deficit |
+| Cost or Asset Category | Amount in USD | Amount in INR (@ ₹85/USD illustrative) | Classification | Impact on I-20 Deficit |
 | :--- | :--- | :--- | :--- | :--- |
 | **University Tuition & Fees** | $36,000 | ₹30,60,000 | Item 7 Expense | Mandatory direct cost |
 | **Living & Housing Expenses** | $16,000 | ₹13,60,000 | Item 7 Expense | Mandatory maintenance cost |

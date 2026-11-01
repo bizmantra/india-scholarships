@@ -121,9 +121,10 @@ try {
   }
 }
 
-// 5. Form I-20 / I-134 not falsely flagged as pronoun 'I'
-const formFixture = path.join(fixturesDir, 'form-article.md');
-fs.writeFileSync(formFixture, `---
+try {
+  // 5. Form I-20 / I-134 / I-797C not falsely flagged as pronoun 'I'
+  const formFixture = path.join(fixturesDir, 'form-article.md');
+  fs.writeFileSync(formFixture, `---
 slug: "form-article"
 title: "Form Article"
 takeaways:
@@ -133,21 +134,21 @@ takeaways:
 targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
 ---
 
-Applicants must submit Form I-20 and Form I-134 for visa verification.
+Applicants must submit Form I-20, Form I-134, and Form I-797C for visa verification.
 ${filler}
 `, 'utf8');
 
-try {
-  execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formFixture}"`, { stdio: 'pipe' });
-  console.log('✅ Test 5 Passed: Form designations I-20 and I-134 permitted.');
-} catch (e) {
-  console.error('❌ Test 5 Failed: Form designations triggered false positive pronoun failure:', e.stdout?.toString() || e.message);
-  process.exit(1);
-}
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formFixture}"`, { stdio: 'pipe' });
+    console.log('✅ Test 5 Passed: Form designations I-20, I-134, and I-797C permitted.');
+  } catch (e) {
+    console.error('❌ Test 5 Failed: Form designations triggered false positive pronoun failure:', e.stdout?.toString() || e.message);
+    process.exit(1);
+  }
 
-// 6. Form I-20 with real pronoun 'I' must still be caught
-const formWithPronounFixture = path.join(fixturesDir, 'form-pronoun-article.md');
-fs.writeFileSync(formWithPronounFixture, `---
+  // 6. Form I-20 with real pronoun 'I' must still be caught
+  const formWithPronounFixture = path.join(fixturesDir, 'form-pronoun-article.md');
+  fs.writeFileSync(formWithPronounFixture, `---
 slug: "form-pronoun-article"
 title: "Form Pronoun Article"
 takeaways:
@@ -160,23 +161,25 @@ targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
 Applicants must submit Form I-20 for visa verification.
 
 However I must verify financial balances before submitting.
-\${filler}
+${filler}
 `, 'utf8');
 
-try {
-  execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formWithPronounFixture}"`, { stdio: 'pipe' });
-  console.error('❌ Test 6 Failed: Expected failure for capital "I" even when Form I-20 is present.');
-  process.exit(1);
-} catch (e) {
-  const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
-  if (out.includes('Forbidden first-person pronoun(s): I')) {
-    console.log('✅ Test 6 Passed: Capital "I" flagged even when Form I-20 is present.');
-  } else {
-    console.error('❌ Test 6 Failed: Output did not contain expected pronoun error:', out);
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formWithPronounFixture}"`, { stdio: 'pipe' });
+    console.error('❌ Test 6 Failed: Expected failure for capital "I" even when Form I-20 is present.');
     process.exit(1);
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('Forbidden first-person pronoun(s): I')) {
+      console.log('✅ Test 6 Passed: Capital "I" flagged even when Form I-20 is present.');
+    } else {
+      console.error('❌ Test 6 Failed: Output did not contain expected pronoun error:', out);
+      process.exit(1);
+    }
   }
-}
 
-// Clean up fixtures
-fs.rmSync(fixturesDir, { recursive: true, force: true });
-console.log('🎉 All 6 audit test cases passed cleanly!\n');
+  console.log('🎉 All 6 audit test cases passed cleanly!\n');
+} finally {
+  // Always clean up fixtures
+  fs.rmSync(fixturesDir, { recursive: true, force: true });
+}
