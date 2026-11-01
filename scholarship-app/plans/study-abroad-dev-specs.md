@@ -229,7 +229,26 @@ Know which money/visa numbers are stale or unsourced, and queue them for re-chec
 - Agent Center shows the new row with a count; no writes to `sa_*`.
 
 ### Questions
+- The spec asks for "published university/program money fields that lack a matching `sa_facts` entry". There is no key
+  convention linking a page to a fact (`sa_facts` keys are country-level, e.g. `usa.visa.sevis_i901_fee_usd`), so a
+  literal "matching entry" cannot be counted. What is reported instead is the version that can be defended: a published
+  page that shows tuition or living-cost figures while its own row has no `official_source` or no `checked_at`. If a
+  page-to-fact convention is wanted later, it belongs in the fact-key naming, not in this script.
+
 ### Done
+- `scripts/study-abroad/facts-freshness.mjs`: read-only, `[--target=production|staging] [--out=…]`. Flags
+  `no_source`, `no_check_date` (including an unreadable date), `stale_check` (strictly older than 90 days) and
+  `recheck_due`; separately `no_provenance` for published pages with money fields and no source/date. Writes
+  `data/study-abroad/facts-worklist.json` (`generated_at`, rules, counts, items, money rows) and prints a summary.
+- `scripts/study-abroad/facts-freshness.test.mjs`: 10 offline tests for the rules (boundaries, unreadable dates,
+  combined flags, money rows, summary counts). The classification functions are exported and take `today` as a
+  parameter, so nothing depends on the clock.
+- Agent Center: `lib/command-center/agents.ts` gains a **Study Abroad Facts** row (Data team, on demand); the chat
+  command **"Study Abroad facts freshness"** posts the counts from `GET /api/admin/command/sa-facts`, which serves the
+  committed worklist. No database read at request time.
+- First real run against production: 41 facts, **11 flagged** (all `no_source` + `no_check_date` — the known
+  unsourceable set), and **4 published pages** showing money figures with no provenance. The worklist is committed.
+- No writes to `sa_*` anywhere in the script; it only SELECTs.
 
 ---
 
