@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/scholarships-by-category/sc"
+targetMoneyLink: "/scholarships-for/sc"
 relatedScholarships:
   - "punjab-post-matric-scholarship-for-sc-students"
   - "digital-gujarat-post-matric-scholarship-for-st-students"
@@ -34,7 +34,7 @@ With a valid Freeship Card, empanelled colleges are legally prohibited from dema
 
 This system ensures that financially weak SC and ST students can join diploma, degree, engineering, medical, or postgraduate programs without money constraints.
 
-Explore category opportunities on our [SC Scholarships Guide](/scholarships-by-category/sc).
+Explore category opportunities on our [SC Scholarships Guide](/scholarships-for/sc).
 
 > 💡 **Pro Tip**: Check your state scheme options with the free [/eligibility-checker](/eligibility-checker).
 

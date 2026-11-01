@@ -30,7 +30,7 @@ Being OBC alone doesn't automatically qualify you for reserved scholarships — 
 
 The creamy layer income threshold is currently ₹8 Lakh per annum, and it's revised periodically by the Department of Personnel & Training (DoPT). Certain professions (like Group A government officers) are automatically classified as creamy layer regardless of income.
 
-> 💡 **Pro Tip**: Run your family income through the [/tools/eligibility-checker](/tools/eligibility-checker) to instantly see if you fall in the Non-Creamy Layer bracket.
+> 💡 **Pro Tip**: Run your family income through the [/eligibility-checker](/eligibility-checker) to instantly see if you fall in the Non-Creamy Layer bracket.
 
 ---
 

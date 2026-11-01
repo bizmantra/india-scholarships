@@ -38,7 +38,7 @@ Review all verified options on the [IndiaScholarships Study Abroad Hub](/study-a
 
 The JN Tata Endowment is one of India's oldest educational trusts. Founded in 1892, it supports Indian graduates pursuing postgraduate education abroad.
 
-Selected scholars receive loan assistance up to **₹10,00,000**. The trust can also award an additional gift scholarship up to **₹7,50,000** for top academic performers.
+Selected scholars receive loan assistance up to **₹10,00,000**. The trust also awards an additional gift scholarship up to **₹7,50,000** for top performers.
 
 Key guidelines:
 - **Eligible Courses**: Master's, PhD, and postdoctoral programs in all academic disciplines.
@@ -79,7 +79,7 @@ The trust awards scholarships annually to ambitious Indian graduates:
 
 Key eligibility requirements:
 - **Degree Requirement**: First-class degree or equivalent diploma from a recognized university.
-- **Admission Status**: Candidates must hold an admission offer or have applied to a reputable foreign institution.
+- **Admission Status**: Candidates must hold an admission offer or have applied abroad.
 - **Interview Location**: Shortlisted applicants must attend final interviews conducted in July.
 
 Check full documentation criteria on the [KC Mahindra Scholarship Page](/scholarships/kc-mahindra-scholarship-for-post-graduate-studies-abroad).
@@ -105,11 +105,11 @@ Most Indian students use a hybrid funding strategy. A single scholarship rarely 
 
 Students often combine a trust scholarship with a commercial education loan:
 1. **Reduce Interest Burden**: Using ₹10,00,000 from an interest-free trust reduces your bank loan principal.
-2. **Lower EMI Payments**: A smaller bank loan reduces monthly post-graduation EMI stress. Calculate repayment projections using our [Education Loan EMI Calculator](/tools/education-loan-emi-calculator).
+2. **Lower EMI Payments**: A smaller bank loan reduces monthly post-graduation EMI stress. Calculate repayment projections using the [Education Loan EMI Calculator](/tools/education-loan-emi-calculator).
 3. **Visa Proof of Funds**: Embassies accept formal trust sanction letters as genuine financial proof.
-4. **Remittance Tax Savings**: Comply with Reserve Bank of India Liberalised Remittance Scheme rules. Estimate applicable Tax Collected at Source using our [RBI LRS TCS Calculator](/study-abroad/tools/rbi-lrs-tcs-calculator).
+4. **Remittance Tax Savings**: Comply with Reserve Bank of India Liberalised Remittance Scheme rules. Estimate applicable Tax Collected at Source using the [RBI LRS TCS Calculator](/study-abroad/tools/rbi-lrs-tcs-calculator).
 
-Explore non-collateral and public bank options on our [Study Abroad Loans Guide](/study-abroad/loans).
+Explore non-collateral and public bank options on the [Study Abroad Loans Guide](/study-abroad#loans).
 
 ---
 

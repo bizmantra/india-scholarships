@@ -30,7 +30,7 @@ Female enrollment in engineering, technology, and pure sciences remains lower th
 
 These scholarships often carry higher per-student amounts than general category scholarships, and many can be combined with your regular state post-matric scholarship since they come from a different funding source.
 
-> 💡 **Pro Tip**: Apply for both a STEM-specific CSR scholarship and your state post-matric scheme — check the [/tools/eligibility-checker](/tools/eligibility-checker) to confirm there's no exclusivity clause.
+> 💡 **Pro Tip**: Apply for both a STEM-specific CSR scholarship and your state post-matric scheme — check the [/eligibility-checker](/eligibility-checker) to confirm there's no exclusivity clause.
 
 ---
 

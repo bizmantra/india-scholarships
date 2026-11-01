@@ -116,7 +116,7 @@ Confirm overall scholarship eligibility across active schemes on the [Scholarshi
 
 ## Sources & Official References
 
-- Academic Evaluation Centre India (APS India), Embassy of the Federal Republic of Germany, New Delhi (`aps-india.de`).
+- Academic Evaluation Centre (APS India), German Embassy New Delhi (`aps-india.de`).
 - German Academic Exchange Service (DAAD India) official admissions guide.
 - German Missions in India: Student visa application checklist and regulations.
 - Facts and verification guidelines checked: November 2, 2026.
