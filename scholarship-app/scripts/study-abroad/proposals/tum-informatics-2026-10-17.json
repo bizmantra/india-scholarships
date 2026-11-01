@@ -1,0 +1,26 @@
+{
+  "agent": "content-editor",
+  "source": "https://www.tum.de/en/studies/degree-programs/detail/informatics-master-of-science-msc",
+  "changes": [
+    {
+      "table": "sa_programs",
+      "key": "program_tum-technical-university-of-munich-m-sc-informatics",
+      "fields": {
+        "summary": "TUM's MSc Informatics is a four-semester, 120-ECTS programme in Garching. Non-EU tuition is currently €6,000 per semester; check the rate for your intake.",
+        "tuition_per_year": 12000,
+        "tuition_currency": "EUR",
+        "duration": "4 semesters (full-time)",
+        "language": "English",
+        "location": "Garching",
+        "intakes": "Winter and summer semesters",
+        "application_deadlines": {
+          "Winter semester application period": "1 February–31 May",
+          "Summer semester application period": "1 October–30 November"
+        },
+        "official_source": "https://www.tum.de/en/studies/degree-programs/detail/informatics-master-of-science-msc",
+        "checked_at": "2026-10-17",
+        "body_md": "## What you study\n\nThe Master of Science in Informatics at the Technical University of Munich is a four-semester, 120-ECTS programme based in Garching. TUM says the language of instruction is usually English. The programme covers both the theory and practice of informatics, with room to specialise. Read the [official degree profile](https://www.tum.de/en/studies/degree-programs/detail/informatics-master-of-science-msc) before deciding whether its modules match your background.\n\n## Tuition and other costs\n\nTUM currently lists tuition of €6,000 per semester for full-time international students from non-EU/EEA countries on this degree. Two semesters make €12,000 per academic year. The semester contribution is additional, and living expenses are separate. TUM has announced higher non-EU/EEA tuition from winter 2027/28; it lists two possible master's rates, not a programme-specific new rate here. If you are applying for that intake or later, confirm the exact Informatics fee with TUM before budgeting. Students already enrolled before the increase retain their original rate for this programme. See [TUM's fee update](https://www.tum.de/en/studies/fees) and the [programme fee](https://www.tum.de/en/studies/degree-programs/detail/informatics-master-of-science-msc).\n\n## Applying from India\n\nTUM lists application periods of 1 February to 31 May for the winter semester and 1 October to 30 November for the summer semester. Apply through TUMonline during the relevant period. TUM says applicants whose qualifying degree was obtained outside Germany generally need preliminary documentation through uni-assist. Its programme page lists the required documents and explains its aptitude assessment; requirements can depend on your background. Start the document review early and follow the [official application instructions](https://www.tum.de/en/studies/degree-programs/detail/informatics-master-of-science-msc) for your intake.\n\nThis page describes the Informatics master's, not every course at TUM. A scholarship for Germany may still have degree, university or subject restrictions, so check its own eligibility rules before counting it toward your budget."
+      }
+    }
+  ]
+}

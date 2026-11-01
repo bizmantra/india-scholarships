@@ -145,12 +145,27 @@ export async function getAllScholarships() {
     return res.rows.map(parseScholarship);
 }
 
+// Whether the scholarships table has a column yet. New columns (e.g. deadline_status) are added to the live
+// database before or after the code that reads them ships, so readers must work either way.
+// Only "yes" is remembered; a missing column is checked again next time.
+const knownColumns = new Set<string>();
+export async function scholarshipsHasColumn(name: string): Promise<boolean> {
+    if (knownColumns.has(name)) return true;
+    const res = await getClient().execute('PRAGMA table_info(scholarships)');
+    const found = res.rows.some((r: Record<string, unknown>) => r.name === name);
+    if (found) knownColumns.add(name);
+    return found;
+}
+
 // Get lightweight catalog scholarships (optimized for listing pages and minimal SSR HTML weight)
 export async function getScholarshipsCatalog() {
     const client = getClient();
+    const deadlineStatus = (await scholarshipsHasColumn('deadline_status')) && (await scholarshipsHasColumn('deadline_expected'))
+        ? ' deadline_status, deadline_expected,'
+        : '';
     const res = await client.execute(`
         SELECT id, title, slug, provider, provider_type, state, level, caste, gender,
-               amount_annual, amount_min, amount_description, deadline, always_open,
+               amount_annual, amount_min, amount_description, deadline,${deadlineStatus} always_open,
                status, is_featured, is_popular, priority_score, thumbnail_url,
                scholarship_type, scholarship_scope, country_of_study, last_verified,
                income_limit, created_at, application_mode

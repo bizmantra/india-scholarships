@@ -25,7 +25,7 @@ on:
 
 # The scout saves candidates to the database, so it waits for other database writers
 concurrency:
-  group: database-writes
+  group: database-writes${{ inputs.target == 'staging' && '-staging' || '' }}
   cancel-in-progress: false
 
 env:

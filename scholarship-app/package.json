@@ -7,10 +7,12 @@
     "build": "node scripts/pull-from-turso.js --if-configured && USE_LOCAL_DB=true next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --test lib/command-center/",
     "db:pull": "node scripts/pull-from-turso.js",
     "db:push": "node scripts/push-to-turso.js"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
     "@libsql/client": "^0.17.4",
     "better-sqlite3": "^12.5.0",
     "dotenv": "^17.2.3",

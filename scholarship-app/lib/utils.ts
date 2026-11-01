@@ -35,6 +35,10 @@ export function slugify(text: string): string {
     return slug;
 }
 
+// A study-abroad level x country hub needs at least this many scholarships to be worth
+// indexing (and listing in the sitemap); fewer is "thin" and gets noindex. Zero is a 404.
+export const MIN_INDEXABLE_HUB_RESULTS = 3;
+
 // Canonical mapping for education levels
 export const CANONICAL_LEVELS: Record<string, { label: string; rawLevels: string[]; description: string; icon: string }> = {
     'class-1-10': {
@@ -247,3 +251,24 @@ export function formatDeadlineDate(
 }
 
 
+
+
+/**
+ * What to show as a scholarship's deadline.
+ *
+ * A date is only shown as a deadline when it is confirmed. A row with deadline_status 'expected' keeps its
+ * estimate in deadline_expected and has "Not specified" in deadline, so every list, filter and "closing soon" query
+ * already treats it as having no fixed date. Here it reads "Expected ~31 Oct 2026" instead.
+ */
+export function deadlineDisplay(
+    s: { deadline?: string | null; deadline_status?: string | null; deadline_expected?: string | null; always_open?: number | null },
+    options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' },
+    fallback: string = 'Check Official Portal'
+): string {
+    if (s.always_open === 1) return 'Open Year-Round';
+    if (s.deadline_status === 'expected' && s.deadline_expected) {
+        const date = new Date(`${s.deadline_expected}T00:00:00Z`);
+        if (!isNaN(date.getTime())) return `Expected ~${date.toLocaleDateString('en-IN', { ...options, timeZone: 'UTC' })}`;
+    }
+    return formatDeadlineDate(s.deadline, options, fallback);
+}

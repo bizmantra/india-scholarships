@@ -1,0 +1,491 @@
+'use client';
+
+/**
+ * The orchestrator: takes a command, explains what it will do (plan), asks before anything large
+ * (gate), does the work through the command center API and ends with a summary.
+ */
+import { parseIntent, SUGGESTIONS } from './intents';
+import { log, post, store, updateMessage, type InboxSummary } from './store';
+
+export const CATEGORY_LABELS: Record<string, string> = {
+    date_change: 'Deadline changes',
+    new_scholarship: 'New scholarships',
+    amount_change: 'Amount changes',
+    link_change: 'Link changes',
+    missing_info: 'Missing or outdated details',
+    contact_change: 'Helpline updates',
+    wording: 'Wording updates',
+    study_abroad: 'Study Abroad page changes',
+};
+
+// Asking before bulk actions above this size
+const GATE_THRESHOLD = 10;
+
+export async function api<T = any>(path: string, init?: RequestInit): Promise<T> {
+    const res = await fetch(`/api/admin/command/${path}`, {
+        ...init,
+        headers: { 'Content-Type': 'application/json', ...(init?.headers || {}) },
+        cache: 'no-store',
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw Object.assign(new Error(data.error || `Request failed (${res.status})`), { status: res.status, data });
+    return data as T;
+}
+
+export async function refreshSummary() {
+    try {
+        const summary = await api<InboxSummary>('inbox?view=summary');
+        store.set({ summary });
+        return summary;
+    } catch {
+        return null;
+    }
+}
+
+interface SaFactsWorklist {
+    generated_at?: string;
+    counts?: {
+        facts?: number;
+        flagged?: number;
+        by_flag?: Record<string, number>;
+        money_rows_flagged?: number;
+        worst?: { key: string; why?: string }[];
+    };
+}
+
+// Study Abroad facts freshness (spec D4): what the script last flagged, from its committed worklist
+async function studyAbroadFacts() {
+    try {
+        const w = await api<SaFactsWorklist>('sa-facts');
+        const c = w.counts || {};
+        post({
+            type: 'summary',
+            title: 'Study Abroad facts freshness',
+            lines: [
+                { label: 'Facts checked', value: String(c.facts ?? 0) },
+                { label: 'Need a look', value: String(c.flagged ?? 0), tone: (c.flagged ? 'warn' : 'good') as 'warn' | 'good' },
+                ...Object.entries(c.by_flag || {}).map(([flag, n]) => ({ label: `  ${flag}`, value: String(n), tone: 'warn' as const })),
+                { label: 'Pages showing money with no source', value: String(c.money_rows_flagged ?? 0), tone: (c.money_rows_flagged ? 'warn' : 'good') as 'warn' | 'good' },
+                ...(c.worst || []).slice(0, 6).map(item => ({ label: `  ${item.key}`, value: '', tone: 'warn' as const })),
+                { label: 'Worklist file', value: 'data/study-abroad/facts-worklist.json' },
+                { label: 'As of', value: String(w.generated_at || '').slice(0, 16).replace('T', ' ') },
+                { label: 'Re-run', value: 'node scripts/study-abroad/facts-freshness.mjs --target=production' },
+            ],
+        });
+    } catch (e) {
+        post({ type: 'text', tone: 'bad', text: `Could not read the facts worklist: ${e instanceof Error ? e.message : String(e)}` });
+    }
+}
+
+export async function refreshActivity() {
+    try {
+        const { events } = await api<{ events: any[] }>('activity?limit=60');
+        store.set({
+            log: events.map(e => ({
+                time: new Date(`${String(e.created_at).replace(' ', 'T')}Z`).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+                agent: e.agent,
+                system: e.actor?.startsWith('agent:') ? 'GitHub Actions' : 'Command center',
+                kind: /warning|failed/.test(e.kind) ? 'warn' : /error/.test(e.kind) ? 'error' : /approval|finished|published/.test(e.kind) ? 'ok' : 'info',
+                text: e.summary,
+            })),
+        });
+    } catch { /* the panel keeps what it has */ }
+}
+
+export function afterDecision() {
+    store.set(s => ({ revision: s.revision + 1 }));
+    refreshSummary();
+    refreshActivity();
+}
+
+function notReady() {
+    post({
+        type: 'text',
+        tone: 'warn',
+        text: 'The agent inbox is not set up on this database yet. It is created by the next Deadline Freshness run (daily at 7 AM IST). ' +
+            'You can start one now with "run the freshness check".',
+    });
+}
+
+export async function handle(input: string) {
+    const text = input.trim();
+    if (!text) return;
+    post({ type: 'user', text });
+    store.set({ busy: true });
+    try {
+        await route(text);
+    } catch (error: any) {
+        if (error.status === 409 && error.data?.error === 'inbox_not_ready') notReady();
+        else post({ type: 'text', tone: 'bad', text: `That didn't work: ${error.message}` });
+        log({ agent: 'command-center', system: 'Command center', kind: 'error', text: error.message });
+    } finally {
+        store.set({ busy: false });
+    }
+}
+
+async function route(text: string) {
+    const intent = parseIntent(text);
+    const status = store.get().status;
+    if (status && !status.inboxReady && ['waiting', 'show', 'bulk', 'publish'].includes(intent.type)) return notReady();
+
+    switch (intent.type) {
+        case 'waiting': return whatsWaiting();
+        case 'show': return post({ type: 'proposals', title: intent.title, query: { category: intent.category, risk: intent.risk }, pageSize: 5 });
+        case 'saFacts': return studyAbroadFacts();
+        case 'bulk': return bulkDecision(intent.action, intent.category, intent.risk, intent.label);
+        case 'run': return startRun(intent.agent, intent.state);
+        case 'publish': return startRun('scout-publisher');
+        case 'briefing': return showBriefing();
+        case 'traffic': return showTraffic();
+        case 'indexing': return showIndexing();
+        case 'today': return whatHappenedToday();
+        case 'agents': return describeAgents();
+        case 'help':
+        case 'unknown':
+            return post({
+                type: 'summary',
+                title: intent.type === 'unknown' ? "I didn't catch that. Here's what I can do:" : 'What I can do',
+                lines: SUGGESTIONS.map(s => ({ label: s, value: '', action: s })),
+            });
+    }
+}
+
+// ---------- Morning briefing ----------
+
+async function latestBriefing() {
+    const since = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 19).replace('T', ' ');
+    const { events } = await api<{ events: any[] }>(`activity?kind=briefing&limit=1&since=${encodeURIComponent(since)}`);
+    const event = events[0];
+    if (!event) return null;
+    return { createdAt: new Date(`${String(event.created_at).replace(' ', 'T')}Z`), briefing: JSON.parse(event.details_json || '{}') };
+}
+
+async function showBriefing(latest?: Awaited<ReturnType<typeof latestBriefing>>) {
+    const found = latest === undefined ? await latestBriefing() : latest;
+    if (!found) {
+        post({ type: 'text', text: 'There is no briefing yet. It is written every day at 8:00 AM IST, or say "run the morning briefing" to write one now.' });
+        return;
+    }
+    const b = found.briefing;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', text: `Morning briefing (${when}): ${b.headline}` });
+    if (b.reports?.traffic || b.reports?.indexing) {
+        post({
+            type: 'summary',
+            title: 'Traffic and indexing',
+            lines: [
+                ...(b.reports.traffic ? [{ label: b.reports.traffic.headline, value: '', tone: (b.reports.traffic.level === 'ok' ? 'neutral' : 'bad') as 'neutral' | 'bad', action: 'How is traffic?' }] : []),
+                ...(b.reports.indexing ? [{ label: b.reports.indexing.headline, value: '', action: 'Indexing status' }] : []),
+            ],
+        });
+    }
+
+    const g = b.inbox?.groups || {};
+    post({
+        type: 'summary',
+        title: `Needs you · ${b.inbox?.total ?? 0}${b.inbox?.newToday ? ` (${b.inbox.newToday} new since the day before)` : ''}`,
+        lines: [
+            ...(g.date_change ? [{ label: CATEGORY_LABELS.date_change, value: String(g.date_change), tone: 'warn' as const, action: 'Show deadline changes' }] : []),
+            ...(g.new_scholarship ? [{ label: CATEGORY_LABELS.new_scholarship, value: String(g.new_scholarship), tone: 'warn' as const, action: 'Show new scholarships' }] : []),
+            ...(g.study_abroad ? [{ label: CATEGORY_LABELS.study_abroad, value: String(g.study_abroad), tone: 'warn' as const, action: 'Show Study Abroad changes' }] : []),
+            ...(b.inbox?.risky ? [{ label: 'Risky (check first)', value: String(b.inbox.risky), tone: 'bad' as const, action: 'Show risky changes' }] : []),
+            ...(b.inbox?.approvedUnpublished ? [{ label: 'Approved, not yet published', value: String(b.inbox.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),
+            ...(b.inbox?.urgent || []).map((u: any) => ({
+                label: `  ${u.title}: ${u.category === 'new_scholarship' ? 'new scholarship' : `${short(u.old_value)} → ${short(u.new_value)}`}`,
+                value: u.risk === 'high' ? 'risky' : '',
+                tone: (u.risk === 'high' ? 'bad' : 'neutral') as 'bad' | 'neutral',
+                action: u.category === 'new_scholarship' ? 'Show new scholarships' : 'Show deadline changes',
+            })),
+            { label: 'Everything waiting', value: '', action: "What's waiting on me?" },
+        ],
+    });
+
+    const bl = b.backlog;
+    if (bl) {
+        const due = (n: number | null) => (n === null ? '' : n < 0 ? `overdue ${-n} d` : n === 0 ? 'due today' : `due in ${n} d`);
+        post({
+            type: 'summary',
+            title: `Backlog · ${bl.open} open`,
+            lines: [
+                ...(bl.today as { title: string; note: string | null; due_in: number | null; impact: string }[] || []).map(i => ({ label: `${i.title}${i.note ? `: ${i.note}` : ''}`, value: due(i.due_in) || i.impact, tone: (i.due_in !== null && i.due_in <= 0 ? 'bad' : 'neutral') as 'bad' | 'neutral' })),
+                ...(bl.waiting?.length ? [{ label: 'Waiting on you', value: String(bl.waiting.length), tone: 'warn' as const }] : []),
+                ...(bl.dueSoon?.length ? [{ label: 'Due within a week or overdue', value: String(bl.dueSoon.length), tone: 'warn' as const }] : []),
+                ...(bl.stale?.length ? [{ label: 'Started but gone quiet (14 d or more)', value: String(bl.stale.length) }] : []),
+                { label: 'Open the Backlog at /admin/backlog', value: '' },
+            ],
+        });
+    }
+
+    const runs: any[] = b.runs?.runs || [];
+    post({
+        type: 'summary',
+        title: 'Last 24 hours',
+        lines: [
+            { label: 'Your approvals', value: String(b.decisions?.approved ?? 0), tone: 'good' },
+            { label: 'Your rejections', value: String(b.decisions?.rejected ?? 0) },
+            ...runs.map(r => ({
+                label: `  ${r.label}`,
+                value: r.status === 'completed' ? (r.conclusion === 'success' ? 'done' : String(r.conclusion)) : String(r.status).replace('_', ' '),
+                tone: (r.status === 'completed' ? (r.conclusion === 'success' ? 'good' : 'bad') : 'neutral') as 'good' | 'bad' | 'neutral',
+            })),
+            ...(b.runs?.agentSummaries || []).map((e: any) => ({ label: `  ${e.summary}`, value: '' })),
+        ],
+    });
+
+    const d = b.deadlines || {};
+    post({
+        type: 'summary',
+        title: 'Deadlines',
+        lines: [
+            { label: 'Closing in the next 7 days', value: String(d.closingSoonCount ?? 0), tone: 'warn' },
+            ...(d.closingSoon || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: s.deadline })),
+            { label: 'Past deadline but still shown as open', value: String(d.pastButOpenCount ?? 0), tone: d.pastButOpenCount ? 'bad' : 'neutral', action: d.pastButOpenCount ? 'Run the freshness check' : undefined },
+            ...(d.pastButOpen || []).slice(0, 5).map((s: any) => ({ label: `  ${s.title}`, value: `closed ${s.deadline}` })),
+        ],
+    });
+}
+
+// ---------- Traffic and indexing reports (latest run of each agent) ----------
+
+async function latestEvent(kind: string) {
+    const since = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 19).replace('T', ' ');
+    const { events } = await api<{ events: any[] }>(`activity?kind=${kind}&limit=1&since=${encodeURIComponent(since)}`);
+    const event = events[0];
+    return event ? { createdAt: new Date(`${String(event.created_at).replace(' ', 'T')}Z`), details: JSON.parse(event.details_json || '{}') } : null;
+}
+
+const pctText = (p: number | null | undefined) => (p === null || p === undefined ? 'n/a' : `${p >= 0 ? '+' : ''}${Math.round(p * 100)}%`);
+const toneFor = (p: number | null | undefined) => (p === null || p === undefined ? 'neutral' : p <= -0.25 ? 'bad' : p >= 0.1 ? 'good' : 'neutral') as 'bad' | 'good' | 'neutral';
+
+async function showTraffic() {
+    const found = await latestEvent('watchdog');
+    if (!found) {
+        post({ type: 'text', text: 'No traffic report yet. Say "run the traffic watchdog" to create one.' });
+        return;
+    }
+    const r = found.details;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', tone: r.level === 'bad' ? 'bad' : r.level === 'warn' ? 'warn' : 'neutral', text: `Traffic (${when}): ${r.headline}` });
+    post({
+        type: 'summary',
+        title: 'Last 7 days vs the 7 before',
+        lines: [
+            ...(r.search ? [
+                { label: `Google search clicks (${r.search.period})`, value: `${r.search.clicks} (${pctText(r.search.clicksChange)})`, tone: toneFor(r.search.clicksChange) },
+                { label: 'Google search impressions', value: `${r.search.impressions.toLocaleString('en-IN')} (${pctText(r.search.impressionsChange)})`, tone: toneFor(r.search.impressionsChange) },
+                { label: 'Average position (lower is better)', value: `${r.search.position} (was ${r.search.positionBefore})` },
+            ] : []),
+            ...(r.visits ? [{ label: 'Visits (Google Analytics)', value: `${r.visits.sessions.toLocaleString('en-IN')} (${pctText(r.visits.change)})`, tone: toneFor(r.visits.change) }] : []),
+            ...(r.health ? [{ label: 'Key pages and sitemap', value: r.health.failing?.length ? `${r.health.failing.length} failing` : `all ${r.health.checked} load`, tone: (r.health.failing?.length ? 'bad' : 'good') as 'bad' | 'good' }] : []),
+            ...(r.health?.failing || []).map((f: any) => ({ label: `  ${f.path}`, value: f.status ? `HTTP ${f.status}` : 'no answer', tone: 'bad' as const })),
+        ],
+    });
+    if (r.pages?.falling?.length || r.pages?.rising?.length) {
+        post({
+            type: 'summary',
+            title: 'Pages moving in Google search',
+            lines: [
+                ...(r.pages.falling || []).map((p: any) => ({ label: `  ↓ ${p.path}`, value: `${p.clicksBefore} → ${p.clicks} clicks`, tone: 'bad' as const })),
+                ...(r.pages.rising || []).map((p: any) => ({ label: `  ↑ ${p.path}`, value: `${p.clicksBefore} → ${p.clicks} clicks`, tone: 'good' as const })),
+            ],
+        });
+    }
+}
+
+async function showIndexing() {
+    const found = await latestEvent('indexing');
+    if (!found) {
+        post({ type: 'text', text: 'No indexing report yet. Say "run indexing" to create one.' });
+        return;
+    }
+    const r = found.details;
+    const when = found.createdAt.toLocaleString('en-IN', { weekday: 'short', hour: '2-digit', minute: '2-digit' });
+    post({ type: 'text', text: `Indexing (${when}): ${r.headline}` });
+    post({
+        type: 'summary',
+        title: 'Search engines',
+        lines: [
+            { label: 'Changed pages sent to IndexNow', value: r.submitted ? String(r.changed?.urls ?? 0) : `${r.changed?.urls ?? 0} (not sent: ${r.target === 'staging' ? 'staging' : 'test'} run)` },
+            ...Object.entries(r.indexNow || {}).map(([engine, result]) => ({
+                label: `  ${engine}`, value: String(result) === 'accepted' ? 'accepted' : 'refused', tone: (String(result) === 'accepted' ? 'good' : 'warn') as 'good' | 'warn',
+            })),
+            { label: 'Sitemap re-submitted to Google', value: r.sitemapSubmitted ? 'yes' : 'no' },
+            { label: 'Key pages indexed by Google', value: `${r.inspection?.indexed ?? 0} of ${r.inspection?.tracked ?? 0}`, tone: r.inspection?.notIndexedCount ? 'warn' : 'good' },
+            ...(r.inspection?.notIndexed || []).map((p: any) => ({ label: `  ${p.path}${p.isNew ? ' (new)' : ''}`, value: p.coverageState || 'not indexed', tone: 'warn' as const })),
+            ...(r.errors || []).map((e: string) => ({ label: `  ${e}`, value: '', tone: 'bad' as const })),
+        ],
+    });
+}
+
+// First screen: today's briefing if there is a recent one, otherwise the inbox counts
+export async function openingView() {
+    try {
+        const latest = await latestBriefing();
+        if (latest && Date.now() - latest.createdAt.getTime() < 20 * 3600000) return showBriefing(latest);
+    } catch { /* fall back to the inbox */ }
+    return whatsWaiting();
+}
+
+async function whatsWaiting() {
+    const summary = await refreshSummary();
+    if (!summary) throw new Error('Could not read the inbox');
+    if (summary.total === 0) {
+        post({ type: 'text', tone: 'good', text: 'Nothing is waiting on you. Agents will add items as they find them.' });
+        return;
+    }
+    const g = summary.groups;
+    post({
+        type: 'summary',
+        title: `${summary.total.toLocaleString('en-IN')} item(s) waiting on you`,
+        lines: [
+            { label: CATEGORY_LABELS.date_change, value: String(g.date_change), tone: g.date_change ? 'warn' : 'neutral', action: 'Show deadline changes' },
+            { label: CATEGORY_LABELS.new_scholarship, value: String(g.new_scholarship), tone: g.new_scholarship ? 'warn' : 'neutral', action: 'Show new scholarships' },
+            { label: 'Risky (past deadlines, amounts moving over 50%)', value: String(summary.risky), tone: summary.risky ? 'bad' : 'neutral', action: 'Show risky changes' },
+            { label: CATEGORY_LABELS.amount_change, value: String(g.amount_change), action: 'Show amount changes' },
+            { label: CATEGORY_LABELS.link_change, value: String(g.link_change), action: 'Show link changes' },
+            { label: 'Missing or outdated details (documents, helplines, amounts, old dates)', value: String(g.missing_info ?? 0), action: 'Show missing details' },
+            { label: CATEGORY_LABELS.contact_change, value: String(g.contact_change), action: 'Show helpline updates' },
+            { label: 'Wording only (same fact, new words)', value: String(g.wording), action: 'Approve all wording updates' },
+            { label: CATEGORY_LABELS.study_abroad, value: String(g.study_abroad ?? 0), tone: g.study_abroad ? 'warn' : 'neutral', action: 'Show Study Abroad changes' },
+            ...(summary.approvedUnpublished ? [{ label: 'Approved, waiting to be published', value: String(summary.approvedUnpublished), tone: 'good' as const, action: 'Run the scout publisher' }] : []),
+        ],
+    });
+}
+
+async function bulkDecision(action: 'approve' | 'reject', category: string, risk: string | undefined, label: string) {
+    const sample = await api<{ items: any[]; total: number }>(`inbox?category=${category}${risk ? `&risk=${risk}` : ''}&limit=5`);
+    if (sample.total === 0) {
+        post({ type: 'text', text: `There are no pending ${label}.` });
+        return;
+    }
+    const run = async (messageId: string) => {
+        updateMessage(messageId, { resolved: `${action === 'approve' ? 'Approving' : 'Rejecting'} ${sample.total}…` });
+        const result = await api<{ done: number[]; skipped: any[]; refreshed: string[] }>('decide', {
+            method: 'POST',
+            body: JSON.stringify({ action, group: { category, risk } }),
+        });
+        updateMessage(messageId, { resolved: `${action === 'approve' ? 'Approved' : 'Rejected'} ${result.done.length}` });
+        post({
+            type: 'summary',
+            title: `${action === 'approve' ? 'Approved' : 'Rejected'} ${label}`,
+            lines: [
+                { label: action === 'approve' ? 'Applied to the site' : 'Rejected (will not be proposed again)', value: String(result.done.length), tone: 'good' },
+                { label: 'Skipped (changed since, or wrong format)', value: String(result.skipped.length), tone: result.skipped.length ? 'warn' : 'neutral' },
+                ...(action === 'approve' ? [{ label: 'Pages refreshed', value: String(result.refreshed.length) }] : []),
+            ],
+        });
+        log({ agent: 'command-center', system: 'Turso', kind: 'ok', text: `${action === 'approve' ? 'Approved' : 'Rejected'} ${result.done.length} ${label}` });
+        afterDecision();
+    };
+
+    const describe = (p: any) => p.kind === 'new_scholarship'
+        ? p.scholarship_title
+        : p.kind === 'sa_field_change'
+            ? `${p.scholarship_title}: ${p.field}`
+            : `${p.scholarship_title}: ${short(p.old_value)} → ${short(p.new_value)}`;
+    if (sample.total <= GATE_THRESHOLD && action === 'reject') {
+        const id = post({ type: 'text', text: `Rejecting ${sample.total} ${label}…` });
+        await run(id);
+        return;
+    }
+    const id = post({
+        type: 'gate',
+        title: `${action === 'approve' ? 'Approve' : 'Reject'} all ${sample.total.toLocaleString('en-IN')} ${label}?`,
+        body: action === 'approve'
+            ? 'Each change is written to the live site and logged, so any single one can be undone. A change is skipped if the page was edited after the agent looked.'
+            : 'Rejected values are remembered, so agents will not propose them again.',
+        bullets: sample.items.map(describe),
+        options: [
+            { label: `${action === 'approve' ? 'Approve' : 'Reject'} all ${sample.total}`, tone: action === 'approve' ? 'primary' : 'danger', run: () => run(id) },
+            { label: 'Review one by one', tone: 'neutral', run: () => { updateMessage(id, { resolved: 'Reviewing one by one' }); post({ type: 'proposals', title: label, query: { category, risk }, pageSize: 5 }); } },
+            { label: 'Cancel', tone: 'neutral', run: () => updateMessage(id, { resolved: 'Cancelled' }) },
+        ],
+    });
+}
+
+export const short = (v: any) => {
+    const text = v === null || v === undefined || v === '' ? '(empty)' : String(v);
+    return text.length > 48 ? `${text.slice(0, 45)}…` : text;
+};
+
+async function startRun(agentId: string, state?: string) {
+    const status = store.get().status;
+    const agent = status?.agents.find(a => a.id === agentId);
+    const label = agent?.label || agentId;
+    if (status && !status.githubConfigured) {
+        post({ type: 'text', tone: 'warn', text: 'GITHUB_ACTIONS_TOKEN is not set in Vercel for this environment, so I cannot start agents from here yet.' });
+        return;
+    }
+    if (state && !agent?.acceptsState) {
+        post({ type: 'text', tone: 'warn', text: `${label} cannot focus on one state. Say "run the ${label.toLowerCase()}" without a state.` });
+        return;
+    }
+    post({
+        type: 'plan',
+        title: `${label}${state ? ` for ${state}` : ''}`,
+        steps: [
+            `Start the "${label}" workflow on GitHub Actions against the ${status?.runTarget || 'production'} database`,
+            agent?.summary || 'Run the agent',
+            agent?.gated ? 'Anything that changes facts on the site comes back to your inbox for approval' : 'Save its results and refresh the site',
+        ],
+    });
+    const { requestId, target } = await api<{ requestId: string; target: string }>('run', {
+        method: 'POST',
+        body: JSON.stringify({ agent: agentId, state }),
+    });
+    log({ agent: agentId, system: 'GitHub Actions', kind: 'tool', text: `Started ${label}${state ? ` for ${state}` : ''} (${target})` });
+    post({ type: 'run', agent: agentId, label: `${label}${state ? ` · ${state}` : ''}`, requestId, target });
+}
+
+// Runs started in the last few hours (from any device) get their live card back after a reload
+export async function resumeRecentRuns() {
+    const since = new Date(Date.now() - 3 * 3600000).toISOString().slice(0, 19).replace('T', ' ');
+    const { events } = await api<{ events: any[] }>(`activity?since=${encodeURIComponent(since)}&limit=200`);
+    const agents = store.get().status?.agents || [];
+    events.filter(e => e.kind === 'run_started').reverse().forEach(e => {
+        const details = JSON.parse(e.details_json || '{}');
+        if (!details.requestId) return;
+        const label = agents.find(a => a.id === e.agent)?.label || e.agent;
+        post({ type: 'run', agent: e.agent, label: `${label}${details.state ? ` · ${details.state}` : ''}`, requestId: details.requestId, target: details.target, resumed: true });
+    });
+}
+
+async function whatHappenedToday() {
+    const midnight = new Date();
+    midnight.setHours(0, 0, 0, 0);
+    const since = midnight.toISOString().slice(0, 19).replace('T', ' ');
+    const { events, runs } = await api<{ events: any[]; runs: any[] }>(`activity?since=${encodeURIComponent(since)}&runs=1&limit=300`);
+    // Agent runs only: scheduled or started by hand (not the checks that run on every push)
+    const todayRuns = runs.filter(r => r.startedAt && new Date(r.startedAt) >= midnight && ['schedule', 'workflow_dispatch'].includes(r.event));
+    const count = (kind: string) => events.filter(e => e.kind === kind).length;
+    const finished = events.filter(e => /run_finished|run_warning/.test(e.kind));
+    post({
+        type: 'summary',
+        title: 'Today so far',
+        lines: [
+            { label: 'Agent runs on GitHub', value: String(todayRuns.length), tone: todayRuns.some(r => r.conclusion === 'failure') ? 'warn' : 'neutral' },
+            ...todayRuns.slice(0, 6).map(r => ({
+                label: `  ${r.title}`,
+                value: r.status === 'completed' ? (r.conclusion === 'success' ? 'done' : String(r.conclusion)) : String(r.status).replace('_', ' '),
+                tone: (r.conclusion === 'success' ? 'good' : r.status === 'completed' ? 'bad' : 'neutral') as 'good' | 'bad' | 'neutral',
+            })),
+            ...finished.slice(0, 6).map(e => ({ label: `  ${e.summary}`, value: '' })),
+            { label: 'Your approvals', value: String(count('approval')), tone: 'good' },
+            { label: 'Your rejections', value: String(count('rejection')) },
+            { label: 'Undos', value: String(count('undo')) },
+        ],
+    });
+}
+
+function describeAgents() {
+    const agents = store.get().status?.agents || [];
+    post({
+        type: 'summary',
+        title: 'Your agents: who does what',
+        lines: agents.map(a => ({ label: `${a.label} (${a.schedule})`, value: a.gated ? 'asks you first' : 'fully automatic' })),
+    });
+    post({
+        type: 'text',
+        text: agents.map(a => `${a.label}: ${a.summary} Without the agent: ${a.humanToday}`).join('\n\n'),
+    });
+}

@@ -38,6 +38,8 @@
   ],
   "exclude": [
     "node_modules",
-    "video-generator"
+    "video-generator",
+    "lib/**/*.test.ts",
+    "scripts/study-abroad"
   ]
 }

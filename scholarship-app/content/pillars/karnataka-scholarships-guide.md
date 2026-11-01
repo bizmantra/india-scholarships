@@ -29,7 +29,7 @@ relatedArticleSlugs:
 takeaways:
   - "Karnataka uses two separate websites: ssp.karnataka.gov.in for Pre-Matric (school) and ssp.postmatric.karnataka.gov.in for Post-Matric (college). Using the wrong one is a common mistake."
   - "Karnataka runs a separate scheme for six different groups — SC, ST, OBC, Minority, General/EWS, and Persons with Disabilities (PWD) — at both Pre-Matric and Post-Matric level."
-  - "The income limit is not the same for every category. It is usually higher for OBC students than for SC/ST students, so check the exact number for your category."
+  - "The income limit is not the same for every category (SC, ST, and each OBC group such as Category 1, 2A, 3A and 3B), so check the exact number for your category on the scheme page."
 checklist:
   - "Aadhaar Card linked with active mobile number"
   - "SATS Student ID (from your school or college)"

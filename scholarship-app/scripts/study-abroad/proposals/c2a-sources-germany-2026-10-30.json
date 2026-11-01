@@ -1,0 +1,114 @@
+{
+  "agent": "content-editor",
+  "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "germany-blocked-account-manual",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-national-student-visa",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-part-time-work-rules",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-job-seeker-visa-strategy",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-blue-card-pr-pathway",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-anmeldung-tax-id",
+      "source": "https://www.gesetze-im-internet.de/bmg/__17.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/bmg/__17.html",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-manual",
+      "source": "https://www.uni-assist.de/en/faqs/apply-online/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/faqs/apply-online/",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-portal-walkthrough",
+      "source": "https://www.uni-assist.de/en/faqs/apply-online/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/faqs/apply-online/",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-aps-certificate-guide",
+      "source": "https://aps-india.de/wp-content/uploads/2026/06/Leaflet_BA_Graduates_English_dMAT_June2026.pdf",
+      "fields": {
+        "official_source": "https://aps-india.de/wp-content/uploads/2026/06/Leaflet_BA_Graduates_English_dMAT_June2026.pdf",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-initial-72hr-survival-guide",
+      "source": "https://www.zoll.de/EN/Private-individuals/Travel/Entering-Germany/entering_germany_node.html",
+      "fields": {
+        "official_source": "https://www.zoll.de/EN/Private-individuals/Travel/Entering-Germany/entering_germany_node.html",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-health-insurance-guide",
+      "source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
+      "fields": {
+        "official_source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
+        "checked_at": "2026-10-30"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-residence-permit-guide",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+        "checked_at": "2026-10-30"
+      }
+    }
+  ]
+}

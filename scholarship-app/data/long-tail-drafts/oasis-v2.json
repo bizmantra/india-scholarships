@@ -1,0 +1,218 @@
+{
+  "guide": {
+    "id": "oasis-west-bengal",
+    "aliases": [
+      "oasis-scholarship",
+      "oasis-wb",
+      "oasis-status"
+    ],
+    "name": "OASIS West Bengal Portal",
+    "state": "West Bengal",
+    "fullTitle": "OASIS Scholarship Portal 2026: Login, Status & App Guide",
+    "seoDesc": "Complete guide to the OASIS West Bengal portal (oasis.wb.gov.in) for SC, ST, and OBC students. Learn how to check scholarship status, login, and apply.",
+    "officialUrl": "https://oasis.wb.gov.in/",
+    "portalTag": "State Government Portal",
+    "description": "The OASIS portal is the dedicated scholarship platform administered by the Backward Classes Welfare Department and Tribal Development Department of West Bengal. It is exclusively for processing Pre-Matric and Post-Matric scholarships for SC, ST, and OBC students.",
+    "stats": {
+      "activeSchemes": "6 Active Scholarships",
+      "beneficiaries": "Lakhs of SC/ST/OBC Students",
+      "disbursementType": "Aadhaar Payment Bridge (APB)",
+      "verificationMode": "Biometric eKYC & Institute Verification"
+    },
+    "loginSteps": [
+      {
+        "step": "01",
+        "title": "Complete Mandatory NSP OTR (For ST Students)",
+        "desc": "ST students must first log in to the National Scholarship Portal (NSP) or use the NSP OTR mobile app to generate their One-Time Registration (OTR) via face authentication before applying on OASIS."
+      },
+      {
+        "step": "02",
+        "title": "Register or Login on OASIS",
+        "desc": "Visit oasis.wb.gov.in. New users click 'Student's registration' while existing users click 'Registered Student's Login'."
+      },
+      {
+        "step": "03",
+        "title": "Select District",
+        "desc": "Choose the district where your institution is located. If studying outside West Bengal, select your permanent address district."
+      },
+      {
+        "step": "04",
+        "title": "Fill Details & Perform KYC",
+        "desc": "Enter your Aadhaar number, Khadyasathi number, and Caste Certificate details. Complete Aadhaar OTP validation or Biometric KYC as prompted."
+      }
+    ],
+    "statusSteps": [
+      {
+        "title": "Step 1: Open the Track Application Page",
+        "desc": "Go to the oasis.wb.gov.in homepage and click on the 'Track an application' button."
+      },
+      {
+        "title": "Step 2: Select Your District",
+        "desc": "Choose the district where your institution is located (or permanent district if studying outside the state)."
+      },
+      {
+        "title": "Step 3: Check Verification & Payment",
+        "desc": "Submit your Application Serial No/User ID and Academic Session to view your block/institute verification status and Aadhaar Payment Bridge (APB) disbursement progress."
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "format": "Number/KYC",
+        "note": "Aadhaar-based biometric authentication or OTP KYC is mandatory. Must be seeded with your bank account."
+      },
+      {
+        "name": "Caste Certificate",
+        "format": "Certificate No.",
+        "note": "OBC certificates issued before 01.08.2025 must be revalidated on castcertificatewb.gov.in before applying."
+      },
+      {
+        "name": "Khadyasathi Card",
+        "format": "Number",
+        "note": "Students must enter their Khadyasathi number in the designated place on the application."
+      },
+      {
+        "name": "Income & DOB Proof",
+        "format": "Hard Copy",
+        "note": "Income certificate and proof of Date of Birth must be submitted to the Block/Sub-Division/DWO Kolkata office for verification."
+      },
+      {
+        "name": "Bank Passbook",
+        "format": "Aadhaar Seeded Account",
+        "note": "Scholarship amount will be credited to your own Aadhaar seeded bank account via Direct Benefit Transfer."
+      }
+    ],
+    "topSchemes": [
+      {
+        "name": "Oasis Pre-Matric Scholarship for SC Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-sc-students-west-bengal",
+        "targetGroup": "SC",
+        "amount": "Up to ₹4,500/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for SC Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-sc-students-west-bengal",
+        "targetGroup": "SC",
+        "amount": "Up to ₹12,000/year"
+      },
+      {
+        "name": "Oasis Pre-Matric Scholarship for ST Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-st-students-west-bengal",
+        "targetGroup": "ST",
+        "amount": "Up to ₹4,500/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for ST Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-st-students-west-bengal",
+        "targetGroup": "ST",
+        "amount": "Up to ₹12,000/year"
+      },
+      {
+        "name": "Oasis Pre-Matric Scholarship for OBC Students (West Bengal)",
+        "slug": "oasis-pre-matric-scholarship-for-obc-students-west-bengal",
+        "targetGroup": "OBC",
+        "amount": "Up to ₹3,500/year"
+      },
+      {
+        "name": "Oasis Post-Matric Scholarship for OBC Students (West Bengal)",
+        "slug": "oasis-post-matric-scholarship-for-obc-students-west-bengal",
+        "targetGroup": "OBC",
+        "amount": "Up to ₹7,500/year"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How can I check my OASIS scholarship payment status?",
+        "a": "Click 'Track an application' on oasis.wb.gov.in and enter your User ID. Since all payments are processed through the Aadhaar Payment Bridge (APB) system, ensure your bank account is DBT-enabled and Aadhaar-seeded via NPCI."
+      },
+      {
+        "q": "What is the last date to apply for OASIS scholarships in 2026?",
+        "a": "The general deadline for SC, ST, and OBC pre-matric and post-matric scholarship schemes on the OASIS portal for the 2026-27 cycle is October 31, 2026."
+      },
+      {
+        "q": "Are Aikyashree and SVMCM scholarships available on the OASIS portal?",
+        "a": "No, the OASIS portal is strictly for SC, ST, and OBC students. Minority students must apply on the Aikyashree portal, and students seeking merit-based aid should use the SVMCM portal."
+      },
+      {
+        "q": "Why is my OBC caste certificate not being accepted on OASIS?",
+        "a": "If your OBC caste certificate was issued before August 1, 2025 (01.08.2025), you must revalidate it first by visiting castcertificatewb.gov.in before applying on the OASIS portal."
+      },
+      {
+        "q": "Do I need an NSP OTR to apply on the OASIS portal?",
+        "a": "Yes, if you are an ST student. The Ministry of Tribal Affairs (MoTA) requires ST students applying for Pre-Matric or Post-Matric scholarships to generate an OTR on the NSP Portal before applying on oasis.wb.gov.in."
+      },
+      {
+        "q": "Is Biometric KYC mandatory for OASIS applications?",
+        "a": "Yes, as per Ministry of Social Justice and Empowerment guidelines, biometric KYC is mandatory for Pre-Matric and Post-Matric SC students."
+      }
+    ],
+    "helpline": {
+      "phone": "+91-84 20 02 3311",
+      "email": "bcwoasis@gmail.com",
+      "address": "Backward Classes Welfare Department, Government of West Bengal",
+      "hours": "Working Hours"
+    }
+  },
+  "sources": [
+    {
+      "field": "guide.officialUrl",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Online Scholarship in studies | Scholarship for SC,ST,OBC | Backward classes welfare Department"
+    },
+    {
+      "field": "guide.helpline.phone",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Help line / Grievance Redressal: +91-84 20 02 3311"
+    },
+    {
+      "field": "guide.helpline.email",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "bcwoasis@gmail.com"
+    },
+    {
+      "field": "guide.description",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Backward Classes Welfare Department, Government of West Bengal."
+    },
+    {
+      "field": "guide.loginSteps[0].desc",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "OTR (One-Time Registration) is mandatory for ST students applying for both Pre-Matric and Post-Matric Scholarships. Students are requested to log in to the NSP Portal and generate their OTR before applying on oasis.gov.in."
+    },
+    {
+      "field": "guide.statusSteps[1].desc",
+      "url": "https://oasis.wb.gov.in/index/track_application",
+      "quote": "For Students:- Choose district where your institution is located. **For Students:- who are studying outside of West Bengal Choose district of your permanent address"
+    },
+    {
+      "field": "guide.documents[1].note",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "যেসব ওবিসি উপকারভোগীর জাতিগত শংসাপত্র (Caste Certificate) ০১.০৮.২০২৫ তারিখের আগে ইস্যু করা হয়েছে, তাদেরকে oasis.gov.in পোর্টালে আবেদন করার আগে নতুন করে জাতিগত শংসাপত্র যাচাই (Revalidation) করার অনুরোধ করা হচ্ছে"
+    },
+    {
+      "field": "guide.documents[2].note",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Please put your khadyasathi No in the designated place in the application format."
+    },
+    {
+      "field": "guide.documents[3].note",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Income certificate and proof of Date of Birth need to be submitted to the Block Office/ Sub-Division office / DWO Kolkata’s office as applicable with the hard copy of application for verification."
+    },
+    {
+      "field": "guide.documents[4].note",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "Scholarship amount will be credited to your own Aadhaar seeded bank account."
+    },
+    {
+      "field": "guide.faqs[0].a",
+      "url": "https://oasis.wb.gov.in/web/pdf/Letter Instructions001.pdf",
+      "quote": "All scholarship payments to be made using Aadhaar Payment Bridge (APB) System to ensure that payments are made only to the eligible beneficiary."
+    },
+    {
+      "field": "guide.faqs[5].a",
+      "url": "https://oasis.wb.gov.in/",
+      "quote": "As per direction of Ministry of Social Justice and Empowerment Biometric KYC is mandatory for Pre Matric SC & Post Matric SC Students"
+    }
+  ]
+}

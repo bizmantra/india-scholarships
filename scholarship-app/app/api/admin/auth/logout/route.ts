@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { sessionCookieDomain } from '@/lib/token';
 
 export async function GET(request: Request) {
     const origin = new URL(request.url).origin;
+
+    // Browsers and Next.js pre-load links; only a real click may sign the user out
+    const headers = request.headers;
+    if (headers.get('next-router-prefetch') || headers.get('purpose') === 'prefetch' || headers.get('sec-purpose')?.includes('prefetch')) {
+        return new NextResponse(null, { status: 204 });
+    }
     
     try {
         const cookieStore = await cookies();
@@ -13,7 +20,7 @@ export async function GET(request: Request) {
             secure: isProd,
             sameSite: 'lax',
             path: '/',
-            domain: isProd ? '.indiascholarships.in' : undefined,
+            domain: sessionCookieDomain(new URL(request.url).hostname),
             maxAge: 0 // Expire instantly
         });
     } catch (e) {

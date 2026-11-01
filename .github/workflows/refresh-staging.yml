@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Run before testing a new or changed agent against staging
 
 concurrency:
-  group: database-writes
+  group: database-writes-staging
   cancel-in-progress: false
 
 jobs:

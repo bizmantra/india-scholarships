@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 const inbox = require('./lib/agent-inbox');
+const { researchFacts, compare, evidenceFor } = require('./lib/research');
+const sources = require('./lib/sources');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -22,69 +24,32 @@ const SUMMARY_PATH = path.join(__dirname, '..', 'data', 'daily-check-summary.jso
 console.log(`⏰ Daily Deadline Freshness Check`);
 console.log(`- Dry Run: ${dryRun}\n`);
 
-async function callGeminiForDeadline(title, provider) {
-    const prompt = `Research the official current application deadline details for the "${title}" scholarship by ${provider} in India.
-You must search Google to find the accurate, current deadline for the 2025-26 or 2026-27 application cycle.
+// What counts as "the deadline" (kept from the original instructions)
+const DEADLINE_RULES = `Use the student application submission deadline (the last date for fresh or renewal students to apply),
+not the institute (L1) or district/state (L2) verification deadline or the portal closure date, which are usually later.
+If school (Pre-Matric) and college (Post-Matric) students have different dates, use the one this scholarship is for.`;
 
-CRITICAL REQUIREMENT FOR DEADLINES:
-1. You MUST find the student application submission deadline (the last date for fresh or renewal student applications to be submitted).
-2. Do NOT use the institutional verification (L1) deadline, state/district verification (L2) deadline, or final portal closure/billing date (which are usually later). If a table of dates is listed, select the student submission date, which is always the earliest.
-3. If the portal lists separate deadlines for school (Pre-Matric) and college (Post-Matric) students, prioritize the one relevant to "${title}".
-
-You must respond with a single, valid JSON object matching the following schema:
-{
-  "deadline": "YYYY-MM-DD" (Format strictly as YYYY-MM-DD. If unknown/continuous/always open, leave empty string. Do not guess),
-  "deadline_description": "string" (A short description of the deadline period, e.g., 'Expected August 2026', 'Applications close on 31st October'),
-  "official_source": "string" (Official department/provider URL),
-  "apply_url": "string" (Official direct application form/portal link URL)
-}
-Provide ONLY the raw JSON object.`;
-
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-    const payload = {
-        contents: [
-            {
-                parts: [
-                    {
-                        text: prompt
-                    }
-                ]
-            }
-        ],
-        tools: [
-            {
-                googleSearch: {}
-            }
-        ],
-    };
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+// Evidence-backed research (lib/research.js): value, official page, exact sentence, two independent answers
+async function researchDeadline(item) {
+    const found = await researchFacts({
+        subject: `the "${item.title}" scholarship by ${item.provider || 'its provider'}, 2026-27 application cycle`,
+        title: item.title,
+        context: DEADLINE_RULES,
+        knownSources: sources.sourcesFor(item),
+        knownSecondary: sources.secondaryFor(item),
+        fields: {
+            deadline: { instruction: '"YYYY-MM-DD" the student application deadline, or "" if not officially published', compare: compare.date },
+            deadline_description: { instruction: '"one short sentence about the current application window"', compare: compare.text },
         },
-        body: JSON.stringify(payload)
     });
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
-    }
-
-    const data = await response.json();
-    if (!data.candidates || data.candidates.length === 0) {
-        throw new Error("No response candidates returned from Gemini");
-    }
-
-    let contentText = data.candidates[0].content.parts[0].text.trim();
-    if (contentText.startsWith('```')) {
-        contentText = contentText.replace(/^```json\s*/i, '').replace(/```$/, '').trim();
-    }
-    return JSON.parse(contentText);
+    if (found.answered === 0) throw new Error(found.errors.join(' | ') || 'No answer from the research model');
+    sources.remember(db, item.id, found.facts, { dryRun });
+    return found.facts;
 }
 
 async function runDailyCheck() {
     inbox.ensureAgentTables(db);
+    sources.ensureColumn(db);
     if (inbox.skipIfDisabled(db, AGENT)) {
         fs.writeFileSync(SUMMARY_PATH, JSON.stringify({ skipped: true, checked: 0, pending_review: 0, check_failed: 0, changes: [], failed: [] }, null, 2));
         db.close();
@@ -94,9 +59,11 @@ async function runDailyCheck() {
     const daysBefore = inbox.getSetting(db, AGENT, 'window_days_before', 14);
     const daysAfter = inbox.getSetting(db, AGENT, 'window_days_after', 30);
 
-    // 1. Get all active scholarships
+    // 1. Get all active scholarships (deadline_status / deadline_expected: older local copies may not have them yet)
+    const hasDeadlineStatus = db.prepare('PRAGMA table_info(scholarships)').all().some(c => c.name === 'deadline_status');
     const allActive = db.prepare(`
-        SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at 
+        SELECT id, title, slug, provider, deadline, deadline_description, always_open, last_checked_at,
+               official_source, apply_url, source_pages${hasDeadlineStatus ? ', deadline_status, deadline_expected' : ''}
         FROM scholarships 
         WHERE status = 'Active' OR status IS NULL
     `).all();
@@ -108,9 +75,11 @@ async function runDailyCheck() {
     const nearDeadlineTargets = [];
     for (const s of allActive) {
         if (s.always_open === 1 || s.always_open === true) continue;
-        if (!s.deadline) continue;
+        // An "expected" row keeps its estimate in deadline_expected: when that date is near, the real one is worth finding
+        const windowDate = s.deadline || (s.deadline_status === 'expected' ? s.deadline_expected : '');
+        if (!windowDate) continue;
 
-        const deadlineDate = new Date(s.deadline);
+        const deadlineDate = new Date(windowDate);
         if (isNaN(deadlineDate.getTime())) continue;
 
         const diffTime = deadlineDate - today;
@@ -131,7 +100,8 @@ async function runDailyCheck() {
 
     // Filter Bucket B: High traffic candidates from cache not checked in last 7 days
     const highTrafficCandidates = db.prepare(`
-        SELECT s.id, s.title, s.slug, s.provider, s.deadline, s.deadline_description, s.always_open, s.last_checked_at, t.clicks, t.impressions
+        SELECT s.id, s.title, s.slug, s.provider, s.deadline, s.deadline_description, s.always_open, s.last_checked_at,
+               s.official_source, s.apply_url, s.source_pages, t.clicks, t.impressions
         FROM scholarships s
         JOIN gsc_traffic_cache t ON s.slug = t.slug
         WHERE (s.status = 'Active' OR s.status IS NULL)
@@ -141,14 +111,30 @@ async function runDailyCheck() {
     const targets = [];
     const targetIds = new Set();
 
-    // Priority 1: Add near-deadline targets up to 30
+    // Priority 1: deadlines labelled "unknown" or "expected" (CNT-111) are the ones students cannot trust, so they get
+    // most of the remaining slots, busiest pages first. Each one is checked once a week at most.
+    const unconfirmedSlots = inbox.getSetting(db, AGENT, 'unconfirmed_slots', 20);
+    const trafficBySlug = new Map(highTrafficCandidates.map(r => [r.slug, r.clicks || 0]));
+    const unconfirmed = allActive
+        .filter(s => ['unknown', 'expected'].includes(s.deadline_status) && s.always_open !== 1 && !targetIds.has(s.id))
+        .filter(s => !s.last_checked_at || (today - new Date(s.last_checked_at)) >= 7 * 24 * 60 * 60 * 1000)
+        .sort((a, b) => (trafficBySlug.get(b.slug) || 0) - (trafficBySlug.get(a.slug) || 0));
+    let unconfirmedAdded = 0;
+    for (const s of unconfirmed) {
+        if (targets.length >= maxChecks || unconfirmedAdded >= unconfirmedSlots) break;
+        targets.push({ ...s, reason: `Unconfirmed deadline (${s.deadline_status})` });
+        targetIds.add(s.id);
+        unconfirmedAdded++;
+    }
+
+    // Priority 2: Add near-deadline targets up to 30
     for (const t of nearDeadlineTargets) {
         if (targets.length >= maxChecks) break;
         targets.push(t);
         targetIds.add(t.id);
     }
 
-    // Priority 2: Fill remaining slots with high-traffic not checked in last 7 days
+    // Priority 3: Fill remaining slots with high-traffic not checked in last 7 days
     for (const s of highTrafficCandidates) {
         if (targets.length >= maxChecks) break;
         if (targetIds.has(s.id)) continue;
@@ -165,7 +151,14 @@ async function runDailyCheck() {
 
     console.log(`🎯 Selection results:`);
     console.log(`   - Near-deadline matching rows: ${nearDeadlineTargets.length}`);
+    console.log(`   - Unconfirmed deadlines waiting (unknown or expected, not checked this week): ${unconfirmed.length}; added today: ${unconfirmedAdded}`);
     console.log(`   - Selected total targets: ${targets.length}`);
+    if (args.includes('--select-only')) {
+        targets.forEach((t, i) => console.log(`   ${String(i + 1).padStart(2)}. ${t.slug} | ${t.reason}`));
+        console.log('Select-only: nothing was researched or written.');
+        db.close();
+        return;
+    }
     console.log(`👉 Starting sweep of targets...\n`);
 
     const insertChangelog = db.prepare(`
@@ -192,8 +185,22 @@ async function runDailyCheck() {
         console.log(`   - Reason: ${item.reason}`);
 
         try {
-            const data = await callGeminiForDeadline(item.title, item.provider || 'Government');
-            console.log(`   ✅ Grounding search successful. Proposed: ${data.deadline || 'NA'}`);
+            const facts = await researchDeadline(item);
+            const data = {
+                deadline: /^\d{4}-\d{2}-\d{2}$/.test(String(facts.deadline.value || '').trim()) ? String(facts.deadline.value).trim() : '',
+                deadline_description: facts.deadline_description.value || '',
+                official_source: facts.deadline.source || facts.deadline_description.source,
+            };
+            const evidence = { deadline: evidenceFor(facts.deadline), deadline_description: evidenceFor(facts.deadline_description) };
+            console.log(`   ✅ Researched. Deadline: ${data.deadline || 'not found'} [${facts.deadline.verdict}${facts.deadline.reason ? `: ${facts.deadline.reason}` : ''}]`);
+
+            // A row labelled unknown or expected has no confirmed date. An "uncertain" answer (no usable source page, a coaching
+            // site, or only one of two answers) is often the old default echoed back, and approving it would mark a guess "confirmed".
+            // Only an official page ("verified", "agreed") or a platform page ("secondary", always high risk) is proposed.
+            if (['unknown', 'expected'].includes(item.deadline_status) && data.deadline && facts.deadline.verdict === 'uncertain') {
+                console.log(`   ⏭️  Not proposing ${data.deadline}: the answer is uncertain and this deadline is unconfirmed.`);
+                data.deadline = '';
+            }
 
             const proposedDeadline = data.deadline || '';
             const proposedDescription = data.deadline_description || '';
@@ -210,7 +217,7 @@ async function runDailyCheck() {
                 }
                 return inbox.proposeFieldChange(db, {
                     agent: AGENT, scholarshipId: item.id, scholarshipTitle: item.title,
-                    field, oldValue, newValue, source, ...extra
+                    field, oldValue, newValue, source, evidence: evidence[field], ...extra
                 });
             };
 

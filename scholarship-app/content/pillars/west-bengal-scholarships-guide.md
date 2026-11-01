@@ -55,7 +55,7 @@ West Bengal does not run one scholarship system. It runs several, and each one b
 Unlike some states that use a single portal for almost everything, West Bengal splits its scholarships across different websites, based on who the scheme is for:
 
 - **SVMCM** (Swami Vivekananda Merit-cum-Means Scholarship) — mainly merit-based, open to General category students. Portal: svmcm.wbhed.gov.in.
-- **Oasis** — only for SC, ST, and OBC students, with separate Pre-Matric and Post-Matric versions. Portal: oasis.gov.in.
+- **Oasis** — only for SC, ST, and OBC students, with separate Pre-Matric and Post-Matric versions. Portal: oasis.gov.in. See our [OASIS portal guide](/guides/oasis-west-bengal) for step-by-step help.
 - **Aikyashree** — only for minority students (as defined by West Bengal's official minority list), also split into Pre-Matric, Post-Matric, and Merit-cum-Means versions. Portal: wbmdfcscholarship.in. See our [Aikyashree portal guide](/guides/aikyashree-west-bengal) for step-by-step help.
 - **Kanyashree Prakalpa** — specifically for girl students. Portal: wbkanyashree.gov.in.
 - **Sikshashree** — for SC and ST students, but with **no online portal at all** (more on this below).

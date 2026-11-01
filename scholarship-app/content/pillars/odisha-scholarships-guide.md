@@ -53,7 +53,7 @@ Odisha runs 21 different state scholarship schemes. That is a lot of schemes, an
 
 ## Almost everything is on one website
 
-Most Odisha state scholarships use a single website: **scholarship.odisha.gov.in**. You do not need to hunt for many different portals like students in some other states do.
+Most Odisha state scholarships use a single website: **scholarship.odisha.gov.in**. You do not need to hunt for many different portals like students in some other states do. Our [Odisha State Scholarship Portal guide](/guides/odisha-state-scholarship-portal) walks through registration, login and status checks.
 
 A few technical or department-run schemes may point to a separate government website. But for almost every scheme — Post-Matric, Pre-Matric, e-Medhabruti, and more — this one portal is where you register and apply.
 

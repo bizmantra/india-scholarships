@@ -26,6 +26,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# MCP connection files hold access tokens (never commit)
+.mcp.json
+.claude/settings.local.json
+
 # Vercel
 .vercel
 
@@ -43,3 +47,14 @@ next-env.d.ts
 # Database backups (never commit)
 backups/
 scholarship-app/data/scout/scout-report.md
+scholarship-app/data/morning-briefing.html
+scholarship-app/data/morning-briefing.json
+scholarship-app/data/quality-fixer-summary.json
+scholarship-app/data/traffic-watchdog.json
+scholarship-app/data/indexing-agent.json
+scholarship-app/data/fact-check-summary.json
+scholarship-app/data/source-backfill-report.md
+scholarship-app/data/source-backfill-summary.json
+
+# Browser profiles from automation runs
+scholarship-app/tmp/chrome-profile*/

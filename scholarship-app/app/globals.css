@@ -193,3 +193,67 @@ details summary svg {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* ---------- Admin theme (light / dark) ----------
+   Admin screens use these named colours (bg-cc-panel, text-cc-muted, …) instead of fixed shades,
+   so one data-theme attribute switches them. Dark is the default; light applies under [data-theme="light"].
+   Screens not converted yet sit in a data-theme="dark" area, so they stay dark inside a light shell
+   (see app/admin/layout.tsx). */
+.admin-theme,
+.admin-theme [data-theme="dark"] {
+  --cc-bg: #0b0f19;
+  --cc-panel: #0d1324;
+  --cc-raised: #111827;
+  --cc-border: #1f2937;
+  --cc-border-strong: #374151;
+  --cc-text: #ffffff;
+  --cc-text-2: #d1d5db;
+  --cc-muted: #9ca3af;
+  --cc-faint: #6b7280;
+  --cc-link: #93c5fd;
+  --cc-good: #34d399;
+  --cc-warn: #fbbf24;
+  --cc-bad: #fb7185;
+  --cc-user-bubble: rgba(37, 99, 235, 0.2);
+  --cc-user-text: #dbeafe;
+  color-scheme: dark;
+}
+.admin-theme[data-theme="light"] {
+  --cc-bg: #f4f6fb;
+  --cc-panel: #ffffff;
+  --cc-raised: #eef1f7;
+  --cc-border: #e2e6ef;
+  --cc-border-strong: #c9d0dd;
+  --cc-text: #0f172a;
+  --cc-text-2: #334155;
+  --cc-muted: #5b6474;
+  --cc-faint: #8a93a3;
+  --cc-link: #1d4ed8;
+  --cc-good: #047857;
+  --cc-warn: #b45309;
+  --cc-bad: #be123c;
+  --cc-user-bubble: #dbeafe;
+  --cc-user-text: #1e3a8a;
+  color-scheme: light;
+}
+/* The public site forces headings to dark ink (h1, h2, h3 above); in the admin they follow the theme instead */
+.admin-theme :is(h1, h2, h3) {
+  color: inherit;
+}
+
+@theme inline {
+  --color-cc-bg: var(--cc-bg);
+  --color-cc-panel: var(--cc-panel);
+  --color-cc-raised: var(--cc-raised);
+  --color-cc-border: var(--cc-border);
+  --color-cc-border-strong: var(--cc-border-strong);
+  --color-cc-text: var(--cc-text);
+  --color-cc-text-2: var(--cc-text-2);
+  --color-cc-muted: var(--cc-muted);
+  --color-cc-faint: var(--cc-faint);
+  --color-cc-link: var(--cc-link);
+  --color-cc-good: var(--cc-good);
+  --color-cc-warn: var(--cc-warn);
+  --color-cc-bad: var(--cc-bad);
+  --color-cc-user-bubble: var(--cc-user-bubble);
+  --color-cc-user-text: var(--cc-user-text);
+}

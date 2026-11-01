@@ -33,7 +33,7 @@ const articlesDirectory = path.join(process.cwd(), 'content/articles');
 /**
  * Extract H2/H3 headings for Table of Contents
  */
-function extractHeadings(markdown: string): { id: string; text: string; level: number }[] {
+export function extractHeadings(markdown: string): { id: string; text: string; level: number }[] {
   const lines = markdown.split('\n');
   const headings: { id: string; text: string; level: number }[] = [];
 
@@ -217,7 +217,7 @@ function parseFrontmatter(fileContent: string): { data: Record<string, any>; con
 /**
  * Lightweight Markdown to HTML Converter
  */
-function simpleMarkdownToHtml(markdown: string): string {
+export function simpleMarkdownToHtml(markdown: string): string {
   let html = markdown;
 
   // Escape HTML entities to prevent injection

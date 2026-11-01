@@ -272,6 +272,36 @@ export default function ToolsClient({ totalScholarships, totalValue }: Props) {
                 )}
             </main>
 
+            {/* ── What next ── */}
+            <section className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-4">
+                <div className="mb-5">
+                    <h2 className="text-xl font-black text-gray-900">What next</h2>
+                    <p className="text-sm text-gray-500 mt-0.5">One more check before you start applying for government jobs</p>
+                </div>
+                <a
+                    href="https://indiacalculators.org/exams/?utm_source=indiascholarships&utm_medium=referral&utm_campaign=tools-hub"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col sm:flex-row sm:items-center gap-4 rounded-3xl border border-gray-200 bg-white p-6 shadow-xs hover:shadow-md hover:border-brand transition-all duration-300"
+                >
+                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-brand-soft text-google-blue border border-brand-soft flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                        <ArrowRight className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="font-bold text-base text-gray-900 group-hover:text-google-blue transition-colors">
+                            Checked your scholarship? Now check if you&apos;re age-eligible for SSC CGL, SSC GD or RRB NTPC
+                        </h3>
+                        <p className="text-gray-500 text-sm leading-relaxed mt-1">
+                            Free age-limit checkers for SSC CGL, SSC GD and RRB NTPC — see the last year you can apply.
+                        </p>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-google-blue group-hover:text-brand transition-colors shrink-0">
+                        Check exam age limits
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                </a>
+            </section>
+
             {/* ── FAQ ── */}
             <section className="bg-white border-t border-gray-100 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-2xl mx-auto">

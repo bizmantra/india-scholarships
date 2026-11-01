@@ -1,6 +1,7 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByLevelAndCountry } from '@/lib/db';
+import { MIN_INDEXABLE_HUB_RESULTS } from '@/lib/utils';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -24,11 +25,13 @@ const LEVELS = [
     { slug: 'undergraduate', label: 'Undergraduate / Bachelors' }
 ];
 
+// Only combinations that have at least one scholarship are pre-built; the rest are real 404s.
 export async function generateStaticParams() {
     const params: { category: string; country: string }[] = [];
     for (const lvl of LEVELS) {
         for (const cnt of COUNTRIES) {
-            params.push({ category: lvl.slug, country: cnt.slug });
+            const found = await getScholarshipsByLevelAndCountry(lvl.slug, cnt.slug);
+            if (found.length > 0) params.push({ category: lvl.slug, country: cnt.slug });
         }
     }
     return params;
@@ -45,12 +48,16 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     // Append 'for Indian Students' if the destination is outside India
     const audienceModifier = countrySlug !== 'india' ? ' for Indian Students' : '';
 
+    // Hubs with only 1-2 scholarships are too thin to index; users can still reach them.
+    const resultCount = (await getScholarshipsByLevelAndCountry(categorySlug, countrySlug)).length;
+
     return {
         title: `Best ${level} Scholarships in ${country}${audienceModifier} ${currentYear} - ${nextYear} (Fully Funded)`,
         description: `Find top verified ${level} scholarships to study in ${country}. Get direct application links, eligibility requirements, stipend amounts, and step-by-step application instructions.`,
         alternates: {
             canonical: `https://www.indiascholarships.in/scholarships-for/${categorySlug}/in/${countrySlug}`,
-        }
+        },
+        ...(resultCount < MIN_INDEXABLE_HUB_RESULTS ? { robots: { index: false, follow: true } } : {}),
     };
 
 }
@@ -69,7 +76,21 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
     const countryName = cntObj.label;
 
     const scholarships = await getScholarshipsByLevelAndCountry(categorySlug, countrySlug);
-    
+
+    // An empty hub is a real 404, not a 200 "coming soon" page (Google treats those as soft 404s).
+    if (scholarships.length === 0) {
+        return notFound();
+    }
+
+    // Only link to sibling countries that actually have scholarships at this level.
+    const siblingCounts = await Promise.all(
+        COUNTRIES.filter(c => c.slug !== countrySlug).map(async c => ({
+            ...c,
+            count: (await getScholarshipsByLevelAndCountry(categorySlug, c.slug)).length,
+        }))
+    );
+    const siblingCountries = siblingCounts.filter(c => c.count > 0).slice(0, 4);
+
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
 
@@ -97,34 +118,16 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                     </p>
                 </div>
 
-                {/* Scholarships List or Fallback */}
-                {scholarships.length > 0 ? (
-                    <div className="mb-20">
-                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
-                    </div>
-                ) : (
-                    <div className="mb-20 bg-gray-50 border border-gray-200 rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto shadow-sm">
-                        <div className="w-16 h-16 bg-blue-100 text-google-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Content Verification in Progress</h2>
-                        <p className="text-gray-600 leading-relaxed mb-6">
-                            Our global research team is currently indexing and verifying active 2026/2027 university and government scholarships for <strong className="text-gray-900">{levelName}</strong> students in <strong className="text-gray-900">{countryName}</strong>. 
-                        </p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
-                            <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
-                            Updating Live Deadlines
-                        </div>
-                    </div>
-                )}
+                <div className="mb-20">
+                    <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} includeInternational />
+                </div>
 
                 {/* Explore Grid */}
+                {siblingCountries.length > 0 && (
                 <div className="mt-16 pt-10 border-t border-gray-100">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Study Abroad Destinations</h2>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        {COUNTRIES.filter(c => c.slug !== countrySlug).slice(0, 4).map(c => (
+                        {siblingCountries.map(c => (
                             <Link 
                                 key={c.slug}
                                 href={`/scholarships-for/${categorySlug}/in/${c.slug}`} 
@@ -136,6 +139,7 @@ export default async function LevelCountryHubPage({ params }: { params: Promise<
                         ))}
                     </div>
                 </div>
+                )}
             </main>
 
             <Footer />

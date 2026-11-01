@@ -13,6 +13,8 @@ interface Scholarship {
     amount_annual: number;
     amount_min?: number;
     deadline?: string;
+    deadline_status?: string | null;
+    deadline_expected?: string | null;
     application_mode: string;
     level: string;
     last_verified: string;
@@ -84,14 +86,28 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
 
         const date = new Date(trimmed);
         if (!isNaN(date.getTime())) {
+            // Date-only strings parse as UTC midnight; format in UTC so viewers west of UTC
+            // do not see the previous day.
             return date.toLocaleDateString('en-IN', {
                 month: 'short',
                 day: 'numeric',
-                year: 'numeric'
+                year: 'numeric',
+                timeZone: 'UTC'
             });
         }
 
         return trimmed;
+    };
+
+    // An estimated date reads "Expected ~31 Oct 2026", never as a deadline
+    const deadlineText = () => {
+        if (scholarship.deadline_status === 'expected' && scholarship.deadline_expected) {
+            const date = new Date(`${scholarship.deadline_expected}T00:00:00Z`);
+            if (!isNaN(date.getTime())) {
+                return `Expected ~${date.toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}`;
+            }
+        }
+        return formatDeadline(scholarship.deadline);
     };
 
     // Format amount
@@ -100,7 +116,10 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             return 'Amount Varies';
         }
         if (scholarship.amount_min && scholarship.amount_annual && scholarship.amount_min !== scholarship.amount_annual) {
-            return `₹${scholarship.amount_min.toLocaleString('en-IN')} - ₹${scholarship.amount_annual.toLocaleString('en-IN')}`;
+            // Some rows store min > annual; always show the range low to high.
+            const low = Math.min(scholarship.amount_min, scholarship.amount_annual);
+            const high = Math.max(scholarship.amount_min, scholarship.amount_annual);
+            return `₹${low.toLocaleString('en-IN')} - ₹${high.toLocaleString('en-IN')}`;
         }
         return `₹${scholarship.amount_annual.toLocaleString('en-IN')}`;
     };
@@ -127,7 +146,7 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-slate-200">
                     <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
                     <span className="text-slate-600 font-medium">
-                        Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
+                        Deadline: <strong className="text-slate-900">{deadlineText()}</strong>
                     </span>
                 </div>
             </Link>
@@ -157,7 +176,7 @@ export default function ScholarshipCard({ scholarship, viewMode = 'grid' }: Scho
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mb-3">
                 <span className="font-extrabold text-google-green text-sm">{formatAmount()}</span>
                 <span className="text-slate-600">
-                    Deadline: <strong className="text-slate-900">{formatDeadline(scholarship.deadline)}</strong>
+                    Deadline: <strong className="text-slate-900">{deadlineText()}</strong>
                 </span>
             </div>
 

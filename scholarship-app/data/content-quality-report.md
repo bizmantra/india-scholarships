@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-09-20
-Total Scholarships Audited: **500**
-Scholarships with Issues: **93** (18.6%)
+Generated on: 2026-11-01
+Total Scholarships Audited: **563**
+Scholarships with Issues: **392** (69.6%)
 
 ---
 
@@ -12,19 +12,19 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | Metric / Content Area | Number of Affected Scholarships | % of Total | Description |
 | :--- | :---: | :---: | :--- |
 | **Legacy Flagged** | 0 | 0.0% | Marked with `[LEGACY]` in title or slug |
-| **Missing Annual Amount** | 0 | 0.0% | Missing/0 annual amount (causes "upto 0k" display) |
-| **Missing Min Amount** | 19 | 3.8% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 1 | 0.2% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 25 | 5.0% | Deadline is in the past (before 2026-06-26) |
-| **Old Year References** | 26 | 5.2% | Mentions 2024, 2025, or earlier cycles |
-| **Incomplete Selection Criteria** | 0 | 0.0% | Missing or under 15 characters |
-| **Incomplete Renewal Policy** | 0 | 0.0% | Missing or under 15 characters |
-| **Incomplete Step Guide** | 0 | 0.0% | Missing or under 20 characters |
-| **Missing Documents** | 14 | 2.8% | No required documents listed |
+| **Missing Annual Amount** | 19 | 3.4% | Missing/0 annual amount (causes "upto 0k" display) |
+| **Missing Min Amount** | 23 | 4.1% | Missing/0 minimum amount |
+| **Missing Deadline Date** | 244 | 43.3% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 139 | 24.7% | Deadline is in the past (before 2026-11-01) |
+| **Old Year References** | 34 | 6.0% | Mentions 2024, 2025, or earlier cycles |
+| **Incomplete Selection Criteria** | 1 | 0.2% | Missing or under 15 characters |
+| **Incomplete Renewal Policy** | 5 | 0.9% | Missing or under 15 characters |
+| **Incomplete Step Guide** | 1 | 0.2% | Missing or under 20 characters |
+| **Missing Documents** | 10 | 1.8% | No required documents listed |
 | **Missing / Bad Apply Link** | 0 | 0.0% | No official website or application URLs |
-| **Missing Helpline** | 12 | 2.4% | Helpline is empty, "Not Specified", or generic |
+| **Missing Helpline** | 23 | 4.1% | Helpline is empty, "Not Specified", or generic |
 | **Missing FAQs** | 0 | 0.0% | FAQ block is empty or missing |
-| **Contains Raw HTML** | 2 | 0.4% | HTML tags (like `<p>`, `<a>`) in text fields |
+| **Contains Raw HTML** | 0 | 0.0% | HTML tags (like `<p>`, `<a>`) in text fields |
 
 ---
 
@@ -34,55 +34,55 @@ Here are the scholarships with the highest number of content quality issues:
 
 | Slug | Title | Issues Count | Key Gaps |
 | :--- | :--- | :---: | :--- |
-| `inspire-scholarship-for-higher-education-she` | **INSPIRE Scholarship for Higher Education (SHE)** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
-| `mahadbt-post-matric-scholarship-maharashtra` | **MahaDBT Post-Matric Scholarship (Maharashtra)** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
-| `sanchi-honnamma-scholarship-karnataka` | **Sanchi Honnamma Scholarship (Karnataka)** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
-| `foundation-for-excellence-ffe-scholarship` | **Foundation for Excellence (FFE) Scholarship** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
-| `tata-trusts-medical-and-healthcare-scholarship` | **Tata Trusts Medical and Healthcare Scholarship 2026-27** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Contains Unwanted Raw HTML Tags |
+| `state-government-dakshina-adhichatra-scholarship-government-dakshina-fellowship-maharashtr` | **State Government Dakshina Adhichatra Scholarship (Government Dakshina Fellowship), Maharashtra** | 6 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Incomplete Selection Criteria (empty); Incomplete/Missing Step Guide (empty); Missing Required Documents |
+| `maharashtra-state-council-of-examination-msce-scholarship-examinations-pre-upper-primary-s` | **Maharashtra State Council of Examination (MSCE) Scholarship Examinations (Pre-Upper Primary Scholarship - PUP for Class 5 & Pre-Secondary Scholarship - PSS for Class 8)** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2025-12-31); Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
+| `dr-ambedkar-post-matric-scholarship-for-economically-backward-classes-ebc-tripura` | **Dr. Ambedkar Post-Matric Scholarship for Economically Backward Classes (EBC), Tripura** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
+| `pema-khandu-defence-officer-coaching-scheme` | **Pema Khandu Defence Officer Coaching Scheme** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Missing Required Documents; Missing Helpline Contact Details |
+| `education-fee-reimbursement-scheme-for-open-category-students-maharashtra` | **Education Fee Reimbursement Scheme for Open Category Students, Maharashtra** | 5 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-06-30); Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
+| `lpu-jai-jawan-scholarship` | **LPU Jai Jawan Scholarship** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Missing Helpline Contact Details |
+| `merit-stipend-and-sanskrit-scholarship-scert` | **Merit Stipend and Sanskrit Scholarship – SCERT** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `mvpm-shri-smt-ramnarayanji-boob-memorial-trust-scholarship-program` | **MVPM – Shri & Smt Ramnarayanji Boob Memorial Trust Scholarship Program** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Missing Deadline Date; Incomplete Renewal Policy (too short: 13 chars) |
+| `scholarship-for-top-class-education-for-students-with-disabilities` | **Scholarship for Top Class Education for Students with Disabilities** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-10-31); Missing Helpline Contact Details |
+| `canara-bank-scholarship-portal-for-ugc-schemes` | **Canara Bank Scholarship Portal (for UGC Schemes)** | 4 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
+| `mahadbt-post-matric-scholarship-maharashtra` | **MahaDBT Post-Matric Scholarship (Maharashtra)** | 3 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
+| `sanchi-honnamma-scholarship-karnataka` | **Sanchi Honnamma Scholarship (Karnataka)** | 3 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Required Documents |
+| `dr-ambedkar-vidya-jyothi-scholarship-scheme` | **Dr. Ambedkar Vidya Jyothi Scholarship Scheme** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Missing Required Documents |
+| `post-matric-scholarship-for-obc-students-puducherry` | **Post-Matric Scholarship for OBC Students, Puducherry** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-09-30) |
+| `ignou-fee-exemption-scheme-for-scst-learners` | **IGNOU Fee Exemption Scheme for SC/ST Learners** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-09-15) |
+| `kerala-labour-welfare-board-higher-education-grant` | **Kerala Labour Welfare Board Higher Education Grant** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-12-31); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `tamil-nadu-naan-mudhalvan-upsc-prelims-scholarship-programme` | **Tamil Nadu Naan Mudhalvan UPSC Prelims Scholarship Programme** | 3 | Missing Min Amount; Expired Deadline (2025-07-10); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `concentrix-scholarship-program-2026-27` | **Concentrix Scholarship Program 2026-27** | 3 | Missing Min Amount; Expired Deadline (2026-10-30); Missing Helpline Contact Details |
+| `wings-women-inspiring-growth-in-stem-scholarship-program` | **WINGS (Women INspiring Growth in STEM) Scholarship Program** | 3 | Missing Min Amount; Expired Deadline (2026-10-31); Missing Helpline Contact Details |
+| `rupa-rahul-bajaj-scholarship-for-women-in-engineering` | **Rupa Rahul Bajaj Scholarship for Women in Engineering** | 3 | Missing Min Amount; Expired Deadline (2026-10-15); Missing Helpline Contact Details |
+| `sml-mahindra-scholarship-programme-saarthi-and-unnati` | **SML Mahindra Scholarship Programme (Saarthi and Unnati)** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2026-10-21); Missing Helpline Contact Details |
+| `samarthanam-trust-scholarship-for-students-with-disabilities` | **Samarthanam Trust Scholarship for Students with Disabilities** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Incomplete Renewal Policy (too short: 13 chars) |
+| `iit-madras-sbi-foundation-para-athlete-sports-scholarship-programme-phase-2` | **IIT Madras & SBI Foundation Para-Athlete Sports Scholarship Programme (Phase 2)** | 3 | Expired Deadline (2026-08-09); Incomplete Renewal Policy (too short: 14 chars); Invalid Apply URL format: "sbif-ace-pass.sbifoundation.info" |
+| `scholarship-for-pm-cares-children` | **Scholarship for PM CARES Children** | 3 | Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `assam-post-matric-scholarship-for-minority-communities` | **Assam Post Matric Scholarship for Minority Communities** | 3 | Missing Min Amount; Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `the-meghalaya-tribal-students-book-grant-post-matric-education` | **The Meghalaya Tribal Students' Book Grant (Post-matric Education)** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Deadline Date; Missing Helpline Contact Details |
+| `maharashtra-girls-merit` | **Maharashtra Girls Merit Scholarship** | 2 | Expired Deadline (2026-09-15); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `green-passage-scheme-technical-education-odisha` | **Green Passage Scheme - Technical Education (Odisha)** | 2 | Missing Min Amount; Missing Deadline Date |
+| `videsh-siksha-bruti-foreign-education-scholarship-odisha` | **Videsh Siksha Bruti - Foreign Education Scholarship (Odisha)** | 2 | Missing Min Amount; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `kc-mahindra-scholarship-for-post-graduate-studies-abroad` | **KC Mahindra Scholarship for Post-Graduate Studies Abroad** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `mukhyamantri-medhavi-vidyarthi-yojana-mmvy` | **Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)** | 2 | Missing Min Amount; Missing Deadline Date |
+| `sant-sohirobanath-ambiye-bursary-scheme` | **Sant Sohirobanath Ambiye Bursary Scheme** | 2 | Missing Min Amount; Missing Deadline Date |
+| `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 2 | Missing Deadline Date; Missing Required Documents |
+| `ssp-pre-matric-post-matric-scholarship-karnataka` | **SSP Pre-Matric & Post-Matric Scholarship (Karnataka)** | 2 | Missing Deadline Date; Missing Required Documents |
+| `nmms-scholarship-karnataka` | **NMMS Scholarship (Karnataka)** | 2 | Expired Deadline (2026-10-31); Missing Required Documents |
+| `nmms-scholarship-maharashtra` | **NMMS Scholarship (Maharashtra)** | 2 | Missing Deadline Date; Missing Required Documents |
+| `sbi-platinum-jubilee-asha-scholarship` | **SBI Platinum Jubilee Asha Scholarship 2026-27** | 2 | Expired Deadline (2026-09-19); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `narotam-sekhsaria-postgraduate-scholarship` | **Narotam Sekhsaria Postgraduate Scholarship 2026** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `glow-lovely-careers-scholarship-for-women` | **Glow & Lovely Careers Scholarship for Women 2026-27** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `tata-trusts-medical-and-healthcare-scholarship` | **Tata Trusts Medical and Healthcare Scholarship 2026-27** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `junior-merit-scholarship` | **Junior Merit Scholarship** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `post-matric-scholarship-for-differently-abled` | **Post-Matric Scholarship for Differently Abled** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `meghalaya-merit-scholarship` | **Meghalaya Merit Scholarship** | 2 | Old Year Reference (e.g. 2024 or 2025 in title or description); Missing Helpline Contact Details |
-| `acumen-india-fellowship` | **Acumen India Fellowship** | 2 | Expired Deadline (2025-10-30); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `meghalaya-merit-scholarship` | **Meghalaya Merit Scholarship** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `mahindra-all-india-talent-scholarship` | **Mahindra All India Talent Scholarship** | 2 | Expired Deadline (2026-09-15); Missing Helpline Contact Details |
+| `acumen-india-fellowship` | **Acumen India Fellowship** | 2 | Expired Deadline (2026-10-31); Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `lamp-fellowship` | **LAMP Fellowship** | 2 | Expired Deadline (2025-12-21); Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `fulbright-nehru-masters-fellowship` | **Fulbright-Nehru Master's Fellowships** | 2 | Expired Deadline (2025-05-14); Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `australia-awards-scholarships` | **Australia Awards Scholarships** | 2 | Missing Min Amount; Expired Deadline (2026-04-30) |
-| `dalhousie-university-graduate-fellowships` | **Dalhousie University Graduate Fellowships** | 2 | Expired Deadline (2026-01-15); Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `ontario-graduate-scholarship` | **Ontario Graduate Scholarship** | 2 | Expired Deadline (2026-01-15); Invalid Apply URL format: "Applicants must apply for the OGS directly through the graduate studies office of the Ontario university where they intend to register. Each university has its own application procedures, forms, and deadlines. For example, some universities may use online application portals (like MachForms mentioned by York University), while others might accept PDF applications (like Carleton University). It is crucial to check the specific university's graduate awards website for their 2026-2027 OGS application details and deadlines." |
-| `green-passage-scheme-technical-education-odisha` | **Green Passage Scheme - Technical Education (Odisha)** | 1 | Missing Min Amount |
-| `gopabandhu-sikhya-sahayata-yojana-odisha` | **Gopabandhu Sikhya Sahayata Yojana (Odisha)** | 1 | Always Open marked but rolling/continuous verification text is missing in descriptions |
-| `videsh-siksha-bruti-foreign-education-scholarship-odisha` | **Videsh Siksha Bruti - Foreign Education Scholarship (Odisha)** | 1 | Missing Min Amount |
-| `kc-mahindra-scholarship-for-post-graduate-studies-abroad` | **KC Mahindra Scholarship for Post-Graduate Studies Abroad** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `mukhyamantri-medhavi-vidyarthi-yojana-mmvy` | **Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)** | 1 | Missing Min Amount |
-| `assam-dhe-combined-merit-scholarship` | **Assam DHE Combined Merit Scholarship** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `sant-sohirobanath-ambiye-bursary-scheme` | **Sant Sohirobanath Ambiye Bursary Scheme** | 1 | Missing Min Amount |
-| `national-fellowship-scholarship-for-higher-education-of-st-students` | **National Fellowship & Scholarship for Higher Education of ST Students** | 1 | Missing Required Documents |
-| `nec-merit-scholarship` | **NEC Merit Scholarship** | 1 | Missing Required Documents |
-| `pre-matric-scholarship-for-students-with-disabilities` | **Pre-Matric Scholarship for Students with Disabilities** | 1 | Missing Required Documents |
-| `pm-scholarship-scheme-railways` | **PM Scholarship Scheme (Railways)** | 1 | Missing Required Documents |
-| `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 1 | Missing Required Documents |
-| `kotak-shiksha-nidhi-scholarship` | **Kotak Shiksha Nidhi Scholarship** | 1 | Missing Required Documents |
-| `vidyasaarathi-scholarship-csr-programs` | **Vidyasaarathi Scholarship (CSR Programs)** | 1 | Missing Required Documents |
-| `ssp-pre-matric-post-matric-scholarship-karnataka` | **SSP Pre-Matric & Post-Matric Scholarship (Karnataka)** | 1 | Missing Required Documents |
-| `nmms-scholarship-karnataka` | **NMMS Scholarship (Karnataka)** | 1 | Missing Required Documents |
-| `nmms-scholarship-maharashtra` | **NMMS Scholarship (Maharashtra)** | 1 | Missing Required Documents |
-| `lila-poonawalla-foundation-scholarship` | **Lila Poonawalla Foundation Scholarship** | 1 | Missing Required Documents |
-| `sbi-platinum-jubilee-asha-scholarship` | **SBI Platinum Jubilee Asha Scholarship 2026-27** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `narotam-sekhsaria-postgraduate-scholarship` | **Narotam Sekhsaria Postgraduate Scholarship 2026** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `glow-lovely-careers-scholarship-for-women` | **Glow & Lovely Careers Scholarship for Women 2026-27** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `junior-merit-scholarship` | **Junior Merit Scholarship** | 1 | Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `central-sector-scholarship-kerala-applicants-via-dce` | **Central Sector Scholarship (Kerala applicants via DCE)** | 1 | Missing Helpline Contact Details |
-| `pragyan-bharati-scheme` | **Pragyan Bharati Scheme** | 1 | Missing Helpline Contact Details |
-| `uttarakhand-state-merit-scholarship` | **Uttarakhand State Merit Scholarship** | 1 | Missing Helpline Contact Details |
-| `goa-dayanand-social-security-scheme-students` | **Goa Dayanand Social Security Scheme (Students)** | 1 | Missing Helpline Contact Details |
-| `manipur-state-merit-scholarship` | **Manipur State Merit Scholarship** | 1 | Missing Helpline Contact Details |
-| `tripura-state-merit-scholarship` | **Tripura State Merit Scholarship** | 1 | Missing Helpline Contact Details |
-| `arunachal-pradesh-state-merit-scholarship` | **Arunachal Pradesh State Merit Scholarship** | 1 | Missing Helpline Contact Details |
-| `ladakh-ut-merit-scholarship` | **Ladakh UT Merit Scholarship** | 1 | Missing Helpline Contact Details |
-| `jn-tata-endowment-for-higher-education` | **JN Tata Endowment for Higher Education** | 1 | Missing Min Amount |
-| `inlaks-shivdasani-foundation-scholarship` | **Inlaks Shivdasani Foundation Scholarship** | 1 | Missing Min Amount |
-| `mahindra-all-india-talent-scholarship` | **Mahindra All India Talent Scholarship** | 1 | Missing Helpline Contact Details |
-| `teach-for-india-fellowship` | **Teach For India Fellowship** | 1 | Missing Helpline Contact Details |
-| `young-india-fellowship-ashoka-university` | **Young India Fellowship (Ashoka University)** | 1 | Expired Deadline (2026-03-31) |
-| `rhodes-scholarship-india` | **Rhodes Scholarship (India)** | 1 | Missing Min Amount |
-| `punjab-attendance-scholarship-for-sc-girls` | **Attendance Scholarship for SC Girls** | 1 | Invalid Apply URL format: "Managed offline via respective government schools" |
+| `mp-pratibha-kiran-yojana` | **Pratibha Kiran Yojana (Madhya Pradesh)** | 2 | Expired Deadline (2026-09-30); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `cbse-merit-scholarship-for-single-girl-child` | **CBSE Merit Scholarship for Single Girl Child** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `iit-madras-merit-cum-means-alumni-tuition-support` | **IIT Madras Merit-cum-Means & Alumni Tuition Support** | 2 | Expired Deadline (2026-09-15); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `iit-kharagpur-endowment-donor-scholarships` | **IIT Kharagpur Endowment & Donor Scholarships** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 
-*Note: Showing top 50 rows. A complete list of all 93 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 392 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*

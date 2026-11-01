@@ -38,6 +38,11 @@ async function main() {
     let decisions = 0;
     for (let i = 0; i < pending.length; i++) {
         const p = pending[i];
+        // Study Abroad page changes write the sa_* tables; they are approved in the command center only
+        if (p.kind === 'sa_field_change') {
+            console.log(`[${i + 1}/${pending.length}] ${p.scholarship_title}: Study Abroad change to ${p.field}. Skipped here; approve it in /admin/agents.`);
+            continue;
+        }
         console.log(`[${i + 1}/${pending.length}] ${p.scholarship_title} (${p.scholarship_id}) · ${p.category}${p.risk === 'high' ? ' · ⚠️ high risk' : ''}`);
         if (p.kind === 'new_scholarship') {
             const record = JSON.parse(p.payload_json || '{}');

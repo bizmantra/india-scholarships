@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, unstable_rethrow } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByState, getAllStates } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
@@ -177,6 +177,9 @@ export default async function StateCategoryHubPage({ params }: { params: Promise
             </div>
         );
     } catch (error) {
+        // redirect() above works by throwing; without this the catch turns the
+        // intended "empty category -> state hub" redirect into a 404.
+        unstable_rethrow(error);
         return notFound();
     }
 }

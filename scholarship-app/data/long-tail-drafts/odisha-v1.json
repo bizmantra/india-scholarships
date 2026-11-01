@@ -1,0 +1,202 @@
+{
+  "guide": {
+    "id": "odisha-state-scholarship-portal",
+    "aliases": [
+      "odisha-scholarship",
+      "scholarship-odisha",
+      "ossp"
+    ],
+    "name": "Odisha State Scholarship Portal",
+    "state": "Odisha",
+    "fullTitle": "Odisha State Scholarship Portal 2026: Login & Status Guide",
+    "seoDesc": "Complete guide to the Odisha State Scholarship Portal (scholarship.odisha.gov.in). Learn how to check application status, student login, and upload documents.",
+    "officialUrl": "https://scholarship.odisha.gov.in",
+    "portalTag": "State Government Portal",
+    "description": "The Odisha State Scholarship Portal is the official single-window online platform of the Government of Odisha. Launched to integrate scholarships from multiple departments, it enables students to apply for Post-Matric, e-Medhabruti, and other schemes, track their application status, and receive funds directly via Direct Benefit Transfer (DBT).",
+    "stats": {
+      "activeSchemes": "17+ Active Schemes",
+      "beneficiaries": "",
+      "disbursementType": "Direct Benefit Transfer (DBT)",
+      "verificationMode": "Institute Verification + e-District Integration"
+    },
+    "loginSteps": [
+      {
+        "step": "01",
+        "title": "Visit the Portal & Register",
+        "desc": "Go to scholarship.odisha.gov.in and click on the 'Registration' button. Enter your Aadhaar number, mobile number, and complete the OTP validation."
+      },
+      {
+        "step": "02",
+        "title": "Student Login",
+        "desc": "Click on 'Student Login' on the homepage and log in using the Aadhaar number or User ID and the password you received during registration."
+      },
+      {
+        "step": "03",
+        "title": "NSP OTR (If Applicable)",
+        "desc": "For Centrally Sponsored Schemes, you must first generate a One Time Registration (OTR) number on the National Scholarship Portal (NSP) and provide it on the state portal."
+      },
+      {
+        "step": "04",
+        "title": "Fill Form & Submit",
+        "desc": "Select your department and scheme, verify that your auto-fetched caste and income details from the e-district portal are correct, upload documents under 200 KB, and submit."
+      }
+    ],
+    "statusSteps": [
+      {
+        "title": "Step 1: Open 'Know Your Status'",
+        "desc": "On the Odisha State Scholarship Portal homepage, look for and click on the 'Know Your Status' or 'Track Application' option."
+      },
+      {
+        "title": "Step 2: Enter Application Details",
+        "desc": "Enter your Aadhaar card number or your unique Application Number generated when you submitted the form."
+      },
+      {
+        "title": "Step 3: OTP Verification",
+        "desc": "Complete the OTP verification process using the mobile number linked to your Aadhaar."
+      },
+      {
+        "title": "Step 4: View Application Status",
+        "desc": "Your dashboard will display the progress of your application, showing stages like 'Pending at Institute', 'Payment Processed', or 'Payment Success'."
+      }
+    ],
+    "documents": [
+      {
+        "name": "Aadhaar Card",
+        "format": "PDF/JPEG",
+        "note": "Must be linked to an active bank account for DBT payment processing."
+      },
+      {
+        "name": "Income Certificate",
+        "format": "PDF (< 200 KB)",
+        "note": "Automatically fetched and verified via the e-district portal. Details must match."
+      },
+      {
+        "name": "Caste / Resident Certificate",
+        "format": "PDF (< 200 KB)",
+        "note": "Mandatory for SC/ST/OBC/SEBC schemes; fetched from the e-district portal."
+      },
+      {
+        "name": "Previous Exam Marksheet",
+        "format": "PDF (< 200 KB)",
+        "note": "Attested copy of the last passed qualifying examination."
+      },
+      {
+        "name": "Bonafide Certificate",
+        "format": "PDF (< 200 KB)",
+        "note": "Issued by your current educational institution."
+      }
+    ],
+    "topSchemes": [
+      {
+        "name": "Post Matric Scholarship for SC Students (Odisha)",
+        "slug": "post-matric-scholarship-for-sc-students-odisha",
+        "targetGroup": "SC",
+        "amount": "Up to ₹1,20,000/year"
+      },
+      {
+        "name": "Post Matric Scholarship for ST Students (Odisha)",
+        "slug": "post-matric-scholarship-for-st-students-odisha",
+        "targetGroup": "ST",
+        "amount": "Up to ₹5,50,000/year"
+      },
+      {
+        "name": "e-Medhabruti UG Merit Scholarship (Odisha)",
+        "slug": "e-medhabruti-ug-merit-scholarship-odisha",
+        "targetGroup": "General, SC, ST, OBC, SEBC, EBC",
+        "amount": "Up to ₹10,000/year"
+      },
+      {
+        "name": "BOC Scholarship - Nirman Shramik Kalyan Yojana (Odisha)",
+        "slug": "boc-scholarship-nirman-shramik-kalyan-yojana-odisha",
+        "targetGroup": "General, SC, ST, OBC, SEBC, EBC",
+        "amount": "Up to ₹48,000/year"
+      },
+      {
+        "name": "Gopabandhu Sikhya Sahayata Yojana (Odisha)",
+        "slug": "gopabandhu-sikhya-sahayata-yojana-odisha",
+        "targetGroup": "All",
+        "amount": "Up to ₹20,000/year"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "How do I check my Odisha scholarship status?",
+        "a": "Visit scholarship.odisha.gov.in, click on 'Know Your Status', enter your Aadhaar or Application Number, and verify with an OTP to see your current application stage."
+      },
+      {
+        "q": "Why was my Odisha scholarship application reverted?",
+        "a": "Applications are usually reverted if there is a mismatch between the details you entered and the records fetched from the e-district portal (like income or caste names). You must log in, correct the errors, and resubmit."
+      },
+      {
+        "q": "What should I do if my payment is not received despite approval?",
+        "a": "First, check your bank account to ensure it is Aadhaar-seeded and active for DBT. If everything is correct and issues persist, contact the scholarship helpline at 155335."
+      },
+      {
+        "q": "Is the NSP OTR mandatory for Odisha post-matric scholarships?",
+        "a": "Yes. For Centrally Sponsored Scholarship Schemes, students must generate a One-Time Registration (OTR) number on the National Scholarship Portal (NSP) before applying on the state portal."
+      },
+      {
+        "q": "What is the last date to apply on the Odisha Scholarship Portal for 2026?",
+        "a": "The closing date for most major schemes, including Post-Matric and e-Medhabruti, is November 30, 2026. However, deadlines can vary by scheme, so always verify on the official portal."
+      }
+    ],
+    "helpline": {
+      "phone": "155335 / 1800-345-6770",
+      "email": "scholarshipstsc@gmail.com",
+      "address": "",
+      "hours": ""
+    }
+  },
+  "sources": [
+    {
+      "field": "description",
+      "url": "https://subhadra-yojanain.com/wp-content/uploads/2026/09/Odisha-Scholarship-Portal-2026-27-How-to-Apply-Check-Status-and-Avoid-Common-Mistakes.webp",
+      "quote": "The Odisha State Scholarship Portal is the official single window of the Government of Odisha for student scholarships. It was launched on 28 October 2020 so that students would not have to fill separate forms for separate departments."
+    },
+    {
+      "field": "stats.activeSchemes",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHQigINo6DrbL1UdfTuSg_usU9uVciooDOgrXS-3gE5xxffaHxETFlHvp9-3DacG__xU2DbmQFBQo9g-L-eFLr6a2ftL1Y9uHgWwZpaFaNNoEyOTL3CZl1oj66WQCu6XcFzBZpjfKI6YrqAO106aQ=",
+      "quote": "With 17 schemes covering SC, ST, OBC, SEBC, EBC, minority, PwD, and meritorious students from Class 1 to PhD — there is a scholarship for almost every eligible student in Odisha."
+    },
+    {
+      "field": "loginSteps[1]",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHgzEjqOwGnMSW86oGUxGaMpn4HIfh9kzSh8mgrCwo7tnjO-8E_3KoKcYWX6EYzFXrfQvhNy4zdq4JFaqHU-yb99OEUvQjI-FbjhoC4WGnTOI7O9I0XNeSds9DVmro=",
+      "quote": "Now click on \"Student Login\". Login using the credentials received on your Email ID / Mobile Number."
+    },
+    {
+      "field": "loginSteps[2]",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFyQqDgg9oVYsog4PymaREhGGw8tH9NL1xKYp_9hJRouPBCLIfrx6HRI2gjFUcRFWTrB2Qte4z0iknM7bSMiApcjsRNfswkYuSN5vdd5GfE-CYJoQhUmsscNqhOEFCXi65xJ3T_bfGRPPPZPQk3BWhEqPUdfTDew==",
+      "quote": "All applicants (both fresh and renewal) under Centrally Sponsored Scholarship Schemes are required to generate One Time Registration (OTR) number in National Scholarship Portal (NSP) prior to their application in State Portal"
+    },
+    {
+      "field": "loginSteps[3]",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFyQqDgg9oVYsog4PymaREhGGw8tH9NL1xKYp_9hJRouPBCLIfrx6HRI2gjFUcRFWTrB2Qte4z0iknM7bSMiApcjsRNfswkYuSN5vdd5GfE-CYJoQhUmsscNqhOEFCXi65xJ3T_bfGRPPPZPQk3BWhEqPUdfTDew==",
+      "quote": "All applicants must ensure that during applying application online, the details of Income and caste fetched from e-district portal must match with the applicant's details"
+    },
+    {
+      "field": "statusSteps",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4bM-TOfu4p5H05wYgjMVDVQ7i4nXAcHNRSWPam3D7G9h-aquV7ceWE_pAhZt0TVOvu1WfUN6BfwzIyDQuxoXF0RjLU4KgIwmHSwGdSG4cS-HjrMrtBKC183xWerdUE1eAuFMMH9bUmxhiDZz6y6clwPLTp-E7o9r3p3Pkgpj8NXkwL27xHQwoji_sqjf_Ro7X",
+      "quote": "Look for and click on the 'Know Your Status' or 'Track Application' option, usually found on the homepage or in the 'Student Corner'. Enter your Aadhaar number or your unique Application Number. Complete the OTP verification process"
+    },
+    {
+      "field": "documents[1]",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHQigINo6DrbL1UdfTuSg_usU9uVciooDOgrXS-3gE5xxffaHxETFlHvp9-3DacG__xU2DbmQFBQo9g-L-eFLr6a2ftL1Y9uHgWwZpaFaNNoEyOTL3CZl1oj66WQCu6XcFzBZpjfKI6YrqAO106aQ=",
+      "quote": "Compress file size to under 200 KB using online tools."
+    },
+    {
+      "field": "faqs[1]",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFyQqDgg9oVYsog4PymaREhGGw8tH9NL1xKYp_9hJRouPBCLIfrx6HRI2gjFUcRFWTrB2Qte4z0iknM7bSMiApcjsRNfswkYuSN5vdd5GfE-CYJoQhUmsscNqhOEFCXi65xJ3T_bfGRPPPZPQk3BWhEqPUdfTDew==",
+      "quote": "In case of any mismatch, the application will be reverted."
+    },
+    {
+      "field": "helpline.phone",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwPumzbFyqTXnHj5E-Gvhdo8EO9U6PfHQmw74g4tSGFkqLmzsVx4T6Xh3Gj4pSS7iTcNIO2LyupcAbGNbNbyqfBvpbQfUvHY39nKmf8398QJd4zC9hXTaUpaeSJS8GwWS8-oQtm1lWm5KkpQLRMSAJ8pcYqw==",
+      "quote": "Helpline Toll-Free, 155335 / 1800-345-6770."
+    },
+    {
+      "field": "helpline.email",
+      "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHOM6bEDX835jF5-3Q5Tx8rD6GsjfSk-fmWomyOu8GCCNQp-0bpGS5OneHKyck-CVC1hjHALXzRQp02bzbHQSKlvwsi527PrgLpFrROxfBlfqacz_2kjQm6tFQmLJvhxx6lYQbclmGhp5cSyJUgSY=",
+      "quote": "Email : scholarshipstsc@gmail.com."
+    }
+  ]
+}

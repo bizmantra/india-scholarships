@@ -1,7 +1,8 @@
-import { notFound, redirect } from 'next/navigation';
+import { notFound, redirect, permanentRedirect, unstable_rethrow } from 'next/navigation';
 import Link from 'next/link';
 import { getScholarshipsByLevel, getAllLevels } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
+import PartnerJobsBox from '@/app/components/PartnerJobsBox';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -82,7 +83,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
         } else {
             const rawLevels = await getAllLevels();
             const rawLevel = rawLevels.find((l: string) => slugify(l) === levelSlug);
-            if (!rawLevel) return redirect('/scholarships-by-education');
+            if (!rawLevel) return permanentRedirect('/scholarships-by-education');
 
             displayName = rawLevel;
             description = `Scholarships specifically for ${rawLevel} students across India.`;
@@ -133,6 +134,9 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
 
+                    {/* One contextual link out to the jobs tracker for the same qualification */}
+                    <PartnerJobsBox level={displayName} campaign="level-hub" className="mb-4" />
+
                     <div className="mt-16 pt-10 border-t border-gray-100">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -153,6 +157,7 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
             </div>
         );
     } catch (error) {
+        unstable_rethrow(error);
         return redirect('/scholarships-by-education');
     }
 }

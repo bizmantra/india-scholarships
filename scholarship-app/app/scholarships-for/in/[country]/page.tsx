@@ -52,7 +52,12 @@ export default async function CountryHubPage({ params }: { params: Promise<{ cou
 
     const countryName = cntObj.label;
     const scholarships = await getInternationalScholarshipsByCountry(countrySlug);
-    
+
+    // An empty hub is a real 404, not a 200 "coming soon" page (Google treats those as soft 404s).
+    if (scholarships.length === 0) {
+        return notFound();
+    }
+
     const currentYear = new Date().getFullYear();
     const nextYear = currentYear + 1;
 
@@ -80,26 +85,9 @@ export default async function CountryHubPage({ params }: { params: Promise<{ cou
                     </p>
                 </div>
 
-                {/* Scholarships List or Fallback */}
-                {scholarships.length > 0 ? (
-                    <div className="mb-20">
-                        <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
-                    </div>
-                ) : (
-                    <div className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8 md:p-12 text-center max-w-2xl mx-auto mb-20">
-                        <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span className="text-2xl">⏳</span>
-                        </div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-3">Content Verification in Progress</h2>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                            Our global research team is currently indexing and verifying active 2026/2027 university and government scholarships for students in <strong className="text-gray-900">{countryName}</strong>. 
-                        </p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
-                            <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
-                            Updating Live Deadlines
-                        </div>
-                    </div>
-                )}
+                <div className="mb-20">
+                    <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} includeInternational />
+                </div>
             </main>
 
             <Footer />

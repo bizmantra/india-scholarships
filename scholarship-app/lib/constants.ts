@@ -28,3 +28,31 @@ export const HELPLINE_FALLBACKS = {
   SSP_KARNATAKA: "080-22634300",     // SSP Karnataka Helpdesk
   MAHADBT: "022-49150800",          // MahaDBT Maharashtra Helpdesk
 };
+
+// 🔎 OTHER NAMES PEOPLE SEARCH FOR A SCHEME
+// Google treats spellings like "Yasasvi" and "Yashasvi" as different words, so a page
+// only shows up for a spelling it actually contains. These are shown on the page
+// ("Also known as"), added to the meta description and to the structured data.
+export const SCHOLARSHIP_SEARCH_ALIASES: Record<string, string[]> = {
+  'pm-yashasvi-scholarship': ['PM YASASVI', 'PM Yashasvi', 'PM Yashaswi', 'Yasasvi Scholarship', 'Yashasvi Scholarship'],
+  'kanyashree-prakalpa-scheme-west-bengal': ['Kanyashree', 'Kanyasree', 'Kanyashri', 'Kanyasri', 'Kanya Shree', 'কন্যাশ্রী প্রকল্প'],
+  'vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka': ['Vidyasiri', 'Vidyasri', 'Vidya Siri', 'Vidhyasiri', 'ವಿದ್ಯಾಸಿರಿ'],
+  'aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'aikyashree-post-matric-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'aikyashree-pre-matric-scholarship-for-minorities-west-bengal': ['Aikyashree', 'Aikyasree', 'Aikyashri', 'Aikyasri', 'Aikya Shree', 'WBMDFC Scholarship', 'ঐক্যশ্রী'],
+  'e-medhabruti-ug-merit-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
+  'e-medhabruti-pg-merit-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
+  'e-medhabruti-technical-professional-scholarship-odisha': ['e-Medhabruti', 'Medhabruti', 'Medhavruti', 'Medhabrutti', 'Medhabriti', 'ମେଧାବୃତ୍ତି'],
+  'talliki-vandanam-scheme-ap': ['Talliki Vandanam', 'Thalliki Vandanam', 'Tallikivandanam', 'Thalli ki Vandanam', 'తల్లికి వందనం'],
+  'sikshashree-scholarship-scheme-west-bengal': ['Sikshashree', 'Shikshashree', 'Sikhashree', 'Siksha Shree', 'Shiksha Shree', 'শিক্ষাশ্রী'],
+  'pudhumai-penn-scheme-tamil-nadu': ['Pudhumai Penn', 'Puthumai Penn', 'Puthumai Pen', 'Pudhumai Pen', 'Moovalur Ramamirtham Ammaiyar Higher Education Assurance Scheme', 'புதுமைப் பெண்'],
+  'tamil-pudhalvan-scheme': ['Tamil Pudhalvan', 'Tamil Puthalvan', 'Thamizh Pudhalvan', 'தமிழ்ப் புதல்வன்'],
+  'ladli-lakshmi-yojana-mp': ['Ladli Lakshmi', 'Ladli Laxmi', 'Ladli Laxmi Yojana', 'Ladlilaxmi', 'लाड़ली लक्ष्मी'],
+  'bhagya-lakshmi-scheme-karnataka': ['Bhagya Lakshmi', 'Bhagyalakshmi', 'Bhagya Laxmi', 'ಭಾಗ್ಯಲಕ್ಷ್ಮಿ'],
+  'haryana-kalpana-chawla-chhatravritti-yojna': ['Kalpana Chawla Chhatravritti', 'Kalpana Chawla Chhatravriti', 'Kalpana Chawla Chatravriti', 'Kalpana Chawla Scholarship'],
+  'uchcha-shiksha-protsahan-chhatravriti-yojana': ['Uchcha Shiksha Protsahan Chhatravriti', 'Uchch Shiksha Protsahan Chhatravritti', 'Uchha Shiksha Protsahan', 'उच्च शिक्षा प्रोत्साहन छात्रवृत्ति'],
+  'jagananna-vidya-deevena-ap': ['Jagananna Vidya Deevena', 'Jagananna Vidya Devena', 'Jagana Vidya Deevena', 'Vidya Deevena', 'జగనన్న విద్యా దీవెన'],
+  'jagananna-vasathi-deevena-ap': ['Jagananna Vasathi Deevena', 'Jagananna Vasati Deevena', 'Jagananna Vasathi Devena', 'Vasathi Deevena', 'జగనన్న వసతి దీవెన'],
+  'mahadbt-post-matric-scholarship-maharashtra': ['MahaDBT', 'Maha DBT', 'MahaDBT Scholarship', 'Mahadbt Maharashtra'],
+  'kerala-kscste-prathibha-scholarship': ['KSCSTE Prathibha', 'Prathibha Scholarship', 'Pratibha Scholarship Kerala'],
+};

@@ -1,0 +1,3515 @@
+[
+  {
+    "table": "sa_facts",
+    "id": "germany.aps.fee_inr",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.annual_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.buffer_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.coracle_monthly_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.coracle_setup_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.expatrio_monthly_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.expatrio_setup_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.fintiba_monthly_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.fintiba_setup_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.blocked_account.monthly_withdrawal_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.fx.eur_inr",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.vfs.service_fee_inr",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "germany.visa.national_fee_eur",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "usa.fx.usd_inr",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "usa.living.monthly_average_usd",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "usa.visa.f1_mrv_fee_usd",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_facts",
+    "id": "usa.visa.sevis_i901_fee_usd",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "aps-india-certificate-verification-step-by-step",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "collateral-free-loan-approved-universities",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "expatrio-vs-fintiba-vs-coracle",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-3yr-bachelor-acceptance",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-anmeldung-tax-id",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-aps-certificate-guide",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-bavarian-grade-matrix",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-blocked-account-manual",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-blue-card-pr-pathway",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-daad-scholarship-master-guide",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-daad-scholarships-guide",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-destination-overview",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-ects-credit-mapping",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-education-loans-germany",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-engineering-directory",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-english-language-tests",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-financial-emergency-plan",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-fsp-studienkolleg-guide",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-german-language-exams-guide",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-german-language-levels",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-gre-gmat-germany-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-gre-gmat-waiver-directory",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-health-insurance-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-initial-72hr-survival-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-job-seeker-visa-strategy",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-ms-cs-directory",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-ms-data-science-directory",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-multiple-offers-decision-matrix",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-national-student-visa",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-offer-acceptance-payment",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-part-time-work-rules",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-public-vs-private",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-rbi-lrs-tcs-tax-rules",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-rejection-analysis-appeal",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-residence-permit-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-routes-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 2,
+        "code": "empty_seo_title",
+        "message": "SEO title is empty"
+      },
+      {
+        "rule": 2,
+        "code": "meta_description_length",
+        "message": "Meta description length is 0 characters (expected 110–170)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-rwth-aachen-portal-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-scholarship-directory-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-scholarship-panel-interview-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-securing-werkstudent-jobs",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-sop-europass-cv-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-student-visa-interview-questions",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-testas-exam-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-top-public-unis-profiles",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-total-cost-breakdown",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-tum-efv-entrance-exam-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-tum-munich-portal-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-uni-assist-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-uni-assist-portal-walkthrough",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-university-listing-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      },
+      {
+        "rule": 6,
+        "code": "broken_internal_link",
+        "message": "Internal link points to non-existent route: /study-abroad/study-in/germany/germany-master-university-profile-guide"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-vfs-appointment-hacks",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-vfs-document-checklist",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-visa-interview-prep",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-visa-routes-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "germany-winter-vs-summer-intakes",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "prodigy-vs-mpower-vs-sbi-loan-usa",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "section-80e-tax-deduction-worked-example",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "us-consulate-slot-booking-hacks",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "us-education-loans-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "us-f1-student-visa-application-checklist",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-3yr-bachelor-acceptance",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-assistantship-interview-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-assistantships-ta-ra-ga",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-cpt-internship-rules",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-destination-overview",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-ds160-form-filing-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-duolingo-det-preparation-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-f1-student-visa-master-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-f1-visa-interview-prep-questions",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-fall-vs-spring-intakes",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-fulbright-interview-prep",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-fulbright-scholarship-master-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-fulbright-tata-scholarships",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "empty_summary",
+        "message": "Summary is empty"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-gpa-conversion-matrix",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-gradcas-commonapp-portals",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-gre-gmat-waiver-directory",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-gre-quant-170-strategy",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-gre-verbal-awa-prep-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-green-card-eb2-niw-pathways",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-h1b-lottery-cap-exempt",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-health-insurance-waiver-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-i20-financial-proof-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-i20-issuance-deposit-payment",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-initial-72hr-survival-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-ms-data-science-business-analytics",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-ms-engineering-management-miso",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-multiple-offers-decision-matrix",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-off-campus-housing-lease",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-on-campus-jobs-20hr-rule",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-opt-stem-opt-extension",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-prerequisites-deficiency-courses",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-priority-vs-rolling-deadlines",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-public-vs-private-unis",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-rejection-analysis-appeal",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-routes-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 2,
+        "code": "empty_seo_title",
+        "message": "SEO title is empty"
+      },
+      {
+        "rule": 2,
+        "code": "meta_description_length",
+        "message": "Meta description length is 0 characters (expected 110–170)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-scholarship-directory-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-sop-lor-resume-us-standards",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-ssn-application-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-stem-opt-designated-ms-cs",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-toefl-ielts-duolingo-cutoffs",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-toefl-ielts-preparation-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-top-us-public-r1-unis",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-total-cost-breakdown",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-university-listing-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      },
+      {
+        "rule": 6,
+        "code": "broken_internal_link",
+        "message": "Internal link points to non-existent route: /study-abroad/study-in/usa/usa-master-university-profile-guide"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-visa-routes-hub-guide",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-wes-credential-evaluation-manual",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-wes-gpa-40-conversion",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_guides",
+    "id": "usa-work-experience-research-paper-points",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "chemnitz-university-of-technology-m-sc-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "fau-erlangen-nurnberg-ms-in-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "karlsruhe-institute-of-technology-m-sc-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "leibniz-university-hannover-msc-in-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "northeastern-university-boston-ms-in-computer-science",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "northeastern-university-boston-ms-in-information-systems",
+    "errors": [
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "otto-von-guericke-university-magdeburg-ms-in-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "rwth-aachen-master-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "saarland-university-msc-in-computer-science-informatics",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "tu-berlin-m-sc-computer-science-informatik",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "tu-braunschweig-ms-in-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "tu-darmstadt-msc-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "tu-dresden-m-sc-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "tum-technical-university-of-munich-m-sc-informatics",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "university-of-duisburg-essen-m-sc-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "university-of-hamburg-msc-data-science-and-artificial-intelligence",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_programs",
+    "id": "university-of-stuttgart-ms-in-computer-science",
+    "errors": [
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 13 programs in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 15 programs in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "arizona-state-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "chemnitz-university-of-technology",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "cmu-carnegie-mellon-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "columbia-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "fau-erlangen-nurnberg",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "gatech-georgia-tech",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "george-mason-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "heidelberg-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "karlsruhe-institute-of-technology",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "leibniz-university-hannover",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "lmu-munich-ludwig-maximilian",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "neu-northeastern-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "nyu-new-york-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "otto-von-guericke-university-magdeburg",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "purdue-university",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "rutgers-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "rwth-aachen-university",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "saarland-university",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "stevens-institute-of-technology",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "stony-brook-suny",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "suny-buffalo",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tamu-texas-a-m",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tu-berlin",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tu-braunschweig",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tu-darmstadt",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tu-dresden",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "tuhh-tuhamburg",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "uc-berkeley",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "uc-irvine-uci",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "uc-san-diego-ucsd",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "uiuc-university-of-illinois-urbana-champaign",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "umich-university-of-michigan-ann-arbor",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "uncc-unc-charlotte",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "university-of-bonn",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "university-of-duisburg-essen",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "university-of-freiburg",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "university-of-hamburg",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (0) repeated across 15 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "university-of-stuttgart",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_tuition_per_year",
+        "message": "Identical tuition_per_year (3000) repeated across 4 universities in germany"
+      },
+      {
+        "rule": 5,
+        "code": "identical_money_living_cost_per_year",
+        "message": "Identical living_cost_per_year (11904) repeated across 18 universities in germany"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "usc-university-of-southern-california",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "ut-arlington-uta",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "ut-austin",
+    "errors": [
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing official_source and checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "table": "sa_universities",
+    "id": "ut-dallas-utd",
+    "errors": [
+      {
+        "rule": 1,
+        "code": "boilerplate_summary",
+        "message": "Boilerplate summary: matches (/^\\s*complete 20\\d\\d guide to/i)"
+      },
+      {
+        "rule": 3,
+        "code": "banned_phrase",
+        "message": "Contains banned phrase matching /executive summary/i in body_md"
+      },
+      {
+        "rule": 4,
+        "code": "missing_source",
+        "message": "Missing checked_at for money/visa data"
+      }
+    ],
+    "warnings": []
+  }
+]

@@ -1,0 +1,590 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { AlertTriangle, Check, CheckCircle2, Circle, ExternalLink, Loader2, RotateCcw, X, XCircle } from 'lucide-react';
+import { afterDecision, api, CATEGORY_LABELS, handle, refreshActivity, refreshSummary, short } from './orchestrator';
+import { log, post, useStore, type Message, type Tone } from './store';
+import { LABELS as SA_LABELS, fieldType as saFieldType, parseTargetId } from '@/scripts/lib/sa-inbox';
+
+const toneText: Record<Tone, string> = {
+    good: 'text-cc-good',
+    warn: 'text-cc-warn',
+    bad: 'text-cc-bad',
+    neutral: 'text-cc-text-2',
+};
+
+export const Card = ({ children, accent }: { children: React.ReactNode; accent?: 'warn' | 'bad' | 'good' }) => (
+    <div className={`rounded-2xl border bg-cc-panel p-4 text-sm ${accent === 'warn' ? 'border-amber-500/40' : accent === 'bad' ? 'border-rose-500/40' : accent === 'good' ? 'border-emerald-500/30' : 'border-cc-border'}`}>
+        {children}
+    </div>
+);
+
+const Button = ({ children, onClick, tone = 'neutral', disabled }: { children: React.ReactNode; onClick: () => void; tone?: 'primary' | 'danger' | 'neutral'; disabled?: boolean }) => (
+    <button
+        onClick={onClick}
+        disabled={disabled}
+        className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all disabled:opacity-50 ${tone === 'primary'
+            ? 'bg-blue-600 text-white hover:bg-blue-500'
+            : tone === 'danger'
+                ? 'border border-rose-500/40 bg-rose-500/10 text-cc-bad hover:bg-rose-500/20'
+                : 'border border-cc-border-strong bg-cc-raised text-cc-text hover:border-cc-border-strong'}`}
+    >
+        {children}
+    </button>
+);
+
+export function MessageView({ message }: { message: Message }) {
+    switch (message.type) {
+        case 'user':
+            return <div className="ml-auto max-w-[85%] rounded-2xl bg-cc-user-bubble px-4 py-2 text-sm text-cc-user-text">{message.text}</div>;
+        case 'text':
+            return <div className={`max-w-[95%] whitespace-pre-line text-sm leading-relaxed ${toneText[message.tone || 'neutral']}`}>{message.text}</div>;
+        case 'plan':
+            return (
+                <Card>
+                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-cc-muted">Plan · {message.title}</p>
+                    <ol className="list-decimal space-y-1 pl-5 text-cc-text-2">
+                        {message.steps.map(s => <li key={s}>{s}</li>)}
+                    </ol>
+                </Card>
+            );
+        case 'gate':
+            return <GateCard message={message} />;
+        case 'summary':
+            return (
+                <Card>
+                    <p className="mb-2 font-bold text-cc-text">{message.title}</p>
+                    <div className="divide-y divide-cc-border">
+                        {message.lines.map((line, i) => (
+                            <div key={i} className="flex items-center justify-between gap-3 py-1.5">
+                                {line.action
+                                    ? <button onClick={() => handle(line.action!)} className="min-w-0 break-words text-left text-cc-link hover:text-cc-link hover:underline">{line.label}</button>
+                                    : <span className="min-w-0 whitespace-pre-wrap break-words text-cc-text-2">{line.label}</span>}
+                                <span className={`shrink-0 font-bold ${toneText[line.tone || 'neutral']}`}>{line.value}</span>
+                            </div>
+                        ))}
+                    </div>
+                </Card>
+            );
+        case 'proposals':
+            return <ProposalsCard message={message} />;
+        case 'run':
+            return <RunCard message={message} />;
+    }
+}
+
+function GateCard({ message }: { message: Extract<Message, { type: 'gate' }> }) {
+    const [working, setWorking] = useState(false);
+    return (
+        <Card accent="warn">
+            <p className="mb-1 flex items-center gap-2 font-bold text-cc-text"><AlertTriangle className="h-4 w-4 text-cc-warn" />{message.title}</p>
+            {message.body && <p className="mb-2 text-cc-muted">{message.body}</p>}
+            {message.bullets && message.bullets.length > 0 && (
+                <ul className="mb-3 list-disc space-y-0.5 pl-5 text-xs text-cc-muted">
+                    {message.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                    <li className="list-none text-cc-muted">…</li>
+                </ul>
+            )}
+            {message.resolved
+                ? <p className="text-xs font-bold text-cc-muted">{message.resolved}</p>
+                : (
+                    <div className="flex flex-wrap gap-2">
+                        {message.options.map(o => (
+                            <Button key={o.label} tone={o.tone} disabled={working} onClick={async () => {
+                                setWorking(true);
+                                try { await o.run(); } catch (e: any) { post({ type: 'text', tone: 'bad', text: `That didn't work: ${e.message}` }); }
+                                setWorking(false);
+                            }}>{o.label}</Button>
+                        ))}
+                    </div>
+                )}
+        </Card>
+    );
+}
+
+// ---------- Proposal cards: one per scholarship, most urgent first ----------
+
+interface Item {
+    id: number;
+    kind: string;
+    agent: string;
+    scholarship_id: string;
+    scholarship_title: string;
+    slug: string | null;
+    field: string | null;
+    old_value: string | null;
+    new_value: string | null;
+    payload_json: string | null;
+    evidence_json: string | null;
+    category: string;
+    risk: string;
+    source_citation: string | null;
+    times_proposed: number;
+    first_proposed_at: string;
+    clicks: number | null;
+    days_to_deadline: number | null;
+}
+
+type Decision = { state: 'approved' | 'rejected' | 'skipped' | 'undone' | 'error'; note?: string };
+
+function groupByScholarship(items: Item[]) {
+    const groups: { key: string; items: Item[] }[] = [];
+    for (const item of items) {
+        const key = item.kind === 'new_scholarship'
+            ? `new-${item.id}`
+            : item.kind === 'sa_new_page'
+                ? `sa-new-${item.id}`
+                : item.scholarship_id;
+        const group = groups.find(g => g.key === key);
+        if (group) group.items.push(item); else groups.push({ key, items: [item] });
+    }
+    return groups;
+}
+
+const FIELD_LABELS: Record<string, string> = {
+    deadline: 'Deadline',
+    deadline_description: 'Deadline text',
+    amount_annual: 'Annual amount',
+    amount_min: 'Minimum amount',
+    official_source: 'Official source',
+    apply_url: 'Apply link',
+    helpline: 'Helpline',
+    docs_needed: 'Documents needed',
+};
+
+const formatValue = (field: string | null, v: string | null) => {
+    if (v === null || v === '') return '(empty)';
+    if (field === 'docs_needed' && v.startsWith('[')) {
+        try { return (JSON.parse(v) as string[]).join(' · ') || '(empty)'; } catch { /* show as text */ }
+    }
+    if (field?.startsWith('amount_') && /^\d+$/.test(v)) return `₹${Number(v).toLocaleString('en-IN')}`;
+    return v;
+};
+
+function ProposalsCard({ message }: { message: Extract<Message, { type: 'proposals' }> }) {
+    const [items, setItems] = useState<Item[]>([]);
+    const [total, setTotal] = useState(0);
+    const [loaded, setLoaded] = useState(false);
+    const [shown, setShown] = useState(message.pageSize);
+    const [decisions, setDecisions] = useState<Record<number, Decision>>({});
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const q = new URLSearchParams({ limit: '200' });
+        if (message.query.category) q.set('category', message.query.category);
+        if (message.query.risk) q.set('risk', message.query.risk);
+        api<{ items: Item[]; total: number }>(`inbox?${q}`)
+            .then(r => { setItems(r.items); setTotal(r.total); })
+            .catch(e => setError(e.message))
+            .finally(() => setLoaded(true));
+    }, [message.query.category, message.query.risk]);
+
+    const groups = groupByScholarship(items);
+    const visible = groups.slice(0, shown);
+
+    const decide = async (ids: number[], action: 'approve' | 'reject', force = false) => {
+        try {
+            const r = await api<{ done: number[]; skipped: { id: number; reason: string }[] }>('decide', { method: 'POST', body: JSON.stringify({ ids, action, force }) });
+            const next: Record<number, Decision> = {};
+            r.done.forEach(id => { next[id] = { state: action === 'approve' ? 'approved' : 'rejected' }; });
+            r.skipped.forEach(s => { next[s.id] = { state: 'error', note: s.reason }; });
+            setDecisions(d => ({ ...d, ...next }));
+            log({ agent: 'command-center', system: 'Turso', kind: 'ok', text: `${action === 'approve' ? 'Approved' : 'Rejected'} ${r.done.length} item(s)` });
+            afterDecision();
+        } catch (e: any) {
+            const next: Record<number, Decision> = {};
+            ids.forEach(id => { next[id] = { state: 'error', note: e.message }; });
+            setDecisions(d => ({ ...d, ...next }));
+        }
+    };
+
+    const undo = async (id: number) => {
+        try {
+            const r = await api<{ ok: boolean; message: string }>('undo', { method: 'POST', body: JSON.stringify({ id }) });
+            setDecisions(d => ({ ...d, [id]: { state: 'undone', note: r.message } }));
+            afterDecision();
+        } catch (e: any) {
+            setDecisions(d => ({ ...d, [id]: { ...d[id], note: e.message } }));
+        }
+    };
+
+    if (!loaded) return <Card><Loader2 className="h-4 w-4 animate-spin text-cc-muted" /></Card>;
+    if (error) return <Card accent="bad"><p className="text-cc-bad">{error}</p></Card>;
+    if (groups.length === 0) return <Card><p className="text-cc-muted">Nothing pending in {message.title.toLowerCase()}.</p></Card>;
+
+    return (
+        <div className="space-y-3">
+            <p className="text-xs font-bold uppercase tracking-wider text-cc-muted">
+                {message.title} · {total.toLocaleString('en-IN')} item(s){total > items.length ? `, showing the ${items.length} most urgent` : ''}
+            </p>
+            {visible.map(group => {
+                const first = group.items[0];
+                const pendingIds = group.items.filter(i => !decisions[i.id] || decisions[i.id].state === 'error').map(i => i.id);
+                const isNew = first.kind === 'new_scholarship';
+                const isSaNew = first.kind === 'sa_new_page';
+                const record = isNew ? JSON.parse(first.payload_json || '{}') : null;
+                const evidence = JSON.parse(first.evidence_json || '{}');
+                const high = group.items.some(i => i.risk === 'high');
+                return (
+                    <Card key={group.key} accent={high ? 'bad' : first.category === 'date_change' ? 'warn' : undefined}>
+                        <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-cc-muted">
+                            <span className="font-bold uppercase tracking-wider">{isSaNew ? 'New page (draft)' : (CATEGORY_LABELS[first.category] || first.category)}</span>
+                            {high && <span className="rounded bg-rose-500/15 px-1.5 py-0.5 font-bold text-cc-bad">Risky</span>}
+                            {first.days_to_deadline !== null && first.days_to_deadline !== undefined && Math.abs(first.days_to_deadline) <= 60 && (
+                                <span>{first.days_to_deadline >= 0 ? `Closes in ${first.days_to_deadline} day(s)` : `Closed ${-first.days_to_deadline} day(s) ago`}</span>
+                            )}
+                            {Number(first.clicks) > 0 && <span>{Number(first.clicks).toLocaleString('en-IN')} clicks</span>}
+                            {first.times_proposed > 1 && <span>Proposed {first.times_proposed}×</span>}
+                        </div>
+                        <p className="mb-2 font-bold text-cc-text">
+                            {pageLink(first)
+                                ? <a href={pageLink(first)!} target="_blank" rel="noreferrer" className="hover:underline">{first.scholarship_title}</a>
+                                : first.scholarship_title}
+                            {isSaNew && <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 text-[11px] font-semibold text-cc-warn">Draft</span>}
+                            {first.kind === 'sa_field_change' && <span className="ml-2 text-[11px] font-normal text-cc-muted">{pageLink(first) || 'Study Abroad'}</span>}
+                        </p>
+
+                        {isSaNew ? (
+                            <SaNewPageCard item={first} />
+                        ) : isNew ? (
+                            <div className="space-y-1 text-xs text-cc-text-2">
+                                <p>{record.provider || '—'} · {record.state || 'All India'} · {record.level || '—'}</p>
+                                <p>Amount: {record.amount_description || (record.amount_annual ? `₹${Number(record.amount_annual).toLocaleString('en-IN')}` : '—')}</p>
+                                <p>Deadline: {record.deadline || record.deadline_description || '—'}</p>
+                                <p>AI confidence: <span className={evidence.confidence === 'High' ? 'text-cc-good' : 'text-cc-warn'}>{evidence.confidence || '—'}</span>
+                                    {evidence.gaps?.length ? <span className="text-cc-muted"> · missing: {evidence.gaps.join(', ')}</span> : null}</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-2">
+                                {group.items.map(i => (
+                                    <div key={i.id} className="text-xs">
+                                        {i.kind === 'sa_field_change' ? <SaChange item={i} /> : <>
+                                            <p className="text-cc-muted">{FIELD_LABELS[i.field || ''] || i.field}</p>
+                                            <p className="break-words">
+                                                <span className="text-cc-muted line-through">{formatValue(i.field, i.old_value)}</span>
+                                                <span className="mx-1.5 text-cc-faint">→</span>
+                                                <span className="text-cc-text">{formatValue(i.field, i.new_value)}</span>
+                                            </p>
+                                            <EvidenceLine json={i.evidence_json} field={i.field} />
+                                        </>}
+                                        <DecisionLine decision={decisions[i.id]} onUndo={() => undo(i.id)} onForce={() => decide([i.id], 'approve', true)} />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {!isSaNew && first.source_citation && /^https?:/.test(first.source_citation) && (
+                            <a href={first.source_citation} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-cc-link hover:underline">
+                                Source <ExternalLink className="h-3 w-3" />
+                            </a>
+                        )}
+                        {(isNew || isSaNew) && <DecisionLine decision={decisions[first.id]} onUndo={() => undo(first.id)} />}
+
+                        {pendingIds.length > 0 && (
+                            <div className="mt-3 flex flex-wrap gap-2">
+                                <Button tone="primary" onClick={() => decide(pendingIds, 'approve')}>{pendingIds.length > 1 ? `Approve ${pendingIds.length}` : 'Approve'}</Button>
+                                <Button tone="danger" onClick={() => decide(pendingIds, 'reject')}>Reject</Button>
+                            </div>
+                        )}
+                    </Card>
+                );
+            })}
+            {groups.length > shown && (
+                <Button onClick={() => setShown(s => s + message.pageSize)}>Show {Math.min(message.pageSize, groups.length - shown)} more</Button>
+            )}
+            {isNewScholarshipList(message) && Object.values(decisions).some(d => d.state === 'approved') && (
+                <Button tone="primary" onClick={() => handle('Run the scout publisher')}>Publish approved scholarships now</Button>
+            )}
+        </div>
+    );
+}
+
+// ---------- Study Abroad page changes: short fields inline, long text as a readable diff ----------
+
+function pageLink(item: Item) {
+    if (item.kind === 'sa_field_change' || item.kind === 'sa_new_page') {
+        try { return JSON.parse(item.payload_json || '{}').path || null; } catch { return null; }
+    }
+    return item.slug ? `/scholarships/${item.slug}` : null;
+}
+
+function SaNewPageCard({ item }: { item: Item }) {
+    let fields: Record<string, unknown> = {};
+    try { fields = JSON.parse(item.new_value || '{}'); } catch { /* invalid json */ }
+    const target = parseTargetId(item.scholarship_id);
+    const table = target?.table || '';
+    const country = fields.country ? String(fields.country).toUpperCase() : '';
+    const summary = fields.summary ? String(fields.summary) : (fields.value ? String(fields.value) : fields.notes ? String(fields.notes) : '');
+    const summaryPreview = summary.length > 300 ? summary.slice(0, 300) + '…' : summary;
+    const fieldCount = Object.keys(fields).length;
+    const source = (typeof fields.official_source === 'string' ? fields.official_source : null) || item.source_citation;
+
+    return (
+        <div className="space-y-2 text-xs text-cc-text-2">
+            <div className="flex flex-wrap items-center gap-2 text-cc-muted">
+                <span className="font-semibold text-cc-text">{table}</span>
+                {country && <span>· {country}</span>}
+                <span>· {fieldCount} fields</span>
+            </div>
+            {summaryPreview && (
+                <p className="leading-relaxed text-cc-text-2">{summaryPreview}</p>
+            )}
+            {source && /^https?:\/\//.test(source) && (
+                <div>
+                    <a href={source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-cc-link hover:underline">
+                        Official source <ExternalLink className="h-3 w-3" />
+                    </a>
+                </div>
+            )}
+            <details className="mt-2 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 font-medium text-cc-link">Preview JSON</summary>
+                <pre className="max-h-60 overflow-auto border-t border-cc-border p-2 font-mono text-[11px] leading-relaxed text-cc-text">
+                    {JSON.stringify(fields, null, 2)}
+                </pre>
+            </details>
+        </div>
+    );
+}
+
+// FAQs and JSON shown as readable text, so the diff is about words, not brackets
+function readable(type: string | undefined, value: string | null) {
+    if (value === null || value === undefined || value === '') return '';
+    if (type === 'faq') {
+        try { return (JSON.parse(value) as { q: string; a: string }[]).map(f => `Q: ${f.q}\nA: ${f.a}`).join('\n\n'); } catch { return value; }
+    }
+    if (type === 'json') {
+        try { return JSON.stringify(JSON.parse(value), null, 2); } catch { return value; }
+    }
+    return value;
+}
+
+// Line diff (longest common subsequence); pages are a few hundred lines at most
+function lineDiff(a: string, b: string) {
+    const x = a.split('\n'), y = b.split('\n');
+    const n = x.length, m = y.length;
+    const dp: number[][] = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = x[i] === y[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const out: { t: 'same' | 'del' | 'add'; s: string }[] = [];
+    let i = 0, j = 0;
+    while (i < n && j < m) {
+        if (x[i] === y[j]) { out.push({ t: 'same', s: x[i] }); i++; j++; }
+        else if (dp[i + 1][j] >= dp[i][j + 1]) out.push({ t: 'del', s: x[i++] });
+        else out.push({ t: 'add', s: y[j++] });
+    }
+    while (i < n) out.push({ t: 'del', s: x[i++] });
+    while (j < m) out.push({ t: 'add', s: y[j++] });
+    return out;
+}
+
+const words = (t: string) => (t.trim() ? t.trim().split(/\s+/).length : 0);
+
+function SaChange({ item }: { item: Item }) {
+    const target = parseTargetId(item.scholarship_id);
+    const type = target ? saFieldType(target.table, item.field || '') : undefined;
+    const label = SA_LABELS[(item.field || '') as keyof typeof SA_LABELS] || item.field;
+    const long = type === 'markdown' || type === 'faq' || type === 'json';
+    const before = readable(type, item.old_value), after = readable(type, item.new_value);
+    if (!long) {
+        return <>
+            <p className="text-cc-muted">{label}</p>
+            <p className="break-words">
+                <span className="text-cc-muted line-through">{before || '(empty)'}</span>
+                <span className="mx-1.5 text-cc-faint">→</span>
+                <span className="text-cc-text">{after || '(empty)'}</span>
+            </p>
+        </>;
+    }
+    const diff = lineDiff(before, after);
+    const added = diff.filter(d => d.t === 'add').length, removed = diff.filter(d => d.t === 'del').length;
+    return (
+        <div>
+            <p className="text-cc-muted">{label} · {words(before).toLocaleString('en-IN')} → {words(after).toLocaleString('en-IN')} words · {added} line(s) added, {removed} removed</p>
+            <details className="mt-1 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 text-cc-link">Read the changes</summary>
+                <div className="max-h-[28rem] overflow-auto border-t border-cc-border px-2 py-1.5 font-mono text-[11px] leading-relaxed">
+                    {diff.map((d, n) => (
+                        <div key={n} className={`whitespace-pre-wrap break-words ${d.t === 'add' ? 'bg-emerald-500/10 text-cc-good' : d.t === 'del' ? 'bg-rose-500/10 text-cc-bad line-through' : 'text-cc-text-2'}`}>
+                            {d.t === 'add' ? '+ ' : d.t === 'del' ? '− ' : '  '}{d.s || ' '}
+                        </div>
+                    ))}
+                </div>
+            </details>
+            <details className="mt-1 rounded-lg border border-cc-border bg-cc-raised">
+                <summary className="cursor-pointer select-none px-2 py-1.5 text-cc-link">Read the new version in full</summary>
+                <div className="max-h-[28rem] overflow-auto whitespace-pre-wrap break-words border-t border-cc-border px-2 py-1.5 text-cc-text">{after || '(empty)'}</div>
+            </details>
+        </div>
+    );
+}
+
+// What the research found for this change: verdict, source page, the exact sentence, and both answers if they differ
+const VERDICTS: Record<string, { label: string; className: string }> = {
+    verified: { label: 'Verified: two answers agree, sentence found on the page', className: 'bg-emerald-500/10 text-cc-good' },
+    agreed: { label: 'Two answers agree (sentence not confirmed on the page)', className: 'bg-blue-500/10 text-cc-link' },
+    secondary: { label: 'Two answers agree, but no official page (platform or listing site only)', className: 'bg-amber-500/10 text-cc-warn' },
+    uncertain: { label: 'Uncertain', className: 'bg-amber-500/10 text-cc-warn' },
+};
+// Evidence score (scripts/lib/evidence.js): 0-100 with the working shown
+const BANDS: Record<string, string> = {
+    strong: 'bg-emerald-500/10 text-cc-good',
+    fair: 'bg-blue-500/10 text-cc-link',
+    weak: 'bg-amber-500/10 text-cc-warn',
+};
+// What kind of site the source page is on (see scripts/lib/source-tiers.js)
+const TIER_LABELS: Record<string, string> = {
+    official: 'official site', provider: 'provider site', platform: 'application platform', aggregator: 'listing site', news: 'news site',
+};
+
+export function EvidenceLine({ json, field }: { json: string | null; field: string | null }) {
+    if (!json) return <p className="mt-1 text-[11px] text-cc-faint">No evidence recorded (proposed before evidence was required)</p>;
+    let e: any;
+    try { e = JSON.parse(json); } catch { return null; }
+    if (!e?.verdict) return null;
+    const v = VERDICTS[e.verdict] || VERDICTS.uncertain;
+    let host = '';
+    try { host = new URL(e.source).host.replace(/^www\./, ''); } catch { /* no source */ }
+    return (
+        <div className="mt-1.5 space-y-1 rounded-lg border border-cc-border bg-cc-raised p-2 text-[11px]">
+            <p className="flex flex-wrap items-center gap-1.5">
+                <span className={`rounded px-1.5 py-0.5 font-bold ${v.className}`}>{v.label}{e.verdict === 'uncertain' && e.reason ? `: ${e.reason}` : ''}</span>
+                {host && (
+                    <a href={e.source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-cc-link hover:underline">
+                        {host} <ExternalLink className="h-3 w-3" />
+                    </a>
+                )}
+                {typeof e.score === 'number' && (
+                    <span className={`rounded px-1.5 py-0.5 font-bold ${BANDS[e.band] || BANDS.weak}`} title="Evidence score out of 100: see the breakdown below">
+                        Evidence {e.score}/100
+                    </span>
+                )}
+                {host && <span className={e.officialSource ? 'text-cc-good' : 'text-cc-warn'}>{e.officialSource ? 'official site' : TIER_LABELS[e.tier] || 'other site'}</span>}
+                {e.specificSource === false && <span className="text-cc-warn">home page only</span>}
+            </p>
+            {e.quote && <p className="italic text-cc-text-2">"{e.quote}"</p>}
+            {Array.isArray(e.signals) && e.signals.length > 0 && (
+                <details className="text-cc-muted">
+                    <summary className="cursor-pointer select-none">How the score adds up</summary>
+                    <ul className="mt-1 space-y-0.5">
+                        {e.signals.map((s: { label: string; points: number }, n: number) => (
+                            <li key={n}>
+                                <span className={`inline-block w-8 font-mono ${s.points < 0 ? 'text-cc-warn' : s.points > 0 ? 'text-cc-good' : 'text-cc-faint'}`}>{s.points > 0 ? '+' : ''}{s.points}</span>
+                                {s.label}
+                            </li>
+                        ))}
+                    </ul>
+                </details>
+            )}
+            {Array.isArray(e.alternatives) && e.alternatives.length > 1 && (
+                <ul className="space-y-0.5 text-cc-muted">
+                    {e.alternatives.map((a: any, n: number) => (
+                        <li key={n}>Answer {n + 1}: <span className="text-cc-text-2">{formatValue(field, typeof a.value === 'string' ? a.value : JSON.stringify(a.value))}</span></li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
+const isNewScholarshipList = (m: Extract<Message, { type: 'proposals' }>) => m.query.category === 'new_scholarship';
+
+function DecisionLine({ decision, onUndo, onForce }: { decision?: Decision; onUndo: () => void; onForce?: () => void }) {
+    if (!decision) return null;
+    if (decision.state === 'approved') {
+        return <p className="mt-1 flex items-center gap-2 text-cc-good"><CheckCircle2 className="h-3.5 w-3.5" />Approved
+            <button onClick={onUndo} className="inline-flex items-center gap-1 text-cc-muted hover:text-cc-text"><RotateCcw className="h-3 w-3" />Undo</button></p>;
+    }
+    if (decision.state === 'rejected') return <p className="mt-1 flex items-center gap-1.5 text-cc-muted"><XCircle className="h-3.5 w-3.5" />Rejected. It won't be proposed again.</p>;
+    if (decision.state === 'undone') return <p className="mt-1 text-cc-muted">{decision.note}</p>;
+    return (
+        <p className="mt-1 text-cc-warn">
+            {decision.note}
+            {onForce && /changed to/.test(decision.note || '') && <button onClick={onForce} className="ml-2 underline">Apply anyway</button>}
+        </p>
+    );
+}
+
+// ---------- Live run card: asks GitHub for the run's steps every few seconds ----------
+
+interface RunStatus {
+    found: boolean;
+    url?: string;
+    status?: string;
+    conclusion?: string | null;
+    steps: { name: string; status: string; conclusion: string | null; seconds: number | null }[];
+}
+
+function RunCard({ message }: { message: Extract<Message, { type: 'run' }> }) {
+    const [run, setRun] = useState<RunStatus>({ found: false, steps: [] });
+    const [error, setError] = useState('');
+    const env = useStore(s => s.status?.environment);
+
+    useEffect(() => {
+        let stopped = false;
+        let timer: ReturnType<typeof setTimeout>;
+        let attempts = 0;
+        const tick = async () => {
+            attempts++;
+            try {
+                const r = await api<RunStatus>(`run?agent=${message.agent}&requestId=${message.requestId}`);
+                if (stopped) return;
+                setRun(r);
+                if (r.status === 'completed') {
+                    // A run re-attached after a reload that had already finished: just show its steps
+                    if (message.resumed && attempts === 1) return;
+                    refreshActivity();
+                    refreshSummary();
+                    post({
+                        type: 'text',
+                        tone: r.conclusion === 'success' ? 'good' : 'bad',
+                        text: r.conclusion === 'success'
+                            ? `${message.label} finished. Anything it found that needs you is in your inbox. Ask "what's waiting on me?".`
+                            : `${message.label} ended with "${r.conclusion}". Open the run on GitHub to see which step failed.`,
+                    });
+                    return;
+                }
+            } catch (e: any) {
+                setError(e.message);
+            }
+            // Fast while starting, then every 10 seconds; give up after ~2 hours
+            if (!stopped && attempts < 800) timer = setTimeout(tick, attempts < 12 ? 5000 : 10000);
+        };
+        tick();
+        return () => { stopped = true; clearTimeout(timer); };
+    }, [message.agent, message.requestId, message.label, message.resumed]);
+
+    const done = run.status === 'completed';
+    return (
+        <Card accent={done ? (run.conclusion === 'success' ? 'good' : 'bad') : undefined}>
+            <div className="mb-2 flex items-center justify-between gap-2">
+                <p className="font-bold text-cc-text">{message.label}</p>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${message.target === 'staging' ? 'bg-amber-500/15 text-cc-warn' : 'bg-blue-500/15 text-cc-link'}`}>{message.target}</span>
+            </div>
+            {!run.found && !error && <p className="flex items-center gap-2 text-cc-muted"><Loader2 className="h-4 w-4 animate-spin" />Waiting for GitHub to start the run…</p>}
+            {error && <p className="text-cc-bad">{error}</p>}
+            {run.steps.length > 0 && (
+                <ul className="space-y-1">
+                    {run.steps.map(step => (
+                        <li key={step.name} className="flex items-center justify-between gap-2 text-xs">
+                            <span className="flex items-center gap-2 text-cc-text-2">
+                                {step.status === 'completed'
+                                    ? step.conclusion === 'success' ? <Check className="h-3.5 w-3.5 text-cc-good" />
+                                        : step.conclusion === 'skipped' ? <Circle className="h-3.5 w-3.5 text-cc-faint" />
+                                        : <X className="h-3.5 w-3.5 text-cc-bad" />
+                                    : step.status === 'in_progress' ? <Loader2 className="h-3.5 w-3.5 animate-spin text-cc-link" />
+                                    : <Circle className="h-3.5 w-3.5 text-cc-faint" />}
+                                <span className={step.conclusion === 'skipped' ? 'text-cc-faint' : ''}>{step.name}</span>
+                            </span>
+                            {step.seconds !== null && step.conclusion !== 'skipped' && <span className="text-cc-faint">{formatSeconds(step.seconds)}</span>}
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {run.url && <a href={run.url} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-xs text-cc-link hover:underline">Open on GitHub <ExternalLink className="h-3 w-3" /></a>}
+            {env === 'local' && <p className="mt-2 text-[11px] text-cc-faint">Started from a local session: runs use the staging database.</p>}
+        </Card>
+    );
+}
+
+const formatSeconds = (s: number) => (s >= 60 ? `${Math.floor(s / 60)}m ${s % 60}s` : `${s}s`);
+
+export { short };

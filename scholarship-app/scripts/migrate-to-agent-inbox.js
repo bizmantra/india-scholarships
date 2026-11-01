@@ -51,10 +51,12 @@ function run() {
     }
 
     const scholarship = db.prepare('SELECT * FROM scholarships WHERE id = ?');
+    // An agent may already have filed a fresher proposal for the same field: that one wins
+    const alreadyPending = db.prepare(`SELECT 1 FROM agent_proposals WHERE status = 'pending' AND kind = 'field_change' AND scholarship_id = ? AND field = ?`);
     const insert = db.prepare(`INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value,
         category, risk, source_citation, status, times_proposed, first_proposed_at, last_proposed_at, decided_by, decided_at, decision_note)
         VALUES (?, 'field_change', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    const counts = { date_change: 0, amount_change: 0, link_change: 0, contact_change: 0, wording: 0,
+    const counts = { already_pending: 0, date_change: 0, amount_change: 0, link_change: 0, contact_change: 0, wording: 0,
         dismissed_blank: 0, dismissed_invalid: 0, already_live: 0, unsupported: 0, missing_scholarship: 0 };
 
     // Deadlines first, so a description can tell whether its date is changing too
@@ -75,6 +77,7 @@ function run() {
             const timing = [same.length, same[0].at, latest.at];
 
             if (inbox.sameValue(g.field, current, latest.value)) { counts.already_live++; continue; }
+            if (alreadyPending.get(g.scholarshipId, g.field)) { counts.already_pending++; continue; }
 
             const blank = inbox.isUnconfirmed(g.field, latest.value);
             const invalid = !blank && inbox.validateValue(g.field, latest.value);

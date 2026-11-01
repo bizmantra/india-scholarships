@@ -65,7 +65,32 @@ The site build (`npm run build`) pulls from Turso first, so every deploy uses cu
 | Publish Scout-Approved | Publishes scout candidates approved in the inbox. Started from the command center after an approval, and daily as a safety net. |
 | Refresh Staging Database | Copies production into staging (reads production only). |
 
-All workflows that write the database share the `database-writes` concurrency group, so they never run at the same time.
+Workflows that write the production database share the `database-writes` concurrency group, so they never run at the same time; runs against staging use `database-writes-staging`, so tests never wait behind production agents. The Morning Briefing only adds one activity entry (safe alongside another sync), so it does not wait in either queue.
+
+## Staging vs production: features and content
+
+**Features go to staging first. Content goes to production.**
+
+- **Features** (code, a new proposal kind, a new agent or workflow, schema changes, migrations, backfills) are rehearsed
+  on staging: it is a copy of production, and it exists so nothing untried touches the live database. This section applies to them.
+- **Content** (proposals for `sa_*` pages: guides, universities, programs, facts) is submitted to the **production** inbox
+  and approved there. Staging adds no safety to a proposal - the approval is the safety gate - and it actively hurts:
+  staging is an older snapshot, so proposals validated against it do not match production, and anything approved on
+  staging is discarded the next time `refresh-staging.js` copies production over it. Submitting content to staging means
+  approving the same batch twice.
+- Content is **always a proposal**, never a direct write, in either database: no SQL updates, no `push-to-turso` for
+  content. Money, visa and deadline changes stay in their own proposal file with the source and quote on the change.
+
+## Releasing a change (staging first)
+
+1. Work on a branch and open a pull request.
+2. Merge the branch into the `staging` branch and test there: the staging site
+   (`india-scholarships-git-staging-…vercel.app`) uses the staging database, and agents are started with `target: staging`.
+   Nothing on the live site changes.
+3. Only then merge the pull request into `main`, which updates the live site and the production agents.
+
+New agent workflows: GitHub can only start a workflow whose file is on `main`, so a new agent is merged with its
+`schedule:` commented out, tested with `target: staging`, and switched on in a small follow-up pull request.
 
 ## Agent inbox (approvals)
 
@@ -89,11 +114,46 @@ Rules every agent follows (enforced by `proposeFieldChange`):
 - Only these fields can be proposed: `deadline`, `deadline_description`, `amount_annual`, `amount_min`, `official_source`,
   `apply_url`, `helpline`. Values are format-checked before they are applied.
 
+Study Abroad page changes are `kind = 'sa_field_change'` rows (target `<table>:<key>` in `scholarship_id`, details in `payload_json`); see [AGENT_CENTER.md](AGENT_CENTER.md#study-abroad-pages).
+
 Approving a field change writes the scholarship, logs a `reviewed_applied` changelog entry (who approved, old and new value)
 and an activity event. Approving a scout find marks it `approved`; the Scout Publisher inserts it.
 
 Before the inbox, proposals were `scholarship_changelog` rows with `action_type = 'pending_review'`.
 `scripts/migrate-to-agent-inbox.js` moves them (it runs at the start of every Deadline Freshness run and does nothing once they are moved).
+
+### Backlog side table
+
+`backlog_tasks` is synced like the scholarship tables. The Backlog page adds one Turso-only table, `cc_backlog_meta`
+(`task_id`, `due_date`, `note`, `waiting`, `updated_at`), created on first use and **not** in `SYNCED_TABLES`, so
+`push-to-turso.js` never reads or overwrites it. Staging refreshes copy it with every other table. The first time it is
+created, every existing item gets `updated_at = 2026-10-11` (the day the backlog was reviewed), so "stale" counts from then.
+
+### Deadline status (CNT-111)
+
+A date is only shown to students as a deadline when it is confirmed. Two columns on `scholarships` say how far to trust it:
+
+| `deadline_status` | `deadline` | `deadline_expected` | Shown as |
+|---|---|---|---|
+| empty or `confirmed` | the date | empty | "Deadline: 31 Oct 2026" (as before) |
+| `expected` | empty | the estimated date | "Expected ~31 Oct 2026", not counted in closing-soon lists |
+| `unknown` | empty | the old date, for the record | "Check Official Portal" |
+| `rolling` | empty | empty | "Open Year-Round" (set `always_open = 1` too) |
+
+Empty `deadline` is the existing convention for "no fixed date" (`clean-data-formats.js` turns "Not specified" into empty), so every list,
+filter and "closing soon" query already treats these rows correctly. Approving a deadline proposal in the inbox sets `confirmed`
+(`lib/command-center/inbox.ts`, `scripts/lib/agent-inbox.js`); undoing it goes back to `expected` or `unknown`.
+`scripts/label-deadline-status.js` did the first labelling (dry run by default); `check-data-formats.js` checks both columns.
+New columns on an older local copy: run `npm run db:pull`.
+
+**Who chases the unconfirmed ones.** The daily Deadline Freshness agent (`scripts/daily-freshness-check.js`) gives up to `unconfirmed_slots`
+(default 20 of its 30 daily checks, setting in `agent_settings`) to rows labelled `unknown` or `expected`, busiest pages first, each at most once a week.
+An "expected" row whose estimate falls inside the near-deadline window is also checked. A found date goes to the inbox with its source;
+approving it marks the row `confirmed`. `node scripts/daily-freshness-check.js --select-only` prints who would be checked without researching or writing.
+
+**Never fill in a deadline in bulk.** The month-end dates came from `scripts/boost-6month-scholarships.js`, which assigned a date by slug
+keyword to every expired row (now retired and refuses to run). A deadline is only written from an official page, through the inbox, with the
+source shown. If a date is not known, leave `deadline` empty and set `deadline_status` to `unknown`.
 
 ## Required secrets
 

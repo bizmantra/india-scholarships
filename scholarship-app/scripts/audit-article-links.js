@@ -1,15 +1,31 @@
 const fs = require('fs');
 const path = require('path');
-const Database = require('better-sqlite3');
+const { execSync } = require('child_process');
 
 const projectRoot = path.join(__dirname, '..');
 const articlesDir = path.join(projectRoot, 'content', 'articles');
 const dbPath = path.join(projectRoot, 'data', 'scholarships.db');
 
-const db = new Database(dbPath);
+let db = null;
+let dbRows = [];
 
-// Fetch all DB slugs
-const dbRows = db.prepare('SELECT slug, title FROM scholarships').all();
+try {
+  const Database = require('better-sqlite3');
+  db = new Database(dbPath);
+  dbRows = db.prepare('SELECT slug, title FROM scholarships').all();
+} catch (e) {
+  // Fallback to sqlite3 CLI
+  try {
+    const raw = execSync(`sqlite3 "${dbPath}" "SELECT slug, title FROM scholarships;"`, { encoding: 'utf8' });
+    dbRows = raw.trim().split('\n').filter(Boolean).map(line => {
+      const idx = line.indexOf('|');
+      return { slug: line.substring(0, idx), title: line.substring(idx + 1) };
+    });
+  } catch (err) {
+    console.error('Failed to load scholarships from database:', err.message);
+    process.exit(1);
+  }
+}
 const validDbSlugs = new Map(dbRows.map(r => [r.slug, r.title]));
 
 // Fetch all articles and pillars slugs
@@ -85,7 +101,13 @@ articleFiles.forEach(relFile => {
   }
 
   // Check first-person pronouns and fake claims
-  const fpMatch = bodyText.match(/\b(I|me|my)\b/g);
+  // Lines ending in "?" are reader questions (FAQ headings like "Can I apply twice?"), not the
+  // author speaking, so they are skipped. Statements are still checked.
+  const proseWithoutQuestions = bodyText
+    .split(/\r?\n/)
+    .filter(line => !/\?[\s*_)"']*$/.test(line))
+    .join('\n');
+  const fpMatch = proseWithoutQuestions.match(/\b(I|me|my)\b/g);
   if (fpMatch) {
     contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(fpMatch)].join(', ')}`);
   }
@@ -259,7 +281,7 @@ console.log(`Articles with Content Issues: ${summary.articlesWithThinContent}`);
 console.log(`Articles with Broken Links: ${summary.articlesWithBrokenLinks}`);
 console.log(`Total Broken Links Identified: ${summary.totalBrokenLinks}`);
 
-db.close();
+if (db) db.close();
 
 const isStrict = process.argv.includes('--strict');
 if (isStrict && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0)) {
