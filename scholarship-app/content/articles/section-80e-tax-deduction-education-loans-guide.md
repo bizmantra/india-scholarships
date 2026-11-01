@@ -13,8 +13,10 @@ tags:
 date: "2026-11-02"
 readTime: "8 min read"
 author: "IndiaScholarships Editorial Team"
-targetMoneyLink: "/scholarships/national-overseas-scholarship-for-scst-students"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
 relatedScholarships:
+  - "jn-tata-endowment-scholarship"
+  - "narotam-sekhsaria-postgraduate-scholarship"
   - "national-overseas-scholarship-for-scst-students"
 takeaways:
   - "Section 80E provides an uncapped income tax deduction on education loan interest."
@@ -48,9 +50,11 @@ Taxpayers claim this deduction under Chapter VI-A during tax filing.
 
 Operational tax filings follow Section 80E of the Income-tax Act, 1961.
 
-In direct tax reforms, the Income-tax Act, 2025 modernizes statutory terminology.
+Under direct tax reforms, the Income-tax Act, 2025 modernizes statutory structures.
 
-Ongoing tax returns and past assessments operate under Section 80E provisions.
+This deduction corresponds to Section 129 under the modernized 2025 Act framework.
+
+The core eligibility boundaries and eight-year duration remain identical across both statutes.
 
 The benefit applies strictly under the Old Tax Regime framework.
 
@@ -91,9 +95,8 @@ Tax regulations restrict eligible education loans to recognized institutions.
 Loans from unauthorized lenders cannot yield tax deductions.
 
 Statutory rules under Section 80E(3) recognize two primary lender categories:
-- **Financial Institutions**: Banking companies governed by the Banking Regulation Act, 1949.
-- **Notified Financial Institutions**: Institutions specifically notified by the Central Government under Section 80E(3)(b).
-- **Approved Charitable Institutions**: Educational trusts recognized under Section 10(23C) or Section 80G(2)(a).
+- **Financial Institutions**: Banking companies under Banking Regulation Act, 1949, or Central Government notified institutions.
+- **Approved Charitable Institutions**: Educational trusts and charities recognized under Section 10(23C) or Section 80G(2)(a).
 
 Banking companies include public sector, private sector, foreign, and co-operative banks.
 
@@ -159,11 +162,17 @@ The 5-year column illustrates constant interest servicing where principal is not
 
 In amortizing loans, annual interest decreases as borrowers pay down principal.
 
-Unpaid interest accrued during a study moratorium is deductible only when actually paid.
+When interest is paid during the moratorium, the eight-year deduction clock begins immediately.
+
+Unpaid interest capitalized into principal during study moratoriums cannot be deducted until actually paid.
 
 A borrower servicing ₹3,80,000 in annual interest saves ₹1,18,560 yearly at 30%.
 
-Review government financial aid under the [National Overseas Scholarship NOS](/scholarships/national-overseas-scholarship-for-scst-students).
+Explore low-interest loan scholarships through the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
+
+Merit scholars can also evaluate the [Narotam Sekhsaria Postgraduate Scholarship](/scholarships/narotam-sekhsaria-postgraduate-scholarship).
+
+Reserved category applicants can explore the [National Overseas Scholarship NOS](/scholarships/national-overseas-scholarship-for-scst-students).
 
 ---
 

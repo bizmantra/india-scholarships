@@ -21,8 +21,8 @@ relatedScholarships:
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
 takeaways:
   - "The I-20 deficit is the net personal expense remaining after deducting university aid."
-  - "A common planning heuristic suggests preparing 1.5x to 2x total first-year funding coverage."
-  - "Supporting evidence combines liquid bank savings with formal education loan sanction letters."
+  - "Applicants must prove full first-year coverage plus credible second-year funding prospects."
+  - "Accepted evidence combines liquid bank savings with formal education loan sanction letters."
 checklist:
   - "Official Form I-20 signed by Designated School Official"
   - "Unconditional education loan sanction letter from an approved bank"
@@ -61,10 +61,12 @@ Item 7 outlines expenses for an initial term of 9 to 12 months:
 - **Other Costs**: Budget for mandatory health insurance, textbooks, and campus supplies.
 
 Item 8 records confirmed funding sources:
-- **8a (Personal Funds)**: Student or parental cash savings committed to the program.
-- **8b (Funds From This School)**: University scholarships, tuition remissions, or assistantships.
-- **8c (Funds From Another Source)**: Loan sanctions, government awards, or private endowments.
-- **8d (On-Campus Employment)**: Approved student earnings from qualifying on-campus positions.
+- **Personal Funds**: Student or parental cash savings committed to the program.
+- **Funds From This School**: University scholarships, tuition remissions, or assistantships.
+- **Funds From Another Source**: Bank loan sanctions, government awards, or private endowments.
+- **On-Campus Employment**: Approved student earnings from qualifying on-campus positions.
+
+On-campus earnings do not count toward initial visa financial verification requirements.
 
 Compare universities and expense guidelines across the [Study in USA Hub](/study-abroad/study-in/usa).
 
@@ -82,11 +84,11 @@ Consular officers examine the verified financial backing behind these entries.
 
 The first-year out-of-pocket deficit represents total costs minus confirmed school aid:
 
-Net deficit equals Item 7 total expenses minus Item 8b school funding.
+Net deficit equals Item 7 total expenses minus Item 8 school funding.
 
 Consider a university with $56,000 in annual Item 7 expenses.
 
-If the school awards a $12,000 graduate fellowship in Item 8b, the deficit is $44,000.
+If the school awards a $12,000 graduate fellowship under school funds, the deficit is $44,000.
 
 The student and sponsor must demonstrate verified funding for this remaining $44,000 gap.
 
@@ -96,7 +98,7 @@ Examine funding options in the comprehensive [Study Abroad Loans Guide](/study-a
 
 ---
 
-## 3. Planning Buffers: The 1.5x to 2x Total Funding Coverage Heuristic
+## 3. Statutory Funding Standards and Subsequent-Year Prospects
 
 Under INA Section 214(b), applicants face a statutory presumption of immigrant intent.
 
@@ -112,18 +114,18 @@ Regulation 8 CFR 214.2(f)(9) restricts on-campus student employment to 20 hours 
 
 Off-campus employment remains prohibited throughout the student's initial academic year.
 
-A common planning heuristic prepares 1.5 to 2 times the deficit in funding coverage.
+Visa preparation focuses on demonstrating full first-year funding alongside verified subsequent-year capacity.
 
-This planning heuristic provides three vital safeguards:
+This two-tier structure provides vital safeguards:
 - **First-Year Protection**: Liquid cash and sanctioned loans cover first-year tuition and living bills.
-- **Second-Year Buffer**: Documented family assets indicate ability to fund subsequent program semesters.
+- **Second-Year Prospects**: Documented family income indicates ability to fund subsequent program semesters.
 - **Emergency Reserve**: Surplus funding cushions against inflation and currency exchange shifts.
 
-A student facing a $44,000 deficit targets $66,000 to $88,000 in total financial backing.
+A student facing a $44,000 deficit must prove $44,000 in immediate first-year funding.
 
-This buffer demonstrates economic stability without relying on unauthorized off-campus employment.
+The sponsor must also document recurring annual income for subsequent academic terms.
 
-Compare overseas funding avenues in the [Study Abroad Loans Guide](/study-abroad#loans).
+This structure demonstrates economic stability without relying on unauthorized off-campus employment.
 
 ---
 
@@ -134,7 +136,7 @@ Consular officers classify supporting financial assets into distinct operational
 Financial readiness typically combines liquid deposits with formal credit approvals:
 
 - **Liquid Cash Reserves**: Immediate funds in savings bank accounts and fixed deposit receipts.
-- **Formal Credit Commitments**: Irrevocable education loan sanction letters from approved banks.
+- **Formal Credit Commitments**: Education loan sanction letters issued by approved banking institutions.
 - **Withdrawable Retirement Funds**: Documented provident fund balances eligible for educational withdrawal.
 - **Prestigious External Awards**: Trust scholarships such as the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
 
@@ -144,9 +146,9 @@ Non-liquid physical assets do not count as ready funds for first-year expenses:
 - **Physical Gold and Jewelry**: Personal ornaments are illiquid items not recognized as cash.
 - **Unverified Cash Deposits**: Sudden unexplained lump sums trigger scrutiny during interviews.
 
-Students can also apply for the [Narotam Sekhsaria Postgraduate Scholarship](/scholarships/narotam-sekhsaria-postgraduate-scholarship).
+Applicants with top academic records can pursue the [Narotam Sekhsaria Postgraduate Scholarship](/scholarships/narotam-sekhsaria-postgraduate-scholarship).
 
-Top scholars can pursue the [KC Mahindra Scholarship for Post-Graduate Studies Abroad](/scholarships/kc-mahindra-scholarship-for-post-graduate-studies-abroad).
+Top scholars can also evaluate the [KC Mahindra Scholarship for Post-Graduate Studies Abroad](/scholarships/kc-mahindra-scholarship-for-post-graduate-studies-abroad).
 
 ---
 
@@ -173,28 +175,29 @@ Keep bank certificates arranged neatly in a single accessible presentation folde
 
 The following scenario models an Indian graduate student attending a two-year Master program:
 
-| Cost or Asset Category | Amount in USD | Amount in INR (@ ₹85/USD illustrative) | Classification | Role in Meeting Deficit |
+| Cost or Asset Category | Amount in USD | Amount in INR (@ ₹85/USD illustrative) | Classification | Role in Meeting Costs |
 | :--- | :--- | :--- | :--- | :--- |
 | **University Tuition & Fees** | $36,000 | ₹30,60,000 | Item 7 Expense | Mandatory direct cost |
 | **Living & Housing Expenses** | $16,000 | ₹13,60,000 | Item 7 Expense | Mandatory maintenance cost |
 | **Health Insurance & Books** | $4,000 | ₹3,40,000 | Item 7 Expense | Mandatory incidental cost |
-| **Total Item 7 Cost** | **$56,000** | **₹47,60,000** | Gross Annual Budget | Total initial requirement |
-| **University Merit Fellowship** | -$12,000 | -₹10,20,000 | Item 8b School Aid | Direct institutional credit |
-| **Net First-Year Deficit** | **$44,000** | **₹37,40,000** | Out-of-Pocket Deficit | Balance requiring student funding |
+| **Total Item 7 Budget** | **$56,000** | **₹47,60,000** | Gross Annual Budget | Total initial requirement |
+| **University Merit Fellowship** | -$12,000 | -₹10,20,000 | School Funding | Direct institutional credit |
+| **Net First-Year Deficit** | **$44,000** | **₹37,40,000** | Out-of-Pocket Deficit | First-year funding required |
 | **Education Loan Sanction** | $30,000 | ₹25,50,000 | Approved Credit Facility | Covers 68.2% of Year 1 deficit |
 | **Parental Savings Account** | $14,000 | ₹11,90,000 | Liquid Cash Balance | Covers 31.8% of Year 1 deficit |
+| **Total First-Year Funding** | **$44,000** | **₹37,40,000** | Fully Funded Year 1 | **100% of Year 1 covered** |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Cash Reserve | Year 2 reserve buffer |
-| **Trust Loan-Scholarship** | $10,000 | ₹8,50,000 | External Award Commitment | Year 2 supplementary funding |
-| **Total Financial Portfolio** | **$70,000** | **₹59,50,000** | Combined Backing | **1.59x total funding coverage** |
+| **Documented Sponsor Income** | $29,400 | ₹25,00,000 | Annual Taxable Income | Year 2 recurring capacity |
+| **Total Second-Year Backing** | **$45,411** | **₹38,60,000** | Ongoing Financial Pool | Meets Year 2 funding standard |
 
-In this scenario, total available financial backing reaches $70,000.
+In this scenario, confirmed first-year funding reaches the exact $44,000 net requirement.
 
-The $30,000 loan sanction and $14,000 cash savings cover the $44,000 first-year deficit completely.
-
-The remaining $26,000 in fixed deposits and trust awards forms a second-year reserve buffer.
+The $30,000 loan disbursement and $14,000 cash savings cover first-year costs completely.
 
 To satisfy 9 FAM 402.5-5(G), the sponsor demonstrates credible prospects for the second year.
 
-Annual parental income and second-year loan disbursements document ongoing funding capacity.
+The family maintains $16,000 in fixed deposits and shows ₹25,00,000 in annual taxable salary.
+
+Together, these reserves and recurring earnings cover the projected second-year cost of $44,000.
 
 This combined portfolio provides structured documentation required during consular interview evaluations.
