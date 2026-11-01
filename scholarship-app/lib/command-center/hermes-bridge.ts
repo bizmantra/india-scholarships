@@ -10,16 +10,21 @@
  *   - off by default: agent_settings hermes-bridge/enabled must be true (the kill switch)
  *   - staging and local only, unless HERMES_BRIDGE_ALLOW_PRODUCTION=1 is set on purpose
  *   - proposals: only existing scholarships' fields that agents may change; the old value is read from the database
+ *   - Study Abroad pages (sa_universities, sa_guides, sa_programs, sa_facts) are supported through propose_sa, with the
+ *     same value rules as scripts/study-abroad/propose-changes.mjs; a new page is allowed but always high risk
  *   - proposals: the server re-reads the source page and records whether the quote is really on it (quote_check);
  *     a quote that is not there makes the proposal high risk
  *   - approvals: only hermes-* proposals; never risk 'high'; date and amount changes need an official source link
  *     and a quote; at most max_approvals_per_day per day; every approval is undoable from the Command Center
+ *   - approvals: a Study Abroad new page or any status change can only be approved in the Command Center
  */
 import { getClient } from '@/lib/db';
 import * as rules from '@/scripts/lib/agent-inbox';
+import * as sa from '@/scripts/lib/sa-inbox';
 import { decide, listProposals } from './inbox';
 import { checkQuote } from './quote-check';
 import { environment, inboxReady, rows } from './server';
+import { isProductionDatabase, saApprovalBlock, saRisk, type SaKind } from './hermes-sa';
 
 export const BRIDGE_ACTOR = 'owner-via-hermes';
 const AGENT_PREFIX = 'hermes-';
@@ -46,8 +51,12 @@ export function roleForRequest(request: Request): BridgeRole | null {
 }
 
 export function bridgeBlockedReason(): string | null {
-    if (environment() === 'production' && process.env.HERMES_BRIDGE_ALLOW_PRODUCTION !== '1') {
-        return 'The Hermes bridge is staging-only for now';
+    if (process.env.HERMES_BRIDGE_ALLOW_PRODUCTION === '1') return null;
+    if (environment() === 'production') return 'The Hermes bridge is staging-only for now';
+    // A preview reports 'staging' for VERCEL_ENV but can still be wired to the production database, so the
+    // database is checked too: proposals must never land in the production inbox from a "staging" bridge.
+    if (isProductionDatabase({ dbUrl: process.env.TURSO_DATABASE_URL, stagingUrl: process.env.TURSO_STAGING_DATABASE_URL, useLocal: process.env.USE_LOCAL_DB === 'true' })) {
+        return 'The Hermes bridge refuses to run against the production database: point this deployment at staging, or set HERMES_BRIDGE_ALLOW_PRODUCTION=1 on purpose';
     }
     return null;
 }
@@ -154,9 +163,177 @@ export async function propose(input: ProposeInput): Promise<ProposeResult> {
     return { status: pending.length ? 'superseded' : 'created', id: Number(created.rows[0]?.id) };
 }
 
+export interface ProposeSaInput {
+    profile: string;
+    table: string;                  // sa_universities | sa_guides | sa_programs | sa_facts
+    key: string;                    // slug, program id or fact key
+    field?: string;                 // required unless create is true
+    new_value?: unknown;
+    create?: boolean;               // propose a whole new row (always high risk)
+    fields?: Record<string, unknown>; // the full row, when create is true
+    source: string;                 // official page the fact was seen on (full URL)
+    quote?: string;                 // the sentence on that page that states the fact
+    seen_on?: string;               // YYYY-MM-DD the page was read
+    confidence?: 'high' | 'medium' | 'low';
+}
+
+/**
+ * Propose a Study Abroad change from Hermes. Same value rules as propose-changes.mjs (allowed fields, lengths,
+ * banned phrases, a source on money fields, a quote for every registered fact) but none of its database writes
+ * beyond the inbox row this creates. Nothing on the site changes until the owner approves.
+ */
+export async function proposeSa(input: ProposeSaInput): Promise<ProposeResult> {
+    const client = getClient();
+    const profile = profileName(input.profile);
+    if (!profile) return { status: 'invalid', message: 'profile is required' };
+    const agent = AGENT_PREFIX + profile;
+
+    const table = String(input.table || '');
+    const meta = (sa.TARGETS as Record<string, { key: string; title: string }>)[table];
+    if (!meta) return { status: 'invalid', message: 'Not a Study Abroad table' };
+    const key = String(input.key || '').trim();
+    if (!key) return { status: 'invalid', message: 'key is required' };
+    const source = String(input.source || '').trim();
+    if (!/^https?:\/\/\S+$/.test(source)) return { status: 'invalid', message: 'source must be a full web address' };
+    const quote = String(input.quote || '').trim() || null;
+    const confidence = input.confidence || null;
+
+    // The server looks at the page itself, exactly as it does for a scholarship proposal
+    const quoteCheck = quote ? await checkQuote(source, quote) : 'unchecked';
+    const targetId = sa.targetId(table, key);
+
+    if (input.create) {
+        const existing = await client.execute({ sql: `SELECT 1 FROM ${table} WHERE ${meta.key} = ?`, args: [key] });
+        if (existing.rows.length) return { status: 'invalid', message: `${table}:${key} already exists` };
+
+        const fields: Record<string, string> = {};
+        for (const [k, v] of Object.entries(input.fields || {})) fields[k] = sa.toText(v);
+        if (!fields[meta.key]) fields[meta.key] = key;
+        if (!fields.official_source) fields.official_source = source;
+
+        const problem = sa.validateNewRow(table, fields, {
+            universityExists: () => true, // checked below, asynchronously
+        });
+        if (problem) return { status: 'invalid', message: problem };
+        if (table === 'sa_programs' && fields.university_slug) {
+            const uni = await client.execute({ sql: 'SELECT 1 FROM sa_universities WHERE slug = ?', args: [fields.university_slug] });
+            if (!uni.rows.length) return { status: 'invalid', message: `unknown university_slug: ${fields.university_slug}` };
+        }
+
+        const title = String(fields[meta.title] || key);
+        const path = sa.pagePath(table, fields);
+        const newValue = JSON.stringify(fields);
+        const evidence = JSON.stringify({
+            verdict: 'uncertain', source, quote, quote_check: quoteCheck, seen_on: input.seen_on || null,
+            confidence, proposed_by: agent, table, key, path, create: true,
+        });
+        const risk = saRisk({ kind: 'sa_new_page', quote, confidence, quoteCheck });
+
+        const pending = rows<{ id: number; new_value: string }>(await client.execute({
+            sql: `SELECT id, new_value FROM agent_proposals WHERE kind = ? AND scholarship_id = ? AND status = 'pending' ORDER BY id DESC`,
+            args: [sa.NEW_KIND, targetId],
+        }));
+        const same = pending.find(p => sa.sameSaValue(p.new_value, newValue));
+        if (same) {
+            await client.execute({
+                sql: "UPDATE agent_proposals SET times_proposed = times_proposed + 1, last_proposed_at = datetime('now'), source_citation = ?, evidence_json = ?, risk = ? WHERE id = ?",
+                args: [source, evidence, risk, same.id],
+            });
+            return { status: 'repeat', id: same.id };
+        }
+        const statements: { sql: string; args: (string | number | null)[] }[] = pending.map(p => ({
+            sql: "UPDATE agent_proposals SET status = 'superseded', decided_by = ?, decided_at = datetime('now'), decision_note = 'Replaced by a newer proposal' WHERE id = ?",
+            args: [`agent:${agent}`, p.id],
+        }));
+        statements.push(
+            {
+                sql: `INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, payload_json, category, risk, source_citation, evidence_json)
+                      VALUES (?, ?, ?, ?, '__new__', '', ?, ?, ?, ?, ?, ?)`,
+                args: [agent, sa.NEW_KIND, targetId, title, newValue, JSON.stringify({ table, key, path }), sa.CATEGORY, risk, source, evidence],
+            },
+            {
+                sql: 'INSERT INTO agent_events (agent, kind, actor, summary, details_json) VALUES (?, ?, ?, ?, ?)',
+                args: [agent, 'proposal', agent, `Proposed a new ${table} page: "${title}" (Study Abroad, draft)`, JSON.stringify({ table, key, path, risk })],
+            },
+        );
+        await client.batch(statements, 'write');
+        return { status: pending.length ? 'superseded' : 'created' };
+    }
+
+    const field = String(input.field || '');
+    if (!field) return { status: 'invalid', message: 'field is required (or send create: true with fields)' };
+    if (!sa.fieldType(table, field)) return { status: 'invalid', message: `${field} cannot be changed through the inbox` };
+
+    const found = await client.execute({ sql: `SELECT * FROM ${table} WHERE ${meta.key} = ?`, args: [key] });
+    if (!found.rows.length) return { status: 'invalid', message: `No ${table} page with that key` };
+    const row = found.rows[0] as Record<string, unknown>;
+    const title = String(row[meta.title] || key);
+    const path = sa.pagePath(table, row);
+    const previous = row[field] === null || row[field] === undefined ? null : String(row[field]);
+    const newValue = sa.toText(input.new_value);
+
+    if (sa.sameSaValue(previous, newValue)) return { status: 'unchanged' };
+    // A money, visa or admission fact needs the sentence that states it, or nobody can check the claim
+    if (sa.NEEDS_SOURCE.has(field) && !quote) {
+        return { status: 'invalid', message: `${field} needs a quote from the official page` };
+    }
+    const bad = sa.validateSaValue(table, field, newValue, { source, previous });
+    if (bad) return { status: 'invalid', message: bad };
+
+    const rejected = await client.execute({
+        sql: "SELECT 1 FROM agent_proposals WHERE kind = ? AND scholarship_id = ? AND field = ? AND status = 'rejected' AND new_value = ?",
+        args: [sa.KIND, targetId, field, newValue],
+    });
+    if (rejected.rows.length) return { status: 'rejected_before' };
+
+    const risk = saRisk({ kind: sa.KIND as SaKind, field, quote, confidence, quoteCheck });
+    const evidence = JSON.stringify({
+        verdict: risk === 'high' ? 'uncertain' : 'official', source, quote, quote_check: quoteCheck,
+        seen_on: input.seen_on || null, confidence, proposed_by: agent, table, key, path,
+    });
+
+    const pending = rows<{ id: number; new_value: string }>(await client.execute({
+        sql: "SELECT id, new_value FROM agent_proposals WHERE kind = ? AND scholarship_id = ? AND field = ? AND status = 'pending' ORDER BY id DESC",
+        args: [sa.KIND, targetId, field],
+    }));
+    const same = pending.find(p => sa.sameSaValue(p.new_value, newValue));
+    if (same) {
+        await client.execute({
+            sql: "UPDATE agent_proposals SET times_proposed = times_proposed + 1, last_proposed_at = datetime('now'), old_value = ?, source_citation = ?, evidence_json = ?, risk = ? WHERE id = ?",
+            args: [previous, source, evidence, risk, same.id],
+        });
+        return { status: 'repeat', id: same.id };
+    }
+    const statements: { sql: string; args: (string | number | null)[] }[] = pending.map(p => ({
+        sql: "UPDATE agent_proposals SET status = 'superseded', decided_by = ?, decided_at = datetime('now'), decision_note = 'Replaced by a newer proposal' WHERE id = ?",
+        args: [`agent:${agent}`, p.id],
+    }));
+    statements.push(
+        {
+            sql: `INSERT INTO agent_proposals (agent, kind, scholarship_id, scholarship_title, field, old_value, new_value, payload_json, category, risk, source_citation, evidence_json)
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            args: [agent, sa.KIND, targetId, title, field, previous, newValue, JSON.stringify({ table, key, path }), sa.CATEGORY, risk, source, evidence],
+        },
+        {
+            sql: 'INSERT INTO agent_events (agent, kind, actor, summary, details_json) VALUES (?, ?, ?, ?, ?)',
+            args: [agent, 'proposal', agent, `Proposed ${field} for "${title}" (Study Abroad)`, JSON.stringify({ table, key, field, source, risk })],
+        },
+    );
+    await client.batch(statements, 'write');
+    const created = await client.execute({
+        sql: "SELECT id FROM agent_proposals WHERE kind = ? AND scholarship_id = ? AND field = ? AND status = 'pending' ORDER BY id DESC LIMIT 1",
+        args: [sa.KIND, targetId, field],
+    });
+    return { status: pending.length ? 'superseded' : 'created', id: Number(created.rows[0]?.id) };
+}
+
 // What the owner may approve from Hermes. Anything else says why and must be approved in the Command Center.
-export function approvalBlock(p: { agent: string; kind: string; category: string; risk: string; source_citation: string | null; evidence_json: string | null }): string | null {
+export function approvalBlock(p: { agent: string; kind: string; category: string; risk: string; field?: string | null; source_citation: string | null; evidence_json: string | null }): string | null {
     if (!p.agent.startsWith(AGENT_PREFIX)) return 'Only proposals made by Hermes can be approved from Hermes';
+    // Study Abroad: a plain, non-high field change may be approved here; a new page or a status change may not
+    if (p.kind === sa.KIND || p.kind === sa.NEW_KIND) {
+        return saApprovalBlock({ agent: p.agent, kind: p.kind, field: p.field ?? null, risk: p.risk, agentPrefix: AGENT_PREFIX });
+    }
     if (p.kind !== 'field_change') return 'Only scholarship field changes can be approved from Hermes for now';
     if (p.risk === 'high') return 'High-risk change: approve it in the Command Center';
     if (p.category === 'date_change' || p.category === 'amount_change') {
@@ -206,11 +383,15 @@ export async function decideFromHermes(ids: number[], action: 'approve' | 'rejec
 export async function pendingForHermes(limit = 50) {
     // Filtered in the query: the inbox holds hundreds of other agents' items that would otherwise fill the page first
     const { items } = await listProposals({ status: 'pending', agentPrefix: AGENT_PREFIX, limit });
-    return (items as any[]).map(p => ({
-        id: Number(p.id), agent: p.agent, title: p.scholarship_title, field: p.field, old: p.old_value, new: p.new_value,
-        category: p.category, risk: p.risk, source: p.source_citation, evidence: safeJson(p.evidence_json),
-        can_approve_from_hermes: approvalBlock(p) === null, why_not: approvalBlock(p),
-    }));
+    return (items as any[]).map(p => {
+        const payload = safeJson(p.payload_json) || {};
+        return {
+            id: Number(p.id), agent: p.agent, title: p.scholarship_title, field: p.field, old: p.old_value, new: p.new_value,
+            kind: p.kind, table: payload.table ?? null, key: payload.key ?? null,
+            category: p.category, risk: p.risk, source: p.source_citation, evidence: safeJson(p.evidence_json),
+            can_approve_from_hermes: approvalBlock(p) === null, why_not: approvalBlock(p),
+        };
+    });
 }
 
 const safeJson = (s: string | null) => { try { return s ? JSON.parse(s) : null; } catch { return null; } };

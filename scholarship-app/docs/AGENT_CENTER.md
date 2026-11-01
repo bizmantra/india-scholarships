@@ -131,13 +131,23 @@ decide them. Code: `lib/command-center/hermes-bridge.ts`, route `POST /api/herme
 
 - **Off by default.** `agent_settings` `hermes-bridge` / `enabled` must be `true`; setting it back to `false` is the kill switch.
 - **Staging and local only.** On production the route answers 403 unless `HERMES_BRIDGE_ALLOW_PRODUCTION=1` is set on purpose.
+  The database is checked as well as `VERCEL_ENV`: a deployment whose `TURSO_DATABASE_URL` is not the staging one
+  (and is not a local copy) is refused, because a Vercel preview can report "preview" while reading production.
 - **Two tokens** (env): `HERMES_BRIDGE_PROPOSE_TOKEN` (propose, list) and `HERMES_BRIDGE_DECIDE_TOKEN` (approve, reject).
 - **Proposals** are scholarship field changes only (same field and value rules as the agents). The old value is read from the
   database, never trusted from the caller. Agent name is `hermes-<profile>`. A proposal without a quote from the source page is `high` risk.
 - **Approvals** go through `decide()` with actor `owner-via-hermes`, so the changelog, the "changed since" guard and Undo work as usual.
   Hermes cannot approve: anything `high` risk, date or amount changes without a source link and quote, proposals from other agents,
   and anything past `max_approvals_per_day` (default 20). Those must be approved in the Command Center.
-- Study Abroad changes and new scholarships are not supported by the bridge yet.
+- **Study Abroad (`propose_sa`).** Same idea for `sa_universities`, `sa_guides`, `sa_programs` and `sa_facts`:
+  `{ profile, table, key, field, new_value, source, quote?, seen_on?, confidence? }`, validated with the same rules as
+  `scripts/study-abroad/propose-changes.mjs` (allowed fields, lengths, banned phrases, a source on money and admission
+  fields, a quote for every fact). `create: true` with a full `fields` object proposes a new page instead; it is
+  inserted as a draft on approval, never published.
+- **What Hermes may approve.** Only a Hermes proposal that is not high risk. High risk means: no quote, `confidence: low`,
+  a quote the server could not find on the page, a new page, or any `status` change. A Study Abroad new page and every
+  status change must be approved in the Command Center, where the card shows the whole diff.
+- New scholarships are not supported by the bridge yet.
 
 ### Quote check (Hermes bridge)
 
