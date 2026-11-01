@@ -16,13 +16,10 @@ author: "IndiaScholarships Editorial Team"
 targetMoneyLink: "/scholarships/national-overseas-scholarship-for-scst-students"
 relatedScholarships:
   - "national-overseas-scholarship-for-scst-students"
-  - "marang-gomke-jaipal-singh-munda-overseas-scholarship"
-  - "ambedkar-overseas-vidya-nidhi-scst"
-  - "annal-ambedkar-overseas-higher-education-scholarship-scheme"
 takeaways:
   - "Section 80E provides an uncapped income tax deduction on education loan interest."
-  - "Borrowers can claim interest deductions across eight consecutive financial assessment years."
-  - "Eligible lenders include banking companies under the Banking Regulation Act and notified institutions."
+  - "Under Section 80E(2), borrowers deduct interest across eight consecutive assessment years."
+  - "Eligible lenders include banking companies, notified financial institutions, and approved charitable institutions."
 checklist:
   - "Annual loan interest certificate issued by the lending bank"
   - "Sanction letter stating loan approval for higher education"
@@ -49,9 +46,13 @@ Section 80E provides tax deductions exclusively on educational loan interest.
 
 Taxpayers claim this deduction under Chapter VI-A during tax filing.
 
-Operational filings follow Section 80E of the Income-tax Act, 1961.
+Operational tax filings follow Section 80E of the Income-tax Act, 1961.
 
-The benefit applies only under the Old Tax Regime framework.
+In direct tax reforms, the Income-tax Act, 2025 modernizes statutory terminology.
+
+Ongoing tax returns and past assessments operate under Section 80E provisions.
+
+The benefit applies strictly under the Old Tax Regime framework.
 
 The New Tax Regime under Section 115BAC does not allow this deduction.
 
@@ -68,10 +69,10 @@ Tax laws establish clear statutory boundaries for claiming education loan benefi
 Borrowers must understand three central rules governing Section 80E claims.
 
 - **No Upper Ceiling on Interest**: Taxpayers can deduct the entire interest paid without rupee limits.
-- **Eight-Year Deduction Cap**: Claims remain valid for eight consecutive assessment years maximum.
+- **Eight-Year Deduction Cap**: Under Section 80E(2), deductions span eight consecutive assessment years maximum.
 - **Interest Only Coverage**: Principal repayment does not qualify for tax deductions under Section 80E.
 
-Under Section 80E(3)(b), the eight-year period starts in the repayment year.
+Under Section 80E(3)(d), the eight-year period starts in the repayment year.
 
 The deduction terminates after eight years or upon loan payoff.
 
@@ -83,23 +84,26 @@ Borrowers should service interest within the eight-year window to maximize total
 
 ---
 
-## Approved Lenders: Banking Companies vs Notified Institutions
+## Approved Lenders: Financial Institutions and Charitable Institutions
 
 Tax regulations restrict eligible education loans to recognized institutions.
 
 Loans from unauthorized lenders cannot yield tax deductions.
 
-Statutory rules under Section 80E(3) explicitly define two eligible lender categories:
+Statutory rules under Section 80E(3) recognize two primary lender categories:
 - **Financial Institutions**: Banking companies governed by the Banking Regulation Act, 1949.
-- **Notified Institutions**: Institutions specifically notified by the Central Government in the Official Gazette.
+- **Notified Financial Institutions**: Institutions specifically notified by the Central Government under Section 80E(3)(b).
 - **Approved Charitable Institutions**: Educational trusts recognized under Section 10(23C) or Section 80G(2)(a).
-- **Ineligible Lenders**: Loans from unnotified NBFCs, fintech apps, relatives, and private friends do not qualify.
 
-Borrowers must verify that their lender holds official banking or notified status.
+Banking companies include public sector, private sector, foreign, and co-operative banks.
+
+Unnotified Non-Banking Financial Companies (NBFCs) and fintech lenders do not qualify.
+
+Borrowers must confirm Section 80E eligibility directly with non-bank lending institutions.
+
+Loans from employers, family members, and private friends remain entirely ineligible.
 
 Compare approved student loan programs in the [Study Abroad Loans Guide](/study-abroad#loans).
-
-Explore overseas state awards under the [Annal Ambedkar Overseas Scholarship](/scholarships/annal-ambedkar-overseas-higher-education-scholarship-scheme).
 
 ---
 
@@ -122,8 +126,6 @@ Eligible courses include vocational courses, diplomas, undergraduate degrees, an
 Both domestic and international degree programs qualify for full deductions.
 
 Review overseas academic pathways through the [Study Abroad Portal](/study-abroad).
-
-Discover government funding through the [Scholarship Eligibility Checker](/eligibility-checker).
 
 ---
 
@@ -153,21 +155,15 @@ These calculations assume the full interest deduction falls within the marginal 
 | ₹40,00,000 | ₹3,80,000 | ₹79,040 | ₹1,18,560 | ₹5,92,800 |
 | ₹50,00,000 | ₹4,75,000 | ₹98,800 | ₹1,48,200 | ₹7,41,000 |
 
-The 5-year savings column illustrates flat interest servicing during moratorium periods.
+The 5-year column illustrates constant interest servicing where principal is not yet reducing.
 
-Actual annual savings taper down as borrowers amortize their loan principal.
+In amortizing loans, annual interest decreases as borrowers pay down principal.
 
-Unserviced moratorium interest becomes deductible only during financial years when actually repaid.
+Unpaid interest accrued during a study moratorium is deductible only when actually paid.
 
-A borrower servicing ₹3,80,000 in interest saves ₹1,18,560 yearly at 30%.
+A borrower servicing ₹3,80,000 in annual interest saves ₹1,18,560 yearly at 30%.
 
-Eligible SC and ST applicants can also explore dedicated government funding programs.
-
-Review full details on the [National Overseas Scholarship NOS](/scholarships/national-overseas-scholarship-for-scst-students).
-
-Eligible tribal scholars from Jharkhand can explore the [Marang Gomke Jaipal Singh Munda Overseas Scholarship](/scholarships/marang-gomke-jaipal-singh-munda-overseas-scholarship).
-
-Andhra Pradesh applicants can pursue the [Ambedkar Overseas Vidya Nidhi](/scholarships/ambedkar-overseas-vidya-nidhi-scst).
+Review government financial aid under the [National Overseas Scholarship NOS](/scholarships/national-overseas-scholarship-for-scst-students).
 
 ---
 
