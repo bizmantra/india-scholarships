@@ -1,0 +1,337 @@
+{
+  "agent": "content-editor",
+  "notes": "C4: 6 US University draft pages completing the unlinked MS Computer Science programs",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "illinois-institute-of-technology",
+      "source": "https://www.iit.edu/admissions-aid/tuition-and-aid/graduate-costs-and-aid",
+      "fields": {
+        "slug": "illinois-institute-of-technology",
+        "name": "Illinois Institute of Technology (Illinois Tech)",
+        "country": "usa",
+        "city": "Chicago, Illinois",
+        "summary": "Illinois Tech in Chicago offers STEM-designated graduate programs with $1,851 per credit graduate tuition ($33,318/year for 18 credits), $16,800 living costs, and Chicago tech corridor employer recruiting.",
+        "seo_title": "Illinois Institute of Technology: Graduate Tuition & Admissions",
+        "meta_description": "Illinois Tech graduate guide for Indian students: $33,318/year tuition (18 credits), $16,800 living costs, Chicago campus, and F-1 visa application deadlines.",
+        "tuition_per_year": 33318,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 16800,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 1,
+        "ranking": "Top 100 US National Universities",
+        "acceptance_rate": "61%",
+        "application_deadlines": {
+          "fall": "Priority: 31 January · Regular: 15 June",
+          "spring": "Priority: 1 October · Regular: 15 November"
+        },
+        "infobox_json": {
+          "title": "Illinois Tech Overview & Financial Figures",
+          "rows": [
+            { "key": "Campus Location", "value": "Chicago, Illinois", "emphasis": false },
+            { "key": "Institution Type", "value": "Private Ph.D.-granting Technological University", "emphasis": false },
+            { "key": "Per-Credit Graduate Tuition", "value": "$1,851 USD / credit", "emphasis": false },
+            { "key": "Annual Tuition (18 credits)", "value": "$33,318 USD / year", "emphasis": true },
+            { "key": "Estimated Living Expenses", "value": "$16,800 USD / year ($1,400/month)", "emphasis": false },
+            { "key": "Total Estimated COA (I-20)", "value": "$54,454 USD / year (with fees & insurance)", "emphasis": true },
+            { "key": "Fall Priority Deadline", "value": "January 31", "emphasis": false },
+            { "key": "Spring Priority Deadline", "value": "October 1", "emphasis": false }
+          ]
+        },
+        "body_md": "## Illinois Institute of Technology Overview for Indian Graduate Students\n\n**Illinois Institute of Technology (Illinois Tech)** is a private research technological university located in **Chicago, Illinois**. Known for applied research and industry connections across the greater Chicago metropolitan area, Illinois Tech attracts international graduate students pursuing STEM Master's degrees in Computer Science, Data Science, Artificial Intelligence, and Electrical Engineering.\n\n### Academic Programs & Chicago Tech Advantage\n\nIllinois Tech's Mies Campus sits minutes from downtown Chicago (the Loop), providing students with direct access to Fortune 500 corporate headquarters, financial trading firms, healthcare systems, and tech consulting companies. Key graduate strengths include:\n\n1. **STEM OPT Extension**: Master's degree programs in Computer Science and Engineering are officially STEM-designated (`CIP 11.0701`), qualifying F-1 student visa holders for up to 36 months of post-graduation Optional Practical Training in the United States.\n2. **Practical Training & Elevate Program**: The Elevate program connects graduate students with internships, academic competitions, and corporate sponsored capstone projects during the academic terms.\n3. **Graduate Fellowships & Assistantships**: Applicants meeting priority deadlines are automatically considered for departmental merit scholarships and graduate assistantships (teaching or research assistant positions).\n\n### Estimated Annual Graduate Costs (2025–2026)\n\n| Expense Category | Estimated Cost (USD) | Notes |\n| :--- | :---: | :--- |\n| **Graduate Tuition (18 credits / year)** | **$33,318** | Billed at $1,851 per credit hour for standard 9-credit full-time semester load |\n| **Mandatory Fees & Health Insurance** | **~$4,336** | Mandatory university fee plus Illinois Tech Student Health Insurance plan |\n| **Living Expenses (Housing & Meals)** | **$16,800** | Estimated at $1,400/month for shared off-campus apartment or campus housing |\n| **Total Cost of Attendance (I-20)** | **~$54,454** | Minimum liquid funds required for Form I-20 issuance |\n\nFor remittances and student visa funds planning, see the [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), [USA F-1 Visa Guide](/study-abroad/visas/usa-f1-student-visa-master-guide), and the official [Illinois Tech Graduate Costs Portal](https://www.iit.edu/admissions-aid/tuition-and-aid/graduate-costs-and-aid).\n\n### Admission Requirements and Application Deadlines\n\n* **Academic Credentials**: Bachelor's degree in engineering, computing, or quantitative science with minimum 3.0/4.0 GPA equivalent.\n* **Standardized Tests**: GRE is optional for most Master of Science programs.\n* **English Proficiency**: TOEFL iBT 80+, IELTS Academic 6.5+, or Duolingo DET 115+.\n* **Deadlines (Outside US)**: Fall Priority January 31, Final Regular June 15; Spring Priority October 1, Final Regular November 15.",
+        "faq_json": [
+          { "q": "What is the per-credit tuition at Illinois Tech for graduate students?", "a": "For the 2025–2026 academic year, Illinois Tech graduate tuition is $1,851 per credit hour. A standard full-time year of 18 credits totals $33,318." },
+          { "q": "Is the MS in Computer Science at Illinois Tech STEM designated?", "a": "Yes, Illinois Tech's graduate computer science and computing degrees are STEM-designated, offering eligible F-1 students up to 3 years of OPT work authorization." },
+          { "q": "Does Illinois Tech require the GRE for MS admissions?", "a": "The GRE is optional for admission to most graduate computing and engineering programs at Illinois Tech." },
+          { "q": "What are the priority application deadlines for international students?", "a": "Fall intake priority deadline is January 31 (regular June 15 for overseas applicants), and Spring priority is October 1 (regular November 15)." }
+        ],
+        "related_json": [
+          { "label": "USA Study Abroad Guide", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "USA F-1 Student Visa Guide", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://www.iit.edu/admissions-aid/tuition-and-aid/graduate-costs-and-aid",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-central-missouri",
+      "source": "https://www.ucmo.edu/future-students/tuition-and-costs/index.php",
+      "fields": {
+        "slug": "university-of-central-missouri",
+        "name": "University of Central Missouri (UCM)",
+        "country": "usa",
+        "city": "Warrensburg, Missouri",
+        "summary": "University of Central Missouri offers affordable STEM graduate programs in computer science with differential tuition of $520 per credit ($15,600 total tuition for the 30-credit degree) and low Midwest living costs.",
+        "seo_title": "University of Central Missouri: Graduate Tuition & Admissions",
+        "meta_description": "UCM graduate study guide for Indian students: $520/credit tuition rate, $15,600 total 30-credit MS CS tuition, $13,500 annual living expenses, and application steps.",
+        "tuition_per_year": 7800,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 13500,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 0,
+        "ranking": "Midwest Regional Universities",
+        "acceptance_rate": "71%",
+        "application_deadlines": {
+          "fall": "1 July (overseas applicants)",
+          "spring": "1 November (overseas applicants)"
+        },
+        "infobox_json": {
+          "title": "UCM Overview & Key Financial Details",
+          "rows": [
+            { "key": "Campus Location", "value": "Warrensburg / Lee's Summit, Missouri", "emphasis": false },
+            { "key": "University Type", "value": "Public Comprehensive University", "emphasis": false },
+            { "key": "Graduate CS Tuition Rate", "value": "$520 USD / credit hour", "emphasis": false },
+            { "key": "Total 30-Credit MS CS Tuition", "value": "$15,600 USD total", "emphasis": true },
+            { "key": "Annual Tuition (15 credits)", "value": "$7,800 USD / year", "emphasis": true },
+            { "key": "Annual Living Expenses", "value": "$13,500 USD / year", "emphasis": false },
+            { "key": "Estimated Annual Budget", "value": "$23,100 USD / year (with fees & insurance)", "emphasis": true },
+            { "key": "Fall Application Deadline", "value": "July 1 (overseas F-1)", "emphasis": false },
+            { "key": "Spring Application Deadline", "value": "November 1 (overseas F-1)", "emphasis": false }
+          ]
+        },
+        "body_md": "## University of Central Missouri Overview for Indian Graduate Students\n\n**University of Central Missouri (UCM)** is a public university located in **Warrensburg, Missouri**, with an additional campus in Lee's Summit near Kansas City. UCM is widely recognized among international students for its affordable tuition rates, career-focused curriculum, and accessible admission requirements for STEM programs.\n\n### Computer Science Graduate Program & Regional Advantages\n\nUCM's Master of Science in Computer Science is a 30-credit-hour program offered through the College of Health, Science, and Technology. Key highlights include:\n\n1. **Affordable Tuition Structure**: UCM assesses specialized graduate differential rates for computing prefixes (CS, CIS, SE, CYBR, DSA) at $520 per credit, making the total tuition for the 30-credit master's degree exactly $15,600 ($7,800 per academic year at 15 credits/year).\n2. **STEM OPT Extension**: The MS in Computer Science is STEM-designated, enabling Indian graduates on F-1 visas to apply for a 24-month OPT extension in addition to the standard 12 months (36 months total).\n3. **Proximity to Kansas City**: Students benefit from proximity to the Kansas City metropolitan area, home to telecommunications, healthcare IT, and financial technology employers.\n\n### Estimated Graduate Budget (2025–2026)\n\n| Budget Item | Annual Amount (USD) | Notes |\n| :--- | :---: | :--- |\n| **Graduate Tuition (15 credits / year)** | **$7,800** | Based on 15 credits per academic year at $520/credit CS rate |\n| **Mandatory University & Health Fees** | **~$1,800** | General campus fees and international health coverage |\n| **Estimated Living Expenses** | **$13,500** | Off-campus shared student apartment rent, food, and utilities |\n| **Estimated Annual Total** | **$23,100** | Overall planning total for academic year living and study |\n\nFor details on foreign exchange and transferring tuition, review our [Study Abroad Education Loans](/study-abroad/loans), [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), [F-1 Visa Documentation](/study-abroad/visas/usa-f1-student-visa-master-guide), and the official [UCM Tuition Schedule](https://www.ucmo.edu/future-students/tuition-and-costs/index.php).\n\n### Admission Criteria and Deadlines\n\n* **Undergraduate Degree**: Accredited bachelor's degree in computer science or related quantitative discipline with minimum 2.75/4.0 undergraduate GPA.\n* **GRE Requirement**: GRE is not required for candidates meeting GPA minimums.\n* **English Language Scores**: Minimum TOEFL iBT 79, IELTS 6.0, or Duolingo DET 105.\n* **Deadlines**: Fall semester cutoff is July 1 for overseas applicants; Spring semester cutoff is November 1.",
+        "faq_json": [
+          { "q": "What is the tuition cost for MS in CS at UCM?", "a": "UCM charges $520 per credit for graduate computer science courses. The full 30-credit program costs $15,600 in base tuition ($7,800 per academic year for 15 credits)." },
+          { "q": "Does UCM require the GRE for Computer Science?", "a": "No, GRE scores are generally not required for admission to the MS in Computer Science program at UCM." },
+          { "q": "What are the application deadlines for international students at UCM?", "a": "For students applying from outside the United States, the Fall deadline is July 1 and the Spring deadline is November 1." },
+          { "q": "Is UCM Computer Science eligible for the 3-year STEM OPT?", "a": "Yes, UCM's MS in Computer Science is a STEM-designated degree program qualifying for the 24-month OPT extension." }
+        ],
+        "related_json": [
+          { "label": "USA Study Abroad Overview", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "USA Student Visa Guide", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://www.ucmo.edu/future-students/tuition-and-costs/index.php",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "northern-illinois-university",
+      "source": "https://www.niu.edu/bursar/tuition/graduate.shtml",
+      "fields": {
+        "slug": "northern-illinois-university",
+        "name": "Northern Illinois University (NIU)",
+        "country": "usa",
+        "city": "DeKalb, Illinois",
+        "summary": "Northern Illinois University in DeKalb offers accredited STEM graduate computing degrees with an official $31,900 annual international Cost of Attendance (covering tuition, fees, and living expenses).",
+        "seo_title": "Northern Illinois University: Graduate Tuition & Admissions",
+        "meta_description": "NIU graduate admissions guide for Indian students: $31,900 official annual COA for MS in CS, DeKalb campus details, assistantships, and F-1 application deadlines.",
+        "tuition_per_year": 17500,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 11600,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 0,
+        "ranking": "R2 Doctoral Research University",
+        "acceptance_rate": "70%",
+        "application_deadlines": {
+          "fall": "1 May (classes begin August)",
+          "spring": "1 October (classes begin January)"
+        },
+        "infobox_json": {
+          "title": "NIU Overview & Graduate Figures",
+          "rows": [
+            { "key": "Campus Location", "value": "DeKalb, Illinois (65 miles west of Chicago)", "emphasis": false },
+            { "key": "Institution Type", "value": "Public R2 Doctoral Research University", "emphasis": false },
+            { "key": "Annual Tuition & Fees (CS)", "value": "~$17,500 USD / year", "emphasis": false },
+            { "key": "Estimated Annual Living Expenses", "value": "$11,600 USD / year", "emphasis": false },
+            { "key": "Official Annual COA (I-20)", "value": "$31,900 USD / year (tuition, fees & living)", "emphasis": true },
+            { "key": "Fall Application Deadline", "value": "May 1", "emphasis": false },
+            { "key": "Spring Application Deadline", "value": "October 1", "emphasis": false }
+          ]
+        },
+        "body_md": "## Northern Illinois University Overview for Indian Graduate Students\n\n**Northern Illinois University (NIU)** is a public research university located in **DeKalb, Illinois**, approximately 65 miles west of downtown Chicago. Founded in 1895, NIU holds an R2 Doctoral Research classification and offers competitive graduate programs in computing, engineering, business, and health sciences.\n\n### Computer Science Graduate Studies & Regional Profile\n\nNIU's Department of Computer Science (College of Liberal Arts and Sciences) provides Master of Science degrees with specializations in software development, data science, enterprise computing, and cybersecurity. Key student advantages include:\n\n1. **Official Cost of Attendance**: NIU's Graduate School publishes transparent I-20 financial documentation requirements. For Computer Science international graduate students, the official annual Cost of Attendance is $31,900, covering institutional tuition, mandatory university fees, student health insurance, and standard living expenses.\n2. **STEM OPT Designation**: Graduates of the MS in Computer Science program are eligible for the 3-year STEM OPT extension (12 months regular OPT plus 24 months STEM extension).\n3. **Chicago Transit & Tech Access**: DeKalb offers an affordable cost of living compared to central Chicago while maintaining highway and rail access to suburban tech employers along the I-88 research corridor.\n\n### Annual Cost Breakdown for I-20 Certification\n\n| Budget Category | Annual Amount (USD) | Description |\n| :--- | :---: | :--- |\n| **Instructional Tuition & General Fees** | **~$17,500** | Assessed per credit hour with credit plateau above 12 credit hours |\n| **Health Insurance & Mandatory Fees** | **~$2,800** | Mandatory NIU student health insurance and international student fees |\n| **Housing, Meals & Personal Living** | **$11,600** | On-campus or off-campus housing in DeKalb, meals, and utilities |\n| **Total Official COA (I-20 Form)** | **$31,900** | Total liquid funds required for first-year F-1 visa document issuance |\n\nFor additional student visa and remittances guidelines, consult our [USA F-1 Visa Master Guide](/study-abroad/visas/usa-f1-student-visa-master-guide), [Education Loans Guide](/study-abroad/loans), [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), and the official [NIU Graduate Tuition Schedule](https://www.niu.edu/bursar/tuition/graduate.shtml).\n\n### Application Requirements & Deadlines\n\n* **Academic Records**: Bachelor's degree from a recognized institution with minimum 2.75/4.0 undergraduate GPA (or 3.0 in final two years).\n* **GRE Requirement**: GRE is optional or waived for applicants meeting departmental academic standards.\n* **English Language Testing**: Minimum TOEFL iBT 80, IELTS Academic 6.5, or Duolingo 110.\n* **Deadlines**: International application deadline is May 1 for the Fall term (August start) and October 1 for the Spring term (January start).",
+        "faq_json": [
+          { "q": "What is the official cost of attendance for MS CS at NIU?", "a": "Northern Illinois University lists an official international graduate cost of attendance of $31,900 per year for Computer Science, which covers tuition, fees, health insurance, and living expenses." },
+          { "q": "What are the application deadlines for international students at NIU?", "a": "The general international application deadline is May 1 for Fall semester and October 1 for Spring semester." },
+          { "q": "Does NIU require GRE scores for Computer Science?", "a": "GRE scores are optional for MS in Computer Science applicants who satisfy undergraduate academic prerequisites." },
+          { "q": "How far is NIU from Chicago?", "a": "NIU's main campus is in DeKalb, Illinois, approximately 65 miles west of downtown Chicago along the I-88 research and development corridor." }
+        ],
+        "related_json": [
+          { "label": "USA Country Guide", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "F-1 Student Visa Manual", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://www.niu.edu/bursar/tuition/graduate.shtml",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-cincinnati",
+      "source": "https://www.uc.edu/about/bursar/tuition-fees.html",
+      "fields": {
+        "slug": "university-of-cincinnati",
+        "name": "University of Cincinnati (UC)",
+        "country": "usa",
+        "city": "Cincinnati, Ohio",
+        "summary": "University of Cincinnati is a premier public R1 research flagship renowned for cooperative education (co-op), with out-of-state graduate tuition of $26,600/year and $16,000 living expenses.",
+        "seo_title": "University of Cincinnati: Graduate Tuition, Fees & Admissions",
+        "meta_description": "University of Cincinnati graduate guide for Indian students: $26,600 non-resident tuition, co-op earnings opportunities, $16,000 living costs, and Fall/Spring deadlines.",
+        "tuition_per_year": 26600,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 16000,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 1,
+        "ranking": "Top 100 US Public Universities / Top 5 Co-Op",
+        "acceptance_rate": "85%",
+        "application_deadlines": {
+          "fall": "Priority (fellowships): 15 December · Final: 31 March",
+          "spring": "1 September"
+        },
+        "infobox_json": {
+          "title": "University of Cincinnati Overview & Financial Profile",
+          "rows": [
+            { "key": "Campus Location", "value": "Cincinnati, Ohio", "emphasis": false },
+            { "key": "University Classification", "value": "Public R1 Doctoral Research University", "emphasis": false },
+            { "key": "Out-of-State Graduate Tuition", "value": "$26,600 USD / year", "emphasis": true },
+            { "key": "Estimated Annual Living Expenses", "value": "$16,000 USD / year", "emphasis": false },
+            { "key": "Estimated Annual COA (I-20)", "value": "~$45,200 USD / year (with fees & insurance)", "emphasis": true },
+            { "key": "Co-Op Ranking", "value": "Top 5 Nationally for Cooperative Education", "emphasis": false },
+            { "key": "Fall Priority Deadline", "value": "December 15 (funding) / March 31 (regular)", "emphasis": false },
+            { "key": "Spring Application Deadline", "value": "September 1", "emphasis": false }
+          ]
+        },
+        "body_md": "## University of Cincinnati Overview for Indian Graduate Students\n\n**University of Cincinnati (UC)** is a major public research university located in **Cincinnati, Ohio**. Established in 1819, UC is an R1 Carnegie-classified research institution and the birthplace of cooperative education (co-op), consistently ranked among the top five institutions in the United States for internships and experiential learning.\n\n### College of Engineering & Applied Science (CEAS) Strengths\n\nUC's Department of Computer Science offers Master of Science and Master of Engineering degrees designed to equip students with deep theoretical foundations and practical software engineering expertise. Key highlights:\n\n1. **World-Renowned Co-Op Program**: UC students have the opportunity to participate in paid cooperative education semesters with top multinational corporations, earning substantial stipends that offset educational expenses.\n2. **STEM OPT Extension**: Master's degrees in Computer Science, Computer Engineering, and Data Science are STEM-designated, providing eligible F-1 students with 36 months of work authorization upon graduation.\n3. **Research Labs and Facilities**: Students work in advanced facilities focusing on artificial intelligence, cybersecurity, distributed systems, and intelligent robotics.\n\n### Estimated Annual Graduate Costs (2025–2026)\n\n| Expense Category | Annual Amount (USD) | Details |\n| :--- | :---: | :--- |\n| **Non-Resident Graduate Tuition & General Fees** | **$26,600** | Includes instructional fee ($13,224/yr), non-resident surcharge, and general campus fees |\n| **Student Health Insurance & Technology Fees** | **~$2,600** | Required international student health insurance policy |\n| **Room, Board & Personal Expenses** | **$16,000** | Estimated annual living budget for off-campus housing in Cincinnati |\n| **Total Estimated I-20 Certification Budget** | **~$45,200** | Documented liquid funds needed for initial Form I-20 processing |\n\nFor guidance on currency conversion and banking transfers, review our [Study Abroad Education Loans](/study-abroad/loans), [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), [F-1 Visa Application Checklist](/study-abroad/visas/usa-f1-student-visa-master-guide), and the official [UC Bursar Tuition Schedule](https://www.uc.edu/about/bursar/tuition-fees.html).\n\n### Graduate Admissions Criteria and Deadlines\n\n* **Academic Background**: 4-year undergraduate degree in computer science or related discipline with minimum 3.0/4.0 GPA.\n* **Standardized Tests**: GRE is optional for MS in Computer Science for the current admissions cycle.\n* **Language Requirements**: Minimum TOEFL iBT 80, IELTS 6.5, or Duolingo DET 110.\n* **Application Deadlines**: Fall priority deadline for scholarship consideration is December 15; final international application deadline is March 31. Spring intake deadline is September 1.",
+        "faq_json": [
+          { "q": "What is the non-resident tuition for graduate students at University of Cincinnati?", "a": "Full-time out-of-state and international graduate tuition and instructional fees at UC total approximately $26,600 per academic year." },
+          { "q": "Is University of Cincinnati known for co-op programs?", "a": "Yes, UC is ranked among the top five universities in the United States for co-ops, allowing graduate students to gain paid industry experience." },
+          { "q": "Is the GRE required for MS Computer Science at UC?", "a": "The GRE is optional for admission to the MS in Computer Science program at the University of Cincinnati for the current admissions cycle." },
+          { "q": "What are the application deadlines for graduate engineering at UC?", "a": "Fall priority deadline is December 15 (regular March 31), and Spring application deadline is September 1." }
+        ],
+        "related_json": [
+          { "label": "USA Study Abroad Minisite", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "USA F-1 Visa Master Guide", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://www.uc.edu/about/bursar/tuition-fees.html",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-north-texas",
+      "source": "https://international.unt.edu/content/cost-sheets",
+      "fields": {
+        "slug": "university-of-north-texas",
+        "name": "University of North Texas (UNT)",
+        "country": "usa",
+        "city": "Denton, Texas",
+        "summary": "University of North Texas in the Dallas-Fort Worth metroplex provides STEM computing programs with $19,186 annual non-resident tuition and an official $42,067 total Cost of Attendance.",
+        "seo_title": "University of North Texas: Graduate Tuition & Admissions",
+        "meta_description": "UNT graduate admissions guide for Indian students: $19,186 out-of-state tuition, $42,067 official annual COA, DFW metroplex recruiter access, and application deadlines.",
+        "tuition_per_year": 19186,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 18955,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 0,
+        "ranking": "Tier One R1 Public Research University",
+        "acceptance_rate": "79%",
+        "application_deadlines": {
+          "fall": "Priority: 15 January · Hard: 15 May",
+          "spring": "Priority: 15 September · Hard: 15 October"
+        },
+        "infobox_json": {
+          "title": "UNT Overview & Key Financial Figures",
+          "rows": [
+            { "key": "Campus Location", "value": "Denton, Texas (Dallas-Fort Worth Metroplex)", "emphasis": false },
+            { "key": "University Carnegie Classification", "value": "Tier One R1 Public Doctoral Research University", "emphasis": false },
+            { "key": "Annual Tuition & Fees (Engineering)", "value": "$19,186 USD / year (18 credits)", "emphasis": true },
+            { "key": "Estimated Living Expenses", "value": "$18,955 USD / year", "emphasis": false },
+            { "key": "Other Direct Expenses (Books & Insurance)", "value": "$3,926 USD / year", "emphasis": false },
+            { "key": "Official Annual COA (I-20)", "value": "$42,067 USD / year", "emphasis": true },
+            { "key": "Fall Priority Deadline", "value": "January 15", "emphasis": false },
+            { "key": "Spring Priority Deadline", "value": "September 15", "emphasis": false }
+          ]
+        },
+        "body_md": "## University of North Texas Overview for Indian Graduate Students\n\n**University of North Texas (UNT)** is a major public research university located in **Denton, Texas**, within the thriving Dallas-Fort Worth (DFW) metropolitan area. Designated a Carnegie Tier One (R1) research institution, UNT enrolls over 44,000 students and features comprehensive master's programs in Computer Science, Artificial Intelligence, Cybersecurity, and Data Engineering.\n\n### College of Engineering & DFW Tech Corridor Advantages\n\nUNT's Department of Computer Science and Engineering is housed at Discovery Park, a dedicated 300-acre research facility in Denton. Key advantages for Indian students include:\n\n1. **Dallas-Fort Worth Tech Hub Access**: DFW is home to major technology centers, corporate headquarters, and defense contractors (including Texas Instruments, AT&T, American Airlines, Toyota, and Lockheed Martin), offering robust hiring pipelines for STEM graduates.\n2. **STEM OPT Extension**: Master's degree programs in Computer Science at UNT are STEM designated, enabling F-1 visa holders to complete up to 36 months of practical training.\n3. **Assistantships and Out-of-State Waivers**: International students securing competitive graduate teaching assistant (TA) or research assistant (RA) appointments may qualify for in-state tuition waivers under Texas state provisions, substantially reducing educational expenses.\n\n### Official International Graduate Cost of Attendance (2025–2026)\n\n| Cost Category | Annual Budget (USD) | Description |\n| :--- | :---: | :--- |\n| **Non-Resident Tuition & College Fees** | **$19,186** | 18 credit hours per 9-month academic year (College of Engineering) |\n| **Housing and Food (Living Expenses)** | **$18,955** | Off-campus or on-campus housing in Denton and meal plan estimates |\n| **Books, Supplies & Health Insurance** | **$3,926** | Mandatory health insurance coverage and academic materials |\n| **Total Official Cost of Attendance (I-20)** | **$42,067** | Required liquid proof of funds for Form I-20 issuance |\n\nFor step-by-step guidance on remittance rules, check the [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), [Study Abroad Education Loans](/study-abroad/loans), [USA F-1 Visa Procedures](/study-abroad/visas/usa-f1-student-visa-master-guide), and the official [UNT International Cost Sheets](https://international.unt.edu/content/cost-sheets).\n\n### Application Requirements & Admission Deadlines\n\n* **Academic Records**: Recognized 4-year bachelor's degree in engineering or computing with minimum 3.0/4.0 GPA.\n* **GRE Requirement**: Optional or evaluated holistically based on applicant profile.\n* **English Language Scores**: Minimum TOEFL iBT 79, IELTS 6.0, or Duolingo 105.\n* **Deadlines**: Fall semester priority deadline is January 15 (hard deadline May 15). Spring semester priority deadline is September 15 (hard deadline October 15).",
+        "faq_json": [
+          { "q": "What is the annual tuition at UNT for international graduate students?", "a": "For the College of Engineering, non-resident graduate tuition and fees average approximately $19,186 for 18 credit hours per academic year." },
+          { "q": "What is the total official Cost of Attendance for UNT I-20 issuance?", "a": "UNT International lists an official annual Cost of Attendance of $42,067 for graduate engineering, including tuition, fees, health insurance, and living expenses." },
+          { "q": "Can international students get in-state tuition waivers at UNT?", "a": "Yes, international graduate students who obtain competitive university scholarships or TA/RA appointments may qualify for Texas in-state tuition waiver benefits." },
+          { "q": "What are the application deadlines for UNT Computer Science?", "a": "Fall priority deadline is January 15 (hard cutoff May 15), and Spring priority is September 15 (hard cutoff October 15)." }
+        ],
+        "related_json": [
+          { "label": "USA Country Guide", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "USA Student Visa Guide", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://international.unt.edu/content/cost-sheets",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "wright-state-university",
+      "source": "https://www.wright.edu/admissions/international/cost-and-finances",
+      "fields": {
+        "slug": "wright-state-university",
+        "name": "Wright State University",
+        "country": "usa",
+        "city": "Dayton, Ohio",
+        "summary": "Wright State University in Dayton offers cost-effective STEM graduate computing programs with an official annual I-20 Cost of Attendance of $30,240 ($15,456 baseline tuition and $11,000 living costs).",
+        "seo_title": "Wright State University: Graduate Tuition & Admissions",
+        "meta_description": "Wright State University guide for Indian students: $15,456 tuition, $30,240 official I-20 annual budget, Dayton defense & tech corridor access, and rolling deadlines.",
+        "tuition_per_year": 15456,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 11000,
+        "living_currency": "USD",
+        "gre_required": "optional",
+        "stem_opt": 1,
+        "coop_program": 0,
+        "ranking": "Midwest National Public University",
+        "acceptance_rate": "95%",
+        "application_deadlines": {
+          "fall": "30 June",
+          "spring": "30 November",
+          "summer": "31 March"
+        },
+        "infobox_json": {
+          "title": "Wright State Overview & Financial Details",
+          "rows": [
+            { "key": "Campus Location", "value": "Dayton, Ohio", "emphasis": false },
+            { "key": "Institution Type", "value": "Public Comprehensive Research University", "emphasis": false },
+            { "key": "Baseline Graduate Tuition", "value": "$15,456 USD / year ($7,728 / semester)", "emphasis": true },
+            { "key": "Estimated Annual Living Costs", "value": "$11,000 USD / year", "emphasis": false },
+            { "key": "Books, Health & Mandatory Fees", "value": "$3,784 USD / year", "emphasis": false },
+            { "key": "Official Annual COA (I-20)", "value": "$30,240 USD / year", "emphasis": true },
+            { "key": "Fall Application Deadline", "value": "June 30", "emphasis": false },
+            { "key": "Spring Application Deadline", "value": "November 30", "emphasis": false }
+          ]
+        },
+        "body_md": "## Wright State University Overview for Indian Graduate Students\n\n**Wright State University** is a public research university located in **Dayton, Ohio**, adjacent to Wright-Patterson Air Force Base. Named in honor of aviation pioneers the Wright brothers, the university offers comprehensive graduate programs in Computer Science, Cyber Security, Electrical Engineering, and Biomedical Engineering.\n\n### College of Engineering & Computer Science (CECS) Highlights\n\nWright State's Department of Computer Science and Engineering offers 30-credit-hour master's degrees tailored to both academic research and industry career placement. Key highlights:\n\n1. **Affordable Cost of Attendance**: Wright State maintains one of the most accessible international graduate financial thresholds in the Midwest, with an official baseline annual Cost of Attendance of $30,240 for Form I-20 issuance ($15,456 baseline tuition, $11,000 living expenses, and $3,784 in fees and insurance).\n2. **Defense & Tech Ecosystem**: Proximity to Wright-Patterson Air Force Base and the Dayton research corridor drives demand for computing, data analytics, and sensor research specialists.\n3. **STEM OPT Extension**: Master of Science degrees in Computer Science and Computer Engineering are STEM designated, granting eligible F-1 students 36 months of post-completion work eligibility.\n\n### Estimated Annual Graduate Expenses (2025–2026)\n\n| Budget Component | Annual Amount (USD) | Explanation |\n| :--- | :---: | :--- |\n| **Baseline Graduate Tuition** | **$15,456** | Two semesters at $7,728/term baseline I-20 financial rate |\n| **Mandatory University & Health Fees** | **$3,784** | Includes international fee, campus engagement, and health insurance |\n| **Estimated Living Expenses** | **$11,000** | Off-campus shared student apartment housing and food in Dayton |\n| **Official Total Annual COA (I-20)** | **$30,240** | Total documented liquid financial proof required for visa issuance |\n\nFor details on financial transfers and student visa processing, see the [Study Abroad Education Loans](/study-abroad/loans), [RBI LRS Remittance Rules](/articles/rbi-lrs-tcs-rules-study-abroad-remittances-guide), [USA F-1 Visa Playbook](/study-abroad/visas/usa-f1-student-visa-master-guide), and the official [Wright State International Cost & Finances](https://www.wright.edu/admissions/international/cost-and-finances).\n\n### Application Requirements & Admission Deadlines\n\n* **Academic Prerequisites**: Bachelor's degree from a recognized institution with minimum 2.7/4.0 undergraduate GPA.\n* **GRE Requirement**: GRE is optional for MS in Computer Science applicants.\n* **Language Testing**: Minimum TOEFL iBT 79, IELTS 6.0, or Duolingo 105.\n* **Deadlines**: Preferred international deadline is June 30 for the Fall semester, November 30 for the Spring semester, and March 31 for Summer semester.",
+        "faq_json": [
+          { "q": "What is the official cost of attendance for Wright State graduate students?", "a": "Wright State University's official annual Cost of Attendance for international graduate students is $30,240, including baseline tuition, fees, insurance, and living costs." },
+          { "q": "Is MS in Computer Science at Wright State STEM designated?", "a": "Yes, the MS in Computer Science at Wright State is a STEM-designated degree, qualifying graduates for the 24-month OPT extension (36 months total)." },
+          { "q": "What are the application deadlines for international students at Wright State?", "a": "Preferred deadlines are June 30 for Fall semester, November 30 for Spring semester, and March 31 for Summer semester." },
+          { "q": "Does Wright State require the GRE for MS CS?", "a": "No, GRE scores are optional for applicants to the Master of Science in Computer Science program." }
+        ],
+        "related_json": [
+          { "label": "USA Study Abroad Gateway", "href": "/study-abroad/study-in/usa" },
+          { "label": "USA MS in Computer Science Programs", "href": "/study-abroad/programs/usa/ms/computer-science" },
+          { "label": "USA F-1 Visa Guide", "href": "/study-abroad/visas/usa-f1-student-visa-master-guide" }
+        ],
+        "official_source": "https://www.wright.edu/admissions/international/cost-and-finances",
+        "checked_at": "2026-11-02"
+      }
+    }
+  ]
+}
