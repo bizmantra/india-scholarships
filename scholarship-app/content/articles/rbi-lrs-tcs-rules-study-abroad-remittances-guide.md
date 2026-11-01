@@ -92,12 +92,12 @@ Trust scholarships also provide valuable financial backing. Explore the [JN Tata
 
 Follow this orderly workflow when transferring university tuition or maintenance funds abroad:
 
-1. **Obtain University Invoice**: Request the payment letter showing university wire details. An IBAN is the International Bank Account Number identifying foreign recipient accounts.
+1. **Obtain University Invoice**: Request the official payment letter showing university wire details. An IBAN or SWIFT code identifies foreign recipient university accounts.
 2. **Complete Form A2**: Fill out Form A2, the statutory declaration for purchasing foreign exchange.
 3. **Submit LRS Declaration**: Declare cumulative foreign exchange remittances made during the current fiscal year.
 4. **Attach Educational Proof**: Provide your unconditional university admission letter and passport copy.
 5. **Deduct Applicable TCS**: The authorized dealer bank calculates and collects statutory TCS automatically.
-6. **Obtain SWIFT Confirmation**: Retain the SWIFT MT103 document. A SWIFT MT103 receipt confirms that foreign currency was successfully dispatched abroad.
+6. **Obtain SWIFT Confirmation**: Retain the SWIFT MT103 document. A SWIFT MT103 document proves your bank dispatched the foreign wire instruction.
 
 Merit scholars can check full funding provisions under the [Fulbright-Nehru Master's Fellowship](/scholarships/fulbright-nehru-masters-fellowship).
 
@@ -109,7 +109,7 @@ Deducted TCS is credited directly to the remitter's Permanent Account Number (PA
 
 Form 26AS is the consolidated annual tax credit statement issued by the government.
 
-The Annual Information Statement (AIS) also records all outward foreign remittances.
+The Annual Information Statement (AIS) also records reported outward foreign currency remittances.
 
 Follow these steps to recover deducted TCS amounts:
 - **Verify Form 26AS**: Confirm your remitting bank deposited TCS funds within quarterly returns.
@@ -124,6 +124,6 @@ Evaluate your profile against state and central award criteria using the [Schola
 
 ## Sources & Official References
 
-- Reserve Bank of India (RBI): Master Direction on Liberalised Remittance Scheme (`rbi.org.in`).
-- Income Tax Department, Government of India: Section 206C(1G) statutory provisions (`incometaxindia.gov.in`).
+- Reserve Bank of India: FED Master Direction No. 7/2015-16 on Other Remittance Facilities.
+- Income Tax Department, Government of India: Section 206C(1G) statutory provisions and circulars.
 - Facts and remittance guidelines verified: November 2, 2026.

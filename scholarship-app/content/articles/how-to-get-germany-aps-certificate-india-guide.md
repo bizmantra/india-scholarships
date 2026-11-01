@@ -89,7 +89,7 @@ Follow this structured sequence to secure your verification certificate without 
 
 1. **Online Account Creation**: Register a candidate profile on the official website (`aps-india.de`).
 2. **Select Candidate Category**: Pick the category matching your completed academic degree.
-3. **Pay Processing Fee**: Transfer **₹18,000** via NEFT or RTGS to the official account.
+3. **Pay Processing Fee**: Transfer **₹18,000** via online banking and save the transaction reference number.
 4. **Submit Academic Transcripts**: Provide verified semester marksheets and institutional contact information.
 5. **Courier Document Dossier**: Dispatch printed registration forms and certified copies to New Delhi.
 6. **Professor Email Verification**: Notify university faculty to respond to official verification emails promptly.
