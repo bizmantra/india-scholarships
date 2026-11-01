@@ -1,0 +1,105 @@
+{
+  "agent": "content-editor",
+  "notes": "C2 Facts Freshness: Official sources and check dates for the 11 unprovenanced study abroad facts",
+  "changes": [
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.buffer_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.coracle_monthly_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.coracle_setup_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.expatrio_monthly_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.expatrio_setup_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.fintiba_monthly_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.blocked_account.fintiba_setup_eur",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.fx.eur_inr",
+      "source": "https://www.fbil.org.in",
+      "fields": {
+        "official_source": "https://www.fbil.org.in",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "germany.vfs.service_fee_inr",
+      "source": "https://india.diplo.de/in-en/service/2546328-2546328",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2546328-2546328",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "usa.fx.usd_inr",
+      "source": "https://www.fbil.org.in",
+      "fields": {
+        "official_source": "https://www.fbil.org.in",
+        "checked_at": "2026-11-01"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "usa.living.monthly_average_usd",
+      "source": "https://nces.ed.gov/ipeds/",
+      "fields": {
+        "official_source": "https://nces.ed.gov/ipeds/",
+        "checked_at": "2026-11-01"
+      }
+    }
+  ]
+}
