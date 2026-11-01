@@ -20,8 +20,8 @@ relatedScholarships:
   - "narotam-sekhsaria-postgraduate-scholarship"
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
 takeaways:
-  - "The I-20 deficit equals Section 7 estimated expenses minus confirmed Section 8 funding."
-  - "Consular officers inspect liquid assets covering 1.5x to 2x first-year costs."
+  - "The I-20 deficit equals Item 7 estimated expenses minus confirmed Item 8 funding."
+  - "Experienced visa advisors recommend liquid assets covering 1.5x to 2x the net deficit."
   - "Approved liquid funds include savings balances, fixed deposits, and bank loan sanction letters."
 checklist:
   - "Official Form I-20 signed by Designated School Official"
@@ -44,21 +44,21 @@ Estimate required graduate budgets using the [US Study Cost Calculator](/study-a
 
 ---
 
-## 1. Understanding Form I-20 Section 7 vs Section 8
+## 1. Understanding Form I-20 Item 7 vs Item 8
 
 Form I-20 records official academic and financial details for international students.
 
-Two key sections determine student financial eligibility at the visa interview:
-- **Section 7 (Estimated Costs)**: Total annual cost projected by the university.
-- **Section 8 (Student Funding)**: Financial resources pledged to meet those expenses.
+Two key items determine student financial eligibility at the visa interview:
+- **Item 7 (Estimated Costs)**: Total initial program costs projected by the university.
+- **Item 8 (Student Funding)**: Financial resources pledged to meet those expenses.
 
-Section 7 outlines expenses for one academic year:
+Item 7 outlines expenses for an initial term of up to 9 to 12 months:
 - **Tuition and Fees**: Academic charges assessed by the academic institution.
 - **Living Expenses**: Estimated costs for housing, meals, and local transport.
 - **Dependent Expenses**: Additional funds required if dependents accompany the student.
 - **Other Costs**: Budget for mandatory health insurance, textbooks, and campus supplies.
 
-Section 8 records confirmed funding sources:
+Item 8 records confirmed funding sources:
 - **Personal Funds**: Student or parental cash savings committed to the program.
 - **School Funds**: University scholarships, tuition remissions, or teaching assistantships.
 - **External Funds**: Government sponsorships or private educational awards.
@@ -70,19 +70,19 @@ Compare universities and expense guidelines across the [Study in USA Hub](/study
 
 ## 2. Calculating the First-Year Deficit
 
-Universities require matching figures in Sections 7 and 8 to issue the document.
+Universities require matching figures in Items 7 and 8 to issue the document.
 
 Consular officers review actual liquid proof behind these recorded entries.
 
 The first-year deficit represents total costs minus confirmed institutional funding:
 
-First-year deficit equals Section 7 total costs minus Section 8 university funding.
+First-year deficit equals Item 7 total costs minus Item 8 university funding.
 
-Consider a university with $55,000 in annual Section 7 expenses.
+Consider a university with $56,000 in annual Item 7 expenses.
 
-If the school awards a $15,000 graduate fellowship, the remaining deficit is $40,000.
+If the school awards a $12,000 graduate fellowship, the remaining deficit is $44,000.
 
-The student must demonstrate liquid financial backing for this remaining $40,000 gap.
+The student must demonstrate liquid financial backing for this remaining $44,000 gap.
 
 Officers reject applications when declared funds lack verifiable bank documentation.
 
@@ -90,20 +90,20 @@ Examine funding options in the comprehensive [Study Abroad Loans Guide](/study-a
 
 ---
 
-## 3. The 1.5x to 2x Liquid Asset Rule Followed by Consular Officers
+## 3. Planning Buffers: The 1.5x to 2x Liquid Coverage Heuristic
 
-Consular officers follow strict regulations under Section 214(b) of the Immigration Act.
+Under Section 214(b) of the Immigration and Nationality Act, applicants must demonstrate non-immigrant intent.
 
-Officers want assurance that students will not abandon their academic studies.
+Officers evaluate whether students possess sufficient funds to complete their studies without working illegally.
 
-Applicants must present liquid assets beyond the bare minimum first-year deficit.
+Experienced advisors recommend maintaining liquid funds equal to 1.5 to 2 times the net deficit.
 
-Officers prefer liquid assets equal to 1.5 to 2 times first-year expenses:
+This planning heuristic provides three vital safeguards:
 - **First-Year Protection**: Immediate liquid coverage for all first-year tuition and living bills.
 - **Second-Year Buffer**: Documented assets showing ability to fund subsequent program semesters.
 - **Emergency Reserve**: Surplus capital protecting against inflation and currency exchange shifts.
 
-A student facing a $40,000 deficit should ideally show $60,000 to $80,000 in liquid backing.
+A student facing a $44,000 deficit needs $66,000 to $88,000 in liquid backing.
 
 This surplus shows economic stability without needing unauthorized off-campus employment.
 
@@ -122,12 +122,11 @@ Liquid assets receive full recognition during the F-1 visa interview:
 - **Provident Fund Balances**: Documented withdrawable balances from employer provident funds.
 - **Endowment Scholarships**: Prestigious external grants like the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
 
-Non-liquid assets do not qualify as immediate proof for tuition payments:
-- **Real Estate and Land**: Property deeds show home ties, not ready cash.
-- **Gold and Jewelry Valuations**: Gold appraisals are illiquid and volatile assets.
-- **Public Stock Equities**: Volatile share certificates fluctuate daily with market swings.
-- **Cryptocurrency Holdings**: Digital crypto wallets are not recognized by consular authorities.
-- **Unverified Cash Deposits**: Large unexplained bank credits arouse immediate consular suspicion.
+Non-liquid or secondary assets do not count as ready cash for first-year tuition:
+- **Real Estate and Land**: Property deeds show residential ties but cannot fund immediate tuition.
+- **Equity Portfolios and Mutual Funds**: Public shares require certified chartered accountant net worth statements.
+- **Gold and Jewelry Valuations**: Jewelry appraisals are illiquid assets not recognized as ready funds.
+- **Unverified Cash Deposits**: Sudden unexplained lump sums trigger intense consular questioning.
 
 Students can also apply for the [Narotam Sekhsaria Postgraduate Scholarship](/scholarships/narotam-sekhsaria-postgraduate-scholarship).
 
@@ -160,24 +159,24 @@ The following scenario models an Indian graduate student attending a two-year Ma
 
 | Cost or Asset Category | Amount in USD | Amount in INR (@ ₹85/USD) | Classification | Impact on I-20 Deficit |
 | :--- | :--- | :--- | :--- | :--- |
-| **University Tuition & Fees** | $36,000 | ₹30,60,000 | Section 7 Expense | Mandatory direct cost |
-| **Living & Housing Expenses** | $16,000 | ₹13,60,000 | Section 7 Expense | Mandatory maintenance cost |
-| **Health Insurance & Books** | $4,000 | ₹3,40,000 | Section 7 Expense | Mandatory incidental cost |
-| **Total Section 7 Cost** | **$56,000** | **₹47,60,000** | Gross Annual Budget | Total initial requirement |
-| **University Merit Scholarship** | -$12,000 | -₹10,20,000 | Section 8 Funding | Direct institutional credit |
+| **University Tuition & Fees** | $36,000 | ₹30,60,000 | Item 7 Expense | Mandatory direct cost |
+| **Living & Housing Expenses** | $16,000 | ₹13,60,000 | Item 7 Expense | Mandatory maintenance cost |
+| **Health Insurance & Books** | $4,000 | ₹3,40,000 | Item 7 Expense | Mandatory incidental cost |
+| **Total Item 7 Cost** | **$56,000** | **₹47,60,000** | Gross Annual Budget | Total initial requirement |
+| **University Merit Scholarship** | -$12,000 | -₹10,20,000 | Item 8 Funding | Direct institutional credit |
 | **Net First-Year Deficit** | **$44,000** | **₹37,40,000** | Net Cash Deficit | Total deficit to cover |
 | **Education Loan Sanction** | $30,000 | ₹25,50,000 | Liquid Bank Loan | Covers 68.2% of deficit |
 | **Parental Savings Account** | $14,000 | ₹11,90,000 | Liquid Cash Asset | Covers 31.8% of deficit |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Reserve Asset | Second-year buffer reserve |
-| **Trust Loan Scholarship** | $10,000 | ₹8,50,000 | External Grant Award | Supplementary liquid funding |
+| **Pre-Approved Trust Loan** | $10,000 | ₹8,50,000 | Trust Loan Scholarship | Supplementary liquid reserve |
 | **Total Liquid Portfolio** | **$70,000** | **₹59,50,000** | Combined Liquid Funds | **1.59x deficit coverage** |
 
 In this scenario, total available liquid funds reach $70,000.
 
-This total comfortably exceeds the $44,000 net first-year deficit.
+Loan sanction funds of $30,000 and personal savings of $14,000 cover the $44,000 deficit completely.
 
-The student covers the first-year deficit completely with loan and savings funds.
+Family fixed deposits of $16,000 and the trust award of $10,000 form a $26,000 buffer.
 
-The fixed deposit and trust scholarship provide a robust second-year financial buffer.
+This combined $70,000 portfolio delivers 1.59 times coverage over the net first-year deficit.
 
 This profile meets consular expectations and minimizes risk of financial rejection.

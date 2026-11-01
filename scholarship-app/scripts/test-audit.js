@@ -145,6 +145,38 @@ try {
   process.exit(1);
 }
 
+// 6. Form I-20 with real pronoun 'I' must still be caught
+const formWithPronounFixture = path.join(fixturesDir, 'form-pronoun-article.md');
+fs.writeFileSync(formWithPronounFixture, `---
+slug: "form-pronoun-article"
+title: "Form Pronoun Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Applicants must submit Form I-20 for visa verification.
+
+However I must verify financial balances before submitting.
+\${filler}
+`, 'utf8');
+
+try {
+  execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formWithPronounFixture}"`, { stdio: 'pipe' });
+  console.error('❌ Test 6 Failed: Expected failure for capital "I" even when Form I-20 is present.');
+  process.exit(1);
+} catch (e) {
+  const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+  if (out.includes('Forbidden first-person pronoun(s): I')) {
+    console.log('✅ Test 6 Passed: Capital "I" flagged even when Form I-20 is present.');
+  } else {
+    console.error('❌ Test 6 Failed: Output did not contain expected pronoun error:', out);
+    process.exit(1);
+  }
+}
+
 // Clean up fixtures
 fs.rmSync(fixturesDir, { recursive: true, force: true });
-console.log('🎉 All 5 audit test cases passed cleanly!\n');
+console.log('🎉 All 6 audit test cases passed cleanly!\n');

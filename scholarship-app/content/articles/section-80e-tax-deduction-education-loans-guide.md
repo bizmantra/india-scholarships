@@ -4,7 +4,6 @@ title: "Section 80E Tax Deduction on Education Loans: Rules & Worked Examples"
 slug: "section-80e-tax-deduction-education-loans-guide"
 description: "Complete guide to Section 80E income tax deduction on higher education loan interest, approved financial institutions, eligibility, and worked tax-saving examples."
 category: "financial-aid"
-tag: "financial-aid"
 tags:
   - "section-80e"
   - "income-tax"
@@ -81,24 +80,19 @@ Planning an accelerated eight-year repayment schedule maximizes total tax benefi
 
 ---
 
-## Approved Lenders: Commercial Banks vs NBFCs
+## Approved Lenders: Banking Companies vs Notified Institutions
 
-Section 80E restricts eligible loans to recognized financial institutions.
+Tax regulations restrict eligible education loans to recognized institutions.
 
 Loans from unauthorized lenders cannot yield tax deductions.
 
-Section 80E(3) explicitly specifies which institutions qualify.
+Statutory rules explicitly define eligible lenders into three categories:
+- **Scheduled Commercial Banks**: Public, private, and foreign banks governed by the Banking Regulation Act.
+- **Notified Financial Institutions**: Institutions explicitly notified by the Central Government in the Official Gazette.
+- **Approved Charitable Institutions**: Educational trusts and charities recognized under the Income Tax Act.
+- **Ineligible Lenders**: Loans from private individuals, employers, and non-notified lenders do not qualify.
 
-- **Scheduled Commercial Banks**: All public and private commercial banks qualify automatically.
-- **Cooperative Banks**: Scheduled cooperative banks licensed under banking regulations qualify.
-- **Notified NBFCs**: Non-banking financial companies must hold explicit government notifications.
-- **Ineligible Lenders**: Loans from friends, relatives, and private trusts do not qualify.
-
-The Central Government explicitly notified HDFC Credila for Section 80E.
-
-Most other fintech NBFC lenders lack this official gazette notification.
-
-Borrowers must confirm Section 80E eligibility before signing loan contracts.
+Borrowers must verify that their sanction letter specifies an eligible banking institution.
 
 Compare approved student loan programs in the [Study Abroad Loans Guide](/study-abroad#loans).
 
@@ -143,6 +137,8 @@ The 20% slab produces an effective tax rate of 20.8%.
 
 The 30% slab produces an effective tax rate of 31.2%.
 
+Calculations assume an illustrative 9.5% annual interest rate.
+
 | Loan Amount | Annual Interest Paid | 20% Slab Savings (20.8%) | 30% Slab Savings (31.2%) | 5-Year Savings (30% Slab) |
 | :--- | :--- | :--- | :--- | :--- |
 | ₹10,00,000 | ₹95,000 | ₹19,760 | ₹29,640 | ₹1,48,200 |
@@ -150,6 +146,10 @@ The 30% slab produces an effective tax rate of 31.2%.
 | ₹30,00,000 | ₹2,85,000 | ₹59,280 | ₹88,920 | ₹4,44,600 |
 | ₹40,00,000 | ₹3,80,000 | ₹79,040 | ₹1,18,560 | ₹5,92,800 |
 | ₹50,00,000 | ₹4,75,000 | ₹98,800 | ₹1,48,200 | ₹7,41,000 |
+
+The 5-year savings column illustrates flat interest projections for planning purposes.
+
+Actual annual savings taper down as borrowers amortize their loan principal.
 
 A borrower servicing ₹3,80,000 interest saves ₹1,18,560 each year.
 
@@ -209,7 +209,7 @@ Careful adherence to tax rules ensures uninterrupted tax savings.
 - **New Tax Regime Selection**: Opting for the New Regime forfeits Section 80E claims completely.
 - **Unapproved NBFC Borrowing**: Taking loans from non-notified fintech lenders prevents tax deductions.
 - **Claiming Beyond Eight Years**: Interest payments past eight consecutive assessment years receive zero relief.
-- **Claiming Principal Repayments**: Deducting principal repayments under Section 80E triggers tax audit penalties.
+- **Claiming Principal Repayments**: The Income Tax Department disallows principal amounts because Section 80E covers interest only.
 
 Both co-borrowers cannot claim the same interest payment twice.
 
