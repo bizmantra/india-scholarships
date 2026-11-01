@@ -121,6 +121,30 @@ try {
   }
 }
 
+// 5. Form I-20 / I-134 not falsely flagged as pronoun 'I'
+const formFixture = path.join(fixturesDir, 'form-article.md');
+fs.writeFileSync(formFixture, `---
+slug: "form-article"
+title: "Form Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Applicants must submit Form I-20 and Form I-134 for visa verification.
+${filler}
+`, 'utf8');
+
+try {
+  execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formFixture}"`, { stdio: 'pipe' });
+  console.log('✅ Test 5 Passed: Form designations I-20 and I-134 permitted.');
+} catch (e) {
+  console.error('❌ Test 5 Failed: Form designations triggered false positive pronoun failure:', e.stdout?.toString() || e.message);
+  process.exit(1);
+}
+
 // Clean up fixtures
 fs.rmSync(fixturesDir, { recursive: true, force: true });
-console.log('🎉 All 4 audit test cases passed cleanly!\n');
+console.log('🎉 All 5 audit test cases passed cleanly!\n');
