@@ -281,8 +281,8 @@ export default function HomeClient({
                                     </h3>
                                     <p className="text-xs text-[var(--color-ink-soft)] font-medium">High-priority scholarships we feature</p>
                                 </div>
-                                <Link href="/scholarships/trending" className="font-bold text-xs text-[var(--color-brand)] hover:underline flex items-center gap-1 transition-all">
-                                    View All <ArrowRight className="h-3.5 w-3.5" />
+                                <Link href="/scholarships" className="font-bold text-xs text-[var(--color-brand)] hover:underline flex items-center gap-1 transition-all">
+                                    View All Scholarships <ArrowRight className="h-3.5 w-3.5" />
                                 </Link>
                             </div>
                             
@@ -378,7 +378,7 @@ export default function HomeClient({
                             {[
                                 { step: 1, title: 'Search & Discover', desc: 'Search or filter by course, category, state, and income.' },
                                 { step: 2, title: 'Compare Schemes', desc: 'Check the amount, eligibility rules, deadline, and documents for each scheme.' },
-                                { step: 3, title: 'Apply Seamlessly', desc: 'Each listing links to the official provider page, where you apply.' }
+                                { step: 3, title: 'Apply Seamlessly', desc: 'Listings link directly to official provider portals, where you apply.' }
                             ].map((s) => (
                                 <div key={s.step} className="sm:flex sm:flex-col sm:items-center">
                                     <div className="w-9 h-9 rounded-full bg-brand text-white font-bold text-sm flex items-center justify-center mb-4 shrink-0">

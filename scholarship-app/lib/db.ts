@@ -694,7 +694,7 @@ export async function getScholarshipStats() {
     const stateRes = await client.execute(`SELECT DISTINCT state FROM scholarships WHERE status = 'Active' AND state IS NOT NULL`);
     const covered = new Set(
         stateRes.rows
-            .map((r: any) => String(r.state).toLowerCase().replace(/&/g, 'and').trim())
+            .map((r: any) => String(r.state).split('(')[0].toLowerCase().replace(/&/g, 'and').trim())
             .filter((s: string) => INDIAN_STATES_AND_UTS.has(s))
     );
     return { ...res.rows[0], stateCount: covered.size };
