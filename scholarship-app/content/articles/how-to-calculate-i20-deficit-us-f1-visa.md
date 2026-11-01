@@ -66,7 +66,7 @@ Item 8 records confirmed funding sources:
 - **Funds From Another Source**: Bank loan sanctions, government awards, or private endowments.
 - **On-Campus Employment**: Approved student earnings from qualifying on-campus positions.
 
-On-campus earnings do not count toward initial visa financial verification requirements.
+Consular officers generally do not rely on on-campus earnings for initial financial verification.
 
 Compare universities and expense guidelines across the [Study in USA Hub](/study-abroad/study-in/usa).
 
@@ -188,7 +188,7 @@ The following scenario models an Indian graduate student attending a two-year Ma
 | **Total First-Year Funding** | **$44,000** | **₹37,40,000** | Fully Funded Year 1 | **100% of Year 1 covered** |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Cash Reserve | Year 2 reserve buffer |
 | **Documented Sponsor Income** | $29,411 | ₹25,00,000 | Annual Taxable Income | Year 2 recurring capacity |
-| **Total Second-Year Backing** | **$45,411** | **₹38,60,000** | Ongoing Financial Pool | Meets Year 2 funding standard |
+| **Total Second-Year Backing** | **$45,411** | **₹38,60,000** | Ongoing Financial Pool | Supports credible Year 2 prospects |
 
 In this scenario, confirmed first-year funding reaches the exact $44,000 net requirement.
 
