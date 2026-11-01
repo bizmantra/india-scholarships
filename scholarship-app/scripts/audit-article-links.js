@@ -64,15 +64,6 @@ try {
   // fallback set already initialized
 }
 
-// Map of valid tool routes
-const validToolRoutes = new Set([
-  '/eligibility-checker',
-  '/tools/eligibility-checker',
-  '/tools/deadline-calendar',
-  '/tools/income-calculator',
-  '/tools/education-loan-emi-calculator'
-]);
-
 // Parse CLI arguments
 const rawArgs = process.argv.slice(2);
 const isStrict = rawArgs.includes('--strict');
@@ -338,6 +329,48 @@ function checkUrl(url, context, brokenLinks) {
   }
 }
 
+function matchAppRoute(routePath) {
+  const appDir = path.join(projectRoot, 'app');
+  const parts = routePath.split('/').filter(Boolean);
+  let currentDir = appDir;
+
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (!fs.existsSync(currentDir)) return false;
+
+    // Check direct directory match
+    const directPath = path.join(currentDir, part);
+    if (fs.existsSync(directPath) && fs.statSync(directPath).isDirectory()) {
+      currentDir = directPath;
+      continue;
+    }
+
+    // Check dynamic param directory like [slug], [country], [degree], etc.
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    const dynamicDir = entries.find(e => e.isDirectory() && e.name.startsWith('[') && e.name.endsWith(']'));
+    if (dynamicDir) {
+      currentDir = path.join(currentDir, dynamicDir.name);
+      continue;
+    }
+
+    // Check last segment as file
+    const isLast = i === parts.length - 1;
+    if (isLast) {
+      const pageFile = entries.find(e => e.isFile() && (
+        e.name === `${part}.tsx` || e.name === `${part}.ts` ||
+        (e.name.startsWith('[') && (e.name.endsWith('.tsx') || e.name.endsWith('.ts')))
+      ));
+      if (pageFile) return true;
+    }
+
+    return false;
+  }
+
+  return fs.existsSync(path.join(currentDir, 'page.tsx')) ||
+         fs.existsSync(path.join(currentDir, 'page.ts')) ||
+         fs.existsSync(path.join(currentDir, 'route.ts'));
+}
+
 function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
   // Normalize path: strip fragment (#), query (?), and trailing slash
   let cleanPath = pathStr.split('#')[0].split('?')[0].trim();
@@ -391,28 +424,12 @@ function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
         reason: "Guide slug '" + guideSlug + "' not found (must be a valid Portal Guide, Article, or Pillar)."
       });
     }
-  } else if (cleanPath.startsWith('/study-abroad')) {
-    const subRoute = cleanPath.replace('/study-abroad', '').replace(/^\//, '');
-    const pagePath = subRoute 
-      ? path.join(projectRoot, 'app', 'study-abroad', subRoute)
-      : path.join(projectRoot, 'app', 'study-abroad');
-    const exists = fs.existsSync(pagePath) || fs.existsSync(`${pagePath}.tsx`) || fs.existsSync(path.join(pagePath, 'page.tsx'));
-    if (!exists) {
+  } else if (cleanPath.startsWith('/study-abroad') || cleanPath.startsWith('/tools/')) {
+    if (!matchAppRoute(cleanPath)) {
       brokenLinks.push({
         context,
         url: rawUrl,
-        reason: `Study Abroad page '${cleanPath}' DOES NOT EXIST in app/study-abroad/`
-      });
-    }
-  } else if (cleanPath.startsWith('/tools/')) {
-    const isExactTool = validToolRoutes.has(cleanPath);
-    const pagePath = path.join(projectRoot, 'app', cleanPath);
-    const exists = fs.existsSync(pagePath) || fs.existsSync(`${pagePath}.tsx`) || fs.existsSync(path.join(pagePath, 'page.tsx'));
-    if (!isExactTool && !exists) {
-      brokenLinks.push({
-        context,
-        url: rawUrl,
-        reason: `Tool page '${cleanPath}' DOES NOT EXIST`
+        reason: `Route '${cleanPath}' DOES NOT EXIST in application`
       });
     }
   }
