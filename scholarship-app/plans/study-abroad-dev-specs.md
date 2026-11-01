@@ -11,7 +11,8 @@ Agents can already propose edits to **existing** Study Abroad pages (`sa_field_c
 3. Nothing **stops bad Study Abroad content** from being approved or published (boilerplate, unsourced numbers, identical rows), and nothing reports stale facts.
 
 ## Rules for every spec below
-- Start from `origin/main`. One branch and one PR per spec. Owner merges. Staging first, then production.
+- Start from `origin/main`. One branch and one PR per spec. Owner merges.
+- **Staging is for features, production is for content.** A spec that changes code, a new proposal kind, a new agent or a schema/migration is rehearsed on staging first (that is what it is there for). A spec whose deliverable is *content* - proposals for `sa_*` pages - submits those proposals straight to the **production** inbox, because that is the database the owner reviews and approves in. Anything approved only on staging is discarded by the next `refresh-staging.js`, which copies production over it.
 - Work in a git worktree per branch. Never `git stash` (stashes are shared across worktrees). Chain git commands with `&&`.
 - Agents never write Study Abroad content straight to production. Everything goes through the inbox.
 - New pages are always created as `status = 'draft'`. Going live is a separate, validated, owner-approved step.
