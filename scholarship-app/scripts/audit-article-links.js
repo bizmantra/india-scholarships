@@ -155,8 +155,13 @@ filesToAudit.forEach(relFile => {
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
 
-  // Strip official US immigration form designations (e.g. I-20, I-134, I-797C) from pronoun checks
-  const proseForPronouns = proseWithoutQuestions.replace(/\bI-\d+[A-Za-z]?\b/g, 'FORM');
+  // Strip official US immigration form designations from pronoun checks using explicit allowlist
+  // Allowed form numbers: I-20, I-94, I-129, I-134, I-485, I-765, I-797, I-901 (with optional letter suffix)
+  const formAllowlistRegex = /\bI-(?:20|94|129[A-Za-z]?|134|485|765|797[A-Za-z]?|901)\b/g;
+  // In targeted mode (checkProse), check the full text (including question headings) so new articles have 0 pronouns.
+  // In global legacy mode (!checkProse), preserve compatibility with legacy FAQ headings ending in '?'.
+  const textToScanForPronouns = checkProse ? bodyText : proseWithoutQuestions;
+  const proseForPronouns = textToScanForPronouns.replace(formAllowlistRegex, 'FORM');
 
   const forbiddenFound = [];
   if (/\bI\b/.test(proseForPronouns)) {
@@ -172,10 +177,23 @@ filesToAudit.forEach(relFile => {
     contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(forbiddenFound)].join(', ')}`);
   }
 
-  // Fake editorial claims
-  const fakeMatch = bodyText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
+  // Fake editorial claims (body and frontmatter)
+  const allAuditedText = checkProse ? `${rawContent}` : bodyText;
+  const fakeMatch = allAuditedText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
   if (fakeMatch) {
     contentIssues.push(`Forbidden fake editorial claim(s): ${[...new Set(fakeMatch)].join(', ')}`);
+  }
+
+  // Frontmatter pronoun checks when strict prose is enabled
+  if (checkProse && yamlText) {
+    const yamlForPronouns = yamlText.replace(formAllowlistRegex, 'FORM');
+    const fmForbidden = [];
+    if (/\bI\b/.test(yamlForPronouns)) fmForbidden.push('I');
+    const fmOther = yamlForPronouns.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+    if (fmOther) fmOther.forEach(m => fmForbidden.push(m.toLowerCase()));
+    if (fmForbidden.length > 0) {
+      contentIssues.push(`Forbidden frontmatter pronoun(s): ${[...new Set(fmForbidden)].join(', ')}`);
+    }
   }
 
   // Strict prose: sentence length & paragraph length

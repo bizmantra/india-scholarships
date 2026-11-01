@@ -20,9 +20,9 @@ relatedScholarships:
   - "narotam-sekhsaria-postgraduate-scholarship"
   - "kc-mahindra-scholarship-for-post-graduate-studies-abroad"
 takeaways:
-  - "The I-20 deficit equals Item 7 estimated expenses minus confirmed Item 8 funding."
-  - "International student advisors recommend liquid assets covering 1.5x to 2x the net deficit."
-  - "Approved liquid funds include savings balances, fixed deposits, and bank loan sanction letters."
+  - "The I-20 deficit is the net personal expense remaining after deducting university aid."
+  - "A standard financial planning heuristic suggests preparing 1.5x to 2x liquid deficit coverage."
+  - "Approved funding proof includes bank deposits, liquid savings, and formal education loan sanctions."
 checklist:
   - "Official Form I-20 signed by Designated School Official"
   - "Unconditional education loan sanction letter from an approved bank"
@@ -48,7 +48,9 @@ Estimate required graduate budgets using the [US Study Cost Calculator](/study-a
 
 Form I-20 records official academic and financial details for international students.
 
-Two key items determine student financial eligibility at the visa interview:
+Designated School Officials require matching totals in Item 7 and Item 8 before issuance.
+
+Two key items outline student expenses and funding during admissions and visa reviews:
 - **Item 7 (Estimated Costs)**: Total initial program costs projected by the university.
 - **Item 8 (Student Funding)**: Financial resources pledged to meet those expenses.
 
@@ -66,27 +68,29 @@ Item 8 records confirmed funding sources:
 
 Compare universities and expense guidelines across the [Study in USA Hub](/study-abroad/study-in/usa).
 
-Review central portal verification workflows in the [National Scholarship Portal Guide](/guides/nsp).
+Review international education pathways on the [Study Abroad Hub](/study-abroad).
 
 ---
 
 ## 2. Calculating the First-Year Deficit
 
-Universities require matching figures in Items 7 and 8 to issue the document.
+Designated School Officials verify that total Item 8 sources cover Item 7 before issuing documents.
 
-Consular officers review actual liquid proof behind these recorded entries.
+However, students face an out-of-pocket deficit whenever university aid does not cover all expenses.
 
-The first-year deficit represents total costs minus confirmed institutional funding:
+Consular officers examine the liquid assets behind these student funding entries.
 
-First-year deficit equals Item 7 total costs minus Item 8 university funding.
+The first-year out-of-pocket deficit represents total costs minus confirmed institutional awards:
+
+Net deficit equals Item 7 total expenses minus Item 8 school funding.
 
 Consider a university with $56,000 in annual Item 7 expenses.
 
 If the school awards a $12,000 graduate fellowship, the remaining deficit is $44,000.
 
-The student must demonstrate liquid financial backing for this remaining $44,000 gap.
+The student and family must demonstrate verified funding for this remaining $44,000 gap.
 
-Officers reject applications when declared funds lack verifiable bank documentation.
+Consular officers can refuse visa issuance if declared financial resources lack verifiable institutional documentation.
 
 Examine funding options in the comprehensive [Study Abroad Loans Guide](/study-abroad#loans).
 
@@ -96,17 +100,19 @@ Examine funding options in the comprehensive [Study Abroad Loans Guide](/study-a
 
 Under INA Section 214(b), applicants face a statutory presumption of immigrant intent.
 
-To overcome this presumption, applicants must prove non-immigrant intent and show sufficient liquid funds.
+To overcome this presumption, applicants must prove non-immigrant intent under INA Section 214(b).
+
+Applicants must also demonstrate sufficient financial resources under 8 CFR 214.2(f)(1)(i)(B).
+
+Under 9 FAM 402.5-5(G), officers evaluate readily available funds for the first year of study.
+
+Officers also evaluate whether credible prospects exist for meeting subsequent educational costs.
 
 Federal regulation 8 CFR 214.2(f)(9) restricts on-campus student employment to 20 hours weekly during terms.
 
 Off-campus employment remains strictly prohibited throughout the student's initial academic year.
 
-Under 9 FAM 402.5-5(G), officers review readily available funds for the first year of study.
-
-Officers also review credible prospects of meeting subsequent educational costs.
-
-Advisors recommend maintaining liquid funds covering 1.5 to 2 times the net deficit.
+A standard financial planning heuristic suggests maintaining 1.5 to 2 times net deficit coverage.
 
 This planning heuristic provides three vital safeguards:
 - **First-Year Protection**: Immediate liquid coverage for all first-year tuition and living bills.
@@ -119,7 +125,7 @@ This surplus shows economic stability without needing unauthorized off-campus em
 
 Evaluate student financial preparedness using the [Scholarship Eligibility Checker](/eligibility-checker).
 
-Check regional opportunities on the [Delhi Scholarships Hub](/scholarships-in/delhi).
+Compare funding avenues in the [Study Abroad Loans Guide](/study-abroad#loans).
 
 ---
 
@@ -127,12 +133,12 @@ Check regional opportunities on the [Delhi Scholarships Hub](/scholarships-in/de
 
 Consular officers classify supporting financial assets into distinct categories.
 
-Liquid assets receive full recognition during the F-1 visa interview:
+Readily available liquid assets receive full recognition during the F-1 visa interview:
 - **Savings Bank Accounts**: Six months of bank statements bearing official bank stamps.
 - **Bank Fixed Deposits**: Term deposit receipts with bank letters confirming immediate liquidation.
 - **Bank Loan Sanction Letters**: Formal education loan approval letters from approved banking institutions.
-- **Provident Fund Balances**: Documented withdrawable balances from employer provident funds.
-- **Endowment Scholarships**: Prestigious external grants like the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
+- **Provident Fund Accounts**: Documented withdrawable balances supported by employer authorization letters.
+- **Endowment Loan Scholarships**: Prestigious external awards like the [JN Tata Endowment Scholarship](/scholarships/jn-tata-endowment-scholarship).
 
 Non-liquid or secondary assets do not count as ready cash for first-year tuition:
 - **Real Estate and Land**: Property deeds show residential ties but cannot fund immediate tuition.
@@ -177,10 +183,10 @@ The following scenario models an Indian graduate student attending a two-year Ma
 | **Total Item 7 Cost** | **$56,000** | **₹47,60,000** | Gross Annual Budget | Total initial requirement |
 | **University Merit Scholarship** | -$12,000 | -₹10,20,000 | Item 8 Funding | Direct institutional credit |
 | **Net First-Year Deficit** | **$44,000** | **₹37,40,000** | Net Cash Deficit | Total deficit to cover |
-| **Education Loan Sanction** | $30,000 | ₹25,50,000 | Liquid Bank Loan | Covers 68.2% of deficit |
+| **Education Loan Sanction** | $30,000 | ₹25,50,000 | Formal Loan Commitment | Covers 68.2% of deficit |
 | **Parental Savings Account** | $14,000 | ₹11,90,000 | Liquid Cash Asset | Covers 31.8% of deficit |
 | **Family Fixed Deposits** | $16,000 | ₹13,60,000 | Liquid Reserve Asset | Second-year buffer reserve |
-| **Pre-Approved Trust Award** | $10,000 | ₹8,50,000 | Trust Loan-Scholarship | Supplementary liquid reserve |
+| **Trust Loan-Scholarship Sanction** | $10,000 | ₹8,50,000 | Repayable Trust Grant | Supplementary liquid reserve |
 | **Total Liquid Portfolio** | **$70,000** | **₹59,50,000** | Combined Liquid Funds | **1.59x deficit coverage** |
 
 In this scenario, total available liquid funds reach $70,000.
@@ -191,4 +197,8 @@ Family fixed deposits of $16,000 and the trust award of $10,000 form a $26,000 b
 
 This combined $70,000 portfolio delivers 1.59 times coverage over the net first-year deficit.
 
-This profile meets consular expectations and minimizes risk of financial rejection.
+For the second year, the family demonstrates credible funding prospects under 9 FAM 402.5-5(G).
+
+Ongoing parental annual salary and secondary loan disbursements cover the remaining program duration.
+
+This profile provides the structured documentation required during consular interview evaluations.
