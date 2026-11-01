@@ -6,7 +6,7 @@ import { AGENTS, agentsOfTeam } from '@/lib/command-center/agents';
 import { facetsFor, reasonLine } from '@/lib/command-center/inbox-view';
 import { LABELS as SA_LABELS } from '@/scripts/lib/sa-inbox';
 import { EvidenceLine } from './Cards';
-import { afterDecision, api, CATEGORY_LABELS, refreshSummary, short } from './orchestrator';
+import { afterDecision, api, failureMessage, CATEGORY_LABELS, refreshSummary, short } from './orchestrator';
 import { store, useStore } from './store';
 
 // Link to the page a proposal is about: the scholarship page, or the Study Abroad page from the payload
@@ -87,7 +87,8 @@ export default function InboxQueue({ team }: { team: string | null }) {
             setMessage(r.message);
             afterDecision();
         } catch (e) {
-            setMessage(e instanceof Error ? e.message : String(e));
+            // The server explains why it will not revert (409); show that, not "Request failed (409)"
+            setMessage(failureMessage(e));
         }
     };
 
