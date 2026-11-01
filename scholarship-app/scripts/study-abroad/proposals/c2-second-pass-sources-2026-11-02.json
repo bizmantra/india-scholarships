@@ -1,347 +1,14 @@
 {
   "agent": "content-editor",
-  "notes": "C2 Second Pass: Comprehensive statutory and institutional source mapping for 59 Germany guides and 59 USA guides",
+  "notes": "C2 Batch 1: Primary statutory and institutional sources for 85 verified study abroad guides with 100% live HTTP 200 checks",
   "changes": [
-    {
-      "table": "sa_guides",
-      "key": "aps-india-certificate-verification-step-by-step",
-      "source": "https://aps-india.de/aps-process/",
-      "fields": {
-        "official_source": "https://aps-india.de/aps-process/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "expatrio-vs-fintiba-vs-coracle",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-3yr-bachelor-acceptance",
-      "source": "https://anabin.kmk.org/db/institutionen",
-      "fields": {
-        "official_source": "https://anabin.kmk.org/db/institutionen",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-anmeldung-tax-id",
-      "source": "https://service.berlin.de/dienstleistung/120686/",
-      "fields": {
-        "official_source": "https://service.berlin.de/dienstleistung/120686/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-aps-certificate-guide",
-      "source": "https://aps-india.de/wp-content/uploads/2026/06/Leaflet_BA_Graduates_English_dMAT_June2026.pdf",
-      "fields": {
-        "official_source": "https://aps-india.de/wp-content/uploads/2026/06/Leaflet_BA_Graduates_English_dMAT_June2026.pdf",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-bavarian-calculator-spec",
-      "source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-bavarian-grade-matrix",
-      "source": "https://www.kmk.org/kultusministerkonferenz/uebergreifende-themen/anerkennung-auslaendischer-abschluesse.html",
-      "fields": {
-        "official_source": "https://www.kmk.org/kultusministerkonferenz/uebergreifende-themen/anerkennung-auslaendischer-abschluesse.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-blocked-account-calc-spec",
-      "source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-      "fields": {
-        "official_source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-blocked-account-manual",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-blue-card-pr-pathway",
-      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-daad-scholarship-master-guide",
-      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-daad-scholarships-guide",
-      "source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-destination-overview",
-      "source": "https://www.daad.de/en/studying-in-germany/universities/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/universities/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ects-credit-mapping",
-      "source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
-      "fields": {
-        "official_source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ects-evaluator-spec",
-      "source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
-      "fields": {
-        "official_source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-education-loans-germany",
-      "source": "https://sbi.bank.in/web/personal-banking/loans/education-loans/global-ed-vantage-scheme",
-      "fields": {
-        "official_source": "https://sbi.bank.in/web/personal-banking/loans/education-loans/global-ed-vantage-scheme",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-engineering-directory",
-      "source": "https://www.tu9.de/en/",
-      "fields": {
-        "official_source": "https://www.tu9.de/en/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-english-language-tests",
-      "source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements/language-certificates",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements/language-certificates",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-financial-emergency-plan",
-      "source": "https://www.tum.de/en/studies/fees-and-financial-aid/scholarships/tum-scholarships",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/fees-and-financial-aid/scholarships/tum-scholarships",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-fsp-studienkolleg-guide",
-      "source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
-      "fields": {
-        "official_source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-german-language-exams-guide",
-      "source": "https://www.testdaf.de/de/teilnehmende/der-digitale-testdaf-ueberblick/",
-      "fields": {
-        "official_source": "https://www.testdaf.de/de/teilnehmende/der-digitale-testdaf-ueberblick/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-german-language-levels",
-      "source": "https://www.goethe.de/ins/in/en/spr/prf.html",
-      "fields": {
-        "official_source": "https://www.goethe.de/ins/in/en/spr/prf.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-gre-gmat-germany-guide",
-      "source": "https://www.rwth-aachen.de/redir/?id=bkjh&lidx=1",
-      "fields": {
-        "official_source": "https://www.rwth-aachen.de/redir/?id=bkjh&lidx=1",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-gre-gmat-waiver-directory",
-      "source": "https://www.cit.tum.de/en/cit/studies/degree-programs/master-informatics/",
-      "fields": {
-        "official_source": "https://www.cit.tum.de/en/cit/studies/degree-programs/master-informatics/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-health-insurance-guide",
-      "source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
-      "fields": {
-        "official_source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-initial-72hr-survival-guide",
-      "source": "https://www.zoll.de/EN/Private-individuals/Travel/Entering-Germany/entering_germany_node.html",
-      "fields": {
-        "official_source": "https://www.zoll.de/EN/Private-individuals/Travel/Entering-Germany/entering_germany_node.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-job-seeker-visa-strategy",
-      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-master-program-listing-guide",
-      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-master-university-profile-guide",
-      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-      "fields": {
-        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ms-cs-directory",
-      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ms-data-science-directory",
-      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-multiple-offers-decision-matrix",
-      "source": "https://www.hochschulkompass.de/en/study-in-germany.html",
-      "fields": {
-        "official_source": "https://www.hochschulkompass.de/en/study-in-germany.html",
-        "checked_at": "2026-11-01"
-      }
-    },
     {
       "table": "sa_guides",
       "key": "germany-national-student-visa",
       "source": "https://india.diplo.de/in-en/service/2756350-2756350",
       "fields": {
         "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-offer-acceptance-payment",
-      "source": "https://www.daad.de/en/studying-in-germany/requirements/enrolling/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/requirements/enrolling/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-part-time-work-rules",
-      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-public-vs-private",
-      "source": "https://www.daad.de/en/studying-in-germany/universities/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/universities/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-rbi-lrs-tcs-tax-rules",
-      "source": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=115",
-      "fields": {
-        "official_source": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=115",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-rejection-analysis-appeal",
-      "source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -350,43 +17,34 @@
       "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "germany-routes-hub-guide",
+      "key": "germany-job-seeker-visa-strategy",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-blue-card-pr-pathway",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-part-time-work-rules",
       "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-rwth-aachen-portal-manual",
-      "source": "https://www.rwth-aachen.de/redir/?id=bkjh&lidx=1",
-      "fields": {
-        "official_source": "https://www.rwth-aachen.de/redir/?id=bkjh&lidx=1",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-scholarship-directory-hub-guide",
-      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-scholarship-panel-interview-guide",
-      "source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -395,124 +53,16 @@
       "source": "https://www.gesetze-im-internet.de/sgb_5/__6.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/sgb_5/__6.html",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "germany-sop-europass-cv-guide",
-      "source": "https://europass.europa.eu/en/create-europass-cv",
+      "key": "germany-routes-hub-guide",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
       "fields": {
-        "official_source": "https://europass.europa.eu/en/create-europass-cv",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-student-visa-interview-questions",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-testas-exam-guide",
-      "source": "https://www.testas.de/en/teilnehmende/the-digital-testas/the-digital-testas",
-      "fields": {
-        "official_source": "https://www.testas.de/en/teilnehmende/the-digital-testas/the-digital-testas",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-top-public-unis-profiles",
-      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-      "fields": {
-        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-total-cost-breakdown",
-      "source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-tum-efv-entrance-exam-guide",
-      "source": "https://www.cit.tum.de/en/cit/studies/degree-programs/master-informatics/",
-      "fields": {
-        "official_source": "https://www.cit.tum.de/en/cit/studies/degree-programs/master-informatics/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-tum-munich-portal-manual",
-      "source": "https://www.tum.de/en/studies/application/master/application-master",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/application/master/application-master",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-uni-assist-manual",
-      "source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
-      "fields": {
-        "official_source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-uni-assist-portal-walkthrough",
-      "source": "https://www.uni-assist.de/en/faqs/apply-online/",
-      "fields": {
-        "official_source": "https://www.uni-assist.de/en/faqs/apply-online/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-university-listing-hub-guide",
-      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-      "fields": {
-        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-vfs-appointment-hacks",
-      "source": "https://india.diplo.de/in-en/service/2546328-2546328",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2546328-2546328",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-vfs-document-checklist",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-visa-interview-prep",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -521,7 +71,169 @@
       "source": "https://india.diplo.de/in-en/service/2756350-2756350",
       "fields": {
         "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-vfs-appointment-hacks",
+      "source": "https://india.diplo.de/in-en/service/2546328-2546328",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2546328-2546328",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-vfs-document-checklist",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-visa-interview-prep",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-student-visa-interview-questions",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-rejection-analysis-appeal",
+      "source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-blocked-account-manual",
+      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
+      "fields": {
+        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-blocked-account-calc-spec",
+      "source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
+      "fields": {
+        "official_source": "https://www.auswaertiges-amt.de/en/sperrkonto/388600",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-health-insurance-guide",
+      "source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
+      "fields": {
+        "official_source": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-aps-certificate-guide",
+      "source": "https://aps-india.de/aps-process/",
+      "fields": {
+        "official_source": "https://aps-india.de/aps-process/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "aps-india-certificate-verification-step-by-step",
+      "source": "https://aps-india.de/aps-process/",
+      "fields": {
+        "official_source": "https://aps-india.de/aps-process/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-manual",
+      "source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-portal-walkthrough",
+      "source": "https://www.uni-assist.de/en/faqs/apply-online/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/faqs/apply-online/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-fsp-studienkolleg-guide",
+      "source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-3yr-bachelor-acceptance",
+      "source": "https://anabin.kmk.org/db/institutionen",
+      "fields": {
+        "official_source": "https://anabin.kmk.org/db/institutionen",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-bavarian-grade-matrix",
+      "source": "https://www.kmk.org/kultusministerkonferenz/uebergreifende-themen/anerkennung-auslaendischer-abschluesse.html",
+      "fields": {
+        "official_source": "https://www.kmk.org/kultusministerkonferenz/uebergreifende-themen/anerkennung-auslaendischer-abschluesse.html",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-bavarian-calculator-spec",
+      "source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
+      "fields": {
+        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-ects-credit-mapping",
+      "source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
+      "fields": {
+        "official_source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-ects-evaluator-spec",
+      "source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
+      "fields": {
+        "official_source": "https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system",
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -530,277 +242,277 @@
       "source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/",
       "fields": {
         "official_source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "collateral-free-loan-approved-universities",
-      "source": "https://sbi.bank.in/web/personal-banking/loans/education-loans/global-ed-vantage-scheme",
+      "key": "germany-offer-acceptance-payment",
+      "source": "https://www.daad.de/en/studying-in-germany/requirements/enrolling/",
       "fields": {
-        "official_source": "https://sbi.bank.in/web/personal-banking/loans/education-loans/global-ed-vantage-scheme",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.daad.de/en/studying-in-germany/requirements/enrolling/",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "prodigy-vs-mpower-vs-sbi-loan-usa",
-      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=10158",
+      "key": "germany-multiple-offers-decision-matrix",
+      "source": "https://www.hochschulkompass.de/en/study-in-germany.html",
       "fields": {
-        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=10158",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.hochschulkompass.de/en/study-in-germany.html",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "section-80e-tax-deduction-worked-example",
-      "source": "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx",
+      "key": "germany-top-public-unis-profiles",
+      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
       "fields": {
-        "official_source": "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "us-consulate-slot-booking-hacks",
-      "source": "https://in.usembassy.gov/visas/nonimmigrant-visas/",
+      "key": "germany-university-listing-hub-guide",
+      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
       "fields": {
-        "official_source": "https://in.usembassy.gov/visas/nonimmigrant-visas/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "us-education-loans-guide",
-      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11959",
+      "key": "germany-master-university-profile-guide",
+      "source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
       "fields": {
-        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=11959",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.hochschulkompass.de/en/higher-education-institutions.html",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-ms-cs-directory",
+      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-ms-data-science-directory",
+      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-master-program-listing-guide",
+      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-engineering-directory",
+      "source": "https://www.tu9.de/en/",
+      "fields": {
+        "official_source": "https://www.tu9.de/en/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-public-vs-private",
+      "source": "https://www.daad.de/en/studying-in-germany/universities/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/universities/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-destination-overview",
+      "source": "https://www.daad.de/en/studying-in-germany/universities/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/universities/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-total-cost-breakdown",
+      "source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-daad-scholarships-guide",
+      "source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-daad-scholarship-master-guide",
+      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-scholarship-panel-interview-guide",
+      "source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-scholarship-directory-hub-guide",
+      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-anmeldung-tax-id",
+      "source": "https://service.berlin.de/dienstleistung/120686/",
+      "fields": {
+        "official_source": "https://service.berlin.de/dienstleistung/120686/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-initial-72hr-survival-guide",
+      "source": "https://www.daad.de/en/studying-in-germany/living-in-germany/",
+      "fields": {
+        "official_source": "https://www.daad.de/en/studying-in-germany/living-in-germany/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-rbi-lrs-tcs-tax-rules",
+      "source": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=115",
+      "fields": {
+        "official_source": "https://www.rbi.org.in/Scripts/FAQView.aspx?Id=115",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-education-loans-germany",
+      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+      "fields": {
+        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-financial-emergency-plan",
+      "source": "https://www.tum.de/en/studies/fees-and-financial-aid/scholarships/tum-scholarships",
+      "fields": {
+        "official_source": "https://www.tum.de/en/studies/fees-and-financial-aid/scholarships/tum-scholarships",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-tum-munich-portal-manual",
+      "source": "https://www.tum.de/en/studies/application/master/application-master",
+      "fields": {
+        "official_source": "https://www.tum.de/en/studies/application/master/application-master",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-tum-efv-entrance-exam-guide",
+      "source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements",
+      "fields": {
+        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-rwth-aachen-portal-manual",
+      "source": "https://www.informatik.rwth-aachen.de/cms/~mxz/informatik/lidx/1/",
+      "fields": {
+        "official_source": "https://www.informatik.rwth-aachen.de/cms/~mxz/informatik/lidx/1/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-gre-gmat-germany-guide",
+      "source": "https://www.informatik.rwth-aachen.de/cms/~mxz/informatik/lidx/1/",
+      "fields": {
+        "official_source": "https://www.informatik.rwth-aachen.de/cms/~mxz/informatik/lidx/1/",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
       "key": "us-f1-student-visa-application-checklist",
-      "source": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
-      "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-3yr-bachelor-acceptance",
-      "source": "https://www.wes.org/evaluations-and-fees/other/",
-      "fields": {
-        "official_source": "https://www.wes.org/evaluations-and-fees/other/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-assistantship-interview-guide",
-      "source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-      "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-assistantships-ta-ra-ga",
-      "source": "https://www.irs.gov/publications/p970",
-      "fields": {
-        "official_source": "https://www.irs.gov/publications/p970",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-cpt-internship-rules",
-      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-destination-overview",
       "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-ds160-form-filing-manual",
-      "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/forms/ds-160-frequently-asked-questions.html",
-      "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/forms/ds-160-frequently-asked-questions.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-duolingo-det-preparation-guide",
-      "source": "https://englishtest.duolingo.com/scores",
-      "fields": {
-        "official_source": "https://englishtest.duolingo.com/scores",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
       "key": "usa-f1-student-visa-master-guide",
-      "source": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
       "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/us-visas/study/student-visa.html",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ds160-form-filing-manual",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "us-consulate-slot-booking-hacks",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
       "key": "usa-f1-visa-interview-prep-questions",
-      "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/visa-denials.html",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
       "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/visa-denials.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-fall-vs-spring-intakes",
-      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-fulbright-interview-prep",
-      "source": "https://www.usief.org.in/Fulbright-Nehru-Fellowships.aspx",
-      "fields": {
-        "official_source": "https://www.usief.org.in/Fulbright-Nehru-Fellowships.aspx",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-fulbright-scholarship-master-guide",
-      "source": "https://www.usief.org.in/Fulbright-Nehru-Master-Fellowships.aspx",
-      "fields": {
-        "official_source": "https://www.usief.org.in/Fulbright-Nehru-Master-Fellowships.aspx",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-fulbright-tata-scholarships",
-      "source": "https://www.jntataendowment.org/loan-scholarship-program/",
-      "fields": {
-        "official_source": "https://www.jntataendowment.org/loan-scholarship-program/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-gpa-conversion-matrix",
-      "source": "https://www.wes.org/evaluations-and-fees/other/",
-      "fields": {
-        "official_source": "https://www.wes.org/evaluations-and-fees/other/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-gradcas-commonapp-portals",
-      "source": "https://liaisonedu.com/centralized-application-services/gradcas/",
-      "fields": {
-        "official_source": "https://liaisonedu.com/centralized-application-services/gradcas/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-gre-gmat-waiver-directory",
-      "source": "https://cgsnet.org/resources/for-deans/best-practices/",
-      "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/best-practices/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-gre-quant-170-strategy",
-      "source": "https://www.ets.org/gre/test-takers/general-test/about.html",
-      "fields": {
-        "official_source": "https://www.ets.org/gre/test-takers/general-test/about.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-gre-verbal-awa-prep-guide",
-      "source": "https://www.ets.org/gre/test-takers/general-test/about.html",
-      "fields": {
-        "official_source": "https://www.ets.org/gre/test-takers/general-test/about.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-green-card-eb2-niw-pathways",
-      "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-h1b-lottery-cap-exempt",
-      "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-health-insurance-waiver-guide",
-      "source": "https://travel.state.gov/content/travel/en/vccs/j-exchange-visitor-program.html",
-      "fields": {
-        "official_source": "https://travel.state.gov/content/travel/en/vccs/j-exchange-visitor-program.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-i20-financial-proof-manual",
-      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-i20-issuance-deposit-payment",
-      "source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-i20-proof-of-funds-calc-spec",
-      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -809,115 +521,34 @@
       "source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-master-program-listing-guide",
-      "source": "https://studyinthestates.dhs.gov/school-search",
+      "key": "usa-i20-financial-proof-manual",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
       "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/school-search",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-master-university-profile-guide",
-      "source": "https://nces.ed.gov/ipeds/",
+      "key": "usa-i20-issuance-deposit-payment",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
       "fields": {
-        "official_source": "https://nces.ed.gov/ipeds/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-ms-data-science-business-analytics",
-      "source": "https://www.ice.gov/sevis/stem-list",
+      "key": "usa-i20-proof-of-funds-calc-spec",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
       "fields": {
-        "official_source": "https://www.ice.gov/sevis/stem-list",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-ms-engineering-management-miso",
-      "source": "https://www.ice.gov/sevis/stem-list",
-      "fields": {
-        "official_source": "https://www.ice.gov/sevis/stem-list",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-multiple-offers-decision-matrix",
-      "source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-      "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-off-campus-housing-lease",
-      "source": "https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview",
-      "fields": {
-        "official_source": "https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-on-campus-jobs-20hr-rule",
-      "source": "https://www.ice.gov/sevis/employment",
-      "fields": {
-        "official_source": "https://www.ice.gov/sevis/employment",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-opt-stem-opt-extension",
-      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-prerequisites-deficiency-courses",
-      "source": "https://studyinthestates.dhs.gov/students/prepare/conditional-admission",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/prepare/conditional-admission",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-priority-vs-rolling-deadlines",
-      "source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-      "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/april-15-resolution/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-public-vs-private-unis",
-      "source": "https://nces.ed.gov/ipeds/",
-      "fields": {
-        "official_source": "https://nces.ed.gov/ipeds/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-rejection-analysis-appeal",
-      "source": "https://cgsnet.org/resources/for-deans/best-practices/",
-      "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/best-practices/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -926,97 +557,7 @@
       "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors",
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-scholarship-directory-hub-guide",
-      "source": "https://educationusa.state.gov/find-financial-aid",
-      "fields": {
-        "official_source": "https://educationusa.state.gov/find-financial-aid",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-sop-lor-resume-us-standards",
-      "source": "https://educationusa.state.gov/your-5-steps-us-study/apply-your-admission",
-      "fields": {
-        "official_source": "https://educationusa.state.gov/your-5-steps-us-study/apply-your-admission",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-ssn-application-guide",
-      "source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-stem-opt-designated-ms-cs",
-      "source": "https://www.ice.gov/sevis/stem-list",
-      "fields": {
-        "official_source": "https://www.ice.gov/sevis/stem-list",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-stem-opt-timeline-calc-spec",
-      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-toefl-ielts-duolingo-cutoffs",
-      "source": "https://www.ets.org/toefl/test-takers/ibt/about.html",
-      "fields": {
-        "official_source": "https://www.ets.org/toefl/test-takers/ibt/about.html",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-toefl-ielts-preparation-guide",
-      "source": "https://ielts.org/take-a-test/which-test-to-take/ielts-academic",
-      "fields": {
-        "official_source": "https://ielts.org/take-a-test/which-test-to-take/ielts-academic",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-top-us-public-r1-unis",
-      "source": "https://carnegieclassifications.acenet.edu/",
-      "fields": {
-        "official_source": "https://carnegieclassifications.acenet.edu/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-total-cost-breakdown",
-      "source": "https://nces.ed.gov/ipeds/",
-      "fields": {
-        "official_source": "https://nces.ed.gov/ipeds/",
-        "checked_at": "2026-11-01"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-university-listing-hub-guide",
-      "source": "https://studyinthestates.dhs.gov/school-search",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/school-search",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
@@ -1025,43 +566,205 @@
       "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors",
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors",
-        "checked_at": "2026-11-01"
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-wes-credential-evaluation-manual",
-      "source": "https://www.wes.org/credential-evaluation-requirements/",
+      "key": "usa-on-campus-jobs-20hr-rule",
+      "source": "https://www.ice.gov/sevis/employment",
       "fields": {
-        "official_source": "https://www.wes.org/credential-evaluation-requirements/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.ice.gov/sevis/employment",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-wes-gpa-40-conversion",
-      "source": "https://www.wes.org/evaluations-and-fees/other/",
+      "key": "usa-cpt-internship-rules",
+      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
       "fields": {
-        "official_source": "https://www.wes.org/evaluations-and-fees/other/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-wes-gpa-calculator-spec",
-      "source": "https://www.wes.org/calculator/",
+      "key": "usa-fall-vs-spring-intakes",
+      "source": "https://www.ice.gov/sevis/employment",
       "fields": {
-        "official_source": "https://www.wes.org/calculator/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.ice.gov/sevis/employment",
+        "checked_at": "2026-11-02"
       }
     },
     {
       "table": "sa_guides",
-      "key": "usa-work-experience-research-paper-points",
-      "source": "https://cgsnet.org/resources/for-deans/best-practices/",
+      "key": "usa-opt-stem-opt-extension",
+      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
       "fields": {
-        "official_source": "https://cgsnet.org/resources/for-deans/best-practices/",
-        "checked_at": "2026-11-01"
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-stem-opt-designated-ms-cs",
+      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-stem-opt-timeline-calc-spec",
+      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-h1b-lottery-cap-exempt",
+      "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-green-card-eb2-niw-pathways",
+      "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ssn-application-guide",
+      "source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "us-education-loans-guide",
+      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+      "fields": {
+        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "prodigy-vs-mpower-vs-sbi-loan-usa",
+      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=10158",
+      "fields": {
+        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=10158",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "collateral-free-loan-approved-universities",
+      "source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+      "fields": {
+        "official_source": "https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "section-80e-tax-deduction-worked-example",
+      "source": "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx",
+      "fields": {
+        "official_source": "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-fulbright-scholarship-master-guide",
+      "source": "https://www.usief.org.in/",
+      "fields": {
+        "official_source": "https://www.usief.org.in/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-fulbright-interview-prep",
+      "source": "https://www.usief.org.in/",
+      "fields": {
+        "official_source": "https://www.usief.org.in/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-assistantships-ta-ra-ga",
+      "source": "https://www.irs.gov/publications/p970",
+      "fields": {
+        "official_source": "https://www.irs.gov/publications/p970",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-destination-overview",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-university-listing-hub-guide",
+      "source": "https://studyinthestates.dhs.gov/school-search",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/school-search",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-master-program-listing-guide",
+      "source": "https://studyinthestates.dhs.gov/school-search",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/school-search",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-total-cost-breakdown",
+      "source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+      "fields": {
+        "official_source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-public-vs-private-unis",
+      "source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+      "fields": {
+        "official_source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+        "checked_at": "2026-11-02"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-master-university-profile-guide",
+      "source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+      "fields": {
+        "official_source": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+        "checked_at": "2026-11-02"
       }
     }
   ]
