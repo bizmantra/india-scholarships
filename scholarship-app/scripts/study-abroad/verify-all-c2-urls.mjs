@@ -46,49 +46,46 @@ for (const g of dbGuides) {
 }
 
 function checkUrlAndBody(url, expectedTerms) {
-  if (!Array.isArray(expectedTerms) || expectedTerms.length === 0) {
-    return { ok: false, error: 'expected_terms is mandatory and cannot be empty' };
+  if (!Array.isArray(expectedTerms) || expectedTerms.length < 2) {
+    return { ok: false, error: 'expected_terms must be an array of at least 2 specific phrases' };
   }
 
   try {
-    let rawOut = execFileSync('curl', [
+    let rawOut = '';
+    const curlArgs = [
       '-s',
       '-L',
       '--max-redirs', '5',
       '--max-time', '15',
-      '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
-      url
-    ], { encoding: 'utf8' });
+      '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}'
+    ];
 
-    let marker = '\n__CURL_METADATA__:';
-    let splitIdx = rawOut.lastIndexOf(marker);
+    try {
+      rawOut = execFileSync('curl', [...curlArgs, url], {
+        encoding: 'utf8',
+        maxBuffer: 20 * 1024 * 1024
+      });
+    } catch {
+      // Retry with browser user-agent if initial curl fails
+      rawOut = execFileSync('curl', [
+        ...curlArgs,
+        '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        url
+      ], {
+        encoding: 'utf8',
+        maxBuffer: 20 * 1024 * 1024
+      });
+    }
+
+    const marker = '\n__CURL_METADATA__:';
+    const splitIdx = rawOut.lastIndexOf(marker);
     if (splitIdx === -1) {
       return { ok: false, error: 'Could not extract metadata from curl output' };
     }
 
-    let meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
-    let code = meta[0];
-    let finalUrl = meta.slice(1).join(':') || url;
-
-    // If 403, retry with standard browser user-agent
-    if (code === '403') {
-      rawOut = execFileSync('curl', [
-        '-s',
-        '-L',
-        '--max-redirs', '5',
-        '--max-time', '15',
-        '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
-        '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        url
-      ], { encoding: 'utf8' });
-      splitIdx = rawOut.lastIndexOf(marker);
-      if (splitIdx === -1) {
-        return { ok: false, error: 'Could not extract metadata from curl retry output' };
-      }
-      meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
-      code = meta[0];
-      finalUrl = meta.slice(1).join(':') || url;
-    }
+    const meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
+    const code = meta[0];
+    const finalUrl = meta.slice(1).join(':') || url;
 
     if (code !== '200') {
       return { ok: false, error: `HTTP ${code}` };
@@ -99,12 +96,17 @@ function checkUrlAndBody(url, expectedTerms) {
       return { ok: false, error: `Redirected to disallowed host: ${finalUrl}` };
     }
 
-    // Verify normalized visible page body content contains at least one expected term
+    // Verify visible page text length >= 200 chars (prevents empty JS shells or soft-404s)
     const rawHtml = rawOut.slice(0, splitIdx);
     const visibleText = normalizeText(htmlToText(rawHtml));
-    const matched = expectedTerms.some(term => visibleText.includes(normalizeText(term)));
-    if (!matched) {
-      return { ok: false, error: `None of expected terms (${expectedTerms.join(', ')}) found in normalized visible page body` };
+    if (visibleText.length < 200) {
+      return { ok: false, error: `Visible page text is too short (${visibleText.length} chars < 200 min)` };
+    }
+
+    // Verify ALL expected terms are present in normalized visible body text
+    const missing = expectedTerms.filter(term => !visibleText.includes(normalizeText(term)));
+    if (missing.length > 0) {
+      return { ok: false, error: `Missing required terms in page body: ${missing.join(', ')}` };
     }
 
     return { ok: true, finalUrl };
@@ -125,9 +127,9 @@ async function run() {
     const url = change.fields?.official_source;
     const expectedTerms = change.expected_terms;
 
-    // 1. Mandatory expected_terms assertion
-    if (!Array.isArray(expectedTerms) || expectedTerms.length === 0) {
-      failures.push({ slug, url, reason: `Mandatory expected_terms is missing or empty` });
+    // 1. Mandatory expected_terms assertion (minimum 2 terms)
+    if (!Array.isArray(expectedTerms) || expectedTerms.length < 2) {
+      failures.push({ slug, url, reason: `Mandatory expected_terms must have at least 2 specific phrases` });
       continue;
     }
 

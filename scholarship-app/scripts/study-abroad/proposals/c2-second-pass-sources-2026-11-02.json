@@ -1,6 +1,6 @@
 {
   "agent": "content-editor",
-  "notes": "C2 Second Pass: Primary statutory and institutional sources for 19 study abroad guides with 100% unique 1-to-1 live HTTP 200 checks, redirect validation, and page body term matching (strictly existing allowlisted domains, 0 overwrites)",
+  "notes": "C2 Second Pass: Primary statutory and institutional sources for 14 study abroad guides with 100% unique 1-to-1 live HTTP 200 checks, max-redirs validation, and strict multi-phrase page body content matching (strictly existing allowlisted domains, 0 overwrites)",
   "changes": [
     {
       "table": "sa_guides",
@@ -9,7 +9,10 @@
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html"
       },
-      "expected_terms": ["aufenthaltserlaubnis", "studium"]
+      "expected_terms": [
+        "aufenthaltserlaubnis zum zweck des studiums",
+        "vollzeitstudium"
+      ]
     },
     {
       "table": "sa_guides",
@@ -18,7 +21,10 @@
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html"
       },
-      "expected_terms": ["arbeitsplatzsuche"]
+      "expected_terms": [
+        "arbeitsplatzsuche",
+        "abschluss eines studiums"
+      ]
     },
     {
       "table": "sa_guides",
@@ -27,34 +33,10 @@
       "fields": {
         "official_source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/"
       },
-      "expected_terms": ["vpd", "preliminary review"]
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-uni-assist-portal-walkthrough",
-      "source": "https://www.uni-assist.de/en/faqs/apply-online/",
-      "fields": {
-        "official_source": "https://www.uni-assist.de/en/faqs/apply-online/"
-      },
-      "expected_terms": ["apply online"]
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-fsp-studienkolleg-guide",
-      "source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
-      "fields": {
-        "official_source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/"
-      },
-      "expected_terms": ["studienkolleg", "preparatory course"]
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-tum-munich-portal-manual",
-      "source": "https://www.tum.de/en/studies/application/master/application-master",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/application/master/application-master"
-      },
-      "expected_terms": ["master", "tum"]
+      "expected_terms": [
+        "preliminary review documentation",
+        "vpd"
+      ]
     },
     {
       "table": "sa_guides",
@@ -63,7 +45,10 @@
       "fields": {
         "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements"
       },
-      "expected_terms": ["aptitude assessment", "admission"]
+      "expected_terms": [
+        "aptitude assessment",
+        "admission requirements"
+      ]
     },
     {
       "table": "sa_guides",
@@ -72,16 +57,10 @@
       "fields": {
         "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
       },
-      "expected_terms": ["international programmes", "daad"]
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-daad-scholarship-master-guide",
-      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/"
-      },
-      "expected_terms": ["scholarship database", "daad"]
+      "expected_terms": [
+        "international programmes",
+        "daad"
+      ]
     },
     {
       "table": "sa_guides",
@@ -90,7 +69,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states"
       },
-      "expected_terms": ["student", "f-1"]
+      "expected_terms": [
+        "student and exchange visitor program",
+        "form i-20"
+      ]
     },
     {
       "table": "sa_guides",
@@ -99,7 +81,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states"
       },
-      "expected_terms": ["port of entry", "border"]
+      "expected_terms": [
+        "port of entry",
+        "customs and border protection"
+      ]
     },
     {
       "table": "sa_guides",
@@ -108,7 +93,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20"
       },
-      "expected_terms": ["form i-20", "sevis"]
+      "expected_terms": [
+        "form i-20",
+        "certificate of eligibility"
+      ]
     },
     {
       "table": "sa_guides",
@@ -117,7 +105,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability"
       },
-      "expected_terms": ["financial ability", "funds"]
+      "expected_terms": [
+        "financial ability",
+        "designated school official"
+      ]
     },
     {
       "table": "sa_guides",
@@ -126,7 +117,10 @@
       "fields": {
         "official_source": "https://www.ice.gov/sevis/employment"
       },
-      "expected_terms": ["employment", "on-campus"]
+      "expected_terms": [
+        "on-campus employment",
+        "20 hours per week"
+      ]
     },
     {
       "table": "sa_guides",
@@ -135,7 +129,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states"
       },
-      "expected_terms": ["practical training", "cpt"]
+      "expected_terms": [
+        "curricular practical training",
+        "practical training"
+      ]
     },
     {
       "table": "sa_guides",
@@ -144,7 +141,10 @@
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt"
       },
-      "expected_terms": ["stem opt", "extension"]
+      "expected_terms": [
+        "stem opt",
+        "stem opt extension"
+      ]
     },
     {
       "table": "sa_guides",
@@ -153,7 +153,10 @@
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2"
       },
-      "expected_terms": ["eb-2", "national interest waiver"]
+      "expected_terms": [
+        "national interest waiver",
+        "second preference eb-2"
+      ]
     },
     {
       "table": "sa_guides",
@@ -162,16 +165,10 @@
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number"
       },
-      "expected_terms": ["social security number", "ssn"]
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-university-listing-hub-guide",
-      "source": "https://studyinthestates.dhs.gov/school-search",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/school-search"
-      },
-      "expected_terms": ["school search", "sevp-certified"]
+      "expected_terms": [
+        "social security number",
+        "social security administration"
+      ]
     }
   ]
 }

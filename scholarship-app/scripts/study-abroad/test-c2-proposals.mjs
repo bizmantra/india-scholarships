@@ -65,9 +65,9 @@ for (const [idx, c] of guidesProposal.changes.entries()) {
   }
   seenUrls.add(c.fields.official_source);
 
-  // Mandatory non-empty expected_terms array
-  if (!Array.isArray(c.expected_terms) || c.expected_terms.length === 0) {
-    console.error(`❌ Change #${idx} (${c.key}) is missing mandatory non-empty expected_terms array`);
+  // Mandatory non-empty expected_terms array with at least 2 phrases
+  if (!Array.isArray(c.expected_terms) || c.expected_terms.length < 2) {
+    console.error(`❌ Change #${idx} (${c.key}) is missing mandatory expected_terms array (minimum 2 phrases required)`);
     process.exit(1);
   }
 
@@ -159,7 +159,7 @@ for (const c of guidesProposal.changes) {
   }
 }
 
-console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (mandatory expected_terms, source matching, no duplicates, no checked_at bulk stamp)!`);
+console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (>= 2 expected_terms, source matching, no duplicates, no checked_at bulk stamp)!`);
 console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed the source gate with 0 refusals!`);
 console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table with 0 overwrites and 0 global collisions!`);
 console.log(`✅ Offline structural, database, and source-gate validation passed (live HTTP & body content verified by verify-all-c2-urls.mjs)!\n`);
