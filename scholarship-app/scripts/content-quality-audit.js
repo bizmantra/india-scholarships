@@ -15,7 +15,18 @@ if (!fs.existsSync(DB_PATH)) {
     process.exit(1);
 }
 
-const db = new Database(DB_PATH);
+function queryDb(dbFile, sql) {
+    try {
+        const Database = require('better-sqlite3');
+        const db = new Database(dbFile);
+        const res = db.prepare(sql).all();
+        db.close();
+        return res;
+    } catch (e) {
+        const raw = execSync(`sqlite3 "${dbFile}" -json "${sql.replace(/"/g, '""')}"`, { maxBuffer: 50 * 1024 * 1024, encoding: 'utf8' });
+        return JSON.parse(raw);
+    }
+}
 
 // The per-scholarship checks live in lib/quality-rules.js (shared with the Quality Fixer agent)
 const { auditScholarship, isLegacy: legacyRecord } = require('./lib/quality-rules');
@@ -59,14 +70,10 @@ function checkDeletedSlugs() {
         }
 
         if (fs.existsSync(tempGitDbPath)) {
-            const oldDb = new Database(tempGitDbPath);
-            const oldSlugs = oldDb.prepare('SELECT slug FROM scholarships').all().map(r => r.slug);
-            oldDb.close();
+            const oldSlugs = queryDb(tempGitDbPath, 'SELECT slug FROM scholarships').map(r => r.slug);
             fs.unlinkSync(tempGitDbPath); // Cleanup
 
-            const currentDb = new Database(DB_PATH);
-            const currentSlugs = new Set(currentDb.prepare('SELECT slug FROM scholarships').all().map(r => r.slug));
-            currentDb.close();
+            const currentSlugs = new Set(queryDb(DB_PATH, 'SELECT slug FROM scholarships').map(r => r.slug));
 
             const missingSlugs = oldSlugs.filter(slug => !currentSlugs.has(slug));
 
@@ -86,7 +93,7 @@ function checkDeletedSlugs() {
 }
 
 try {
-    const scholarships = db.prepare('SELECT * FROM scholarships').all();
+    const scholarships = queryDb(DB_PATH, 'SELECT * FROM scholarships');
     console.log(`Loaded ${scholarships.length} scholarships from database.`);
 
     const today = new Date();
@@ -227,6 +234,6 @@ Here are the scholarships with the highest number of content quality issues:
     console.error('❌ Error executing content quality audit:', err);
     process.exit(1);
 } finally {
-    if (db) db.close();
+    // db connection managed in queryDb
 }
 
