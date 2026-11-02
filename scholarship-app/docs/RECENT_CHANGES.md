@@ -19,6 +19,7 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 ## Merged to main
 
 **Nov 3**
+- `scripts/study-abroad/check-draft-numbers.mjs`: before filing a drafted page, run it against the research notes. It lists every figure on the page (money, percent, IELTS, durations, dates) that is not in the notes. Caught an invented price range in the Newcastle pilot.
 - #128 Study Abroad country pages can list one picked entry per scholarship (even when the round has closed) and leave out duplicates, plus a one-line callout. Only the UK has picks (`lib/study-abroad/scholarship-picks.ts`); the UK is still hidden. Main-site scholarship pages are unchanged.
 - UK visa guide and UK cost guide filed as draft pages (approved); UK round 4 research notes saved in `plans/uk-research/`.
 
