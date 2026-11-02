@@ -17,6 +17,36 @@ function pageHref(r: { kind: string; slug?: string | null; payload_json?: string
     return r.slug ? `/scholarships/${r.slug}` : null;
 }
 
+// What a new scholarship offers, read from its record (the same facts the cards view shows), so it can be judged without leaving the table
+function NewScholarshipSummary({ payloadJson, evidenceJson }: { payloadJson?: string | null; evidenceJson: string | null }) {
+    let record: any;
+    let evidence: any = {};
+    try { record = JSON.parse(payloadJson || '{}'); } catch { return null; }
+    try { evidence = JSON.parse(evidenceJson || '{}'); } catch { /* no evidence */ }
+    if (!record || !record.title) return null;
+    const amount = record.amount_description || (record.amount_annual ? `₹${Number(record.amount_annual).toLocaleString('en-IN')}` : '—');
+    const gaps: string[] = Array.isArray(evidence.gaps) ? evidence.gaps : [];
+    const rows: Array<[string, string | null]> = [
+        ['Provider', [record.provider, record.state, record.level].filter(Boolean).join(' · ') || null],
+        ['Amount', amount],
+        ['Who can apply', record.residency_requirement || null],
+        ['Deadline', record.deadline || record.deadline_description || '—'],
+        ['Covers', record.benefits || null],
+    ];
+    return (
+        <div className="mt-1.5 space-y-1 rounded-lg border border-cc-border bg-cc-raised p-2 text-[11px]">
+            {rows.filter(([, v]) => v).map(([label, value]) => (
+                <p key={label}><span className="inline-block w-24 font-bold text-cc-muted">{label}</span><span className="text-cc-text-2">{value}</span></p>
+            ))}
+            {record.apply_url && (
+                <p><span className="inline-block w-24 font-bold text-cc-muted">How to apply</span>
+                    <a href={record.apply_url} target="_blank" rel="noreferrer" className="text-cc-link hover:underline">{record.apply_url}</a></p>
+            )}
+            {gaps.length > 0 && <p><span className="inline-block w-24 font-bold text-cc-muted">Missing</span><span className="text-cc-warn">{gaps.join(', ')}</span></p>}
+        </div>
+    );
+}
+
 interface Row {
     id: number;
     agent: string;
@@ -208,6 +238,11 @@ export default function InboxQueue({ team }: { team: string | null }) {
                                                         </pre>
                                                     </details>
                                                 </div>
+                                            ) : r.kind === 'new_scholarship' ? (
+                                                <>
+                                                    <NewScholarshipSummary payloadJson={r.payload_json} evidenceJson={r.evidence_json} />
+                                                    <EvidenceLine json={r.evidence_json} field={r.field} />
+                                                </>
                                             ) : (
                                                 <EvidenceLine json={r.evidence_json} field={r.field} />
                                             )}
