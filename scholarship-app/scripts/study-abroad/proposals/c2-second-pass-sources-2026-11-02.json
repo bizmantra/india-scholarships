@@ -1,38 +1,15 @@
 {
   "agent": "content-editor",
-  "notes": "C2 Second Pass: Primary statutory and institutional sources for 25 verified study abroad guides with 100% unique 1-to-1 live HTTP 200 checks (strictly existing allowlisted domains, 0 overwrites)",
+  "notes": "C2 Second Pass: Primary statutory and institutional sources for 19 study abroad guides with 100% unique 1-to-1 live HTTP 200 checks, redirect validation, and page body term matching (strictly existing allowlisted domains, 0 overwrites)",
   "changes": [
-    {
-      "table": "sa_guides",
-      "key": "germany-national-student-visa",
-      "source": "https://india.diplo.de/in-en/service/2756350-2756350",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2756350-2756350"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-vfs-appointment-hacks",
-      "source": "https://india.diplo.de/in-en/service/2546328-2546328",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/service/2546328-2546328"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-rejection-analysis-appeal",
-      "source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202",
-      "fields": {
-        "official_source": "https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202"
-      }
-    },
     {
       "table": "sa_guides",
       "key": "germany-residence-permit-guide",
       "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html"
-      }
+      },
+      "expected_terms": ["aufenthaltserlaubnis", "studium"]
     },
     {
       "table": "sa_guides",
@@ -40,15 +17,8 @@
       "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-blue-card-pr-pathway",
-      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html"
-      }
+      },
+      "expected_terms": ["arbeitsplatzsuche"]
     },
     {
       "table": "sa_guides",
@@ -56,7 +26,8 @@
       "source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
       "fields": {
         "official_source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/"
-      }
+      },
+      "expected_terms": ["vpd", "preliminary review"]
     },
     {
       "table": "sa_guides",
@@ -64,7 +35,8 @@
       "source": "https://www.uni-assist.de/en/faqs/apply-online/",
       "fields": {
         "official_source": "https://www.uni-assist.de/en/faqs/apply-online/"
-      }
+      },
+      "expected_terms": ["apply online"]
     },
     {
       "table": "sa_guides",
@@ -72,15 +44,8 @@
       "source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/",
       "fields": {
         "official_source": "https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-bavarian-calculator-spec",
-      "source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
-      "fields": {
-        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany"
-      }
+      },
+      "expected_terms": ["studienkolleg", "preparatory course"]
     },
     {
       "table": "sa_guides",
@@ -88,7 +53,8 @@
       "source": "https://www.tum.de/en/studies/application/master/application-master",
       "fields": {
         "official_source": "https://www.tum.de/en/studies/application/master/application-master"
-      }
+      },
+      "expected_terms": ["master", "tum"]
     },
     {
       "table": "sa_guides",
@@ -96,15 +62,8 @@
       "source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements",
       "fields": {
         "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-winter-vs-summer-intakes",
-      "source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/"
-      }
+      },
+      "expected_terms": ["aptitude assessment", "admission"]
     },
     {
       "table": "sa_guides",
@@ -112,7 +71,8 @@
       "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
       "fields": {
         "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
-      }
+      },
+      "expected_terms": ["international programmes", "daad"]
     },
     {
       "table": "sa_guides",
@@ -120,7 +80,8 @@
       "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
       "fields": {
         "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/"
-      }
+      },
+      "expected_terms": ["scholarship database", "daad"]
     },
     {
       "table": "sa_guides",
@@ -128,7 +89,8 @@
       "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states"
-      }
+      },
+      "expected_terms": ["student", "f-1"]
     },
     {
       "table": "sa_guides",
@@ -136,7 +98,8 @@
       "source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states"
-      }
+      },
+      "expected_terms": ["port of entry", "border"]
     },
     {
       "table": "sa_guides",
@@ -144,7 +107,8 @@
       "source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20"
-      }
+      },
+      "expected_terms": ["form i-20", "sevis"]
     },
     {
       "table": "sa_guides",
@@ -152,7 +116,8 @@
       "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability"
-      }
+      },
+      "expected_terms": ["financial ability", "funds"]
     },
     {
       "table": "sa_guides",
@@ -160,7 +125,8 @@
       "source": "https://www.ice.gov/sevis/employment",
       "fields": {
         "official_source": "https://www.ice.gov/sevis/employment"
-      }
+      },
+      "expected_terms": ["employment", "on-campus"]
     },
     {
       "table": "sa_guides",
@@ -168,7 +134,8 @@
       "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states"
-      }
+      },
+      "expected_terms": ["practical training", "cpt"]
     },
     {
       "table": "sa_guides",
@@ -176,7 +143,8 @@
       "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt"
-      }
+      },
+      "expected_terms": ["stem opt", "extension"]
     },
     {
       "table": "sa_guides",
@@ -184,7 +152,8 @@
       "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
       "fields": {
         "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2"
-      }
+      },
+      "expected_terms": ["eb-2", "national interest waiver"]
     },
     {
       "table": "sa_guides",
@@ -192,7 +161,8 @@
       "source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number"
-      }
+      },
+      "expected_terms": ["social security number", "ssn"]
     },
     {
       "table": "sa_guides",
@@ -200,7 +170,8 @@
       "source": "https://studyinthestates.dhs.gov/school-search",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/school-search"
-      }
+      },
+      "expected_terms": ["school search", "sevp-certified"]
     }
   ]
 }

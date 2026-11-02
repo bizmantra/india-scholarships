@@ -70,7 +70,6 @@ const guidesResult = await checkProposalSources(guidesProposal.changes, {
   allowed,
   registry,
   defaultSource: guidesProposal.source || null,
-  pageFor: async () => null,
 });
 
 if (guidesResult.refusals.length > 0) {
@@ -81,7 +80,7 @@ if (guidesResult.refusals.length > 0) {
   process.exit(1);
 }
 
-// 4. Validate DB key existence via execFileSync (safe against shell injection)
+// 4. Validate DB key existence and ensure no overwrites of different sources
 let dbRows = [];
 try {
   const rawRows = execFileSync('sqlite3', ['-json', dbPath, 'SELECT slug, official_source FROM sa_guides;'], {
@@ -103,8 +102,9 @@ for (const c of guidesProposal.changes) {
     missingSlugs.push(c.key);
     continue;
   }
-  if (guide.official_source && guide.official_source.trim() !== '') {
-    overwriteSlugs.push({ key: c.key, existing: guide.official_source });
+  // Allow null, empty, or already-applied identical official_source
+  if (guide.official_source && guide.official_source.trim() !== '' && guide.official_source.trim() !== c.fields.official_source.trim()) {
+    overwriteSlugs.push({ key: c.key, existing: guide.official_source, proposed: c.fields.official_source });
   }
 }
 
@@ -114,7 +114,7 @@ if (missingSlugs.length > 0) {
 }
 
 if (overwriteSlugs.length > 0) {
-  console.error(`❌ Found ${overwriteSlugs.length} proposals that overwrite existing sources:`, overwriteSlugs);
+  console.error(`❌ Found ${overwriteSlugs.length} proposals that overwrite existing different sources:`, overwriteSlugs);
   process.exit(1);
 }
 

@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { hostAllowed } from '../lib/source-verify.mjs';
@@ -8,13 +8,20 @@ const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
 const dbPath = process.env.LOCAL_DB_PATH || resolve(root, 'data', 'scholarships.db');
 const allowedPath = resolve(root, 'data', 'study-abroad', 'official-domains.json');
+const proposalPath = resolve(here, 'proposals', 'c2-second-pass-sources-2026-11-02.json');
 
 if (!existsSync(dbPath)) {
   console.error(`❌ Database not found at ${dbPath}`);
   process.exit(1);
 }
 
+if (!existsSync(proposalPath)) {
+  console.error(`❌ Proposal file not found at ${proposalPath}`);
+  process.exit(1);
+}
+
 const allowed = JSON.parse(readFileSync(allowedPath, 'utf8')).domains;
+const proposal = JSON.parse(readFileSync(proposalPath, 'utf8'));
 
 let dbGuides = [];
 try {
@@ -29,52 +36,39 @@ try {
 
 const guideMap = new Map(dbGuides.map(g => [g.slug, g]));
 
-// Candidate statutory & institutional mappings (strictly 1-to-1 unique topical matches)
-const candidateMappings = {
-  // --- GERMANY STATUTORY & INSTITUTIONAL GUIDES ---
-  'germany-national-student-visa': 'https://india.diplo.de/in-en/service/2756350-2756350',
-  'germany-vfs-appointment-hacks': 'https://india.diplo.de/in-en/service/2546328-2546328',
-  'germany-rejection-analysis-appeal': 'https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202',
-  'germany-residence-permit-guide': 'https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html',
-  'germany-job-seeker-visa-strategy': 'https://www.gesetze-im-internet.de/aufenthg_2004/__20.html',
-  'germany-blue-card-pr-pathway': 'https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html',
-  'germany-uni-assist-manual': 'https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/',
-  'germany-uni-assist-portal-walkthrough': 'https://www.uni-assist.de/en/faqs/apply-online/',
-  'germany-fsp-studienkolleg-guide': 'https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/',
-  'germany-bavarian-calculator-spec': 'https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany',
-  'germany-tum-munich-portal-manual': 'https://www.tum.de/en/studies/application/master/application-master',
-  'germany-tum-efv-entrance-exam-guide': 'https://www.tum.de/en/studies/application/application-info-portal/admission-requirements',
-  'germany-winter-vs-summer-intakes': 'https://www.daad.de/en/studying-in-germany/requirements/application-process/',
-  'germany-master-program-listing-guide': 'https://www2.daad.de/deutschland/studienangebote/international-programmes/en/',
-  'germany-daad-scholarship-master-guide': 'https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/',
-
-  // --- USA STATUTORY & INSTITUTIONAL GUIDES ---
-  'usa-f1-student-visa-master-guide': 'https://studyinthestates.dhs.gov/guide-to-studying-in-the-states',
-  'usa-initial-72hr-survival-guide': 'https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states',
-  'usa-i20-issuance-deposit-payment': 'https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20',
-  'usa-i20-financial-proof-manual': 'https://studyinthestates.dhs.gov/students/prepare/financial-ability',
-  'usa-on-campus-jobs-20hr-rule': 'https://www.ice.gov/sevis/employment',
-  'usa-cpt-internship-rules': 'https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states',
-  'usa-opt-stem-opt-extension': 'https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt',
-  'usa-green-card-eb2-niw-pathways': 'https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2',
-  'usa-ssn-application-guide': 'https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number',
-  'usa-university-listing-hub-guide': 'https://studyinthestates.dhs.gov/school-search'
-};
-
-async function checkUrl(url) {
+function checkUrlAndBody(url, expectedTerms = []) {
   try {
-    const out = execFileSync('curl', [
+    let rawOut = execFileSync('curl', [
       '-s',
       '-L',
-      '-o', '/dev/null',
-      '-w', '%{http_code}\n%{url_effective}',
       '--max-time', '15',
+      '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
       url
     ], { encoding: 'utf8' });
 
-    const lines = out.trim().split('\n');
-    const code = lines[0];
-    const finalUrl = lines[1] || url;
+    let marker = '\n__CURL_METADATA__:';
+    let splitIdx = rawOut.lastIndexOf(marker);
+    let body = rawOut.slice(0, splitIdx);
+    let meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
+    let code = meta[0];
+    let finalUrl = meta.slice(1).join(':') || url;
+
+    // If 403, retry with standard browser user-agent
+    if (code === '403') {
+      rawOut = execFileSync('curl', [
+        '-s',
+        '-L',
+        '--max-time', '15',
+        '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
+        '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        url
+      ], { encoding: 'utf8' });
+      splitIdx = rawOut.lastIndexOf(marker);
+      body = rawOut.slice(0, splitIdx);
+      meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
+      code = meta[0];
+      finalUrl = meta.slice(1).join(':') || url;
+    }
 
     if (code !== '200') {
       return { ok: false, error: `HTTP ${code}` };
@@ -85,6 +79,15 @@ async function checkUrl(url) {
       return { ok: false, error: `Redirected to disallowed host: ${finalUrl}` };
     }
 
+    // Verify body content contains at least one of expected terms
+    if (expectedTerms.length > 0) {
+      const lowerBody = body.toLowerCase();
+      const matched = expectedTerms.some(term => lowerBody.includes(term.toLowerCase()));
+      if (!matched) {
+        return { ok: false, error: `None of expected terms (${expectedTerms.join(', ')}) found in page body` };
+      }
+    }
+
     return { ok: true, finalUrl };
   } catch (e) {
     return { ok: false, error: e.message };
@@ -92,13 +95,24 @@ async function checkUrl(url) {
 }
 
 async function run() {
-  console.log(`🔍 Verifying ${Object.keys(candidateMappings).length} mapped guides against DB, allowlist, and live HTTP...`);
+  console.log(`🔍 Verifying ${proposal.changes.length} proposals from JSON against DB, allowlist, live HTTP, and body content...`);
   const failures = [];
   const verified = [];
   const seenUrls = new Set();
+  const seenSlugs = new Set();
 
-  for (const [slug, url] of Object.entries(candidateMappings)) {
-    // 1. Strict 1-to-1 uniqueness check (no shared URLs across guides)
+  for (const change of proposal.changes) {
+    const slug = change.key;
+    const url = change.fields?.official_source || change.source;
+    const expectedTerms = change.expected_terms || [];
+
+    // 1. Uniqueness checks
+    if (seenSlugs.has(slug)) {
+      failures.push({ slug, url, reason: `Duplicate slug in proposal JSON: ${slug}` });
+      continue;
+    }
+    seenSlugs.add(slug);
+
     if (seenUrls.has(url)) {
       failures.push({ slug, url, reason: `URL is duplicated across guides (must be unique 1-to-1 match)` });
       continue;
@@ -112,9 +126,9 @@ async function run() {
       continue;
     }
 
-    // 3. Do not overwrite non-empty official_source
-    if (guide.official_source && guide.official_source.trim() !== '') {
-      failures.push({ slug, url, reason: `Guide already has an existing official_source: ${guide.official_source}` });
+    // 3. Do not overwrite a different non-empty official_source
+    if (guide.official_source && guide.official_source.trim() !== '' && guide.official_source.trim() !== url.trim()) {
+      failures.push({ slug, url, reason: `Guide already has a different official_source: ${guide.official_source}` });
       continue;
     }
 
@@ -124,8 +138,8 @@ async function run() {
       continue;
     }
 
-    // 5. Live HTTP check with redirect validation
-    const checkResult = await checkUrl(url);
+    // 5. Live HTTP check with redirect validation and body keyword verification
+    const checkResult = checkUrlAndBody(url, expectedTerms);
     if (!checkResult.ok) {
       failures.push({ slug, url, reason: `Live check failed: ${checkResult.error}` });
       continue;
@@ -147,23 +161,7 @@ async function run() {
     process.exit(1);
   }
 
-  // Generate verified proposal (checked_at is intentionally omitted so stale facts are not marked verified without fact auditing)
-  const proposal = {
-    agent: 'content-editor',
-    notes: `C2 Second Pass: Primary statutory and institutional sources for ${verified.length} verified study abroad guides with 100% unique 1-to-1 live HTTP 200 checks (strictly existing allowlisted domains, 0 overwrites)`,
-    changes: verified.map(v => ({
-      table: 'sa_guides',
-      key: v.slug,
-      source: v.url,
-      fields: {
-        official_source: v.url
-      }
-    }))
-  };
-
-  const outPath = resolve(here, 'proposals', 'c2-second-pass-sources-2026-11-02.json');
-  writeFileSync(outPath, JSON.stringify(proposal, null, 2) + '\n', 'utf8');
-  console.log(`\n📝 Successfully generated proposal for ${verified.length} verified guides to ${outPath}\n`);
+  console.log(`\n🎉 All ${verified.length} guides in proposal JSON successfully verified!\n`);
 }
 
 run().catch(e => {
