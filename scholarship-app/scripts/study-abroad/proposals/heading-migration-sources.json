@@ -1,0 +1,566 @@
+{
+  "germany-uni-assist-portal-walkthrough": {
+    "url": "https://www.uni-assist.de/en/faqs/apply-online/",
+    "anchor": "Uni-Assist Online Portal Application FAQ & Guide",
+    "category": "portal",
+    "note": "Official application steps and document submission guidelines"
+  },
+  "germany-initial-72hr-survival-guide": {
+    "url": "https://www.zoll.de/EN/Private-individuals/Travel/Entering-Germany/entering_germany_node.html",
+    "anchor": "German Customs Administration (Zoll) Entry Provisions for Travelers",
+    "category": "government",
+    "note": "Official airport customs, duty exemptions, and entry clearance regulations"
+  },
+  "germany-anmeldung-tax-id": {
+    "url": "https://www.gesetze-im-internet.de/bmg/__17.html",
+    "anchor": "§ 17 BMG (Bundesmeldegesetz - Statutory Registration Deadlines)",
+    "category": "statutory",
+    "note": "Statutory mandatory city registration deadline within 14 days of moving in"
+  },
+  "germany-health-insurance-guide": {
+    "url": "https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf",
+    "anchor": "Techniker Krankenkasse (TK) Statutory Health Insurance Contribution Rates for Students",
+    "category": "statutory",
+    "note": "Published statutory student contribution and nursing care insurance rates"
+  },
+  "germany-residence-permit-guide": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+    "anchor": "§ 16b AufenthG (Residence Permit for the Purpose of Higher Education)",
+    "category": "statutory",
+    "note": "Statutory requirements for converting entry visa into full residence permit"
+  },
+  "germany-tum-efv-entrance-exam-guide": {
+    "url": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements",
+    "anchor": "TUM Official Admission Requirements and Aptitude Assessment Overview",
+    "category": "university",
+    "note": "Institutional stage 1 and stage 2 aptitude assessment scoring rules"
+  },
+  "germany-master-program-listing-guide": {
+    "url": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+    "anchor": "DAAD International Programmes in Germany Directory",
+    "category": "portal",
+    "note": "Official German academic exchange search portal for English-taught master programs"
+  },
+  "germany-uni-assist-manual": {
+    "url": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
+    "anchor": "Uni-Assist Preliminary Review Documentation (VPD) Guidelines",
+    "category": "portal",
+    "note": "Official documentation and conversion procedures for international qualifications"
+  },
+  "germany-part-time-work-rules": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+    "anchor": "§ 16b Abs. 3 AufenthG (Statutory Student Employment Entitlement - 140 Full Days)",
+    "category": "statutory",
+    "note": "Federal statutory employment regulations permitting 140 full or 280 half days yearly"
+  },
+  "germany-job-seeker-visa-strategy": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+    "anchor": "§ 20 Abs. 3 Nr. 1 AufenthG (18-Month Job Seeking Residence Permit for Graduates)",
+    "category": "statutory",
+    "note": "Statutory rights for German university graduates seeking qualified employment"
+  },
+  "germany-blue-card-pr-pathway": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+    "anchor": "§ 18c Abs. 2 AufenthG (Permanent Settlement Permit for EU Blue Card Holders)",
+    "category": "statutory",
+    "note": "Statutory reduction to 21 months PR with B1 German language certificate"
+  },
+  "usa-i20-issuance-deposit-payment": {
+    "url": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
+    "anchor": "DHS Study in the States Form I-20 Issuance & Eligibility Guidelines",
+    "category": "government",
+    "note": "Federal student and exchange visitor program rules for Certificate of Eligibility"
+  },
+  "usa-initial-72hr-survival-guide": {
+    "url": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
+    "anchor": "DHS Study in the States Port of Entry & Travel Arrival Guidelines",
+    "category": "government",
+    "note": "Official arrival guidance for CBP inspection, Form I-94 issuance, and document verification"
+  },
+  "usa-ssn-application-guide": {
+    "url": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+    "anchor": "DHS Study in the States Social Security Number (SSN) Eligibility for F-1 Students",
+    "category": "government",
+    "note": "Federal evidentiary standards for Social Security card issuance with on-campus employment"
+  },
+  "usa-i20-financial-proof-manual": {
+    "url": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+    "anchor": "DHS Study in the States Demonstration of Financial Ability Guidelines",
+    "category": "government",
+    "note": "SEVP guidance on acceptable documentary evidence of student funds before Form I-20 issuance"
+  },
+  "usa-on-campus-jobs-20hr-rule": {
+    "url": "https://www.ice.gov/sevis/employment",
+    "anchor": "U.S. ICE SEVIS F-1 Student Employment Regulations (20-Hour Rule)",
+    "category": "government",
+    "note": "Federal regulation 8 CFR 214.2(f)(9) governing on-campus employment limits during terms"
+  },
+  "usa-f1-student-visa-master-guide": {
+    "url": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+    "anchor": "DHS Official Student Visa Lifecycle & Guide to Studying in the States",
+    "category": "government",
+    "note": "Federal roadmap from SEVP certification to visa application and maintaining legal status"
+  },
+  "usa-cpt-internship-rules": {
+    "url": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+    "anchor": "DHS Study in the States Practical Training (CPT and OPT) Authorization Standards",
+    "category": "government",
+    "note": "Federal guidelines on qualifying academic internships and practical training eligibility"
+  },
+  "usa-opt-stem-opt-extension": {
+    "url": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+    "anchor": "USCIS STEM OPT 24-Month Extension Eligibility & Form I-983 Mandate",
+    "category": "government",
+    "note": "Federal USCIS guidelines for qualifying STEM CIP degree holders and E-Verify employers"
+  },
+  "usa-green-card-eb2-niw-pathways": {
+    "url": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+    "anchor": "USCIS Employment-Based Immigration: Second Preference (EB-2 & National Interest Waiver)",
+    "category": "government",
+    "note": "Official USCIS criteria for advanced degree holders and exceptional ability waivers"
+  },
+  "germany-routes-hub-guide": {
+    "url": "https://www.auswaertiges-amt.de/en/visa-service/visabestimmungen-node",
+    "anchor": "Federal Foreign Office General Visa Provisions and Requirements",
+    "category": "university",
+    "note": "Verified official guidelines at www.auswaertiges-amt.de"
+  },
+  "germany-winter-vs-summer-intakes": {
+    "url": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/standard-procedure/",
+    "anchor": "Uni-Assist Standard Procedure and Application Deadline Guidelines",
+    "category": "portal",
+    "note": "Verified official guidelines at www.uni-assist.de"
+  },
+  "germany-tum-munich-portal-manual": {
+    "url": "https://www.tum.de/en/studies/application/application-info-portal/admission-procedures",
+    "anchor": "TUM Aptitude Assessment Regulations & Admission Procedures",
+    "category": "university",
+    "note": "Verified official guidelines at www.tum.de"
+  },
+  "germany-rwth-aachen-portal-manual": {
+    "url": "https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/zugangsvoraussetzungen/zugangsvoraussetzungen-fuer-den-master/~dkzf/zugangsvoraussetzungen-fuer-international/?lidx=1",
+    "anchor": "RWTH Aachen Admission Requirements for International Master Applicants",
+    "category": "university",
+    "note": "Verified official guidelines at www.rwth-aachen.de"
+  },
+  "germany-offer-acceptance-payment": {
+    "url": "https://www.daad.de/en/studying-in-germany/requirements/enrolling/",
+    "anchor": "DAAD Official University Enrolment & Semester Fee Guide",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-rejection-analysis-appeal": {
+    "url": "https://www.gesetze-im-internet.de/vwgo/__70.html",
+    "anchor": "§ 70 VwGO (Frist und Form des Widerspruchs)",
+    "category": "statutory",
+    "note": "Verified official guidelines at www.gesetze-im-internet.de"
+  },
+  "germany-multiple-offers-decision-matrix": {
+    "url": "https://www.daad.de/en/studying-in-germany/universities/che-ranking/",
+    "anchor": "DAAD CHE University Ranking Evaluation Guide",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-destination-overview": {
+    "url": "https://www.daad.de/en/study-and-research-in-germany/",
+    "anchor": "DAAD Study and Research in Germany Official Gateway",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-fsp-studienkolleg-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/requirements/studienkollegs/",
+    "anchor": "DAAD Preparatory Course (Studienkollegs) & FSP Directory",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-testas-exam-guide": {
+    "url": "https://www.rwth-aachen.de/cms/root/studium/vor-dem-studium/zugangsvoraussetzungen/zugangsvoraussetzung-fuer-den-bachelor-un/zugangsvoraussetzungen-fuer-internationa/~ermyx/testas-fuer-internationale-studienbewerb/?lidx=1",
+    "anchor": "RWTH Aachen TestAS Regulations for International Applicants",
+    "category": "university",
+    "note": "Verified official guidelines at www.rwth-aachen.de"
+  },
+  "germany-gre-gmat-germany-guide": {
+    "url": "https://www.tum.de/en/studies/application/application-info-portal/special-conditions-for-certain-countries",
+    "anchor": "TUM Special Country Admission Conditions (India GRE/GMAT Requirements)",
+    "category": "university",
+    "note": "Verified official guidelines at www.tum.de"
+  },
+  "germany-german-language-exams-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/living-in-germany/german-language/",
+    "anchor": "DAAD Language Requirements & Recognized German Tests Guide",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-scholarship-panel-interview-guide": {
+    "url": "https://www.daad.de/en/the-daad/who-we-are/organisational-structure/selection-committees/",
+    "anchor": "DAAD Selection Committees & Awarding Criteria Mandate",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-total-cost-breakdown": {
+    "url": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
+    "anchor": "DAAD Living Costs & Student Expense Breakdown",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-education-loans-germany": {
+    "url": "https://india.diplo.de/in-en/service/2756350-2756350",
+    "anchor": "German Missions in India Student Visa Financial Proof Regulations",
+    "category": "university",
+    "note": "Verified official guidelines at india.diplo.de"
+  },
+  "germany-rbi-lrs-tcs-tax-rules": {
+    "url": "https://www.auswaertiges-amt.de/en/sperrkonto-388600",
+    "anchor": "Federal Foreign Office Blocked Bank Account (Sperrkonto) Provisions",
+    "category": "university",
+    "note": "Verified official guidelines at www.auswaertiges-amt.de"
+  },
+  "germany-daad-scholarships-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+    "anchor": "DAAD Scholarship Programs Database & Directory",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-financial-emergency-plan": {
+    "url": "https://www.asta.rwth-aachen.de/en/counseling/social-loan/",
+    "anchor": "RWTH Aachen Social Loans & Emergency Hardship Assistance",
+    "category": "university",
+    "note": "Verified official guidelines at www.asta.rwth-aachen.de"
+  },
+  "germany-university-listing-hub-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/universities/universities/",
+    "anchor": "DAAD Higher Education Landscape & University Types Directory",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-master-university-profile-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/",
+    "anchor": "DAAD All Degree Programmes Database in Germany",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-daad-scholarship-master-guide": {
+    "url": "https://www.daad.de/en/studying-in-germany/scholarships/information-for-scholarship-applicants/",
+    "anchor": "DAAD General Information & Guidelines for Scholarship Applicants",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "germany-visa-routes-hub-guide": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__18g.html",
+    "anchor": "§ 18g AufenthG (Blaue Karte EU Statutory Provisions)",
+    "category": "statutory",
+    "note": "Verified official guidelines at www.gesetze-im-internet.de"
+  },
+  "germany-bavarian-grade-matrix": {
+    "url": "https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany",
+    "anchor": "TUM Modified Bavarian Formula Grade Conversion Guide",
+    "category": "university",
+    "note": "Verified official guidelines at www.tum.de"
+  },
+  "germany-german-language-levels": {
+    "url": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
+    "anchor": "§ 18c AufenthG (Niederlassungserlaubnis für Fachkräfte - B1 German Mandate)",
+    "category": "statutory",
+    "note": "Verified official guidelines at www.gesetze-im-internet.de"
+  },
+  "germany-gre-gmat-waiver-directory": {
+    "url": "https://www.cit.tum.de/en/cit/studies/degree-programs/master-informatics/",
+    "anchor": "TUM CIT Master in Informatics GRE/GATE Admission Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at www.cit.tum.de"
+  },
+  "germany-sop-europass-cv-guide": {
+    "url": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/other-documents/",
+    "anchor": "Uni-Assist Documentation Standards (CV & Letter of Motivation)",
+    "category": "portal",
+    "note": "Verified official guidelines at www.uni-assist.de"
+  },
+  "germany-bavarian-calculator-spec": {
+    "url": "https://www.intl.kit.edu/ostudent/10097.php",
+    "anchor": "KIT International Students Office Modified Bavarian Formula Specification",
+    "category": "university",
+    "note": "Verified official guidelines at www.intl.kit.edu"
+  },
+  "germany-blocked-account-calc-spec": {
+    "url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/faq/02-sperrkonto/606704",
+    "anchor": "Federal Foreign Office Blocked Account Statutory Requirements & Payout FAQ",
+    "category": "university",
+    "note": "Verified official guidelines at www.auswaertiges-amt.de"
+  },
+  "germany-ects-evaluator-spec": {
+    "url": "https://www.cit.tum.de/en/cit/studies/degree-programs/calculation-credits-grades/",
+    "anchor": "TUM CIT Guidelines on Calculation of Credits and Grades",
+    "category": "university",
+    "note": "Verified official guidelines at www.cit.tum.de"
+  },
+  "germany-vfs-appointment-hacks": {
+    "url": "https://india.diplo.de/in-en/service/2546328-2546328",
+    "anchor": "German Missions in India National Visa Appointment FAQs",
+    "category": "university",
+    "note": "Verified official guidelines at india.diplo.de"
+  },
+  "germany-vfs-document-checklist": {
+    "url": "https://india.diplo.de/resource/blob/2667080/85ccf154e38cd7c5c36721503a49774c/infostudents-data.pdf",
+    "anchor": "German Missions in India Official Student Visa Document Checklist",
+    "category": "university",
+    "note": "Verified official guidelines at india.diplo.de"
+  },
+  "germany-visa-interview-prep": {
+    "url": "https://india.diplo.de/in-en/service/2755482-2755482",
+    "anchor": "German Missions in India National Visa Procedure & Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at india.diplo.de"
+  },
+  "germany-securing-werkstudent-jobs": {
+    "url": "https://www.daad.de/en/studying-in-germany/work-career/side-jobs/",
+    "anchor": "DAAD International Student Employment & Side Jobs Guidelines",
+    "category": "portal",
+    "note": "Verified official guidelines at www.daad.de"
+  },
+  "usa-routes-hub-guide": {
+    "url": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors",
+    "anchor": "USCIS Students and Exchange Visitors Immigration Pathway",
+    "category": "government",
+    "note": "Verified official guidelines at www.uscis.gov"
+  },
+  "usa-fall-vs-spring-intakes": {
+    "url": "https://studyinthestates.dhs.gov/sevis-help-hub/student-records/fm-student-employment/f-1-curricular-practical-training-cpt",
+    "anchor": "DHS SEVP Curricular Practical Training (CPT) One Academic Year Eligibility Regulation",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-gradcas-commonapp-portals": {
+    "url": "https://gradschool.utexas.edu/admissions/how-to-apply",
+    "anchor": "UT Austin Graduate School Admissions Portal & Application Workflow",
+    "category": "university",
+    "note": "Verified official guidelines at gradschool.utexas.edu"
+  },
+  "usa-rejection-analysis-appeal": {
+    "url": "https://www.uta.edu/admissions/appeals",
+    "anchor": "UT Arlington Admissions Appeal & Secondary Review Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at www.uta.edu"
+  },
+  "usa-multiple-offers-decision-matrix": {
+    "url": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
+    "anchor": "DHS Study in the States Form I-20 Issuance & Single SEVIS ID Rules",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-health-insurance-waiver-guide": {
+    "url": "https://www.purdue.edu/push/insurance-payment/plan-information/waivers/index.php",
+    "anchor": "Purdue University Student Health Insurance Mandatory Waiver Criteria",
+    "category": "university",
+    "note": "Verified official guidelines at www.purdue.edu"
+  },
+  "usa-off-campus-housing-lease": {
+    "url": "https://offcampus.housing.gatech.edu/",
+    "anchor": "Georgia Tech Off-Campus Housing Marketplace & Lease Safety Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at offcampus.housing.gatech.edu"
+  },
+  "usa-destination-overview": {
+    "url": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+    "anchor": "DHS Official Guide to Studying in the United States",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-public-vs-private-unis": {
+    "url": "https://www.purdue.edu/bursar/tuition/fee-rates/",
+    "anchor": "Purdue University Bursar Resident vs Non-Resident Tuition & Fee Schedule",
+    "category": "university",
+    "note": "Verified official guidelines at www.purdue.edu"
+  },
+  "usa-wes-gpa-40-conversion": {
+    "url": "https://www.sjsu.edu/admissions/graduate/want-to-apply/international-steps-to-admission/index.php",
+    "anchor": "SJSU Graduate Admissions International Credential Evaluation & GPA Standards",
+    "category": "university",
+    "note": "Verified official guidelines at www.sjsu.edu"
+  },
+  "usa-3yr-bachelor-acceptance": {
+    "url": "https://www.sjsu.edu/admissions/graduate/want-to-apply/international-steps-to-admission/3-year-bachelors-degree/index.php",
+    "anchor": "SJSU Graduate Admissions 3-Year Bachelor's Degree Acceptance Policy",
+    "category": "university",
+    "note": "Verified official guidelines at www.sjsu.edu"
+  },
+  "usa-stem-opt-designated-ms-cs": {
+    "url": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+    "anchor": "USCIS STEM OPT Extension Eligibility Requirements & Form I-983",
+    "category": "government",
+    "note": "Verified official guidelines at www.uscis.gov"
+  },
+  "usa-ms-data-science-business-analytics": {
+    "url": "https://management.buffalo.edu/degree-programs/master-of-science-ms/business-analytics-applied-ai.html",
+    "anchor": "University at Buffalo STEM MS in Business Analytics & Applied AI Curriculum",
+    "category": "university",
+    "note": "Verified official guidelines at management.buffalo.edu"
+  },
+  "usa-ms-engineering-management-miso": {
+    "url": "https://management.buffalo.edu/degree-programs/master-of-science-ms/information-systems.html",
+    "anchor": "University at Buffalo STEM MS in Management Information Systems (MIS) Program",
+    "category": "university",
+    "note": "Verified official guidelines at management.buffalo.edu"
+  },
+  "usa-top-us-public-r1-unis": {
+    "url": "https://research.gatech.edu/",
+    "anchor": "Georgia Tech Research Enterprise & Carnegie R1 Doctoral Activity Profile",
+    "category": "university",
+    "note": "Verified official guidelines at research.gatech.edu"
+  },
+  "usa-gre-quant-170-strategy": {
+    "url": "https://graduate-admissions.utdallas.edu/apply-to-ut-dallas/documents-and-test-scores/",
+    "anchor": "UT Dallas Graduate Admissions Standardized Test Scores & GRE Expectations",
+    "category": "university",
+    "note": "Verified official guidelines at graduate-admissions.utdallas.edu"
+  },
+  "usa-gre-verbal-awa-prep-guide": {
+    "url": "https://www.iit.edu/admissions-aid/graduate-admission/how-apply",
+    "anchor": "Illinois Tech Graduate Admissions Examination Policies & Score Submissions",
+    "category": "university",
+    "note": "Verified official guidelines at www.iit.edu"
+  },
+  "usa-toefl-ielts-preparation-guide": {
+    "url": "https://grad.gatech.edu/english-proficiency",
+    "anchor": "Georgia Tech Graduate English Proficiency Score Cutoffs & Subscore Thresholds",
+    "category": "university",
+    "note": "Verified official guidelines at grad.gatech.edu"
+  },
+  "usa-duolingo-det-preparation-guide": {
+    "url": "https://admission.asu.edu/international/graduate/english-proficiency",
+    "anchor": "Arizona State University Graduate English Proficiency & Duolingo English Test (DET) Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at admission.asu.edu"
+  },
+  "usa-fulbright-interview-prep": {
+    "url": "https://www.purdue.edu/niso/scholars/fulbright.html",
+    "anchor": "Purdue University NISO Fulbright Grantee Profiles & Selection Interview Guidance",
+    "category": "university",
+    "note": "Verified official guidelines at www.purdue.edu"
+  },
+  "usa-assistantship-interview-guide": {
+    "url": "https://grad.gatech.edu/paying-for-grad-school",
+    "anchor": "Georgia Tech Graduate Education Assistantship (GRA/GTA) Appointment Guidelines",
+    "category": "university",
+    "note": "Verified official guidelines at grad.gatech.edu"
+  },
+  "usa-total-cost-breakdown": {
+    "url": "https://grad.gatech.edu/cost-fees",
+    "anchor": "Georgia Tech Graduate Education Tuition & Mandatory Fee Schedule",
+    "category": "university",
+    "note": "Verified official guidelines at grad.gatech.edu"
+  },
+  "us-education-loans-guide": {
+    "url": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+    "anchor": "DHS Study in the States Student Financial Ability & I-20 Funding Evidence Rules",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-assistantships-ta-ra-ga": {
+    "url": "https://graduate.utexas.edu/funding/student-employment",
+    "anchor": "UT Austin Graduate Student Academic Employment (TA/RA) & Tuition Benefit Policies",
+    "category": "university",
+    "note": "Verified official guidelines at graduate.utexas.edu"
+  },
+  "usa-fulbright-tata-scholarships": {
+    "url": "https://www.purdue.edu/niso/scholarship/additional/international.html",
+    "anchor": "Purdue NISO Directory of Prestigious Scholarships & Fellowships for International Students",
+    "category": "university",
+    "note": "Verified official guidelines at www.purdue.edu"
+  },
+  "usa-university-listing-hub-guide": {
+    "url": "https://studyinthestates.dhs.gov/school-search",
+    "anchor": "DHS Study in the States Search Tool for SEVP-Certified US Colleges and Universities",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-master-university-profile-guide": {
+    "url": "https://studyinthestates.dhs.gov/schools",
+    "anchor": "DHS SEVP Certified Schools Official Standards & Governance",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-master-program-listing-guide": {
+    "url": "https://www.ice.gov/sevis/schools",
+    "anchor": "U.S. ICE SEVIS School Certification & Instructional Program Guidelines",
+    "category": "government",
+    "note": "Verified official guidelines at www.ice.gov"
+  },
+  "usa-scholarship-directory-hub-guide": {
+    "url": "https://graduate.utexas.edu/funding/fellowships",
+    "anchor": "UT Austin Graduate School Master Fellowships & Funding Directory",
+    "category": "university",
+    "note": "Verified official guidelines at graduate.utexas.edu"
+  },
+  "usa-fulbright-scholarship-master-guide": {
+    "url": "https://www.purdue.edu/niso/scholarship/majorlist/fulbright.html",
+    "anchor": "Purdue NISO Master Fulbright Fellowship Dossier & Eligibility Parameters",
+    "category": "university",
+    "note": "Verified official guidelines at www.purdue.edu"
+  },
+  "usa-visa-routes-hub-guide": {
+    "url": "https://www.ice.gov/sevis/students",
+    "anchor": "U.S. ICE SEVIS F-1 Nonimmigrant Student Lifecycle & Employment Regulations",
+    "category": "government",
+    "note": "Verified official guidelines at www.ice.gov"
+  },
+  "usa-wes-credential-evaluation-manual": {
+    "url": "https://www.sjsu.edu/admissions/docs/WES_Evaluation_Instructions.pdf",
+    "anchor": "Official WES Credential Evaluation & Document Submission Instructions for Indian Marksheets",
+    "category": "university",
+    "note": "Verified official guidelines at www.sjsu.edu"
+  },
+  "usa-gpa-conversion-matrix": {
+    "url": "https://www.uta.edu/admissions/apply/international-graduate",
+    "anchor": "UT Arlington International Graduate Admission Transcript & 4.0 GPA Evaluation Policy",
+    "category": "university",
+    "note": "Verified official guidelines at www.uta.edu"
+  },
+  "usa-toefl-ielts-duolingo-cutoffs": {
+    "url": "https://grad.uic.edu/admissions/degree-admission/",
+    "anchor": "UIC Graduate College Degree Admission & English Proficiency Testing Benchmarks",
+    "category": "university",
+    "note": "Verified official guidelines at grad.uic.edu"
+  },
+  "usa-gre-gmat-waiver-directory": {
+    "url": "https://catalog.utdallas.edu/2026/graduate/admission",
+    "anchor": "UT Dallas Graduate Catalog Official Admission & Standardized Testing Waiver Standards",
+    "category": "university",
+    "note": "Verified official guidelines at catalog.utdallas.edu"
+  },
+  "usa-sop-lor-resume-us-standards": {
+    "url": "https://owl.purdue.edu/owl/general_writing/graduate_school_applications/index.html",
+    "anchor": "Purdue OWL Official Graduate School Statements of Purpose, Resumes & Recommendation Blueprint",
+    "category": "university",
+    "note": "Verified official guidelines at owl.purdue.edu"
+  },
+  "usa-work-experience-research-paper-points": {
+    "url": "https://www.buffalo.edu/grad/succeed/current-students/policy-library.html",
+    "anchor": "University at Buffalo Graduate School Policy Library on Holistic Admissions Evaluation",
+    "category": "university",
+    "note": "Verified official guidelines at www.buffalo.edu"
+  },
+  "usa-prerequisites-deficiency-courses": {
+    "url": "https://catalog.uta.edu/engineering/computer/graduate/",
+    "anchor": "UT Arlington Computer Science & Engineering Graduate Prerequisite & Leveling Policies",
+    "category": "university",
+    "note": "Verified official guidelines at catalog.uta.edu"
+  },
+  "usa-ds160-form-filing-manual": {
+    "url": "https://www.ice.gov/sevis/i901",
+    "anchor": "U.S. ICE SEVIS I-901 Fee Payment Regulations & SEVIS Status Verification",
+    "category": "government",
+    "note": "Verified official guidelines at www.ice.gov"
+  },
+  "us-consulate-slot-booking-hacks": {
+    "url": "https://studyinthestates.dhs.gov/students/travel/applying-for-a-visa-to-travel-to-the-united-states",
+    "anchor": "DHS Study in the States F-1 Student Visa Application & Consular Scheduling Manual",
+    "category": "government",
+    "note": "Verified official guidelines at studyinthestates.dhs.gov"
+  },
+  "usa-f1-visa-interview-prep-questions": {
+    "url": "https://www.buffalo.edu/international-student-services/immigration-visa/us-visa.html",
+    "anchor": "University at Buffalo International Student Services U.S. Visa & Consular Interview Preparation",
+    "category": "university",
+    "note": "Verified official guidelines at www.buffalo.edu"
+  }
+}
