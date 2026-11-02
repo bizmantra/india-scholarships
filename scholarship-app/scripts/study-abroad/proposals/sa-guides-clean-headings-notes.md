@@ -3,7 +3,7 @@
 **Date**: 2026-11-02  
 **Target Proposal**: `scripts/study-abroad/proposals/sa-guides-clean-headings-2026-11-02.json`  
 **Generator**: `scripts/study-abroad/migrate-executive-summary-headings.mjs`  
-**Pre-flight Verification**: `scripts/study-abroad/test-heading-proposals.mjs`  
+**Pre-flight Verification**: `scripts/study-abroad/preflight-heading-proposals.mjs`  
 
 ## 1. Problem Statement
 - In `scripts/lib/sa-inbox.js`, `/executive summary/i` is a hardcoded banned pattern under `sa.BANNED` ("contains research notes or template filler that must not appear on the page").
@@ -23,7 +23,7 @@
    - Strictly proposes `body_md` (0 field overwrites outside `body_md`, 0 synthetic callouts, 0 weak citations).
 3. **Verification & Diff-Based Integrity**:
    - Verified via `propose-changes.mjs --dry-run`: exactly 92 proposed, 0 refused.
-   - Pre-flight test suite `test-heading-proposals.mjs` asserts:
+   - Pre-flight test suite `preflight-heading-proposals.mjs` asserts:
      - Exactly 92 guides covered.
      - Strictly `body_md` proposals.
      - Heading count strictly preserved across all 92 guides.

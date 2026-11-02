@@ -4,15 +4,16 @@
  *
  * Asserts:
  * 1. Proposal file exists and covers exactly 92 guides.
- * 2. Only body_md is proposed (0 field overwrites outside body_md).
- * 3. Exact diff identity: removing 'Executive Summary: ' and the single DAAD banned phrase
+ * 2. In pre-apply state, asserts 1-to-1 set equality between proposal keys and all DB rows matching '## Executive Summary: '.
+ * 3. In post-apply state, asserts 0 remaining guides in the database contain '## Executive Summary: '.
+ * 4. Only body_md is proposed (0 field overwrites outside body_md).
+ * 5. Exact diff identity: removing 'Executive Summary: ' and the single DAAD banned phrase
  *    is 100% the ONLY difference from the live text (0 accidental prose modifications).
- * 4. Heading count is strictly preserved across all 92 guides.
- * 5. Every proposal passes sa.validateSaValue with 0 errors.
- * 6. sa.BANNED regexes evaluate to false for every proposed body_md.
- * 7. Post-apply handling: if the database is already migrated, confirms 0 remaining '## Executive Summary: ' headings.
+ * 6. Heading count is strictly preserved across all 92 guides.
+ * 7. Every proposal passes sa.validateSaValue with 0 errors.
+ * 8. sa.BANNED regexes evaluate to false for every proposed body_md.
  *
- * Run: node scripts/study-abroad/test-heading-proposals.mjs
+ * Run: node scripts/study-abroad/preflight-heading-proposals.mjs
  */
 
 import { test } from 'node:test';
@@ -33,6 +34,7 @@ test('heading migration proposals pre-flight validation suite', async (t) => {
     }
 
     const proposal = JSON.parse(readFileSync(PROPOSAL_FILE, 'utf8'));
+    const proposalKeys = new Set(proposal.changes.map(c => c.key));
 
     await t.test('covers exactly 92 guides', () => {
         assert.equal(proposal.changes.length, 92, `Expected 92 changes, got ${proposal.changes.length}`);
@@ -47,6 +49,25 @@ test('heading migration proposals pre-flight validation suite', async (t) => {
 
     assert.ok(existsSync(DB_PATH), `Database file ${DB_PATH} is required for pre-flight verification`);
 
+    // 1. Query all guides in DB that currently contain '## Executive Summary: '
+    const execSummaryQuery = "SELECT slug FROM sa_guides WHERE body_md LIKE '%## Executive Summary: %';";
+    const execSummaryRowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
+        input: execSummaryQuery,
+        maxBuffer: 50 * 1024 * 1024,
+        encoding: 'utf8'
+    });
+    const currentExecSummarySlugs = new Set((execSummaryRowsJson && execSummaryRowsJson.trim() ? JSON.parse(execSummaryRowsJson) : []).map(r => r.slug));
+
+    // Pre-apply: must match proposal keys exactly. Post-apply: must be 0.
+    await t.test('database set equality pre-apply or zero remaining post-apply', () => {
+        if (currentExecSummarySlugs.size > 0) {
+            assert.deepEqual(proposalKeys, currentExecSummarySlugs, 'Proposal keys must match all DB rows holding Executive Summary headings');
+        } else {
+            assert.equal(currentExecSummarySlugs.size, 0, 'Post-apply verification: zero guides have Executive Summary headings');
+        }
+    });
+
+    // 2. Query all guides by slug
     const query = 'SELECT slug, body_md FROM sa_guides;';
     const rowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
         input: query,
@@ -72,17 +93,32 @@ test('heading migration proposals pre-flight validation suite', async (t) => {
             const propHeadings = (proposedBody.match(/^[ \t]*##[ \t]+/gm) || []).length;
             assert.equal(propHeadings, origHeadings, `Heading count mismatch in ${key}: was ${origHeadings}, now ${propHeadings}`);
 
-            // 3. Assert diff identity pre-apply: if original had Executive Summary, reverting matches original
+            // 3. Line-by-line diff identity pre-apply: only the first heading line (and DAAD line) can differ
             if (originalBody.includes('## Executive Summary: ')) {
-                let revertedBody = proposedBody;
-                if (key === 'germany-daad-scholarships-guide') {
-                    revertedBody = revertedBody.replace('the premier scholarship for studying in Germany', 'the holy grail of studying in Germany');
+                const origLines = originalBody.split('\n');
+                const propLines = proposedBody.split('\n');
+                assert.equal(propLines.length, origLines.length, `Line count mismatch in ${key}`);
+
+                for (let i = 0; i < origLines.length; i++) {
+                    if (origLines[i] === propLines[i]) continue;
+
+                    // Allow heading line modification
+                    if (origLines[i].startsWith('## Executive Summary: ') && propLines[i] === origLines[i].replace('## Executive Summary: ', '## ')) {
+                        continue;
+                    }
+
+                    // Allow DAAD single word swap
+                    if (key === 'germany-daad-scholarships-guide' &&
+                        origLines[i].includes('the holy grail of studying in Germany') &&
+                        propLines[i] === origLines[i].replace('the holy grail of studying in Germany', 'the premier scholarship for studying in Germany')) {
+                        continue;
+                    }
+
+                    assert.fail(`Unexpected line modification at line ${i + 1} in ${key}:\nOriginal: "${origLines[i]}"\nProposed: "${propLines[i]}"`);
                 }
-                revertedBody = revertedBody.replace(/^## /m, '## Executive Summary: ');
-                assert.equal(revertedBody.trim(), originalBody.trim(), `Unintended content modifications detected in ${key}`);
             } else {
                 // Post-apply state: proposed body matches live body directly
-                assert.equal(proposedBody.trim(), originalBody.trim(), `Live body already updated for ${key}`);
+                assert.equal(proposedBody, originalBody, `Live body already updated for ${key}`);
             }
 
             // 4. Assert sa.validateSaValue passes with 0 errors

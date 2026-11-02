@@ -9,7 +9,7 @@
  *   node scripts/study-abroad/migrate-executive-summary-headings.mjs
  */
 
-import { writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 
@@ -19,6 +19,11 @@ const sa = require('../lib/sa-inbox');
 const DB_PATH = 'data/scholarships.db';
 const PROPOSAL_OUTPUT = 'scripts/study-abroad/proposals/sa-guides-clean-headings-2026-11-02.json';
 
+if (!existsSync(DB_PATH)) {
+    console.error(`Error: Database file ${DB_PATH} not found. Refusing to run.`);
+    process.exit(1);
+}
+
 // Query all 92 guides with Executive Summary via stdin (immune to shell quote escaping)
 const query = `SELECT slug, country, title, body_md FROM sa_guides WHERE body_md LIKE '%## Executive Summary: %';`;
 const rowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
@@ -27,6 +32,11 @@ const rowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
     encoding: 'utf8'
 });
 const guides = rowsJson && rowsJson.trim() ? JSON.parse(rowsJson) : [];
+
+if (guides.length !== 92) {
+    console.error(`Refusing to overwrite ${PROPOSAL_OUTPUT}: expected exactly 92 guides with '## Executive Summary: ', found ${guides.length}.`);
+    process.exit(1);
+}
 
 console.log(`Found ${guides.length} guides with '## Executive Summary: ' headings.`);
 
