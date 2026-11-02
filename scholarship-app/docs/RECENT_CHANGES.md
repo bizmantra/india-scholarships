@@ -3,7 +3,7 @@
 Short log of what changed on the site and in the tooling, newest first. Written for AI agents
 (Antigravity, Codex) that start each run with no memory. **Whoever merges a feature adds one line here.**
 
-Last updated: 2026-10-30. Merges #74-#101 since Oct 13 are not itemised below yet.
+Last updated: 2026-11-02. Merges #74-#101 since Oct 13 are not itemised below yet.
 
 ## What agents must do differently now
 
@@ -17,6 +17,10 @@ Last updated: 2026-10-30. Merges #74-#101 since Oct 13 are not itemised below ye
 - **Never touch** `.env*`, `scholarship.db`, `backups/`, `.mcp.json`. Claude builds features; agents do content/research from a plan file only.
 
 ## Merged to main
+
+**Nov 2**
+- #124 Command Center Inbox table: opening a new scholarship's row shows its amount, who can apply, deadline, benefits, how to apply and what is missing.
+- UK research (visa, 12 universities, scholarships) saved in `plans/uk-research/`. UK visa facts (13 changes) and two new scholarships (GREAT India, Edinburgh India Merit) were proposed to the production Inbox. The UK stays hidden (`launched: false`) until its pages pass the launch checklist.
 
 **Oct 31**
 - `docs/PROJECT_CONTEXT.md`: shared context for all assistants (roles, how work ships, standing decisions, traps). `AGENTS.md` now says to read it first and keep it updated.

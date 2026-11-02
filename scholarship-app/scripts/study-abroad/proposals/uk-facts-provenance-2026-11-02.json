@@ -1,0 +1,66 @@
+{
+  "agent": "content-editor",
+  "notes": "UK country fact sheet (E2): official page and check date for the six UK rows read on the live gov.uk pages on 2026-11-01/02. Values are unchanged; only provenance is added.",
+  "changes": [
+    {
+      "table": "sa_facts",
+      "key": "uk.visa.application_fee_gbp",
+      "source": "https://www.gov.uk/student-visa",
+      "fields": {
+        "official_source": "https://www.gov.uk/student-visa",
+        "checked_at": "2026-11-01",
+        "recheck_after": "2027-01-30"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "uk.ihs.annual_gbp",
+      "source": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "fields": {
+        "official_source": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+        "checked_at": "2026-11-01",
+        "recheck_after": "2027-01-30"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "uk.funds.monthly_london_gbp",
+      "source": "https://www.gov.uk/student-visa/money",
+      "fields": {
+        "official_source": "https://www.gov.uk/student-visa/money",
+        "checked_at": "2026-11-01",
+        "recheck_after": "2027-01-30"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "uk.funds.monthly_outside_london_gbp",
+      "source": "https://www.gov.uk/student-visa/money",
+      "fields": {
+        "official_source": "https://www.gov.uk/student-visa/money",
+        "checked_at": "2026-11-01",
+        "recheck_after": "2027-01-30"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "uk.post_study_work.months",
+      "source": "https://www.gov.uk/graduate-visa",
+      "fields": {
+        "official_source": "https://www.gov.uk/graduate-visa",
+        "checked_at": "2026-11-02",
+        "recheck_after": "2026-12-15"
+      }
+    },
+    {
+      "table": "sa_facts",
+      "key": "uk.english.ielts_min",
+      "source": "https://www.gov.uk/student-visa/knowledge-of-english",
+      "fields": {
+        "official_source": "https://www.gov.uk/student-visa/knowledge-of-english",
+        "checked_at": "2026-11-02",
+        "recheck_after": "2027-01-31"
+      }
+    }
+  ]
+}
