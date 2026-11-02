@@ -14,14 +14,20 @@ import { pathToFileURL } from 'node:url';
 
 const MONTHS = 'january|february|march|april|may|june|july|august|september|october|november|december';
 
+const ABBR = 'jan|feb|mar|apr|jun|jul|aug|sept|sep|oct|nov|dec';
+const FULL = { jan: 'january', feb: 'february', mar: 'march', apr: 'april', jun: 'june', jul: 'july', aug: 'august', sep: 'september', sept: 'september', oct: 'october', nov: 'november', dec: 'december' };
+
 // Lower case; no commas inside numbers; no space after a currency sign; ordinals dropped; no markdown emphasis
 export function normalize(text) {
     return String(text)
         .toLowerCase()
+        .replace(/\bgbp\s*(?=\d)/g, '£')
         .replace(/(\d),(?=\d{3})/g, '$1')
         .replace(/([£$€])\s+/g, '$1')
         .replace(/(\d)(st|nd|rd|th)\b/g, '$1')
-        .replace(/[*_`]/g, '');
+        .replace(/[*_`]/g, '')
+        .replace(new RegExp(`(\\d{1,2}) (${ABBR})\\b\\.?`, 'g'), (_, d, m) => `${d} ${FULL[m]}`)
+        .replace(new RegExp(`\\b(${ABBR})\\.? (\\d{1,2})\\b`, 'g'), (_, m, d) => `${FULL[m]} ${d}`);
 }
 
 // Figures a reader could act on, as normalized tokens
@@ -39,6 +45,8 @@ export function extractFigures(text) {
 // Is the figure in the notes (already normalized)? Dates also match "month day"
 export function inNotes(figure, notes) {
     if (notes.includes(figure)) return true;
+    const money = figure.match(/^[£$€](\d+(?:\.\d+)?)$/);
+    if (money) return new RegExp(`(?<![\\d.])${money[1].replace('.', '\\.')}(?!\\d)`).test(notes);
     const unit = figure.match(/^(\d+) (month|week|year)$/);
     if (unit) return new RegExp(`\\b${unit[1]}[ -]${unit[2]}s?\\b`).test(notes);
     const date = figure.match(new RegExp(`^(\\d{1,2}) (${MONTHS})$`));
