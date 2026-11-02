@@ -3,7 +3,7 @@
 Short log of what changed on the site and in the tooling, newest first. Written for AI agents
 (Antigravity, Codex) that start each run with no memory. **Whoever merges a feature adds one line here.**
 
-Last updated: 2026-11-02. Merges #74-#101 since Oct 13 are not itemised below yet.
+Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below yet.
 
 ## What agents must do differently now
 
@@ -17,6 +17,10 @@ Last updated: 2026-11-02. Merges #74-#101 since Oct 13 are not itemised below ye
 - **Never touch** `.env*`, `scholarship.db`, `backups/`, `.mcp.json`. Claude builds features; agents do content/research from a plan file only.
 
 ## Merged to main
+
+**Nov 3**
+- #128 Study Abroad country pages can list one picked entry per scholarship (even when the round has closed) and leave out duplicates, plus a one-line callout. Only the UK has picks (`lib/study-abroad/scholarship-picks.ts`); the UK is still hidden. Main-site scholarship pages are unchanged.
+- UK visa guide and UK cost guide filed as draft pages (approved); UK round 4 research notes saved in `plans/uk-research/`.
 
 **Nov 2**
 - #124 Command Center Inbox table: opening a new scholarship's row shows its amount, who can apply, deadline, benefits, how to apply and what is missing.
