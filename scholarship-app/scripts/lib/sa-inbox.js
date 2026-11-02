@@ -152,7 +152,7 @@ function validateSaValue(table, field, value, { source, previous } = {}) {
             return null;
         case 'markdown':
             if (text.split(/\s+/).length < 150) return 'article is shorter than 150 words';
-            if (!/https?:\/\//.test(text)) return 'article has no source links';
+            if (!/https?:\/\//.test(text) && (!before || /https?:\/\//.test(before))) return 'article has no source links';
             return null;
         case 'faq': {
             let faqs;
