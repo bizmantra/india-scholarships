@@ -35,7 +35,7 @@
       },
       "expected_terms": [
         "preliminary review documentation",
-        "vpd"
+        "applying using the vpd procedure"
       ]
     },
     {
@@ -46,8 +46,8 @@
         "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements"
       },
       "expected_terms": [
-        "aptitude assessment",
-        "admission requirements"
+        "programs subject to an aptitude assessment",
+        "higher education entrance qualification"
       ]
     },
     {
@@ -58,8 +58,8 @@
         "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
       },
       "expected_terms": [
-        "international programmes",
-        "daad"
+        "international programmes in germany",
+        "internationally oriented study programmes"
       ]
     },
     {
@@ -130,8 +130,8 @@
         "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states"
       },
       "expected_terms": [
-        "curricular practical training",
-        "practical training"
+        "curricular practical training for f students",
+        "designated school official"
       ]
     },
     {
@@ -142,8 +142,8 @@
         "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt"
       },
       "expected_terms": [
-        "stem opt",
-        "stem opt extension"
+        "form i-765, application for employment authorization",
+        "form i-983, training plan for stem opt students"
       ]
     },
     {

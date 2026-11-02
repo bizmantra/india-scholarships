@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { checkProposalSources, hostAllowed } from '../lib/source-verify.mjs';
+import { checkProposalSources, hostAllowed, normalizeText } from '../lib/source-verify.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -69,6 +69,20 @@ for (const [idx, c] of guidesProposal.changes.entries()) {
   if (!Array.isArray(c.expected_terms) || c.expected_terms.length < 2) {
     console.error(`❌ Change #${idx} (${c.key}) is missing mandatory expected_terms array (minimum 2 phrases required)`);
     process.exit(1);
+  }
+
+  // Reject overlapping phrases where one is a substring of another
+  for (let i = 0; i < c.expected_terms.length; i++) {
+    for (let j = 0; j < c.expected_terms.length; j++) {
+      if (i !== j) {
+        const termA = normalizeText(c.expected_terms[i]);
+        const termB = normalizeText(c.expected_terms[j]);
+        if (termA.includes(termB) || termB.includes(termA)) {
+          console.error(`❌ Change #${idx} (${c.key}) has overlapping terms: "${c.expected_terms[i]}" overlaps with "${c.expected_terms[j]}"`);
+          process.exit(1);
+        }
+      }
+    }
   }
 
   // Banned checked_at bulk stamp
@@ -159,7 +173,7 @@ for (const c of guidesProposal.changes) {
   }
 }
 
-console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (>= 2 expected_terms, source matching, no duplicates, no checked_at bulk stamp)!`);
+console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (>= 2 non-overlapping expected_terms, source matching, no duplicates, no checked_at bulk stamp)!`);
 console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed the source gate with 0 refusals!`);
 console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table with 0 overwrites and 0 global collisions!`);
 console.log(`✅ Offline structural, database, and source-gate validation passed (live HTTP & body content verified by verify-all-c2-urls.mjs)!\n`);

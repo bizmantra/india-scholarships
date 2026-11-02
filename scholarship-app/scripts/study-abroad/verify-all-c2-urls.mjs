@@ -50,6 +50,19 @@ function checkUrlAndBody(url, expectedTerms) {
     return { ok: false, error: 'expected_terms must be an array of at least 2 specific phrases' };
   }
 
+  // Reject overlapping phrases where one is a substring of another
+  for (let i = 0; i < expectedTerms.length; i++) {
+    for (let j = 0; j < expectedTerms.length; j++) {
+      if (i !== j) {
+        const termA = normalizeText(expectedTerms[i]);
+        const termB = normalizeText(expectedTerms[j]);
+        if (termA.includes(termB) || termB.includes(termA)) {
+          return { ok: false, error: `Overlapping phrases not permitted: "${expectedTerms[i]}" overlaps with "${expectedTerms[j]}"` };
+        }
+      }
+    }
+  }
+
   try {
     let rawOut = '';
     const curlArgs = [
@@ -66,7 +79,7 @@ function checkUrlAndBody(url, expectedTerms) {
         maxBuffer: 20 * 1024 * 1024
       });
     } catch {
-      // Retry with browser user-agent if initial curl fails
+      // Retry with browser user-agent if initial curl errors
       rawOut = execFileSync('curl', [
         ...curlArgs,
         '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -84,8 +97,30 @@ function checkUrlAndBody(url, expectedTerms) {
     }
 
     const meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
-    const code = meta[0];
-    const finalUrl = meta.slice(1).join(':') || url;
+    let code = meta[0];
+    let finalUrl = meta.slice(1).join(':') || url;
+
+    // If initial attempt returned 403, retry with standard browser user-agent
+    if (code === '403') {
+      try {
+        rawOut = execFileSync('curl', [
+          ...curlArgs,
+          '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          url
+        ], {
+          encoding: 'utf8',
+          maxBuffer: 20 * 1024 * 1024
+        });
+        const retrySplitIdx = rawOut.lastIndexOf(marker);
+        if (retrySplitIdx !== -1) {
+          const retryMeta = rawOut.slice(retrySplitIdx + marker.length).trim().split(':');
+          code = retryMeta[0];
+          finalUrl = retryMeta.slice(1).join(':') || url;
+        }
+      } catch (e) {
+        return { ok: false, error: `Retry with UA failed: ${e.message}` };
+      }
+    }
 
     if (code !== '200') {
       return { ok: false, error: `HTTP ${code}` };
