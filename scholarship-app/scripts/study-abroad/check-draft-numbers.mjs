@@ -18,6 +18,7 @@ const MONTHS = 'january|february|march|april|may|june|july|august|september|octo
 export function normalize(text) {
     return String(text)
         .toLowerCase()
+        .replace(/\bgbp\s*(?=\d)/g, '£')
         .replace(/(\d),(?=\d{3})/g, '$1')
         .replace(/([£$€])\s+/g, '$1')
         .replace(/(\d)(st|nd|rd|th)\b/g, '$1')

@@ -28,3 +28,8 @@ test('checkChanges lists only figures missing from the notes', () => {
     assert.deepEqual(r.missing, ['£99999']);
     assert.equal(r.total, 3);
 });
+
+test('notes that write GBP match a page that writes the pound sign', () => {
+    assert.equal(inNotes('£25000', normalize('Scholarship GBP 25,000 and GBP151.41')), true);
+    assert.equal(inNotes('£151.41', normalize('Scholarship GBP 25,000 and GBP151.41')), true);
+});
