@@ -45,54 +45,55 @@ test('heading migration proposals pre-flight validation suite', async (t) => {
         }
     });
 
-    if (existsSync(DB_PATH)) {
-        const query = 'SELECT slug, body_md FROM sa_guides;';
-        const dbRows = JSON.parse(execSync(`sqlite3 '${DB_PATH}' -json`, {
-            input: query,
-            maxBuffer: 50 * 1024 * 1024,
-            encoding: 'utf8'
-        }));
-        const liveMap = new Map(dbRows.map(r => [r.slug, r.body_md]));
+    assert.ok(existsSync(DB_PATH), `Database file ${DB_PATH} is required for pre-flight verification`);
 
-        await t.test('diff-based integrity and validator rules', () => {
-            for (const change of proposal.changes) {
-                const { key, fields } = change;
-                const originalBody = liveMap.get(key);
-                assert.ok(originalBody, `Guide ${key} must exist in database`);
+    const query = 'SELECT slug, body_md FROM sa_guides;';
+    const rowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
+        input: query,
+        maxBuffer: 50 * 1024 * 1024,
+        encoding: 'utf8'
+    });
+    const dbRows = rowsJson && rowsJson.trim() ? JSON.parse(rowsJson) : [];
+    const liveMap = new Map(dbRows.map(r => [r.slug, r.body_md]));
 
-                const proposedBody = fields.body_md;
+    await t.test('diff-based integrity and validator rules', () => {
+        for (const change of proposal.changes) {
+            const { key, fields } = change;
+            const originalBody = liveMap.get(key);
+            assert.ok(originalBody, `Guide ${key} must exist in database`);
 
-                // 1. Assert '## Executive Summary' is removed
-                assert.equal(proposedBody.includes('## Executive Summary: '), false, `Found '## Executive Summary: ' in ${key}`);
+            const proposedBody = fields.body_md;
 
-                // 2. Assert heading count is strictly preserved
-                const origHeadings = (originalBody.match(/^##\s+/gm) || []).length;
-                const propHeadings = (proposedBody.match(/^##\s+/gm) || []).length;
-                assert.equal(propHeadings, origHeadings, `Heading count mismatch in ${key}: was ${origHeadings}, now ${propHeadings}`);
+            // 1. Assert '## Executive Summary' is removed
+            assert.equal(proposedBody.includes('## Executive Summary: '), false, `Found '## Executive Summary: ' in ${key}`);
 
-                // 3. Assert diff identity pre-apply: if original had Executive Summary, reverting matches original
-                if (originalBody.includes('## Executive Summary: ')) {
-                    let revertedBody = proposedBody;
-                    if (key === 'germany-daad-scholarships-guide') {
-                        revertedBody = revertedBody.replace('the premier scholarship for studying in Germany', 'the holy grail of studying in Germany');
-                    }
-                    revertedBody = revertedBody.replace(/^## /m, '## Executive Summary: ');
-                    assert.equal(revertedBody.trim(), originalBody.trim(), `Unintended content modifications detected in ${key}`);
-                } else {
-                    // Post-apply state: proposed body matches live body directly
-                    assert.equal(proposedBody.trim(), originalBody.trim(), `Live body already updated for ${key}`);
+            // 2. Assert heading count is strictly preserved (using [ \t]+ to prevent newline matching)
+            const origHeadings = (originalBody.match(/^[ \t]*##[ \t]+/gm) || []).length;
+            const propHeadings = (proposedBody.match(/^[ \t]*##[ \t]+/gm) || []).length;
+            assert.equal(propHeadings, origHeadings, `Heading count mismatch in ${key}: was ${origHeadings}, now ${propHeadings}`);
+
+            // 3. Assert diff identity pre-apply: if original had Executive Summary, reverting matches original
+            if (originalBody.includes('## Executive Summary: ')) {
+                let revertedBody = proposedBody;
+                if (key === 'germany-daad-scholarships-guide') {
+                    revertedBody = revertedBody.replace('the premier scholarship for studying in Germany', 'the holy grail of studying in Germany');
                 }
-
-                // 4. Assert sa.validateSaValue passes with 0 errors
-                const err = sa.validateSaValue('sa_guides', 'body_md', proposedBody, { previous: originalBody });
-                assert.equal(err, null, `Validation error on ${key}: ${err}`);
-
-                // 5. Assert sa.BANNED regexes all return false
-                for (const rx of sa.BANNED) {
-                    const freshRx = new RegExp(rx.source, rx.flags.replace(/[gy]/g, ''));
-                    assert.equal(freshRx.test(proposedBody), false, `Banned phrase matching ${rx} found in ${key}`);
-                }
+                revertedBody = revertedBody.replace(/^## /m, '## Executive Summary: ');
+                assert.equal(revertedBody.trim(), originalBody.trim(), `Unintended content modifications detected in ${key}`);
+            } else {
+                // Post-apply state: proposed body matches live body directly
+                assert.equal(proposedBody.trim(), originalBody.trim(), `Live body already updated for ${key}`);
             }
-        });
-    }
+
+            // 4. Assert sa.validateSaValue passes with 0 errors
+            const err = sa.validateSaValue('sa_guides', 'body_md', proposedBody, { previous: originalBody });
+            assert.equal(err, null, `Validation error on ${key}: ${err}`);
+
+            // 5. Assert sa.BANNED regexes all return false
+            for (const rx of sa.BANNED) {
+                const freshRx = new RegExp(rx.source, rx.flags.replace(/[gy]/g, ''));
+                assert.equal(freshRx.test(proposedBody), false, `Banned phrase matching ${rx} found in ${key}`);
+            }
+        }
+    });
 });

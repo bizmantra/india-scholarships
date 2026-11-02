@@ -26,7 +26,7 @@ const rowsJson = execSync(`sqlite3 '${DB_PATH}' -json`, {
     maxBuffer: 50 * 1024 * 1024,
     encoding: 'utf8'
 });
-const guides = JSON.parse(rowsJson);
+const guides = rowsJson && rowsJson.trim() ? JSON.parse(rowsJson) : [];
 
 console.log(`Found ${guides.length} guides with '## Executive Summary: ' headings.`);
 
@@ -36,7 +36,7 @@ for (const guide of guides) {
     const { slug, body_md } = guide;
 
     // 1. Replace heading: exact match at the start of the line without swallowing newlines
-    let updatedBody = body_md.replace(/^## Executive Summary:[ \t]*/m, '## ');
+    let updatedBody = body_md.replace(/^## Executive Summary:[ \t]+/m, '## ');
 
     // 2. Clean single legacy banned word
     if (slug === 'germany-daad-scholarships-guide') {
