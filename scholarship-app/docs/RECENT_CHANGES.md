@@ -19,7 +19,7 @@ Last updated: 2026-11-02. Merges #74-#101 since Oct 13 are not itemised below ye
 ## Merged to main
 
 **Nov 2**
-- #125 `feat(study-abroad)`: Batch migrate 92 `sa_guides` holding legacy `## Executive Summary: [Topic]` headings to clean passage-indexed H2s. Added validator resilience in `scripts/lib/sa-inbox.js` allowing legacy markdown without external source links to carry forward, matching `BANNED` precedent. Pre-flight verification suite in `scripts/study-abroad/test-heading-proposals.mjs`.
+- #125 `feat(study-abroad)`: Batch migrate 92 `sa_guides` holding legacy `## Executive Summary: [Topic]` headings to clean passage-indexed H2s. Added validator resilience in `scripts/lib/sa-inbox.js` allowing legacy markdown without external source links to carry forward, matching `BANNED` precedent. Pre-flight verification suite in `scripts/study-abroad/preflight-heading-proposals.mjs`.
 - #123 `feat(study-abroad)`: C2 second pass proposals for 14 guides and 11 facts freshness (from 118-guide audit scope) with verified 1-to-1 statutory authorities.
 - #122 `content(study-abroad)`: Form I-20 deficit calculation & Section 80E tax deduction guides (ART-126, ART-127).
 - #121 `feat(audit)`: Targeted file prose audit and canonical link redirects.
