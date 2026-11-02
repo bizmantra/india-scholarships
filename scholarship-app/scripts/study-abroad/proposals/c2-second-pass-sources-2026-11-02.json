@@ -1,0 +1,174 @@
+{
+  "agent": "content-editor",
+  "notes": "C2 Second Pass: Primary statutory and institutional sources for 14 study abroad guides with 100% unique 1-to-1 live HTTP 200 checks, max-redirs validation, and strict multi-phrase page body content matching (strictly existing allowlisted domains, 0 overwrites)",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "germany-residence-permit-guide",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html"
+      },
+      "expected_terms": [
+        "aufenthaltserlaubnis zum zweck des studiums",
+        "vollzeitstudium"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-job-seeker-visa-strategy",
+      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html",
+      "fields": {
+        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__20.html"
+      },
+      "expected_terms": [
+        "arbeitsplatzsuche",
+        "abschluss eines studiums"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-uni-assist-manual",
+      "source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/",
+      "fields": {
+        "official_source": "https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/"
+      },
+      "expected_terms": [
+        "preliminary review documentation",
+        "applying using the vpd procedure"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-tum-efv-entrance-exam-guide",
+      "source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements",
+      "fields": {
+        "official_source": "https://www.tum.de/en/studies/application/application-info-portal/admission-requirements"
+      },
+      "expected_terms": [
+        "programs subject to an aptitude assessment",
+        "higher education entrance qualification"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "germany-master-program-listing-guide",
+      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
+      "fields": {
+        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
+      },
+      "expected_terms": [
+        "international programmes in germany",
+        "internationally oriented study programmes"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-f1-student-visa-master-guide",
+      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states"
+      },
+      "expected_terms": [
+        "student and exchange visitor program",
+        "form i-20"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-initial-72hr-survival-guide",
+      "source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/travel/getting-to-the-united-states"
+      },
+      "expected_terms": [
+        "port of entry",
+        "customs and border protection"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-i20-issuance-deposit-payment",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20"
+      },
+      "expected_terms": [
+        "form i-20",
+        "certificate of eligibility"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-i20-financial-proof-manual",
+      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability"
+      },
+      "expected_terms": [
+        "financial ability",
+        "designated school official"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-on-campus-jobs-20hr-rule",
+      "source": "https://www.ice.gov/sevis/employment",
+      "fields": {
+        "official_source": "https://www.ice.gov/sevis/employment"
+      },
+      "expected_terms": [
+        "on-campus employment",
+        "20 hours per week"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-cpt-internship-rules",
+      "source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states"
+      },
+      "expected_terms": [
+        "curricular practical training for f students",
+        "designated school official"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-opt-stem-opt-extension",
+      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt"
+      },
+      "expected_terms": [
+        "form i-765, application for employment authorization",
+        "form i-983, training plan for stem opt students"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-green-card-eb2-niw-pathways",
+      "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
+      "fields": {
+        "official_source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2"
+      },
+      "expected_terms": [
+        "national interest waiver",
+        "second preference eb-2"
+      ]
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ssn-application-guide",
+      "source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number",
+      "fields": {
+        "official_source": "https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number"
+      },
+      "expected_terms": [
+        "social security number",
+        "social security administration"
+      ]
+    }
+  ]
+}
