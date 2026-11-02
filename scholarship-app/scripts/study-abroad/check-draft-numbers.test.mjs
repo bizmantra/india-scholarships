@@ -33,3 +33,14 @@ test('notes that write GBP match a page that writes the pound sign', () => {
     assert.equal(inNotes('£25000', normalize('Scholarship GBP 25,000 and GBP151.41')), true);
     assert.equal(inNotes('£151.41', normalize('Scholarship GBP 25,000 and GBP151.41')), true);
 });
+
+test('abbreviated months in the notes match full months on the page', () => {
+    assert.equal(inNotes('11 june', normalize('Deadline 11 Jun 2027')), true);
+    assert.equal(inNotes('10 september', normalize('closes Sep 10')), true);
+});
+
+test('money written without a sign in the notes still matches, but a different number does not', () => {
+    assert.equal(inNotes('£10518', normalize('Rent 10,518 a year')), true);
+    assert.equal(inNotes('£10518', normalize('Rent 110,518 a year')), false);
+    assert.equal(inNotes('£151.41', normalize('151.41 per week')), true);
+});
