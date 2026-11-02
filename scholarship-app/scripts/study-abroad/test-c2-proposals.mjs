@@ -14,6 +14,8 @@ if (!existsSync(dbPath)) {
   process.exit(1);
 }
 
+console.log(`📂 Using database: ${dbPath}`);
+
 const allowed = JSON.parse(readFileSync(resolve(dataDir, 'official-domains.json'), 'utf8')).domains;
 const registry = JSON.parse(readFileSync(resolve(dataDir, 'source-checks.json'), 'utf8'));
 
@@ -53,12 +55,23 @@ for (const [idx, c] of guidesProposal.changes.entries()) {
     console.error(`❌ Change #${idx} (${c.key}) missing fields.official_source`);
     process.exit(1);
   }
+  if (c.source !== c.fields.official_source) {
+    console.error(`❌ Change #${idx} (${c.key}) has source mismatch: source (${c.source}) !== fields.official_source (${c.fields.official_source})`);
+    process.exit(1);
+  }
   if (seenUrls.has(c.fields.official_source)) {
-    console.error(`❌ Change #${idx} (${c.key}) has duplicate URL: ${c.fields.official_source}`);
+    console.error(`❌ Change #${idx} (${c.key}) has duplicate URL within proposal: ${c.fields.official_source}`);
     process.exit(1);
   }
   seenUrls.add(c.fields.official_source);
 
+  // Mandatory non-empty expected_terms array
+  if (!Array.isArray(c.expected_terms) || c.expected_terms.length === 0) {
+    console.error(`❌ Change #${idx} (${c.key}) is missing mandatory non-empty expected_terms array`);
+    process.exit(1);
+  }
+
+  // Banned checked_at bulk stamp
   if ('checked_at' in c.fields) {
     console.error(`❌ Change #${idx} (${c.key}) must NOT include bulk checked_at stamp without manual fact verification`);
     process.exit(1);
@@ -80,7 +93,7 @@ if (guidesResult.refusals.length > 0) {
   process.exit(1);
 }
 
-// 4. Validate DB key existence and ensure no overwrites of different sources
+// 4. Validate DB key existence, global 1-to-1 uniqueness, and ensure no overwrites of different sources
 let dbRows = [];
 try {
   const rawRows = execFileSync('sqlite3', ['-json', dbPath, 'SELECT slug, official_source FROM sa_guides;'], {
@@ -93,8 +106,16 @@ try {
 }
 
 const guideMap = new Map(dbRows.map(g => [g.slug, g]));
+const globalDbSources = new Map();
+for (const g of dbRows) {
+  if (g.official_source && g.official_source.trim() !== '') {
+    globalDbSources.set(g.official_source.trim(), g.slug);
+  }
+}
+
 const missingSlugs = [];
 const overwriteSlugs = [];
+const globalCollisions = [];
 
 for (const c of guidesProposal.changes) {
   const guide = guideMap.get(c.key);
@@ -102,14 +123,26 @@ for (const c of guidesProposal.changes) {
     missingSlugs.push(c.key);
     continue;
   }
+
+  // Global 1-to-1 uniqueness: ensure URL is not used by any other row in sa_guides
+  const proposedUrl = c.fields.official_source.trim();
+  if (globalDbSources.has(proposedUrl) && globalDbSources.get(proposedUrl) !== c.key) {
+    globalCollisions.push({ key: c.key, existingSlug: globalDbSources.get(proposedUrl), url: proposedUrl });
+  }
+
   // Allow null, empty, or already-applied identical official_source
-  if (guide.official_source && guide.official_source.trim() !== '' && guide.official_source.trim() !== c.fields.official_source.trim()) {
-    overwriteSlugs.push({ key: c.key, existing: guide.official_source, proposed: c.fields.official_source });
+  if (guide.official_source && guide.official_source.trim() !== '' && guide.official_source.trim() !== proposedUrl) {
+    overwriteSlugs.push({ key: c.key, existing: guide.official_source, proposed: proposedUrl });
   }
 }
 
 if (missingSlugs.length > 0) {
   console.error(`❌ Found ${missingSlugs.length} slugs not in database:`, missingSlugs);
+  process.exit(1);
+}
+
+if (globalCollisions.length > 0) {
+  console.error(`❌ Found ${globalCollisions.length} global URL collisions across sa_guides table:`, globalCollisions);
   process.exit(1);
 }
 
@@ -126,7 +159,7 @@ for (const c of guidesProposal.changes) {
   }
 }
 
-console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (unique 1-to-1 URLs, no duplicates, no checked_at bulk stamp)!`);
+console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (mandatory expected_terms, source matching, no duplicates, no checked_at bulk stamp)!`);
 console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed the source gate with 0 refusals!`);
-console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table with 0 overwrites!`);
-console.log(`✅ 100% of sources verified strictly against pristine official-domains allowlist!\n`);
+console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table with 0 overwrites and 0 global collisions!`);
+console.log(`✅ Offline structural, database, and source-gate validation passed (live HTTP & body content verified by verify-all-c2-urls.mjs)!\n`);

@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { hostAllowed } from '../lib/source-verify.mjs';
+import { hostAllowed, htmlToText, normalizeText } from '../lib/source-verify.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -20,6 +20,8 @@ if (!existsSync(proposalPath)) {
   process.exit(1);
 }
 
+console.log(`📂 Using database: ${dbPath}`);
+
 const allowed = JSON.parse(readFileSync(allowedPath, 'utf8')).domains;
 const proposal = JSON.parse(readFileSync(proposalPath, 'utf8'));
 
@@ -35,12 +37,24 @@ try {
 }
 
 const guideMap = new Map(dbGuides.map(g => [g.slug, g]));
+// Map of existing official_sources across the entire database to ensure global 1-to-1 uniqueness
+const existingSourcesMap = new Map();
+for (const g of dbGuides) {
+  if (g.official_source && g.official_source.trim() !== '') {
+    existingSourcesMap.set(g.official_source.trim(), g.slug);
+  }
+}
 
-function checkUrlAndBody(url, expectedTerms = []) {
+function checkUrlAndBody(url, expectedTerms) {
+  if (!Array.isArray(expectedTerms) || expectedTerms.length === 0) {
+    return { ok: false, error: 'expected_terms is mandatory and cannot be empty' };
+  }
+
   try {
     let rawOut = execFileSync('curl', [
       '-s',
       '-L',
+      '--max-redirs', '5',
       '--max-time', '15',
       '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
       url
@@ -48,7 +62,10 @@ function checkUrlAndBody(url, expectedTerms = []) {
 
     let marker = '\n__CURL_METADATA__:';
     let splitIdx = rawOut.lastIndexOf(marker);
-    let body = rawOut.slice(0, splitIdx);
+    if (splitIdx === -1) {
+      return { ok: false, error: 'Could not extract metadata from curl output' };
+    }
+
     let meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
     let code = meta[0];
     let finalUrl = meta.slice(1).join(':') || url;
@@ -58,13 +75,16 @@ function checkUrlAndBody(url, expectedTerms = []) {
       rawOut = execFileSync('curl', [
         '-s',
         '-L',
+        '--max-redirs', '5',
         '--max-time', '15',
         '-w', '\n__CURL_METADATA__:%{http_code}:%{url_effective}',
         '-H', 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         url
       ], { encoding: 'utf8' });
       splitIdx = rawOut.lastIndexOf(marker);
-      body = rawOut.slice(0, splitIdx);
+      if (splitIdx === -1) {
+        return { ok: false, error: 'Could not extract metadata from curl retry output' };
+      }
       meta = rawOut.slice(splitIdx + marker.length).trim().split(':');
       code = meta[0];
       finalUrl = meta.slice(1).join(':') || url;
@@ -79,13 +99,12 @@ function checkUrlAndBody(url, expectedTerms = []) {
       return { ok: false, error: `Redirected to disallowed host: ${finalUrl}` };
     }
 
-    // Verify body content contains at least one of expected terms
-    if (expectedTerms.length > 0) {
-      const lowerBody = body.toLowerCase();
-      const matched = expectedTerms.some(term => lowerBody.includes(term.toLowerCase()));
-      if (!matched) {
-        return { ok: false, error: `None of expected terms (${expectedTerms.join(', ')}) found in page body` };
-      }
+    // Verify normalized visible page body content contains at least one expected term
+    const rawHtml = rawOut.slice(0, splitIdx);
+    const visibleText = normalizeText(htmlToText(rawHtml));
+    const matched = expectedTerms.some(term => visibleText.includes(normalizeText(term)));
+    if (!matched) {
+      return { ok: false, error: `None of expected terms (${expectedTerms.join(', ')}) found in normalized visible page body` };
     }
 
     return { ok: true, finalUrl };
@@ -95,7 +114,7 @@ function checkUrlAndBody(url, expectedTerms = []) {
 }
 
 async function run() {
-  console.log(`🔍 Verifying ${proposal.changes.length} proposals from JSON against DB, allowlist, live HTTP, and body content...`);
+  console.log(`🔍 Verifying ${proposal.changes.length} proposals from JSON against DB, allowlist, live HTTP, and normalized body content...`);
   const failures = [];
   const verified = [];
   const seenUrls = new Set();
@@ -103,10 +122,22 @@ async function run() {
 
   for (const change of proposal.changes) {
     const slug = change.key;
-    const url = change.fields?.official_source || change.source;
-    const expectedTerms = change.expected_terms || [];
+    const url = change.fields?.official_source;
+    const expectedTerms = change.expected_terms;
 
-    // 1. Uniqueness checks
+    // 1. Mandatory expected_terms assertion
+    if (!Array.isArray(expectedTerms) || expectedTerms.length === 0) {
+      failures.push({ slug, url, reason: `Mandatory expected_terms is missing or empty` });
+      continue;
+    }
+
+    // 2. Proposal consistency: source must match fields.official_source
+    if (change.source !== url) {
+      failures.push({ slug, url, reason: `change.source (${change.source}) does not match fields.official_source (${url})` });
+      continue;
+    }
+
+    // 3. Uniqueness checks within proposal
     if (seenSlugs.has(slug)) {
       failures.push({ slug, url, reason: `Duplicate slug in proposal JSON: ${slug}` });
       continue;
@@ -114,31 +145,37 @@ async function run() {
     seenSlugs.add(slug);
 
     if (seenUrls.has(url)) {
-      failures.push({ slug, url, reason: `URL is duplicated across guides (must be unique 1-to-1 match)` });
+      failures.push({ slug, url, reason: `URL is duplicated across guides in proposal: ${url}` });
       continue;
     }
     seenUrls.add(url);
 
-    // 2. DB existence check
+    // 4. DB existence check
     const guide = guideMap.get(slug);
     if (!guide) {
       failures.push({ slug, url, reason: `Slug does NOT exist in sa_guides database table` });
       continue;
     }
 
-    // 3. Do not overwrite a different non-empty official_source
+    // 5. Global 1-to-1 uniqueness check across entire database
+    if (existingSourcesMap.has(url) && existingSourcesMap.get(url) !== slug) {
+      failures.push({ slug, url, reason: `URL already used in DB by another guide: ${existingSourcesMap.get(url)}` });
+      continue;
+    }
+
+    // 6. Overwrite check: allow null, empty, or already-applied identical official_source
     if (guide.official_source && guide.official_source.trim() !== '' && guide.official_source.trim() !== url.trim()) {
       failures.push({ slug, url, reason: `Guide already has a different official_source: ${guide.official_source}` });
       continue;
     }
 
-    // 4. Allowlist domain check
+    // 7. Allowlist domain check
     if (!hostAllowed(url, allowed)) {
       failures.push({ slug, url, reason: `Host is NOT in official-domains.json` });
       continue;
     }
 
-    // 5. Live HTTP check with redirect validation and body keyword verification
+    // 8. Live HTTP check with redirect validation and normalized body keyword verification
     const checkResult = checkUrlAndBody(url, expectedTerms);
     if (!checkResult.ok) {
       failures.push({ slug, url, reason: `Live check failed: ${checkResult.error}` });
