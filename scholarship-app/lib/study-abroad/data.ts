@@ -3,6 +3,8 @@
 import { getClient } from '@/lib/db';
 import { COUNTRIES, type CountrySlug } from './countries';
 export { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, type CountrySlug } from './countries';
+import { SCHOLARSHIP_PICKS, mergePicks } from './scholarship-picks';
+export { SCHOLARSHIP_PICKS } from './scholarship-picks';
 
 export interface SaUniversity {
     slug: string; name: string; country: CountrySlug; city: string | null; summary: string | null;
@@ -129,13 +131,25 @@ export interface CardScholarship {
     amount_annual: number; amount_min?: number; deadline?: string; application_mode: string; level: string;
     last_verified: string; created_at?: string;
 }
-export const getScholarshipsForCountry = (country: CountrySlug, limit = 100) =>
-    query<CardScholarship>(
-        `SELECT id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at
+const SCHOLARSHIP_CARD_COLUMNS = `id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at`;
+
+export async function getScholarshipsForCountry(country: CountrySlug, limit = 100) {
+    const picks = SCHOLARSHIP_PICKS[country];
+    const skip = picks ? [...picks.show, ...picks.hide] : [];
+    const notIn = skip.length ? ` AND slug NOT IN (${skip.map(() => '?').join(', ')})` : '';
+    const rest = await query<CardScholarship>(
+        `SELECT ${SCHOLARSHIP_CARD_COLUMNS}
          FROM scholarships
-         WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?
+         WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?${notIn}
            AND (always_open = 1 OR deadline IS NULL OR deadline NOT GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*' OR deadline >= date('now'))
-         ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, limit]);
+         ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, ...skip, limit]);
+    if (!picks || picks.show.length === 0) return rest;
+    const featured = await query<CardScholarship>(
+        `SELECT ${SCHOLARSHIP_CARD_COLUMNS}
+         FROM scholarships
+         WHERE slug IN (${picks.show.map(() => '?').join(', ')}) AND scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL)`, picks.show);
+    return mergePicks(featured, rest, picks, limit);
+}
 
 export function parseJson<T>(value: string | null | undefined, fallback: T): T {
     if (!value) return fallback;
