@@ -1,6 +1,6 @@
 {
   "agent": "content-editor",
-  "notes": "P2: Clean 94 legacy '## Executive Summary' headings across German and US study abroad guides into clean passage-indexed H2s, resolving sa.BANNED constraint.",
+  "notes": "P2: Clean 92 legacy '## Executive Summary' headings across German and US study abroad guides into clean passage-indexed H2s, resolving sa.BANNED constraint. (2 of the original 94 guides were previously migrated in PR #111).",
   "changes": [
     {
       "table": "sa_guides",
