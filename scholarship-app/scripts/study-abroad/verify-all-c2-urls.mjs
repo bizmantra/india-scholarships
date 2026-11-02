@@ -13,7 +13,7 @@ const allowed = JSON.parse(readFileSync(allowedPath, 'utf8')).domains;
 const dbGuides = JSON.parse(execSync(`sqlite3 -json "${dbPath}" "SELECT slug, country, title FROM sa_guides ORDER BY country, slug;"`).toString());
 const guideSlugs = new Set(dbGuides.map(g => g.slug));
 
-// Candidate statutory & institutional mappings
+// Candidate statutory & institutional mappings (strictly using existing official domains in main)
 const candidateMappings = {
   // --- GERMANY STATUTORY & INSTITUTIONAL GUIDES ---
   'germany-national-student-visa': 'https://india.diplo.de/in-en/service/2756350-2756350',
@@ -30,28 +30,19 @@ const candidateMappings = {
   'germany-student-visa-interview-questions': 'https://india.diplo.de/in-en/service/2756350-2756350',
   'germany-rejection-analysis-appeal': 'https://india.diplo.de/in-en/abolition-of-remonstration-procedure-2727202',
   'germany-blocked-account-manual': 'https://india.diplo.de/in-en/service/2756350-2756350',
-  'germany-blocked-account-calc-spec': 'https://www.auswaertiges-amt.de/en/sperrkonto/388600',
+  'germany-blocked-account-calc-spec': 'https://india.diplo.de/in-en/service/2756350-2756350',
   'germany-health-insurance-guide': 'https://www.tk.de/resource/blob/2098336/8daddb6343be1fb6f8cc46b4313a21e3/beitraege-der-tk--englisch-data.pdf',
   'germany-aps-certificate-guide': 'https://aps-india.de/aps-process/',
   'aps-india-certificate-verification-step-by-step': 'https://aps-india.de/aps-process/',
   'germany-uni-assist-manual': 'https://www.uni-assist.de/en/how-to-apply/plan-your-application/vpd/',
   'germany-uni-assist-portal-walkthrough': 'https://www.uni-assist.de/en/faqs/apply-online/',
   'germany-fsp-studienkolleg-guide': 'https://www.uni-assist.de/en/tools/glossary-of-terms/description/term/studienkolleg-preparatory-course/',
-  'germany-3yr-bachelor-acceptance': 'https://anabin.kmk.org/db/institutionen',
-  'germany-bavarian-grade-matrix': 'https://www.kmk.org/kultusministerkonferenz/uebergreifende-themen/anerkennung-auslaendischer-abschluesse.html',
   'germany-bavarian-calculator-spec': 'https://www.tum.de/en/studies/application/application-info-portal/grade-conversion-formula-for-grades-earned-outside-germany',
-  'germany-ects-credit-mapping': 'https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system',
-  'germany-ects-evaluator-spec': 'https://education.ec.europa.eu/education-levels/higher-education/inclusive-and-connected-higher-education/european-credit-transfer-and-accumulation-system',
   'germany-winter-vs-summer-intakes': 'https://www.daad.de/en/studying-in-germany/requirements/application-process/',
-  'germany-offer-acceptance-payment': 'https://www.daad.de/en/studying-in-germany/requirements/enrolling/',
-  'germany-multiple-offers-decision-matrix': 'https://www.hochschulkompass.de/en/study-in-germany.html',
-  'germany-top-public-unis-profiles': 'https://www.hochschulkompass.de/en/higher-education-institutions.html',
-  'germany-university-listing-hub-guide': 'https://www.hochschulkompass.de/en/higher-education-institutions.html',
-  'germany-master-university-profile-guide': 'https://www.hochschulkompass.de/en/higher-education-institutions.html',
+  'germany-offer-acceptance-payment': 'https://www.daad.de/en/studying-in-germany/requirements/application-process/',
   'germany-ms-cs-directory': 'https://www2.daad.de/deutschland/studienangebote/international-programmes/en/',
   'germany-ms-data-science-directory': 'https://www2.daad.de/deutschland/studienangebote/international-programmes/en/',
   'germany-master-program-listing-guide': 'https://www2.daad.de/deutschland/studienangebote/international-programmes/en/',
-  'germany-engineering-directory': 'https://www.tu9.de/en/',
   'germany-public-vs-private': 'https://www.daad.de/en/studying-in-germany/universities/',
   'germany-destination-overview': 'https://www.daad.de/en/studying-in-germany/universities/',
   'germany-total-cost-breakdown': 'https://www.daad.de/en/studying-in-germany/living-in-germany/finances/',
@@ -59,10 +50,7 @@ const candidateMappings = {
   'germany-daad-scholarship-master-guide': 'https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/',
   'germany-scholarship-panel-interview-guide': 'https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/',
   'germany-scholarship-directory-hub-guide': 'https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/',
-  'germany-anmeldung-tax-id': 'https://service.berlin.de/dienstleistung/120686/',
   'germany-initial-72hr-survival-guide': 'https://www.daad.de/en/studying-in-germany/living-in-germany/',
-  'germany-rbi-lrs-tcs-tax-rules': 'https://www.rbi.org.in/Scripts/FAQView.aspx?Id=115',
-  'germany-education-loans-germany': 'https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959',
   'germany-financial-emergency-plan': 'https://www.tum.de/en/studies/fees-and-financial-aid/scholarships/tum-scholarships',
   'germany-tum-munich-portal-manual': 'https://www.tum.de/en/studies/application/master/application-master',
   'germany-tum-efv-entrance-exam-guide': 'https://www.tum.de/en/studies/application/application-info-portal/admission-requirements',
@@ -83,20 +71,12 @@ const candidateMappings = {
   'usa-visa-routes-hub-guide': 'https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors',
   'usa-on-campus-jobs-20hr-rule': 'https://www.ice.gov/sevis/employment',
   'usa-cpt-internship-rules': 'https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states',
-  'usa-fall-vs-spring-intakes': 'https://www.ice.gov/sevis/employment',
   'usa-opt-stem-opt-extension': 'https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt',
   'usa-stem-opt-designated-ms-cs': 'https://studyinthestates.dhs.gov/students/training-opportunities-in-the-united-states',
   'usa-stem-opt-timeline-calc-spec': 'https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt',
   'usa-h1b-lottery-cap-exempt': 'https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations',
   'usa-green-card-eb2-niw-pathways': 'https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2',
   'usa-ssn-application-guide': 'https://studyinthestates.dhs.gov/students/work/obtaining-a-social-security-number',
-  'us-education-loans-guide': 'https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959',
-  'prodigy-vs-mpower-vs-sbi-loan-usa': 'https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=10158',
-  'collateral-free-loan-approved-universities': 'https://www.rbi.org.in/Scripts/BS_ViewMasterDirections.aspx?id=11959',
-  'section-80e-tax-deduction-worked-example': 'https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx',
-  'usa-fulbright-scholarship-master-guide': 'https://www.usief.org.in/',
-  'usa-fulbright-interview-prep': 'https://www.usief.org.in/',
-  'usa-assistantships-ta-ra-ga': 'https://www.irs.gov/publications/p970',
   'usa-destination-overview': 'https://studyinthestates.dhs.gov/guide-to-studying-in-the-states',
   'usa-university-listing-hub-guide': 'https://studyinthestates.dhs.gov/school-search',
   'usa-master-program-listing-guide': 'https://studyinthestates.dhs.gov/school-search',
@@ -106,9 +86,10 @@ const candidateMappings = {
 };
 
 async function run() {
-  console.log(`🔍 Verifying mapped guides against DB, allowlist, and live HTTP...`);
+  console.log(`🔍 Verifying ${Object.keys(candidateMappings).length} mapped guides against DB, allowlist, and live HTTP...`);
   const failures = [];
   const verified = [];
+  const urlStatusCache = new Map();
 
   for (const [slug, url] of Object.entries(candidateMappings)) {
     // 1. DB existence check
@@ -123,20 +104,30 @@ async function run() {
       continue;
     }
 
-    // 3. Live HTTP check
-    try {
-      const res = await fetch(url, {
-        method: 'GET',
-        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
-        redirect: 'follow',
-        signal: AbortSignal.timeout(10000)
-      });
-      if (!res.ok) {
-        failures.push({ slug, url, reason: `Live GET failed with HTTP ${res.status}` });
-        continue;
+    // 3. Live HTTP check using curl with URL caching
+    let status = urlStatusCache.get(url);
+    if (!status) {
+      try {
+        let code = execSync(`curl -s -I -L -o /dev/null -w "%{http_code}" --max-time 15 "${url}"`, {
+          encoding: 'utf8'
+        }).trim();
+
+        // If HEAD is rejected with 405 or 403 by bot-check, fallback to GET without body
+        if (code === '405' || code === '403') {
+          code = execSync(`curl -s -L -o /dev/null -w "%{http_code}" --max-time 15 -H "User-Agent: Mozilla/5.0" "${url}"`, {
+            encoding: 'utf8'
+          }).trim();
+        }
+
+        status = code;
+      } catch (e) {
+        status = `error: ${e.message}`;
       }
-    } catch (e) {
-      failures.push({ slug, url, reason: `Live fetch threw error: ${e.message}` });
+      urlStatusCache.set(url, status);
+    }
+
+    if (status !== '200') {
+      failures.push({ slug, url, reason: `Live check status: ${status}` });
       continue;
     }
 
@@ -159,7 +150,7 @@ async function run() {
   // Generate verified proposal
   const proposal = {
     agent: 'content-editor',
-    notes: 'C2 Batch 1: Primary statutory and institutional sources for 85 verified study abroad guides with 100% live HTTP 200 checks',
+    notes: `C2 Batch 1: Primary statutory and institutional sources for ${verified.length} verified study abroad guides with 100% live HTTP 200 checks (strictly existing allowlisted domains)`,
     changes: verified.map(v => ({
       table: 'sa_guides',
       key: v.slug,
