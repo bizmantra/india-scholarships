@@ -1,6 +1,6 @@
 {
   "agent": "content-editor",
-  "notes": "C2 Batch 1: Primary statutory and institutional sources for 44 verified study abroad guides with 100% live HTTP 200 checks (strictly existing allowlisted domains)",
+  "notes": "C2 Second Pass: Primary statutory and institutional sources for 25 verified study abroad guides with 100% unique 1-to-1 live HTTP 200 checks (strictly existing allowlisted domains, 0 overwrites)",
   "changes": [
     {
       "table": "sa_guides",
@@ -48,38 +48,6 @@
       "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html",
       "fields": {
         "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__18c.html"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-part-time-work-rules",
-      "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-securing-werkstudent-jobs",
-      "source": "https://www.gesetze-im-internet.de/sgb_5/__6.html",
-      "fields": {
-        "official_source": "https://www.gesetze-im-internet.de/sgb_5/__6.html"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-aps-certificate-guide",
-      "source": "https://aps-india.de/aps-process/",
-      "fields": {
-        "official_source": "https://aps-india.de/aps-process/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "aps-india-certificate-verification-step-by-step",
-      "source": "https://aps-india.de/aps-process/",
-      "fields": {
-        "official_source": "https://aps-india.de/aps-process/"
       }
     },
     {
@@ -140,30 +108,6 @@
     },
     {
       "table": "sa_guides",
-      "key": "germany-offer-acceptance-payment",
-      "source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/requirements/application-process/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ms-cs-directory",
-      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-ms-data-science-directory",
-      "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/"
-      }
-    },
-    {
-      "table": "sa_guides",
       "key": "germany-master-program-listing-guide",
       "source": "https://www2.daad.de/deutschland/studienangebote/international-programmes/en/",
       "fields": {
@@ -172,66 +116,10 @@
     },
     {
       "table": "sa_guides",
-      "key": "germany-daad-scholarships-guide",
-      "source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/"
-      }
-    },
-    {
-      "table": "sa_guides",
       "key": "germany-daad-scholarship-master-guide",
       "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
       "fields": {
         "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-scholarship-directory-hub-guide",
-      "source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/",
-      "fields": {
-        "official_source": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-total-cost-breakdown",
-      "source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/living-in-germany/finances/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-destination-overview",
-      "source": "https://www.daad.de/en/studying-in-germany/universities/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/universities/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-public-vs-private",
-      "source": "https://www.daad.de/en/studying-in-germany/universities/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/universities/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "germany-initial-72hr-survival-guide",
-      "source": "https://www.daad.de/en/studying-in-germany/living-in-germany/",
-      "fields": {
-        "official_source": "https://www.daad.de/en/studying-in-germany/living-in-germany/"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "us-f1-student-visa-application-checklist",
-      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states"
       }
     },
     {
@@ -252,14 +140,6 @@
     },
     {
       "table": "sa_guides",
-      "key": "usa-i20-financial-proof-manual",
-      "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability"
-      }
-    },
-    {
-      "table": "sa_guides",
       "key": "usa-i20-issuance-deposit-payment",
       "source": "https://studyinthestates.dhs.gov/students/prepare/students-and-the-form-i-20",
       "fields": {
@@ -268,7 +148,7 @@
     },
     {
       "table": "sa_guides",
-      "key": "usa-i20-proof-of-funds-calc-spec",
+      "key": "usa-i20-financial-proof-manual",
       "source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/students/prepare/financial-ability"
@@ -300,22 +180,6 @@
     },
     {
       "table": "sa_guides",
-      "key": "usa-stem-opt-timeline-calc-spec",
-      "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-extension-for-stem-students-stem-opt"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-h1b-lottery-cap-exempt",
-      "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
-      "fields": {
-        "official_source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations"
-      }
-    },
-    {
-      "table": "sa_guides",
       "key": "usa-green-card-eb2-niw-pathways",
       "source": "https://www.uscis.gov/working-in-the-united-states/permanent-workers/employment-based-immigration-second-preference-eb-2",
       "fields": {
@@ -332,23 +196,7 @@
     },
     {
       "table": "sa_guides",
-      "key": "usa-destination-overview",
-      "source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/guide-to-studying-in-the-states"
-      }
-    },
-    {
-      "table": "sa_guides",
       "key": "usa-university-listing-hub-guide",
-      "source": "https://studyinthestates.dhs.gov/school-search",
-      "fields": {
-        "official_source": "https://studyinthestates.dhs.gov/school-search"
-      }
-    },
-    {
-      "table": "sa_guides",
-      "key": "usa-master-program-listing-guide",
       "source": "https://studyinthestates.dhs.gov/school-search",
       "fields": {
         "official_source": "https://studyinthestates.dhs.gov/school-search"

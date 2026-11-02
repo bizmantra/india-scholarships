@@ -29,6 +29,7 @@ console.log(`🧪 Testing C2 Second Pass Guides Proposals (${guidesProposal.chan
 
 // 2. Structural & Field Validation
 const seenSlugs = new Set();
+const seenUrls = new Set();
 for (const [idx, c] of guidesProposal.changes.entries()) {
   if (c.table !== 'sa_guides') {
     console.error(`❌ Change #${idx} has invalid table: ${c.table} (expected sa_guides)`);
@@ -52,6 +53,12 @@ for (const [idx, c] of guidesProposal.changes.entries()) {
     console.error(`❌ Change #${idx} (${c.key}) missing fields.official_source`);
     process.exit(1);
   }
+  if (seenUrls.has(c.fields.official_source)) {
+    console.error(`❌ Change #${idx} (${c.key}) has duplicate URL: ${c.fields.official_source}`);
+    process.exit(1);
+  }
+  seenUrls.add(c.fields.official_source);
+
   if ('checked_at' in c.fields) {
     console.error(`❌ Change #${idx} (${c.key}) must NOT include bulk checked_at stamp without manual fact verification`);
     process.exit(1);
@@ -77,7 +84,7 @@ if (guidesResult.refusals.length > 0) {
 // 4. Validate DB key existence via execFileSync (safe against shell injection)
 let dbRows = [];
 try {
-  const rawRows = execFileSync('sqlite3', ['-json', dbPath, 'SELECT slug FROM sa_guides;'], {
+  const rawRows = execFileSync('sqlite3', ['-json', dbPath, 'SELECT slug, official_source FROM sa_guides;'], {
     encoding: 'utf8'
   });
   dbRows = JSON.parse(rawRows || '[]');
@@ -86,17 +93,28 @@ try {
   process.exit(1);
 }
 
-const guideSlugs = new Set(dbRows.map(g => g.slug));
+const guideMap = new Map(dbRows.map(g => [g.slug, g]));
 const missingSlugs = [];
+const overwriteSlugs = [];
 
 for (const c of guidesProposal.changes) {
-  if (!guideSlugs.has(c.key)) {
+  const guide = guideMap.get(c.key);
+  if (!guide) {
     missingSlugs.push(c.key);
+    continue;
+  }
+  if (guide.official_source && guide.official_source.trim() !== '') {
+    overwriteSlugs.push({ key: c.key, existing: guide.official_source });
   }
 }
 
 if (missingSlugs.length > 0) {
   console.error(`❌ Found ${missingSlugs.length} slugs not in database:`, missingSlugs);
+  process.exit(1);
+}
+
+if (overwriteSlugs.length > 0) {
+  console.error(`❌ Found ${overwriteSlugs.length} proposals that overwrite existing sources:`, overwriteSlugs);
   process.exit(1);
 }
 
@@ -108,7 +126,7 @@ for (const c of guidesProposal.changes) {
   }
 }
 
-console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (no duplicates, no checked_at bulk stamp)!`);
+console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed structural checks (unique 1-to-1 URLs, no duplicates, no checked_at bulk stamp)!`);
 console.log(`✅ All ${guidesProposal.changes.length} guide proposals passed the source gate with 0 refusals!`);
-console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table!`);
+console.log(`✅ All ${guidesProposal.changes.length} slugs verified present in sa_guides database table with 0 overwrites!`);
 console.log(`✅ 100% of sources verified strictly against pristine official-domains allowlist!\n`);
