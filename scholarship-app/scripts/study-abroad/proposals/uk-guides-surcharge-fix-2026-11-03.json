@@ -1,0 +1,62 @@
+{
+  "agent": "content-editor",
+  "notes": "Correction to the approved UK guides: the health surcharge is charged per year of the visa, and a visa for a one-year course is longer than a year, so £776 is the minimum.",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "uk-student-visa-guide",
+      "source": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "fields": {
+        "body_md": "## The short answer\n\n- **Visa fee:** **£558** to apply from outside the UK.\n- **Immigration Health Surcharge** (a fee that covers your use of the UK health service, the NHS): **£776 for each year** of your visa. Your visa is granted for your course plus extra time, so you usually pay for more than one year. A 16-month visa costs **£1,164**.\n- **Money to show:** your course fee for the first year, plus **£1,171 a month** outside London or **£1,529 a month** in London, for up to **9 months**.\n- **Keep the money** in your account for **28 days in a row**.\n- **Decision time:** usually **3 weeks** if you apply from outside the UK.\n\n## When to apply\n\nApply after your university gives you a **Confirmation of Acceptance for Studies (CAS)**. A CAS is a reference number that proves the university will teach you. It also shows the course fee you must be able to pay for the first year.\n\nFrom outside the UK, you can apply up to **6 months** before your course starts. From inside the UK, the earliest is **3 months** before.\n\n## Documents you need\n\n- Your **CAS reference number** from the university.\n- Your valid **passport**.\n- **Proof of your money** (see the next section).\n- **Proof of English.** For degree study the level is **CEFR B2**. Your university can check your English itself, as long as the result is equal to B2.\n- **TB test result.** You need one if you will stay 6 months or more and have lived in a listed country for 6 months or more. India is on the list. Take the test at a Home Office approved clinic.\n\n## Money you need to show\n\nYou need enough money to pay for your course for **1 academic year** (up to 9 months). The amount is on your CAS.\n\nYou also need living money, shown separately:\n\n| Where you study | Living money per month | For up to 9 months |\n|---|---|---|\n| Outside London | **£1,171** | **£10,539** |\n| London | **£1,529** | **£13,761** |\n\nThe money must stay in your account for **28 days in a row**. This is money you must show, not what you will spend.\n\n## Steps to apply\n\n1. Get your **CAS** from your university.\n2. Check that your money meets the rule above.\n3. Apply online and pay the **£558** visa fee and the health surcharge (**£776 for each year** of your visa).\n4. Prove your identity as part of the application.\n5. Wait for a decision. It usually takes **3 weeks** from outside the UK and **8 weeks** from inside the UK.\n\n## After you finish your degree\n\nThe **Graduate visa** lets you stay in the UK after your degree. If you apply on or before **31 December 2026** it lasts **2 years**. If you apply on or after **1 January 2027** it lasts **18 months**. The fee is **£937**, plus a health surcharge that is usually **£1,035 a year**.\n\n## Sources\n\nOfficial pages, checked on 1 and 2 November 2026: [Student visa](https://www.gov.uk/student-visa), [Money you need](https://www.gov.uk/student-visa/money), [Knowledge of English](https://www.gov.uk/student-visa/knowledge-of-english), [Apply](https://www.gov.uk/student-visa/apply), [TB test](https://www.gov.uk/tb-test-visa/who-needs-a-tb-test), [Graduate visa](https://www.gov.uk/graduate-visa), [Healthcare surcharge](https://www.gov.uk/healthcare-immigration-application/how-much-pay).\n",
+        "faq_json": [
+          {
+            "q": "How much money do I need for a UK student visa?",
+            "a": "You need your first-year course fee plus £1,171 a month outside London or £1,529 a month in London, for up to 9 months. Keep it in your account for 28 days in a row."
+          },
+          {
+            "q": "How much is the UK student visa fee?",
+            "a": "The Student visa costs £558 to apply from outside the UK. You also pay the Immigration Health Surcharge: £776 for each year of your visa. A 16-month visa costs £1,164."
+          },
+          {
+            "q": "Do I need an IELTS UKVI test?",
+            "a": "Not always. For degree study the level is CEFR B2, and your university can check your English itself if the result is equal to B2."
+          },
+          {
+            "q": "How long is the UK Graduate visa?",
+            "a": "It lasts 2 years if you apply on or before 31 December 2026 and 18 months if you apply on or after 1 January 2027."
+          },
+          {
+            "q": "Does India need a TB test for the UK?",
+            "a": "Yes, if you will stay 6 months or more and have lived in a listed country for 6 months or more. India is on the list. Use a Home Office approved clinic."
+          }
+        ],
+        "official_source": "https://www.gov.uk/student-visa",
+        "checked_at": "2026-11-03"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "uk-total-cost-breakdown",
+      "source": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "fields": {
+        "body_md": "## The short answer\n\n- **Tuition** for a one-year master's runs from **£19,980** (Coventry, Computer Science) to **£62,500** (Warwick, MBA).\n- Most Computer Science and Data Science fees sit between **£32,800** and **£48,600**.\n- **Visa fee:** **£558**.\n- **Immigration Health Surcharge** (a fee that covers your use of the UK health service, the NHS): **£776 for each year** of your visa. Your visa lasts longer than your course, so you usually pay for more than one year.\n- **Living money you must show:** **£1,171 a month** outside London, **£1,529 a month** in London, for up to **9 months**.\n\n## Tuition by university\n\nThese are the fees for the whole one-year course, for students from overseas, for 2027 or 2027-28 entry. Manchester's MBA is the whole 15 or 18 month programme. A dash means we have not added that course yet. Check your own course page before you apply.\n\n| University | MSc Computer Science | MSc Data Science | MBA |\n|---|---|---|---|\n| Coventry | £19,980 | – | £21,825 |\n| Newcastle | £33,400 | £32,800 | £34,400 |\n| Sheffield | £34,550 | £36,055 | £37,630 |\n| Leeds | £34,600 | £34,600 (Data Science and Analytics) | £41,200 |\n| Nottingham | £34,800 | £34,800 | – |\n| Glasgow | £34,815 (Computing Science) | – | £41,100 |\n| Southampton | £36,800 | £36,800 | £37,400 |\n| Birmingham | £36,000 | £36,000 | £40,410 |\n| Warwick | – | £39,330 (Statistics with Data Science) | £62,500 |\n| Manchester | £41,400 (Advanced Computer Science) | – | £51,500 (whole programme) |\n| UCL | £44,400 | £48,600 | – |\n| Edinburgh | £47,680 | £47,680 | £47,680 |\n\n## Money you must show for the visa\n\nThe UK asks you to show living money for up to **9 months**. Outside London that is **£1,171** a month, which comes to **£10,539**. In London it is **£1,529** a month, which comes to **£13,761**. The money must stay in your account for **28 days in a row**. This is money you must show, not what you will spend. Read the full rules in our [UK student visa guide](/study-abroad/visas/uk-student-visa-guide).\n\n## Visa and health fees\n\n- **Student visa:** **£558**, paid when you apply.\n- **Health surcharge:** **£776 for each year** of your visa. If your visa lasts longer than a year you pay more: a 16-month visa costs **£1,164**. So **£776** is the least a one-year master's can cost.\n\n## Worked example: MSc Computer Science at Sheffield\n\nTuition **£34,550** + money to show outside London **£10,539** + visa **£558** + health surcharge **£776** = **£46,423** at least. This uses Sheffield's 2027-28 fee, the visa rules and the lowest surcharge. A longer visa adds to the surcharge. It is an example, not a budget.\n\n## Scholarships that lower the cost\n\n- **Edinburgh India Merit Scholarship:** £5,000 off first-year tuition for Indian graduates joining a full-time master's. No separate application.\n- **GREAT Scholarships:** £10,000 towards tuition at 13 participating UK universities in 2026-27. None of the 12 universities above is on that list.\n- **Commonwealth Master's Scholarship:** full tuition fees, airfare and **£1,712** a month. The 2027/28 round has closed.\n\n## Sources\n\nChecked on 1 and 2 November 2026: [Student visa](https://www.gov.uk/student-visa), [Money you need](https://www.gov.uk/student-visa/money), [Healthcare surcharge](https://www.gov.uk/healthcare-immigration-application/how-much-pay), and each university's own course page, for example [UCL Computer Science](https://www.ucl.ac.uk/study/prospective-students/graduate/courses/computer-science-msc) and [Sheffield Computer Science](https://sheffield.ac.uk/postgraduate/taught/courses/2027/computer-science-msc). The full list is in the UK research notes.\n",
+        "faq_json": [
+          {
+            "q": "How much does a master's in the UK cost for Indian students?",
+            "a": "Tuition for a one-year master's ranges from £19,980 to £62,500 across the 12 universities we checked. Add £10,539 to £13,761 in living money to show, plus the £558 visa fee and the health surcharge of £776 or more."
+          },
+          {
+            "q": "Is the UK health surcharge paid every year?",
+            "a": "Yes. It is £776 for each year of your visa. Your visa lasts longer than your course, so a one-year master's usually costs more than £776: a 16-month visa costs £1,164."
+          },
+          {
+            "q": "Are these fees per year?",
+            "a": "For these one-year courses, the fee is for the whole course. Longer courses charge again each year."
+          }
+        ],
+        "official_source": "https://www.gov.uk/student-visa/money",
+        "checked_at": "2026-11-03"
+      }
+    }
+  ]
+}

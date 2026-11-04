@@ -1,0 +1,44 @@
+{
+  "agent": "content-editor",
+  "notes": "UK pilot university page (Newcastle). Draft for style review; not yet filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "newcastle-university",
+      "source": "https://www.ncl.ac.uk/postgraduate/degrees/5055f/",
+      "fields": {
+        "slug": "newcastle-university",
+        "name": "Newcastle University",
+        "country": "uk",
+        "city": "Newcastle",
+        "summary": "A one-year master's at Newcastle University costs £32,800 to £34,400 in tuition. Fees, English scores and what Indian degrees are accepted.",
+        "seo_title": "Newcastle University Master's: Fees, IELTS, Entry Grades",
+        "meta_description": "Newcastle University for Indian students: £32,800 to £34,400 tuition, IELTS 6.5, India entry grades (60% for a 2:1) and the first-year cost with visa fees.",
+        "tuition_per_year": 33400,
+        "tuition_currency": "GBP",
+        "body_md": "## At a glance\n\nNewcastle University teaches its master's courses on its Newcastle Campus. A one-year master's here costs **£32,800 to £34,400** in tuition, depending on the course. That is lower than most of the 12 UK universities we checked for Computer Science and Data Science.\n\n| | MSc Computer Science | MSc Data Science | MBA |\n|---|---|---|---|\n| Tuition for overseas students (2027-28) | **£33,400** | **£32,800** | **£34,400** |\n| Length | 12 months full-time | 12 months full-time | 12 months full-time |\n| English test (IELTS) | **6.5** overall, **5.5** in each skill | **6.5** overall, **5.5** in each skill | **6.5** overall, **6.0** in each skill |\n\n## What it costs in the first year\n\nTuition is charged for the one-year course. For the UK student visa you must also show living money: **£1,171 a month** outside London, for up to **9 months**, which comes to **£10,539**. You pay the **£558** visa fee and the **£776** health surcharge on top.\n\nFor MSc Computer Science that adds up to **£33,400 + £10,539 + £558 + £776 = £45,273**. This is an example, not a budget. Read how the visa rules work in our [UK student visa guide](/study-abroad/visas/uk-student-visa-guide), and compare other universities in the [UK cost guide](/study-abroad/study-in/uk/uk-total-cost-breakdown).\n\n## Ways to reduce the cost\n\nThe MSc Computer Science page says you may be eligible for a scholarship worth **25% off the international fee**. Check the course page for who qualifies and how to apply.\n\n## Getting in\n\nWhat Newcastle asks for depends on the course:\n\n- **MSc Computer Science:** a 2:2 honours degree or equivalent, in any subject except those related to computer science. This course is for students changing direction.\n- **MSc Data Science:** a 2:2 honours degree or international equivalent.\n- **MBA:** a 2:1 honours degree or international equivalent, and at least three years of work experience.\n\nFor Indian degrees, Newcastle's grade table says a UK 2:1 equals **60% or a CGPA of 6.0 out of 10**. A 2:2 equals **58% or a CGPA of 5.8 out of 10**. Pick India in the \"Qualifications from outside the UK\" box on the course page to see the table for yourself.\n\nThe English requirement is **IELTS 6.5** overall for all three courses. The MSc courses need at least **5.5** in each skill. The MBA needs at least **6.0**.\n\n## Who it suits\n\n- **A good fit if** you want a one-year UK master's with tuition below the £36,800 to £47,680 that Southampton, Manchester, UCL and Edinburgh charge for MSc Computer Science.\n- **Think carefully if** you are applying for the MBA without three years of work experience, or for the Computer Science course with a computing degree, because that course is for students from other subjects.\n\n## Sources\n\nChecked on 2 November 2026: [MSc Computer Science](https://www.ncl.ac.uk/postgraduate/degrees/5055f/), [MSc Data Science](https://www.ncl.ac.uk/postgraduate/degrees/5543f/), [MBA](https://www.ncl.ac.uk/postgraduate/degrees/5823f/), [Newcastle for India](https://www.ncl.ac.uk/international/country/india/), and the gov.uk pages for [Student visa](https://www.gov.uk/student-visa) and [Money you need](https://www.gov.uk/student-visa/money). Fees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does a master's at Newcastle University cost for Indian students?",
+            "a": "Tuition for overseas students for 2027-28 is £33,400 for MSc Computer Science, £32,800 for MSc Data Science and £34,400 for the MBA. Each course lasts 12 months."
+          },
+          {
+            "q": "What IELTS score do I need for Newcastle University?",
+            "a": "You need IELTS 6.5 overall for all three courses. The MSc courses need at least 5.5 in each skill and the MBA needs at least 6.0."
+          },
+          {
+            "q": "What percentage do I need from India to get into Newcastle?",
+            "a": "Newcastle's grade table says a UK 2:1 equals 60% or a CGPA of 6.0 out of 10, and a 2:2 equals 58% or a CGPA of 5.8 out of 10."
+          },
+          {
+            "q": "Do I need work experience for the Newcastle MBA?",
+            "a": "Yes. The MBA course page asks for at least three years of work experience."
+          }
+        ],
+        "official_source": "https://www.ncl.ac.uk/postgraduate/degrees/5055f/",
+        "checked_at": "2026-11-02"
+      }
+    }
+  ]
+}
