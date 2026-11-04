@@ -6,7 +6,7 @@ Courses:
 - CS = Computer Science MSc (5055F, conversion): https://www.ncl.ac.uk/postgraduate/degrees/5055f/
 - DS = Data Science MSc (5543F): https://www.ncl.ac.uk/postgraduate/degrees/5543f/
 
-Counts (35 rows): Filled 30. NOT CONFIRMED 5 (rows 28 to 32).
+Counts (37 rows): Filled 33. NOT CONFIRMED 4 (rows 28, 29, 30, 32). Row 31 filled in the step 7 review from the 2027-28 regulations PDF.
 
 Notes for the page writer:
 - CS is a conversion course: computer science graduates are sent to Advanced Computer Science MSc.
@@ -45,11 +45,13 @@ Notes for the page writer:
 | 28. GRE | NOT CONFIRMED. Neither course page mentions GRE. | n/a | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
 | 29. ATAS | NOT CONFIRMED. The pages mention ATAS only in the deposit dates, not whether these courses need it. | n/a | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
 | 30. Application fee | NOT CONFIRMED. Not on either course page. | n/a | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
-| 31. India Future Leaders: course eligibility | NOT CONFIRMED. The non-eligible course list is in a regulations PDF that was not read. | n/a | https://www.ncl.ac.uk/study/global-scholarships/ | 2026-11-04 | 2027 |
+| 31. India Future Leaders: course eligibility | Eligible: neither course is in the non-eligible list (MPhil, doctoral, PG Cert, PG Dip, online, distance learning, MLA, MSc Advanced Architectural Design, MSc Industrial and Commercial Biotechnology, MSc Drug Chemistry). Only September 2027 starts at the Newcastle city centre campus qualify. | "Only programmes beginning in September 2027 will be eligible" | https://www.ncl.ac.uk/mediav8/postgraduate/files/funding/central/nuifls-pg-regulations-2027-28.pdf | 2026-11-04 | 2027/28 |
 | 32. India table on the DS page | NOT CONFIRMED for DS specifically. The India selector did not load on the DS page; row 7 is from the CS page. | n/a | https://www.ncl.ac.uk/postgraduate/degrees/5543f/ | 2026-11-04 | 2027 |
 | 33. CS lower qualifications | Lower or non-standard qualifications considered individually with relevant experience | "if you have lower or non-standard qualifications provided you have relevant experience" | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
 | 34. Application portal | Portal lists the documents needed; you can save and return later | "You can choose to start your application, save your details and come back" | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
 | 35. Deposit timing | Payable after you receive an offer | "The deposit is payable after you receive an offer to study with us." | https://www.ncl.ac.uk/postgraduate/degrees/5055f/ | 2026-11-04 | 2027 |
+| 36. India Future Leaders: no combining | Cannot be held with Vice-Chancellor's International or Excellence Scholarships (and others); a student offered both gets the higher award only | "they would receive the Higher of the awards" | https://www.ncl.ac.uk/mediav8/postgraduate/files/funding/central/nuifls-pg-regulations-2027-28.pdf | 2026-11-04 | 2027/28 |
+| 37. India Future Leaders: sponsored students | Fully sponsored students do not qualify | "Fully sponsored students do not qualify for these awards." | https://www.ncl.ac.uk/mediav8/postgraduate/files/funding/central/nuifls-pg-regulations-2027-28.pdf | 2026-11-04 | 2027/28 |
 
 ## Worked first-year totals (calculated from the rows above, not quoted)
 

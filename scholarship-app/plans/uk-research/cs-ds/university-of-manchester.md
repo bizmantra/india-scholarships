@@ -6,7 +6,7 @@ Courses:
 - CS = MSc Advanced Computer Science (closest to MSc Computer Science): https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/
 - DS = MSc Data Science and Artificial Intelligence (Computer Science Data Informatics) (closest to MSc Data Science): https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/
 
-Counts (40 rows): Filled 34 (row 26 is the general fee-page quote for a NOT CONFIRMED fee). NOT CONFIRMED 6 (rows 26, 33, 34, 35, 36, 37).
+Counts (41 rows): Filled 35 (row 26 is the general fee-page quote for a NOT CONFIRMED fee). NOT CONFIRMED 5 (rows 26, 33, 34, 35, 37); row 36 filled in the step 7 review; row 38 records the tuition retry.
 
 Notes for the page writer:
 - Neither course is a conversion course. Both want a strong computer science degree. Say this first.
@@ -51,11 +51,12 @@ Notes for the page writer:
 | 33. GRE | NOT CONFIRMED. Neither course page mentions GRE (text search). | n/a | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
 | 34. ATAS | NOT CONFIRMED. Neither course page mentions ATAS (text search). | n/a | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
 | 35. DS application fee | NOT CONFIRMED. Not on the DS course page. | n/a | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
-| 36. DS deposit amount | NOT CONFIRMED. The DS page and the general fees page give no amount. | n/a | https://www.manchester.ac.uk/study/masters/fees-and-funding/international-student-fees/ | 2026-11-04 | 2027 |
+| 36. DS deposit amount | Minimum £2,500 (university-wide master's deposit page; Bangladesh, Ghana and Pakistan pay more). Filled in the step 7 review. | "The minimum deposit is £2,500." | https://www.manchester.ac.uk/study/masters/fees-and-funding/international-student-fees/tuition-fee-deposits/ | 2026-11-04 | 2027 |
 | 37. January intake | NOT CONFIRMED. Both pages list only 2027 entry with staged September-cycle deadlines. | n/a | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
-| 38. CS example units | Optional units include Introduction to Cryptography, Network Security and Secure Computer Architecture and Systems (15 credits each) | "Secure Computer Architecture and Systems" | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
-| 39. CS selection | Preference to students with the strongest grades from high-ranking institutions | "We give preference to students with the strongest grades from high-ranking institutions." | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
-| 40. DS optional units | Three optional units ranging from statistical foundations to data analysis and GIS | "You will also choose three optional course units" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 38. DS tuition retry (step 7) | Still NOT CONFIRMED. No course PDF is linked from the 2027 page; the old 2026-entry page (course 11552, which showed £35,200 for 2026) now returns 404; the student-support fees list timed out. An aggregator lists £35,200 for 2027 as provisional; not used (not official). | n/a | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 39. CS example units | Optional units include Introduction to Cryptography, Network Security and Secure Computer Architecture and Systems (15 credits each) | "Secure Computer Architecture and Systems" | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
+| 40. CS selection | Preference to students with the strongest grades from high-ranking institutions | "We give preference to students with the strongest grades from high-ranking institutions." | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
+| 41. DS optional units | Three optional units ranging from statistical foundations to data analysis and GIS | "You will also choose three optional course units" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
 
 ## Worked first-year totals (calculated from the rows above, not quoted)
 
