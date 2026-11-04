@@ -55,8 +55,8 @@ Notes for the page writer:
 
 ## Worked first-year totals (calculated from the rows above, not quoted)
 
-- CS: £33,400 + £10,539 (9 × £1,171, money shown) + £558 + £1,164 = £45,661.
-- DS: £32,800 + £10,539 + £558 + £1,164 = £45,061.
+- CS: £33,400 + £10,827 (9 × £1,203, money shown) + £558 + £1,164 = £45,949.
+- DS: £32,800 + £10,827 + £558 + £1,164 = £45,349.
 
 (Shared rows below copied from the batch 1 notes; gov.uk pages were read on the same day, 2026-11-04.)
 
@@ -74,3 +74,12 @@ Notes for the page writer:
 | S8. Graduate visa fee | £937 | "pay the £937 application fee" | https://www.gov.uk/graduate-visa/how-much-it-costs | 2026-11-04 | 2027 |
 | S9. ATAS processing time | At least 30 working days (6 weeks). ATAS (Academic Technology Approval Scheme) is a security clearance some science and technology courses need. | "ATAS applications take at least 30 working days (6 weeks) to process" | https://www.gov.uk/guidance/academic-technology-approval-scheme | 2026-11-04 | 2027 |
 | S10. TB test | India is on the list of countries where you need a TB test | "India" (in the country list) | https://www.gov.uk/tb-test-visa/countries-where-you-need-a-tb-test-to-enter-the-uk | 2026-11-04 | 2027 |
+
+## Rule change from 30 November 2026 (read for batch 3)
+
+| Item | Answer | Quote | URL | Date read | Entry year |
+|---|---|---|---|---|---|
+| S11. Visa money outside London, applications on or after 30 November 2026 | £1,203 per month, up to 9 months. 9 × £1,203 = £10,827. | "In ST 12.3(b), for “£1171”, substitute “£1203”." | https://assets.publishing.service.gov.uk/media/6a96e3559a177a1decf97c25/E03678010__HC_584__-_Immigration_Rules_Changes__Web_Accessible_.pdf | 2026-11-04 | 2027 |
+| S12. Visa money in London, applications on or after 30 November 2026 | £1,570 per month, up to 9 months. 9 × £1,570 = £14,130. | "In ST 12.3(a), for “£1529”, substitute “£1570”." | https://assets.publishing.service.gov.uk/media/6a96e3559a177a1decf97c25/E03678010__HC_584__-_Immigration_Rules_Changes__Web_Accessible_.pdf | 2026-11-04 | 2027 |
+| S13. Start date of the S11 and S12 change | 30 November 2026; applications made before then use the old rates (£1,171 outside London, £1,529 in London) | "The following paragraphs shall take effect on 30 November 2026." | https://assets.publishing.service.gov.uk/media/6a96e3559a177a1decf97c25/E03678010__HC_584__-_Immigration_Rules_Changes__Web_Accessible_.pdf | 2026-11-04 | 2027 |
+| S14. Current gov.uk London rate (before the change) | £1,529 per month for courses in London | "£1,529 per month (for up to 9 months) for courses in London" | https://www.gov.uk/student-visa/money | 2026-11-04 | 2026 |
