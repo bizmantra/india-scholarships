@@ -7,9 +7,9 @@ Courses:
 - DS = MSc Data Science and Artificial Intelligence (Computer Science Data Informatics pathway): https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/
 - Other pathways of the DS course exist (Mathematics, Social Analytics, Urban Analytics); not drafted.
 
-Counts (23 rows): Filled 16. NOT CONFIRMED 7 (rows 8, 9, 15, 16, 17, 18, 19).
+Counts (32 rows): Filled 25. NOT CONFIRMED 7 (rows 8, 9, 15, 16, 17, 18, 19).
 
-Decision: CS page drafted. **DS page skipped**: the DS course page shows no tuition fee, no deposit, no start month and no application fee (no £ sign anywhere on the page), so a cost page cannot be built without a guess.
+Decision: CS page drafted in full. DS page drafted **without tuition** at the owner's choice (2026-11-04): the DS course page, the other Data Science and AI pathway pages and Manchester's master's fees pages show no tuition fee, deposit, start month or application fee (no £ sign), so the DS page shows tuition as NOT CONFIRMED and gives a total without tuition only. A second search of the DS page and its sibling pathway pages on 2026-11-04 found no fee.
 
 Notes for the page writer:
 - Manchester CS names India directly: 65% in a BSc Eng, BEng or BTech degree, depending on the institution. It says successful applicants typically hold a First (70% average) in Computer Science with at least 50% Computer Science content. The India line is the "typical successful offer-holder" bar, not a guaranteed minimum.
@@ -41,9 +41,19 @@ Notes for the page writer:
 | 21. Global Futures: deadline and rounds | Hold an offer and submit the online form by 25 April 2027. Half of awards offered by 15 March 2027, the rest by 1 June 2027. The form is emailed only after an offer. | "submit an online scholarship application form by the same deadline" | https://www.manchester.ac.uk/study/international/country-specific-information/india/scholarships/ | 2026-11-04 | 2027 |
 | 22. Alumni discount | 10% master's tuition discount for graduates of Manchester and Manchester Metropolitan | "can receive a 10% discount on their master's degree tuition fees" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
 | 23. Weighted average document | An official document verifying your weighted average mark, given as a percentage where grades are percentages, not as a GPA | "the weighted average mark must also be recorded as a percentage" | https://www.manchester.ac.uk/study/masters/courses/list/21573/msc-advanced-computer-science/ | 2026-11-04 | 2027 |
+| 24. DS focus | Technical, computer-science-focused data science pathway | "Build advanced data science skills through a technical, computer-science-focused pathway." | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 25. DS ranking | Manchester is ranked Top 10 in the UK for Computer Science (THE World University Rankings by Subject, 2026) | "ranked Top 10 in the UK for Computer Science" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 26. DS background needed | Strong Computer Science background, with solid programming and software development skills | "We require that all applicants have a strong background in Computer Science" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 27. DS English | IELTS Academic 7 overall with no component below 6.5 | "IELTS Academic test score of 7 overall with no component score below 6.5" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 28. DS Stage 1 | Application received by 6 December 2026; update by 19 February 2027 | "Application received by6th December 2026; Application update by19th February 2027" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 29. DS Stage 2 | Received by 1 March 2027; update by 2 May 2027 | "Application received by1st March 2027; Application update by2nd May 2027" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 30. DS Stage 3 | Received by 4 May 2027; update by 18 June 2027 | "Application received by4th May 2027; Application update by18th June 2027" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 31. DS Stage 4 | Received by 4 July 2027; update by 30 July 2027 | "Application received by4th July 2027; Application update by30th July 2027" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
+| 32. DS length | 1 year | "Duration: 1 year" | https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/ | 2026-11-04 | 2027 |
 
 ## Worked first-year total (calculated from the rows above, not quoted)
 
+- DS (tuition NOT CONFIRMED), Manchester is outside London: £10,539 (9 × £1,171, money shown) + £558 + £1,164 = £12,261, before tuition. Add the tuition once Manchester publishes it. Start month is NOT CONFIRMED on the DS page, so the 12-month visa rule is applied to a course the page lists as 1 year.
 - CS, September 2027, Manchester is outside London: £41,400 + £10,539 (9 × £1,171, money shown) + £558 + £1,164 = £53,661. With the £12,000 Global Futures Scholarship, if awarded: £41,661. It is competitive and applied for after an offer, so it is not counted in the main total.
 
 ## Shared UK visa and cost facts (gov.uk, read 2026-11-04)
