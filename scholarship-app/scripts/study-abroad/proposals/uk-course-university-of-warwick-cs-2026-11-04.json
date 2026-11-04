@@ -1,0 +1,62 @@
+{
+  "agent": "content-editor",
+  "notes": "University of Warwick MSc Computer Science (P-G5PD), 2027-28 fees, September 2027 entry. Built only from plans/uk-research/cs-ds/university-of-warwick.md. Source is warwick.ac.uk. Left out as NOT CONFIRMED: GRE, ATAS, deposit, application fee, scholarships, January intake. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_university-of-warwick-computer-science",
+      "source": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science/",
+      "fields": {
+        "id": "program_university-of-warwick-computer-science",
+        "slug": "university-of-warwick-computer-science",
+        "university_slug": "university-of-warwick",
+        "country": "uk",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "MSc Computer Science",
+        "summary": "Warwick's 1-year MSc Computer Science costs £39,330 in tuition for 2027-28. It asks for a First or high 2:1, about 65% from an IIT. On-time applications close 2 August 2027.",
+        "seo_title": "MSc Computer Science at Warwick: Fees, Entry, Deadlines",
+        "meta_description": "Warwick MSc Computer Science for Indian students: £39,330 tuition, a First or high 2:1, 65-80% by institution category, IELTS 6.5 and a 2 August 2027 deadline.",
+        "tuition_per_year": 39330,
+        "tuition_currency": "GBP",
+        "gpa_min": "First Class or high 2:1; India: First = 65% (Category 1), 75% (Category 2), 80% (Category 3); 2:1 = 60%, 65%, 70%",
+        "ielts_min": 6.5,
+        "location": "University of Warwick",
+        "application_deadlines": {
+          "On-time deadline, September 2027": "2 August 2027"
+        },
+        "duration": "1 year full-time",
+        "language": "English",
+        "intakes": "September",
+        "english_requirements": "IELTS overall 6.5 with no component below 6.0 (Warwick's Band A).",
+        "application_portal": "University of Warwick postgraduate application portal",
+        "body_md": "## About this programme\n\nThinking of an MSc in computer science at Warwick? Here is what it costs, who can get in and the 2027 deadline.\n\nThe Warwick MSc Computer Science is a one-year, full-time course in the Department of Computer Science, starting on 27 September 2027. It is a flexible course: you can choose the general Computer Science route or specialise in Artificial Intelligence and Machine Learning, Data Analytics or Cyber Security.\n\n**The most important fact for you:** Warwick asks for a First Class or a high 2:1. For an Indian degree, the percentage depends on your institution's category, from **65%** at an IIT-type institution to **80%** at a private or deemed one.\n\nWarwick says the course suits technically minded graduates in computer science, mathematics or the physical sciences.\n\nFor the wider university, see our [University of Warwick page](/study-abroad/universities/university-of-warwick).\n\n## Can you get in?\n\n**Degree.** You need a First Class Honours degree or a high 2:1. The degree must be in Computer Science, Mathematics, Statistics, Physics or another relevant quantitative subject. Warwick does not define \"high 2:1\", so aim for the First Class level. A 2:1 is a UK honours grade.\n\n**Indian marks.** Warwick sorts Indian institutions into three categories on its [India entry page](https://warwick.ac.uk/study/international/countryinformation/southasia/india/india-entry-requirements/). To count as a UK First Class you need at least **65%** (6.5 out of 10) from a Category 1 institution such as an IIT, IIM, IISER, IIIT or NIT, **75%** (7.5 out of 10) from Category 2 (State or Central), or **80%** (8.0 out of 10) from Category 3 (Private or Deemed). For a 2:1 the figures are **60%**, **65%** and **70%**. Search the page for your institution to find its category. Distance-learning degrees are not accepted. If your transcript shows a percentage, Warwick uses it before any GPA.\n\n**References.** Warwick typically asks for one academic reference.\n\n**GRE.** The course page does not mention GRE. GRE is a US-style graduate admissions test.\n\n**English.** IELTS is an English language test. You need **IELTS 6.5** overall with no part below **6.0**. There are no additional entry requirements for this course.\n\n**ATAS.** ATAS (Academic Technology Approval Scheme) is a UK security clearance that some science and technology courses need before you get a visa. Warwick's course page does not say whether this course needs it. Ask the admissions team when you get your offer. If it is needed, an ATAS application takes at least **30 working days**.\n\n## What it costs\n\nTuition for overseas students is **£39,330** for 2027-28. Warwick says tuition is payable for each year of your course, and this course lasts one year.\n\nWarwick is outside London, so the outside-London visa rule applies. This is the worked first-year total.\n\n| Item | Amount |\n|---|---|\n| Tuition for international students, 2027-28 | £39,330 |\n| Living money you must show for your visa: £1,171 × 9 months | £10,539 |\n| Student visa application fee, from outside the UK | £558 |\n| Immigration Health Surcharge for a visa of just over a year | £1,164 |\n| **Total** | **£51,591** |\n\nThe sum is £39,330 + £10,539 + £558 + £1,164 = £51,591. Travel and housing are not included.\n\n**Living money is money you show, not a fee.** The visa rule is **£1,171** for each month of your course outside London, up to **9 months**. You must hold this money for **28 days** in a row. The 28-day period must end within **31 days** of the date you apply. You do not pay it to the university.\n\n**Health surcharge.** The Immigration Health Surcharge (IHS) is a charge for using the NHS while you are in the UK. It is set by the length of your visa, not your course. For a course of 12 months or longer, the visa adds up to **1 month** before and **4 months** after the course. That makes a visa of more than a year but under 18 months. You then pay the yearly **£776** plus half of it, **£388**, so **£1,164**.\n\n**Deposit.** The course page does not state a deposit amount, so none is added to the total. Ask Warwick before you accept your offer. You need a CAS (Confirmation of Acceptance for Studies) for your visa. This is the electronic letter your university issues. You need a CAS (Confirmation of Acceptance for Studies) for your visa. This is the electronic letter your university issues.\n\nFor the visa steps, read the [UK student visa guide](/study-abroad/visas/uk-student-visa-guide). To plan the whole budget, use the [UK total cost breakdown](/study-abroad/study-in/uk/uk-total-cost-breakdown).\n\n## Funding\n\nNo Warwick scholarship for Indian students is confirmed on this page. Warwick's scholarship search did not return results when it was read, so no award or amount is listed. Check the [Warwick scholarships page](https://warwick.ac.uk/study/scholarships-and-bursaries/scholarships/) and filter for postgraduate taught, overseas and India before you apply.\n\n## Deadlines and intakes\n\nWarwick's on-time deadline for taught postgraduate courses starting in September or October 2027 is **2 August 2027**. Late applications are still accepted, but Warwick cannot guarantee they will be processed in time to finish admissions. If you apply late, send your degree certificates, transcripts and English evidence at once, and make sure your referee can reply fast. Teaching starts on **27 September 2027**. A January start is not shown.\n\n## How to apply\n\n1. **Check the entry rules.** Find your institution's category on Warwick's India page and compare your percentage.\n2. **Apply online.** Start from the [course page](https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science/). Aim to apply before the on-time deadline of **2 August 2027**.\n3. **Send your documents.** Include your degree certificates, transcripts and English test evidence, and give your referee's email address so Warwick can contact them.\n4. **Ask about the deposit.** Warwick's page does not state one.\n5. **Check ATAS.** Ask the admissions team if the course needs an ATAS certificate.\n6. **Apply for your visa.** You need your CAS, a current passport, proof of funds and your tuberculosis (TB) test result. India is on the UK's TB test list. The test must be at a clinic approved by the Home Office. Read the [TB test page](https://www.gov.uk/tb-test-visa/countries-where-you-need-a-tb-test-to-enter-the-uk) and the [UK student visa guide](/study-abroad/visas/uk-student-visa-guide).\n\n## After the programme\n\n- **Work in the UK after your course.** The Graduate Route lets you stay and work in the UK after your studies. The visa lasts **2 years** if you apply on or before **31 December 2026**, and **18 months** if you apply on or after **1 January 2027**. A September 2027 student applies in 2028, so expect 18 months. The application fee is **£937**.\n\n\n## Who it suits\n\n**This programme is a strong choice if:**\n\n- you have a strong computer science, maths or physics degree\n- your percentage meets the First Class line for your institution category\n- you want to pick a specialist route in AI, data analytics or cyber security\n\n**Think carefully if:**\n\n- your marks are in the 2:1 range only, because Warwick asks for a First or high 2:1\n- you need a confirmed scholarship, because none is confirmed here\n- you need a January start, because only September 2027 is shown\n\n## Sources\n\n- [Computer Science MSc, University of Warwick](https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science/). Checked on 4 November 2026.\n- [Postgraduate fees table](https://warwick.ac.uk/services/finance/studentfinance/fees/postgraduatefees/). Checked on 4 November 2026.\n- [India entry requirements](https://warwick.ac.uk/study/international/countryinformation/southasia/india/india-entry-requirements/). Checked on 4 November 2026.\n- [UK student visa](https://www.gov.uk/student-visa), [money you must show](https://www.gov.uk/student-visa/money) and [visa fee](https://www.gov.uk/student-visa/apply). Checked on 4 November 2026.\n- [Immigration Rules, Appendix Student](https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-student). Checked on 4 November 2026.\n- [Immigration Health Surcharge](https://www.gov.uk/healthcare-immigration-application/how-much-pay). Checked on 4 November 2026.\n- [Academic Technology Approval Scheme](https://www.gov.uk/guidance/academic-technology-approval-scheme). Checked on 4 November 2026.\n- [Graduate visa](https://www.gov.uk/graduate-visa) and [Graduate visa costs](https://www.gov.uk/graduate-visa/how-much-it-costs). Checked on 4 November 2026.\n- [TB test for visas](https://www.gov.uk/tb-test-visa/countries-where-you-need-a-tb-test-to-enter-the-uk). Checked on 4 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.",
+        "faq_json": [
+          {
+            "q": "How much does the Warwick MSc Computer Science cost for Indian students?",
+            "a": "Tuition is £39,330 for 2027-28. With visa living money, the visa fee and the health surcharge, the first year comes to £51,591 before any scholarship."
+          },
+          {
+            "q": "What percentage do Indian students need for Warwick Computer Science?",
+            "a": "Warwick asks for a First or high 2:1. For a UK First, India needs 65% from Category 1 institutions, 75% from Category 2 and 80% from Category 3."
+          },
+          {
+            "q": "Does Warwick need GRE for MSc Computer Science?",
+            "a": "The course page does not mention GRE. It asks for IELTS 6.5 overall with no part below 6.0 and one academic reference."
+          },
+          {
+            "q": "What is the deadline for Warwick MSc Computer Science 2027?",
+            "a": "The on-time deadline for September and October 2027 starts is 2 August 2027. Late applications are accepted but may not finish in time."
+          },
+          {
+            "q": "Is there a scholarship for Indian students at Warwick?",
+            "a": "No Warwick scholarship is confirmed on this page. Warwick's scholarship search did not return results, so check its scholarships page directly."
+          }
+        ],
+        "official_source": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science/",
+        "checked_at": "2026-11-04"
+      }
+    }
+  ]
+}
