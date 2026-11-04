@@ -17,7 +17,7 @@ const COACHING = [
     'unacademy.com', 'vedantu.com', 'alsias.net',
 ];
 const PLATFORMS = ['buddy4study.com', 'vidyasaarathi.co.in'];
-const AGGREGATORS = ['collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com', 'internshala.com', 'leverageedu.com'];
+const AGGREGATORS = ['collegedunia.com', 'shiksha.com', 'careers360.com', 'jagranjosh.com', 'scholarshipsinindia.com', 'internshala.com', 'leverageedu.com', 'unstop.com'];
 const NEWS = ['indiatoday.in', 'timesofindia.indiatimes.com', 'hindustantimes.com', 'ndtv.com', 'news18.com', 'wikipedia.org', 'youtube.com'];
 
 // Our own site and Google's search redirects can never be a source

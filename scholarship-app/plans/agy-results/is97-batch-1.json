@@ -1,0 +1,455 @@
+[
+  {
+    "slug": "harrison-state-sports-scholarship-scheme",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://haryanasports.gov.in/scholarship/",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://cdnbbsr.s3waas.gov.in/s3e069ea4c9c233d36ff9c7f329bc08ff1/uploads/2023/02/2023020355.pdf",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Official Haryana Sports Department portal page Guidelines for Scholarship with notification PDF.",
+    "notes": "Verified on haryanasports.gov.in"
+  },
+  {
+    "slug": "gail-sports-scholarship-scheme",
+    "outcome": "not-found",
+    "source_pages": [],
+    "secondary_sources": [],
+    "evidence": "Searched gailonline.com CSR, sports, careers pages, sitemap, and Google web index; no active specific official page or circular for GAIL Sports Scholarship was found for the current cycle.",
+    "notes": "Past program without dedicated live portal page on gailonline.com. Requires owner review."
+  },
+  {
+    "slug": "maharashtra-building-and-other-construction-workers-welfare-board-mahabocw-educational-ass",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/eacs1t7a8t10",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://mahabocw.in/wp-content/uploads/2025/05/Scheme-wise-Beneficiaries-and-amount-Disbursed-as-of-APRIL-2025-1.pdf",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Official National Schemes portal entry eacs1t7a8t10 and MAHABOCW official disbursement guidelines.",
+    "notes": "Covers educational assistance for 1st-7th and 8th-10th children of registered construction workers."
+  },
+  {
+    "slug": "vidya-samunnathi-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://kswcfc.org/schemes-2025-26/",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://kswcfc.org/bhavana-samunnathi-2/",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Kerala State Welfare Corporation for Forward Communities official schemes-2025-26 page and Vidyasamunnathi portal.",
+    "notes": "Verified current cycle on kswcfc.org"
+  },
+  {
+    "slug": "federal-bank-hormis-memorial-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.federal.bank.in/fedbank-hormis-memorial-foundation",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.federal.bank.in/documents/d/guest/federalbankhormismemorialfoundation_scholarship_announcement_2026-27",
+        "facts": ["page", "deadline", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://scholarships.federalbank.co.in:6443/fedschlrshipportal/",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Official Federal Bank 2026-27 scholarship announcement and CSR Foundation portal page.",
+    "notes": "Verified on federal.bank.in"
+  },
+  {
+    "slug": "anjum-chopra-sports-scholarship",
+    "outcome": "found-secondary",
+    "source_pages": [],
+    "secondary_sources": [
+      {
+        "url": "https://unstop.com/scholarships/anjum-chopra-sports-scholarship-push-sports-650080",
+        "tier": "aggregator",
+        "role": "info"
+      }
+    ],
+    "evidence": "Original provider page on pushsports.in returned 404 (removed from site sitemap); active listing on Unstop platform.",
+    "notes": "Provider link dead; secondary source preserved."
+  },
+  {
+    "slug": "dxc-progressing-minds-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://kmc.du.ac.in/kmcouter/collnews/download/62835700173269755324.pdf/CollegeNews/pdf/All/All",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/dxc-progressing-minds-scholarship",
+        "tier": "platform",
+        "role": "apply"
+      }
+    ],
+    "evidence": "Official Delhi University college circular for DXC Progressing Minds Scholarship and active Buddy4Study application portal.",
+    "notes": "Verified on kmc.du.ac.in"
+  },
+  {
+    "slug": "chandigarh-sports-department-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://sportsdeptt.chd.gov.in/index.php/pages/scholarship_scheme",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://sportsdeptt.chd.gov.in/assets/pdf/scholarship_instructions_for_the_candidate.pdf",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Sports Department Chandigarh Administration official scholarship scheme page and candidate instructions PDF.",
+    "notes": "Verified on sportsdeptt.chd.gov.in"
+  },
+  {
+    "slug": "snehapoorvam-scholarship-scheme",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://socialsecuritymission.gov.in/snehapoorvam/",
+        "facts": ["page", "eligibility", "amount_min", "amount_max"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Kerala Social Security Mission official Snehapoorvam scheme portal page.",
+    "notes": "Verified on socialsecuritymission.gov.in"
+  },
+  {
+    "slug": "gujarat-pre-matric-scholarship-sc-st-obc",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://sje.gujarat.gov.in/dscw/showpage.aspx?contentid=1511&lang=english",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/premsssguj",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Directorate of Scheduled Caste Welfare Gujarat official scheme page (contentid=1511) and MyScheme national portal.",
+    "notes": "Verified on sje.gujarat.gov.in"
+  },
+  {
+    "slug": "m3m-foundation-lakshya-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://m3mfoundation.org/home/p/6",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "M3M Foundation official programme page for Lakshya sports and arts scholarship.",
+    "notes": "Verified on m3mfoundation.org"
+  },
+  {
+    "slug": "gujarat-national-means-cum-merit-scholarship-nmms",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.sebexam.org/AdvertiseFiles/2026/nmms%20exam-2025-26%20result%20notification_022026.pdf",
+        "facts": ["page", "deadline", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/nmmss",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Gujarat State Examination Board official NMMS notification circular and MyScheme portal entry.",
+    "notes": "Verified on sebexam.org"
+  },
+  {
+    "slug": "green-passage-scheme-technical-education-odisha",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://gpbalasore.org.in/wp-content/uploads/2024/11/Green-Passage-scholarship-2024-25.pdf",
+        "facts": ["page", "eligibility", "deadline"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.gmuniversity.ac.in/images/documents/doc_1662427270.pdf",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Government Polytechnic Balasore and GM University official circulars for Odisha Green Passage scheme.",
+    "notes": "Verified on gpbalasore.org.in and gmuniversity.ac.in"
+  },
+  {
+    "slug": "bihar-state-sports-authority-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://en.biharsports.org/sportsscholarshippolicy",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://biharsports.org/pdf/notices/Scholarship-2026-First-List.pdf",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Bihar State Sports Authority official sports scholarship policy page and 2026 notification.",
+    "notes": "Verified on biharsports.org"
+  },
+  {
+    "slug": "swami-vivekanand-stipend-scheme-iti-gujarat",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://sje.gujarat.gov.in/dscw/showpage.aspx?contentid=1533&lang=english",
+        "facts": ["page", "eligibility", "amount_min"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/ssscsitipcsvs",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Gujarat Directorate of Scheduled Caste Welfare scheme page (contentid=1533, BCK-13) and MyScheme portal.",
+    "notes": "Verified on sje.gujarat.gov.in"
+  },
+  {
+    "slug": "lakshadweep-scholarship-scheme",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://lakshadweep.gov.in/service/education-servicen/",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://lakshadweep.gov.in/departments/education/",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Union Territory of Lakshadweep official administration portal education services page.",
+    "notes": "Verified on lakshadweep.gov.in"
+  },
+  {
+    "slug": "santoor-womens-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.santoorscholarships.com/documents/STR_Women-Scholarship_Eng.pdf",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/santoor-women-scholarship",
+        "tier": "platform",
+        "role": "apply"
+      }
+    ],
+    "evidence": "Official Santoor Women's Scholarship English guidelines PDF and Buddy4Study application portal.",
+    "notes": "Verified on santoorscholarships.com"
+  },
+  {
+    "slug": "daad-wise-research-internship-germany",
+    "outcome": "link-dead-replaced",
+    "source_pages": [
+      {
+        "url": "https://www.daad.in/en/find-funding/scholarship-database/",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.daad.de/rise/en/rise-germany/",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Previous database deep-link 404 dead; replaced with current DAAD India scholarship database and RISE/WISE portal.",
+    "notes": "Verified on daad.in and daad.de"
+  },
+  {
+    "slug": "schindler-igniting-minds-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.schindler.in/en/about-us/social-responsibility/education.html",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.schindler.in/en/media/blog/schindler-igniting-minds.html",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.vidyasaarathi.co.in/Vidyasaarathi/registration/1519/Schindler-India-Private-Limited",
+        "tier": "platform",
+        "role": "apply"
+      }
+    ],
+    "evidence": "Schindler India official CSR education portal page and Vidyasaarathi registration link.",
+    "notes": "Verified on schindler.in and vidyasaarathi.co.in"
+  },
+  {
+    "slug": "vidyadhan-scholarship-program-sdf",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.vidyadhan.org/apply",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Sarojini Damodaran Foundation official Vidyadhan apply page.",
+    "notes": "Verified on vidyadhan.org"
+  },
+  {
+    "slug": "prime-ministers-scholarship-scheme-pmss-for-wardswidows-of-ex-servicemen-and-ex-coast-guar",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://desw.gov.in/en/prime-ministers-scholarship-scheme-pmss",
+        "facts": ["page", "eligibility", "amount_min", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pmss",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Department of Ex-Servicemen Welfare Ministry of Defence official PMSS page and KSB portal.",
+    "notes": "Verified on desw.gov.in"
+  },
+  {
+    "slug": "mukhyamantri-gyan-sadhana-merit-scholarship-scheme-cgms",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://www.sebexam.org/AdvertiseFiles/2026/cgms%20exam-2026%20result%20notification_042026.pdf",
+        "facts": ["page", "deadline", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Gujarat State Examination Board official CGMS examination notification PDF.",
+    "notes": "Verified on sebexam.org"
+  },
+  {
+    "slug": "mukhyamantri-krishak-chhatravritti-yojana",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://upmandiparishad.upsdc.gov.in/Images/pdf_files/3CHATRAVRITIYOJNA.pdf",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://upmandiparishad.upsdc.gov.in/WelfareScheme.aspx",
+        "facts": ["page"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "UP Mandi Parishad official portal WelfareScheme page and 3CHATRAVRITIYOJNA.pdf circular.",
+    "notes": "Verified on upmandiparishad.upsdc.gov.in"
+  },
+  {
+    "slug": "dr-ambedkar-post-matric-scholarship-sc-gujarat",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://sje.gujarat.gov.in/dscw/schemes/1521?lang=english",
+        "facts": ["page", "eligibility", "amount_max"],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/dacsspostmsebcs",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.digitalgujarat.gov.in/frmMain1.aspx",
+        "tier": "platform",
+        "role": "apply"
+      }
+    ],
+    "evidence": "Gujarat Social Justice and Empowerment Department official BCK-6.1 post-matric scheme page and MyScheme portal.",
+    "notes": "Verified on sje.gujarat.gov.in"
+  },
+  {
+    "slug": "dr-reddys-foundation-sashakt-scholarship",
+    "outcome": "found-official",
+    "source_pages": [
+      {
+        "url": "https://sashaktscholarship.org/how-to-apply/",
+        "facts": ["page", "eligibility"],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [],
+    "evidence": "Dr. Reddy's Foundation official Sashakt Scholarship how-to-apply portal page.",
+    "notes": "Verified on sashaktscholarship.org"
+  }
+]
