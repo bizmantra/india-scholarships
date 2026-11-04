@@ -77,4 +77,5 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 ## In progress (not merged yet)
 
 - Branch `content/uk-cs-ds-batch1` (2026-11-04, local commit, not pushed): UK MSc CS and DS batch 1 (Birmingham, Coventry, Edinburgh, Glasgow): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed.
+- Branch `content/uk-cs-ds-batch2` (2026-11-04, local commit, not pushed; branched from `content/uk-cs-ds-batch1`): UK MSc CS and DS batch 2 (Leeds, Manchester, Newcastle, Nottingham): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed.
 - Branch `feat/command-center-tasks`: Tasks board in Command Center (`app/admin/tasks/`, `/api/admin/command/tasks/`). Move to the list above when merged.
