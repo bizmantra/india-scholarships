@@ -52,3 +52,12 @@ test('the boilerplate summary rule works the same way', () => {
     assert.equal(sa.validateSaValue('sa_guides', 'summary', boiler, { previous: boiler }), null);
     assert.equal(sa.validateSaValue('sa_guides', 'summary', 'German public universities charge semester fees, not tuition.', { previous: boiler }), null);
 });
+
+test('a legacy article without source links can be edited without forcing synthetic links', () => {
+    const articleNoLink = heading => `${heading}\n\n${filler}\n\nInternal reference only [see guide](/study-abroad/germany).`;
+    assert.equal(check(articleNoLink(CLEAN), articleNoLink(LEGACY)), null);
+    // But create mode still requires a source link
+    assert.match(check(articleNoLink(CLEAN)), /article has no source links/);
+    // And stripping source links from an article that had them is refused
+    assert.match(check(articleNoLink(CLEAN), article(CLEAN)), /article has no source links/);
+});
