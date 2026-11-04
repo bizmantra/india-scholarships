@@ -7,6 +7,7 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 
 ## What agents must do differently now
 
+- 2026-11-05: 4 correction proposals `scripts/study-abroad/proposals/uk-course-{university-of-birmingham,coventry-university}-{cs,ds}-visa-cost-fix-2026-11-05.json` for the live Birmingham and Coventry CS/DS pages: visa living money to the HC 584 rate (£1,203 a month outside London from 30 November 2026), totals +£288. Built from the live page text and filed to the production Inbox.
 - **Researching scholarships:** read `docs/SCHOLARSHIP_SOURCES.md` first. Check a scholarship's `source_pages`,
   then `official_source` and `apply_url`, before searching the web. New scholarships start from
   `data/scholarship-sources.json`. Save official pages you confirmed to `source_pages`. Listing/platform sites
@@ -19,6 +20,7 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 ## Merged to main
 
 **Nov 4**
+- UK health surcharge corrected on 25 draft pages (11 MBA, 12 university, visa guide, cost guide): it is charged on visa length. A 12-month course gets a visa of about 17 months (Immigration Rules, Appendix Student, ST 25.3), so the surcharge is £1,164 (£1,552 for the 15 to 18 month Manchester MBA), not "£776 or more". Totals rose by £388. File: `scripts/study-abroad/proposals/uk-surcharge-correction-2026-11-04.json`. New UK pages must use £1,164.
 - UK MBA course pages: 11 pages (Newcastle, Glasgow, Manchester, Warwick, Coventry, Birmingham, Edinburgh, Leeds, Nottingham, Sheffield, Southampton) were reviewed on the project board and filed to the production Inbox as hidden drafts. Filing files are in `scripts/study-abroad/proposals/uk-course-*-mba-*.json`; research notes and live-page verification reports are in `plans/uk-research/mba/`. No UCL MBA page (owner decision). The UK stays hidden until the hub page ships.
 - UK health surcharge is charged per year of visa length, not course length: £776 is the minimum for a one-year master's (`plans/uk-research/uk-surcharge-note.md`).
 
@@ -76,7 +78,8 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 
 ## In progress (not merged yet)
 
-- Branch `content/uk-cs-ds-batch1` (2026-11-04, local commit, not pushed): UK MSc CS and DS batch 1 (Birmingham, Coventry, Edinburgh, Glasgow): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed.
 - Branch `content/uk-cs-ds-batch2` (2026-11-04, local commit, not pushed; branched from `content/uk-cs-ds-batch1`): UK MSc CS and DS batch 2 (Leeds, Manchester, Newcastle, Nottingham): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed.
 - Branch `content/uk-cs-ds-batch3` (2026-11-04, local commit, not pushed; branched from `content/uk-cs-ds-batch2`): UK MSc CS and DS batch 3 (Sheffield, Southampton, UCL, Warwick): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed. Living money uses the HC 584 rates for visa applications from 30 November 2026 (£1,203 outside London, £1,570 in London).
+- Branch `content/uk-cs-ds-batch1` (2026-11-04, local commit, not pushed): UK MSc CS and DS batch 1 (Birmingham, Coventry, Edinburgh, Glasgow): research notes in `plans/uk-research/cs-ds/` and 8 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed. Living money updated to the HC 584 rates for visa applications from 30 November 2026 (£1,203 a month outside London, £10,827 for 9 months).
+- Branch `content/uk-cs-ds-batch2` (2026-11-04, PR open, not merged): UK MSc CS and DS batch 2 (Leeds, Manchester, Newcastle, Nottingham, Sheffield, Southampton, Warwick): research notes in `plans/uk-research/cs-ds/` and 14 hidden draft proposals `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`; not filed. Manchester DS drafted without tuition (fee not published); UCL not started (its site blocks automated reads). Dry run and live-page re-read still to do.
 - Branch `feat/command-center-tasks`: Tasks board in Command Center (`app/admin/tasks/`, `/api/admin/command/tasks/`). Move to the list above when merged.
