@@ -1,0 +1,69 @@
+# Coventry University: MSc Computer Science and MSc Data Science, 2027-28 entry
+
+Read by: Grok Bot (Rachel), curl of the official pages with the 2027-28 term view (?term=2027-28). Date read: 2026-11-04 (4 November 2026) for every row. Quotes are verbatim and under 15 words.
+Entry year: 2027-28 (September 2027 and later 2027-28 starts).
+Courses:
+- CS = Computer Science MSc: https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28
+- DS = Data Science MSc: https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 (exact name match). Round 3 to round 5 research used the Data Science and Computational Intelligence MSc instead; see the conflict note.
+
+Counts (31 rows): Filled 26. NOT CONFIRMED 5 (rows 13, 14, 15, 16, 17).
+
+Notes for the page writer:
+- Every course page carries this caveat: the information is for 2026-27 entry and is guidance for 2027-28. The 2027-28 view shows £19,980. Say the fee is the 2027-28 figure shown and may change.
+- The international deadline table has no September 2027 row. Do not print a September deadline.
+- Deposit for India: Punjab, Uttarakhand and Haryana pay the full first-year fee. Other Indian states are not named. The £8,000 "all other countries" line is not stated for India, so do not print it as the Indian deposit.
+- Conflict: earlier rounds used Data Science and Computational Intelligence MSc (2:2 in a relevant subject such as computer science, maths, statistics or engineering, £19,980) as the DS course. The plain Data Science MSc exists and is open to any discipline. This draft uses the plain Data Science MSc. The owner may prefer the other.
+
+| Item | Answer | Quote | URL | Date read | Entry year |
+|---|---|---|---|---|---|
+| 1. CS length and start dates | 1 year full-time, or up to 2 years with a professional placement. Starts: September 2027, November 2027, January 2028, March 2028, May 2028, July 2028. Course code EEST029. | "Duration 1 year full-time Up to 2 years full-time with professional placement" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 2. CS entry degree | 2:2 honours or above, or international equivalent, in a computational discipline | "An honours degree 2:2 or above (or international equivalent) in a computational discipline." | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 3. CS English | IELTS 6.5 overall, no component below 5.5 | "IELTS: 6.5 overall, with no component lower than 5.5" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 4. CS tuition, international | £19,980 per year; professional placement fee £1,950 per year if a placement is secured | "£19,980 per year" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 5. CS modules | Advanced Programming, Advanced Software Development, Secure Computing Systems, Machine Learning and Big Data (30 credits each); Individual Research Project (60 credits); 180 credits a year | "Individual Research Project – 60 credits" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 6. CS CMI certificate | Passing Advanced Software Development makes you eligible for the CMI Level 7 Certificate in Strategic Management and Leadership Practice at no extra cost | "eligible to gain the award as an additional qualification at no additional cost" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 7. DS length and start dates | 1 year full-time, or up to 2 years with placement. Same six start dates from September 2027 to July 2028. Course code EEST036. Aims to meet the ongoing demand for data professionals. | "Duration 1 year full-time" | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 8. DS entry degree | 2:2 honours or above, or international equivalent, in any discipline | "An honours degree 2:2 or above (or international equivalent) in any discipline." | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 9. DS English | IELTS 6.5 overall, no component below 5.5 | "IELTS: 6.5 overall, with no component lower than 5.5." | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 10. DS tuition, international | £19,980; placement fee £1,950 if a placement is secured | "£19,980 per year without EU Support Bursary" | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 11. DS modules | Programming for Data Science, Data Analytics, The Data Science Professional, Machine Learning and Big Data (30 credits each); Individual Research Project (60 credits) | "Programming for Data Science - 30 credits" | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 12. DS CMI certificate | Passing The Data Science Professional gives eligibility for the CMI Level 7 Certificate at no extra cost | "meets the criteria set by the Chartered Management Institute (CMI)" | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 13. September 2027 deadline | NOT CONFIRMED. The international table lists January, March, May and July 2027 starts only. | "January 2027 Tuesday 1 December 2026" | https://www.coventry.ac.uk/international-students-hub/apply/ | 2026-11-04 | 2027 |
+| 14. Deposit for most Indian states | NOT CONFIRMED. Punjab, Uttarakhand and Haryana pay full first-year tuition; other Indian states are not named. | "India (Punjab, Uttarakhand, Haryana) - Full tuition fees charged for the first year" | https://www.coventry.ac.uk/international-students-hub/apply/ | 2026-11-04 | 2027 |
+| 15. GRE | NOT CONFIRMED. Neither course page mentions GRE (text search). | n/a | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 16. ATAS | NOT CONFIRMED. Neither course page mentions ATAS (text search). | n/a | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 17. Application fee | NOT CONFIRMED. No application fee found on the course pages. | n/a | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 18. Fee-year caveat (both) | Page information is for 2026-27 entry and is guidance for 2027-28 | "should be used as guidance for 2027-28 entry" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 19. Fee rises | International fees may rise each year by no more than 5% above inflation | "such increases will be no more than 5% above the inflation rate" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 20. Placement option | Placement must be found by you in the first semester; it starts after the first 120 credits and adds fees, living costs and visa requirements | "The placement must be sourced and secured by you during your first semester." | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 21. Other costs | Optional field trips from £400 per trip | "optional ﬁeld trips or visits: from £400 per trip or visit" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 22. Indian degree equivalent | 60% in a three-year degree or 55% in a four-year degree | "Students must achieve 60% in a three-year undergraduate degree or 55% in a four-year" | https://www.coventry.ac.uk/international-students-hub/c/welcome-india-students/ | 2026-11-04 | current |
+| 23. India page English line | IELTS 6.5 overall with no component lower than 5.5 for postgraduate; Coventry University English Test accepted if not met | "IELTS 6.5 overall with no component lower than 5.5 for postgraduate." | https://www.coventry.ac.uk/international-students-hub/c/welcome-india-students/ | 2026-11-04 | current |
+| 24. January 2027 start deadlines | Final application deadline Tuesday 1 December 2026; deadline to meet conditions Friday 4 December 2026; enrolment deadline Monday 1 February 2027 | "January 2027 ... Monday 1 February 2027" | https://www.coventry.ac.uk/international-students-hub/apply/ | 2026-11-04 | 2027 |
+| 25. CAS deposit rule | Deposit on the offer letter must be paid to get the CAS | "You have paid the tuition fee deposit specified on your offer letter" | https://www.coventry.ac.uk/international-students-hub/apply/ | 2026-11-04 | 2027 |
+| 26. Coventry University Group Scholarship | £2,000 off tuition per year of study for self-funded international (non-EU) students starting in 2026/27 or 2027/28; no application; CAS deposit must be cleared by the offer-letter date and the student must enrol | "can save £2,000 per full year of study on their course tuition fee" | https://www.coventry.ac.uk/international-students-hub/apply-for-a-scholarship/coventry-university-group-scholarship/ | 2026-11-04 | 2027-28 |
+| 27. How to apply | Full-time international students apply directly to the university online | "Full-time international students should apply directly to the university." | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 28. Careers support | One-to-one guidance for up to 18 months after the course | "Get one-on-one guidance lasting up to 18 months from the end of your course." | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 29. Location | Coventry University (Coventry), outside London | "Location Coventry University (Coventry)" | https://www.coventry.ac.uk/course-structure/pg/ees/computer-science-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+| 31. India-only scholarship | None found: the international scholarships page lists no India-only postgraduate award (text search for "India") | "Get a 25% discount on postgraduate study" (alumni award listed instead) | https://www.coventry.ac.uk/international-students-hub/apply-for-a-scholarship/ | 2026-11-04 | 2027-28 |
+| 30. Other DS course | Data Science and Computational Intelligence MSc: 2:2 in a relevant discipline such as computer science, mathematics, statistics or engineering; £19,980; IELTS 6.5 with 5.5 per component | "in a relevant discipline such as computer science, mathematics, statistics or engineering." | https://www.coventry.ac.uk/course-structure/pg/ees/data-science-and-computational-intelligence-msc/?term=2027-28 | 2026-11-04 | 2027-28 |
+
+## Worked first-year totals (calculated from the rows above, not quoted)
+
+- Either course, 1 year without placement: £19,980 + £10,539 (9 × £1,171, money shown) + £558 + £1,164 = £32,241.
+- With the £2,000 Group Scholarship off tuition: £30,241.
+
+## Shared UK visa and cost facts (gov.uk, read 2026-11-04)
+
+| Item | Answer | Quote | URL | Date read | Entry year |
+|---|---|---|---|---|---|
+| S1. Visa money outside London | £1,171 per month, up to 9 months. Shown, not paid to the university. 9 × £1,171 = £10,539. | "£1,171 per month (for up to 9 months) for courses outside London" | https://www.gov.uk/student-visa/money | 2026-11-04 | 2027 |
+| S2. How long to hold the money | At least 28 days in a row; the 28-day period must end within 31 days of applying | "You must have this money for at least 28 days in a row." | https://www.gov.uk/student-visa/money | 2026-11-04 | 2027 |
+| S3. Student visa fee | £558 from outside the UK | "£558 to apply for a Student visa from outside the UK" | https://www.gov.uk/student-visa/apply | 2026-11-04 | 2027 |
+| S4. Health surcharge yearly rate | £776 per year of visa for students | "£776 per year for students, their dependants" | https://www.gov.uk/healthcare-immigration-application/how-much-pay | 2026-11-04 | 2027 |
+| S5. Surcharge for a visa over 1 year and up to 18 months | Yearly cost plus half: £776 + £388 = £1,164 | "the yearly cost plus half the yearly cost" | https://www.gov.uk/healthcare-immigration-application/how-much-pay | 2026-11-04 | 2027 |
+| S6. Visa length for a course of 12 months or longer | Up to 1 month before the course plus 4 months after it. A 12-month course gives a visa of up to 17 months, so the surcharge is £1,164. (A course of 6 to under 12 months gets 2 months after; a 1-year course still gives a visa over 12 months.) | "A course of 12 months or longer 1 Month 4 Months" | https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-student | 2026-11-04 | 2027 |
+| S7. Graduate visa length | 2 years if you apply on or before 31 December 2026; 18 months if you apply on or after 1 January 2027 | "18 months if you apply on or after 1 January 2027" | https://www.gov.uk/graduate-visa | 2026-11-04 | 2027 |
+| S8. Graduate visa fee | £937 | "pay the £937 application fee" | https://www.gov.uk/graduate-visa/how-much-it-costs | 2026-11-04 | 2027 |
+| S9. ATAS processing time | At least 30 working days (6 weeks). ATAS (Academic Technology Approval Scheme) is a security clearance some science and technology courses need. | "ATAS applications take at least 30 working days (6 weeks) to process" | https://www.gov.uk/guidance/academic-technology-approval-scheme | 2026-11-04 | 2027 |
+| S10. TB test | India is on the list of countries where you need a TB test | "India" (in the country list) | https://www.gov.uk/tb-test-visa/countries-where-you-need-a-tb-test-to-enter-the-uk | 2026-11-04 | 2027 |
