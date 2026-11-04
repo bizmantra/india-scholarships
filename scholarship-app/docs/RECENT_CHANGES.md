@@ -7,6 +7,7 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 
 ## What agents must do differently now
 
+- 2026-11-05: 4 correction proposals `scripts/study-abroad/proposals/uk-course-{university-of-birmingham,coventry-university}-{cs,ds}-visa-cost-fix-2026-11-05.json` for the live Birmingham and Coventry CS/DS pages: visa living money to the HC 584 rate (£1,203 a month outside London from 30 November 2026), totals +£288. Built from the live page text and filed to the production Inbox.
 - **Researching scholarships:** read `docs/SCHOLARSHIP_SOURCES.md` first. Check a scholarship's `source_pages`,
   then `official_source` and `apply_url`, before searching the web. New scholarships start from
   `data/scholarship-sources.json`. Save official pages you confirmed to `source_pages`. Listing/platform sites
