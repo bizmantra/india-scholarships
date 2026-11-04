@@ -19,6 +19,7 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 ## Merged to main
 
 **Nov 4**
+- UK health surcharge corrected on 25 draft pages (11 MBA, 12 university, visa guide, cost guide): it is charged on visa length. A 12-month course gets a visa of about 17 months (Immigration Rules, Appendix Student, ST 25.3), so the surcharge is £1,164 (£1,552 for the 15 to 18 month Manchester MBA), not "£776 or more". Totals rose by £388. File: `scripts/study-abroad/proposals/uk-surcharge-correction-2026-11-04.json`. New UK pages must use £1,164.
 - UK MBA course pages: 11 pages (Newcastle, Glasgow, Manchester, Warwick, Coventry, Birmingham, Edinburgh, Leeds, Nottingham, Sheffield, Southampton) were reviewed on the project board and filed to the production Inbox as hidden drafts. Filing files are in `scripts/study-abroad/proposals/uk-course-*-mba-*.json`; research notes and live-page verification reports are in `plans/uk-research/mba/`. No UCL MBA page (owner decision). The UK stays hidden until the hub page ships.
 - UK health surcharge is charged per year of visa length, not course length: £776 is the minimum for a one-year master's (`plans/uk-research/uk-surcharge-note.md`).
 
