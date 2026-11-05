@@ -115,4 +115,12 @@ Whatever agent does Part B, a second agent or the owner re-derives a sample from
   - 1 `not-found` (`gail-sports-scholarship-scheme` - past 2015-2016 CSR campaign without active portal page; routed to review)
 - **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-1.json` with 0 errors and 0 validation warnings.
 
+### Part B: Research Batch 2 (2026-11-05)
+- **Batch 2 Saved**: `plans/agy-results/is97-batch-2.json` (items 26–50 on worklist).
+- **Outcomes**:
+  - 24 `found-official` (covering Tamil Nadu Naan Mudhalvan, Tripura SCERT/EBC, IIT Bombay WINGS, IIT Madras SBI PASS, TN Annal Ambedkar Overseas, DBT-BET JRF, Swiss Government Excellence, Maharashtra BARTI BANRF, Kerala LWF, MVPM Boob Memorial, JNMF Doctoral, DEPwD Top Class Disabilities, Samarthanam Disabilities, MP MPTAAS, LIC Golden Jubilee, Tata Capital Pankh, Maharashtra TRTI ST, NMMS, MahaDBT Minority & Girls Merit, AP Post-Matric SC, BC, & Minority Welfare)
+  - 1 `not-found` (`punjab-attendance-scholarship-for-sc-girls` - internal school-login DBT incentive on ePunjab MIS without standalone public guidelines URL; routed to review)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-2.json` with 0 errors and 0 validation warnings.
+
+
 
