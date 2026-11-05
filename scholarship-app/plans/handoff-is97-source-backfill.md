@@ -204,6 +204,53 @@ Whatever agent does Part B, a second agent or the owner re-derives a sample from
     - Kerala collegiate & science (`kerala-ch-mohammed-koya-scholarship`, `kerala-suvarna-jubilee-merit-scholarship`, `kerala-kscste-prathibha-scholarship`)
 - **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-8.json` with 0 errors and 0 validation warnings.
 
+### Part B: Research Batch 9 (2026-11-06)
+- **Batch 9 Saved**: `plans/agy-results/is97-batch-9.json` (items 201–225 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Jharkhand (`marang-gomke-jaipal-singh-munda-overseas-scholarship`)
+    - Chhattisgarh (`chhattisgarh-post-matric-scholarship-sc`, `chhattisgarh-post-matric-scholarship-st`, `chhattisgarh-post-matric-scholarship-obc`, `kanya-saksharta-protsahan-yojana-cg`, `noni-suraksha-yojana-cg`)
+    - Central Schemes (`merit-cum-means-scholarship-for-minorities-professional-and-technical-courses-central`, `begum-hazrat-mahal-national-scholarship`, `post-matric-scholarship-for-students-with-disabilities-depwd`, `post-matric-scholarship-scheme-for-minorities-nsp`)
+    - State Schemes (`ladli-lakshmi-yojana-mp`, `bhagya-lakshmi-scheme-karnataka`, `research-guidance-phd-fellowship-for-backward-classes-karnataka`, `mphil-phd-fellowship-for-minority-students-karnataka`, `national-overseas-scholarship-for-minority-communities-karnataka`, `samagra-shikshana-karnataka-fellowship`, `labour-department-scheme-for-unorganized-workers-children-karnataka`, `up-pre-matric-scholarship-general-sc-st`)
+    - Corporate & Foundations (`loreal-fyws-scholarship`, `tata-realty-scholarship-for-girls`, `tata-aia-paras-scholarship`, `idfc-first-bank-mba-scholarship`, `lt-build-india-scholarship`, `faea-scholarship`, `fulbright-nehru-masters-fellowship`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-9.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 10 (2026-11-06)
+- **Batch 10 Saved**: `plans/agy-results/is97-batch-10.json` (items 226–250 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Uttar Pradesh Scholarships (`up-pre-matric-scholarship-obc`, `up-pre-matric-scholarship-minority`, `up-post-matric-intermediate-scholarship-general-sc-st`, `up-post-matric-intermediate-scholarship-obc`, `up-post-matric-intermediate-scholarship-minority`, `up-post-matric-other-than-intermediate-general-sc-st`, `up-post-matric-other-than-intermediate-obc`, `up-post-matric-other-than-intermediate-minority`, `up-post-matric-outside-state-general-sc-st`, `mukhyamantri-kanya-sumangala-yojana`)
+    - Premier Universities & Institutes:
+      - BITS Pilani (`bits-pilani-institute-merit-mcn-awards`, `bits-pilani-board-topper-alumni-scholarships`)
+      - IIT Bombay (`iit-bombay-free-messing-facility`, `iit-bombay-tuition-fee-remission`)
+      - IIT Delhi (`iit-delhi-merit-cum-means-scholarship`, `iit-delhi-free-studentship-fee-remission`, `iit-delhi-donor-endowed-scholarships`)
+      - IIT Madras (`iit-madras-merit-cum-means-alumni-tuition-support`, `iit-madras-institute-tuition-fee-waiver`)
+      - IIT Kharagpur (`iit-kharagpur-merit-cum-means-scholarship`, `iit-kharagpur-endowment-donor-scholarships`, `iit-kharagpur-free-studentship-fee-remission`)
+      - NIT Trichy (`nit-trichy-tuition-fee-remission`, `nit-trichy-recal-foundation-scholarships`)
+      - NIT Surathkal (`nit-surathkal-garrett-memorial-scholarships`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-10.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 11 (2026-11-06)
+- **Batch 11 Saved**: `plans/agy-results/is97-batch-11.json` (items 251–275 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Central Universities (`du-financial-support-scheme`, `du-all-india-post-graduate-scholarship`, `du-shri-ram-lubhaya-book-grant`, `jnu-merit-cum-means-scholarship`, `bhu-poor-students-welfare-fund`, `amu-merit-financial-awards`, `jmi-apj-abdul-kalam-scholarship`, `uoh-student-assistance-aid`, `uoh-non-net-fellowship`, `uoh-fifth-year-phd-assistance`)
+    - State & Technical Universities (`anna-university-endowment-scholarships`, `anna-university-first-graduate-concession`, `vtu-jnana-yaana-doctoral-fellowship`, `vtu-sc-st-welfare-scheme`, `sppu-earn-and-learn-scheme`, `aktu-student-welfare-fund-assistance`)
+    - Private Institutions (`ashoka-university-need-based-financial-aid`, `ashoka-university-merit-scholarships`, `vit-stars-rural-students-scheme`, `viteee-gvsdp-merit-scholarship`)
+    - International & Central Programs (`mext-scholarship-japan`, `erasmus-mundus-joint-masters`, `gates-cambridge-scholarship`, `umbrella-st-jk`, `pm-yasasvi-jk-obc`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-11.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 12 (2026-11-06)
+- **Batch 12 Saved**: `plans/agy-results/is97-batch-12.json` (items 276–300 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - State Schemes (`sc-scholarship-jk`, `ladli-beti-jk`, `mukhya-mantri-protsahan-hp`, `pre-matric-sc-st-hp`)
+    - Major Corporate & Tech CSR (`generation-google-scholarship`, `amazon-future-engineer-scholarship`, `jsw-udaan-scholarship`, `amazon-future-engineer-scholarship-india`, `generation-google-scholarship-apac`, `lic-hfl-vidyadhan-scholarship`, `rolls-royce-wings4her-scholarship`)
+    - Central Schemes (`pm-yasasvi-top-class-education`, `central-sector-scholarship-csss`, `pmss-capf-assam-rifles`)
+    - Leading Global Fellowships & Foundations (`inlaks-shivdasani-scholarship`, `felix-scholarship`, `nl-scholarship-netherlands`, `charpak-scholarship-france`, `jn-tata-endowment-scholarship`, `canada-graduate-scholarships-masters-program`, `lester-b-pearson-international-scholarship-program`, `ubc-international-major-entrance-scholarship`, `heinrich-bll-foundation-scholarships`, `konrad-adenauer-stiftung-scholarships`, `esmt-berlin-mba-scholarships`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-12.json` with 0 errors and 0 validation warnings.
+
+
 
 
 

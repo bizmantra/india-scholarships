@@ -1,0 +1,1239 @@
+[
+  {
+    "slug": "up-pre-matric-scholarship-obc",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/go/OBC_Pre%20matrici%20Niyamawali%20(2016).pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/go/OBC_Pre%20matrici%20Niyamawali%20(2016).pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPreFresh.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-pre-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official pre-matric OBC Niyamawali PDF and student registration/login portals on UP Scholarship portal."
+  },
+  {
+    "slug": "up-pre-matric-scholarship-minority",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPreFresh.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/User%20Help%20Manual.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-pre-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official student registration and pre-matric fresh student login endpoints for Minority category on UP Scholarship portal with official help manual."
+  },
+  {
+    "slug": "up-post-matric-intermediate-scholarship-general-sc-st",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/Postscstniyamawali210921.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/Postscstniyamawali210921.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/GEN%20NIYAMAVALI%2014%20OCTOBER%202019%20ENF%20BY%20202122.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPostInter.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official SC/ST and General Post-Matric Niyamawali PDFs and intermediate student login endpoint on UP Scholarship portal."
+  },
+  {
+    "slug": "up-post-matric-intermediate-scholarship-obc",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/go/OBC_Post%20matric%20Niyamawali%20(2021).pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/go/OBC_Post%20matric%20Niyamawali%20(2021).pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/mpss",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPostInter.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official OBC Post-Matric Niyamawali PDF and myScheme entry (mpss) for UP OBC students with UP intermediate student portal endpoint."
+  },
+  {
+    "slug": "up-post-matric-intermediate-scholarship-minority",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/LoginStudentPostInter.aspx",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPostInter.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/User%20Help%20Manual.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official UP scholarship portal intermediate login endpoint and registration section for Minority Post-Matric students."
+  },
+  {
+    "slug": "up-post-matric-other-than-intermediate-general-sc-st",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/LoginStudentPost.aspx",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPost.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/Postscstniyamawali210921.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/GEN%20NIYAMAVALI%2014%20OCTOBER%202019%20ENF%20BY%20202122.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official student login for Post-Matric Other Than Intermediate (Dashmottar) and official SC/ST and General department Niyamawali PDFs."
+  },
+  {
+    "slug": "up-post-matric-other-than-intermediate-obc",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/go/OBC_Post%20matric%20Niyamawali%20(2021).pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/go/OBC_Post%20matric%20Niyamawali%20(2021).pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/mpss",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPost.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official OBC Post-Matric Niyamawali PDF and myScheme entry (mpss) with UP scholarship other-than-inter student login."
+  },
+  {
+    "slug": "up-post-matric-other-than-intermediate-minority",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/LoginStudentPost.aspx",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPost.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/User%20Help%20Manual.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official UP scholarship portal other-than-inter student login and registration portal for Minority category students."
+  },
+  {
+    "slug": "up-post-matric-outside-state-general-sc-st",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B9%E0%A4%B0%20%E0%A4%85%E0%A4%A7%E0%A5%8D%E0%A4%AF%E0%A4%AF%E0%A4%A8%E0%A4%B0%E0%A4%A4%20%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20%E0%A4%B8%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B9%E0%A4%B0%20%E0%A4%85%E0%A4%A7%E0%A5%8D%E0%A4%AF%E0%A4%AF%E0%A4%A8%E0%A4%B0%E0%A4%A4%20%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6%20.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "documents",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPostOS.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-post-matric-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://school.careers360.com/articles/up-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official guidelines PDF for UP students studying in institutions outside the state and dedicated Outside State student login (LoginStudentPostOS.aspx)."
+  },
+  {
+    "slug": "mukhyamantri-kanya-sumangala-yojana",
+    "status": "found-official",
+    "official_source_specific": "https://mksy.up.gov.in/women_welfare/pdf/ae0a20105201932342.pdf",
+    "source_pages": [
+      {
+        "url": "https://mksy.up.gov.in/women_welfare/pdf/ae0a20105201932342.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/mksy",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://mksy.up.gov.in/women_welfare/citizen/guest_login.php",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://hindi.buddy4study.com/kanya-sumangala-yojana",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official scheme guidelines PDF and citizen guest login portal on UP MKSY portal with national myScheme entry."
+  },
+  {
+    "slug": "bits-pilani-institute-merit-mcn-awards",
+    "status": "found-official",
+    "official_source_specific": "https://admissions.bits-pilani.ac.in/FD/scholarship.html",
+    "source_pages": [
+      {
+        "url": "https://admissions.bits-pilani.ac.in/FD/scholarship.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.bits-pilani.ac.in/wp-content/uploads/campus-scholarships.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://engineering.careers360.com/articles/bitsat-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/birla-institute-of-technology-and-science-pilani/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official BITS Pilani admissions scholarship page detailing Merit and Merit-cum-Need (MCN) awards and institutional scholarship brochure."
+  },
+  {
+    "slug": "bits-pilani-board-topper-alumni-scholarships",
+    "status": "found-official",
+    "official_source_specific": "https://admissions.bits-pilani.ac.in/BT/bt.html",
+    "source_pages": [
+      {
+        "url": "https://admissions.bits-pilani.ac.in/BT/bt.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://admissions.bits-pilani.ac.in/FD/scholarship.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.bits-pilani.ac.in/wp-content/uploads/campus-scholarships.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://engineering.careers360.com/articles/bitsat-scholarship",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/birla-institute-of-technology-and-science-pilani/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official BITS Pilani admissions direct admission scheme page for Board Toppers and alumni financial support provisions."
+  },
+  {
+    "slug": "iit-bombay-free-messing-facility",
+    "status": "found-official",
+    "official_source_specific": "https://acad.iitb.ac.in/sites/default/files/Free_Messing_UG.pdf",
+    "source_pages": [
+      {
+        "url": "https://acad.iitb.ac.in/sites/default/files/Free_Messing_UG.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://smp.gymkhana.iitb.ac.in/incoming-students/scholarships",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.iitb.ac.in/newacadhome/Scholarships.jsp",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://my.iitb.ac.in/b",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-bombay/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official circular PDF for Facilities of Free Messing (SC/ST students) at IIT Bombay, Student Mentorship Program scholarships guide, and application portal."
+  },
+  {
+    "slug": "iit-bombay-tuition-fee-remission",
+    "status": "found-official",
+    "official_source_specific": "https://acad.iitb.ac.in/sites/default/files/Remission_of_fees_UGandM.Sc_._students_2026%20Batch.pdf",
+    "source_pages": [
+      {
+        "url": "https://acad.iitb.ac.in/sites/default/files/Remission_of_fees_UGandM.Sc_._students_2026%20Batch.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://smp.gymkhana.iitb.ac.in/incoming-students/scholarships",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.iitb.ac.in/newacadhome/Scholarships.jsp",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://my.iitb.ac.in/b",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-bombay/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official circular PDF for Remission of Fees for UG students at IIT Bombay and application portal on my.iitb.ac.in."
+  },
+  {
+    "slug": "iit-delhi-merit-cum-means-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://academics.iitd.ac.in/financial-assistance/",
+    "source_pages": [
+      {
+        "url": "https://academics.iitd.ac.in/financial-assistance/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://academics.iitd.ac.in/wp-content/uploads/2025/12/Fee-Circular-2025-26-2-sem.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-delhi/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Delhi academic guidelines for Merit-cum-Means (MCM) scholarships and semester fee circular PDF."
+  },
+  {
+    "slug": "iit-delhi-free-studentship-fee-remission",
+    "status": "found-official",
+    "official_source_specific": "https://academics.iitd.ac.in/financial-assistance/",
+    "source_pages": [
+      {
+        "url": "https://academics.iitd.ac.in/financial-assistance/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://academics.iitd.ac.in/wp-content/uploads/2025/12/Fee-Circular-2025-26-2-sem.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-delhi/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Delhi guidelines for Institute Free Studentship and official fee circular PDF detailing income-based fee remission."
+  },
+  {
+    "slug": "iit-delhi-donor-endowed-scholarships",
+    "status": "found-official",
+    "official_source_specific": "https://alumni.iitd.ac.in/scholarships-awards",
+    "source_pages": [
+      {
+        "url": "https://alumni.iitd.ac.in/scholarships-awards",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://endowment.iitd.ac.in/public/frontend/images/awardscholar/IITDEMF%20Scholarships%20and%20Awards%20Brochure.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-delhi/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Delhi Alumni Association scholarships directory and IIT Delhi Endowment Management Foundation awards brochure."
+  },
+  {
+    "slug": "iit-madras-merit-cum-means-alumni-tuition-support",
+    "status": "found-official",
+    "official_source_specific": "https://www.iitm.ac.in/happenings/press-releases-and-coverages/iit-madras-alumni-csr-partners-give-financial-aid-btech",
+    "source_pages": [
+      {
+        "url": "https://www.iitm.ac.in/happenings/press-releases-and-coverages/iit-madras-alumni-csr-partners-give-financial-aid-btech",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.iitm.ac.in/academics/academic-services/scholarships-and-financial-assistance",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dost.iitm.ac.in/scholarships-financial.php",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-madras/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Madras coverage detailing alumni- and CSR-backed tuition support for B.Tech students and Dean of Students scholarship portal."
+  },
+  {
+    "slug": "iit-madras-institute-tuition-fee-waiver",
+    "status": "found-official",
+    "official_source_specific": "https://www.iitm.ac.in/academics/academic-services/scholarships-and-financial-assistance",
+    "source_pages": [
+      {
+        "url": "https://www.iitm.ac.in/academics/academic-services/scholarships-and-financial-assistance",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dost.iitm.ac.in/scholarships-financial.php",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-madras/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Madras academic services page detailing institute tuition fee exemptions and fee waivers with Dean of Students application portal."
+  },
+  {
+    "slug": "iit-kharagpur-merit-cum-means-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://www.iitkgp.ac.in/scholarships",
+    "source_pages": [
+      {
+        "url": "https://www.iitkgp.ac.in/scholarships",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://erp.iitkgp.ac.in/UG_SCHOLARSHIPS.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.iitkgp.ac.in/student-financial-assistance",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-kharagpur/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Kharagpur scholarships portal detailing Merit-cum-Means rules and UG scholarships overview document."
+  },
+  {
+    "slug": "iit-kharagpur-endowment-donor-scholarships",
+    "status": "found-official",
+    "official_source_specific": "https://www.iitkgp.ac.in/scholarships",
+    "source_pages": [
+      {
+        "url": "https://www.iitkgp.ac.in/scholarships",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://erp.iitkgp.ac.in/UG_SCHOLARSHIPS.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-kharagpur/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Kharagpur Endowment and Alumni Funded Scholarships section detailing selection criteria and UG scholarships document."
+  },
+  {
+    "slug": "iit-kharagpur-free-studentship-fee-remission",
+    "status": "found-official",
+    "official_source_specific": "https://www.iitkgp.ac.in/scholarships",
+    "source_pages": [
+      {
+        "url": "https://www.iitkgp.ac.in/scholarships",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://erp.iitkgp.ac.in/UG_SCHOLARSHIPS.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.iitkgp.ac.in/student-financial-assistance",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/iit-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.careers360.com/university/indian-institute-of-technology-kharagpur/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official IIT Kharagpur tuition fee exemption/free studentship provisions and financial assistance portal."
+  },
+  {
+    "slug": "nit-trichy-tuition-fee-remission",
+    "status": "found-official",
+    "official_source_specific": "https://www.nitt.edu/home/academics/fees_section/Notice_Income_based_Tuition_Fee_Remission_2026_Admitted_B.Tech._B.Arch..pdf",
+    "source_pages": [
+      {
+        "url": "https://www.nitt.edu/home/academics/fees_section/Notice_Income_based_Tuition_Fee_Remission_2026_Admitted_B.Tech._B.Arch..pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.nitt.edu/home/academics/fee-details/",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.careers360.com/university/national-institute-of-technology-tiruchirappalli/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official NIT Trichy Notice for Income-based Tuition Fee Remission for admitted B.Tech and B.Arch students and fee details portal."
+  },
+  {
+    "slug": "nit-trichy-recal-foundation-scholarships",
+    "status": "found-official",
+    "official_source_specific": "https://www.nitt.edu/home/academics/scholarships/",
+    "source_pages": [
+      {
+        "url": "https://www.nitt.edu/home/academics/scholarships/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.nitt.edu/home/RECAL-SCHOLARSHIP-2016.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.nitt.edu/home/icsr/scholarship/Ramakrishnan-Memorial-Scholarship.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.careers360.com/university/national-institute-of-technology-tiruchirappalli/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official NIT Trichy scholarships portal detailing RECAL alumni scholarships, RECT-78 and Silver 72 Trust awards."
+  },
+  {
+    "slug": "nit-surathkal-garrett-memorial-scholarships",
+    "status": "found-official",
+    "official_source_specific": "https://www.nitk.ac.in/document/attachments/8946/Garatte_scholarship_2025-26.pdf",
+    "source_pages": [
+      {
+        "url": "https://www.nitk.ac.in/document/attachments/8946/Garatte_scholarship_2025-26.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://alumni.nitk.ac.in/alumni-relations/scholarships",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.nitk.ac.in/document/attachments/9436/Applications_for_Institute_Scholarship_-_2025_-26.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.careers360.com/university/national-institute-of-technology-karnataka-surathkal/fees",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official NITK Surathkal circular for Garrett scholarship and alumni relations memorial/endowment scholarships directory."
+  }
+]

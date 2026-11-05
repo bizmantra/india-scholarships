@@ -1,0 +1,1058 @@
+[
+  {
+    "slug": "marang-gomke-jaipal-singh-munda-overseas-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://mgos.jharkhand.gov.in/images/MGOS_Sankalp_revised.pdf",
+    "source_pages": [
+      {
+        "url": "https://mgos.jharkhand.gov.in/images/MGOS_Sankalp_revised.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://mgos.jharkhand.gov.in/universities.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://mgos.jharkhand.gov.in/timeline.pdf",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/marang-gomke-jaipal-singh-munda-overseas-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Jharkhand Tribal Welfare Dept portal guidelines (revised Sankalp PDF), approved university list, timeline, and application details."
+  },
+  {
+    "slug": "chhattisgarh-post-matric-scholarship-sc",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+    "source_pages": [
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/StudentRegistration.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/Images/PMS-FAQ-1.0.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/post-matric-scholarship-for-sc-st-obc-students-chhattisgarh",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Chhattisgarh e-Medha post-matric scholarship portal for SC students, registration subpage, and official FAQ document."
+  },
+  {
+    "slug": "chhattisgarh-post-matric-scholarship-st",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+    "source_pages": [
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/StudentRegistration.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/Images/PMS-FAQ-1.0.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/post-matric-scholarship-for-sc-st-obc-students-chhattisgarh",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Chhattisgarh e-Medha post-matric scholarship portal for ST students, registration subpage, and official FAQ document."
+  },
+  {
+    "slug": "chhattisgarh-post-matric-scholarship-obc",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+    "source_pages": [
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/PublicModule/HowToApply.aspx",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/StudentRegistration.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://postmatric-scholarship.cg.nic.in/Images/PMS-FAQ-1.0.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/post-matric-scholarship-for-sc-st-obc-students-chhattisgarh",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Chhattisgarh e-Medha post-matric scholarship portal for OBC students, registration subpage, and official FAQ document."
+  },
+  {
+    "slug": "kanya-saksharta-protsahan-yojana-cg",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://cmhelpline.cg.gov.in/Home/SchemeDetails?schemeId2=674&schemeId=28",
+    "source_pages": [
+      {
+        "url": "https://cmhelpline.cg.gov.in/Home/SchemeDetails?schemeId2=674&schemeId=28",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://cgsccommission.com/schemes_1.php",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [],
+    "notes": "Official Chhattisgarh CM Helpline portal scheme details entry (schemeId2=674) and Chhattisgarh State SC Commission scheme documentation."
+  },
+  {
+    "slug": "noni-suraksha-yojana-cg",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/nsycg",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/nsycg",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://cmhelpline.cg.gov.in/Home/SchemeDetails?schemeId2=815&schemeId=36",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://nonisuraksha.cgstate.gov.in/Login.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.govtschemes.in/chatataisagadha-naonai-saurakasaa-yaojanaa",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official guidelines on myScheme portal (nsycg), Chhattisgarh CM Helpline portal (schemeId2=815), and official portal login."
+  },
+  {
+    "slug": "merit-cum-means-scholarship-for-minorities-professional-and-technical-courses-central",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://scholarships.gov.in/public/schemeGuidelines/MoMA_MCM_2018-20.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarships.gov.in/public/schemeGuidelines/MoMA_MCM_2018-20.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/hmcms",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/All-Scholarships",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/merit-cum-means-scholarship-for-professional-and-technical-courses-cs-minorities",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official MOMA Merit-cum-Means scheme guidelines PDF on National Scholarship Portal, myScheme entry, and NSP central listing."
+  },
+  {
+    "slug": "loreal-fyws-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.loreal.com/-/media/project/loreal/brand-sites/corp/master/lcorp/7-local-country-folder/india/documents/csr-policy.pdf",
+    "source_pages": [
+      {
+        "url": "https://www.loreal.com/-/media/project/loreal/brand-sites/corp/master/lcorp/7-local-country-folder/india/documents/csr-policy.pdf",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "benefits",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.forwomeninscience.com/login",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/loreal-india-for-young-women-in-science-scholarships",
+        "tier": "platform",
+        "role": "apply",
+        "verified": true
+      }
+    ],
+    "notes": "Official L'Oréal India CSR Policy document and global Foundation portal with India scholarship application partnership on Buddy4Study."
+  },
+  {
+    "slug": "begum-hazrat-mahal-national-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://scholarships.gov.in/public/schemeGuidelines/1053_G.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarships.gov.in/public/schemeGuidelines/1053_G.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/All-Scholarships",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/begum-hazrat-mahal-national-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Begum Hazrat Mahal National Scholarship scheme guidelines PDF (scheme 1053) on National Scholarship Portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-students-with-disabilities-depwd",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://depwd.gov.in/en/scholarship-post-matric/",
+    "source_pages": [
+      {
+        "url": "https://depwd.gov.in/en/scholarship-post-matric/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/postmssd",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/All-Scholarships",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/post-matric-scholarship-for-students-with-disabilities",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official DEPwD scheme page, myScheme central entry, and National Scholarship Portal application portal."
+  },
+  {
+    "slug": "post-matric-scholarship-scheme-for-minorities-nsp",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://scholarships.gov.in/public/schemeGuidelines/MoMA_Post_Matric_2018-20.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarships.gov.in/public/schemeGuidelines/MoMA_Post_Matric_2018-20.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/public/FAQ/FAQ_MOMA.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pmsfsbtnml",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/All-Scholarships",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/post-matric-scholarship-scheme-for-minorities",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official MOMA Post-Matric scheme guidelines and FAQ documents on National Scholarship Portal and myScheme entry."
+  },
+  {
+    "slug": "ladli-lakshmi-yojana-mp",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://ladlilaxmi.mp.gov.in/PratsaahanRaashi.aspx",
+    "source_pages": [
+      {
+        "url": "https://ladlilaxmi.mp.gov.in/PratsaahanRaashi.aspx",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "benefits",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/lly",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ladlilaxmi.mp.gov.in/Sharad_Surabhi_Ladli/Avedan_Type.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.govtschemes.in/ladli-laxmi-yojana",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official MP Ladli Laxmi portal incentive rate schedule (PratsaahanRaashi.aspx), application portal, and myScheme guidelines."
+  },
+  {
+    "slug": "bhagya-lakshmi-scheme-karnataka",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/bys",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/bys",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "documents",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://bangalorerural.nic.in/en/programmes-for-child-development-2/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://chitradurga.nic.in/en/scheme-category/bhagyalaxmi/",
+        "tier": "official",
+        "role": "overview",
+        "facts": [
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.govtschemes.in/karnataka-bhagyalakshmi-scheme",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official guidelines on myScheme portal (bys) and Karnataka district administration portal child development programs."
+  },
+  {
+    "slug": "tata-realty-scholarship-for-girls",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://media.tatarealty.in/investor-documents/July2026/gDV2Y0aEzfex3bVuOT2l.pdf",
+    "source_pages": [
+      {
+        "url": "https://media.tatarealty.in/investor-documents/July2026/gDV2Y0aEzfex3bVuOT2l.pdf",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://media.tatahousing.com/Sustainablity/TATA%20Realty_ESG_2025-26_05.06.2026_Web%20version.pdf",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.vidyasaarathi.co.in/Vidyasaarathi/scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      },
+      {
+        "url": "https://www.vidyasaarathi.co.in/Vidyasaarathi/login",
+        "tier": "platform",
+        "role": "apply",
+        "verified": true
+      }
+    ],
+    "notes": "Official Tata Realty CSR and ESG sustainability policy documents; application hosted via Protean Vidyasaarathi portal."
+  },
+  {
+    "slug": "tata-aia-paras-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.tataaia.com/about-us/tata-aia-corporate-social-responsibility-csr-policy.html",
+    "source_pages": [
+      {
+        "url": "https://www.tataaia.com/about-us/tata-aia-corporate-social-responsibility-csr-policy.html",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/tata-aia-paras-scholarship-programme",
+        "tier": "platform",
+        "role": "apply",
+        "facts": [
+          "eligibility",
+          "income_limit",
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Tata AIA CSR Policy portal page outlining education support; application and program operations hosted on Buddy4Study."
+  },
+  {
+    "slug": "idfc-first-bank-mba-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.idfcfirst.bank.in/csr-activities/educational-initiatives/mba-scholarship",
+    "source_pages": [
+      {
+        "url": "https://www.idfcfirst.bank.in/csr-activities/educational-initiatives/mba-scholarship",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.idfcfirst.bank.in/csr-activities",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/idfc-first-bank-mba-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official IDFC FIRST Bank CSR education portal page detailing the MBA Scholarship criteria, benefits, and participating B-schools."
+  },
+  {
+    "slug": "lt-build-india-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.lntecc.com/build-india-scholarship/",
+    "source_pages": [
+      {
+        "url": "https://www.lntecc.com/build-india-scholarship/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/l-t-build-india-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official L&T Construction Build India Scholarship portal page covering M.Tech sponsorship, eligibility, and application procedure."
+  },
+  {
+    "slug": "faea-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "http://www.faeaindia.org/StudentInfo.asp",
+    "source_pages": [
+      {
+        "url": "http://www.faeaindia.org/StudentInfo.asp",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "http://www.faeaindia.org/Adv2026.pdf",
+        "tier": "provider",
+        "role": "circular",
+        "facts": [
+          "timeline",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "http://www.faeaindia.org/Registration2026/Default.aspx",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/faea-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official FAEA student information guidelines subpage, annual advertisement PDF, and online candidate registration portal."
+  },
+  {
+    "slug": "fulbright-nehru-masters-fellowship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://usief.org.in/fulbright-fellowships/fellowships-for-indian-citizen/fulbright-nehru-masters-fellowships/",
+    "source_pages": [
+      {
+        "url": "https://usief.org.in/fulbright-fellowships/fellowships-for-indian-citizen/fulbright-nehru-masters-fellowships/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://apply.iie.org/ffsp2026",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/fulbright-nehru-masters-fellowships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official USIEF Fulbright-Nehru Master's Fellowships detail page and IIE online application system."
+  },
+  {
+    "slug": "research-guidance-phd-fellowship-for-backward-classes-karnataka",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://bcwd.karnataka.gov.in/60/stipend/fellowship-for-students-from-backward-classes-pursuing-full-time-ph.d.-studie/en",
+    "source_pages": [
+      {
+        "url": "https://bcwd.karnataka.gov.in/60/stipend/fellowship-for-students-from-backward-classes-pursuing-full-time-ph.d.-studie/en",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://bcwd.karnataka.gov.in/74/online--application/kn",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/bcwd-phd-fellowship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Karnataka BCWD scheme subpage specifically for Ph.D. stipend/fellowship and online application portal."
+  },
+  {
+    "slug": "mphil-phd-fellowship-for-minority-students-karnataka",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://dom.karnataka.gov.in/379/online-applications-are-invited-through-for-those-students-belongs-to-minority-communities-of-karnataka-state-who-are-pursuing-ph-d-during-the-year-2026-27-./en",
+    "source_pages": [
+      {
+        "url": "https://dom.karnataka.gov.in/379/online-applications-are-invited-through-for-those-students-belongs-to-minority-communities-of-karnataka-state-who-are-pursuing-ph-d-during-the-year-2026-27-./en",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dom.karnataka.gov.in/299/online-application/en",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/mphil-phd-fellowship-for-minority-students-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Directorate of Minorities Karnataka Ph.D. fellowship notification subpage and online application portal."
+  },
+  {
+    "slug": "national-overseas-scholarship-for-minority-communities-karnataka",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://dom.karnataka.gov.in/376/online-application-for-national-overseas-scholarship-is-open-for-the-year-2026-27/en",
+    "source_pages": [
+      {
+        "url": "https://dom.karnataka.gov.in/376/online-application-for-national-overseas-scholarship-is-open-for-the-year-2026-27/en",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dom.karnataka.gov.in/299/online-application/en",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/national-overseas-scholarship-for-minority-community-students-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Directorate of Minorities Karnataka National Overseas Scholarship notification subpage and online application portal."
+  },
+  {
+    "slug": "samagra-shikshana-karnataka-fellowship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://ssk.karnataka.gov.in/205/programmes/en",
+    "source_pages": [
+      {
+        "url": "https://ssk.karnataka.gov.in/205/programmes/en",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "overview",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ssk.karnataka.gov.in/228/ssk-circulars/en",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "guidelines",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/samagra-shikshana-karnataka-fellowship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Samagra Shikshana Karnataka state portal programs section and circulars repository."
+  },
+  {
+    "slug": "labour-department-scheme-for-unorganized-workers-children-karnataka",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://klwbapps.karnataka.gov.in/circulars",
+    "source_pages": [
+      {
+        "url": "https://klwbapps.karnataka.gov.in/circulars",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "guidelines",
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://klwbapps.karnataka.gov.in/auth/student/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/labour-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Karnataka Labour Welfare Board educational assistance circulars subpage and student portal login."
+  },
+  {
+    "slug": "up-pre-matric-scholarship-general-sc-st",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://scholarship.up.gov.in/pdfs/92-2026-1940-26-3-2026-1513982%20Mail.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarship.up.gov.in/pdfs/92-2026-1940-26-3-2026-1513982%20Mail.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/LoginStudentPreFresh.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.up.gov.in/RegistrationNew.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/up-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official UP Pre-Matric scholarship scheme official timetable notification PDF, pre-matric student fresh login, and registration subpage."
+  }
+]
