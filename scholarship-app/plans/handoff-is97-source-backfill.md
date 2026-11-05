@@ -132,6 +132,31 @@ Whatever agent does Part B, a second agent or the owner re-derives a sample from
     - Karnataka State Scholarship Portal (`ssp.karnataka.gov.in`) schemes (`post-matric-scholarship-for-sc-students-karnataka`, `post-matric-scholarship-for-st-students-karnataka`, `post-matric-scholarship-for-obc-students-karnataka`, `post-matric-scholarship-for-minorities-karnataka`, `post-matric-scholarship-for-ewsgeneral-category-karnataka`, `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka`, `vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka`, `merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka`, `sandeepani-shishya-vethana-scholarship-karnataka-state-brahmin-development-board`, `pre-matric-sc-students-karnataka`, `pre-matric-st-students-karnataka`)
 - **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-3.json` with 0 errors and 0 validation warnings.
 
+### Part B: Research Batch 4 (2026-11-06)
+- **Batch 4 Saved**: `plans/agy-results/is97-batch-4.json` (items 76–100 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Karnataka SSP pre-matric (`pre-matric-obc-students-karnataka`, `pre-matric-pwdudid-karnataka`)
+    - Major foundations (`azim-premji-scholarship`, `atul-maheshwari-scholarship`)
+    - Gujarat state schemes (`mukhyamantri-yuva-swavalamban-yojana-mysy`, `gujarat-post-matric-scholarship-for-obc`, `gujarat-post-matric-scholarship-for-minorities`)
+    - Haryana Har-Chhatravratti (`haryana-post-matric-scholarship-for-sc-students`)
+    - West Bengal (`swami-vivekananda-merit-cum-means-scholarship-svmcm`)
+    - Bihar (`bihar-post-matric-scholarship-bcebc`, `mukhyamantri-kanya-utthan-yojana-graduation`)
+    - Rajasthan (`chief-minister-higher-education-scholarship-rajasthan`)
+    - Maharashtra Social Welfare (`savitribai-phule-pre-matric-scholarship-sc-girls`)
+    - Madhya Pradesh Medhavi (`mukhyamantri-medhavi-vidyarthi-yojana-mmvy`)
+    - Tamil Nadu (`tamil-nadu-post-matric-scholarship-for-scst`, `tamil-nadu-bcmbcdnc-post-matric-scholarship`)
+    - Kerala (`e-grantz-kerala-scstoecobc-support`)
+    - Delhi SC/ST/OBC Welfare (`mukhyamantri-vidyarthi-pratibha-yojna`, `merit-scholarship-for-scstobc-students-higher-ed`)
+    - Jharkhand (`jharkhand-e-kalyan-post-matric-scholarship`)
+    - Chhattisgarh (`chhattisgarh-bpl-scholarship-for-college-students`)
+    - Assam DHE (`assam-dhe-combined-merit-scholarship`)
+    - Uttarakhand Higher Education (`uchcha-shiksha-protsahan-chhatravriti-yojana`)
+    - Himachal Pradesh Higher Education (`dr-ambedkar-medhavi-chattervriti-yojana`)
+    - National / AICTE (`prime-minister-special-scholarship-scheme-sssjkl`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-4.json` with 0 errors and 0 validation warnings.
+
+
 
 
 
