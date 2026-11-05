@@ -1,0 +1,951 @@
+[
+  {
+    "slug": "sc-scholarship-jk",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/pms-sc",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pms-sc",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://jkdswdj.jk.gov.in/welfareSchemes/Scholarship%20schemes%20for%20website.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "guidelines"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://socialwelfarekashmir.jk.gov.in/welfareschemes.html",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/jammu-and-kashmir-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Centrally sponsored Pre and Post Matric Scholarship for SC students in J&K, notified by Directorate of Social Welfare Jammu and Kashmir, hosted via National Scholarship Portal."
+  },
+  {
+    "slug": "ladli-beti-jk",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/lbs",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/lbs",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ganderbal.nic.in/service/jk-ladli-beti-yojana/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "documents"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.govtschemes.in/jammu-kashmir-ladli-beti-scheme",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official guidelines on myScheme portal and district administration portal for J&K Social Welfare Department's Ladli Beti Scheme."
+  },
+  {
+    "slug": "mukhya-mantri-protsahan-hp",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://education.hp.gov.in/state-sponsored-schemes/",
+    "source_pages": [
+      {
+        "url": "https://education.hp.gov.in/state-sponsored-schemes/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/mmpy",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/hp-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "State-sponsored higher education incentive scheme by Directorate of Higher Education, Himachal Pradesh for students admitted into premier national institutes (IITs, AIIMS, IIMs)."
+  },
+  {
+    "slug": "pre-matric-sc-st-hp",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://education.hp.gov.in/centre-sponsored-schemes/",
+    "source_pages": [
+      {
+        "url": "https://education.hp.gov.in/centre-sponsored-schemes/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pre-sc",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/hp-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Centrally sponsored pre-matric scholarship for SC/ST students in Himachal Pradesh, administered by HP Directorate of Higher/Elementary Education."
+  },
+  {
+    "slug": "generation-google-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://buildyourfuture.withgoogle.com/scholarships/generation-google-scholarship-apac",
+    "source_pages": [
+      {
+        "url": "https://buildyourfuture.withgoogle.com/scholarships/generation-google-scholarship-apac",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/generation-google-scholarship-apac",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Official Google student careers portal page for Generation Google Scholarship APAC (open to female students pursuing computer science degrees in India and APAC)."
+  },
+  {
+    "slug": "amazon-future-engineer-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.ffe.org/amazon-future-engineer/",
+    "source_pages": [
+      {
+        "url": "https://www.ffe.org/amazon-future-engineer/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.amazonfutureengineer.in/Scholarship%20and%20Internship-2024",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "benefits",
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/amazon-future-engineer-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Amazon Future Engineer Scholarship India in collaboration with Foundation for Excellence (FFE) supporting female first-year B.E./B.Tech students."
+  },
+  {
+    "slug": "jsw-udaan-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.jswfoundation.in/foundation/vidyasarathi-udaan-scholarship-students-kalmeshwar",
+    "source_pages": [
+      {
+        "url": "https://www.jswfoundation.in/foundation/vidyasarathi-udaan-scholarship-students-kalmeshwar",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.jswfoundation.in/foundation/about-jsw-foundation",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.vidyasaarathi.co.in/Vidyasaarathi/resources/68/1343_15.html",
+        "tier": "platform",
+        "role": "apply",
+        "verified": true
+      },
+      {
+        "url": "https://leverageedu.com/discover/indian-scholarships/jsw-udaan-scholarship/",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "JSW Foundation's Udaan scholarship program hosted on Vidyasaarathi portal for students near JSW plant locations."
+  },
+  {
+    "slug": "pm-yasasvi-top-class-education",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.dosje.gov.in/schemes-and-services/pm-young-achievers-scholarship-award-scheme-for-vibrant-india-for-obcs-and-others-pm-yasasvi/",
+    "source_pages": [
+      {
+        "url": "https://www.dosje.gov.in/schemes-and-services/pm-young-achievers-scholarship-award-scheme-for-vibrant-india-for-obcs-and-others-pm-yasasvi/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pm-yasasvitcceobcebcdnts",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/pm-yasasvi",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Central sector top-class college education scholarship scheme for OBC, EBC, and DNT students by Ministry of Social Justice and Empowerment."
+  },
+  {
+    "slug": "central-sector-scholarship-csss",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/csss-cus",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/csss-cus",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/central-sector-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "PM-USP Central Sector Scheme of Scholarship for College and University Students administered by Department of Higher Education, Ministry of Education."
+  },
+  {
+    "slug": "pmss-capf-assam-rifles",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://scholarships.gov.in/public/schemeGuidelines/warb/G_1197_3001.pdf",
+    "source_pages": [
+      {
+        "url": "https://scholarships.gov.in/public/schemeGuidelines/warb/G_1197_3001.pdf",
+        "tier": "official",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pmsswcapfar",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/prime-ministers-scholarship-scheme",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Prime Minister's Scholarship Scheme (PMSS) for dependent wards/widows of CAPFs, Assam Rifles & State Police personnel, executed by WARB, MHA."
+  },
+  {
+    "slug": "inlaks-shivdasani-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://inlaksfoundation.org/opportunities/scholarship/",
+    "source_pages": [
+      {
+        "url": "https://inlaksfoundation.org/opportunities/scholarship/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://onlineapplication.inlaksfoundation.org/login",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/inlaks-shivdasani-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Inlaks Shivdasani Foundation scholarships for young Indians pursuing postgraduate studies abroad at top universities in US, UK, and Europe."
+  },
+  {
+    "slug": "felix-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.felixscholarship.org/how-to-apply/",
+    "source_pages": [
+      {
+        "url": "https://www.felixscholarship.org/how-to-apply/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.felixscholarship.org/faqs/",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/university-of-oxford-felix-scholarships-2025",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Felix Scholarship Trust fully funded awards for Indian and developing country students for postgraduate study at Oxford, Reading, and SOAS."
+  },
+  {
+    "slug": "nl-scholarship-netherlands",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.nuffic.nl/en/nl-scholarship",
+    "source_pages": [
+      {
+        "url": "https://www.nuffic.nl/en/nl-scholarship",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.studyinnl.org/finances/nl-scholarship",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://leverageedu.com/learn/holland-scholarship/",
+        "tier": "aggregator",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Dutch Ministry of Education, Culture and Science NL Scholarship (formerly Holland Scholarship) for non-EEA students pursuing bachelor or master studies in Netherlands."
+  },
+  {
+    "slug": "charpak-scholarship-france",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.inde.campusfrance.org/france-excellence-charpak-scholarship-program",
+    "source_pages": [
+      {
+        "url": "https://www.inde.campusfrance.org/france-excellence-charpak-scholarship-program",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.institutfrancaisindia.in/registration-form.php",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/charpak-scholarship-program",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "French Embassy / Institut Français India scholarship for Indian students pursuing Master's, Bachelor's, or exchange programs in France."
+  },
+  {
+    "slug": "jn-tata-endowment-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://jntataendowment.org/loan-scholarship-process/",
+    "source_pages": [
+      {
+        "url": "https://jntataendowment.org/loan-scholarship-process/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://application.jntataendowment.org/TataEndowment/Login.jsp",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/jn-tata-endowment-loan-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "J. N. Tata Endowment merit-based loan scholarship by Tata Trusts for Indian graduates pursuing postgraduate studies abroad."
+  },
+  {
+    "slug": "amazon-future-engineer-scholarship-india",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://ffe.org/amazon-future-engineer/",
+    "source_pages": [
+      {
+        "url": "https://ffe.org/amazon-future-engineer/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.amazonfutureengineer.in/Scholarship%20and%20Internship-2024",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "benefits",
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/amazon-future-engineer-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Amazon India and Foundation for Excellence (FFE) scholarship for women pursuing first-year computer science engineering degrees in India."
+  },
+  {
+    "slug": "generation-google-scholarship-apac",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://buildyourfuture.withgoogle.com/scholarships/generation-google-scholarship-apac",
+    "source_pages": [
+      {
+        "url": "https://buildyourfuture.withgoogle.com/scholarships/generation-google-scholarship-apac",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/generation-google-scholarship-apac",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Google BuildYourFuture scholarship for women students in Asia-Pacific pursuing degrees in computer science or related technical fields."
+  },
+  {
+    "slug": "lic-hfl-vidyadhan-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://cdn.lichousing.com/2026/09/CSR-Annual-Action-Plan-FY2026-2027.pdf",
+    "source_pages": [
+      {
+        "url": "https://cdn.lichousing.com/2026/09/CSR-Annual-Action-Plan-FY2026-2027.pdf",
+        "tier": "provider",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://lichfl.scholarsbox.in/how-to-apply",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/lic-hfl-vidyadhan-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "LIC Housing Finance Limited CSR initiative providing educational assistance to students from Class 11 to PG levels."
+  },
+  {
+    "slug": "rolls-royce-wings4her-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://theonestage.org/Wings4Her.php",
+    "source_pages": [
+      {
+        "url": "https://theonestage.org/Wings4Her.php",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/page/rolls-royce-wings4her-scholarship-for-women-engineering-students",
+        "tier": "platform",
+        "role": "apply",
+        "verified": true
+      }
+    ],
+    "notes": "Rolls-Royce India CSR scholarship for female undergraduate engineering students, administered with OneStage/CAF India and hosted on Buddy4Study."
+  },
+  {
+    "slug": "canada-graduate-scholarships-masters-program",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-masters-program",
+    "source_pages": [
+      {
+        "url": "https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-masters-program",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://portal-portail.nserc-crsng.gc.ca/s/login.aspx",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.nserc-crsng.gc.ca/Students-Etudiants/PG-CS/CGSM-BESCM_eng.asp",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [],
+    "notes": "Government of Canada Tri-agency (NSERC, CIHR, SSHRC) Canada Graduate Scholarships – Master's program (CGS M / CGRS M)."
+  },
+  {
+    "slug": "lester-b-pearson-international-scholarship-program",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://future.utoronto.ca/pearson-scholarships/",
+    "source_pages": [
+      {
+        "url": "https://future.utoronto.ca/pearson-scholarships/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://internationalexperience.utoronto.ca/global-experiences/global-scholarships/lester-b-pearson-scholarship",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "overview"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://apply.adm.utoronto.ca/register/pearson-participate",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/lester-b-pearson-international-scholarship-program",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "University of Toronto's premier undergraduate scholarship for exceptional international students, covering tuition, books, incidental fees, and residence."
+  },
+  {
+    "slug": "ubc-international-major-entrance-scholarship",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/international-entrance-scholarships/",
+    "source_pages": [
+      {
+        "url": "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/international-entrance-scholarships/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://you.ubc.ca/financial-planning/scholarships-awards-international-students/",
+        "tier": "provider",
+        "role": "overview",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://you.ubc.ca/apply/",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/ubc-international-major-entrance-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "University of British Columbia renewable entrance scholarship awarded to exceptional international students entering undergraduate studies."
+  },
+  {
+    "slug": "heinrich-bll-foundation-scholarships",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.boell.de/en/scholarships",
+    "source_pages": [
+      {
+        "url": "https://www.boell.de/en/scholarships",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.boell.de/en/applying-scholarship",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/heinrich-boll-foundation-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Heinrich Böll Foundation scholarships for international undergraduate, graduate, and doctoral students at state-recognized universities in Germany."
+  },
+  {
+    "slug": "konrad-adenauer-stiftung-scholarships",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://www.kas.de/documents/264392/264441/KAS+India+-+Scholarship+Programme.pdf/337725d6-411b-2a0e-a161-40f820862ec0?version=1.0&t=1622721098720",
+    "source_pages": [
+      {
+        "url": "https://www.kas.de/documents/264392/264441/KAS+India+-+Scholarship+Programme.pdf/337725d6-411b-2a0e-a161-40f820862ec0?version=1.0&t=1622721098720",
+        "tier": "provider",
+        "role": "circular",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.kas.de/en/web/indien/kas-scholarship-programme",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/konrad-adenauer-stiftung-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "Konrad-Adenauer-Stiftung scholarship programme for Indian students pursuing postgraduate and doctoral studies in Germany."
+  },
+  {
+    "slug": "esmt-berlin-mba-scholarships",
+    "status": "found-official",
+    "outcome": "found-official",
+    "official_source_specific": "https://esmt.berlin/mba-programs/full-time-mba/tuition-financing/scholarships",
+    "source_pages": [
+      {
+        "url": "https://esmt.berlin/mba-programs/full-time-mba/tuition-financing/scholarships",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "selection_criteria"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://esmt.berlin/mba-programs/full-time-mba/admissions",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/esmt-berlin-full-time-mba-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "verified": true
+      }
+    ],
+    "notes": "ESMT Berlin merit-based awards and scholarships for self-funded full-time MBA applicants reducing tuition fees."
+  }
+]

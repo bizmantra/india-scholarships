@@ -1,0 +1,991 @@
+[
+  {
+    "slug": "pre-matric-obc-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=5&lang=en&MetricType=1",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=5&lang=en&MetricType=1",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/ssppre/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-scholarship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Karnataka SSP pre-matric OBC scheme eligibility endpoint and pre-matric application portal."
+  },
+  {
+    "slug": "pre-matric-pwdudid-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=135&lang=en&MetricType=1",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=135&lang=en&MetricType=1",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "residency_requirement"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/ssppre/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-scholarship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Karnataka SSP pre-matric PwD (UDID) scheme eligibility endpoint and pre-matric portal."
+  },
+  {
+    "slug": "azim-premji-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://azimpremjifoundation.org/what-we-do/education/azim-premji-scholarship/",
+    "source_pages": [
+      {
+        "url": "https://azimpremjifoundation.org/what-we-do/education/azim-premji-scholarship/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://azimpremjifoundation.org/what-we-do/education/azim-premji-scholarship/applications/",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/azim-premji-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Azim Premji Foundation scholarship overview and application portal."
+  },
+  {
+    "slug": "atul-maheshwari-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://www.amarujalafoundation.org/atul-maheshwari-chhatravritti/",
+    "source_pages": [
+      {
+        "url": "https://www.amarujalafoundation.org/atul-maheshwari-chhatravritti/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.amarujala.com/atul-maheshwari-chhatravritti-2026",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url",
+          "deadline"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/atul-maheshwari-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Amar Ujala Foundation Atul Maheshwari Chhatravritti scheme page."
+  },
+  {
+    "slug": "mukhyamantri-yuva-swavalamban-yojana-mysy",
+    "status": "found-official",
+    "official_source_specific": "https://mysy.gujarat.gov.in/Noticeboard/MYSY%20FAQ%2025-26.pdf",
+    "source_pages": [
+      {
+        "url": "https://mysy.gujarat.gov.in/Noticeboard/MYSY%20FAQ%2025-26.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://mysy.gujarat.gov.in/NoticeFile.ashx?f=Important_instruction_2026-27__3__20261007151353.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/mysy-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Gujarat Government MYSY portal guidelines PDF and important instructions notice."
+  },
+  {
+    "slug": "haryana-post-matric-scholarship-for-sc-students",
+    "status": "found-official",
+    "official_source_specific": "https://harchhatravratti.highereduhry.ac.in/Notices/Consolidate%20Stipend%20and%20Free%20Books%20to%20SC%20Students%20Scheme.pdf",
+    "source_pages": [
+      {
+        "url": "https://harchhatravratti.highereduhry.ac.in/Notices/Consolidate%20Stipend%20and%20Free%20Books%20to%20SC%20Students%20Scheme.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://harchhatravratti.highereduhry.ac.in/Notices/Notice38.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline",
+          "cycle_status"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/haryana-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Haryana Har-Chhatravratti portal SC post-matric stipend scheme PDF and current session notice."
+  },
+  {
+    "slug": "swami-vivekananda-merit-cum-means-scholarship-svmcm",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/svmcms",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/svmcms",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://svmcm.wbhed.gov.in/page/about.php",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/svmcm",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official West Bengal Higher Education portal and state university circulars for SVMCM."
+  },
+  {
+    "slug": "gujarat-post-matric-scholarship-for-obc",
+    "status": "found-official",
+    "official_source_specific": "https://www.digitalgujarat.gov.in/Citizen/CitizenService.aspx",
+    "source_pages": [
+      {
+        "url": "https://www.digitalgujarat.gov.in/Citizen/CitizenService.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/digital-gujarat-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Digital Gujarat portal citizen service listing for SEBC/OBC post-matric scholarship."
+  },
+  {
+    "slug": "gujarat-post-matric-scholarship-for-minorities",
+    "status": "found-official",
+    "official_source_specific": "https://www.digitalgujarat.gov.in/Citizen/CitizenService.aspx",
+    "source_pages": [
+      {
+        "url": "https://www.digitalgujarat.gov.in/Citizen/CitizenService.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/digital-gujarat-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Digital Gujarat portal citizen service listing for Minorities post-matric scholarship."
+  },
+  {
+    "slug": "bihar-post-matric-scholarship-bcebc",
+    "status": "found-official",
+    "official_source_specific": "https://pmsonline.bihar.gov.in/pms/pms_online/Default.aspx",
+    "source_pages": [
+      {
+        "url": "https://pmsonline.bihar.gov.in/pms/pms_online/Default.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://pmsonline.bihar.gov.in/26-27/pms/pms_online/CreateProfile.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/bihar-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Bihar Post Matric Scholarship portal home and student profile registration portal."
+  },
+  {
+    "slug": "mukhyamantri-kanya-utthan-yojana-graduation",
+    "status": "found-official",
+    "official_source_specific": "https://medhasoft.bihar.gov.in/MKUYSNATAK_2025/pms/MainDefault.aspx",
+    "source_pages": [
+      {
+        "url": "https://medhasoft.bihar.gov.in/MKUYSNATAK_2025/pms/MainDefault.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://medhasoft.bihar.gov.in/SnatakScholarship/Login.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/mukhyamantri-kanya-utthan-yojana-bihar",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Bihar Medhasoft portal Mukhyamantri Kanya Utthan Yojana (Snatak/Graduation) portal."
+  },
+  {
+    "slug": "chief-minister-higher-education-scholarship-rajasthan",
+    "status": "found-official",
+    "official_source_specific": "https://web.umang.gov.in/landing/department/rajasthan-scholarship.html",
+    "source_pages": [
+      {
+        "url": "https://web.umang.gov.in/landing/department/rajasthan-scholarship.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://sso.rajasthan.gov.in/signin",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/rajasthan-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Directorate of College Education Rajasthan portal and SSO application gateway."
+  },
+  {
+    "slug": "savitribai-phule-pre-matric-scholarship-sc-girls",
+    "status": "found-official",
+    "official_source_specific": "https://socialwelfare.maharashtra.gov.in/en/scheme/savitribai-phule-scholarship-scheme/",
+    "source_pages": [
+      {
+        "url": "https://socialwelfare.maharashtra.gov.in/en/scheme/savitribai-phule-scholarship-scheme/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://sjsa.maharashtra.gov.in/en/scheme/savitribai-phule-scholarship-award-of-scholarships-to-b-c-girl-students-studying-in-std-8th-to10-th/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/mahadbt-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Maharashtra Social Welfare and Social Justice Department Savitribai Phule scholarship scheme pages."
+  },
+  {
+    "slug": "mukhyamantri-medhavi-vidyarthi-yojana-mmvy",
+    "status": "found-official",
+    "official_source_specific": "https://medhavikalyan.mp.gov.in/MMVY.aspx",
+    "source_pages": [
+      {
+        "url": "https://medhavikalyan.mp.gov.in/MMVY.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://medhavikalyan.mp.gov.in/MedhaviChhatra/Resources/Files/Consolidated_Order_Latest_2026.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://medhavikalyan.mp.gov.in/MedhaviChhatra/Resources/Files/FAQMMVY(1).pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/mmvy-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official MP Medhavi Kalyan portal MMVY home, consolidated government order, and FAQ PDF."
+  },
+  {
+    "slug": "tamil-nadu-post-matric-scholarship-for-scst",
+    "status": "found-official",
+    "official_source_specific": "https://kancheepuram.nic.in/departments/adi-dravidar-and-tribal-welfare/",
+    "source_pages": [
+      {
+        "url": "https://kancheepuram.nic.in/departments/adi-dravidar-and-tribal-welfare/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/tamil-nadu-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official NIC Tamil Nadu District portal publishing the Adi Dravidar Post Matric Scholarship rules and rates."
+  },
+  {
+    "slug": "tamil-nadu-bcmbcdnc-post-matric-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://bcmbcmw.tn.gov.in/welfschemes.htm",
+    "source_pages": [
+      {
+        "url": "https://bcmbcmw.tn.gov.in/welfschemes.htm",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://bcmbcmw.tn.gov.in/forms/Scholarship_Fresh_application.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/tamil-nadu-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Backward Classes, Most Backward Classes and Minorities Welfare Department welfare schemes page and form."
+  },
+  {
+    "slug": "e-grantz-kerala-scstoecobc-support",
+    "status": "found-official",
+    "official_source_specific": "https://egrantz.kerala.gov.in/Registration/eg_faq",
+    "source_pages": [
+      {
+        "url": "https://egrantz.kerala.gov.in/Registration/eg_faq",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://egrantz.kerala.gov.in/Public_Dashboard/dashboard_public",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/egrantz-kerala",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Kerala e-Grantz 3.0 portal FAQ guideline page and public dashboard."
+  },
+  {
+    "slug": "mukhyamantri-vidyarthi-pratibha-yojna",
+    "status": "found-official",
+    "official_source_specific": "https://scstwelfare.delhi.gov.in/scstwelfare/guidelines-scholarship-schemes-2025-26",
+    "source_pages": [
+      {
+        "url": "https://scstwelfare.delhi.gov.in/scstwelfare/guidelines-scholarship-schemes-2025-26",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scstwelfare.delhi.gov.in/sites/default/files/scstwelfare/circulars-orders/scholarship_schemes_2025-26_guidelines.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual",
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/mvpy",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/delhi-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Delhi SC/ST/OBC Welfare Department scholarship guidelines and official comprehensive guidelines PDF."
+  },
+  {
+    "slug": "merit-scholarship-for-scstobc-students-higher-ed",
+    "status": "found-official",
+    "official_source_specific": "https://scstwelfare.delhi.gov.in/scstwelfare/guidelines-scholarship-schemes-2025-26",
+    "source_pages": [
+      {
+        "url": "https://scstwelfare.delhi.gov.in/scstwelfare/guidelines-scholarship-schemes-2025-26",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scstwelfare.delhi.gov.in/sites/default/files/scstwelfare/circulars-orders/scholarship_schemes_2025-26_guidelines.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual",
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/delhi-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Delhi SC/ST/OBC Welfare Department higher education merit scholarship guidelines and official PDF."
+  },
+  {
+    "slug": "jharkhand-e-kalyan-post-matric-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://ekalyan.cgg.gov.in/Advertisement.do",
+    "source_pages": [
+      {
+        "url": "https://ekalyan.cgg.gov.in/Advertisement.do",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline",
+          "cycle_status"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://ekalyan.cgg.gov.in/downloads/Post_Matric_Scholarship_sankalp_2022.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/e-kalyan-jharkhand-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Jharkhand e-Kalyan official advertisement page and post-matric government resolution PDF."
+  },
+  {
+    "slug": "chhattisgarh-bpl-scholarship-for-college-students",
+    "status": "found-official",
+    "official_source_specific": "https://web.umang.gov.in/landing/department/chhattisgarh-scholarship.html",
+    "source_pages": [
+      {
+        "url": "https://web.umang.gov.in/landing/department/chhattisgarh-scholarship.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/chhattisgarh-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Chhattisgarh State Portal and national UMANG government portal directory."
+  },
+  {
+    "slug": "assam-dhe-combined-merit-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/cmsdheassam",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/cmsdheassam",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dhe-operations.assam.gov.in/pg-scholarship-2025-26",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/assam-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Assam Directorate of Higher Education portal and online operations application portal."
+  },
+  {
+    "slug": "uchcha-shiksha-protsahan-chhatravriti-yojana",
+    "status": "found-official",
+    "official_source_specific": "https://he.uk.gov.in/hi/%E0%A4%9B%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF-%E0%A4%AA%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A4%B2/",
+    "source_pages": [
+      {
+        "url": "https://he.uk.gov.in/hi/%E0%A4%9B%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF-%E0%A4%AA%E0%A5%8B%E0%A4%B0%E0%A5%8D%E0%A4%9F%E0%A4%B2/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://uttarakhand.samarth.ac.in/index.php/site/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/uttarakhand-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Uttarakhand Higher Education Department portal and Samarth eGov login portal."
+  },
+  {
+    "slug": "dr-ambedkar-medhavi-chattervriti-yojana",
+    "status": "found-official",
+    "official_source_specific": "https://education.hp.gov.in/state-sponsored-schemes/",
+    "source_pages": [
+      {
+        "url": "https://education.hp.gov.in/state-sponsored-schemes/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/dr-ambedkar-medhavi-chhatravriti-yojana-himachal-pradesh",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official HP Directorate of Higher Education state-sponsored schemes overview page."
+  },
+  {
+    "slug": "prime-minister-special-scholarship-scheme-sssjkl",
+    "status": "found-official",
+    "official_source_specific": "https://aicte.gov.in/SSSJKL2026-27",
+    "source_pages": [
+      {
+        "url": "https://aicte.gov.in/SSSJKL2026-27",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url",
+          "deadline"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://aicte.gov.in/SSSJKL%202024-25",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/prime-minister-special-scholarship-scheme-pmsss-jk",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official AICTE PMSSS / SSSJKL current session portal page and CSS inquiry portal."
+  }
+]
