@@ -1,0 +1,1098 @@
+[
+  {
+    "slug": "vidyadhan-ladakh-scholarship-program",
+    "status": "found-official",
+    "official_source_specific": "https://www.vidyadhan.org/apply",
+    "source_pages": [
+      {
+        "url": "https://www.vidyadhan.org/apply",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "dates"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.vidyadhan.org/register/student",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/vidyadhan-scholarship-program",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official portal and guidelines for Sarojini Damodaran Foundation's Vidyadhan Ladakh scholarship program."
+  },
+  {
+    "slug": "dorjee-khandu-merit-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://apdhte.nic.in/Stipend.htm",
+    "source_pages": [
+      {
+        "url": "https://apdhte.nic.in/Stipend.htm",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://apdhte.nic.in/Stipend/2026-27/Scholarship%20Notice.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/arunachal-pradesh-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Arunachal Pradesh Directorate of Higher and Technical Education portal page and notification circular for the Dorjee Khandu Government College Merit Scholarship Scheme."
+  },
+  {
+    "slug": "nagaland-state-merit-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://highereducation.nagaland.gov.in/wp-content/uploads/2025/07/Guidelines-State-Merit-Scholarship.pdf",
+    "source_pages": [
+      {
+        "url": "https://highereducation.nagaland.gov.in/wp-content/uploads/2025/07/Guidelines-State-Merit-Scholarship.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://highereducation.nagaland.gov.in/scholarship/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.nagaland.gov.in/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/state-merit-scholarship-nagaland",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Nagaland Department of Higher Education scheme guidelines PDF, scholarship directory, and state scholarship application login portal."
+  },
+  {
+    "slug": "pm-yasasvi-post-matric-scholarship-manipur",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/pm-yasasvipmsobcebcdnts",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pm-yasasvipmsobcebcdnts",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://manipur.gov.in/?p=29514",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://manipur.gov.in/wp-content/uploads/2023/11/obcSc.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/manipur-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official national guidelines on myScheme and Manipur State Government notification for PM-YASASVI Post-Matric Scholarship for OBC/EBC/DNT students."
+  },
+  {
+    "slug": "post-matric-scholarship-for-sc-students-tripura",
+    "status": "found-official",
+    "official_source_specific": "https://scw.tripura.gov.in/sites/default/files/2026-06/Post%20matric%20Scholarship%202026-27_0.pdf",
+    "source_pages": [
+      {
+        "url": "https://scw.tripura.gov.in/sites/default/files/2026-06/Post%20matric%20Scholarship%202026-27_0.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "deadline"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scw.tripura.gov.in/notification-",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/nsp-postmatric-scholarship-for-sc-students-tripura",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/tripura-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official notification PDF from Tripura Directorate for Welfare of Scheduled Castes for Centrally Sponsored Post-Matric Scholarship on NSP."
+  },
+  {
+    "slug": "meghalaya-chief-minister-scholarship-scheme-cmss",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/cmss",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/cmss",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://megeducation.gov.in/personas/student.html",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.meghalaya.gov.in/sites/default/files/announcement/CE_SCHOL_CM_SS_3_2025_26_51.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://govtschemes.in/meghalaya-chief-minister-scholarship-scheme",
+        "tier": "aggregator",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Meghalaya Chief Minister Scholarship Scheme guidelines on myScheme, state education student portal, and official announcement PDF."
+  },
+  {
+    "slug": "chief-minister-cm-scholarship-sikkim",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/cmeas",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/cmeas",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarships.sikkim.gov.in/account/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/sikkim-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Chief Minister's Educational Assistance Scheme (Sikkim) on myScheme and State Scholarship Portal application login."
+  },
+  {
+    "slug": "sant-sohirobanath-ambiye-bursary-scheme",
+    "status": "found-official",
+    "official_source_specific": "https://dhe.goa.gov.in/resource/getSchemesDetail/165/",
+    "source_pages": [
+      {
+        "url": "https://dhe.goa.gov.in/resource/getSchemesDetail/165/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "dates"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://dhe.goa.gov.in/resource/getDocument/PDF%20%20%20165/",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/goa-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Goa Directorate of Higher Education detail scheme page and official scheme notification document PDF for Sant Sohirobanath Ambiye Dnyanpith Trust Bursary Scheme."
+  },
+  {
+    "slug": "post-matric-scholarship-for-sc-students-chandigarh",
+    "status": "found-official",
+    "official_source_specific": "https://chdeducation.gov.in/page/viewpage/106",
+    "source_pages": [
+      {
+        "url": "https://chdeducation.gov.in/page/viewpage/106",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://chdeducation.gov.in/page/viewpage/103",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/centrally-sponsored-post-matric-scholarship-for-sc-students-chandigarh",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/chandigarh-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Chandigarh Department of Higher Education Post-Matric Scholarship for SC students guidelines page and scholarship list."
+  },
+  {
+    "slug": "sudakshya-scheme-for-girls-itipolyechnic",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/sfgcs",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/sfgcs",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://scholarship.odisha.gov.in/student-registration",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/odisha-scholarship-portal",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Odisha Sudakshya Scheme for Girls in ITI and Polytechnic technical courses on myScheme and Odisha State Scholarship Portal."
+  },
+  {
+    "slug": "additional-scholarship-for-st-students-andaman-nicobar",
+    "status": "found-official",
+    "official_source_specific": "http://andssw1.and.nic.in/socialwelfare/pdf/Press%20Release-Scholarship.pdf",
+    "source_pages": [
+      {
+        "url": "http://andssw1.and.nic.in/socialwelfare/pdf/Press%20Release-Scholarship.pdf",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "dates"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "http://andssw1.and.nic.in/socialwelfare/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/andaman-and-nicobar-islands-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official Directorate of Social Welfare, Andaman & Nicobar Administration scholarship press release notification and official welfare portal."
+  },
+  {
+    "slug": "central-sector-scheme-of-scholarship-for-college-and-university-students",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/csss-cus",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/csss-cus",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://megeducation.gov.in/dhte/other_docs/guidelines/Central%20Sector%20Scheme%20of%20Scholarship%20for%20College%20and%20University%20Students.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://web.umang.gov.in/landing/department/national-scholarship-portal.html",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/central-sector-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Department of Higher Education, Ministry of Education flagship Central Sector Scheme for college and university students on myScheme with verified scheme guidelines PDF."
+  },
+  {
+    "slug": "top-class-education-scheme-for-sc-students",
+    "status": "found-official",
+    "official_source_specific": "https://www.dosje.gov.in/schemes-and-services/central-sector-scholarship-of-top-class-education-for-sc-students/",
+    "source_pages": [
+      {
+        "url": "https://www.dosje.gov.in/schemes-and-services/central-sector-scholarship-of-top-class-education-for-sc-students/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://durwo6bhtjtqt.cloudfront.net/wp-content/uploads/2025/11/93761739964283.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/tce-sc",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/top-class-education-scholarship-sc-students",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Department of Social Justice and Empowerment (MoSJE) official scheme portal, guideline PDF, and myScheme entry for Top Class Education for SC students."
+  },
+  {
+    "slug": "inspire-scholarship-for-higher-education-she",
+    "status": "found-official",
+    "official_source_specific": "https://www.online-inspire.gov.in/Content/SHEPostofferImplementationGuidelines.pdf",
+    "source_pages": [
+      {
+        "url": "https://www.online-inspire.gov.in/Content/SHEPostofferImplementationGuidelines.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.online-inspire.gov.in/Content/SHEFAQs.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "faq"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.online-inspire.gov.in/Content/EndorsementFormForB.Sc.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/inspire-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Department of Science and Technology (DST) official online INSPIRE portal guidelines and FAQs for Scholarship for Higher Education (SHE)."
+  },
+  {
+    "slug": "aicte-saksham-scholarship-for-students-with-disabilities",
+    "status": "found-official",
+    "official_source_specific": "https://www.aicte.gov.in/schemes/students-development-schemes/Saksham/General-Instructions",
+    "source_pages": [
+      {
+        "url": "https://www.aicte.gov.in/schemes/students-development-schemes/Saksham/General-Instructions",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://fellowship.aicte.gov.in/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/sak-deg",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/saksham-scholarship-scheme",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "AICTE official Saksham scholarship general instructions page, AICTE fellowship portal login, and myScheme listing."
+  },
+  {
+    "slug": "prime-ministers-research-fellowship-pmrf",
+    "status": "found-official",
+    "official_source_specific": "https://www.pmrf.in/guidelines.html",
+    "source_pages": [
+      {
+        "url": "https://www.pmrf.in/guidelines.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "selection"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.pmrf.in/fellowship.html",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/pmrf-research-fellowship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official portal maintained by coordinating IIT for PMRF scheme guidelines and fellowship benefits breakdown."
+  },
+  {
+    "slug": "pmss-for-railway-protection-force-rpfrpsf",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/pmssrpf",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pmssrpf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://web.umang.gov.in/landing/department/national-scholarship-portal.html",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/prime-ministers-scholarship-scheme-rpf-rpsf",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.buddy4study.com/scholarship/prime-ministers-scholarship-scheme-for-rpf",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official scheme entry on myScheme for PMSS Railway Protection Force and RPF/RPSF personnel dependent wards."
+  },
+  {
+    "slug": "sn-bose-scholars-program-international-research",
+    "status": "found-official",
+    "official_source_specific": "https://iusstf.org/s-n-bose-scholars-program",
+    "source_pages": [
+      {
+        "url": "https://iusstf.org/s-n-bose-scholars-program",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/s-n-bose-scholars-program",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Indo-U.S. Science and Technology Forum (IUSSTF) official program portal and guidelines for S.N. Bose Scholars Program."
+  },
+  {
+    "slug": "pre-matric-scholarship-for-minorities-central-sector",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/presm",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/presm",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://megeducation.gov.in/dhte/other_docs/guidelines/Guidelines%20Pre%20Matric%20Scholarship%20of%20MOMA.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/pre-matric-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Ministry of Minority Affairs (MoMA) Pre-Matric Scholarship scheme details on myScheme and verified official guidelines PDF."
+  },
+  {
+    "slug": "national-fellowship-scholarship-for-higher-education-of-st-students",
+    "status": "found-official",
+    "official_source_specific": "https://tribal.nic.in/downloads/guidelines/NFS/GuidelinesFellowshipandScholarship2021.pdf",
+    "source_pages": [
+      {
+        "url": "https://tribal.nic.in/downloads/guidelines/NFS/GuidelinesFellowshipandScholarship2021.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://fellowship.tribal.gov.in/Default.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://tribal.nic.in/Scholarship.aspx",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/fellowship-and-scholarship-for-higher-education-of-st-students",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Ministry of Tribal Affairs official guidelines PDF, online fellowship portal, and MoTA scholarship directory."
+  },
+  {
+    "slug": "nec-merit-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://highereducation.nagaland.gov.in/wp-content/uploads/2025/07/Guidelines-NEC-Merit-Scholarship.pdf",
+    "source_pages": [
+      {
+        "url": "https://highereducation.nagaland.gov.in/wp-content/uploads/2025/07/Guidelines-NEC-Merit-Scholarship.pdf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://necouncil.gov.in/documents/scholarship-beneficiaries-list",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "beneficiaries"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/nec-merit-scholarship-for-students-of-ner",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "North Eastern Council (DoNER) official scheme guidelines PDF and NEC council portal publication."
+  },
+  {
+    "slug": "pre-matric-scholarship-for-students-with-disabilities",
+    "status": "found-official",
+    "official_source_specific": "https://depwd.gov.in/en/scholership-schemes-pre-matric/",
+    "source_pages": [
+      {
+        "url": "https://depwd.gov.in/en/scholership-schemes-pre-matric/",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.myscheme.gov.in/schemes/premssd",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/pre-matric-scholarship-for-students-with-disabilities",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Department of Empowerment of Persons with Disabilities (DEPwD) official pre-matric scholarship page and myScheme scheme details."
+  },
+  {
+    "slug": "pm-scholarship-scheme-railways",
+    "status": "found-official",
+    "official_source_specific": "https://www.myscheme.gov.in/schemes/pmssrpf",
+    "source_pages": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/pmssrpf",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://web.umang.gov.in/landing/department/national-scholarship-portal.html",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/prime-ministers-scholarship-scheme-rpf-rpsf",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.buddy4study.com/scholarship/prime-ministers-scholarship-scheme-for-rpf",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Prime Minister's Scholarship Scheme for Railway Protection Force (RPF/RPSF) under National Defence Fund administered via Ministry of Railways."
+  },
+  {
+    "slug": "aditya-birla-scholarship-programme",
+    "status": "found-official",
+    "official_source_specific": "https://www.adityabirlascholars.net/the-scholarship/",
+    "source_pages": [
+      {
+        "url": "https://www.adityabirlascholars.net/the-scholarship/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.adityabirlascholars.net/the-scholarship/eligibility-application-process/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "selection",
+          "process"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/business-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official portal and guidelines for Aditya Birla Scholarship Program for students at premier management, engineering, and law institutions."
+  },
+  {
+    "slug": "kotak-shiksha-nidhi-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://kotakeducation.org/kotak-shiksha-nidhi/",
+    "source_pages": [
+      {
+        "url": "https://kotakeducation.org/kotak-shiksha-nidhi/",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/kotak-shiksha-nidhi-scholarship",
+        "tier": "platform",
+        "role": "apply",
+        "facts": [
+          "apply_url",
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-06"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/kotak-shiksha-nidhi",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-06"
+      }
+    ],
+    "notes": "Official program overview by Kotak Education Foundation for students who lost a primary earning family member, with online application partner Buddy4Study."
+  }
+]

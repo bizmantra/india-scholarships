@@ -156,6 +156,55 @@ Whatever agent does Part B, a second agent or the owner re-derives a sample from
     - National / AICTE (`prime-minister-special-scholarship-scheme-sssjkl`)
 - **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-4.json` with 0 errors and 0 validation warnings.
 
+### Part B: Research Batch 5 (2026-11-06)
+- **Batch 5 Saved**: `plans/agy-results/is97-batch-5.json` (items 101–125 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Vidyadhan Foundation (`vidyadhan-ladakh-scholarship-program`)
+    - North-Eastern & Himalayan State schemes (`dorjee-khandu-merit-scholarship`, `nagaland-state-merit-scholarship`, `pm-yasasvi-post-matric-scholarship-manipur`, `post-matric-scholarship-for-sc-students-tripura`, `meghalaya-chief-minister-scholarship-scheme-cmss`, `chief-minister-cm-scholarship-sikkim`, `nec-merit-scholarship`)
+    - State & UT schemes (`sant-sohirobanath-ambiye-bursary-scheme` Goa, `post-matric-scholarship-for-sc-students-chandigarh`, `sudakshya-scheme-for-girls-itipolyechnic` Odisha, `additional-scholarship-for-st-students-andaman-nicobar`)
+    - Central Schemes (`central-sector-scheme-of-scholarship-for-college-and-university-students`, `top-class-education-scheme-for-sc-students`, `inspire-scholarship-for-higher-education-she`, `aicte-saksham-scholarship-for-students-with-disabilities`, `prime-ministers-research-fellowship-pmrf`, `pmss-for-railway-protection-force-rpfrpsf`, `sn-bose-scholars-program-international-research`, `pre-matric-scholarship-for-minorities-central-sector`, `national-fellowship-scholarship-for-higher-education-of-st-students`, `pre-matric-scholarship-for-students-with-disabilities`, `pm-scholarship-scheme-railways`)
+    - Corporate/Foundation (`aditya-birla-scholarship-programme`, `kotak-shiksha-nidhi-scholarship`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-5.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 6 (2026-11-06)
+- **Batch 6 Saved**: `plans/agy-results/is97-batch-6.json` (items 126–150 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Protean / Vidyasaarathi (`vidyasaarathi-scholarship-csr-programs`)
+    - Karnataka & Maharashtra state schemes (`ssp-pre-matric-post-matric-scholarship-karnataka`, `mahadbt-post-matric-scholarship-maharashtra`, `nmms-scholarship-karnataka`, `nmms-scholarship-maharashtra`, `sanchi-honnamma-scholarship-karnataka`, `post-matric-scholarship-to-sbc-students`)
+    - Tamil Nadu schemes (`pudhumai-penn-scheme-tamil-nadu`, `pre-matric-scholarship-adi-dravidar-tribal-welfare-dept`, `chief-minister-s-merit-scholarship-scheme`, `tamil-pudhalvan-scheme`, `evr-nagammai-scholarship`)
+    - West Bengal & Bihar (`nabanna-scholarship-west-bengal`, `bihar-student-credit-card-education-support-scheme`)
+    - Corporate & Foundations (`lila-poonawalla-foundation-scholarship`, `ongc-scholarship-csr`, `sbi-platinum-jubilee-asha-scholarship`, `jn-tata-endowment-for-higher-education`)
+    - Central & State schemes (`junior-merit-scholarship` Odisha, `minority-welfare-scholarship-pre-matric`, `post-matric-scholarship-for-differently-abled`, `haryana-state-merit-scholarship`, `chief-minister-gyan-protsahan-yojana` CG, `ladakh-ut-merit-scholarship`, `andaman-nicobar-administration-merit-scholarship`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-6.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 7 (2026-11-06)
+- **Batch 7 Saved**: `plans/agy-results/is97-batch-7.json` (items 151–175 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Foundations & Fellowships (`inlaks-shivdasani-foundation-scholarship`, `colgate-keep-india-smiling-scholarship`, `op-jindal-engineering-management-scholarship`, `godrej-scholarship-csr-initiatives`, `acc-vidyasaarathi-scholarship`, `teach-for-india-fellowship`, `young-india-fellowship-ashoka-university`, `lamp-fellowship`, `rhodes-scholarship-india`)
+    - West Bengal OASIS schemes (`oasis-pre-matric-scholarship-for-sc-students-west-bengal`, `oasis-pre-matric-scholarship-for-st-students-west-bengal`, `oasis-pre-matric-scholarship-for-obc-students-west-bengal`, `oasis-post-matric-scholarship-for-sc-students-west-bengal`, `oasis-post-matric-scholarship-for-st-students-west-bengal`, `oasis-post-matric-scholarship-for-obc-students-west-bengal`, `kanyashree-prakalpa-scheme-west-bengal`, `sikshashree-scholarship-scheme-west-bengal`, `aikyashree-pre-matric-scholarship-for-minorities-west-bengal`, `aikyashree-post-matric-scholarship-for-minorities-west-bengal`, `aikyashree-merit-cum-means-scholarship-for-minorities-west-bengal`)
+    - Tamil Nadu (`tamil-nadu-pre-matric-scholarship-for-bcmbc-minorities`, `tamil-nadu-higher-education-special-scholarship-for-scst-hostellers`)
+    - Madhya Pradesh MPTAAS (`mp-mptaas-post-matric-scholarship-for-sc-students`, `mp-mptaas-post-matric-scholarship-for-st-students`, `mp-mptaas-post-matric-scholarship-for-obc-students`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-7.json` with 0 errors and 0 validation warnings.
+
+### Part B: Research Batch 8 (2026-11-06)
+- **Batch 8 Saved**: `plans/agy-results/is97-batch-8.json` (items 176–200 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Madhya Pradesh (`mp-gaon-ki-beti-yojana`, `mp-vikramaditya-free-education-scheme`, `mukhyamantri-jan-kalyan-shiksha-protsahan-yojana`)
+    - Gujarat Digital Gujarat (`digital-gujarat-post-matric-scholarship-for-sc-students`, `digital-gujarat-post-matric-scholarship-for-st-students`, `gujarat-food-bill-assistance-for-medical-engineering-hostellers`)
+    - Delhi (`delhi-post-matric-scholarship-for-obc-students`, `jai-bhim-mukhyamantri-pratibha-vikas-yojna`)
+    - Haryana (`haryana-consolidated-stipend-scheme-for-sc-students`, `haryana-kalpana-chawla-chhatravritti-yojna`)
+    - Punjab (`punjab-post-matric-scholarship-for-sc-students`, `punjab-post-matric-scholarship-for-obc-bc-students`, `dr-hargobind-khurana-scholarship-scheme`, `punjab-chief-minister-scholarship-scheme`)
+    - Bihar (`bihar-post-matric-scholarship-for-sc-students`, `mukhyamantri-medhavriti-yojana`)
+    - Rajasthan SJMS & HTE (`rajasthan-post-matric-scholarship-sc`, `rajasthan-post-matric-scholarship-st`, `rajasthan-post-matric-scholarship-obc`, `devnarayan-girls-student-incentive-scooty-distribution-scheme`, `kali-bai-bhil-meritorious-girls-scooty-scheme`)
+    - Andhra Pradesh (`talliki-vandanam-scheme-ap`)
+    - Kerala collegiate & science (`kerala-ch-mohammed-koya-scholarship`, `kerala-suvarna-jubilee-merit-scholarship`, `kerala-kscste-prathibha-scholarship`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-8.json` with 0 errors and 0 validation warnings.
+
+
 
 
 
