@@ -122,5 +122,16 @@ Whatever agent does Part B, a second agent or the owner re-derives a sample from
   - 1 `not-found` (`punjab-attendance-scholarship-for-sc-girls` - internal school-login DBT incentive on ePunjab MIS without standalone public guidelines URL; routed to review)
 - **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-2.json` with 0 errors and 0 validation warnings.
 
+### Part B: Research Batch 3 (2026-11-06)
+- **Batch 3 Saved**: `plans/agy-results/is97-batch-3.json` (items 51–75 on worklist).
+- **Outcomes**:
+  - 25 `found-official` (100% resolution):
+    - Andhra Pradesh Jnanabhumi schemes (`andhra-pradesh-ntr-vidyonnathi`, `jagananna-vidya-deevena-ap`)
+    - Major private/CSR foundations (`sitaram-jindal-foundation-scholarship`, `hdfc-bank-parivartan-ecss-scholarship`, `infosys-foundation-stem-stars-scholarship-program`)
+    - Odisha State Scholarship Portal (`scholarship.odisha.gov.in`) schemes (`pre-matric-scholarship-for-ebc-students-odisha`, `e-medhabruti-technical-professional-scholarship-odisha`, `sudakshya-for-girls-child-scholarship-odisha`, `green-passage-scheme-higher-education-odisha`, `boc-scholarship-nirman-shramik-kalyan-yojana-odisha`, `gopabandhu-sikhya-sahayata-yojana-odisha`, `shahid-madho-singh-haath-kharcha-yojana-odisha`, `banishree-scholarship-odisha`, `videsh-siksha-bruti-foreign-education-scholarship-odisha`)
+    - Karnataka State Scholarship Portal (`ssp.karnataka.gov.in`) schemes (`post-matric-scholarship-for-sc-students-karnataka`, `post-matric-scholarship-for-st-students-karnataka`, `post-matric-scholarship-for-obc-students-karnataka`, `post-matric-scholarship-for-minorities-karnataka`, `post-matric-scholarship-for-ewsgeneral-category-karnataka`, `post-matric-scholarship-for-persons-with-disabilities-udid-karnataka`, `vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka`, `merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka`, `sandeepani-shishya-vethana-scholarship-karnataka-state-brahmin-development-board`, `pre-matric-sc-students-karnataka`, `pre-matric-st-students-karnataka`)
+- **Dry-run Verified**: Ran `node scripts/import-source-pages.js plans/agy-results/is97-batch-3.json` with 0 errors and 0 validation warnings.
+
+
 
 
