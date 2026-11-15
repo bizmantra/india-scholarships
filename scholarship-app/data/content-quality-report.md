@@ -1,7 +1,7 @@
 # 📊 Content Quality Audit Report
-Generated on: 2026-11-08
+Generated on: 2026-11-15
 Total Scholarships Audited: **580**
-Scholarships with Issues: **395** (68.1%)
+Scholarships with Issues: **402** (69.3%)
 
 ---
 
@@ -14,8 +14,8 @@ Below is a breakdown of the content issues discovered across all scholarship pag
 | **Legacy Flagged** | 0 | 0.0% | Marked with `[LEGACY]` in title or slug |
 | **Missing Annual Amount** | 26 | 4.5% | Missing/0 annual amount (causes "upto 0k" display) |
 | **Missing Min Amount** | 29 | 5.0% | Missing/0 minimum amount |
-| **Missing Deadline Date** | 238 | 41.0% | Deadline is empty or "Not specified" |
-| **Expired Deadline** | 144 | 24.8% | Deadline is in the past (before 2026-11-08) |
+| **Missing Deadline Date** | 235 | 40.5% | Deadline is empty or "Not specified" |
+| **Expired Deadline** | 156 | 26.9% | Deadline is in the past (before 2026-11-15) |
 | **Old Year References** | 33 | 5.7% | Mentions 2024, 2025, or earlier cycles |
 | **Incomplete Selection Criteria** | 1 | 0.2% | Missing or under 15 characters |
 | **Incomplete Renewal Policy** | 10 | 1.7% | Missing or under 15 characters |
@@ -54,6 +54,7 @@ Here are the scholarships with the highest number of content quality issues:
 | `ignou-fee-exemption-scheme-for-scst-learners` | **IGNOU Fee Exemption Scheme for SC/ST Learners** | 3 | Missing Annual Amount (causes "upto 0k" display); Missing Min Amount; Expired Deadline (2026-09-15) |
 | `kerala-labour-welfare-board-higher-education-grant` | **Kerala Labour Welfare Board Higher Education Grant** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2025-12-31); Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `tamil-nadu-naan-mudhalvan-upsc-prelims-scholarship-programme` | **Tamil Nadu Naan Mudhalvan UPSC Prelims Scholarship Programme** | 3 | Missing Min Amount; Expired Deadline (2025-07-10); Old Year Reference (e.g. 2024 or 2025 in title or description) |
+| `concentrix-scholarship-program-2026-27` | **Concentrix Scholarship Program 2026-27** | 3 | Missing Min Amount; Expired Deadline (2026-11-15); Missing Helpline Contact Details |
 | `wings-women-inspiring-growth-in-stem-scholarship-program` | **WINGS (Women INspiring Growth in STEM) Scholarship Program** | 3 | Missing Min Amount; Expired Deadline (2026-10-31); Missing Helpline Contact Details |
 | `rupa-rahul-bajaj-scholarship-for-women-in-engineering` | **Rupa Rahul Bajaj Scholarship for Women in Engineering** | 3 | Missing Min Amount; Expired Deadline (2026-10-15); Missing Helpline Contact Details |
 | `sml-mahindra-scholarship-programme-saarthi-and-unnati` | **SML Mahindra Scholarship Programme (Saarthi and Unnati)** | 3 | Missing Annual Amount (causes "upto 0k" display); Expired Deadline (2026-10-21); Missing Helpline Contact Details |
@@ -72,6 +73,7 @@ Here are the scholarships with the highest number of content quality issues:
 | `kc-mahindra-scholarship-for-post-graduate-studies-abroad` | **KC Mahindra Scholarship for Post-Graduate Studies Abroad** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `mukhyamantri-medhavi-vidyarthi-yojana-mmvy` | **Mukhyamantri Medhavi Vidyarthi Yojana (MMVY)** | 2 | Missing Min Amount; Missing Deadline Date |
 | `sant-sohirobanath-ambiye-bursary-scheme` | **Sant Sohirobanath Ambiye Bursary Scheme** | 2 | Missing Min Amount; Missing Deadline Date |
+| `nec-merit-scholarship` | **NEC Merit Scholarship** | 2 | Expired Deadline (2026-11-15); Missing Required Documents |
 | `tata-trusts-education-grants` | **Tata Trusts Education Grants** | 2 | Missing Deadline Date; Missing Required Documents |
 | `ssp-pre-matric-post-matric-scholarship-karnataka` | **SSP Pre-Matric & Post-Matric Scholarship (Karnataka)** | 2 | Missing Deadline Date; Missing Required Documents |
 | `nmms-scholarship-karnataka` | **NMMS Scholarship (Karnataka)** | 2 | Expired Deadline (2026-10-31); Missing Required Documents |
@@ -82,7 +84,5 @@ Here are the scholarships with the highest number of content quality issues:
 | `tata-trusts-medical-and-healthcare-scholarship` | **Tata Trusts Medical and Healthcare Scholarship 2026-27** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `post-matric-scholarship-for-differently-abled` | **Post-Matric Scholarship for Differently Abled** | 2 | Missing Deadline Date; Old Year Reference (e.g. 2024 or 2025 in title or description) |
 | `mahindra-all-india-talent-scholarship` | **Mahindra All India Talent Scholarship** | 2 | Expired Deadline (2026-09-15); Missing Helpline Contact Details |
-| `acumen-india-fellowship` | **Acumen India Fellowship** | 2 | Expired Deadline (2026-10-31); Old Year Reference (e.g. 2024 or 2025 in title or description) |
-| `lamp-fellowship` | **LAMP Fellowship** | 2 | Expired Deadline (2025-12-21); Old Year Reference (e.g. 2024 or 2025 in title or description) |
 
-*Note: Showing top 50 rows. A complete list of all 395 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
+*Note: Showing top 50 rows. A complete list of all 402 records is exported to [content-quality-audit.csv](file:///home/runner/work/india-scholarships/india-scholarships/scholarship-app/data/content-quality-audit.csv).*
