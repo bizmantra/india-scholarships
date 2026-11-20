@@ -1,0 +1,1028 @@
+[
+  {
+    "slug": "andhra-pradesh-ntr-vidyonnathi",
+    "status": "found-official",
+    "official_source_specific": "https://jnanabhumi.ap.gov.in/NTRVidyonnathi.edu",
+    "source_pages": [
+      {
+        "url": "https://jnanabhumi.ap.gov.in/NTRVidyonnathi.edu",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://school.careers360.com/articles/ap-scholarships",
+        "tier": "aggregator",
+        "role": "info",
+        "facts": [
+          "deadline_description",
+          "cycle_status"
+        ],
+        "confirmed": "2026-10-24"
+      }
+    ],
+    "notes": "Official NTR Vidyonnathi scheme page on AP Jnanabhumi portal."
+  },
+  {
+    "slug": "jagananna-vidya-deevena-ap",
+    "status": "found-official",
+    "official_source_specific": "https://jnanabhumi.ap.gov.in/JaganannaVidyaDeevena.edu",
+    "source_pages": [
+      {
+        "url": "https://jnanabhumi.ap.gov.in/JaganannaVidyaDeevena.edu",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://school.careers360.com/articles/ap-scholarships",
+        "tier": "aggregator",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-11-03"
+      }
+    ],
+    "notes": "Official Jagananna Vidya Deevena scheme page on AP Jnanabhumi portal."
+  },
+  {
+    "slug": "sitaram-jindal-foundation-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://www.sitaramjindalfoundation.org/scholarships.php",
+    "source_pages": [
+      {
+        "url": "https://www.sitaramjindalfoundation.org/scholarships.php",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.sitaramjindalfoundation.org/assets/images/file/application_annexure_form.pdf",
+        "tier": "provider",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/sitaram-jindal-foundation-scholarship-scheme",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description",
+          "cycle_status"
+        ],
+        "confirmed": "2026-10-31"
+      }
+    ],
+    "notes": "Official foundation scholarships overview page and printable application annexure PDF."
+  },
+  {
+    "slug": "hdfc-bank-parivartan-ecss-scholarship",
+    "status": "found-official",
+    "official_source_specific": "https://v.hdfc.bank.in/csr/initiatives/education.html",
+    "source_pages": [
+      {
+        "url": "https://v.hdfc.bank.in/csr/initiatives/education.html",
+        "tier": "provider",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "eligibility"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://school.careers360.com/articles/hdfc-parivartan-ecss-programme-2026",
+        "tier": "aggregator",
+        "role": "info",
+        "facts": [
+          "deadline"
+        ],
+        "confirmed": "2026-10-31"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/parivartan-ecss-programme",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "cycle_status",
+          "next_cycle_expected"
+        ],
+        "confirmed": "2026-10-31"
+      }
+    ],
+    "notes": "Official HDFC Bank Parivartan CSR education initiative portal page."
+  },
+  {
+    "slug": "infosys-foundation-stem-stars-scholarship-program",
+    "status": "found-official",
+    "official_source_specific": "https://www.infosys.com/newsroom/press-releases/2023/launch-stem-scholarship-program.html",
+    "source_pages": [
+      {
+        "url": "https://www.infosys.com/newsroom/press-releases/2023/launch-stem-scholarship-program.html",
+        "tier": "provider",
+        "role": "notification",
+        "facts": [
+          "benefits",
+          "eligibility",
+          "amount_annual"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/infosys-stem-stars-scholarship",
+        "tier": "platform",
+        "role": "portal",
+        "facts": [
+          "deadline",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Infosys Foundation STEM Stars launch announcement and provider press release."
+  },
+  {
+    "slug": "pre-matric-scholarship-for-ebc-students-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://scholarship.odisha.gov.in/registration-guideline",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "docs_needed",
+          "step_guide"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/odisha-scholarship-portal",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-31"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details and registration guideline."
+  },
+  {
+    "slug": "e-medhabruti-technical-professional-scholarship-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://scholarship.odisha.gov.in/announcements",
+        "tier": "official",
+        "role": "notification",
+        "facts": [
+          "deadline",
+          "cycle_status"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/e-medhabruti-scholarship-scheme-odisha",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 59: Technical & Professional) and announcements."
+  },
+  {
+    "slug": "sudakshya-for-girls-child-scholarship-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/sudakshya-scheme-for-girl-child",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-31"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 16: Sudakshya for Girls Child)."
+  },
+  {
+    "slug": "green-passage-scheme-higher-education-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/green-passage-scheme-odisha",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 74: Green Passage)."
+  },
+  {
+    "slug": "boc-scholarship-nirman-shramik-kalyan-yojana-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/odisha-boc-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-31"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 40: Nirman Shramik Kalyan Yojana Edn Astt)."
+  },
+  {
+    "slug": "gopabandhu-sikhya-sahayata-yojana-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/gopabandhu-sikhya-sahayata-yojana",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 39: Gopabandhu Sikhya Sahayata Yojana)."
+  },
+  {
+    "slug": "shahid-madho-singh-haath-kharcha-yojana-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/shahid-madho-singh-haath-kharcha-yojana",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 3: Shahid Madho Singh Haath Kharcha Yojna)."
+  },
+  {
+    "slug": "banishree-scholarship-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.myscheme.gov.in/schemes/bs",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/banishree-scholarship-odisha",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 63: Banishree Scholarship for Students with Disability)."
+  },
+  {
+    "slug": "videsh-siksha-bruti-foreign-education-scholarship-odisha",
+    "status": "found-official",
+    "official_source_specific": "https://scholarship.odisha.gov.in/scholarship-details",
+    "source_pages": [
+      {
+        "url": "https://scholarship.odisha.gov.in/scholarship-details",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/odisha-state-scholarship-portal",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Odisha State Scholarship Portal scheme details (scheme ID 72: Bidesh Sikhyabruti)."
+  },
+  {
+    "slug": "post-matric-scholarship-for-sc-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=354&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=354&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-post-matric-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric SC scheme eligibility endpoint and application portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-st-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=36&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=36&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-post-matric-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric ST scheme eligibility endpoint and application portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-obc-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=131&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=131&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/karnataka-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric OBC fee concession eligibility endpoint and portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-minorities-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=411&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=411&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/karnataka-scholarships",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-30"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric minorities fee concession eligibility endpoint and portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-ewsgeneral-category-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/Schemes",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-post-matric-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric schemes directory and student login portal."
+  },
+  {
+    "slug": "post-matric-scholarship-for-persons-with-disabilities-udid-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=135&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=135&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "residency_requirement"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/articles/ssp-post-matric-scholarship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-30"
+      },
+      {
+        "url": "https://www.buddy4study.com/article/ssp-post-matric-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal post-matric PwD (UDID) fee concession eligibility endpoint and portal."
+  },
+  {
+    "slug": "vidyasiri-food-and-accommodation-scholarship-for-obc-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=29&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=29&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "benefits",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://bcwd.karnataka.gov.in/44/Vidyasiri/en",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "docs_needed"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/vidyasiri-scholarship",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal Vidyasiri scheme eligibility endpoint and Backward Classes Welfare department page."
+  },
+  {
+    "slug": "merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=411&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=411&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/merit-cum-means-scholarship-for-minorities",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal Minorities MCM course eligibility endpoint and schemes portal."
+  },
+  {
+    "slug": "sandeepani-shishya-vethana-scholarship-karnataka-state-brahmin-development-board",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=98&lang=en&MetricType=2",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=98&lang=en&MetricType=2",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/post_sa_2627/login",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/scholarship/karnataka-ssp-sandeepani-shishya-vetana-2026",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "deadline",
+          "deadline_description"
+        ],
+        "confirmed": "2026-10-22"
+      }
+    ],
+    "notes": "Official Karnataka State Brahmin Development Board Sandeepani Shishya Vethana scheme eligibility endpoint on SSP."
+  },
+  {
+    "slug": "pre-matric-sc-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=317&lang=en&MetricType=1",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=317&lang=en&MetricType=1",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/ssppre/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-scholarship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal pre-matric SC scheme eligibility endpoint and pre-matric portal."
+  },
+  {
+    "slug": "pre-matric-st-students-karnataka",
+    "status": "found-official",
+    "official_source_specific": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=7&lang=en&MetricType=1",
+    "source_pages": [
+      {
+        "url": "https://ssp.karnataka.gov.in/SchemeEligibility.ashx?scheme_id=7&lang=en&MetricType=1",
+        "tier": "official",
+        "role": "guidelines",
+        "facts": [
+          "eligibility",
+          "caste",
+          "income_limit"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.karnataka.gov.in/Schemes",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "benefits",
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      },
+      {
+        "url": "https://ssp.postmatric.karnataka.gov.in/ssppre/",
+        "tier": "official",
+        "role": "portal",
+        "facts": [
+          "apply_url"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "secondary_sources": [
+      {
+        "url": "https://www.buddy4study.com/article/ssp-scholarship-karnataka",
+        "tier": "platform",
+        "role": "info",
+        "facts": [
+          "eligibility",
+          "benefits"
+        ],
+        "confirmed": "2026-11-05"
+      }
+    ],
+    "notes": "Official Karnataka State Scholarship Portal pre-matric ST scheme eligibility endpoint and pre-matric portal."
+  }
+]
