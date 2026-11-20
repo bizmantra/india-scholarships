@@ -1,4 +1,7 @@
 # Architecture Context Document: IndiaScholarships.in
+
+> **Status (2026-10-30):** written for the July 2026 architecture. Parts are out of date: task tracking moved to Notion (see `../AGENTS.md`), and the Command Center, Study Abroad and Hermes bridge are not covered. Check the code before relying on it.
+
 **Document Version:** 1.0.0  
 **Target Audience:** Senior Product Managers, Tech Leads, and Engineering Onboarding  
 **Current Production Cycle:** July 2026

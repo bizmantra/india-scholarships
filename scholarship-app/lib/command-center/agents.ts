@@ -29,7 +29,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 7:00 AM IST',
         humanToday: 'Open each official portal, find the current last date and compare it with the site.',
         gated: true,
-        team: 'data-accuracy',
+        team: 'data',
         order: 1,
     },
     {
@@ -40,7 +40,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Sunday, 9:00 AM IST',
         humanToday: 'Re-read each scheme\'s official notice and compare the amounts and links with the site.',
         gated: true,
-        team: 'data-accuracy',
+        team: 'data',
         order: 2,
         dependsOn: ['traffic-watchdog'],
     },
@@ -52,7 +52,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Sunday, 5:30 AM IST',
         humanToday: 'Download Search Console data and run the audit by hand.',
         gated: false,
-        team: 'data-accuracy',
+        team: 'data',
         order: 2,
     },
     {
@@ -87,7 +87,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Saturday, 9:00 AM IST',
         humanToday: 'Open the audit report, research each incomplete page on official sites and edit it by hand.',
         gated: true,
-        team: 'data-accuracy',
+        team: 'data',
         order: 5,
     },
     {
@@ -98,7 +98,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 7:30 AM IST',
         humanToday: 'Open Search Console and Analytics every day and compare weeks by hand.',
         gated: false,
-        team: 'traffic',
+        team: 'growth',
         order: 6,
     },
     {
@@ -109,7 +109,7 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily, 9:00 PM IST',
         humanToday: 'Submit changed pages in Bing and Search Console and inspect pages one by one.',
         gated: false,
-        team: 'traffic',
+        team: 'seo',
         order: 7,
     },
     {
@@ -130,8 +130,18 @@ export const AGENTS: AgentDefinition[] = [
         schedule: 'Daily',
         humanToday: 'Export the database by hand.',
         gated: false,
-        team: 'data-accuracy',
+        team: 'data',
         order: 9,
+    },
+    {
+        id: 'sa-facts-freshness',
+        label: 'Study Abroad Facts',
+        summary: 'Flags Study Abroad money and visa numbers with no official source, no check date, a check older than 90 days, or a passed re-check date, plus published pages showing money figures with no provenance. It only flags; the re-check is proposed through the Hermes bridge or propose-changes.mjs.',
+        schedule: 'On demand: node scripts/study-abroad/facts-freshness.mjs --target=production',
+        humanToday: 'Open every official page behind each fee, fund and visa number and write down the amount and the day it was read.',
+        gated: true,
+        team: 'data',
+        order: 11,
     },
     {
         id: 'content-editor',

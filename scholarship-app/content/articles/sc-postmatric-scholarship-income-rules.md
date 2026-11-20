@@ -30,7 +30,7 @@ The SC Post-Matric Scholarship is a central sector scheme that supports Schedule
 
 It is delivered as a Centrally Sponsored Scheme, with the central government and state governments sharing the funding, and disbursement happens through the National Scholarship Portal (NSP) or the equivalent state SC welfare portal.
 
-> 💡 **Pro Tip**: Use the free [/tools/eligibility-checker](/tools/eligibility-checker) to confirm which SC scheme — central or state — applies to your course and income slab.
+> 💡 **Pro Tip**: Use the free [/eligibility-checker](/eligibility-checker) to confirm which SC scheme — central or state — applies to your course and income slab.
 
 ---
 

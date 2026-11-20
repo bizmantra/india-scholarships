@@ -1,0 +1,13 @@
+{
+  "_about": "Facts the source checker verifies on every PR and weekly (scripts/study-abroad/verify-sources.mjs). Each entry: the official page, the exact sentence on it, and the value that sentence must contain. Add an entry only after a person has read the page; the checker then keeps it honest.",
+  "entries": [
+    {
+      "id": "usa-sevis-i901-f-m",
+      "fact_key": "usa.visa.sevis_i901_fee_usd",
+      "url": "https://www.ice.gov/sevis/i901",
+      "quote": "I-901 SEVIS Fee F or M visa applicants (full payment) $350",
+      "value": "$350",
+      "checked_on": "2026-10-29"
+    }
+  ]
+}

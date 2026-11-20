@@ -38,6 +38,8 @@ interface HomeClientProps {
     trending: Scholarship[];
     totalStates: number;
     totalScholarships: number;
+    governmentCount: number;
+    privateCount: number;
     featuredPillars: FeaturedPillar[];
 }
 
@@ -47,6 +49,8 @@ export default function HomeClient({
     trending,
     totalStates,
     totalScholarships,
+    governmentCount,
+    privateCount,
     featuredPillars
 }: HomeClientProps) {
     const [searchQuery, setSearchQuery] = useState('');
@@ -73,15 +77,15 @@ export default function HomeClient({
                         {/* Animated Pill Badge */}
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white text-[var(--color-brand)] text-xs font-extrabold mb-5 sm:mb-7 border border-[var(--color-border-gray)] shadow-sm">
                             <Sparkles className="h-4 w-4 text-[var(--color-brand)] animate-pulse" />
-                            <span>Over {totalScholarships} Verified Indian Schemes Tracked Daily</span>
+                            <span>{totalScholarships.toLocaleString('en-IN')} scholarships listed for Indian students</span>
                         </div>
 
                         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--color-ink)] tracking-tight mb-5 md:mb-7 font-heading leading-[1.12]">
-                            Find & Match Verified <br className="hidden sm:inline" />
+                            Find Scholarships <br className="hidden sm:inline" />
                             <span className="text-[var(--color-brand)]">Scholarships in India</span>
                         </h1>
                         <p className="text-sm sm:text-base md:text-lg text-[var(--color-ink-soft)] mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
-                            Discover active government schemes, corporate CSR grants, and private trust funds for school, college, and university students. Filter dynamically by category, domicile state, and annual income.
+                            Browse government schemes, corporate CSR programmes, and private trust scholarships for school, college, and university students. Filter by category, state, and family income, then apply on the official portal.
                         </p>
 
                         {/* Centered Search Bar */}
@@ -104,16 +108,6 @@ export default function HomeClient({
                                 </button>
                             </form>
                         </div>
-
-                        {/* Social Proof Trust Avatars Strip */}
-                        <div className="flex items-center justify-center gap-3 text-xs text-[var(--color-ink-soft)] font-semibold">
-                            <div className="flex -space-x-2 overflow-hidden">
-                                <div className="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-[var(--color-brand)] text-white font-bold flex items-center justify-center text-[10px]">R</div>
-                                <div className="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-[var(--color-success)] text-white font-bold flex items-center justify-center text-[10px]">A</div>
-                                <div className="inline-block h-7 w-7 rounded-full ring-2 ring-white bg-[#F59E0B] text-white font-bold flex items-center justify-center text-[10px]">S</div>
-                            </div>
-                            <span>Joined by <strong className="text-[var(--color-ink)] font-bold">50,000+ Students</strong> Across India</span>
-                        </div>
                     </div>
                 </section>
 
@@ -122,9 +116,9 @@ export default function HomeClient({
                     <div className="container mx-auto px-4 md:px-6 relative">
                         <div className="flex overflow-x-auto scrollbar-none snap-x snap-mandatory md:grid md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto -mx-4 px-4 md:mx-auto md:px-0">
                             {[
-                                { title: 'Verified for 2026', desc: 'Direct linkage to official portal forms.', color: 'text-[var(--color-success)] bg-[var(--color-success-soft)]' },
-                                { title: 'Faceted Matching', desc: 'Target schemes by caste, income, state.', color: 'text-[var(--color-brand)] bg-[var(--color-brand-soft)]' },
-                                { title: 'Structured Steps', desc: 'Step-by-step registration guides.', color: 'text-[#F59E0B] bg-[#FEF3C7]' }
+                                { title: 'Official Links', desc: 'Each listing links to where you apply.', color: 'text-[var(--color-success)] bg-[var(--color-success-soft)]' },
+                                { title: 'Filter Your Way', desc: 'By category, income, and state.', color: 'text-[var(--color-brand)] bg-[var(--color-brand-soft)]' },
+                                { title: 'Plain Guides', desc: 'How-to guides for major portals.', color: 'text-[#F59E0B] bg-[#FEF3C7]' }
                             ].map((feature, i) => (
                                 <div key={i} className="snap-center shrink-0 w-[85%] xs:w-[240px] md:w-auto flex items-center gap-3.5 p-4 bg-white rounded-2xl border border-[var(--color-border-gray)] shadow-xs hover:shadow-md transition-shadow">
                                     <div className={`p-2.5 rounded-xl shrink-0 ${feature.color}`}>
@@ -146,7 +140,7 @@ export default function HomeClient({
                         <div className="text-center mb-10">
                             <span className="px-3 py-1 bg-[var(--color-brand-soft)] text-[var(--color-brand)] text-xs font-bold rounded-full border border-[var(--color-border-gray)] uppercase tracking-wider">Quick Discovery</span>
                             <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-ink)] font-heading tracking-tight mt-3 mb-2">Category Gateway</h2>
-                            <p className="text-sm text-[var(--color-ink-soft)] font-medium">Quick link grids directly into specific pre-filtered database views</p>
+                            <p className="text-sm text-[var(--color-ink-soft)] font-medium">Jump straight to pre-filtered lists</p>
                         </div>
 
                         {/* 3 Grid blocks for State, Caste, and Level */}
@@ -263,7 +257,7 @@ export default function HomeClient({
                                         India Scholarships Statistics Report (2025-2026)
                                     </h4>
                                     <p className="text-xs text-[var(--color-ink-soft)] mt-1 font-medium leading-relaxed">
-                                        Explore official compiled statistics on central government budget outlays, private corporate CSR funding limits, and outbound international student mobility records.
+                                        Figures on central government scholarship budgets, corporate CSR funding, and Indian students studying abroad.
                                     </p>
                                 </div>
                             </div>
@@ -283,12 +277,12 @@ export default function HomeClient({
                             <div className="flex justify-between items-end mb-6 border-b pb-3 border-[var(--color-border-gray)]">
                                 <div>
                                     <h3 className="text-xl md:text-2xl font-extrabold font-heading text-[var(--color-ink)] flex items-center gap-2">
-                                        🔥 Trending Right Now
+                                        ⭐ Featured Scholarships
                                     </h3>
-                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">Opportunities receiving high volumes of application traffic this week</p>
+                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">High-priority scholarships we feature</p>
                                 </div>
-                                <Link href="/scholarships/trending" className="font-bold text-xs text-[var(--color-brand)] hover:underline flex items-center gap-1 transition-all">
-                                    View All <ArrowRight className="h-3.5 w-3.5" />
+                                <Link href="/scholarships" className="font-bold text-xs text-[var(--color-brand)] hover:underline flex items-center gap-1 transition-all">
+                                    View All Scholarships <ArrowRight className="h-3.5 w-3.5" />
                                 </Link>
                             </div>
                             
@@ -306,9 +300,9 @@ export default function HomeClient({
                             <div className="flex justify-between items-end mb-6 border-b pb-3 border-[var(--color-border-gray)]">
                                 <div>
                                     <h3 className="text-xl md:text-2xl font-extrabold font-heading text-[var(--color-ink)] flex items-center gap-2">
-                                        🕒 Newly Verified & Added
+                                        🕒 Recently Added
                                     </h3>
-                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">Fresh program listings vetted and active for the current application cycle</p>
+                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">The newest listings on the site</p>
                                 </div>
                                 <Link href="/scholarships/recently-added" className="font-bold text-xs text-[var(--color-brand)] hover:underline flex items-center gap-1 transition-all">
                                     View All <ArrowRight className="h-3.5 w-3.5" />
@@ -324,14 +318,14 @@ export default function HomeClient({
                             </div>
                         </div>
 
-                        {/* 3. Curated Carousel: Closing Soon */}
-                        <div>
+                        {/* 3. Curated Carousel: Closing Soon (confirmed deadlines only; hidden when none) */}
+                        {closingSoon.length > 0 && <div>
                             <div className="flex justify-between items-end mb-6 border-b pb-3 border-[var(--color-border-gray)]">
                                 <div>
                                     <h3 className="text-xl md:text-2xl font-extrabold font-heading text-[var(--color-ink)] flex items-center gap-2">
                                         ⏰ Closing Soon (Deadlines)
                                     </h3>
-                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">Active deadlines ending shortly. File your portal submissions now</p>
+                                    <p className="text-xs text-[var(--color-ink-soft)] font-medium">Confirmed deadlines coming up. Check the official portal before you apply</p>
                                 </div>
                                 <Link href="/scholarships/deadlines" className="font-bold text-xs text-[var(--color-urgent)] hover:underline flex items-center gap-1 transition-all">
                                     View All <ArrowRight className="h-3.5 w-3.5" />
@@ -345,31 +339,31 @@ export default function HomeClient({
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div>}
 
                     </div>
                 </section>
 
-                {/* Platform Impact stats band */}
+                {/* Site stats band: real counts from the database only */}
                 <section className="py-10 md:py-14 bg-brand">
                     <div className="container mx-auto px-6 max-w-5xl">
-                        <p className="text-center text-[11px] font-bold uppercase tracking-widest text-blue-100 mb-8">Platform Impact</p>
+                        <p className="text-center text-[11px] font-bold uppercase tracking-widest text-blue-100 mb-8">On This Site</p>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center text-white">
                             <div>
-                                <div className="text-2xl md:text-4xl font-extrabold font-heading">{totalScholarships.toLocaleString('en-IN')}+</div>
-                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Active Scholarships</div>
+                                <div className="text-2xl md:text-4xl font-extrabold font-heading">{totalScholarships.toLocaleString('en-IN')}</div>
+                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Scholarships Listed</div>
                             </div>
                             <div>
                                 <div className="text-2xl md:text-4xl font-extrabold font-heading">{totalStates}</div>
-                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">States Covered</div>
+                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">States &amp; UTs with Listings</div>
                             </div>
                             <div>
-                                <div className="text-2xl md:text-4xl font-extrabold font-heading">₹50K Cr+</div>
-                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Disbursed Aid</div>
+                                <div className="text-2xl md:text-4xl font-extrabold font-heading">{governmentCount.toLocaleString('en-IN')}</div>
+                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Government Schemes</div>
                             </div>
                             <div>
-                                <div className="text-2xl md:text-4xl font-extrabold font-heading">2M+</div>
-                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Happy Students</div>
+                                <div className="text-2xl md:text-4xl font-extrabold font-heading">{privateCount.toLocaleString('en-IN')}</div>
+                                <div className="text-xs md:text-sm text-blue-100 font-medium mt-1">Private &amp; Corporate</div>
                             </div>
                         </div>
                     </div>
@@ -379,12 +373,12 @@ export default function HomeClient({
                 <section className="py-16 md:py-20 bg-white">
                     <div className="container mx-auto px-6 max-w-4xl text-center">
                         <h2 className="text-2xl sm:text-3xl font-extrabold text-ink font-heading tracking-tight mb-2">How It Works</h2>
-                        <p className="text-sm text-ink-soft font-medium mb-12">Three simple steps to secure your funding</p>
+                        <p className="text-sm text-ink-soft font-medium mb-12">Three steps from search to application</p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 text-left sm:text-center">
                             {[
-                                { step: 1, title: 'Search & Discover', desc: 'Enter your qualifications, background, and state to find matched scholarship opportunities.' },
-                                { step: 2, title: 'Compare Schemes', desc: 'Analyze benefits, checking eligibility rules, deadlines, and required documentation.' },
-                                { step: 3, title: 'Apply Seamlessly', desc: 'Direct link to official government portals or verified CSR websites to start applying.' }
+                                { step: 1, title: 'Search & Discover', desc: 'Search or filter by course, category, state, and income.' },
+                                { step: 2, title: 'Compare Schemes', desc: 'Check the amount, eligibility rules, deadline, and documents for each scheme.' },
+                                { step: 3, title: 'Apply Seamlessly', desc: 'Listings link directly to official provider portals, where you apply.' }
                             ].map((s) => (
                                 <div key={s.step} className="sm:flex sm:flex-col sm:items-center">
                                     <div className="w-9 h-9 rounded-full bg-brand text-white font-bold text-sm flex items-center justify-center mb-4 shrink-0">
@@ -409,7 +403,7 @@ export default function HomeClient({
                                 Can't find matching scholarships?
                             </h2>
                             <p className="text-sm text-[var(--color-border-gray)] mb-8 max-w-lg mx-auto leading-relaxed font-medium">
-                                Take our profile matching checklist to quickly filter all schemes in India that fit your exact qualification, category, and domicile criteria.
+                                Answer a few questions about your course, category, and state to see which listed scholarships you may qualify for.
                             </p>
                             <Link
                                 href="/eligibility-checker"

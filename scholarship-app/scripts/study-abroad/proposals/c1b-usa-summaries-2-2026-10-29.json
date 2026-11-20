@@ -1,0 +1,145 @@
+{
+  "agent": "content-editor",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "usa-h1b-lottery-cap-exempt",
+      "fields": {
+        "summary": "Explains the US H-1B visa for Indian graduates, highlighting the 20,000 master's cap lottery exemption and year-round hiring at cap-exempt universities and research institutes."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-health-insurance-waiver-guide",
+      "fields": {
+        "summary": "Cost-saving guide for Indian students: replace $2,200 to $3,500 university health plans with qualifying ISO or PSI plans to reduce yearly medical insurance expenses."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-i20-financial-proof-manual",
+      "fields": {
+        "summary": "Practical guide for Indian families documenting financial proof for Form I-20: universities require liquid savings, FDs, or loan sanction letters covering one full academic year."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-i20-issuance-deposit-payment",
+      "fields": {
+        "summary": "Guides Indian offer holders through paying tuition seat deposits of $100 to $500 and submitting financial documents to receive their official Form I-20."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-initial-72hr-survival-guide",
+      "fields": {
+        "summary": "Essential checklist for Indian students landing in the US: clear CBP port of entry, retrieve your electronic Form I-94, activate mobile service, and report your local address."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ms-data-science-business-analytics",
+      "fields": {
+        "summary": "Compares MS in Data Science and Business Analytics for Indian students, highlighting required STEM CIP codes that ensure 36 months of post-graduation OPT work authorization."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ms-engineering-management-miso",
+      "fields": {
+        "summary": "Highlights MEM and MIS graduate programs for Indian engineers seeking tech management careers, providing STEM work authorization without the high tuition of a traditional MBA."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-multiple-offers-decision-matrix",
+      "fields": {
+        "summary": "Decision framework for Indian students with multiple admits: compare net costs and tech hub locations, while selecting only one SEVIS ID for your visa appointment."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-off-campus-housing-lease",
+      "fields": {
+        "summary": "Housing advice for Indian graduate students: learn how to secure off-campus apartments, find roommates, sign lease contracts, and manage security deposits near US campuses."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-on-campus-jobs-20hr-rule",
+      "fields": {
+        "summary": "Explains US on-campus employment rules for Indian F-1 students, who can legally work up to 20 hours per week during semesters and 40 hours during vacations to offset living costs."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-opt-stem-opt-extension",
+      "fields": {
+        "summary": "Details post-study work authorization for Indian graduates: explains how the 12-month initial OPT and 24-month STEM extension grant up to 36 months of employment with E-Verify firms."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-prerequisites-deficiency-courses",
+      "fields": {
+        "summary": "Helps Indian non-CS engineering and science graduates transition into US computer science master's programs by completing prerequisite courses in algorithms and data structures."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-priority-vs-rolling-deadlines",
+      "fields": {
+        "summary": "Timeline strategy for Indian applicants: submitting master's applications before priority deadlines (typically mid-November to mid-December) maximizes consideration for TA and RA funding."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-public-vs-private-unis",
+      "fields": {
+        "summary": "Compares public state flagships and private US universities for Indian families, analyzing tuition differences and explaining why top tech recruiters hire equally from public R1 schools."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-rejection-analysis-appeal",
+      "fields": {
+        "summary": "Strategic advice for Indian students facing university rejections: identify application weak points, upgrade prerequisite coursework, and reapply with an improved statement of purpose."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-routes-hub-guide",
+      "fields": {
+        "summary": "Navigational roadmap for Indian students and families outlining the full US immigration path, from F-1 student status and CPT or OPT through to H-1B specialty worker visas."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-scholarship-directory-hub-guide",
+      "fields": {
+        "summary": "Funding hub for Indian master's applicants, explaining the difference between university assistantship tuition waivers and external scholarships from Indian and international trusts."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-sop-lor-resume-us-standards",
+      "fields": {
+        "summary": "Application blueprint for Indian students preparing US graduate packages: format a concise one-page resume, secure three academic LORs, and craft a compelling Statement of Purpose."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-ssn-application-guide",
+      "fields": {
+        "summary": "Assists Indian international students with obtaining a 9-digit Social Security Number (SSN) after securing on-campus work, enabling US credit history and tax reporting."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-stem-opt-designated-ms-cs",
+      "fields": {
+        "summary": "Directory for Indian students pursuing computer science master's programs, confirming DHS STEM designations that extend post-graduation work rights from 12 to 36 months."
+      }
+    }
+  ]
+}

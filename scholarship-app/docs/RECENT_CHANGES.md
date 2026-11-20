@@ -3,10 +3,11 @@
 Short log of what changed on the site and in the tooling, newest first. Written for AI agents
 (Antigravity, Codex) that start each run with no memory. **Whoever merges a feature adds one line here.**
 
-Last updated: 2026-10-13.
+Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below yet.
 
 ## What agents must do differently now
 
+- 2026-11-05: 4 correction proposals `scripts/study-abroad/proposals/uk-course-{university-of-birmingham,coventry-university}-{cs,ds}-visa-cost-fix-2026-11-05.json` for the live Birmingham and Coventry CS/DS pages: visa living money to the HC 584 rate (£1,203 a month outside London from 30 November 2026), totals +£288. Built from the live page text and filed to the production Inbox.
 - **Researching scholarships:** read `docs/SCHOLARSHIP_SOURCES.md` first. Check a scholarship's `source_pages`,
   then `official_source` and `apply_url`, before searching the web. New scholarships start from
   `data/scholarship-sources.json`. Save official pages you confirmed to `source_pages`. Listing/platform sites
@@ -17,6 +18,34 @@ Last updated: 2026-10-13.
 - **Never touch** `.env*`, `scholarship.db`, `backups/`, `.mcp.json`. Claude builds features; agents do content/research from a plan file only.
 
 ## Merged to main
+
+**Nov 5**
+- UK MSc Computer Science and Data Science course pages, 24 drafts for 12 universities (#135 batch 1: Birmingham, Coventry, Edinburgh, Glasgow; #139 batch 2: Leeds, Manchester, Newcastle, Nottingham; #140 batch 3: Sheffield, Southampton, UCL, Warwick). Research notes in `plans/uk-research/cs-ds/`, drafts `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`. Visa living money uses the HC 584 rates for applications from 30 November 2026 (£1,203 a month outside London, £10,827 for 9 months); #138 applied this to batch 1 and added fixes for the 4 live Birmingham and Coventry pages. Manchester DS has no tuition (2027 fee not published). #137 (an earlier batch 2) was replaced by #139 and #140.
+
+**Nov 4**
+- UK health surcharge corrected on 25 draft pages (11 MBA, 12 university, visa guide, cost guide): it is charged on visa length. A 12-month course gets a visa of about 17 months (Immigration Rules, Appendix Student, ST 25.3), so the surcharge is £1,164 (£1,552 for the 15 to 18 month Manchester MBA), not "£776 or more". Totals rose by £388. File: `scripts/study-abroad/proposals/uk-surcharge-correction-2026-11-04.json`. New UK pages must use £1,164.
+- UK MBA course pages: 11 pages (Newcastle, Glasgow, Manchester, Warwick, Coventry, Birmingham, Edinburgh, Leeds, Nottingham, Sheffield, Southampton) were reviewed on the project board and filed to the production Inbox as hidden drafts. Filing files are in `scripts/study-abroad/proposals/uk-course-*-mba-*.json`; research notes and live-page verification reports are in `plans/uk-research/mba/`. No UCL MBA page (owner decision). The UK stays hidden until the hub page ships.
+- UK health surcharge is charged per year of visa length, not course length: £776 is the minimum for a one-year master's (`plans/uk-research/uk-surcharge-note.md`).
+
+**Nov 3**
+- `scripts/study-abroad/check-draft-numbers.mjs`: before filing a drafted page, run it against the research notes. It lists every figure on the page (money, percent, IELTS, durations, dates) that is not in the notes. Caught an invented price range in the Newcastle pilot.
+- #128 Study Abroad country pages can list one picked entry per scholarship (even when the round has closed) and leave out duplicates, plus a one-line callout. Only the UK has picks (`lib/study-abroad/scholarship-picks.ts`); the UK is still hidden. Main-site scholarship pages are unchanged.
+- UK visa guide and UK cost guide filed as draft pages (approved); UK round 4 research notes saved in `plans/uk-research/`.
+
+**Nov 2**
+- #124 Command Center Inbox table: opening a new scholarship's row shows its amount, who can apply, deadline, benefits, how to apply and what is missing.
+- UK research (visa, 12 universities, scholarships) saved in `plans/uk-research/`. UK visa facts (13 changes) and two new scholarships (GREAT India, Edinburgh India Merit) were proposed to the production Inbox. The UK stays hidden (`launched: false`) until its pages pass the launch checklist.
+- #125 `feat(study-abroad)`: Batch migrate 92 `sa_guides` holding legacy `## Executive Summary: [Topic]` headings to clean passage-indexed H2s. Added validator resilience in `scripts/lib/sa-inbox.js` allowing legacy markdown without external source links to carry forward, matching `BANNED` precedent. Pre-flight verification suite in `scripts/study-abroad/preflight-heading-proposals.mjs`.
+- #123 `feat(study-abroad)`: C2 second pass proposals for 14 guides and 11 facts freshness (from 118-guide audit scope) with verified 1-to-1 statutory authorities.
+- #122 `content(study-abroad)`: Form I-20 deficit calculation & Section 80E tax deduction guides (ART-126, ART-127).
+- #121 `feat(audit)`: Targeted file prose audit and canonical link redirects.
+- #120 `fix(trust)`: Accurate state counting, confirmed-only closing soon, and remove unverified social proof.
+
+**Oct 31**
+- `docs/PROJECT_CONTEXT.md`: shared context for all assistants (roles, how work ships, standing decisions, traps). `AGENTS.md` now says to read it first and keep it updated.
+
+**Oct 30**
+- Docs cleanup: browser profiles, `scratch/`, one-off exports and old backups removed from git; stale docs moved to `docs/archive/`, `data/archive/`, `plans/archive/`; `GEMINI.md` now points to `AGENTS.md`.
 
 **Oct 13**
 - #61, #62 Long-tail pages: OASIS and Odisha portal guides, guide links on scholarship pages, school/college section on state pages. Duplicate Bihar post-matric articles merged; Karnataka income-limit takeaway corrected.

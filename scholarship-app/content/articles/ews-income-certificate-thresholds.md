@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Procedural & Docs"
-targetMoneyLink: "/scholarships-by-income/under-2-lakh"
+targetMoneyLink: "/scholarships-by-income"
 relatedScholarships:
   - "tata-capital-pankh-scholarship"
   - "sbi-platinum-jubilee-asha-scholarship"
@@ -88,4 +88,4 @@ Always read the specific guidelines of each scheme before uploading your documen
 2. **Check certificate validity**: Ensure your income certificate is issued for the current financial year.
 3. **Keep digital copies ready**: Upload clear PDF copies under 200 KB to prevent portal rejection.
 
-Check eligible programs in your range on our [Scholarships Under ₹2 Lakh](/scholarships-by-income/under-2-lakh) page.
+Check eligible programs in your range on our [Scholarships Under ₹2 Lakh](/scholarships-by-income) page.

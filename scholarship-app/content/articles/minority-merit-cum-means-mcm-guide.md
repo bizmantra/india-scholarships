@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/scholarships-by-category/minority"
+targetMoneyLink: "/scholarships-for/minority"
 relatedScholarships:
   - "up-post-matric-other-than-intermediate-minority"
   - "merit-cum-means-mcm-scholarship-for-minorities-professional-and-technical-courses-karnataka"
@@ -50,7 +50,7 @@ Distance learning and correspondence course students cannot get this grant.
 
 Students in general BA, BSc, or BCom courses should check another option.
 They can apply for the [Post-Matric Scholarship Scheme for Minorities](/scholarships/up-post-matric-other-than-intermediate-minority) instead.
-You can find more category schemes on our [Minority Scholarships Page](/scholarships-by-category/minority).
+You can find more category schemes on our [Minority Scholarships Page](/scholarships-for/minority).
 
 ---
 

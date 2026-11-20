@@ -1,31 +1,29 @@
-# Scholarship Tracker POC
+# Scholarship Tracker docs
 
-This repository contains the source code and documentation for the Scholarship Tracker POC.
+The active project is the Next.js app in `scholarship-app/` (this folder's parent). Run it with:
 
-## Project Structure
-
-- **[scholarship-app/](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app)**: **Active Main Project**. This is the Next.js 15 application where all active development, programmatic SEO pages, SQLite database integration, and analytics integration reside.
-- **[v2/](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/v2)**: **Inactive/Deprecated Prototype**. This folder only contains the initial repository code version and is not being updated.
-- **[html-prototype/](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/html-prototype)**: **Static HTML prototypes** used for reference layout testing.
-- **[docs/](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs)**: Core project architecture handovers, data schemas, SEO strategies, platform generalization play, and onboarding advice.
-
-## 📚 Architecture & Handover Documentation
-
-For a deep-dive technical overview of the platform, data schema, SEO strategy, and future scaling plans, refer to the following documents:
-
-* **[Architectural Handoff Overview](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Architectural_Handoff_2026-06-27.md)**: Product vision, user personas, Next.js folder responsibility, data flow diagrams, sitemaps, and dynamic route listings.
-* **[Data, SEO & Content Architecture](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Data_SEO_Content_2026-06-27.md)**: SQLite database schema, denormalization reasons, programmatic metadata rendering rules, internal linking algorithms, and Gemini Google Grounding research pipelines.
-* **[Platform Generalization Proposal](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Platform_Generalization_2026-06-27.md)**: Redesign strategy for transforming the site into a multi-tenant generic directory platform (Colleges, Schemes, Jobs, Finance) using polymorphic schemas.
-* **[ChatGPT Onboarding Advice](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_ChatGPT_Onboarding_Advice_2026-06-27.md)**: Instructions, pitfalls (write-locks, build memory), reservation taxonomy specifics, and developer onboarding pointers.
-* **[Claude Onboarding Brief](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/docs/ChatGPT_Research_Claude_Onboarding_Brief_2026-06-27.md)**: Copy-pasteable system context prompt specifically designed to bootstrap Claude (or a fresh ChatGPT thread) with the full project context.
-* **[Local Backlog & Kanban Board Guide](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/backlog-system.md)**: Explains the offline JSON/Markdown tracking files, Next.js interactive Kanban interface, and local MCP server configuration.
-* **[Decision Log (ADRs)](file:///Users/roshankumar/Desktop/Schlarship%20Tracker%20/Scholarship-Tracker-POC-antigravity/scholarship-app/docs/decision-log/)**: Log of Architectural Decision Records, including the transition to local tracking (ADR-006).
-
-## Running the Active Project
-
-To run the active application locally:
 ```bash
-cd scholarship-app
 npm install
 npm run dev
 ```
+
+## Read first
+
+- `../AGENTS.md` – rules for AI agents (`../GEMINI.md` points to it).
+- `RECENT_CHANGES.md` – what changed recently. Read before starting any job.
+- `SCHOLARSHIP_SOURCES.md` – where to research scholarships.
+- `INTERNAL_LINKING_STRATEGY.md` – linking rules for all content.
+- `study-abroad/` – Study Abroad templates, content rules, terms.
+- `AGENT_CENTER.md` – the /admin Command Center.
+- `DATABASE_OPERATIONS.md`, `DESIGN_SYSTEM.md`, `seo_site_structure.md` – reference.
+- `decision-log/` – architecture decision records.
+
+## Tracking work
+
+Tasks live in the Notion Tasks database (see `../AGENTS.md`). The old local backlog files were retired on 2026-10-30.
+
+## Historical (kept for reference, not current)
+
+`archive/` holds the June–July 2026 ChatGPT onboarding research, the old local-backlog and Notion guides, and the Telegram
+implementation notes. `ARCHITECTURE_CONTEXT.md` describes the July 2026 architecture and is partly out of date.
+Older data reports are in `../data/archive/`, finished plans in `../plans/archive/`.

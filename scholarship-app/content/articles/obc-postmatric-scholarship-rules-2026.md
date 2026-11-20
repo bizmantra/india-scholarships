@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/scholarships-by-category/obc"
+targetMoneyLink: "/scholarships-for/obc"
 relatedScholarships:
   - "up-post-matric-other-than-intermediate-obc"
   - "punjab-post-matric-scholarship-for-obc-bc-students"
@@ -31,7 +31,7 @@ It covers tuition fees, examination charges, and monthly maintenance allowances 
 
 While the Central Ministry of Social Justice and Empowerment defines the baseline framework, state governments execute the scheme on state portals.
 
-You can find all active OBC funding opportunities on the [OBC Scholarships Guide](/scholarships-by-category/obc).
+You can find all active OBC funding opportunities on the [OBC Scholarships Guide](/scholarships-for/obc).
 
 > 💡 **Pro Tip**: Use the free [/eligibility-checker](/eligibility-checker) to test your exact state and income eligibility.
 

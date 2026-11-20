@@ -45,7 +45,7 @@ The platform hosts multiple financial schemes for various student categories.
 2. **For SEBC/OBC Students**: Check the [Gujarat Post-Matric OBC Scholarship](/scholarships/gujarat-post-matric-scholarship-for-obc) scheme rules.
 3. **For Minority Students**: Read about the [Digital Gujarat Post-Matric Minority Scholarship](/scholarships/gujarat-post-matric-scholarship-for-minorities) options.
 
-You can check your exact eligibility using our [Eligibility Checker Tool](/tools/eligibility-checker).
+You can check your exact eligibility using our [Eligibility Checker Tool](/eligibility-checker).
 
 ---
 

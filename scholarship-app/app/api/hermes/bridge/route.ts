@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import {
-    bridgeBlockedReason, bridgeEnabled, decideFromHermes, inboxReady, pendingForHermes, propose, roleForRequest,
+    bridgeBlockedReason, bridgeEnabled, decideFromHermes, inboxReady, pendingForHermes, propose, proposeSa, roleForRequest,
 } from '@/lib/command-center/hermes-bridge';
 
 export const dynamic = 'force-dynamic';
@@ -10,9 +10,11 @@ export const maxDuration = 30;
  * Hermes bridge (staging only for now). Sits outside /api/admin because Hermes has no browser session; it is
  * guarded by bearer tokens instead (see lib/command-center/hermes-bridge.ts).
  *
- * Body: { action: 'status' | 'propose' | 'list' | 'approve' | 'reject', ... }
+ * Body: { action: 'status' | 'propose' | 'propose_sa' | 'list' | 'approve' | 'reject', ... }
  *   propose  needs the propose token (or the decide token): { profile, scholarship_id, field, new_value, source, quote?, seen_on?, confidence? }
- *   list     pending Hermes proposals, with whether each can be approved from Hermes
+ *   propose_sa  same shape for Study Abroad pages: { profile, table, key, field, new_value, source, quote?, seen_on?, confidence? },
+ *            or { profile, table, key, create: true, fields: {...}, source, quote? } for a new draft page
+ *   list     pending Hermes proposals, with whether each can be approved from Hermes (incl. kind, table, key)
  *   approve / reject  need the decide token: { ids: number[], note? }
  */
 export async function POST(request: Request) {
@@ -33,6 +35,8 @@ export async function POST(request: Request) {
                 return NextResponse.json({ ok: true, role, environment: process.env.VERCEL_ENV || 'local' });
             case 'propose':
                 return NextResponse.json(await propose(body));
+            case 'propose_sa':
+                return NextResponse.json(await proposeSa(body));
             case 'list':
                 return NextResponse.json({ items: await pendingForHermes() });
             case 'approve':

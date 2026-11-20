@@ -6,14 +6,15 @@ date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/scholarships-by-category/girls"
+targetMoneyLink: "/scholarships-for/girls"
 relatedScholarships:
   - "cbse-merit-scholarship-for-single-girl-child"
   - "aicte-pragati-scholarship-for-girl-students"
+  - "ugc-savitribai-jyotirao-phule-single-girl-child-fellowship"
 takeaways:
-  - "Single girl child scholarships help families with only one daughter pay for school and college."
+  - "Single girl child scholarships help families with only one daughter pay for school, college, and Ph.D. studies."
   - "You must submit an official stamp paper affidavit signed by an SDM or Magistrate."
-  - "Major schemes include CBSE Single Girl Child and AICTE Pragati Scholarship for Girl Students."
+  - "Major schemes include CBSE Single Girl Child, AICTE Pragati, and the UGC single girl child schemes."
 checklist:
   - "Original Single Girl Child Affidavit on Stamp Paper"
   - "Attestation by SDM or First Class Magistrate"
@@ -52,7 +53,11 @@ Explore eligibility on the [AICTE Pragati Scholarship for Girl Students](/schola
 The University Grants Commission (UGC) provides ₹36,200 per year.
 It covers female students enrolled in first-year Post-Graduate master courses.
 
-You can view all female schemes on our [Scholarships for Girls Hub](/scholarships-by-category/girls).
+### 4. UGC Savitribai Jyotirao Phule Single Girl Child Fellowship
+The University Grants Commission (UGC) supports single girl children doing a full-time Ph.D.
+See the stipend and eligibility on the [UGC Savitribai Jyotirao Phule Single Girl Child Fellowship](/scholarships/ugc-savitribai-jyotirao-phule-single-girl-child-fellowship).
+
+You can view all female schemes on our [Scholarships for Girls Hub](/scholarships-for/girls).
 
 ---
 

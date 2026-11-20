@@ -51,6 +51,17 @@ const CATEGORY_NAME_MAP: Record<string, string> = {
     'pwd': 'Persons with Disabilities (PWD)',
 };
 
+// Reserved categories that get an upper-age relaxation in central government exams, with the
+// copy shown on that category's hub. OBC gets +3 years in SSC and IBPS; SC and ST (including the
+// legacy combined `sc-st` slug) get +5; EWS gets no relaxation at all.
+const RELAXATION_BANNER_COPY: Record<string, string> = {
+    'obc': 'OBC candidates get +3 years in SSC and IBPS — check your relaxed age limit',
+    'sc': 'SC/ST candidates get +5 years in SSC and IBPS — check your relaxed age limit',
+    'st': 'SC/ST candidates get +5 years in SSC and IBPS — check your relaxed age limit',
+    'sc-st': 'SC/ST candidates get +5 years in SSC and IBPS — check your relaxed age limit',
+    'ews': 'EWS gets no age relaxation in SSC or IBPS — check the base age limit',
+};
+
 const STUDY_ABROAD_LEVELS: Record<string, string> = {
     'phd': 'PhD / Doctoral',
     'mba': 'MBA',
@@ -217,6 +228,9 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
         const firstMatch = matchingOriginalCategories[0];
         const displayName = CATEGORY_NAME_MAP[firstMatch.toLowerCase()] || firstMatch;
 
+        // Reserved-category age relaxation differs by category, so the copy is looked up per slug.
+        const relaxationBannerCopy = RELAXATION_BANNER_COPY[categorySlug.toLowerCase()];
+
         // Check every matching raw category string for a covering pillar guide
         const matchingPillar = matchingOriginalCategories
             .map(c => getPillarForCategory(c))
@@ -292,6 +306,24 @@ export default async function CategoryHubPage({ params }: { params: Promise<{ ca
                         <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-8">Active {displayName} Scholarships</h2>
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} />
                     </div>
+
+                    {/* Relaxed age limit — reserved categories only */}
+                    {relaxationBannerCopy && (
+                        <div className="mb-16 rounded-3xl border border-amber-200 bg-amber-50/60 p-6 sm:p-8">
+                            <p className="text-[10px] font-black uppercase tracking-wider text-amber-700 mb-2">What next</p>
+                            <p className="text-lg font-bold text-gray-900 leading-snug mb-4">
+                                {relaxationBannerCopy}
+                            </p>
+                            <a
+                                href="https://indiacalculators.org/ssc-cgl-age-limit/?utm_source=indiascholarships&utm_medium=referral&utm_campaign=category-page"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-sm font-bold text-google-blue hover:underline"
+                            >
+                                Check your SSC CGL age limit →
+                            </a>
+                        </div>
+                    )}
 
                     {/* Category-Specific FAQ */}
                     <div className="bg-gray-50/70 rounded-3xl p-8 sm:p-10 mb-16 border border-gray-200">

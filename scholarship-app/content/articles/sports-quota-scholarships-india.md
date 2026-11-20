@@ -7,14 +7,16 @@ date: "2026-07-29"
 readTime: "5 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Category & Income"
-targetMoneyLink: "/tools/eligibility-checker"
+targetMoneyLink: "/eligibility-checker"
 relatedScholarships:
   - "khelo-india-sports-scholarship-scheme"
   - "ongc-sports-scholarship-scheme"
   - "indianoil-sports-scholarship-scheme"
   - "aai-sports-scholarship-scheme"
+  - "target-olympic-podium-scheme"
 takeaways:
   - "Khelo India is the flagship government scheme, offering an annual stipend to identified athletes regardless of family income."
+  - "The Target Olympic Podium Scheme (TOPS) supports elite athletes who are medal prospects for the Olympics and Paralympics."
   - "PSU sports scholarships (ONGC, IndianOil, AAI) require state or national-level participation certificates, not just district-level events."
   - "Most sports scholarships can be combined with a regular academic scholarship since they come from separate quotas."
 checklist:
@@ -33,6 +35,7 @@ Athletes competing at the state or national level have several dedicated funding
 
 | Scheme | Eligible Level | Funded By |
 | :--- | :--- | :--- |
+| [Target Olympic Podium Scheme (TOPS)](/scholarships/target-olympic-podium-scheme) | Core and Development group athletes picked for Olympic and Paralympic medal prospects (allowance per official TOPS rules) | Government (Ministry of Youth Affairs & Sports) |
 | [Khelo India Sports Scholarship Scheme](/scholarships/khelo-india-sports-scholarship-scheme) | State to national level, identified talent pool | Government (Ministry of Youth Affairs & Sports) |
 | [ONGC Sports Scholarship Scheme](/scholarships/ongc-sports-scholarship-scheme) | National-level participants in select disciplines | ONGC CSR |
 | [IndianOil Sports Scholarship Scheme](/scholarships/indianoil-sports-scholarship-scheme) | State/national athletes in Olympic disciplines | IndianOil CSR |
@@ -54,7 +57,7 @@ Khelo India works differently: athletes are identified through the Khelo India t
 2. **Register with your state sports council** even if you already compete nationally; several schemes cross-check state registration.
 3. **Apply well before your sporting season ends** — many PSU schemes have a fixed annual application window tied to the financial year.
 
-Check eligibility for both sports and academic scholarships together on our [Eligibility Checker](/tools/eligibility-checker).
+Check eligibility for both sports and academic scholarships together on our [Eligibility Checker](/eligibility-checker).
 
 ## Detailed Step-by-Step Application Procedure
 

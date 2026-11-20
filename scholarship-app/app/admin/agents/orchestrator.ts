@@ -42,6 +42,41 @@ export async function refreshSummary() {
     }
 }
 
+interface SaFactsWorklist {
+    generated_at?: string;
+    counts?: {
+        facts?: number;
+        flagged?: number;
+        by_flag?: Record<string, number>;
+        money_rows_flagged?: number;
+        worst?: { key: string; why?: string }[];
+    };
+}
+
+// Study Abroad facts freshness (spec D4): what the script last flagged, from its committed worklist
+async function studyAbroadFacts() {
+    try {
+        const w = await api<SaFactsWorklist>('sa-facts');
+        const c = w.counts || {};
+        post({
+            type: 'summary',
+            title: 'Study Abroad facts freshness',
+            lines: [
+                { label: 'Facts checked', value: String(c.facts ?? 0) },
+                { label: 'Need a look', value: String(c.flagged ?? 0), tone: (c.flagged ? 'warn' : 'good') as 'warn' | 'good' },
+                ...Object.entries(c.by_flag || {}).map(([flag, n]) => ({ label: `  ${flag}`, value: String(n), tone: 'warn' as const })),
+                { label: 'Pages showing money with no source', value: String(c.money_rows_flagged ?? 0), tone: (c.money_rows_flagged ? 'warn' : 'good') as 'warn' | 'good' },
+                ...(c.worst || []).slice(0, 6).map(item => ({ label: `  ${item.key}`, value: '', tone: 'warn' as const })),
+                { label: 'Worklist file', value: 'data/study-abroad/facts-worklist.json' },
+                { label: 'As of', value: String(w.generated_at || '').slice(0, 16).replace('T', ' ') },
+                { label: 'Re-run', value: 'node scripts/study-abroad/facts-freshness.mjs --target=production' },
+            ],
+        });
+    } catch (e) {
+        post({ type: 'text', tone: 'bad', text: `Could not read the facts worklist: ${e instanceof Error ? e.message : String(e)}` });
+    }
+}
+
 export async function refreshActivity() {
     try {
         const { events } = await api<{ events: any[] }>('activity?limit=60');
@@ -96,6 +131,7 @@ async function route(text: string) {
     switch (intent.type) {
         case 'waiting': return whatsWaiting();
         case 'show': return post({ type: 'proposals', title: intent.title, query: { category: intent.category, risk: intent.risk }, pageSize: 5 });
+        case 'saFacts': return studyAbroadFacts();
         case 'bulk': return bulkDecision(intent.action, intent.category, intent.risk, intent.label);
         case 'run': return startRun(intent.agent, intent.state);
         case 'publish': return startRun('scout-publisher');

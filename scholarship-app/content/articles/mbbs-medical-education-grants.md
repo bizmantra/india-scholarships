@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "4 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"
-targetMoneyLink: "/scholarships-by-education/mbbs"
+targetMoneyLink: "/scholarships-by-course/medical"
 relatedScholarships:
   - "colgate-keep-india-smiling-scholarship"
   - "reliance-foundation-undergraduate-scholarship"
@@ -81,4 +81,4 @@ High-value Corporate Social Responsibility (CSR) foundation grants help bridge t
 3. **Submit NSP / State Portal Application**: Register as soon as admissions close to clear Institute Verification before state deadlines.
 4. **Track Verification Status**: Follow up with your college nodal officer to verify your application on the portal.
 
-Check all eligible medical grants on our [MBBS Scholarships](/scholarships-by-education/mbbs) hub.
+Check all eligible medical grants on our [MBBS Scholarships](/scholarships-by-course/medical) hub.

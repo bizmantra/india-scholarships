@@ -1,0 +1,222 @@
+const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const projectRoot = path.join(__dirname, '..');
+const fixturesDir = path.join(__dirname, '__fixtures__');
+if (!fs.existsSync(fixturesDir)) {
+  fs.mkdirSync(fixturesDir, { recursive: true });
+}
+
+console.log('🧪 Running Article Audit Tooling Test Suite...\n');
+
+const filler = ('\n\nThis is a standard paragraph with concise sentences.\nIt satisfies all paragraph length limits.').repeat(40);
+
+let allPassed = true;
+
+try {
+  // 1. Clean valid fixture
+  const validFixture = path.join(fixturesDir, 'valid-article.md');
+  fs.writeFileSync(validFixture, `---
+slug: "valid-article"
+title: "Valid Article for Testing"
+takeaways:
+  - "Takeaway number one"
+  - "Takeaway number two"
+  - "Takeaway number three"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+## First Section
+
+Dr. Sharma holds a Ph.D. degree from a prestigious university.
+
+Students must review guideline No. 1 before starting their application.
+
+European applicants can also consult the official portal, etc. when applying.
+
+Track upcoming deadlines on the [Study in USA Hub](/study-abroad/study-in/usa).
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${validFixture}"`, { stdio: 'pipe' });
+    console.log('✅ Test 1 Passed: Clean fixture with Ph.D., Dr., No. 1 passed audit.');
+  } catch (e) {
+    console.error('❌ Test 1 Failed:', e.stdout?.toString() || e.message);
+    allPassed = false;
+  }
+
+  // 2. Case-sensitive pronoun check ('I' flagged, 'i' in i.e. ignored)
+  const pronounFixture = path.join(fixturesDir, 'pronoun-article.md');
+  fs.writeFileSync(pronounFixture, `---
+slug: "pronoun-article"
+title: "Pronoun Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Here i.e. is an allowed abbreviation.
+
+However I must verify all details before submitting.
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${pronounFixture}"`, { stdio: 'pipe' });
+    console.error('❌ Test 2 Failed: Expected pronoun failure for capital "I", but it passed.');
+    allPassed = false;
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('Forbidden first-person pronoun(s): I')) {
+      console.log('✅ Test 2 Passed: Capital "I" flagged while "i.e." is permitted.');
+    } else {
+      console.error('❌ Test 2 Failed: Output did not contain expected pronoun error:', out);
+      allPassed = false;
+    }
+  }
+
+  // 3. Redirect normalization (query string & trailing slash)
+  const redirectFixture = path.join(fixturesDir, 'redirect-article.md');
+  fs.writeFileSync(redirectFixture, `---
+slug: "redirect-article"
+title: "Redirect Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Check the [Checker](/tools/eligibility-checker/?source=test).
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${redirectFixture}"`, { stdio: 'pipe' });
+    console.error('❌ Test 3 Failed: Expected redirect failure for /tools/eligibility-checker/, but it passed.');
+    allPassed = false;
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('Internal link targets redirected URL')) {
+      console.log('✅ Test 3 Passed: Redirected URL with query parameters caught successfully.');
+    } else {
+      console.error('❌ Test 3 Failed: Output did not contain expected redirect error:', out);
+      allPassed = false;
+    }
+  }
+
+  // 4. Missing file exits non-zero
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "nonexistent-file.md"`, { stdio: 'pipe' });
+    console.error('❌ Test 4 Failed: Expected failure on missing file.');
+    allPassed = false;
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('TARGET FILE NOT FOUND')) {
+      console.log('✅ Test 4 Passed: Missing file explicitly caught and failed.');
+    } else {
+      console.error('❌ Test 4 Failed: Expected TARGET FILE NOT FOUND error message:', out);
+      allPassed = false;
+    }
+  }
+
+  // 5. Explicitly allowlisted Form I-20 / I-134 / I-797C not falsely flagged as pronoun 'I'
+  const formFixture = path.join(fixturesDir, 'form-article.md');
+  fs.writeFileSync(formFixture, `---
+slug: "form-article"
+title: "Form Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Applicants must submit Form I-20, Form I-134, and Form I-797C for visa verification.
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formFixture}"`, { stdio: 'pipe' });
+    console.log('✅ Test 5 Passed: Allowlisted Form designations I-20, I-134, and I-797C permitted.');
+  } catch (e) {
+    console.error('❌ Test 5 Failed: Form designations triggered false positive pronoun failure:', e.stdout?.toString() || e.message);
+    allPassed = false;
+  }
+
+  // 6. Form I-20 with real pronoun 'I' must still be caught
+  const formWithPronounFixture = path.join(fixturesDir, 'form-pronoun-article.md');
+  fs.writeFileSync(formWithPronounFixture, `---
+slug: "form-pronoun-article"
+title: "Form Pronoun Article"
+takeaways:
+  - "Takeaway 1"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Applicants must submit Form I-20 for visa verification.
+
+However I must verify financial balances before submitting.
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${formWithPronounFixture}"`, { stdio: 'pipe' });
+    console.error('❌ Test 6 Failed: Expected failure for capital "I" even when Form I-20 is present.');
+    allPassed = false;
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('Forbidden first-person pronoun(s): I')) {
+      console.log('✅ Test 6 Passed: Capital "I" flagged even when Form I-20 is present.');
+    } else {
+      console.error('❌ Test 6 Failed: Output did not contain expected pronoun error:', out);
+      allPassed = false;
+    }
+  }
+
+  // 7. Frontmatter pronouns must also be flagged in strict prose mode
+  const fmPronounFixture = path.join(fixturesDir, 'fm-pronoun-article.md');
+  fs.writeFileSync(fmPronounFixture, `---
+slug: "fm-pronoun-article"
+title: "Frontmatter Pronoun Article"
+takeaways:
+  - "In my opinion this is important"
+  - "Takeaway 2"
+  - "Takeaway 3"
+targetMoneyLink: "/scholarships/jn-tata-endowment-scholarship"
+---
+
+Applicants must submit required documents for verification.
+${filler}
+`, 'utf8');
+
+  try {
+    execSync(`node "${path.join(__dirname, 'audit-article-links.js')}" --file "${fmPronounFixture}"`, { stdio: 'pipe' });
+    console.error('❌ Test 7 Failed: Expected failure for frontmatter pronoun "my", but it passed.');
+    allPassed = false;
+  } catch (e) {
+    const out = (e.stdout?.toString() || '') + (e.stderr?.toString() || '');
+    if (out.includes('Forbidden frontmatter pronoun(s): my')) {
+      console.log('✅ Test 7 Passed: Frontmatter pronoun "my" caught in strict mode.');
+    } else {
+      console.error('❌ Test 7 Failed: Output did not contain expected frontmatter pronoun error:', out);
+      allPassed = false;
+    }
+  }
+
+  if (allPassed) {
+    console.log('🎉 All 7 audit test cases passed cleanly!\n');
+  } else {
+    console.error('❌ One or more audit test cases failed.');
+    process.exitCode = 1;
+  }
+} finally {
+  // Always clean up fixtures even if a test throws an exception
+  fs.rmSync(fixturesDir, { recursive: true, force: true });
+}

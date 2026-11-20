@@ -1,0 +1,68 @@
+{
+  "agent": "content-editor",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "usa-toefl-ielts-duolingo-cutoffs",
+      "fields": {
+        "summary": "Helps Indian applicants choose between TOEFL iBT, IELTS Academic, and Duolingo, comparing score cutoffs, exam fees, and acceptance rates across US graduate departments."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-toefl-ielts-preparation-guide",
+      "fields": {
+        "summary": "Exam preparation strategies for Indian students targeting 100+ in TOEFL or 7.5 in IELTS, focusing on high speaking scores needed to qualify for funded Teaching Assistantships."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-top-us-public-r1-unis",
+      "fields": {
+        "summary": "Profiles top US public R1 research universities for Indian families, highlighting institutions with competitive out-of-state tuition, generous research funding, and high return on investment."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-total-cost-breakdown",
+      "fields": {
+        "summary": "Financial planning guide for Indian parents and students, breaking down the estimated $45,000 to $75,000 two-year budget required for tuition and living at public US universities."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-university-listing-hub-guide",
+      "fields": {
+        "summary": "Selection guide for Indian students evaluating US universities, using location, tuition brackets, public R1 research status, and assistantship funding availability to build a balanced shortlist."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-visa-routes-hub-guide",
+      "fields": {
+        "summary": "Comprehensive overview of US visa regulations for Indian students, explaining work authorization transitions from initial F-1 status and CPT through OPT extensions and H-1B filings."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-wes-credential-evaluation-manual",
+      "fields": {
+        "summary": "Step-by-step instructions for Indian graduates ordering the WES ICAP course-by-course evaluation ($217), detailing how to send verified university marksheets to World Education Services."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-wes-gpa-40-conversion",
+      "fields": {
+        "summary": "Explains how Indian 10-point CGPA and percentage grades are converted into the US 4.0 GPA scale by credential evaluators like WES for graduate admissions committees."
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "usa-work-experience-research-paper-points",
+      "fields": {
+        "summary": "Demonstrates how Indian applicants with undergraduate CGPAs between 6.0 and 7.5 can strengthen their US master's profile using full-time software experience or published research papers."
+      }
+    }
+  ]
+}

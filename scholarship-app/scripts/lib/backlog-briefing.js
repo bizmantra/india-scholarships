@@ -10,7 +10,11 @@ const { connect } = require('./turso-target');
 const IMPACTS = ['Critical', 'High', 'Medium', 'Low'];
 const DAY = 86400000;
 const DUE_SOON_DAYS = 7;
-const STALE_DAYS = { 'In Progress': 14, Backlog: 30 };
+const STALE_DAYS = { Review: 7, 'In Progress': 14, Ready: 14, Backlog: 30 };
+const OPEN_STATUSES = ['Backlog', 'Ready', 'In Progress', 'Review'];
+// Started work before queued work before the rest (matches STARTED_RANK in backlog-types.ts)
+const OPEN_SQL = OPEN_STATUSES.map(s => `'${s}'`).join(', ');
+const STARTED_RANK = { 'In Progress': 0, Review: 0, Ready: 1, Backlog: 2 };
 const TODAY_COUNT = 3;
 
 const parseUtc = s => new Date(String(s).replace(' ', 'T') + 'Z').getTime();
@@ -24,7 +28,7 @@ function daysUntil(due, now) {
 function rankKey(item, now) {
     const left = daysUntil(item.due_date, now);
     const dueBucket = left === null ? 2 : left < 0 ? 0 : left <= DUE_SOON_DAYS ? 1 : 2;
-    return [dueBucket, IMPACTS.indexOf(item.impact), item.status === 'In Progress' ? 0 : 1];
+    return [dueBucket, IMPACTS.indexOf(item.impact), STARTED_RANK[item.status] ?? 3];
 }
 
 function sortByPriority(items, now) {
@@ -48,9 +52,9 @@ async function loadOpenItems(target) {
     const res = await client.execute(hasMeta
         ? `SELECT t.id, t.category, t.title, t.impact, t.status, m.due_date, m.note, m.waiting, m.updated_at
            FROM backlog_tasks t LEFT JOIN cc_backlog_meta m ON m.task_id = t.id
-           WHERE t.status IN ('Backlog', 'In Progress')`
+           WHERE t.status IN (${OPEN_SQL})`
         : `SELECT id, category, title, impact, status, NULL AS due_date, NULL AS note, 0 AS waiting, NULL AS updated_at
-           FROM backlog_tasks WHERE status IN ('Backlog', 'In Progress')`);
+           FROM backlog_tasks WHERE status IN (${OPEN_SQL})`);
     return res.rows.map(r => ({
         id: String(r.id), category: String(r.category || ''), title: String(r.title),
         impact: IMPACTS.includes(r.impact) ? r.impact : 'Medium', status: String(r.status),
@@ -62,7 +66,9 @@ async function loadOpenItems(target) {
 // What the briefing shows: the three to do today, what is waiting on the owner, what is due within a week (or overdue), what has gone quiet
 function summarise(items, now = Date.now()) {
     const slim = i => ({ id: i.id, title: i.title, impact: i.impact, status: i.status, due_in: daysUntil(i.due_date, now), note: i.note });
-    const ready = sortByPriority(items.filter(i => !i.waiting), now);
+    // An item in Review is by definition waiting on the owner
+    const needsOwner = i => i.waiting || i.status === 'Review';
+    const ready = sortByPriority(items.filter(i => !needsOwner(i)), now);
     const dueSoon = sortByPriority(items.filter(i => { const d = daysUntil(i.due_date, now); return d !== null && d <= DUE_SOON_DAYS; }), now);
     const stale = items
         .filter(i => Math.floor((now - parseUtc(i.updated_at)) / DAY) >= STALE_DAYS[i.status])
@@ -71,9 +77,9 @@ function summarise(items, now = Date.now()) {
     return {
         open: items.length,
         today: ready.slice(0, TODAY_COUNT).map(slim),
-        waiting: sortByPriority(items.filter(i => i.waiting), now).map(slim),
+        waiting: sortByPriority(items.filter(needsOwner), now).map(slim),
         dueSoon: dueSoon.map(slim),
-        stale: stale.filter(i => i.status === 'In Progress').slice(0, 5),
+        stale: stale.filter(i => i.status === 'In Progress' || i.status === 'Review').slice(0, 5),
         staleCount: stale.length,
     };
 }

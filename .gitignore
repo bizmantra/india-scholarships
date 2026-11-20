@@ -55,3 +55,6 @@ scholarship-app/data/indexing-agent.json
 scholarship-app/data/fact-check-summary.json
 scholarship-app/data/source-backfill-report.md
 scholarship-app/data/source-backfill-summary.json
+
+# Browser profiles from automation runs
+scholarship-app/tmp/chrome-profile*/

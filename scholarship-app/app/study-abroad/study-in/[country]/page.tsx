@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
+import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, SCHOLARSHIP_PICKS, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
 import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import ListingShell, { ListingSection, type Stat } from '../../_components/ListingShell';
@@ -35,7 +35,7 @@ export default async function CountryHub({ params }: { params: Promise<{ country
     const c = COUNTRIES[country];
     const [guides, universities, visas, loans, facts, scholarships, combos] = await Promise.all([
         getGuides('guide', country), getUniversities(country), getGuides('visa', country), getGuides('loan', country),
-        getFacts(), getScholarshipsForCountry(country, 4), getProgramCombos(),
+        getFacts(), getScholarshipsForCountry(country, SCHOLARSHIP_PICKS[country] ? 8 : 4), getProgramCombos(),
     ]);
     const programs = combos.filter(p => p.country === country && p.universities >= MIN_INDEXABLE_UNIVERSITIES);
     const stats = KEY_FACTS[country].map(k => facts[k.key] && ({
@@ -79,6 +79,9 @@ export default async function CountryHub({ params }: { params: Promise<{ country
                 </ListingSection>
             ))}
             <ListingSection id="scholarships" title={`Scholarships for ${c.name}`}>
+                {SCHOLARSHIP_PICKS[country] && (
+                    <p className="mb-4 text-gray-600">Each scholarship has its own page on the main IndiaScholarships site with the amount, who can apply and how to apply. Some are closed for now. We list them so you know what to watch for.</p>
+                )}
                 <CardGrid>{scholarships.map(s => <ScholarshipCard key={s.slug} scholarship={s} />)}</CardGrid>
                 <Link href={`/study-abroad/study-in/${country}/scholarships`} className="inline-block mt-6 font-bold text-google-blue hover:underline">All scholarships for {c.name} →</Link>
             </ListingSection>

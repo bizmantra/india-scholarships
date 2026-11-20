@@ -67,6 +67,20 @@ The site build (`npm run build`) pulls from Turso first, so every deploy uses cu
 
 Workflows that write the production database share the `database-writes` concurrency group, so they never run at the same time; runs against staging use `database-writes-staging`, so tests never wait behind production agents. The Morning Briefing only adds one activity entry (safe alongside another sync), so it does not wait in either queue.
 
+## Staging vs production: features and content
+
+**Features go to staging first. Content goes to production.**
+
+- **Features** (code, a new proposal kind, a new agent or workflow, schema changes, migrations, backfills) are rehearsed
+  on staging: it is a copy of production, and it exists so nothing untried touches the live database. This section applies to them.
+- **Content** (proposals for `sa_*` pages: guides, universities, programs, facts) is submitted to the **production** inbox
+  and approved there. Staging adds no safety to a proposal - the approval is the safety gate - and it actively hurts:
+  staging is an older snapshot, so proposals validated against it do not match production, and anything approved on
+  staging is discarded the next time `refresh-staging.js` copies production over it. Submitting content to staging means
+  approving the same batch twice.
+- Content is **always a proposal**, never a direct write, in either database: no SQL updates, no `push-to-turso` for
+  content. Money, visa and deadline changes stay in their own proposal file with the source and quote on the change.
+
 ## Releasing a change (staging first)
 
 1. Work on a branch and open a pull request.

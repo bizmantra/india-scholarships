@@ -1,0 +1,410 @@
+{
+  "generated_at": "2026-11-01T07:20:59.706Z",
+  "today": "2026-11-01",
+  "target": "production",
+  "database": "libsql://india-scholarships-***.aws-ap-south-1.turso.io",
+  "rules": {
+    "stale_after_days": 90,
+    "flags": [
+      "no_source",
+      "no_check_date",
+      "stale_check",
+      "recheck_due",
+      "no_provenance"
+    ]
+  },
+  "counts": {
+    "facts": 41,
+    "flagged": 11,
+    "by_flag": {
+      "no_source": 11,
+      "no_check_date": 11
+    },
+    "money_rows_flagged": 4,
+    "worst": [
+      {
+        "key": "germany.blocked_account.buffer_eur",
+        "label": "Recommended buffer for bank transfer fees",
+        "value": "100",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.coracle_monthly_eur",
+        "label": "Coracle blocked account monthly fee",
+        "value": "0",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.coracle_setup_eur",
+        "label": "Coracle blocked account setup fee",
+        "value": "99",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.expatrio_monthly_eur",
+        "label": "Expatrio blocked account monthly fee",
+        "value": "9",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.expatrio_setup_eur",
+        "label": "Expatrio blocked account setup fee",
+        "value": "119",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.fintiba_monthly_eur",
+        "label": "Fintiba blocked account monthly fee",
+        "value": "9.90",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.blocked_account.fintiba_setup_eur",
+        "label": "Fintiba blocked account setup fee",
+        "value": "159",
+        "unit": "EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.fx.eur_inr",
+        "label": "Exchange rate used for estimates (EUR → INR)",
+        "value": "90.50",
+        "unit": "INR per EUR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "germany.vfs.service_fee_inr",
+        "label": "VFS Germany service fee",
+        "value": "2300",
+        "unit": "INR",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      },
+      {
+        "key": "usa.fx.usd_inr",
+        "label": "Exchange rate used for estimates (USD → INR)",
+        "value": "83.80",
+        "unit": "INR per USD",
+        "source": null,
+        "last_checked": null,
+        "recheck_after": null,
+        "age_days": null,
+        "flags": [
+          "no_source",
+          "no_check_date"
+        ],
+        "why": "no official source recorded; no valid check date recorded"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "germany.blocked_account.buffer_eur",
+      "label": "Recommended buffer for bank transfer fees",
+      "value": "100",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.coracle_monthly_eur",
+      "label": "Coracle blocked account monthly fee",
+      "value": "0",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.coracle_setup_eur",
+      "label": "Coracle blocked account setup fee",
+      "value": "99",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.expatrio_monthly_eur",
+      "label": "Expatrio blocked account monthly fee",
+      "value": "9",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.expatrio_setup_eur",
+      "label": "Expatrio blocked account setup fee",
+      "value": "119",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.fintiba_monthly_eur",
+      "label": "Fintiba blocked account monthly fee",
+      "value": "9.90",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.blocked_account.fintiba_setup_eur",
+      "label": "Fintiba blocked account setup fee",
+      "value": "159",
+      "unit": "EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.fx.eur_inr",
+      "label": "Exchange rate used for estimates (EUR → INR)",
+      "value": "90.50",
+      "unit": "INR per EUR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "germany.vfs.service_fee_inr",
+      "label": "VFS Germany service fee",
+      "value": "2300",
+      "unit": "INR",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "usa.fx.usd_inr",
+      "label": "Exchange rate used for estimates (USD → INR)",
+      "value": "83.80",
+      "unit": "INR per USD",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    },
+    {
+      "key": "usa.living.monthly_average_usd",
+      "label": "Average monthly living cost used for estimates",
+      "value": "1200",
+      "unit": "USD",
+      "source": null,
+      "last_checked": null,
+      "recheck_after": null,
+      "age_days": null,
+      "flags": [
+        "no_source",
+        "no_check_date"
+      ],
+      "why": "no official source recorded; no valid check date recorded"
+    }
+  ],
+  "money_without_provenance": [
+    {
+      "table": "sa_universities",
+      "key": "purdue-university",
+      "title": "Purdue University (West Lafayette)",
+      "country": "usa",
+      "money": {
+        "tuition_per_year": 29134,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 9600,
+        "living_currency": "USD"
+      },
+      "flags": [
+        "no_provenance"
+      ],
+      "why": "shows money figures but has no official source and no check date"
+    },
+    {
+      "table": "sa_universities",
+      "key": "tamu-texas-a-m",
+      "title": "Texas A&M University (College Station)",
+      "country": "usa",
+      "money": {
+        "tuition_per_year": 24500,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 9000,
+        "living_currency": "USD"
+      },
+      "flags": [
+        "no_provenance"
+      ],
+      "why": "shows money figures but has no official source and no check date"
+    },
+    {
+      "table": "sa_universities",
+      "key": "ut-dallas-utd",
+      "title": "University of Texas at Dallas (UTD)",
+      "country": "usa",
+      "money": {
+        "tuition_per_year": 32000,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 12000,
+        "living_currency": "USD"
+      },
+      "flags": [
+        "no_provenance"
+      ],
+      "why": "shows money figures but has no check date"
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_northeastern-university-boston-ms-in-information-systems",
+      "title": "MS in Information Systems",
+      "country": "usa",
+      "money": {
+        "tuition_per_year": 31983,
+        "tuition_currency": "USD",
+        "living_cost_per_year": 27728,
+        "living_currency": "USD"
+      },
+      "flags": [
+        "no_provenance"
+      ],
+      "why": "shows money figures but has no check date"
+    }
+  ]
+}

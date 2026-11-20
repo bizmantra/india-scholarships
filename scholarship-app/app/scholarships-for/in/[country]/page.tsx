@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getInternationalScholarshipsByCountry } from '@/lib/db';
+import { COUNTRIES as SA_COUNTRIES, isCountry } from '@/lib/study-abroad/countries';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -85,9 +86,34 @@ export default async function CountryHubPage({ params }: { params: Promise<{ cou
                     </p>
                 </div>
 
-                <div className="mb-20">
+                <div className="mb-12">
                     <ScholarshipsList scholarships={scholarships} showCategoryFilters={false} includeInternational />
                 </div>
+
+                {isCountry(countrySlug) && (
+                    <section className="mb-16 p-6 rounded-2xl border border-blue-100 bg-blue-50/50">
+                        <h2 className="text-xl font-bold text-gray-900 mb-2">
+                            Plan Your Study in {SA_COUNTRIES[countrySlug].name}
+                        </h2>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Compare universities, check living costs, and follow step-by-step student visa guides for {SA_COUNTRIES[countrySlug].name}.
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                            <Link href={`/study-abroad/study-in/${countrySlug}`} className="px-4 py-3 bg-white rounded-xl border border-gray-200 text-sm font-semibold text-google-blue hover:border-blue-300 hover:underline">
+                                Study in {SA_COUNTRIES[countrySlug].name} Hub →
+                            </Link>
+                            <Link href={`/study-abroad/study-in/${countrySlug}/universities`} className="px-4 py-3 bg-white rounded-xl border border-gray-200 text-sm font-semibold text-google-blue hover:border-blue-300 hover:underline">
+                                Compare Universities →
+                            </Link>
+                            <Link href={`/study-abroad/study-in/${countrySlug}/visas`} className="px-4 py-3 bg-white rounded-xl border border-gray-200 text-sm font-semibold text-google-blue hover:border-blue-300 hover:underline">
+                                Student Visa Guides →
+                            </Link>
+                            <Link href={`/study-abroad/study-in/${countrySlug}/scholarships`} className="px-4 py-3 bg-white rounded-xl border border-gray-200 text-sm font-semibold text-google-blue hover:border-blue-300 hover:underline">
+                                Country Scholarships List →
+                            </Link>
+                        </div>
+                    </section>
+                )}
             </main>
 
             <Footer />

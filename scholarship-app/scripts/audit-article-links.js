@@ -1,15 +1,31 @@
 const fs = require('fs');
 const path = require('path');
-const Database = require('better-sqlite3');
+const { execSync } = require('child_process');
 
 const projectRoot = path.join(__dirname, '..');
 const articlesDir = path.join(projectRoot, 'content', 'articles');
 const dbPath = path.join(projectRoot, 'data', 'scholarships.db');
 
-const db = new Database(dbPath);
+let db = null;
+let dbRows = [];
 
-// Fetch all DB slugs
-const dbRows = db.prepare('SELECT slug, title FROM scholarships').all();
+try {
+  const Database = require('better-sqlite3');
+  db = new Database(dbPath);
+  dbRows = db.prepare('SELECT slug, title FROM scholarships').all();
+} catch (e) {
+  // Fallback to sqlite3 CLI
+  try {
+    const raw = execSync(`sqlite3 "${dbPath}" "SELECT slug, title FROM scholarships;"`, { encoding: 'utf8' });
+    dbRows = raw.trim().split('\n').filter(Boolean).map(line => {
+      const idx = line.indexOf('|');
+      return { slug: line.substring(0, idx), title: line.substring(idx + 1) };
+    });
+  } catch (err) {
+    console.error('Failed to load scholarships from database:', err.message);
+    process.exit(1);
+  }
+}
 const validDbSlugs = new Map(dbRows.map(r => [r.slug, r.title]));
 
 // Fetch all articles and pillars slugs
@@ -19,11 +35,9 @@ const newsDir = path.join(projectRoot, 'content', 'news');
 const pillarFiles = fs.existsSync(pillarsDir) ? fs.readdirSync(pillarsDir).filter(f => f.endsWith('.md')) : [];
 const validPillarSlugs = new Set(pillarFiles.map(f => f.replace(/\.md$/, '')));
 
-const articleFilesOnly = fs.readdirSync(articlesDir).filter(f => f.endsWith('.md')).map(f => path.join('articles', f));
-const newsFilesOnly = fs.existsSync(newsDir) ? fs.readdirSync(newsDir).filter(f => f.endsWith('.md')).map(f => path.join('news', f)) : [];
-
-const articleFiles = [...articleFilesOnly, ...newsFilesOnly];
-const validArticleSlugs = new Set(articleFilesOnly.map(f => path.basename(f, '.md')));
+const allArticleFiles = fs.existsSync(articlesDir) ? fs.readdirSync(articlesDir).filter(f => f.endsWith('.md')).map(f => path.join('articles', f)) : [];
+const allNewsFiles = fs.existsSync(newsDir) ? fs.readdirSync(newsDir).filter(f => f.endsWith('.md')).map(f => path.join('news', f)) : [];
+const validArticleSlugs = new Set(allArticleFiles.map(f => path.basename(f, '.md')));
 
 // Fetch all redirect rules from next.config.ts if any
 const nextConfigContent = fs.readFileSync(path.join(projectRoot, 'next.config.ts'), 'utf8');
@@ -50,25 +64,75 @@ try {
   // fallback set already initialized
 }
 
-// Map of valid tool routes
-const validToolRoutes = new Set(['/tools/eligibility-checker', '/tools/deadline-calendar', '/tools/income-calculator']);
+// Parse CLI arguments
+const rawArgs = process.argv.slice(2);
+const isStrict = rawArgs.includes('--strict');
+const forceStrictProse = rawArgs.includes('--strict-prose');
 
-// articleFiles is declared at the top of the file
+const targetedFiles = [];
+for (let i = 0; i < rawArgs.length; i++) {
+  const arg = rawArgs[i];
+  if (arg === '--file' && rawArgs[i + 1]) {
+    targetedFiles.push(rawArgs[i + 1]);
+    i++;
+  } else if (arg.startsWith('--file=')) {
+    targetedFiles.push(arg.substring(arg.indexOf('=') + 1));
+  } else if (arg.endsWith('.md') && !arg.startsWith('--')) {
+    targetedFiles.push(arg);
+  }
+}
+
+const isTargeted = targetedFiles.length > 0;
+const checkProse = isTargeted || forceStrictProse;
+
+let filesToAudit = [];
+if (isTargeted) {
+  filesToAudit = targetedFiles.map(filePath => {
+    let resolved = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
+    const contentDir = path.join(projectRoot, 'content');
+    if (resolved.startsWith(contentDir)) {
+      return path.relative(contentDir, resolved);
+    }
+    if (filePath.startsWith('content/')) {
+      return filePath.replace(/^content\//, '');
+    }
+    return filePath;
+  });
+} else {
+  filesToAudit = [...allArticleFiles, ...allNewsFiles];
+}
 
 console.log(`=======================================================`);
-console.log(`  AUDITING ${articleFiles.length} ARTICLES FOR CONTENT & BROKEN LINKS`);
+console.log(`  AUDITING ${filesToAudit.length} ARTICLE(S) FOR CONTENT & BROKEN LINKS`);
+if (checkProse) {
+  console.log(`  [MODE] Strict Prose & Grammar Rules Enabled (≤15 words/sentence, 0 pronouns)`);
+}
 console.log(`=======================================================\n`);
 
 const summary = {
-  totalArticles: articleFiles.length,
+  totalArticles: filesToAudit.length,
   articlesWithBrokenLinks: 0,
   articlesWithThinContent: 0,
   totalBrokenLinks: 0,
+  missingFiles: 0,
   details: []
 };
 
-articleFiles.forEach(relFile => {
-  const filePath = path.join(projectRoot, 'content', relFile);
+filesToAudit.forEach(relFile => {
+  const filePath = path.isAbsolute(relFile) ? relFile : path.join(projectRoot, 'content', relFile);
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ TARGET FILE NOT FOUND: ${filePath}`);
+    summary.missingFiles++;
+    summary.details.push({
+      file: relFile,
+      slug: path.basename(relFile, '.md'),
+      wordCount: 0,
+      contentIssues: [`File does not exist: ${filePath}`],
+      brokenLinks: []
+    });
+    return;
+  }
+
   const rawContent = fs.readFileSync(filePath, 'utf8');
   const slug = path.basename(relFile, '.md');
 
@@ -80,24 +144,124 @@ articleFiles.forEach(relFile => {
   const brokenLinks = [];
   const contentIssues = [];
 
-  if (wordCount < 400) {
-    contentIssues.push(`Thin content: Only ${wordCount} words (minimum recommended: 500+ words)`);
+  const minWords = checkProse ? 500 : 400;
+  if (wordCount < minWords) {
+    contentIssues.push(`Thin content: Only ${wordCount} words (minimum required: ${minWords}+ words)`);
   }
 
-  // Check first-person pronouns and fake claims
-  // Lines ending in "?" are reader questions (FAQ headings like "Can I apply twice?"), not the
-  // author speaking, so they are skipped. Statements are still checked.
+  // Pronoun verification (case-sensitive 'I', case-insensitive 'me/my/our/we')
   const proseWithoutQuestions = bodyText
     .split(/\r?\n/)
     .filter(line => !/\?[\s*_)"']*$/.test(line))
     .join('\n');
-  const fpMatch = proseWithoutQuestions.match(/\b(I|me|my)\b/g);
-  if (fpMatch) {
-    contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(fpMatch)].join(', ')}`);
+
+  // Strip official US immigration form designations from pronoun checks using explicit allowlist
+  // Allowed form numbers: I-20, I-94, I-129, I-134, I-485, I-539, I-765, I-797, I-901 (with optional letter suffix and optional plural 's')
+  const formAllowlistRegex = /\bI-(?:20|94|129[A-Za-z]?|134|485|539|765|797[A-Za-z]?|901)s?\b/g;
+  // In targeted mode (checkProse), check the full text (including question headings) so new articles have 0 pronouns.
+  // In global legacy mode (!checkProse), preserve compatibility with legacy FAQ headings ending in '?'.
+  const textToScanForPronouns = checkProse ? bodyText : proseWithoutQuestions;
+  const proseForPronouns = textToScanForPronouns.replace(formAllowlistRegex, 'FORM');
+
+  const forbiddenFound = [];
+  if (/\bI\b/.test(proseForPronouns)) {
+    forbiddenFound.push('I');
   }
-  const fakeMatch = bodyText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
+  const lowP = checkProse ? ['me', 'my', 'our', 'we'] : ['me', 'my'];
+  const otherMatches = proseForPronouns.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+  if (otherMatches) {
+    otherMatches.forEach(m => forbiddenFound.push(m.toLowerCase()));
+  }
+
+  if (forbiddenFound.length > 0) {
+    contentIssues.push(`Forbidden first-person pronoun(s): ${[...new Set(forbiddenFound)].join(', ')}`);
+  }
+
+  // Fake editorial claims (body and frontmatter)
+  const allAuditedText = checkProse ? `${rawContent}` : bodyText;
+  const fakeMatch = allAuditedText.match(/\b(we (tested|did|verified|checked|tried|found)|our team|our test)\b/gi);
   if (fakeMatch) {
     contentIssues.push(`Forbidden fake editorial claim(s): ${[...new Set(fakeMatch)].join(', ')}`);
+  }
+
+  // Frontmatter pronoun checks when strict prose is enabled
+  if (checkProse && yamlText) {
+    const yamlForPronouns = yamlText.replace(formAllowlistRegex, 'FORM');
+    const fmForbidden = [];
+    if (/\bI\b/.test(yamlForPronouns)) fmForbidden.push('I');
+    const fmOther = yamlForPronouns.match(new RegExp(`\\b(${lowP.join('|')})\\b`, 'gi'));
+    if (fmOther) fmOther.forEach(m => fmForbidden.push(m.toLowerCase()));
+    if (fmForbidden.length > 0) {
+      contentIssues.push(`Forbidden frontmatter pronoun(s): ${[...new Set(fmForbidden)].join(', ')}`);
+    }
+  }
+
+  // Strict prose: sentence length & paragraph length
+  if (checkProse) {
+    const lines = bodyText.split(/\r?\n/);
+    let inCode = false;
+    const longSentences = [];
+
+    for (let lineIdx = 0; lineIdx < lines.length; lineIdx++) {
+      const rawLine = lines[lineIdx];
+      const trimmed = rawLine.trim();
+      if (trimmed.startsWith('```')) {
+        inCode = !inCode;
+        continue;
+      }
+      if (inCode || !trimmed || trimmed.startsWith('#') || trimmed.startsWith('|')) continue;
+
+      let cleanLine = trimmed.replace(/^(?:[-*>]|\d{1,2}[.)]|[a-zA-Z][.)])\s+/, '');
+      cleanLine = cleanLine
+        .replace(/\bNo\.(?=\s+[0-9A-Z])/g, 'No@DOT@')
+        .replace(/(?:\b[A-Za-z]{1,4}\.){2,}/g, m => m.replace(/\./g, '@DOT@'))
+        .replace(/\b(e\.g\.|i\.e\.|vs\.|approx\.|viz\.|Rs\.)/gi, m => m.replace(/\./g, '@DOT@'))
+        .replace(/\b(etc|Ltd|Govt|Pvt|Prof|Dr)\.(?=\s+[a-z])/gi, m => m.replace(/\./g, '@DOT@'));
+
+      const segments = cleanLine.split(/(?:[.?!]+[\s\r\n]+|:\s+)/);
+      for (const seg of segments) {
+        const s = seg.replace(/@DOT@/g, '.').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, '').trim();
+        if (!s) continue;
+        const words = s.split(/\s+/).filter(Boolean);
+        if (words.length > 15) {
+          longSentences.push({ line: lineIdx + 1, count: words.length, text: s });
+        }
+      }
+    }
+
+    if (longSentences.length > 0) {
+      longSentences.forEach(ls => {
+        contentIssues.push(`Sentence exceeds 15 words (line ${ls.line}, ${ls.count} words): "${ls.text.substring(0, 70)}..."`);
+      });
+    }
+
+    // Paragraph length: continuous unbulleted prose paragraphs ≤ 3 lines
+    const paragraphs = bodyText.split(/\n\s*\n/);
+    paragraphs.forEach(p => {
+      const trimmed = p.trim();
+      if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('|') || trimmed.startsWith('```')) return;
+
+      const lines = trimmed.split('\n').map(l => l.trim()).filter(Boolean);
+      let currentProse = [];
+      const proseBlocks = [];
+      for (const line of lines) {
+        if (/^(?:[-*+>]|\d{1,2}[.)]|[a-zA-Z][.)])\s+/.test(line)) {
+          if (currentProse.length > 0) {
+            proseBlocks.push(currentProse);
+            currentProse = [];
+          }
+        } else {
+          currentProse.push(line);
+        }
+      }
+      if (currentProse.length > 0) proseBlocks.push(currentProse);
+
+      proseBlocks.forEach(block => {
+        if (block.length > 3) {
+          contentIssues.push(`Paragraph exceeds 3 lines (${block.length} lines): "${block[0].substring(0, 60)}..."`);
+        }
+      });
+    });
   }
 
   // Check takeaways in frontmatter
@@ -121,7 +285,6 @@ articleFiles.forEach(relFile => {
     lines.forEach(l => {
       const relSlug = l.replace(/^\s*-\s*["']?|["']?\s*$/g, '').trim();
       if (relSlug && !validDbSlugs.has(relSlug)) {
-        // check redirects
         const redirect = redirects.find(r => r.source === `/scholarships/${relSlug}`);
         if (redirect) {
           brokenLinks.push({
@@ -165,10 +328,8 @@ articleFiles.forEach(relFile => {
 });
 
 function checkUrl(url, context, brokenLinks) {
-  // Ignore external absolute http/https links unless we check them or if they are internal domains
   if (url.startsWith('http://') || url.startsWith('https://')) {
     if (url.includes('indiascholarships.in')) {
-      // Internal full URL
       const pathOnly = url.replace(/https?:\/\/(www\.)?indiascholarships\.in/, '');
       checkInternalPath(pathOnly || '/', context, brokenLinks, url);
     }
@@ -186,26 +347,66 @@ function checkUrl(url, context, brokenLinks) {
   }
 }
 
-function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
-  const cleanPath = pathStr.split('#')[0];
+function matchAppRoute(routePath) {
+  const appDir = path.join(projectRoot, 'app');
+  const parts = routePath.split('/').filter(Boolean);
+  let currentDir = appDir;
 
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (!fs.existsSync(currentDir)) return false;
+
+    // Check direct directory match
+    const directPath = path.join(currentDir, part);
+    if (fs.existsSync(directPath) && fs.statSync(directPath).isDirectory()) {
+      currentDir = directPath;
+      continue;
+    }
+
+    // Check dynamic param directory like [slug], [country], [degree], etc.
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    const dynamicDir = entries.find(e => e.isDirectory() && e.name.startsWith('[') && e.name.endsWith(']'));
+    if (dynamicDir) {
+      currentDir = path.join(currentDir, dynamicDir.name);
+      continue;
+    }
+
+    return false;
+  }
+
+  return fs.existsSync(path.join(currentDir, 'page.tsx')) ||
+         fs.existsSync(path.join(currentDir, 'page.ts')) ||
+         fs.existsSync(path.join(currentDir, 'route.ts'));
+}
+
+function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
+  // Normalize path: strip fragment (#), query (?), and trailing slash
+  let cleanPath = pathStr.split('#')[0].split('?')[0].trim();
+  if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+  if (!cleanPath) cleanPath = '/';
+
+  // 1. Generic redirect check across next.config.ts
+  const redirect = redirects.find(r => r.source === cleanPath);
+  if (redirect) {
+    brokenLinks.push({
+      context,
+      url: rawUrl,
+      reason: `Internal link targets redirected URL '${cleanPath}' (redirects to ${redirect.destination}). Use direct canonical path instead.`
+    });
+    return;
+  }
+
+  // 2. Specific routes check
   if (cleanPath.startsWith('/scholarships/')) {
     const sSlug = cleanPath.replace('/scholarships/', '').split('/')[0];
     if (sSlug && !validDbSlugs.has(sSlug)) {
-      const redirect = redirects.find(r => r.source === `/scholarships/${sSlug}`);
-      if (redirect) {
-        brokenLinks.push({
-          context,
-          url: rawUrl,
-          reason: `Outdated scholarship slug '${sSlug}' (Redirects to ${redirect.destination})`
-        });
-      } else {
-        brokenLinks.push({
-          context,
-          url: rawUrl,
-          reason: `DB scholarship slug '${sSlug}' DOES NOT EXIST in database`
-        });
-      }
+      brokenLinks.push({
+        context,
+        url: rawUrl,
+        reason: `DB scholarship slug '${sSlug}' DOES NOT EXIST in database`
+      });
     }
   } else if (cleanPath.startsWith('/articles/')) {
     const artSlug = cleanPath.replace('/articles/', '').split('/')[0];
@@ -231,16 +432,12 @@ function checkInternalPath(pathStr, context, brokenLinks, rawUrl) {
         reason: "Guide slug '" + guideSlug + "' not found (must be a valid Portal Guide, Article, or Pillar)."
       });
     }
-  } else if (cleanPath.startsWith('/tools/')) {
-    // Check tool routes
-    const isExactTool = validToolRoutes.has(cleanPath);
-    const pagePath = path.join(projectRoot, 'app', cleanPath);
-    const exists = fs.existsSync(pagePath) || fs.existsSync(`${pagePath}.tsx`) || fs.existsSync(path.join(pagePath, 'page.tsx'));
-    if (!isExactTool && !exists) {
+  } else if (cleanPath.startsWith('/study-abroad') || cleanPath.startsWith('/tools/')) {
+    if (!matchAppRoute(cleanPath)) {
       brokenLinks.push({
         context,
         url: rawUrl,
-        reason: `Tool page '${cleanPath}' DOES NOT EXIST`
+        reason: `Route '${cleanPath}' DOES NOT EXIST in application`
       });
     }
   }
@@ -265,10 +462,10 @@ console.log(`Articles with Content Issues: ${summary.articlesWithThinContent}`);
 console.log(`Articles with Broken Links: ${summary.articlesWithBrokenLinks}`);
 console.log(`Total Broken Links Identified: ${summary.totalBrokenLinks}`);
 
-db.close();
+if (db) db.close();
 
-const isStrict = process.argv.includes('--strict');
-if (isStrict && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0)) {
+const shouldFail = (isStrict || isTargeted) && (summary.articlesWithThinContent > 0 || summary.articlesWithBrokenLinks > 0 || summary.missingFiles > 0);
+if (shouldFail) {
   console.error(`\n❌ Strict Quality Check Failed: Found articles with formatting/link issues.`);
   process.exit(1);
 } else {

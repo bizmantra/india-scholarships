@@ -7,7 +7,7 @@ date: "2026-07-23"
 readTime: "3 min read"
 author: "IndiaScholarships Editorial Team"
 tag: "Course & Degree"
-targetMoneyLink: "/scholarships-by-education/btech"
+targetMoneyLink: "/scholarships-by-course/engineering"
 relatedScholarships:
   - "reliance-foundation-undergraduate-scholarship"
   - "foundation-for-excellence-ffe-scholarship"

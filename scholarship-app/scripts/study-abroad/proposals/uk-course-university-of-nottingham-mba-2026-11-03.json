@@ -1,0 +1,66 @@
+{
+  "agent": "content-editor",
+  "notes": "Course page draft for the University of Nottingham full-time MBA (Business Administration MBA, 2027 entry). Built only from plans/uk-research/mba/university-of-nottingham.md (MBA rows, read 2026-11-03), the India and funding rows of uk-universities-gaps-b.md and uk-gaps-round3.md, and the visa notes in uk-visa-facts.md and uk-surcharge-note.md (read 2026-11-01). Work experience uses the international tab wording (minimum of three years after graduation). Not filed: application deadline is To be confirmed, no application fee amount, no MBA-only scholarship. Visa living-cost figure of 1,171 per month is taken from the Immigration Rules Appendix Student (updated 29 Oct 2026); the financial evidence page update notice gives 1,136 for applications on or after 2 Jan 2025 and needs an owner check before publishing.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_university-of-nottingham-mba",
+      "source": "https://www.nottingham.ac.uk/pgstudy/course/taught/business-administration-mba",
+      "fields": {
+        "id": "program_university-of-nottingham-mba",
+        "slug": "university-of-nottingham-mba",
+        "university_slug": "university-of-nottingham",
+        "country": "uk",
+        "degree": "mba",
+        "field": "business-administration",
+        "title": "Business Administration MBA",
+        "summary": "The full-time MBA at Nottingham runs for 12 months from September 2027. Tuition is £34,800. You need IELTS 7.0 and at least three years of work experience.",
+        "seo_title": "MBA at University of Nottingham: Fees, IELTS & Entry",
+        "meta_description": "Nottingham full-time MBA for Indian students: £34,800 fee, IELTS 7.0, three years of work experience, September 2027 start and the visa money you need.",
+        "tuition_per_year": 34800,
+        "tuition_currency": "GBP",
+        "gpa_min": "2:1 (or international equivalent) in any discipline",
+        "ielts_min": 7.0,
+        "location": "Nottingham (Jubilee Campus)",
+        "application_deadlines": {
+          "September 2027 entry": "To be confirmed"
+        },
+        "duration": "12 months, full-time",
+        "language": "English",
+        "intakes": "September",
+        "english_requirements": "IELTS 7.0 overall, with no less than 6.0 in any element. Also accepted: TOEFL iBT, Pearson PTE, GCSE, IB and O level English.",
+        "application_portal": "Online application form (Campus Solutions, login needed)",
+        "body_md": "## About this programme\n\nThe Business Administration MBA is a full-time course at Nottingham University Business School. It lasts 12 months and starts in September 2027. Part-time study is not available. Teaching is in English. The course is accredited by EQUIS, AMBA and AACSB.\n\nThe course has three stages: core modules, four electives, and a management project. Classes are on Jubilee Campus, Nottingham.\n\nThe most important point for you: you need at least three years of full-time work experience after your degree. You also need to attend an interview.\n\n## Can you get in?\n\n**Your degree.** You need a 2:1 (or international equivalent) in any subject. A 2:1 is an upper second class honours degree in the UK.\n\n**Indian grades.** The university's India page sets the grade for a 2:1 by university tier:\n\n| Tier | Minimum for a 2:1 |\n|---|---|\n| Tier 1 | 60% |\n| Tier 2 | 65% |\n| Tier 3 | 70% |\n\nCheck the India page to find the tier for your university.\n\n**Work experience.** You need a minimum of three years of full-time work experience after you graduate.\n\n**Interview and references.** The application process includes an interview. You need two references.\n\n**English.** IELTS (International English Language Testing System) is an English test. You need an overall score of 7.0, with at least 6.0 in each part. The university also accepts TOEFL iBT, Pearson PTE, GCSE, IB and O level English.\n\nIf you finished Class XII under CBSE or CISCE, the India page lists 80% in Class XII English as the equivalent of IELTS 7.0. State boards are not accepted.\n\nIf you pass the university's presessional English course to the required level, you can move on to the degree without taking IELTS again.\n\n## What it costs\n\n**Tuition.** The international fee is **£34,800**. The course is 12 months, so this is the fee for the whole programme. Fees can rise from the second year only if a course is longer than one year. Tuition is paid in instalments. Payment deadlines appear in MyNottingham after you get an offer.\n\n**CAS deposit.** A CAS (Confirmation of Acceptance for Studies) is the document your course provider issues for your visa. For start dates from August 2026, the university asks for a deposit of **at least £4,500** as part of the visa process. A deposit is an advance payment that secures your place. It is waived only if a recognised sponsor fully funds your study. Ask the university whether the deposit counts towards your tuition.\n\n**Visa money.** Outside London, you must show **£1,171 a month** for up to 9 months. That is **£10,539** (£1,171 × 9 months). You must have this money for 28 days in a row. The last day of that 28-day period must fall within 31 days of your visa application.\n\n**Visa fee.** The Student visa application fee from outside the UK is **£558**.\n\n**Health surcharge.** The Immigration Health Surcharge is the fee that gives you access to the NHS while you study. It is **£776 for each year of your visa** for students.\n\n### Worked first-year total\n\n| Item | How it is worked out | Amount |\n|---|---|---|\n| Tuition | International fee | £34,800 |\n| Living money for the visa | £1,171 × 9 months | £10,539 |\n| Student visa fee | One application | £558 |\n| Health surcharge | £776 for each year of your visa | £776 or more |\n| **Total** | | **at least £46,673** |\n\nYour visa lasts longer than your course, so you usually pay for more than one year. A 16-month visa costs £1,164 (£776 plus £388).\n\nThe CAS deposit is not in this total. For wider costs, see the [UK total cost breakdown](/study-abroad/study-in/uk/uk-total-cost-breakdown).\n\n## Funding\n\n**International Postgraduate Masters Scholarship.** The university gives **£3,000** off the tuition fee for self-funded international students who start a full-time taught master's in 2027. The MBA is one of the award types. You do not need to apply. The scholarship does not apply to students on the Kaplan pathway.\n\nWith the scholarship, tuition is **£31,800** (£34,800 minus £3,000).\n\nThe university's [MBA funding page](https://www.nottingham.ac.uk/business/study-with-us/mba/mba-funding.aspx) lists wider scholarship options for international students.\n\n## Deadlines and intakes\n\n| Intake | Application window | Where to apply |\n|---|---|---|\n| September 2027 | To be confirmed | Online application form (Campus Solutions, login needed) |\n\nThe university's apply page still says 'To be confirmed' for 2027/28 entry. Check it for the closing date before you plan.\n\nVisa timing matters too. You can apply for a UK student visa up to 6 months before your course starts. The government says a decision usually takes up to 3 weeks if you apply from outside the UK. Apply early.\n\n## How to apply\n\n1. Read the [MBA course page](https://www.nottingham.ac.uk/pgstudy/course/taught/business-administration-mba) and the [applying for an MBA page](https://www.nottingham.ac.uk/business/study-with-us/mba/applying-for-an-mba.aspx) for the entry rules.\n2. Complete the [online application](https://www.nottingham.ac.uk/pgstudy/how-to-apply/apply-online.aspx) in Campus Solutions. You need a login.\n3. Provide two references with your application.\n4. Pay the application fee if the university asks for one. You cannot submit your application until it is paid. Check the apply page for the amount.\n5. Attend the interview. The application process includes one.\n6. After your offer, your course provider issues your CAS. Pay the CAS deposit as part of the visa process. Then apply for your [UK student visa](/study-abroad/visas/uk-student-visa-guide).\n\nThe school may ask for more information or evidence to support your application.\n\n## After the programme\n\n- **Accreditation.** The course is accredited by EQUIS, AMBA and AACSB.\n- **Careers.** The university says recent graduates have gone on to work or run their own business. The page says 85% were employed or self-employed 6 months after graduation.\n- **Graduate visa.** After a UK degree, you can apply for the Graduate visa, which costs **£937** to apply for. If you apply on or before 31 December 2026, it lasts 2 years. From 1 January 2027, it lasts 18 months. This course starts in September 2027, so you will apply after 1 January 2027 and the 18-month period applies. See the [Graduate visa page](https://www.gov.uk/graduate-visa).\n\n## Who it suits\n\n**A strong choice if:**\n\n- You have a 2:1 (or international equivalent) in any subject.\n- You have at least three years of full-time work experience after your degree.\n- You want a one-year MBA with a September 2027 start.\n- You can show the visa money, or you qualify for the £3,000 scholarship.\n\n**Think carefully if:**\n\n- You have less than three years of full-time work experience after your degree.\n- Your university's tier means your grade is below the 2:1 level.\n- You need part-time study, which is not available.\n- You cannot cover the first-year total of at least £46,673 before the scholarship, or at least £43,673 after it (£46,673 minus £3,000).\n\n## Sources\n\nChecked on 3 November 2026 for the university pages. Checked on 1 November 2026 for the gov.uk pages.\n\n- [Business Administration MBA course page](https://www.nottingham.ac.uk/pgstudy/course/taught/business-administration-mba)\n- [Applying for an MBA](https://www.nottingham.ac.uk/business/study-with-us/mba/applying-for-an-mba.aspx)\n- [Full-time MBA](https://www.nottingham.ac.uk/business/study-with-us/mba/full-time-mba.aspx)\n- [MBA funding](https://www.nottingham.ac.uk/business/study-with-us/mba/mba-funding.aspx)\n- [Postgraduate fees](https://www.nottingham.ac.uk/pgstudy/fees/postgraduate-fees.aspx)\n- [Apply online](https://www.nottingham.ac.uk/pgstudy/how-to-apply/apply-online.aspx)\n- [International Postgraduate Masters Scholarship](https://www.nottingham.ac.uk/studywithus/international-applicants/scholarships-funding-finance/international-postgraduate-scholarships.aspx)\n- [India country information](https://www.nottingham.ac.uk/studywithus/international-applicants/country-info/countryinformation/india.aspx)\n- gov.uk: [Student visa](https://www.gov.uk/student-visa), [Documents you must provide](https://www.gov.uk/student-visa/documents-you-must-provide), [Financial evidence](https://www.gov.uk/guidance/financial-evidence-for-student-and-child-student-route-applicants), [Immigration Health Surcharge](https://www.gov.uk/healthcare-immigration-application/how-much-pay), [Graduate visa](https://www.gov.uk/graduate-visa), [Graduate visa cost](https://www.gov.uk/graduate-visa/how-much-it-costs)\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the Nottingham full-time MBA cost for Indian students?",
+            "a": "The international fee is £34,800 for the 12-month course. With the visa money, the visa fee and the health surcharge, the first-year total is at least £46,673. The International Postgraduate Masters Scholarship takes £3,000 off the tuition fee."
+          },
+          {
+            "q": "What IELTS score do I need for the Nottingham MBA?",
+            "a": "You need an overall IELTS score of 7.0, with at least 6.0 in each part."
+          },
+          {
+            "q": "Do I need work experience for the Nottingham MBA?",
+            "a": "Yes. You need a minimum of three years of full-time work experience after your degree. The application process also includes an interview."
+          },
+          {
+            "q": "How much money do I need to show for a UK student visa for this MBA?",
+            "a": "Outside London, you show £1,171 a month for up to 9 months. That is £10,539. You must have this money for 28 days in a row."
+          },
+          {
+            "q": "Is there a scholarship for international students on the Nottingham MBA?",
+            "a": "Yes. The International Postgraduate Masters Scholarship takes £3,000 off the tuition fee for self-funded international students who start a full-time taught master's in 2027. The MBA is one of the award types. You do not need to apply."
+          },
+          {
+            "q": "When is the application deadline for the Nottingham MBA in 2027?",
+            "a": "The university's apply page says 'To be confirmed' for 2027/28 entry. Check the apply page for the closing date before you plan."
+          }
+        ],
+        "official_source": "https://www.nottingham.ac.uk/pgstudy/course/taught/business-administration-mba",
+        "checked_at": "2026-11-03"
+      }
+    }
+  ]
+}

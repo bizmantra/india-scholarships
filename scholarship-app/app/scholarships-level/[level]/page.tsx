@@ -2,6 +2,7 @@ import { notFound, redirect, permanentRedirect, unstable_rethrow } from 'next/na
 import Link from 'next/link';
 import { getScholarshipsByLevel, getAllLevels } from '@/lib/db';
 import ScholarshipsList from '@/app/components/ScholarshipsList';
+import PartnerJobsBox from '@/app/components/PartnerJobsBox';
 import { slugify, CANONICAL_LEVELS } from '@/lib/utils';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -132,6 +133,9 @@ export default async function LevelHubPage({ params }: { params: Promise<{ level
                     <div id="scholarship-list" className="mb-20 scroll-mt-24">
                         <ScholarshipsList scholarships={scholarships} showCategoryFilters={true} />
                     </div>
+
+                    {/* One contextual link out to the jobs tracker for the same qualification */}
+                    <PartnerJobsBox level={displayName} campaign="level-hub" className="mb-4" />
 
                     <div className="mt-16 pt-10 border-t border-gray-100">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explore Other Categories</h2>

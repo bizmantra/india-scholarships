@@ -1,8 +1,17 @@
 // Study Abroad data access (/study-abroad section). Tables are described in
 // scripts/lib/study-abroad-tables.js. Only 'published' rows are ever shown.
 import { getClient } from '@/lib/db';
-import { COUNTRIES, type CountrySlug } from './countries';
+import { COUNTRIES, isCountry, type CountrySlug } from './countries';
 export { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, type CountrySlug } from './countries';
+import { SCHOLARSHIP_PICKS, mergePicks } from './scholarship-picks';
+export { SCHOLARSHIP_PICKS } from './scholarship-picks';
+import {
+    matchScholarshipToUniversities,
+    isProgramCompatibleWithLevel,
+    rankScholarshipsForUniversity,
+    rankScholarshipsForProgram,
+    type MatchableScholarship,
+} from './scholarship-matching';
 
 export interface SaUniversity {
     slug: string; name: string; country: CountrySlug; city: string | null; summary: string | null;
@@ -111,6 +120,7 @@ export function rankSimilarPrograms(p: SaProgram, peers: SaProgram[], limit = 6)
 export const FUNDS_CALCULATOR: Partial<Record<CountrySlug, { href: string; label: string }>> = {
     germany: { href: '/study-abroad/tools/blocked-account-calculator', label: 'Blocked account calculator' },
     usa: { href: '/study-abroad/tools/i20-cost-calculator', label: 'I-20 proof of funds calculator' },
+    uk: { href: '/study-abroad/tools/uk-funds-calculator', label: 'UK proof of funds calculator' },
 };
 
 export async function getFacts(): Promise<Record<string, SaFact>> {
@@ -129,15 +139,80 @@ export interface CardScholarship {
     amount_annual: number; amount_min?: number; deadline?: string; application_mode: string; level: string;
     last_verified: string; created_at?: string;
 }
-export const getScholarshipsForCountry = (country: CountrySlug, limit = 100) =>
-    query<CardScholarship>(
-        `SELECT id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at
+const SCHOLARSHIP_CARD_COLUMNS = `id, slug, title, provider, state, '[]' AS caste, amount_annual, amount_min, amount_description, deadline, application_mode, level, last_verified, created_at`;
+
+export async function getScholarshipsForCountry(country: CountrySlug, limit = 100) {
+    const picks = SCHOLARSHIP_PICKS[country];
+    const skip = picks ? [...picks.show, ...picks.hide] : [];
+    const notIn = skip.length ? ` AND slug NOT IN (${skip.map(() => '?').join(', ')})` : '';
+    const rest = await query<CardScholarship>(
+        `SELECT ${SCHOLARSHIP_CARD_COLUMNS}
          FROM scholarships
-         WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?
+         WHERE scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL) AND country_of_study LIKE ?${notIn}
            AND (always_open = 1 OR deadline IS NULL OR deadline NOT GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*' OR deadline >= date('now'))
-         ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, limit]);
+         ORDER BY priority_score DESC, title LIMIT ?`, [`%${COUNTRIES[country].scholarshipCountry}%`, ...skip, limit]);
+    if (!picks || picks.show.length === 0) return rest;
+    const featured = await query<CardScholarship>(
+        `SELECT ${SCHOLARSHIP_CARD_COLUMNS}
+         FROM scholarships
+         WHERE slug IN (${picks.show.map(() => '?').join(', ')}) AND scholarship_scope = 'International' AND (status = 'Active' OR status IS NULL)`, picks.show);
+    return mergePicks(featured, rest, picks, limit);
+}
 
 export function parseJson<T>(value: string | null | undefined, fallback: T): T {
     if (!value) return fallback;
     try { return JSON.parse(value) as T; } catch { return fallback; }
+}
+
+/**
+ * Reliable, non-fuzzy match from an international scholarship to published Study Abroad
+ * universities and compatible programs in launched countries.
+ */
+export async function getMatchedStudyAbroadForScholarship(scholarship: MatchableScholarship) {
+    if (!/international|study.abroad/i.test(scholarship.scholarship_scope || '') &&
+        (!scholarship.country_of_study || scholarship.country_of_study.toLowerCase() === 'india')) {
+        return { universities: [], programs: [] };
+    }
+    const universities = (await getUniversities()).filter(u => isCountry(u.country));
+    const matchedUnis = matchScholarshipToUniversities(scholarship, universities).slice(0, 4);
+    if (!matchedUnis.length) return { universities: [], programs: [] };
+
+    const programLists = await Promise.all(matchedUnis.map(u => getProgramsForUniversity(u.slug)));
+    const matchedPrograms = programLists
+        .flat()
+        .filter(p => isCountry(p.country) && isProgramCompatibleWithLevel(p.degree, scholarship.level))
+        .slice(0, 4);
+
+    return {
+        universities: matchedUnis.map(u => ({ slug: u.slug, name: u.name, country: u.country })),
+        programs: matchedPrograms.map(p => ({
+            slug: p.slug,
+            title: p.title,
+            country: p.country,
+            university_slug: p.university_slug,
+            university_name: p.university_name,
+        })),
+    };
+}
+
+/** Scholarships that apply to a university: the university's own first, then country scholarships. */
+export async function getScholarshipsForUniversity(
+    university: Pick<SaUniversity, 'slug' | 'name' | 'country'>,
+    limit = 6,
+) {
+    if (!isCountry(university.country)) return [];
+    const all = await getScholarshipsForCountry(university.country, 100);
+    const hidden = new Set(SCHOLARSHIP_PICKS[university.country]?.hide || []);
+    return rankScholarshipsForUniversity(university, all, hidden, limit);
+}
+
+/** Scholarships that apply to a course: university's own at that degree level first, then country scholarships at that level. */
+export async function getScholarshipsForProgram(
+    program: Pick<SaProgram, 'university_slug' | 'university_name' | 'country' | 'degree'>,
+    limit = 6,
+) {
+    if (!isCountry(program.country)) return [];
+    const all = await getScholarshipsForCountry(program.country, 100);
+    const hidden = new Set(SCHOLARSHIP_PICKS[program.country]?.hide || []);
+    return rankScholarshipsForProgram(program, all, hidden, limit);
 }
