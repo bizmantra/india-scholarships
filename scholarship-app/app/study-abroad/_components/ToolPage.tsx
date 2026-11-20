@@ -1,6 +1,6 @@
 import React from 'react';
 import DetailShell, { DetailSection, KeyCard, InfoCard, SideLinks } from './DetailShell';
-import { TOOLS } from './tools';
+import { TOOLS, LAUNCHED_TOOLS } from './tools';
 import type { SaFact } from '@/lib/study-abroad/data';
 
 // A calculator page in the detail layout: the tool, then the numbers it uses with their sources
@@ -14,7 +14,7 @@ export default function ToolPage({ slug, facts = [], children }: { slug: string;
             jsonLd={[{ '@context': 'https://schema.org', '@type': 'WebApplication', name: tool.title, applicationCategory: 'FinanceApplication', offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' } }]}
             sidebar={<>
                 <KeyCard label="Cost" value="Free" note="No sign-up or phone number" action={{ href: '#calculator', label: 'Start calculating ↓' }} />
-                <InfoCard title="Other Calculators" rows={TOOLS.filter(t => t.slug !== slug).map(t => ({ icon: '🧮', label: t.title, value: <a href={`/study-abroad/tools/${t.slug}`} className="text-google-blue font-bold hover:underline">Open →</a> }))} />
+                <InfoCard title="Other Calculators" rows={LAUNCHED_TOOLS.filter(t => t.slug !== slug).map(t => ({ icon: '🧮', label: t.title, value: <a href={`/study-abroad/tools/${t.slug}`} className="text-google-blue font-bold hover:underline">Open →</a> }))} />
                 <SideLinks links={[{ href: '/study-abroad', label: 'Study Abroad home' }]} />
             </>}>
             <section id="calculator" className="scroll-mt-32">{children}</section>

@@ -5,7 +5,7 @@ import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import ListingShell, { ListingSection } from './_components/ListingShell';
 import SACard, { CardGrid } from './_components/SACard';
-import { TOOLS } from './_components/tools';
+import { LAUNCHED_TOOLS } from './_components/tools';
 
 export const revalidate = 86400;
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default async function StudyAbroadHome() {
             stats={[
                 { label: 'Universities', value: String(deUnis.length + usUnis.length), note: 'With fees and admission details', tone: 'blue' },
                 { label: 'Programs Compared', value: String(combos.reduce((n, c) => n + c.universities, 0)), note: 'Real per-program requirements', tone: 'green' },
-                { label: 'Free Calculators', value: String(TOOLS.length), note: 'No sign-up needed', tone: 'emerald' },
+                { label: 'Free Calculators', value: String(LAUNCHED_TOOLS.length), note: 'No sign-up needed', tone: 'emerald' },
             ]}
             jump={[{ label: '🌍 Countries', href: '#countries' }, { label: '🎓 Programs', href: '#programs' }, { label: '🧮 Calculators', href: '#calculators' }, { label: '💰 Loans', href: '#loans' }, { label: '🛂 Visas', href: '#visas' }, { label: '🏅 Scholarships', href: '#scholarships' }]}>
             <ListingSection id="countries" title="Choose Your Destination">
@@ -55,7 +55,7 @@ export default async function StudyAbroadHome() {
                 </CardGrid>
             </ListingSection>
             <ListingSection id="calculators" title="Free Calculators">
-                <CardGrid>{TOOLS.map(t => <SACard key={t.slug} href={`/study-abroad/tools/${t.slug}`} title={t.title} subtitle={t.summary} cta="Open Calculator →" />)}</CardGrid>
+                <CardGrid>{LAUNCHED_TOOLS.map(t => <SACard key={t.slug} href={`/study-abroad/tools/${t.slug}`} title={t.title} subtitle={t.summary} cta="Open Calculator →" />)}</CardGrid>
             </ListingSection>
             <ListingSection id="loans" title="Loans and Blocked Accounts">
                 <CardGrid>{[...deLoans, ...usLoans].map(g => <SACard key={g.slug} href={`/study-abroad/loans/${g.slug}`} title={g.title} subtitle={g.summary} detail={COUNTRIES[g.country].name} />)}</CardGrid>

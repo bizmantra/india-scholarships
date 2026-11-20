@@ -113,6 +113,7 @@ export function rankSimilarPrograms(p: SaProgram, peers: SaProgram[], limit = 6)
 export const FUNDS_CALCULATOR: Partial<Record<CountrySlug, { href: string; label: string }>> = {
     germany: { href: '/study-abroad/tools/blocked-account-calculator', label: 'Blocked account calculator' },
     usa: { href: '/study-abroad/tools/i20-cost-calculator', label: 'I-20 proof of funds calculator' },
+    uk: { href: '/study-abroad/tools/uk-funds-calculator', label: 'UK proof of funds calculator' },
 };
 
 export async function getFacts(): Promise<Record<string, SaFact>> {

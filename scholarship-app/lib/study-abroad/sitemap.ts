@@ -3,7 +3,7 @@
 import type { MetadataRoute } from 'next';
 import { LAUNCHED_COUNTRIES, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
 import { REDIRECTS } from './content';
-import { TOOLS } from '@/app/study-abroad/_components/tools';
+import { LAUNCHED_TOOLS } from '@/app/study-abroad/_components/tools';
 
 export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute.Sitemap> {
     const [universities, guides, visas, loans, programs, combos] = await Promise.all([
@@ -19,7 +19,7 @@ export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute
             ...['universities', 'visas', 'loans', 'scholarships'].map(h => entry(`/study-in/${c}/${h}`, 0.8)),
         ]),
         entry('/tools', 0.8),
-        ...TOOLS.map(t => entry(`/tools/${t.slug}`, 0.8)),
+        ...LAUNCHED_TOOLS.map(t => entry(`/tools/${t.slug}`, 0.8)),
         ...combos.filter(c => c.universities >= MIN_INDEXABLE_UNIVERSITIES).map(c => entry(`/programs/${c.country}/${c.degree}/${c.field}`, 0.8)),
         ...programs.map(p => entry(`/program-detail/${p.country}/${p.university_slug}/${p.slug}`, 0.6, date(p.checked_at))),
         ...universities.map(u => entry(`/universities/${u.slug}`, 0.7, date(u.updated_at))),
