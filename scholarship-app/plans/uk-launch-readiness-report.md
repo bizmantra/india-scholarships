@@ -9,17 +9,16 @@
 
 ## 1. Launch Readiness Verdict
 
-**Status:** **NOT READY FOR IMMEDIATE LAUNCH — 1 content-consistency blocker + Inbox filing required.**
+**Status:** **READY FOR INBOX FILING & OWNER APPROVAL** (after HC 584 alignment proposal is applied).
 
-All 49 UK draft pages pass `auditStudyAbroad` Rules 1, 2, 3, 4, 5, and 7 with **0 errors and 0 warnings**, have **0 broken internal links**, and follow evergreen slug and `seo_title` rules. However, **25 of the 49 pages** still use the pre-30-November-2026 UK Student visa living-money rate (`£1,171/mo` outside London, `£1,529/mo` in London) instead of the **HC 584** rate (`£1,203/mo` outside London, `£1,570/mo` in London, effective 30 November 2026).
+All 49 UK draft pages pass `auditStudyAbroad` Rules 1, 2, 3, 4, 5, and 7 with **0 errors and 0 warnings**, have **0 broken internal links**, and follow evergreen slug and `seo_title` rules. The 25-page HC 584 living-money alignment proposal (`scripts/study-abroad/proposals/uk-hc584-living-money-align-2026-11-21.json`) is now ready alongside the 3 open-fact fix proposals.
 
-### Blockers Before Flipping `launched: true`
-1. **HC 584 Living Money Rate Alignment (25 pages + `sa_facts`):**
-   - **Already on HC 584 (`£1,203` / `£1,570`):** All 24 MSc CS/DS drafts.
-   - **Still on pre-30-Nov-2026 rates (`£1,171` / `£1,529`):** All 11 MBA drafts, all 12 University drafts, and both UK guides (`uk-student-visa-guide`, `uk-total-cost-breakdown`).
-   - Update those 25 pages (and `sa_facts`) to `£1,203` / `£1,570` before launch so 2027-entry students do not see conflicting numbers across UK pages.
+### Remaining Launch Steps
+1. **HC 584 Living Money Rate Alignment (Proposal Ready):**
+   - Created `scripts/study-abroad/proposals/uk-hc584-living-money-align-2026-11-21.json` updating all 25 pages (11 MBA drafts, 12 University drafts, and both UK guides) from pre-30-Nov-2026 rates (`£1,171/mo` outside London, `£1,529/mo` in London) to **HC 584** rates (`£1,203/mo` = `£10,827` for 9 months outside London, `+£288` on worked totals; `£1,570/mo` = `£14,130` for 9 months in London, `+£369` on worked totals), with `checked_at: "2026-11-21"`.
+   - `sa_facts` HC 584 effective-date updates are handled in Workstream 1 (`uk-funds-calculator-facts-2026-11-21.json`).
 2. **Command Center Inbox Filing & Approval:**
-   - All `uk-*.json` proposal files (57 existing + 3 new fix proposals from this audit) remain unfiled in `scripts/study-abroad/proposals/`. They must be filed via `propose-changes.mjs` and approved in `/admin`.
+   - All `uk-*.json` proposal files (57 existing + 3 open-fact fix proposals + 1 HC 584 alignment proposal = **61 files**) remain unfiled in `scripts/study-abroad/proposals/`. File via `propose-changes.mjs` and approve in `/admin`.
 3. **Audit Rule 6 Allowlist (`UNLAUNCHED_COUNTRIES`):**
    - `scripts/lib/quality-rules.js` (line 149) currently includes `'uk'` in `UNLAUNCHED_COUNTRIES`, triggering **52 `unlaunched_country_link`** errors on UK internal links. Remove `'uk'` from `UNLAUNCHED_COUNTRIES` in the same PR that sets `launched: true` for UK.
 
@@ -67,6 +66,6 @@ Simulating all 49 merged UK pages as `status: 'published'` (today = `2026-11-21`
 ---
 
 ## 4. Next Steps (For Coordinator / Owner)
-1. Approve and apply the 3 new fix proposals in `scripts/study-abroad/proposals/*-2026-11-21.json` alongside the existing UK proposals.
-2. Run a batch HC 584 update (`£1,171`/`£1,529` -> `£1,203`/`£1,570`) across the 11 MBA drafts, 12 University drafts, 2 UK guides, and `sa_facts` before flipping `launched: true` on UK.
+1. File and approve the 3 open-fact fix proposals (`*-2026-11-21.json`) and `uk-hc584-living-money-align-2026-11-21.json` alongside the existing UK proposals in `/admin`.
+2. Remove `'uk'` from `UNLAUNCHED_COUNTRIES` in `scripts/lib/quality-rules.js` when flipping `launched: true` on UK.
 3. Keep `Birmingham MBA` IELTS marked `NOT CONFIRMED` unless Birmingham Business School admissions confirms which table row applies.
