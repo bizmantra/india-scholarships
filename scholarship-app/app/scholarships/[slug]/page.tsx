@@ -33,6 +33,7 @@ import ScholarshipCard from '@/app/components/ScholarshipCard';
 import PartnerJobsBox from '@/app/components/PartnerJobsBox';
 import { WikiInfobox } from '@/app/components/WikiInfobox';
 import StudyAbroadPlan from '@/app/components/StudyAbroadPlan';
+import { getMatchedStudyAbroadForScholarship } from '@/lib/study-abroad/data';
 
 
 const SUBPAGE_NAV = [
@@ -321,6 +322,7 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
     const bestFitPillar = getPillarForScholarship(scholarship);
     const portalGuide = getPortalGuideForScholarship(scholarship);
     const searchAliases = SCHOLARSHIP_SEARCH_ALIASES[scholarship.slug] || [];
+    const studyAbroadMatches = await getMatchedStudyAbroadForScholarship(scholarship);
 
     // Dynamic deadline check (relative to India's current date boundary)
     const today = new Date();
@@ -825,7 +827,12 @@ export default async function ScholarshipDetail({ params }: { params: Promise<{ 
                             </section>
                         )}
 
-                        <StudyAbroadPlan scope={scholarship.scholarship_scope} countryOfStudy={scholarship.country_of_study} />
+                        <StudyAbroadPlan
+                            scope={scholarship.scholarship_scope}
+                            countryOfStudy={scholarship.country_of_study}
+                            matchedUniversities={studyAbroadMatches.universities}
+                            matchedPrograms={studyAbroadMatches.programs}
+                        />
 
                         {/* Related news */}
                         {relevantNews.length > 0 && (

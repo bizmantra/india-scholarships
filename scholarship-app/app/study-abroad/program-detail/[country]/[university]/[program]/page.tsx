@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { COUNTRIES, isCountry, getPrograms, getProgram, getProgramsForCombo, getComparisonLinks, rankSimilarPrograms } from '@/lib/study-abroad/data';
+import { COUNTRIES, isCountry, getPrograms, getProgram, getProgramsForCombo, getComparisonLinks, rankSimilarPrograms, getScholarshipsForProgram } from '@/lib/study-abroad/data';
 import { SITE, money, pageTitle, describe, renderArticle, yesNo } from '@/lib/study-abroad/content';
 import DetailShell, { DetailSection, KeyCard, InfoCard, SideLinks, sourceRows } from '../../../../_components/DetailShell';
 import { ArticleBody, Faqs, MoreLinks, jumpFor } from '../../../../_components/ArticleSections';
 import { faqJsonLd } from '../../../../_components/seo';
 import { deadlinesText } from '../../../../_components/blocks';
-import { bylineText, costLinks, NOT_PUBLISHED, publicValue } from '../../../../_components/LinkBlocks';
+import { bylineText, costLinks, NOT_PUBLISHED, publicValue, ScholarshipLinks } from '../../../../_components/LinkBlocks';
 
 export const revalidate = 86400;
 export const dynamicParams = false;
@@ -32,9 +32,10 @@ export default async function ProgramDetail({ params }: { params: Promise<{ coun
     const p = await getProgram(university, program);
     if (!p || p.country !== country || !isCountry(country)) notFound();
     const c = COUNTRIES[country];
-    const [allPeers, comparisons] = await Promise.all([
+    const [allPeers, comparisons, scholarships] = await Promise.all([
         p.field ? getProgramsForCombo(country, p.degree, p.field) : Promise.resolve([]),
         getComparisonLinks(country, [p]),
+        getScholarshipsForProgram(p),
     ]);
     const peers = rankSimilarPrograms(p, allPeers);
     const tuition = money(p.tuition_per_year, p.tuition_currency);
@@ -86,10 +87,14 @@ export default async function ProgramDetail({ params }: { params: Promise<{ coun
             <MoreLinks id="similar" title={`Similar Programs in ${c.name}`} links={peers.map(x => ({
                 href: `/study-abroad/program-detail/${x.country}/${x.university_slug}/${x.slug}`, title: `${x.title}, ${x.university_name}`, meta: money(x.tuition_per_year, x.tuition_currency),
             }))} />
-            <MoreLinks id="scholarships" title={`Explore funding for study in ${c.name}`} links={[{
-                href: `/study-abroad/study-in/${country}/scholarships`, title: `Scholarships for ${c.name}`,
-                meta: 'Check whether your university and course are eligible',
-            }]} />
+            {scholarships.length > 0 ? (
+                <ScholarshipLinks country={country} scholarships={scholarships} title={`Scholarships that apply to ${p.title}`} />
+            ) : (
+                <MoreLinks id="scholarships" title={`Explore funding for study in ${c.name}`} links={[{
+                    href: `/study-abroad/study-in/${country}/scholarships`, title: `Scholarships for ${c.name}`,
+                    meta: 'Check whether your university and course are eligible',
+                }]} />
+            )}
             <Faqs faqs={article.faqs} />
         </DetailShell>
     );

@@ -1,10 +1,17 @@
 // Study Abroad data access (/study-abroad section). Tables are described in
 // scripts/lib/study-abroad-tables.js. Only 'published' rows are ever shown.
 import { getClient } from '@/lib/db';
-import { COUNTRIES, type CountrySlug } from './countries';
+import { COUNTRIES, isCountry, type CountrySlug } from './countries';
 export { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, type CountrySlug } from './countries';
 import { SCHOLARSHIP_PICKS, mergePicks } from './scholarship-picks';
 export { SCHOLARSHIP_PICKS } from './scholarship-picks';
+import {
+    matchScholarshipToUniversities,
+    isProgramCompatibleWithLevel,
+    rankScholarshipsForUniversity,
+    rankScholarshipsForProgram,
+    type MatchableScholarship,
+} from './scholarship-matching';
 
 export interface SaUniversity {
     slug: string; name: string; country: CountrySlug; city: string | null; summary: string | null;
@@ -155,4 +162,57 @@ export async function getScholarshipsForCountry(country: CountrySlug, limit = 10
 export function parseJson<T>(value: string | null | undefined, fallback: T): T {
     if (!value) return fallback;
     try { return JSON.parse(value) as T; } catch { return fallback; }
+}
+
+/**
+ * Reliable, non-fuzzy match from an international scholarship to published Study Abroad
+ * universities and compatible programs in launched countries.
+ */
+export async function getMatchedStudyAbroadForScholarship(scholarship: MatchableScholarship) {
+    if (!/international|study.abroad/i.test(scholarship.scholarship_scope || '') &&
+        (!scholarship.country_of_study || scholarship.country_of_study.toLowerCase() === 'india')) {
+        return { universities: [], programs: [] };
+    }
+    const universities = (await getUniversities()).filter(u => isCountry(u.country));
+    const matchedUnis = matchScholarshipToUniversities(scholarship, universities).slice(0, 4);
+    if (!matchedUnis.length) return { universities: [], programs: [] };
+
+    const programLists = await Promise.all(matchedUnis.map(u => getProgramsForUniversity(u.slug)));
+    const matchedPrograms = programLists
+        .flat()
+        .filter(p => isCountry(p.country) && isProgramCompatibleWithLevel(p.degree, scholarship.level))
+        .slice(0, 4);
+
+    return {
+        universities: matchedUnis.map(u => ({ slug: u.slug, name: u.name, country: u.country })),
+        programs: matchedPrograms.map(p => ({
+            slug: p.slug,
+            title: p.title,
+            country: p.country,
+            university_slug: p.university_slug,
+            university_name: p.university_name,
+        })),
+    };
+}
+
+/** Scholarships that apply to a university: the university's own first, then country scholarships. */
+export async function getScholarshipsForUniversity(
+    university: Pick<SaUniversity, 'slug' | 'name' | 'country'>,
+    limit = 6,
+) {
+    if (!isCountry(university.country)) return [];
+    const all = await getScholarshipsForCountry(university.country, 100);
+    const hidden = new Set(SCHOLARSHIP_PICKS[university.country]?.hide || []);
+    return rankScholarshipsForUniversity(university, all, hidden, limit);
+}
+
+/** Scholarships that apply to a course: university's own at that degree level first, then country scholarships at that level. */
+export async function getScholarshipsForProgram(
+    program: Pick<SaProgram, 'university_slug' | 'university_name' | 'country' | 'degree'>,
+    limit = 6,
+) {
+    if (!isCountry(program.country)) return [];
+    const all = await getScholarshipsForCountry(program.country, 100);
+    const hidden = new Set(SCHOLARSHIP_PICKS[program.country]?.hide || []);
+    return rankScholarshipsForProgram(program, all, hidden, limit);
 }

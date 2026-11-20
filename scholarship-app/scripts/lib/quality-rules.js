@@ -224,6 +224,23 @@ function auditStudyAbroad(data = {}, options = {}) {
         }
     }
 
+    const draftRoutes = new Set();
+    for (const u of universities) {
+        if (u.status !== 'published') draftRoutes.add(`/study-abroad/universities/${u.slug}`);
+    }
+    for (const g of guides) {
+        if (g.status !== 'published') {
+            if (g.kind === 'visa') draftRoutes.add(`/study-abroad/visas/${g.slug}`);
+            else if (g.kind === 'loan') draftRoutes.add(`/study-abroad/loans/${g.slug}`);
+            else draftRoutes.add(`/study-abroad/study-in/${g.country}/${g.slug}`);
+        }
+    }
+    for (const p of programs) {
+        if (p.status !== 'published') {
+            draftRoutes.add(`/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`);
+        }
+    }
+
     // -------------------------------------------------------------------------
     // Rule 1: Boilerplate summary, summary over 220 chars, empty summary
     // -------------------------------------------------------------------------
@@ -423,13 +440,21 @@ function auditStudyAbroad(data = {}, options = {}) {
                 continue;
             }
 
-            // Check if route exists or has valid redirect
-            const target = redirectMap.get(cleanPath) || cleanPath;
-            if (!validRoutes.has(target)) {
+            // Never link to a redirect, draft, hidden country, or missing page (LINKING_RULES.md)
+            if (redirectMap.has(cleanPath)) {
+                addIssue(table, row, 6, 'redirect_internal_link', 'error', `Internal link points to a redirect (${cleanPath} -> ${redirectMap.get(cleanPath)}): ${rawHref}`);
+                continue;
+            }
+            if (draftRoutes.has(cleanPath)) {
+                addIssue(table, row, 6, 'draft_internal_link', 'error', `Internal link points to a draft page: ${rawHref}`);
+                continue;
+            }
+            if (!validRoutes.has(targetOrClean(cleanPath))) {
                 addIssue(table, row, 6, 'broken_internal_link', 'error', `Internal link points to non-existent route: ${rawHref}`);
             }
         }
     };
+    const targetOrClean = p => p;
 
     for (const u of pubUnis) checkInternalLinksInRow('sa_universities', u);
     for (const g of pubGuides) checkInternalLinksInRow('sa_guides', g);
@@ -567,8 +592,155 @@ function isProblemInBaseline(baselineSet, issue) {
     return false;
 }
 
+/**
+ * Verify the Study Abroad internal link graph (IS-137 / LINKING_RULES.md):
+ *  - No body_md links to drafts, hidden/unlaunched countries, redirects, or missing pages.
+ *  - Every published university and course page in a launched country has >= 3 incoming links
+ *    from other pages (automatic layout blocks + body_md links).
+ *
+ * @param {Object} data - { universities, guides, programs, scholarships }
+ * @param {Object} [options]
+ * @param {Array} [options.redirects]
+ * @returns {Object} { issues, incomingCounts, summary }
+ */
+function auditStudyAbroadLinkGraph(data = {}, options = {}) {
+    const baseAudit = auditStudyAbroad(data, options);
+    const linkIssues = baseAudit.issues.filter(i => i.rule === 6);
+
+    const universities = (data.universities || []).filter(u => u.status === 'published' && !UNLAUNCHED_COUNTRIES.has(u.country));
+    const guides = (data.guides || []).filter(g => g.status === 'published' && !UNLAUNCHED_COUNTRIES.has(g.country));
+    const programs = (data.programs || []).filter(p => p.status === 'published' && !UNLAUNCHED_COUNTRIES.has(p.country));
+    const uniSet = new Set(universities.map(u => u.slug));
+    const pubPrograms = programs.filter(p => uniSet.has(p.university_slug));
+
+    const incoming = new Map();
+    const addEdge = (from, to) => {
+        if (!to || from === to) return;
+        if (!incoming.has(to)) incoming.set(to, new Set());
+        incoming.get(to).add(from);
+    };
+
+    for (const u of universities) incoming.set(`/study-abroad/universities/${u.slug}`, new Set());
+    for (const p of pubPrograms) incoming.set(`/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`, new Set());
+
+    // 1. Country university list -> every published university in that country
+    for (const u of universities) {
+        addEdge(`/study-abroad/study-in/${u.country}/universities`, `/study-abroad/universities/${u.slug}`);
+    }
+
+    // 2. University <-> Course & Comparison pages
+    const comboCounts = new Map();
+    for (const p of pubPrograms) {
+        if (p.degree && p.field) {
+            const key = `${p.country}/${p.degree}/${p.field}`;
+            if (!comboCounts.has(key)) comboCounts.set(key, new Set());
+            comboCounts.get(key).add(p.university_slug);
+        }
+    }
+    const indexableCombos = new Set([...comboCounts.entries()].filter(([, s]) => s.size >= 3).map(([k]) => k));
+
+    const uniFields = new Map();
+    for (const p of pubPrograms) {
+        const uPath = `/study-abroad/universities/${p.university_slug}`;
+        const pPath = `/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`;
+        addEdge(uPath, pPath);
+        addEdge(pPath, uPath);
+
+        if (p.degree && p.field && indexableCombos.has(`${p.country}/${p.degree}/${p.field}`)) {
+            const compPath = `/study-abroad/programs/${p.country}/${p.degree}/${p.field}`;
+            addEdge(compPath, pPath);
+            addEdge(compPath, uPath);
+        }
+
+        if (p.field) {
+            if (!uniFields.has(p.university_slug)) uniFields.set(p.university_slug, new Set());
+            uniFields.get(p.university_slug).add(p.field);
+        }
+    }
+
+    // 3. Similar universities (top 5 per university)
+    for (const u of universities) {
+        const mine = uniFields.get(u.slug) || new Set();
+        const peers = universities
+            .filter(x => x.country === u.country && x.slug !== u.slug)
+            .sort((a, b) => {
+                const aOverlap = [...(uniFields.get(a.slug) || [])].filter(f => mine.has(f)).length;
+                const bOverlap = [...(uniFields.get(b.slug) || [])].filter(f => mine.has(f)).length;
+                const aGap = a.tuition_per_year != null && u.tuition_per_year != null ? Math.abs(a.tuition_per_year - u.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+                const bGap = b.tuition_per_year != null && u.tuition_per_year != null ? Math.abs(b.tuition_per_year - u.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+                return bOverlap - aOverlap || aGap - bGap || String(a.name).localeCompare(String(b.name));
+            })
+            .slice(0, 5);
+        for (const peer of peers) {
+            addEdge(`/study-abroad/universities/${u.slug}`, `/study-abroad/universities/${peer.slug}`);
+        }
+    }
+
+    // 4. Similar courses (top 6 per combo)
+    for (const p of pubPrograms) {
+        if (!p.degree || !p.field) continue;
+        const peers = pubPrograms
+            .filter(x => x.country === p.country && x.degree === p.degree && x.field === p.field && x.id !== p.id)
+            .sort((a, b) => {
+                const aGap = a.tuition_per_year != null && p.tuition_per_year != null ? Math.abs(a.tuition_per_year - p.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+                const bGap = b.tuition_per_year != null && p.tuition_per_year != null ? Math.abs(b.tuition_per_year - p.tuition_per_year) : Number.MAX_SAFE_INTEGER;
+                return aGap - bGap || String(a.university_slug).localeCompare(String(b.university_slug));
+            })
+            .slice(0, 6);
+        for (const peer of peers) {
+            addEdge(
+                `/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`,
+                `/study-abroad/program-detail/${peer.country}/${peer.university_slug}/${peer.slug}`,
+            );
+        }
+    }
+
+    // 5. body_md links from published pages
+    const rowsWithBody = [
+        ...universities.map(u => ({ from: `/study-abroad/universities/${u.slug}`, body: u.body_md })),
+        ...guides.map(g => ({ from: pagePath('sa_guides', g), body: g.body_md })),
+        ...pubPrograms.map(p => ({ from: `/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`, body: p.body_md })),
+    ];
+    for (const { from, body } of rowsWithBody) {
+        if (!body) continue;
+        const matches = String(body).matchAll(/\[[^\]]*\]\(([^)\s#?]+)(?:[#?][^)]*)?\)/g);
+        for (const m of matches) {
+            const target = m[1].replace(/^https?:\/\/(www\.)?indiascholarships\.in/i, '').replace(/\/$/, '') || '/';
+            if (incoming.has(target)) addEdge(from, target);
+        }
+    }
+
+    const incomingCounts = {};
+    for (const [path, sources] of incoming.entries()) {
+        incomingCounts[path] = sources.size;
+        if (sources.size < 3) {
+            linkIssues.push({
+                table: path.startsWith('/study-abroad/universities/') ? 'sa_universities' : 'sa_programs',
+                id: path.split('/').pop(),
+                path,
+                rule: 8,
+                code: 'low_incoming_links',
+                severity: 'error',
+                message: `Page has only ${sources.size} incoming link(s) (minimum 3 required): ${[...sources].join(', ') || 'none'}`,
+            });
+        }
+    }
+
+    return {
+        issues: linkIssues,
+        incomingCounts,
+        summary: {
+            universitiesChecked: universities.length,
+            programsChecked: pubPrograms.length,
+            totalErrors: linkIssues.length,
+            rule6Errors: linkIssues.filter(i => i.rule === 6).length,
+            lowIncomingErrors: linkIssues.filter(i => i.code === 'low_incoming_links').length,
+        },
+    };
+}
+
 module.exports = {
     auditScholarship, isClosedNotice, parseArrayField, stripHtml, hasHtmlTags, isInternational, isLegacy, HTML_FIELDS,
-    auditStudyAbroad, buildBaselineSet, isProblemInBaseline,
+    auditStudyAbroad, auditStudyAbroadLinkGraph, buildBaselineSet, isProblemInBaseline,
 };
 

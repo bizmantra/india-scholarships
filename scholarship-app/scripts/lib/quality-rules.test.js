@@ -8,7 +8,7 @@
  */
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { auditStudyAbroad } = require('./quality-rules.js');
+const { auditStudyAbroad, auditStudyAbroadLinkGraph } = require('./quality-rules.js');
 
 // Fixed "today" so the age of checked_at never depends on when the test runs.
 const TODAY = new Date('2026-10-30T00:00:00Z');
@@ -93,4 +93,42 @@ test('a missing checked_at is a rule 4 error, not a stale warning', () => {
     assert.equal(staleWarnings(result).length, 0);
     assert.equal(result.summary.countsByRule.rule4_errors, 1);
     assert.ok(result.issues.some(i => i.rule === 4 && i.code === 'missing_source' && i.severity === 'error'));
+});
+
+test('rule 6 fails on links to redirects, drafts, unlaunched countries, and missing pages', () => {
+    const body = [
+        '[Redirect](/study-abroad/old-path)',
+        '[Draft](/study-abroad/universities/draft-uni)',
+        '[Hidden](/study-abroad/study-in/uk)',
+        '[Missing](/study-abroad/universities/does-not-exist)',
+    ].join(' ');
+    const result = auditStudyAbroad({
+        guides: [guideRow('2026-10-01', { body_md: body })],
+        universities: [{ slug: 'draft-uni', name: 'Draft Uni', country: 'germany', status: 'draft' }],
+    }, {
+        today: TODAY,
+        redirects: [{ source: '/study-abroad/old-path', destination: '/study-abroad/study-in/germany' }],
+    });
+    const codes = result.issues.filter(i => i.rule === 6).map(i => i.code).sort();
+    assert.deepEqual(codes, ['broken_internal_link', 'draft_internal_link', 'redirect_internal_link', 'unlaunched_country_link']);
+});
+
+test('link graph check flags published university/course with fewer than 3 incoming links', () => {
+    const result = auditStudyAbroadLinkGraph({
+        universities: [
+            { slug: 'uni-a', name: 'Uni A', country: 'germany', status: 'published' },
+            { slug: 'uni-b', name: 'Uni B', country: 'germany', status: 'published' },
+        ],
+        programs: [
+            { id: '1', slug: 'cs', university_slug: 'uni-a', country: 'germany', degree: 'ms', field: 'cs', status: 'published' },
+        ],
+        guides: [],
+    });
+    // uni-a gets: country list + cs program + uni-b similar = 3 (passes)
+    // uni-b gets: country list + uni-a similar = 2 (fails)
+    // cs gets: uni-a only = 1 (fails)
+    assert.equal(result.incomingCounts['/study-abroad/universities/uni-a'], 3);
+    assert.equal(result.incomingCounts['/study-abroad/universities/uni-b'], 2);
+    assert.equal(result.incomingCounts['/study-abroad/program-detail/germany/uni-a/cs'], 1);
+    assert.equal(result.summary.lowIncomingErrors, 2);
 });

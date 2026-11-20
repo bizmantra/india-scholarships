@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getInternationalScholarships } from '@/lib/db';
+import { isCountry } from '@/lib/study-abroad/countries';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import {
@@ -388,12 +389,21 @@ export default async function InternationalScholarshipsPage() {
                                             <Link 
                                                 key={lIdx} 
                                                 href={lnk.href}
-                                                className="text-xs font-semibold text-google-blue hover:underline hover:underline flex items-center justify-between group"
+                                                className="text-xs font-semibold text-google-blue hover:underline flex items-center justify-between group"
                                             >
                                                 <span>{lnk.label}</span>
                                                 <ChevronRight className="h-3 w-3 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
                                             </Link>
                                         ))}
+                                        {isCountry(item.slug) && (
+                                            <Link
+                                                href={`/study-abroad/study-in/${item.slug}`}
+                                                className="mt-1.5 pt-1.5 border-t border-gray-200/70 text-xs font-bold text-slate-700 hover:text-google-blue hover:underline flex items-center justify-between group"
+                                            >
+                                                <span>Study in {item.country} Guide</span>
+                                                <ChevronRight className="h-3 w-3 text-gray-400 group-hover:translate-x-0.5 transition-transform" />
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
                             ))}
