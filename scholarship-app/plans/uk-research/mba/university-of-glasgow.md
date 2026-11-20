@@ -48,3 +48,7 @@ Not used: the Round 5 CS and DS courses, which are not MBAs.
 1. Scholarship stacking: the India Excellence Award and the Glasgow MBA Scholarship both say UofG awards cannot be combined. Expect at most one.
 2. The MBA page does not name AACSB or EQUIS. Those two are quoted from the school accreditation page, not the MBA page.
 3. The India Excellence Award pages list "Eligible programmes" as blank in the text read. MBA eligibility is inferred from the wording and needs confirming before publishing.
+
+## Re-check on 2026-11-21 (Pre-launch audit)
+- **World Changers Glasgow Scholarship (£5,000):** Re-checked `https://www.gla.ac.uk/scholarships/worldchangersglasgowscholarship/` on 2026-11-21. Confirmed for **September 2027 / January 2028 entry**. India is on the eligible countries list, and `MBA (Master of Business Administration)` is now explicitly listed under Eligible programmes. Automatic **£5,000** tuition fee discount; cannot be combined with another University scholarship.
+- **World Changers India Excellence Award (£12,500):** Re-checked `https://www.gla.ac.uk/scholarships/worldchangersindiaexcellenceaward/` on 2026-11-21. Confirmed for **academic session 2027/28** (September 2027 intake). Up to 12 awards for Indian students; `MBA (Master of Business Administration)` is explicitly listed under Eligible programmes.

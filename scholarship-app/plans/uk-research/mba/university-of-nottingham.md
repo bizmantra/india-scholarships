@@ -48,3 +48,6 @@ Round5 notes were used as a starting point only. Every row was re-opened on the 
 - The course page title and the "Entry requirements" box both list "2:1" as the degree requirement.
 - The school's "Ranking 3rd in the UK for graduate support" claim on the careers section is the University's own statement (cites QS International Trade Ranking 2025). Not used as an outcome figure.
 - Accommodation rows from round5 are out of scope and were not re-read.
+
+## Re-check on 2026-11-21 (Pre-launch audit)
+- **Management-experience rule:** Re-checked `https://www.nottingham.ac.uk/pgstudy/course/taught/business-administration-mba` and `https://www.nottingham.ac.uk/business/study-with-us/mba/applying-for-an-mba.aspx` on 2026-11-21. Both pages explicitly require that the post-graduation full-time work experience **"includes some management experience"** (Home tab & Applying page: "at least three to five years of post-graduation full-time work experience that includes some management experience"; International tab: "a minimum of three years post-graduation full-time work experience that includes some management experience").
