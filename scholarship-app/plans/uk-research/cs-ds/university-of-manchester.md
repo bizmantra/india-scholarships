@@ -88,3 +88,7 @@ Notes for the page writer:
 | S12. Visa money in London, applications on or after 30 November 2026 | £1,570 per month, up to 9 months. 9 × £1,570 = £14,130. | "In ST 12.3(a), for “£1529”, substitute “£1570”." | https://assets.publishing.service.gov.uk/media/6a96e3559a177a1decf97c25/E03678010__HC_584__-_Immigration_Rules_Changes__Web_Accessible_.pdf | 2026-11-04 | 2027 |
 | S13. Start date of the S11 and S12 change | 30 November 2026; applications made before then use the old rates (£1,171 outside London, £1,529 in London) | "The following paragraphs shall take effect on 30 November 2026." | https://assets.publishing.service.gov.uk/media/6a96e3559a177a1decf97c25/E03678010__HC_584__-_Immigration_Rules_Changes__Web_Accessible_.pdf | 2026-11-04 | 2027 |
 | S14. Current gov.uk London rate (before the change) | £1,529 per month for courses in London | "£1,529 per month (for up to 9 months) for courses in London" | https://www.gov.uk/student-visa/money | 2026-11-04 | 2026 |
+
+## Re-check on 2026-11-21 (Pre-launch audit)
+- **DS 2027 international tuition fee:** Re-checked `https://www.manchester.ac.uk/study/masters/courses/list/22195/msc-data-science-and-artificial-intelligence-computer-science-data-informatics/` on 2026-11-21. Now published for September 2027 entry: `"International, including EU, students (per annum): £37,000"` (UK students: `£18,200`).
+- **Worked DS first-year total (September 2027):** £37,000 + £10,827 (9 × £1,203) + £558 + £1,164 = **£49,549**.
