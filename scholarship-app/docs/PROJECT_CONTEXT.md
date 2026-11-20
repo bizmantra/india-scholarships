@@ -34,6 +34,7 @@ Content drafted by one AI is checked by another or by a human before it ships. A
 5. New scheduled workflows ship with the schedule off; a follow-up PR switches it on after the staging test.
 6. Assistants cannot run `gh pr merge`. Give the owner the exact command.
 7. When you merge a feature, add one line to `RECENT_CHANGES.md`.
+8. **Clean up after merge.** When the owner says a PR is merged, remove that worktree and its local branch (`git worktree remove <path>` without `--force`, then `git branch -D <branch>`). Remove only if the PR shows MERGED on GitHub, the folder has no uncommitted changes, and nothing is unpushed; otherwise ask. Leave the remote branch alone. Worktrees piled up to 73 before the first cleanup on 2026-11-20.
 
 The owner is not an engineer. Explain in plain language and check before large decisions. End analysis with an item-by-item table the owner can approve line by line, kept separate from the findings.
 
