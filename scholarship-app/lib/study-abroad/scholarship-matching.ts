@@ -3,6 +3,7 @@ export type CountrySlug = 'germany' | 'usa' | 'uk' | 'canada' | 'australia' | 'i
 const LAUNCHED_SCHOLARSHIP_COUNTRIES: Record<string, string> = {
     germany: 'Germany',
     usa: 'United States',
+    uk: 'United Kingdom',
 };
 
 const isLaunchedCountry = (slug: string): boolean => slug in LAUNCHED_SCHOLARSHIP_COUNTRIES;
