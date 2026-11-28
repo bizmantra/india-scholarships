@@ -8,6 +8,7 @@ export const COUNTRIES = {
     canada: { slug: 'canada', name: 'Canada', currency: 'CAD', scholarshipCountry: 'Canada', launched: false },
     australia: { slug: 'australia', name: 'Australia', currency: 'AUD', scholarshipCountry: 'Australia', launched: false },
     ireland: { slug: 'ireland', name: 'Ireland', currency: 'EUR', scholarshipCountry: 'Ireland', launched: false },
+    'south-korea': { slug: 'south-korea', name: 'South Korea', currency: 'KRW', scholarshipCountry: 'South Korea', launched: false },
 } as const;
 export type CountrySlug = keyof typeof COUNTRIES;
 export const LAUNCHED_COUNTRIES = (Object.keys(COUNTRIES) as CountrySlug[]).filter(c => COUNTRIES[c].launched);

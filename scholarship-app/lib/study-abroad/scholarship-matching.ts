@@ -1,4 +1,4 @@
-export type CountrySlug = 'germany' | 'usa' | 'uk' | 'canada' | 'australia' | 'ireland';
+export type CountrySlug = 'germany' | 'usa' | 'uk' | 'canada' | 'australia' | 'ireland' | 'south-korea';
 
 const LAUNCHED_SCHOLARSHIP_COUNTRIES: Record<string, string> = {
     germany: 'Germany',

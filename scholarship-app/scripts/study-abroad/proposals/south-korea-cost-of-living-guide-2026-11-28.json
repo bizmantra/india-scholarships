@@ -1,0 +1,46 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea cost of living guide (hidden country, draft). Figures in plans/south-korea-research/. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_guides",
+      "key": "south-korea-cost-of-living",
+      "source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+      "fields": {
+        "slug": "south-korea-cost-of-living",
+        "kind": "guide",
+        "country": "south-korea",
+        "title": "Cost of Living in South Korea for Indian Students: Monthly Budget",
+        "summary": "Monthly costs in South Korea for a student: KRW 750,000 to 1,000,000 on average, with housing, food, transport, health insurance and a KAIST on-campus budget.",
+        "seo_title": "Cost of Living in South Korea for Indian Students (INR)",
+        "meta_description": "Cost of living in South Korea for Indian students: KRW 750,000 to 1,000,000 a month, in rupees, with housing, food, transport and health insurance.",
+        "body_md": "## The short answer\n\nStudy in Korea, the Government's study portal, says average living costs are about **KRW 750,000 to KRW 1,000,000 a month** (**₹52,086 to ₹69,448**). Housing is the biggest part. Tuition is extra.\n\nKAIST gives a second view. It puts the average non-tuition budget for a student on campus at **KRW 5,350,000 for 6 months** (2026). That is about **KRW 891,667 a month** (**₹61,924**). KAIST says students who live off campus should expect costs to be 35% to 50% higher.\n\nRupee amounts use **₹0.0694 per Korean won**. That is the RBI reference rate of ₹92.91 per US dollar divided by the Bank of Korea closing rate of ₩1,337.9 per US dollar, both for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Monthly costs from Study in Korea\n\n| Cost | Per month (KRW) | In rupees |\n|---|---|---|\n| Housing (dormitory fees depend on the number of occupants and meals) | **500,000 to 700,000** | ₹34,724 to ₹48,613 |\n| Food (one meal at a university cafeteria: KRW 5,000 to 15,000) | **200,000 to 300,000** | ₹13,890 to ₹20,834 |\n| Transport | **50,000 to 100,000** | ₹3,472 to ₹6,945 |\n| Other (mobile phone, internet and health insurance) | **100,000 to 200,000** | ₹6,945 to ₹13,890 |\n\nThese four items add up to **KRW 850,000 to KRW 1,300,000**. That is higher than the page's own total of KRW 750,000 to 1,000,000. Plan for the upper end, especially in Seoul.\n\n## Health insurance\n\nStudy in Korea says all international students who stay in Korea for more than 6 months are enrolled automatically in the **National Health Insurance (NHI)**. NHI is the Government's health scheme. Students get the same benefits as Korean citizens. You do not apply for it. The card and a guide are sent to your registered address.\n\nThe premium depends on income and property. A student with a monthly income of KRW 300,000 or less, and property below the limit, can get a **50% reduction** from March 2023 onward. The page gives no standard premium. It says a low premium is raised to the average premium of all members.\n\nKAIST budgets about **KRW 900,000 for 6 months** for health insurance (2026).\n\n## Example: KAIST, on campus\n\nKAIST publishes this average budget for a single graduate student living on campus. It covers 6 months and uses 2026 figures.\n\n| Item | KRW for 6 months |\n|---|---|\n| Dormitory | about 700,000 |\n| Food | about 3,500,000 |\n| Transportation | about 100,000 |\n| Books and supplies | about 150,000 |\n| Medical health insurance | about 900,000 |\n| **Total** | **5,350,000** (₹3.72 lakh) |\n\nKAIST says dormitory fees start at about **KRW 115,000 a month** (₹7,986). It says full tuition and a monthly stipend can come from the KAIST Scholarship, but admission and scholarship are decided separately. See the [KAIST page](/study-abroad/universities/kaist).\n\n## How this compares with the visa amount\n\nThe visa standard is **KRW 20 million** for a university in the capital area and **KRW 16 million** elsewhere. It has to cover tuition and living costs for one year. Read the [proof of funds guide](/study-abroad/study-in/south-korea/south-korea-proof-of-funds-guide).\n\nTuition differs a lot by university. KAIST charges **KRW 9,559,000 a semester** for most programmes in 2027. Seoul National University's Graduate School of International Studies lists **KRW 3,109,000** tuition for the first semester, plus a KRW 169,000 entrance fee (2026 academic year figures). See our pages for each [university](/study-abroad/study-in/south-korea).\n\n## Working part-time\n\nMaster's students can work part time with permission. Read the rules in our [student visa guide](/study-abroad/visas/south-korea-student-visa-guide). Do not count on part-time pay when you plan the visa money.\n\n## What we could not source\n\n- **City budgets.** Study in Korea's price table for Seoul, Tokyo and other cities cites a user-edited wiki, not an official source. We did not use it.\n- **National average tuition.** Study in Korea lists graduate averages as annual, but they are lower than the semester fees KAIST and Yonsei publish. We left them out.\n- **Rent outside dormitories.** No official page we read gives a figure.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [Study in Korea: Living Costs and Expenses](https://www.studyinkorea.go.kr/en/life/livingExpense.do), [Study in Korea: Living and Housing Information](https://www.studyinkorea.go.kr/en/life/livingAndHousing.do), [Study in Korea: Study Expenses in Korea](https://www.studyinkorea.go.kr/en/plan/abroadExpenses.do), [KAIST 2027 Fall International Graduate Admission guide](https://www.studyinkorea.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000483722&fileSn=1), [SNU 2027 Spring graduate admissions guide, Global Talent track (Korean)](https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How much does it cost to live in South Korea as a student?",
+            "a": "Study in Korea says about KRW 750,000 to 1,000,000 a month, or about ₹52,086 to ₹69,448. Housing is the largest cost. Tuition is extra."
+          },
+          {
+            "q": "How much is a dormitory in Korea?",
+            "a": "Study in Korea gives KRW 500,000 to 700,000 a month for housing, about ₹34,724 to ₹48,613. KAIST says its dormitory fees start at about KRW 115,000 a month."
+          },
+          {
+            "q": "Do I need health insurance as an international student in Korea?",
+            "a": "Yes. Students who stay more than 6 months are enrolled automatically in the National Health Insurance. A 50% premium reduction applies to students with a low income."
+          },
+          {
+            "q": "Is living off campus more expensive?",
+            "a": "KAIST says students who live off campus should expect living costs to be 35% to 50% higher than the on-campus budget."
+          },
+          {
+            "q": "How much is food in South Korea?",
+            "a": "Study in Korea gives KRW 200,000 to 300,000 a month for food. One meal at a university cafeteria costs KRW 5,000 to 15,000, about ₹347 to ₹1,042."
+          }
+        ],
+        "official_source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
