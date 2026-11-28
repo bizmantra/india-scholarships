@@ -1,0 +1,57 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): Master of Global Economy and Strategy, International Trade, Finance and Management (Yonsei GSIS). Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_yonsei-gsis-mges",
+      "source": "https://graduate.yonsei.ac.kr/gsis/intro/status.do",
+      "fields": {
+        "id": "program_yonsei-gsis-mges",
+        "slug": "yonsei-gsis-mges",
+        "university_slug": "yonsei-university",
+        "country": "south-korea",
+        "degree": "master",
+        "field": "business-administration",
+        "title": "Master of Global Economy and Strategy, International Trade, Finance and Management (Yonsei GSIS)",
+        "tuition_currency": "KRW",
+        "tuition_per_year": 15848000,
+        "summary": "The Yonsei GSIS MGES charges KRW 7,924,000 a semester outside the quota. It needs 48 credits, or 42 plus a thesis. Taught in English.",
+        "seo_title": "Yonsei GSIS MGES Master's: Fees, Credits & Dates",
+        "meta_description": "Yonsei GSIS Master of Global Economy and Strategy for Indian students: KRW 7,924,000 a semester, 48 credits, English-taught and scholarships up to full tuition.",
+        "location": "Seoul",
+        "duration": "48 credits, or 42 credits plus a thesis (up to 8 semesters)",
+        "language": "English",
+        "intakes": "Spring, Fall",
+        "application_portal": "Yonsei GSIS international student admission",
+        "application_deadlines": {
+          "Spring 2027 entry (closed)": "21 September to 2 October 2026",
+          "Fall entry (usual)": "Early March to early May",
+          "Fall 2027 entry": "Not posted"
+        },
+        "body_md": "## About this programme\n\nThe **Master of Global Economy and Strategy (MGES)** is the master's degree of the International Trade, Finance and Management programme. The programme is at Yonsei's Graduate School of International Studies. It trains students in international trade, finance and management. The degree title can change with your entering year.\n\nYonsei lists English as the language of instruction for Global Studies at GSIS.\n\n## Fees\n\nTuition is **KRW 7,924,000** a semester for students outside the quota, as of Spring 2026 (**₹5.50 lakh**). The first semester adds a **KRW 1,195,000** entrance fee. Students within the quota pay KRW 7,545,000. Fees can change without notice.\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## Degree rules\n\n- 48 credits, or 42 credits plus a master's thesis.\n- A GPA of at least 3.00.\n- Finish within 8 semesters.\n- Choose one field and take four courses in it.\n\n## Dates\n\nSpring applications run from early September to early November. Fall applications run from early March to early May. Spring 2027 applications ran from 21 September to 2 October 2026. The Fall 2027 dates are not posted on the pages we read.\n\n## Scholarships\n\nThe Incoming Student Award can cover up to 100% of tuition with no application. See the [Yonsei page](/study-abroad/universities/yonsei-university) for the full list.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [GSIS at a Glance](https://graduate.yonsei.ac.kr/gsis/intro/status.do), [GSIS international student admission](https://graduate.yonsei.ac.kr/gsis/admissions/international.do), [GSIS master's degree requirements](https://graduate.yonsei.ac.kr/gsis/education/master_degree.do), [GSIS International Trade, Finance and Management](https://graduate.yonsei.ac.kr/gsis/education/master_degree03.do), [GSIS scholarships](https://graduate.yonsei.ac.kr/gsis/academics/scholarships.do), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "What is the MGES at Yonsei?",
+            "a": "The Master of Global Economy and Strategy is the master's degree of the International Trade, Finance and Management programme at Yonsei GSIS."
+          },
+          {
+            "q": "How much does the Yonsei MGES cost per semester?",
+            "a": "KRW 7,924,000 for students outside the quota, as of Spring 2026, about ₹5.50 lakh. The first semester adds a KRW 1,195,000 entrance fee."
+          },
+          {
+            "q": "How many credits is the Yonsei MGES?",
+            "a": "48 credits, or 42 credits plus a thesis. You have up to 8 semesters to finish."
+          },
+          {
+            "q": "When can I apply to Yonsei GSIS for Fall?",
+            "a": "Yonsei lists early March to early May for Fall. The Fall 2027 dates are not posted on the pages we read."
+          }
+        ],
+        "official_source": "https://graduate.yonsei.ac.kr/gsis/intro/status.do",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

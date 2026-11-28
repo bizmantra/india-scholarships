@@ -1,0 +1,58 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): Master of International Studies, International Commerce (SNU GSIS). Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_snu-gsis-international-commerce",
+      "source": "https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf",
+      "fields": {
+        "id": "program_snu-gsis-international-commerce",
+        "slug": "snu-gsis-international-commerce",
+        "university_slug": "seoul-national-university",
+        "country": "south-korea",
+        "degree": "master",
+        "field": "business-administration",
+        "title": "Master of International Studies, International Commerce (SNU GSIS)",
+        "tuition_currency": "KRW",
+        "tuition_per_year": 6218000,
+        "ielts_min": 6.0,
+        "english_requirements": "TOEFL iBT 80 (4.0 if taken on or after 21 January 2026), IELTS Academic 6.0 or TEPS 269. Or an official paper proving all bachelor's classes were in English or Korean.",
+        "summary": "The SNU GSIS International Commerce master's costs KRW 3,278,000 for the first semester. IELTS 6.0. Fall 2027 dates are not posted.",
+        "seo_title": "SNU GSIS International Commerce Master's: Fees & IELTS",
+        "meta_description": "SNU GSIS International Commerce master's for Indian students: first semester KRW 3,278,000, IELTS 6.0, KRW 90,000 fee and the Global Scholarship.",
+        "location": "Seoul",
+        "duration": "2 years, at least 30 credits and a thesis",
+        "language": "English (mainly)",
+        "intakes": "Spring, Fall",
+        "application_portal": "SNU admissions site (admission.snu.ac.kr), global notices",
+        "application_deadlines": {
+          "Spring 2027 entry (closed)": "6 July to 9 July 2026, 5 PM Korea time",
+          "Fall 2027 entry": "Not posted"
+        },
+        "body_md": "## About this programme\n\nGSIS offers a **two-year master's in International Studies**. The International Commerce major covers international trade and finance, international business and investment, and trade law and negotiation. Students get a Master of International Studies with the major named on it.\n\nGSIS says courses are mainly in English. A few electives are taught in Korean, Japanese or Chinese. A master's degree needs at least **30 credits** and a thesis.\n\n## Fees\n\nThe first semester costs **KRW 3,278,000** (**₹2.28 lakh**): a KRW 169,000 entrance fee and KRW 3,109,000 tuition. The 2026 academic year table does not list the second semester.\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## English test\n\nTOEFL iBT 80 (4.0 on the new scale), IELTS Academic 6.0 or TEPS 269. Or send an official paper that proves all your bachelor's classes were in English. Read the [SNU page](/study-abroad/universities/seoul-national-university) for the route and documents.\n\n## Dates\n\nSpring 2027 applications ran from 6 to 9 July 2026. Fall 2027 dates are not posted. The application fee is **KRW 90,000** (**₹6,250**).\n\n## Scholarships\n\nThe SNU Global Scholarship exempts all tuition for 1 or 2 semesters for international students. GSIS also has its own tuition scholarships.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [SNU 2027 Spring graduate admissions guide, Global Talent track (Korean)](https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf), [GSIS master's programme](https://gsis.snu.ac.kr/masters-program/), [GSIS financial aid](https://gsis.snu.ac.kr/financial-aid/), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How long is the SNU GSIS master's?",
+            "a": "GSIS offers a two-year master's. It needs at least 30 credits and a thesis."
+          },
+          {
+            "q": "Is the SNU GSIS International Commerce major taught in English?",
+            "a": "GSIS says courses are mainly in English, with a few electives in Korean, Japanese or Chinese depending on the major."
+          },
+          {
+            "q": "What is the first-semester fee for SNU GSIS?",
+            "a": "KRW 3,278,000, about ₹2.28 lakh, made up of a KRW 169,000 entrance fee and KRW 3,109,000 tuition."
+          },
+          {
+            "q": "What IELTS score does SNU GSIS need?",
+            "a": "IELTS Academic 6.0. SNU also takes TOEFL iBT 80 (4.0 on the new scale) or TEPS 269."
+          }
+        ],
+        "official_source": "https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

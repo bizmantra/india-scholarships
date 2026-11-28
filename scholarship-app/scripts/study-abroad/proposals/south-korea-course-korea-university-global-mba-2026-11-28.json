@@ -1,0 +1,57 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): Global MBA (Korea University Business School). Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_korea-university-global-mba",
+      "source": "https://biz.korea.ac.kr/eng/mba/globalMBA/admission",
+      "fields": {
+        "id": "program_korea-university-global-mba",
+        "slug": "korea-university-global-mba",
+        "university_slug": "korea-university",
+        "country": "south-korea",
+        "degree": "mba",
+        "field": "business-administration",
+        "title": "Global MBA (Korea University Business School)",
+        "tuition_currency": "KRW",
+        "summary": "The Korea University Global MBA is a one-year, 45-credit MBA in 6 modules. The application fee is KRW 100,000. India is on the English exemption list.",
+        "seo_title": "Korea University Global MBA: 1 Year, Fees & Entry",
+        "meta_description": "Korea University Global MBA for Indian students: 1-year, 45-credit MBA, KRW 100,000 application fee, English exemption for Indian nationals, USD 30,000 visa balance.",
+        "location": "Seoul",
+        "duration": "1 year, 6 modules of 8 weeks, 45 credits",
+        "language": "English",
+        "intakes": "Fall (September)",
+        "application_portal": "KUBS Admission Support System (biz.korea.ac.kr/admission)",
+        "application_deadlines": {
+          "Fall 2026 round 1 (closed)": "21 January to 11 February 2026",
+          "Fall 2026 round 2 (closed)": "27 February to 20 March 2026",
+          "Fall 2026 round 3 (closed)": "31 March to 17 April 2026",
+          "Fall 2027 rounds": "Not posted"
+        },
+        "body_md": "## About this programme\n\nThe **Global MBA** at Korea University Business School (KUBS) is a **one-year** MBA. It has 6 modules of 8 weeks each. Classes run on weekdays. You need **45 credits** and a GPA of at least 3.0 to graduate.\n\nKUBS lists concentrations in finance, marketing, strategy, digital transformation, ESG and entrepreneurship. After year one, students can add an exchange semester. They can also add a dual-degree year at ESCP Europe in Paris or EBS Business School in Germany.\n\n## Fees\n\nThe application fee is **KRW 100,000** (**₹6,945**). We did not find a tuition figure that we could tie to this programme. Ask KUBS at mba_admissions@korea.ac.kr.\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## Who can apply\n\nYou need a bachelor's degree. Applicants outside the Korean quota must be foreign nationals whose parents are also foreign nationals. Interviews are held in English.\n\n## English test\n\nThe Fall 2026 guide lists India among the countries whose nationals are exempt from the English proficiency certificate. Read the [Korea University page](/study-abroad/universities/korea-university).\n\n## Dates\n\nThe Fall 2026 round had three windows from 21 January to 17 April 2026. Fall 2027 dates are not posted on the pages we read.\n\n## Visa and money\n\nThe Fall 2026 guide asked for a bank balance of at least **USD 30,000** (₹27.87 lakh) for the visa.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [KUBS Global MBA admissions](https://biz.korea.ac.kr/eng/mba/globalMBA/admission), [KUBS Global MBA curriculum](https://biz.korea.ac.kr/eng/mba/globalMBA/curriculum.html), [RBI exchange rates](https://www.rbi.org.in/), and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How long is the Korea University Global MBA?",
+            "a": "One year. It has 6 modules of 8 weeks, with 45 credits needed and a GPA of at least 3.0."
+          },
+          {
+            "q": "Is there a dual degree option?",
+            "a": "KUBS lists a dual-degree track. You study the one-year Global MBA, then a second year at ESCP Europe in France or EBS Business School in Germany."
+          },
+          {
+            "q": "What is the application fee for the Global MBA?",
+            "a": "KRW 100,000, about ₹6,945."
+          },
+          {
+            "q": "What bank balance does the Global MBA ask for?",
+            "a": "At least USD 30,000 in the Fall 2026 round, about ₹27.87 lakh."
+          }
+        ],
+        "official_source": "https://biz.korea.ac.kr/eng/mba/globalMBA/admission",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
