@@ -1,0 +1,47 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): Yonsei University. Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "yonsei-university",
+      "source": "https://graduate.yonsei.ac.kr/gsis/intro/status.do",
+      "fields": {
+        "slug": "yonsei-university",
+        "name": "Yonsei University",
+        "country": "south-korea",
+        "city": "Seoul",
+        "summary": "At Yonsei's Graduate School of International Studies tuition is KRW 7,924,000 a semester outside the quota. Courses are in English. Scholarships can cover up to full tuition.",
+        "seo_title": "Yonsei GSIS for Indian Students: Fees & Scholarships",
+        "meta_description": "Yonsei GSIS for Indian students: tuition KRW 7,924,000 a semester, English-taught master's, 48 credits and an Incoming Student Award up to full tuition.",
+        "tuition_currency": "KRW",
+        "body_md": "## At a glance\n\nYonsei University is in Seoul. This page uses the **Graduate School of International Studies (GSIS)** and its **International Trade, Finance and Management** master's. Yonsei says Global Studies programmes at GSIS run in English.\n\n- **Tuition:** **KRW 7,924,000** a semester for students outside the quota, as of Spring 2026 (**₹5.50 lakh**). Add a **KRW 1,195,000** entrance fee in the first semester.\n- **Degree:** Master of Global Economy and Strategy (MGES). It needs 48 credits, or 42 credits plus a thesis.\n- **Next dates posted:** Spring 2027 applications ran from 21 September to 2 October 2026. Results came on 4 December 2026.\n- **Scholarships:** the Incoming Student Award can cover up to 100% of tuition. No application is needed.\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## What you pay\n\nYonsei GSIS lists tuition for **students outside the quota** at **KRW 7,924,000** a semester as of Spring 2026. Students within the quota pay KRW 7,545,000. Both pay a **KRW 1,195,000** entrance fee in the first semester. A university table for 2026 gives the same amounts for International Studies. Yonsei says fees can change without notice.\n\nFirst semester for a student outside the quota: **KRW 9,119,000** (**₹6.33 lakh**).\n\nThe GSIS page does not say which group international students join. Ask the GSIS admissions office.\n\n## The programme\n\nGSIS lists **International Trade, Finance and Management (ITFM)** as part of its Global Studies division. It trains students in international trade, finance and management. It covers how governments, international organisations and companies deal with trade and investment policy.\n\nTo graduate from a GSIS master's you need:\n\n- 48 credits, or 42 credits plus a master's thesis,\n- a GPA of at least 3.00,\n- all requirements finished within 8 semesters.\n\nYou may choose the thesis only if your GPA is at least 3.7 over the first two full-time semesters.\n\n## Dates\n\n| Intake | Application period | Term starts |\n|---|---|---|\n| Spring | Early September to early November | First week of March |\n| Fall | Early March to early May | First week of September |\n\nFor Spring 2027, GSIS lists an open house on 30 September. Applications ran from 21 September to 2 October 2026. Results came by 18:00 Korea time on 4 December 2026. The Fall 2027 dates are not yet published.\n\n## Scholarships\n\nGSIS lists these institutional scholarships:\n\n| Scholarship | Value per semester |\n|---|---|\n| Incoming Student Award (no application) | Up to 100% of tuition |\n| Dean's Scholarship (GPA 4.0 of 4.3 over 12 credits) | Up to 100% of tuition |\n| Financial Aid (GPA 3.5 of 4.3 over 9 credits) | Up to one third of tuition |\n| Work-Study Scholarship | Up to KRW 6,000,000 |\n| Teaching or Research Assistantship | Up to KRW 3,000,000 |\n\nGSIS also lists the Korean Government Scholarship for international students. It gives full tuition and a stipend. You must apply for it during the admissions period.\n\n## What we could not find\n\nWe did not find an English test score on the pages we read. Ask GSIS before you apply.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [GSIS at a Glance](https://graduate.yonsei.ac.kr/gsis/intro/status.do), [GSIS international student admission](https://graduate.yonsei.ac.kr/gsis/admissions/international.do), [GSIS master's degree requirements](https://graduate.yonsei.ac.kr/gsis/education/master_degree.do), [GSIS International Trade, Finance and Management](https://graduate.yonsei.ac.kr/gsis/education/master_degree03.do), [GSIS scholarships](https://graduate.yonsei.ac.kr/gsis/academics/scholarships.do), [Yonsei 2026 tuition table](https://www.yonsei.ac.kr/sites/en_sc/down/2026_fee3.pdf), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How much is tuition at Yonsei GSIS?",
+            "a": "KRW 7,924,000 a semester for students outside the quota, as of Spring 2026, about ₹5.50 lakh. Add a KRW 1,195,000 entrance fee in the first semester."
+          },
+          {
+            "q": "What is the Yonsei GSIS application period for Spring?",
+            "a": "For Spring 2027 it was 21 September to 2 October 2026, with results on 4 December 2026. The usual Spring period is early September to early November."
+          },
+          {
+            "q": "Is the Yonsei GSIS programme taught in English?",
+            "a": "Yonsei lists English as the language of instruction for Global Studies at GSIS, which includes International Trade, Finance and Management."
+          },
+          {
+            "q": "How many credits does the Yonsei GSIS master's need?",
+            "a": "48 credits, or 42 credits plus a master's thesis. You must finish within 8 semesters and keep a GPA of at least 3.00."
+          },
+          {
+            "q": "Does Yonsei GSIS give scholarships?",
+            "a": "Yes. The Incoming Student Award can cover up to 100% of tuition and needs no application. GSIS lists others, including a Dean's Scholarship."
+          }
+        ],
+        "official_source": "https://graduate.yonsei.ac.kr/gsis/intro/status.do",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

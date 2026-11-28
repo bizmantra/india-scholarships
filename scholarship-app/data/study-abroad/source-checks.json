@@ -50,6 +50,67 @@
       "value": "1203",
       "checked_on": "2026-11-28",
       "note": "HC 584 says APP ST8 to APP ST10 take effect on 30 November 2026 for applications made on or after that date."
+    },
+    {
+      "id": "south-korea-d2-visa-fee",
+      "fact_key": "south-korea.visa.d2_fee_usd",
+      "url": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "quote": "For stays of 91 days or more: approximately $60 USD.",
+      "value": "60",
+      "checked_on": "2026-11-28",
+      "note": "Study in Korea (NIIED). Single-entry visa fee."
+    },
+    {
+      "id": "south-korea-kvac-service-fee",
+      "fact_key": "south-korea.visa.kvac_service_fee_inr",
+      "url": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+      "quote": "비자 센터 서비스 수수료 : Rs. 1,380",
+      "value": "1,380",
+      "checked_on": "2026-11-28",
+      "note": "Korean Embassy in India page (Korean language), edited 2026-09-30. New Delhi and Kolkata centres. Full line: \"비자 센터 서비스 수수료 : Rs. 1,380/-(세금 포함)\" (tax included)."
+    },
+    {
+      "id": "south-korea-visa-processing-days",
+      "fact_key": "south-korea.visa.processing_working_days",
+      "url": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+      "quote": "일반 신청일 경우 : 신청일 + 14 근무일",
+      "value": "14",
+      "checked_on": "2026-11-28",
+      "note": "Korean Embassy in India page (Korean language). Normal application, New Delhi. The page prints \"신청일 + 14근무일\" (application date + 14 working days); the checker inserts a space."
+    },
+    {
+      "id": "south-korea-living-min",
+      "fact_key": "south-korea.living.monthly_min_krw",
+      "url": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+      "quote": "Approx. 750,000–1,000,000 KRW",
+      "value": "750,000",
+      "checked_on": "2026-11-28",
+      "note": "Study in Korea (NIIED). The quote uses an en dash."
+    },
+    {
+      "id": "south-korea-living-max",
+      "fact_key": "south-korea.living.monthly_max_krw",
+      "url": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+      "quote": "Approx. 750,000–1,000,000 KRW",
+      "value": "1,000,000",
+      "checked_on": "2026-11-28",
+      "note": "Study in Korea (NIIED). The quote uses an en dash."
+    },
+    {
+      "id": "south-korea-d2-stay-years",
+      "fact_key": "south-korea.stay.d2_validity_years_per_issue",
+      "url": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "quote": "The D-2 visa for international students allows a stay of up to 2 years per issuance",
+      "value": "2",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "south-korea-alien-registration-days",
+      "fact_key": "south-korea.stay.alien_registration_days",
+      "url": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "quote": "Foreign nationals planning to stay in Korea for more than 90 days must complete alien registration within 90 days of entry.",
+      "value": "90",
+      "checked_on": "2026-11-28"
     }
   ]
 }

@@ -1,0 +1,51 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): KAIST (Korea Advanced Institute of Science and Technology). Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "kaist",
+      "source": "https://www.studyinkorea.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000483722&fileSn=1",
+      "fields": {
+        "slug": "kaist",
+        "name": "KAIST (Korea Advanced Institute of Science and Technology)",
+        "country": "south-korea",
+        "city": "Daejeon",
+        "summary": "KAIST charges KRW 9,559,000 a semester in 2027. Fall 2027 applications close on 5 February 2027. A scholarship can cover full tuition and a stipend.",
+        "seo_title": "KAIST for Indian Students: Fees, IELTS & Deadlines",
+        "meta_description": "KAIST for Indian students: tuition KRW 9,559,000 a semester, Fall 2027 deadline 5 February 2027, IELTS 6.5 and a scholarship that can cover tuition.",
+        "tuition_currency": "KRW",
+        "body_md": "## At a glance\n\nKAIST is a science and technology university in Daejeon, South Korea. This page uses its **School of Computing** master's programme to show real costs and entry rules.\n\n- **Tuition:** **KRW 9,559,000** a semester for 2027 (**₹6.64 lakh**). Korean universities bill by semester, so a yearly total is not shown.\n- **Fall 2027 deadline:** apply from 7 January to 5 February 2027. KAIST announces decisions on 28 May 2027.\n- **English test:** IELTS **6.5**, or TOEFL iBT 4.5 (new scale), or TOEIC 720, or TEPS 326. Some Indian applicants can skip it.\n- **Scholarship:** the KAIST Scholarship can cover full tuition and a monthly stipend. You choose it on the application form.\n- **Money for the visa:** KAIST says to show **USD 16,000** (**₹14.87 lakh**).\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## What you pay\n\nKAIST charges **KRW 9,559,000** a semester for most departments in 2027. KAIST says the fee changes every year. A master's degree needs about two academic years.\n\nKAIST's average budget for a student on campus is **KRW 5,350,000 for each 6 months** (**₹3.72 lakh**). It covers a dormitory, food, transport, books and health insurance. Students who live off campus should expect costs to be 35% to 50% higher. Read our [cost of living guide](/study-abroad/study-in/south-korea/south-korea-cost-of-living).\n\n## Who can apply\n\n- You must hold a bachelor's degree, or expect to hold one by the end of August 2027.\n- Your degree must be equal to a four-year Korean bachelor's degree.\n- You must not hold Korean citizenship.\n\n## English test\n\nYou need one of these scores, taken on or after 5 February 2025:\n\n| Test | Minimum score |\n|---|---|\n| IELTS Academic | 6.5 overall |\n| TOEFL iBT, taken on or after 21 January 2026 | 4.5 |\n| TOEFL iBT, taken before 21 January 2026 | 83 |\n| TOEIC (Listening and Reading) | 720 |\n| TEPS | 326 |\n\nKAIST does not accept TOEFL ITP scores. It does not accept IELTS One Skill Retake.\n\nIndia is on KAIST's list of countries for an **English-medium waiver**. You need to have studied your bachelor's degree or higher in India with English as the medium of instruction. You send a certificate of English medium of instruction and pick the waiver on the form.\n\n## Dates for Fall 2027\n\n| Step | Date |\n|---|---|\n| Online application | 7 January, 10 AM, to 5 February 2027, 5 PM (Korea time) |\n| Decision announced | 28 May 2027 |\n\nThe application fee is **USD 80** (**₹7,433**). It cannot be refunded. KAIST says some applicants can ask for a fee waiver.\n\n## Scholarships\n\nChoose the **KAIST Scholarship** as your financial resource on the form. KAIST says it covers full tuition, national health insurance and a monthly stipend. The stipend depends on your research work. KAIST says 94% of its international students benefit from it.\n\nMaster's applicants are also considered for the **KAIST Global Presidential Scholarship (KGPS)**. It gives full tuition and **KRW 1,000,000** a month (**₹69,448**) for 4 regular semesters. You do not apply separately. The department head recommends only highly competitive applicants.\n\nKAIST decides scholarships separately from admission.\n\n## Visa and money\n\nKAIST says to show a bank balance of **USD 16,000** or more when you apply for the visa. Read our [proof of funds guide](/study-abroad/study-in/south-korea/south-korea-proof-of-funds-guide) and [D-2 visa guide](/study-abroad/visas/south-korea-student-visa-guide).\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [KAIST Fall 2027 International Graduate Admission guide](https://www.studyinkorea.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000483722&fileSn=1), [KAIST yearly timelines](https://admission.kaist.ac.kr/intl-graduate/Admission/YearlyTimelines), [KAIST eligibility requirements](https://admission.kaist.ac.kr/intl-graduate/Admission/Eligibility), [KAIST Scholarship](https://admission.kaist.ac.kr/intl-graduate/FinancialSupport/Scholarship/KAISTScholarship), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How much is tuition at KAIST for a master's degree?",
+            "a": "KAIST charges KRW 9,559,000 a semester for most departments in 2027, which is about ₹6.64 lakh. KAIST says the fee changes every year."
+          },
+          {
+            "q": "What is the KAIST deadline for Fall 2027?",
+            "a": "The online application is open from 7 January to 5 February 2027. KAIST announces decisions on 28 May 2027."
+          },
+          {
+            "q": "What IELTS score does KAIST need?",
+            "a": "IELTS Academic 6.5 overall. KAIST also takes TOEFL iBT, TOEIC and TEPS. India is on its list for an English-medium waiver."
+          },
+          {
+            "q": "Can Indian students skip the English test at KAIST?",
+            "a": "Yes, if you studied your bachelor's degree or higher in India with English as the medium of instruction. You send a certificate and pick the waiver on the form."
+          },
+          {
+            "q": "Does KAIST give scholarships to Indian students?",
+            "a": "The KAIST Scholarship can cover full tuition, health insurance and a monthly stipend. Master's applicants are also considered for the KGPS, which gives KRW 1,000,000 a month, about ₹69,448."
+          },
+          {
+            "q": "How much money does KAIST ask me to show for the visa?",
+            "a": "KAIST says to show a bank balance of USD 16,000 or more, about ₹14.87 lakh."
+          }
+        ],
+        "official_source": "https://www.studyinkorea.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000483722&fileSn=1",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

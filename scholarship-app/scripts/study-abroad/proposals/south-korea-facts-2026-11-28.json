@@ -1,0 +1,125 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 1 (hidden country, draft pages). Every figure is in plans/south-korea-research/. Facts checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.visa.d2_fee_usd",
+      "source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "fields": {
+        "key": "south-korea.visa.d2_fee_usd",
+        "label": "D-2 student visa fee, stay of 91 days or more (approximate)",
+        "country": "south-korea",
+        "value": "60",
+        "unit": "USD",
+        "official_source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Study in Korea lists $40 for stays of 90 days or less, $70 for a multiple-entry visa valid for up to 2 entries and $90 for no entry limit. Study in Korea calls it a processing fee for the visa application form."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.visa.kvac_service_fee_inr",
+      "source": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+      "fields": {
+        "key": "south-korea.visa.kvac_service_fee_inr",
+        "label": "Visa centre service fee, New Delhi and Kolkata",
+        "country": "south-korea",
+        "value": "1,380",
+        "unit": "INR",
+        "official_source": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Charged by the VFS Global Korea Visa Application Center, in addition to the visa fee. The Embassy page says the amount includes tax. It covers New Delhi only: Mumbai and Chennai applicants should check their own consulate pages."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.visa.processing_working_days",
+      "source": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+      "fields": {
+        "key": "south-korea.visa.processing_working_days",
+        "label": "Visa processing time, Embassy in New Delhi, normal application",
+        "country": "south-korea",
+        "value": "14",
+        "unit": "working days",
+        "official_source": "https://overseas.mofa.go.kr/in-ko/brd/m_2803/view.do?page=1&seq=1301843",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "The Embassy counts from the application date. Add 2 to 3 days for courier if you apply at the Kolkata centre. Urgent processing is suspended. Mumbai and Chennai times are not on this page."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.living.monthly_min_krw",
+      "source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+      "fields": {
+        "key": "south-korea.living.monthly_min_krw",
+        "label": "Average living costs per month, lower end",
+        "country": "south-korea",
+        "value": "750,000",
+        "unit": "KRW",
+        "official_source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Study in Korea gives a range of 750,000 to 1,000,000 won a month. Housing is the biggest part."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.living.monthly_max_krw",
+      "source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+      "fields": {
+        "key": "south-korea.living.monthly_max_krw",
+        "label": "Average living costs per month, upper end",
+        "country": "south-korea",
+        "value": "1,000,000",
+        "unit": "KRW",
+        "official_source": "https://www.studyinkorea.go.kr/en/life/livingExpense.do",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "See south-korea.living.monthly_min_krw. The page lists items that add up to more than this total, so plan for the upper end."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.stay.d2_validity_years_per_issue",
+      "source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "fields": {
+        "key": "south-korea.stay.d2_validity_years_per_issue",
+        "label": "D-2 visa, stay allowed per issue, up to",
+        "country": "south-korea",
+        "value": "2",
+        "unit": "years",
+        "official_source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Master's students can stay up to 5 years after admission in total (6 years for 3-year programmes), with extensions."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "south-korea.stay.alien_registration_days",
+      "source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+      "fields": {
+        "key": "south-korea.stay.alien_registration_days",
+        "label": "Alien registration after entry, within",
+        "country": "south-korea",
+        "value": "90",
+        "unit": "days",
+        "official_source": "https://www.studyinkorea.go.kr/en/plan/visaAndStay.do",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Applies to everyone who plans to stay more than 90 days."
+      }
+    }
+  ]
+}

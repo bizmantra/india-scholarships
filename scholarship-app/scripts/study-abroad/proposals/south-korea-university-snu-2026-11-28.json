@@ -1,0 +1,47 @@
+{
+  "agent": "content-editor",
+  "notes": "South Korea batch 2 (hidden country, draft pages): Seoul National University. Every figure is in plans/south-korea-research/kr-batch2-notes.md. Checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "seoul-national-university",
+      "source": "https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf",
+      "fields": {
+        "slug": "seoul-national-university",
+        "name": "Seoul National University",
+        "country": "south-korea",
+        "city": "Seoul",
+        "summary": "At SNU's Graduate School of International Studies the first semester costs KRW 3,278,000. English test: IELTS 6.0. Application fee KRW 90,000.",
+        "seo_title": "SNU Graduate School of International Studies: Fees & Entry",
+        "meta_description": "SNU GSIS for Indian students: first semester KRW 3,278,000, IELTS 6.0 or TOEFL iBT 80, KRW 90,000 application fee and the Global Scholarship.",
+        "tuition_currency": "KRW",
+        "body_md": "## At a glance\n\nSeoul National University (SNU) is in Seoul. This page uses the **Graduate School of International Studies (GSIS)** master's with an **International Commerce** major. GSIS says courses are mainly in English.\n\n- **First semester:** **KRW 3,278,000** (**₹2.28 lakh**). That is a KRW 169,000 entrance fee plus KRW 3,109,000 tuition.\n- **English test:** IELTS **6.0**, or TOEFL iBT 80 (4.0 on the new scale), or TEPS 269. You can send proof that all your classes were in English instead.\n- **Application fee:** **KRW 90,000** (**₹6,250**).\n- **Latest dates posted:** Spring 2027 entry closed on 9 July 2026. Fall 2027 dates are not yet published.\n- **Scholarship:** the SNU Global Scholarship covers all tuition for 1 or 2 semesters.\n\nRupee amounts use **₹0.0694 per Korean won**. We built it from the RBI rate and the Bank of Korea closing rate for 27 November 2026. Your bank's rate will differ.\n\n## Which route Indian students use\n\nThe guide we used is SNU's **Global Talent Special Admission** for graduate school. It is written in Korean. **Type I** is for applicants who hold a foreign passport and whose parents both hold foreign passports. Indian citizens fit it if both parents also hold Indian citizenship.\n\nYou must finish your bachelor's degree by 28 February 2027 for the Spring 2027 round. Applicants from foreign universities can finish in 2027 and receive the degree in March 2027.\n\n## What you pay\n\nSNU's fee table for the 2026 academic year lists a **KRW 169,000** entrance fee for GSIS. Tuition is **KRW 3,109,000**. Total for the first semester: **KRW 3,278,000**. SNU says the fees can change later. The table lists a first-semester amount only. It does not show the second semester.\n\n## English test\n\nSend one of these:\n\n- **TOEFL iBT** 80 (4.0 if you took it on or after 21 January 2026), or\n- **IELTS Academic** band 6.0, or\n- **TEPS** 269, or\n- an official paper that proves all your bachelor's classes were taught in English or Korean.\n\nSNU does not accept TOEFL ITP or IELTS Indicator. The test must be taken on or after 9 July 2024.\n\n## What you send\n\n- an online application and a statement of purpose with a study plan,\n- two online recommendation letters,\n- proof of language ability,\n- your degree certificate and transcripts. Graduates of foreign universities need an apostille or consular confirmation. You can send it with the application or after a provisional offer.\n\n## Dates\n\nThe Spring 2027 round (Global Talent Special Admission, graduate school) ran like this:\n\n| Step | Date |\n|---|---|\n| Online application | 6 July 2026, 10 AM, to 9 July 2026, 5 PM (Korea time) |\n| Recommendation letters | by 10 July 2026, 5 PM |\n| Provisional results | from 16 October 2026 |\n| Final results | from 20 November 2026 |\n\nThe Fall 2027 dates are not yet published.\n\n## Scholarships\n\nThe GSIS site lists the **SNU Global Scholarship (GS)**. It is only for international students and exempts all tuition for 1 or 2 semesters. GSIS also lists its own scholarships that give full or partial tuition support. An application for an SNU tuition scholarship is also treated as an application for GSIS scholarships.\n\n## Visa and money\n\nSNU's pages we read give no bank balance figure. Use the Ministry of Justice figure in our [proof of funds guide](/study-abroad/study-in/south-korea/south-korea-proof-of-funds-guide).\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [SNU 2027 Spring graduate admissions guide, Global Talent track (Korean)](https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf), [GSIS master's programme](https://gsis.snu.ac.kr/masters-program/), [GSIS financial aid](https://gsis.snu.ac.kr/financial-aid/), [RBI exchange rates](https://www.rbi.org.in/) and the [Bank of Korea ECOS statistics](https://ecos.bok.or.kr).",
+        "faq_json": [
+          {
+            "q": "How much is the first semester at SNU GSIS?",
+            "a": "KRW 3,278,000, about ₹2.28 lakh. It is a KRW 169,000 entrance fee plus KRW 3,109,000 tuition, from SNU's 2026 academic year fee table."
+          },
+          {
+            "q": "What English score does SNU GSIS need?",
+            "a": "TOEFL iBT 80 (4.0 on the new scale), IELTS Academic 6.0 or TEPS 269. An official paper that proves all your classes were in English can replace a score."
+          },
+          {
+            "q": "Is the SNU application open for Fall 2027?",
+            "a": "The Fall 2027 dates are not yet published. The Spring 2027 round closed on 9 July 2026."
+          },
+          {
+            "q": "How much is the SNU application fee?",
+            "a": "KRW 90,000, about ₹6,250."
+          },
+          {
+            "q": "Is there a scholarship for international students at SNU?",
+            "a": "Yes. The SNU Global Scholarship exempts all tuition for 1 or 2 semesters, for international students only."
+          }
+        ],
+        "official_source": "https://admission.snu.ac.kr/webdata/admission/files/2027Spring_graduate.pdf",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

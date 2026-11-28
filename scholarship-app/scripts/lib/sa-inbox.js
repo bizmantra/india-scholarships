@@ -63,7 +63,7 @@ const TABLE_COLUMNS = {
 };
 
 // Known countries in lib/study-abroad/countries.ts (unlaunched allowed for drafts)
-const KNOWN_COUNTRIES = new Set(['germany', 'usa', 'uk', 'canada', 'australia', 'ireland']);
+const KNOWN_COUNTRIES = new Set(['germany', 'usa', 'uk', 'canada', 'australia', 'ireland', 'south-korea']);
 
 const BOILERPLATE_SUMMARY = /^\s*complete 20\d\d guide to/i;
 

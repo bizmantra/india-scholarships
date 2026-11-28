@@ -146,7 +146,7 @@ function stripHtml(text) {
 const { BANNED, pagePath } = require('./sa-inbox');
 
 const BOILERPLATE_SUMMARY_REGEX = /^\s*complete 20\d\d guide to/i;
-const UNLAUNCHED_COUNTRIES = new Set(['canada', 'australia', 'ireland']);
+const UNLAUNCHED_COUNTRIES = new Set(['canada', 'australia', 'ireland', 'south-korea']);
 
 let DEFAULT_REDIRECTS = [];
 try {
