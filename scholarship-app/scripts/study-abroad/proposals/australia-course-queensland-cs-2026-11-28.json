@@ -1,0 +1,68 @@
+{
+  "agent": "content-editor",
+  "notes": "UQ Master of Computer Science (5522), 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section UQ. Left out: whole-course fee, OSHC price, India GPA equivalent (a page widget we could not read), closing dates (none published), rankings, salary figures. Fee and entry were read from the rendered page and its hidden text. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_uq-master-of-computer-science",
+      "source": "https://study.uq.edu.au/study-options/programs/master-computer-science-5522",
+      "fields": {
+        "id": "program_uq-master-of-computer-science",
+        "slug": "uq-master-of-computer-science",
+        "university_slug": "university-of-queensland",
+        "country": "australia",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Computer Science",
+        "tuition_per_year": 60952,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. TOEFL iBT 87 or Pearson 64 also accepted.",
+        "summary": "UQ's Master of Computer Science takes 1 or 1.5 years. The 2027 fee is AUD 60,952 a year. You need a 5.0 GPA on a 7-point scale and IELTS 6.5.",
+        "seo_title": "Master of Computer Science at UQ: Fees, Entry, 2027",
+        "meta_description": "UQ's Master of Computer Science for Indian students: AUD 60,952 a year for 2027, a 5.0 GPA on UQ's scale, IELTS 6.5 and a 20% or 25% automatic scholarship.",
+        "gpa_min": "Bachelor degree (or equivalent) with a GPA of 5.0 on a 7-point scale",
+        "tuition_currency": "AUD",
+        "location": "Brisbane (St Lucia)",
+        "duration": "1 year or 1.5 years full time",
+        "language": "English",
+        "intakes": "Semester 1 (February), Semester 2 (July)",
+        "application_portal": "UQ online application, directly or through an approved UQ agent",
+        "application_deadlines": {
+          "Semester 1, 2027 start": "22 February 2027",
+          "Semester 2, 2027 start": "26 July 2027",
+          "International closing dates": "Not published on the program page"
+        },
+        "body_md": "## About this programme\n\nThe Master of Computer Science is taught on campus at St Lucia, in Brisbane. It runs for 1 or 1.5 years, and you can only study it full time. It starts in Semester 1 or Semester 2. The program code is 5522 and the CRICOS code is 073272E.\n\nUQ designs it for applicants with a bachelor degree in computer science or information technology, or a related field. You choose from nearly 50 courses, and one can be an advanced research project.\n\n**The most important fact for you:** this is a short course. Most routes take **1 or 1.5 years**, so you pay fewer years of living costs. Both routes need a **5.0** GPA on UQ's 7-point scale.\n\nFor the wider university, see our [University of Queensland page](/study-abroad/universities/university-of-queensland).\n\n## Can you get in?\n\nUQ has two versions of this course. Your degree decides which one you can join.\n\n| Version | Degree needed | Length |\n|---|---|---|\n| 1.5 years (24 units) | A bachelor degree in computer science or software engineering. Or a bachelor degree that includes the listed computing subjects | 1.5 years full time |\n| 1 year (16 units) | A bachelor honours degree with at least 16 courses in computer science or information technology | 1 year full time |\n\nBoth versions need a grade point average (GPA) of **5.0** on a 7-point scale. A GPA is your average grade across your degree. UQ says to use its GPA figures as a guide. It works out your GPA on the UQ grading scale when you apply. Failing grades count.\n\n**Listed computing subjects for the 1.5 year version.** Your degree may not be in computer science. Then you need data structures and algorithms, at least 2 programming courses, and discrete mathematics or algebra. You also need 3 more. Pick from computer organisation, computer networks, operating systems, databases or information systems, and probability and statistics.\n\n**Indian marks.** UQ's program page has a tool that shows the GPA you need for your own country and degree. We could not read its India result. Use the tool on the page before you apply.\n\n**English.** IELTS is an English test. UQ asks for IELTS **6.5** overall with no part below **6.0**. It also accepts TOEFL iBT **87** overall. The part minimums are **19** in listening, **19** in reading, **21** in writing and **19** in speaking. For Pearson it asks **64** overall and **60** in every part.\n\n## What it costs\n\nUQ lists **AUD 60,952** for 2027 as the approximate yearly cost of full-time tuition, which it counts as 16 units. UQ says your fees vary with your courses and study load, and may increase each year. UQ gives no whole-course fee, so this page gives none.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 60,952 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 92,662** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 95,162** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹58.81 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nUQ says the 1 year version is 16 units, which is the same load as the yearly fee. It gives no fee for the 1.5 year version, so this page gives none.\n\n## Funding\n\n**UQ International High Achievers Scholarship.** It takes **20%** off your tuition fees each semester, for the whole program. Twenty per cent of the first-year fee is **AUD 12,190.40**, which is our sum.\n\n**UQ International Excellence Scholarship.** It takes **25%** off your tuition fees each semester, for the whole program. Twenty-five per cent of the first-year fee is **AUD 15,238**, which is our sum.\n\nYou do not apply for either one. UQ assesses you automatically when you apply for a program. The award goes to applicants with a competitive score among the offer holders for that semester. You cannot hold either one with another UQ scholarship or fee reduction. You also cannot hold one if you have a full scholarship or sponsorship from another organisation. Part-funded students may be considered.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nUQ's program page gives the semester start dates. It gives no closing date, and we found none on UQ's official pages that we read.\n\n| Intake | Start date |\n|---|---|\n| Semester 1, 2027 | **22 February 2027** |\n| Semester 2, 2027 | **26 July 2027** |\n\nApply early, so there is time for the offer and the visa. UQ says semester dates for 2028 are not yet confirmed.\n\n## How to apply\n\n1. Check your degree against the table above, and use the GPA tool on the page.\n2. Collect your degree results and English test result.\n3. Apply to UQ online. UQ says all international applications should be submitted to UQ. If you prefer, you can use an approved UQ agent near you.\n4. Choose your duration when you apply. If you do not meet the entry rules for your first choice, UQ automatically considers you for a longer one.\n5. UQ assesses you for both scholarships automatically. You need no extra form.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nUQ's program page lists career ideas but no salary or job figures from UQ. We give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a computer science or software engineering degree, or the listed computing subjects\n- you can show AUD 92,662 for the visa\n- you want an automatic fee reduction without a separate form\n\n**Think carefully if:**\n\n- your degree has few computing subjects, because the shorter versions ask for them\n- your marks may not reach a **5.0** GPA on UQ's scale\n- you want a closing date, because UQ's page gives none\n\n## Sources\n\n- [Master of Computer Science (5522), University of Queensland](https://study.uq.edu.au/study-options/programs/master-computer-science-5522). Checked on 28 November 2026.\n- [Master of Data Science (5660), University of Queensland](https://study.uq.edu.au/study-options/programs/master-data-science-5660). Checked on 28 November 2026.\n- [UQ International High Achievers Scholarship](https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship) and [UQ International Excellence Scholarship](https://scholarships.uq.edu.au/scholarship/uq-international-excellence-scholarship). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the UQ Master of Computer Science without a computer science degree?",
+            "a": "Only if your bachelor degree includes the listed computing subjects, such as data structures and algorithms, 2 programming courses and discrete mathematics or algebra, plus 3 more from a list."
+          },
+          {
+            "q": "How much does the UQ Master of Computer Science cost for Indian students?",
+            "a": "UQ lists AUD 60,952 for 2027 as the approximate yearly cost of full-time tuition. With living costs, travel and the visa charge, the first year comes to AUD 95,162 before health cover."
+          },
+          {
+            "q": "What GPA do I need for the UQ Master of Computer Science?",
+            "a": "A GPA of 5.0 on a 7-point scale in your previous qualification. UQ's page has a tool that shows the equivalent for your country. Use it as a guide."
+          },
+          {
+            "q": "What IELTS score does the UQ Master of Computer Science need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. UQ also accepts TOEFL iBT 87 overall or Pearson 64 overall with 60 in every part."
+          },
+          {
+            "q": "Is there a scholarship for Indian students at UQ?",
+            "a": "Yes. The UQ International High Achievers Scholarship takes 20% off tuition and the International Excellence Scholarship takes 25%. You are assessed automatically when you apply."
+          },
+          {
+            "q": "What is the deadline for the UQ Master of Computer Science in 2027?",
+            "a": "UQ's program page gives no closing date. Semester 1 starts on 22 February 2027 and Semester 2 starts on 26 July 2027. Apply early."
+          }
+        ],
+        "official_source": "https://study.uq.edu.au/study-options/programs/master-computer-science-5522",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

@@ -138,3 +138,144 @@ Fee and entry data come from the course and handbook pages' embedded data, as fo
   - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
   - Quote: "Types of financial records which are acceptable for assessing funds for student visa applications are:"
   - Checked 28 November 2026. Read through a fetch tool (WebFetch); text copied from the fetch result.
+
+## University of Queensland (UQ)
+
+Fee, entry and English come from the rendered program pages (the entry tab text is in the page but hidden). The India GPA equivalent is a page widget; we could not read its result. No closing dates were found on UQ pages.
+
+- **5522 fee, 2027, international:** AUD 60,952 a year (16 units)
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "Approximate yearly cost of full-time tuition (16 units). Your fees will vary according to your study load. Fees are reviewed each year and may increase.AUD $60,952"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 CRICOS:** 073272E
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "CRICOS Code073272E"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 campus:** St Lucia
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "St Lucia"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 duration:** 1 or 1.5 years, full time only
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "1 Year full-time (only available as full-time study)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 duration (1.5):** 1.5 years
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "1.5 Years full-time (only available as full-time study)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 start dates:** 22 Feb 2027, 26 Jul 2027
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "Semester 1 (22 Feb, 2027), Semester 2 (26 Jul, 2027)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **2028 dates:** Not confirmed
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "Semester dates for 2028 are yet to be confirmed"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 1.5 year entry:** CS or SE bachelor, or listed content
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "a bachelor's degree (or equivalent) in computer science or software engineering, ora bachelor's degree (or equivalent) which includes all of the relevant discipline content (see below)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 GPA:** 5.0 on a 7-point scale
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "You must have a grade point average (GPA) of 5.0 on a 7-point scale in your previous qualification"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 listed content:** Data structures, programming, discrete maths, 3 more
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "data structures and algorithmsat least 2 programming coursesdiscrete mathematics or algebraat least 3 from the following:"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5522 1 year entry:** 16 CS or IT courses
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "you must have successfully completed at least 16 courses with computer science and/or information technology discipline content in your tertiary studies."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **GPA equivalent tool:** Guide only; UQ scale; failing grades count
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "Use the GPA equivalent as a guide. When you apply, we’ll calculate your GPA using the UQ grading scale. Any failing grades will be included."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **English (IELTS):** 6.5 overall; 6 in each part
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "IELTS overall 6.5; reading 6; writing 6; speaking 6; listening 6."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **English (TOEFL, Pearson):** TOEFL 87; Pearson 64/60
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "TOEFL iBT (including Paper Edition) - Overall 87, listening 19, reading 19, writing 21 and speaking 19.PTE Academic - Overall Score of 64 and 60 in all sub bands."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **Apply, agents:** Direct or approved agent
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "All international applications should be submitted to UQ. If you prefer, you can use an approved UQ agent near you."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **Longer duration fallback:** Considered for a longer duration
+  - Source: https://study.uq.edu.au/study-options/programs/master-computer-science-5522
+  - Quote: "If you don't meet the requirements for your first preference, we'll automatically consider you for entry into a longer duration."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 fee, 2027:** AUD 60,952 a year (16 units)
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "AUD $60,952"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 CRICOS:** 092454G
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "CRICOS Code092454G"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 duration:** 1.5 or 2 years, full time only
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "2 Years full-time (only available as full-time study)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 start dates:** 22 Feb 2027, 26 Jul 2027
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "Semester 1 (22 Feb, 2027), Semester 2 (26 Jul, 2027)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 2-year entry:** Relevant bachelor or listed content
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "a bachelor's degree (or equivalent) in a relevant discipline (see below), ora bachelor's degree (or equivalent) which includes all of the relevant discipline content (see below), orto have successfully completed 3 years of study towards an approved qualification at an overseas partner institution, with a formal pathway to the Master of Data Science."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 1.5-year entry:** 3 maths, 2 statistics, 4 computer science courses
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "with studies in at least 3 courses in mathematics, 2 courses in statistics or probability and 4 courses in computer sciences."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 relevant disciplines:** CS, IT, IS, maths, engineering, physics, actuarial, statistics, data science
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "Relevant disciplines include computer science, information technology, information systems, mathematics, engineering, physics, actuarial studies, science (majors in statistics, applied statistics, physics or mathematics) and data science."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 other degrees (2 year):** Calculus plus one content area
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "calculus or advanced mathematics or higher mathematics or mathematical analysis, andat least 1 of the following content areas: linear algebra and statistics OR programming and databases"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 GPA:** 5.0 on a 7-point scale
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "You must have a grade point average (GPA) of 5.0 on a 7-point scale in your previous qualification"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 English:** Same as 5522
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "IELTS overall 6.5; reading 6; writing 6; speaking 6; listening 6."
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **UQ International High Achievers Scholarship:** 20% off tuition per semester, program length
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship
+  - Quote: "20% reduction in tuition fees per semester"
+  - Checked 28 November 2026. Read by curl, page text.
+- **HAS eligibility:** Full-time, 2027 start, competitive score
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship
+  - Quote: "have achieved a competitive score as determined by the University among the pool of offer holders for programs in their commencement semester."
+  - Checked 28 November 2026. Read by curl, page text.
+- **HAS exclusions:** No other UQ scholarship; no full outside funding
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship
+  - Quote: "received another scholarship, tuition fee reduction or rebate from UQ (excluding the UQ English Language Scholarship )."
+  - Checked 28 November 2026. Read by curl, page text.
+- **HAS how to apply:** Automatic
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship
+  - Quote: "You don't need to apply for this scholarship. When you apply to study a program at UQ, you're automatically assessed for this scholarship."
+  - Checked 28 November 2026. Read by curl, page text.
+- **UQ International Excellence Scholarship:** 25% off tuition per semester, program length
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-excellence-scholarship
+  - Quote: "25% reduction in tuition fees per semester"
+  - Checked 28 November 2026. Read by curl, page text.
+- **IES how to apply:** Automatic
+  - Source: https://scholarships.uq.edu.au/scholarship/uq-international-excellence-scholarship
+  - Quote: "You don't need to apply for this scholarship. When you apply to study a program at UQ, you're automatically assessed for this scholarship."
+  - Checked 28 November 2026. Read by curl, page text.
+- **Derived: 20% of 60,952:** AUD 12,190.40 (our arithmetic)
+  - Source: —
+  - Quote: "0.20 x 60,952 = 12,190.40"
+  - Checked 28 November 2026. Read our sum.
+- **Derived: 25% of 60,952:** AUD 15,238 (our arithmetic)
+  - Source: —
+  - Quote: "0.25 x 60,952 = 15,238"
+  - Checked 28 November 2026. Read our sum.

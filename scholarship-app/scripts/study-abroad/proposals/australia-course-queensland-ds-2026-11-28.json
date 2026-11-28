@@ -1,0 +1,68 @@
+{
+  "agent": "content-editor",
+  "notes": "UQ Master of Data Science (5660), 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section UQ. Left out: whole-course fee, OSHC price, India GPA equivalent (a page widget we could not read), closing dates (none published), rankings, salary figures. Fee and entry were read from the rendered page and its hidden text. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_uq-master-of-data-science",
+      "source": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+      "fields": {
+        "id": "program_uq-master-of-data-science",
+        "slug": "uq-master-of-data-science",
+        "university_slug": "university-of-queensland",
+        "country": "australia",
+        "degree": "master",
+        "field": "data-science",
+        "title": "Master of Data Science",
+        "tuition_per_year": 60952,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. TOEFL iBT 87 or Pearson 64 also accepted.",
+        "summary": "UQ's Master of Data Science takes 1.5 or 2 years. The 2027 fee is AUD 60,952 a year. You need a 5.0 GPA on a 7-point scale and IELTS 6.5.",
+        "seo_title": "Master of Data Science at UQ: Fees, Entry, 2027",
+        "meta_description": "UQ's Master of Data Science for Indian students: AUD 60,952 a year for 2027, a 5.0 GPA on UQ's scale, IELTS 6.5 and a 20% or 25% automatic scholarship.",
+        "gpa_min": "Bachelor degree (or equivalent) with a GPA of 5.0 on a 7-point scale",
+        "tuition_currency": "AUD",
+        "location": "Brisbane (St Lucia)",
+        "duration": "1.5 years or 2 years full time",
+        "language": "English",
+        "intakes": "Semester 1 (February), Semester 2 (July)",
+        "application_portal": "UQ online application, directly or through an approved UQ agent",
+        "application_deadlines": {
+          "Semester 1, 2027 start": "22 February 2027",
+          "Semester 2, 2027 start": "26 July 2027",
+          "International closing dates": "Not published on the program page"
+        },
+        "body_md": "## About this programme\n\nThe Master of Data Science is taught on campus at St Lucia, in Brisbane. It runs for 1.5 or 2 years, and you can only study it full time. It starts in Semester 1 or Semester 2. The program code is 5660 and the CRICOS code is 092454G.\n\nUQ says it covers advanced topics from computing, statistics and mathematics. Graduates are meant to make informed decisions in data-heavy settings.\n\n**The most important fact for you:** the 1.5 year route needs earlier study. You need **3** maths courses, **2** statistics or probability courses and **4** computer science courses.\n\nFor the wider university, see our [University of Queensland page](/study-abroad/universities/university-of-queensland).\n\n## Can you get in?\n\nUQ has two versions of this course. Your degree decides which one you can join.\n\n| Version | Degree needed | Length |\n|---|---|---|\n| 2 years (32 units) | A bachelor degree in a relevant subject, or one that includes the listed content, or 3 years of study at an approved partner with a formal pathway | 2 years full time |\n| 1.5 years (24 units) | A bachelor degree in a relevant subject, with at least 3 courses in mathematics, 2 in statistics or probability and 4 in computer science | 1.5 years full time |\n\nBoth versions need a grade point average (GPA) of **5.0** on a 7-point scale. A GPA is your average grade across your degree. UQ works out your GPA on the UQ grading scale when you apply. Failing grades count.\n\n**Relevant subjects.** UQ lists computer science, information technology, information systems, mathematics, engineering, physics, actuarial studies, statistics and data science.\n\n**Other degrees.** For the 2 year version only, you need calculus or advanced mathematics. You also need linear algebra and statistics, or programming and databases.\n\n**Indian marks.** UQ's program page has a tool that shows the GPA you need for your own country and degree. We could not read its India result. Use the tool on the page before you apply.\n\n**English.** IELTS is an English test. UQ asks for IELTS **6.5** overall with no part below **6.0**. It also accepts TOEFL iBT **87** overall. The part minimums are **19** in listening, **19** in reading, **21** in writing and **19** in speaking. For Pearson it asks **64** overall and **60** in every part.\n\n## What it costs\n\nUQ lists **AUD 60,952** for 2027 as the approximate yearly cost of full-time tuition, which it counts as 16 units. UQ says your fees vary with your courses and study load, and may increase each year. UQ gives no whole-course fee, so this page gives none.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 60,952 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 92,662** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 95,162** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹58.81 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nUQ gives no fee for the 1.5 year version, so this page gives none.\n\n## Funding\n\n**UQ International High Achievers Scholarship.** It takes **20%** off your tuition fees each semester, for the whole program. Twenty per cent of the first-year fee is **AUD 12,190.40**, which is our sum.\n\n**UQ International Excellence Scholarship.** It takes **25%** off your tuition fees each semester, for the whole program. Twenty-five per cent of the first-year fee is **AUD 15,238**, which is our sum.\n\nYou do not apply for either one. UQ assesses you automatically when you apply for a program. The award goes to applicants with a competitive score among the offer holders for that semester. You cannot hold either one with another UQ scholarship or fee reduction. You also cannot hold one if you have a full scholarship or sponsorship from another organisation. Part-funded students may be considered.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nUQ's program page gives the semester start dates. It gives no closing date, and we found none on UQ's official pages that we read.\n\n| Intake | Start date |\n|---|---|\n| Semester 1, 2027 | **22 February 2027** |\n| Semester 2, 2027 | **26 July 2027** |\n\nApply early, so there is time for the offer and the visa. UQ says semester dates for 2028 are not yet confirmed.\n\n## How to apply\n\n1. Check your degree against the table above, and use the GPA tool on the page.\n2. Collect your degree results and English test result.\n3. Apply to UQ online. UQ says all international applications should be submitted to UQ. If you prefer, you can use an approved UQ agent near you.\n4. Choose your duration when you apply. If you do not meet the entry rules for your first choice, UQ automatically considers you for a longer one.\n5. UQ assesses you for both scholarships automatically. You need no extra form.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nUQ's program page lists career ideas but no salary or job figures from UQ. We give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you studied maths, statistics and computing in your degree\n- you can show AUD 92,662 for the visa\n- you want an automatic fee reduction without a separate form\n\n**Think carefully if:**\n\n- your degree is outside the listed subjects, because you then need calculus plus more content\n- your marks may not reach a **5.0** GPA on UQ's scale\n- you want a closing date, because UQ's page gives none\n\n## Sources\n\n- [Master of Computer Science (5522), University of Queensland](https://study.uq.edu.au/study-options/programs/master-computer-science-5522). Checked on 28 November 2026.\n- [Master of Data Science (5660), University of Queensland](https://study.uq.edu.au/study-options/programs/master-data-science-5660). Checked on 28 November 2026.\n- [UQ International High Achievers Scholarship](https://scholarships.uq.edu.au/scholarship/uq-international-high-achievers-scholarship) and [UQ International Excellence Scholarship](https://scholarships.uq.edu.au/scholarship/uq-international-excellence-scholarship). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the UQ Master of Data Science without a data science degree?",
+            "a": "Yes, for the 2 year version. You need a relevant bachelor degree, or calculus plus linear algebra and statistics, or programming and databases."
+          },
+          {
+            "q": "How much does the UQ Master of Data Science cost for Indian students?",
+            "a": "UQ lists AUD 60,952 for 2027 as the approximate yearly cost of full-time tuition. With living costs, travel and the visa charge, the first year comes to AUD 95,162 before health cover."
+          },
+          {
+            "q": "What GPA do I need for the UQ Master of Data Science?",
+            "a": "A GPA of 5.0 on a 7-point scale in your previous qualification. UQ's page has a tool that shows the equivalent for your country. Use it as a guide."
+          },
+          {
+            "q": "What IELTS score does the UQ Master of Data Science need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. UQ also accepts TOEFL iBT 87 overall or Pearson 64 overall with 60 in every part."
+          },
+          {
+            "q": "Is there a scholarship for Indian students at UQ?",
+            "a": "Yes. The UQ International High Achievers Scholarship takes 20% off tuition and the International Excellence Scholarship takes 25%. You are assessed automatically when you apply."
+          },
+          {
+            "q": "What is the deadline for the UQ Master of Data Science in 2027?",
+            "a": "UQ's program page gives no closing date. Semester 1 starts on 22 February 2027 and Semester 2 starts on 26 July 2027. Apply early."
+          }
+        ],
+        "official_source": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
