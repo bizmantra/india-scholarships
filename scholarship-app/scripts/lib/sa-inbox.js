@@ -378,9 +378,28 @@ function validatePublishRow(table, row, opts = {}) {
     return null;
 }
 
+/**
+ * Row to insert when a new Study Abroad page or fact is approved.
+ * status is forced to draft, and created_at / updated_at are stamped, but only for columns
+ * the table actually has (sa_facts has updated_at only — no status or created_at).
+ */
+function rowForNewInsert(table, key, rowData, nowIso) {
+    const allowed = TABLE_COLUMNS[table];
+    if (!allowed || !TARGETS[table]) throw new Error(`${table} is not a valid Study Abroad table`);
+    const keyCol = TARGETS[table].key;
+    const toInsert = { ...rowData, [keyCol]: key };
+    if (allowed.has('status')) toInsert.status = 'draft';
+    if (allowed.has('created_at')) toInsert.created_at = nowIso;
+    if (allowed.has('updated_at')) toInsert.updated_at = nowIso;
+    for (const col of Object.keys(toInsert)) {
+        if (!allowed.has(col)) delete toInsert[col];
+    }
+    return toInsert;
+}
+
 module.exports = {
     TARGETS, FIELDS, LABELS, NEEDS_SOURCE, BANNED, REQUIRED, TABLE_COLUMNS, BOILERPLATE_SUMMARY, KNOWN_COUNTRIES,
     fieldType, toText, validateSaValue, storedSaValue, sameSaValue, pagePath, targetId, parseTargetId,
-    validateNewRow, validatePublishRow,
+    validateNewRow, validatePublishRow, rowForNewInsert,
     KIND: 'sa_field_change', NEW_KIND, CATEGORY: 'study_abroad',
 };
