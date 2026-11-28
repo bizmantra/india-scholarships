@@ -1,0 +1,125 @@
+{
+  "agent": "content-editor",
+  "notes": "Australia country facts (hub key facts and page figures). Hidden country, not filed. Quotes and dates are in plans/australia-research/au-visa-facts.md. Values keep the comma form the official page uses. check-proposals.mjs cannot verify these yet: see plans/australia-research/au-batch1-notes.md.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.visa.student_500_fee_aud",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.visa.student_500_fee_aud",
+        "label": "Student visa (subclass 500) application charge, from",
+        "country": "australia",
+        "value": "2,500",
+        "unit": "AUD",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Base charge for the main applicant. Lower charges apply to some citizens (not India) and some English-course students. An Onshore Application Charge applies only to some applications made inside Australia."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.funds.living_costs_student_aud",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.funds.living_costs_student_aud",
+        "label": "Student visa living costs to show, 12 months, student",
+        "country": "australia",
+        "value": "29,710",
+        "unit": "AUD",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Minimum living-cost amount for the visa, not a budget. Add 12 months of course fees and travel."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.funds.travel_aud",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.funds.travel_aud",
+        "label": "Student visa travel costs to include, applying from outside Australia",
+        "country": "australia",
+        "value": "2,000",
+        "unit": "AUD",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Home Affairs gives this as a guide for applicants outside Australia, other than East, Southern or West Africa."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.funds.parent_income_aud",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.funds.parent_income_aud",
+        "label": "Parent or partner annual income that can replace savings, student alone",
+        "country": "australia",
+        "value": "87,856",
+        "unit": "AUD",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Shown with official government documents such as tax assessments less than 12 months old."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.work.student_hours_per_fortnight",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.work.student_hours_per_fortnight",
+        "label": "Student visa work limit when the course is in session",
+        "country": "australia",
+        "value": "48",
+        "unit": "hours per fortnight",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "No limit for master's by research and doctoral students."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.english.ielts_academic_min",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "key": "australia.english.ielts_academic_min",
+        "label": "Student visa minimum IELTS Academic overall score (no English-course package)",
+        "country": "australia",
+        "value": "6.0",
+        "unit": "IELTS band",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "For tests taken on or after 7 August 2025. Only needed if the Document Checklist Tool asks for English evidence."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "australia.visa.graduate_485_fee_aud",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/temporary-graduate-485/post-higher-education-work",
+      "fields": {
+        "key": "australia.visa.graduate_485_fee_aud",
+        "label": "Temporary Graduate visa (subclass 485), Post-Higher Education Work, charge from",
+        "country": "australia",
+        "value": "5,750",
+        "unit": "AUD",
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/temporary-graduate-485/post-higher-education-work",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "An Onshore Application Charge also applies from 28 November 2026 unless exempt."
+      }
+    }
+  ]
+}

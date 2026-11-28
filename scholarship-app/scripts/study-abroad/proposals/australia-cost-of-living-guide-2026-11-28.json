@@ -1,0 +1,50 @@
+{
+  "agent": "content-editor",
+  "notes": "Australia batch 1 (hidden country, draft pages). Every figure is in plans/australia-research/. Facts checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_guides",
+      "key": "australia-cost-of-living-for-indian-students",
+      "source": "https://costofliving.studyaustralia.gov.au/",
+      "fields": {
+        "slug": "australia-cost-of-living-for-indian-students",
+        "kind": "guide",
+        "country": "australia",
+        "title": "Cost of Living in Australia for Indian Students: Rent by City",
+        "summary": "Living costs in Australia for Indian students: the AUD 29,710 visa minimum and weekly rent for share houses, apartments and student housing in nine cities, with rupee figures.",
+        "seo_title": "Cost of Living in Australia for Indian Students by City",
+        "meta_description": "Australia living costs for Indian students: AUD 29,710 visa minimum, weekly rent by city for nine cities, student housing and homestay, in rupees.",
+        "body_md": "## The short answer\n\n- **Visa minimum:** Home Affairs asks you to show **AUD 29,710** for 12 months of living costs. That is about **AUD 571 a week** or **AUD 2,476 a month** (about **₹1.53 lakh a month**).\n- **It is a minimum:** Home Affairs says actual living costs vary across Australia and can be much higher than what you need for the visa.\n- **Rent differs a lot by city:** a room in a share house costs **AUD 275 a week in Adelaide city** and **AUD 667 a week in Sydney city**, in the Study Australia calculator.\n- **Work:** the visa allows **48 hours a fortnight** in term, but Home Affairs says you should not rely on work to support yourself.\n\nRupee amounts use **₹61.80 per Australian dollar**, the Reserve Bank of Australia rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Where the figures come from\n\nStudy Australia is the Australian Government's website for international students. Its **Cost of Living Calculator** gives weekly figures for nine cities. The share-house and one-bedroom figures are based on market rental data from **November 2025** and include utility costs. Managed student housing and homestay use provider fee structures from November 2025. These are samples, not quotes, so check current listings before you sign a lease.\n\nStudy Australia describes its calculator costs as \"an approximate guide only\". Use it for food, transport and other costs too, because those depend on how you live.\n\n## Rent for a room in a share house\n\nA share house is a home where you rent one room and share the kitchen and bathroom with housemates. Weekly rent in Australian dollars:\n\n| City | Suburbs | City centre | Monthly rent in rupees (suburbs to city centre) |\n|---|---|---|---|\n| Sydney | 403 | 667 | ₹1.08 to ₹1.79 lakh |\n| Melbourne | 300 | 384 | ₹0.80 to ₹1.03 lakh |\n| Brisbane | 297 | 432 | ₹0.80 to ₹1.16 lakh |\n| Perth | 294 | 353 | ₹0.79 to ₹0.95 lakh |\n| Adelaide | 261 | 275 | ₹0.70 to ₹0.74 lakh |\n| Canberra | 274 | 342 | ₹0.73 to ₹0.92 lakh |\n| Hobart | 239 | 309 | ₹0.64 to ₹0.83 lakh |\n| Darwin | 269 | 307 | ₹0.72 to ₹0.82 lakh |\n| Gold Coast | 311 | 453 | ₹0.83 to ₹1.21 lakh |\n\nMonthly rupee amounts are the weekly rent × 52 ÷ 12 × ₹61.80.\n\nIn Sydney's city centre, a share-house room at **AUD 667 a week** costs more than the whole visa living amount spread over a week (**AUD 571**). In Sydney's suburbs it is **AUD 403**.\n\n## Other types of housing\n\nWeekly rent in Australian dollars. For a one-bedroom unit, the first figure is the city centre and the second is the suburbs.\n\n| City | One-bedroom unit (city / suburbs) | Managed student accommodation | Homestay |\n|---|---|---|---|\n| Sydney | 876 / 724 | 670 | 445 |\n| Melbourne | 622 / 514 | 480 | 440 |\n| Brisbane | 687 / 568 | 489 | 410 |\n| Perth | 659 / 626 | 375 | 410 |\n| Adelaide | 674 / 524 | 460 | 400 |\n| Canberra | 625 / 584 | 482 | 405 |\n| Hobart | 458 / 476 | 358 | 405 |\n| Darwin | 584 / 538 | 320 | 400 |\n| Gold Coast | 706 / 701 | 356 | 420 |\n\n- **Managed student accommodation** is a building for students, with cleaning and utilities included. Study Australia bases these figures on one provider's rates (UniLodge).\n- **Homestay** means living with a local host family. Utilities and some or all meals are included. Study Australia bases these figures on the Australian Homestay Network's fees.\n\n## Health cover\n\nYou must hold **Overseas Student Health Cover (OSHC)** for your whole stay. It must start the day you arrive. The cost depends on the provider and how long you stay. We have not published an OSHC price, because no government page we read gives one. Get a quote from your university or from the providers on the [government OSHC page](https://www.privatehealth.gov.au/health_insurance/overseas/overseas_student_health_cover.htm).\n\n## How to plan your own budget\n\n1. Pick your city and start with rent. Use the tables above.\n2. Open the [Study Australia Cost of Living Calculator](https://costofliving.studyaustralia.gov.au/) and add food, transport and personal costs for your style.\n3. Add OSHC, and your first-year course fee.\n4. Compare your total with the visa amount in our [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds).\n5. Plan how you will send the money. Our [TCS calculator](/study-abroad/tools/rbi-lrs-tcs-calculator) shows the tax collected at source on remittances.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [Study Australia Cost of Living Calculator](https://costofliving.studyaustralia.gov.au/), [Study Australia: living and education costs](https://www.studyaustralia.gov.au/en/life-in-australia/living-and-education-costs.html), [Student visa (subclass 500)](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500), [OSHC](https://www.privatehealth.gov.au/health_insurance/overseas/overseas_student_health_cover.htm) and the [Reserve Bank of Australia exchange rates](https://www.rba.gov.au/statistics/frequency/exchange-rates.html).\n",
+        "faq_json": [
+          {
+            "q": "How much does it cost to live in Australia per month for an Indian student?",
+            "a": "Home Affairs asks you to show AUD 29,710 for 12 months of living costs, which is about AUD 2,476 a month. Real costs depend on your city. A share-house room alone runs from AUD 275 a week in Adelaide city to AUD 667 a week in Sydney city."
+          },
+          {
+            "q": "Is the visa living cost the same as what I will spend?",
+            "a": "No. Home Affairs says the amount is the minimum for the visa. Actual living costs vary across Australia and may be much higher."
+          },
+          {
+            "q": "Which Australian city is cheapest for students?",
+            "a": "In the Study Australia calculator, Hobart has the lowest suburban share-house rent at AUD 239 a week, and Adelaide has the lowest city-centre rent at AUD 275 a week. Rent is only one part of your costs."
+          },
+          {
+            "q": "Which Australian city is the most expensive for rent?",
+            "a": "Sydney has the highest figures in the calculator for share-house rooms: AUD 667 a week in the city centre and AUD 403 in the suburbs."
+          },
+          {
+            "q": "Can I pay my living costs from a part-time job?",
+            "a": "You can work up to 48 hours a fortnight when your course is in session. Home Affairs still says you should not rely on work to support yourself."
+          },
+          {
+            "q": "Where can I check living costs for my own lifestyle?",
+            "a": "Use the Study Australia Cost of Living Calculator. It covers rent, transport, food and other costs for nine cities."
+          }
+        ],
+        "official_source": "https://costofliving.studyaustralia.gov.au/",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

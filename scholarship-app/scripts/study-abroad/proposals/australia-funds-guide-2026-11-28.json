@@ -1,0 +1,50 @@
+{
+  "agent": "content-editor",
+  "notes": "Australia batch 1 (hidden country, draft pages). Every figure is in plans/australia-research/. Facts checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_guides",
+      "key": "australia-student-visa-proof-of-funds",
+      "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+      "fields": {
+        "slug": "australia-student-visa-proof-of-funds",
+        "kind": "guide",
+        "country": "australia",
+        "title": "Australia Student Visa Funds: How Much Money to Show (AUD 29,710)",
+        "summary": "The money Home Affairs asks you to show for an Australia Student visa: AUD 29,710 living costs, AUD 2,000 travel and your first-year fee, with worked examples in rupees.",
+        "seo_title": "Australia Student Visa Funds: Show AUD 29,710 + Fees",
+        "meta_description": "How much money to show for an Australia Student visa: AUD 29,710 living costs, AUD 2,000 travel and 12 months of fees, with rupee examples and loan evidence.",
+        "body_md": "## The short answer\n\nFor the Australia Student visa, Home Affairs asks you to show enough money for three things:\n\n- **Travel:** **AUD 2,000** if you apply from India or anywhere else outside Australia (Home Affairs gives this figure as a guide).\n- **Course fees:** your first **12 months** of fees, minus anything you have already paid.\n- **Living costs:** **AUD 29,710** for 12 months for you as the student.\n\nAdd them up. Right now, the living-cost part alone is about **₹18.36 lakh**. This is the minimum for the visa. It is not a budget. Our [cost of living guide](/study-abroad/study-in/australia/australia-cost-of-living-for-indian-students) shows what rent costs in each city.\n\nRupee amounts use **₹61.80 per Australian dollar**, the Reserve Bank of Australia rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## How to work out your amount\n\n| Part | Amount | In rupees |\n|---|---|---|\n| Travel (applying from outside Australia) | **AUD 2,000** | ₹1,23,600 |\n| Living costs, 12 months, student | **AUD 29,710** | ₹18.36 lakh |\n| First 12 months of course fees | The fee on your offer and CoE | Your fee × ₹61.80 |\n\nIf your course is shorter than 12 months, Home Affairs uses a pro rata sum. Divide the yearly amount by 365, then multiply by the number of days you will stay.\n\n## Worked examples\n\nHome Affairs gives its own examples for the 12-month fee. We have added the living and travel costs to each. These course fees are the examples on the official page, not real fees. Use the fee on your own offer.\n\n| Example | 12-month fee | Plus living and travel | Total to show |\n|---|---|---|---|\n| Fee of AUD 50,000 for a 3-year course | AUD 16,666 | AUD 29,710 + AUD 2,000 | **AUD 48,376** (₹29.90 lakh) |\n| Fee of AUD 20,000 for an 18-month course | AUD 13,333 | AUD 29,710 + AUD 2,000 | **AUD 45,043** (₹27.84 lakh) |\n\nFor the first example, Home Affairs divides the full fee by the 3 years. For the second, it divides the fee by 18 months and multiplies by 12. If you have already paid part of the fee, you can deduct it, but you need a receipt or your CoE as proof.\n\n## Other ways to prove you can pay\n\nInstead of showing your own savings, you can show that your parents or your partner had a personal annual income of at least **AUD 87,856** in the 12 months before you apply. That is about **₹54.30 lakh**. Home Affairs wants official government documents, such as tax assessments less than 12 months old. It does not accept bank statements or direct evidence from an employer for this route. Use the Document Checklist Tool to see what you need.\n\nHome Affairs says evidence of money can include:\n\n- Deposits of money from a financial institution.\n- A government loan, or a loan from a financial institution.\n- Scholarships or similar financial support.\n\n## Show that you can really use the money\n\nIf Home Affairs asks for proof of money, it also wants to see that you have access to it. These points matter for Indian families:\n\n- **Explain where the money came from.** A bank balance certificate for a single day does not show how the money built up. Attach statements that show the history, such as regular salary payments.\n- **Education loans.** Home Affairs says the best proof of a loan is evidence that the money has been paid out (disbursed). If you receive money before the decision, give the loan terms and the full amount.\n- **Other loans.** Show what you pledged as security, the loan terms and how you will cover ongoing costs.\n- **Someone else's money.** Give proof of your relationship, their identity documents and any support they have given before.\n- **Business income.** Show proof that the business is operating.\n- **Tell your university about loan conditions.** Some loans only cover one course at one university.\n\nSending money abroad can attract tax collected at source. Use our [TCS calculator](/study-abroad/tools/rbi-lrs-tcs-calculator) to see how it works.\n\n## Do not count on a job\n\nHome Affairs says you should not rely on work to support yourself while in Australia. The visa lets you work **48 hours a fortnight** in term, but the money rule assumes you can pay without it.\n\n## What to do next\n\n1. Get the first-year fee from your offer letter and CoE.\n2. Add **AUD 29,710** and **AUD 2,000**.\n3. Check your money and your documents against the Document Checklist Tool.\n4. Read our [Australia student visa guide](/study-abroad/visas/australia-student-visa-guide) for the other steps.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [Student visa (subclass 500)](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500) under \"Evidence you have enough money for your stay\", the [Migration (LIN 19/198) financial capacity instrument](https://www.legislation.gov.au/F2019L01366/latest/text) that the department points to, [Study Australia: living and education costs](https://www.studyaustralia.gov.au/en/life-in-australia/living-and-education-costs.html) and the [Reserve Bank of Australia exchange rates](https://www.rba.gov.au/statistics/frequency/exchange-rates.html).\n",
+        "faq_json": [
+          {
+            "q": "How much bank balance is needed for an Australia student visa?",
+            "a": "You must show your first 12 months of course fees, AUD 29,710 for 12 months of living costs and AUD 2,000 for travel when applying from outside Australia. The total depends on your course fee."
+          },
+          {
+            "q": "Can I use an education loan to show funds for Australia?",
+            "a": "Yes. Home Affairs lists loans from a financial institution as evidence. The best proof is evidence that the loan has been paid out, along with the loan terms."
+          },
+          {
+            "q": "Can my parents' income count instead of savings?",
+            "a": "Yes. You can show that your parents or partner earned at least AUD 87,856 in the 12 months before you apply, with official documents such as tax assessments less than 12 months old."
+          },
+          {
+            "q": "Is a one-day bank balance certificate enough?",
+            "a": "It may not be. Home Affairs says a balance certificate for a single day does not show how your funds were built up. Attach statements that show the history and explain the source."
+          },
+          {
+            "q": "Does the Australia student visa have a 28-day rule like the UK?",
+            "a": "The Home Affairs page does not state a minimum holding period. It asks you to show access to the money and how it was built up."
+          },
+          {
+            "q": "Can I rely on part-time work to meet the funds rule?",
+            "a": "No. Home Affairs says you should not rely on work to support yourself or your family while in Australia."
+          }
+        ],
+        "official_source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
