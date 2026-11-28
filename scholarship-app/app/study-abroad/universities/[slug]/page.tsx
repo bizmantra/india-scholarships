@@ -11,7 +11,7 @@ import { bylineText, costLinks, EDITORIAL_TEAM, ScholarshipLinks } from '../../_
 export const revalidate = 86400;
 
 export async function generateStaticParams() {
-    return (await getUniversities()).map(u => ({ slug: u.slug }));
+    return (await getUniversities()).filter(u => isCountry(u.country)).map(u => ({ slug: u.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

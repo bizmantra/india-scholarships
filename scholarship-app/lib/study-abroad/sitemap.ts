@@ -1,14 +1,17 @@
 // URLs for /sitemap/study-abroad.xml: published Study Abroad pages only (drafts, empty countries and
 // program comparisons with too few universities are left out). URLs that redirect are left out too.
 import type { MetadataRoute } from 'next';
-import { LAUNCHED_COUNTRIES, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
+import { LAUNCHED_COUNTRIES, isCountry, getUniversities, getGuides, getPrograms, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from './data';
 import { REDIRECTS } from './content';
 import { LAUNCHED_TOOLS } from '@/app/study-abroad/_components/tools';
 
 export async function studyAbroadSitemap(baseUrl: string): Promise<MetadataRoute.Sitemap> {
-    const [universities, guides, visas, loans, programs, combos] = await Promise.all([
+    const [allUniversities, allGuides, allVisas, allLoans, allPrograms, allCombos] = await Promise.all([
         getUniversities(), getGuides('guide'), getGuides('visa'), getGuides('loan'), getPrograms(), getProgramCombos(),
     ]);
+    // Pages of a country that is not launched yet 404, so they stay out of the sitemap even when their rows are published
+    const live = <T extends { country: string }>(rows: T[]) => rows.filter(r => isCountry(r.country));
+    const [universities, guides, visas, loans, programs, combos] = [live(allUniversities), live(allGuides), live(allVisas), live(allLoans), live(allPrograms), live(allCombos)];
     const date = (v: string | null) => (v ? new Date(v.replace(' ', 'T')) : undefined);
     const entry = (path: string, priority: number, lastModified?: Date): MetadataRoute.Sitemap[number] =>
         ({ url: `${baseUrl}/study-abroad${path}`, priority, changeFrequency: 'weekly', ...(lastModified && !Number.isNaN(lastModified.getTime()) ? { lastModified } : {}) });

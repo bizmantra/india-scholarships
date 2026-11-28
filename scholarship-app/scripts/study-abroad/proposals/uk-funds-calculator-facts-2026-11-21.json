@@ -1,10 +1,10 @@
 {
   "agent": "uk-funds-calc",
-  "notes": "Missing sa_facts keys required by /study-abroad/tools/uk-funds-calculator, plus HC 584 scheduled rate increase effective 30 November 2026.",
+  "notes": "Missing sa_facts keys required by /study-abroad/tools/uk-funds-calculator (3 new rows), plus the HC 584 monthly maintenance amounts for applications from 30 November 2026 (2 updates; approve on or after 30 Nov). The GBP to INR rate is no longer a stored fact: the calculator reads the RBI rate live. Sources read and quotes registered in data/study-abroad/source-checks.json, 2026-11-28.",
   "changes": [
     {
+      "create": true,
       "table": "sa_facts",
-      "action": "insert",
       "key": "uk.funds.max_months",
       "source": "https://www.gov.uk/student-visa/money",
       "fields": {
@@ -14,14 +14,14 @@
         "value": "9",
         "unit": "months",
         "official_source": "https://www.gov.uk/student-visa/money",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2027-02-19",
-        "notes": "Courses shorter than 9 months use actual months rounded up."
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "A part of a month is rounded up to the next full month (Immigration Rules, Appendix Student, ST 12.3)."
       }
     },
     {
+      "create": true,
       "table": "sa_facts",
-      "action": "insert",
       "key": "uk.funds.hold_days",
       "source": "https://www.gov.uk/student-visa/money",
       "fields": {
@@ -31,14 +31,14 @@
         "value": "28",
         "unit": "days",
         "official_source": "https://www.gov.uk/student-visa/money",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2027-02-19",
-        "notes": "Balance must not drop below the required total on any day during the 28-day period."
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Funds must be held for a 28-day period (Appendix Student, ST 12.6). The gov.uk page says the end date of that period must be within 31 days of the application date."
       }
     },
     {
+      "create": true,
       "table": "sa_facts",
-      "action": "insert",
       "key": "uk.funds.hold_window_days",
       "source": "https://www.gov.uk/student-visa/money",
       "fields": {
@@ -48,54 +48,33 @@
         "value": "31",
         "unit": "days",
         "official_source": "https://www.gov.uk/student-visa/money",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2027-02-19",
-        "notes": "The 28th day of the holding period must fall within 31 days of submitting the online application."
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Read from the gov.uk Student visa money page, 28 November 2026."
       }
     },
     {
       "table": "sa_facts",
-      "action": "insert",
-      "key": "uk.fx.gbp_inr",
-      "source": "https://www.rbi.org.in/",
-      "fields": {
-        "key": "uk.fx.gbp_inr",
-        "label": "Exchange rate used for estimates (GBP -> INR)",
-        "country": "uk",
-        "value": "123.50",
-        "unit": "INR per GBP",
-        "official_source": "https://www.rbi.org.in/",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2026-12-21",
-        "notes": "Mid-November 2026 FBIL/RBI reference rate band (122.66-124.61 INR per GBP)."
-      }
-    },
-    {
-      "table": "sa_facts",
-      "action": "update_on_effective_date",
-      "effective_date": "2026-11-30",
       "key": "uk.funds.monthly_london_gbp",
-      "source": "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-student",
+      "source": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
       "fields": {
         "value": "1570",
-        "official_source": "https://www.gov.uk/student-visa/money",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2027-02-19",
-        "notes": "HC 584 (laid 3 Sep 2026): increases from 1529 to 1570 for applications submitted on or after 30 November 2026."
+        "official_source": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "HC 584 (3 September 2026), APP ST8 to ST10: from 30 November 2026 the monthly amount in ST 12 changes from £1529 to £1570 for applications made on or after that date. Approve on or after 30 November 2026."
       }
     },
     {
       "table": "sa_facts",
-      "action": "update_on_effective_date",
-      "effective_date": "2026-11-30",
       "key": "uk.funds.monthly_outside_london_gbp",
-      "source": "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-student",
+      "source": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
       "fields": {
         "value": "1203",
-        "official_source": "https://www.gov.uk/student-visa/money",
-        "checked_at": "2026-11-21",
-        "recheck_after": "2027-02-19",
-        "notes": "HC 584 (laid 3 Sep 2026): increases from 1171 to 1203 for applications submitted on or after 30 November 2026."
+        "official_source": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "HC 584 (3 September 2026), APP ST8 to ST10: from 30 November 2026 the monthly amount in ST 12 changes from £1171 to £1203 for applications made on or after that date. Approve on or after 30 November 2026."
       }
     }
   ]

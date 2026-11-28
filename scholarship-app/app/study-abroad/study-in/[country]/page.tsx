@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, getGuides, getUniversities, getFacts, getScholarshipsForCountry, SCHOLARSHIP_PICKS, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
+import { COUNTRIES, LAUNCHED_COUNTRIES, isCountry, degreeLabel, getGuides, getUniversities, getFacts, getScholarshipsForCountry, SCHOLARSHIP_PICKS, getProgramCombos, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
 import { SITE, pageTitle } from '@/lib/study-abroad/content';
 import ScholarshipCard from '@/app/components/ScholarshipCard';
 import ListingShell, { ListingSection, type Stat } from '../../_components/ListingShell';
@@ -15,6 +15,7 @@ export function generateStaticParams() { return LAUNCHED_COUNTRIES.map(country =
 // The numbers a family asks first, read from sa_facts
 const KEY_FACTS: Record<string, { key: string; tone: Stat['tone']; note: string }[]> = {
     germany: [{ key: 'germany.blocked_account.annual_eur', tone: 'blue', note: 'Blocked account per year' }, { key: 'germany.aps.fee_inr', tone: 'green', note: 'APS certificate fee' }, { key: 'germany.visa.national_fee_eur', tone: 'emerald', note: 'Student visa fee' }],
+    uk: [{ key: 'uk.visa.application_fee_gbp', tone: 'blue', note: 'Student visa fee' }, { key: 'uk.funds.monthly_outside_london_gbp', tone: 'green', note: 'Living money to show, outside London' }, { key: 'uk.ihs.annual_gbp', tone: 'emerald', note: 'Health surcharge' }],
     usa: [{ key: 'usa.visa.sevis_i901_fee_usd', tone: 'blue', note: 'SEVIS I-901 fee' }, { key: 'usa.visa.f1_mrv_fee_usd', tone: 'green', note: 'F-1 visa fee' }, { key: 'usa.living.monthly_average_usd', tone: 'emerald', note: 'Average living cost per month' }],
 };
 
@@ -38,9 +39,9 @@ export default async function CountryHub({ params }: { params: Promise<{ country
         getFacts(), getScholarshipsForCountry(country, SCHOLARSHIP_PICKS[country] ? 8 : 4), getProgramCombos(),
     ]);
     const programs = combos.filter(p => p.country === country && p.universities >= MIN_INDEXABLE_UNIVERSITIES);
-    const stats = KEY_FACTS[country].map(k => facts[k.key] && ({
+    const stats = (KEY_FACTS[country] ?? []).map(k => facts[k.key] && ({
         label: facts[k.key].label.replace(/ \(.*\)$/, ''), tone: k.tone, note: k.note,
-        value: /^[A-Z]{3}$/.test(facts[k.key].unit || '') ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: facts[k.key].unit!, maximumFractionDigits: 0 }).format(Number(facts[k.key].value)) : facts[k.key].value,
+        value: /^[A-Z]{3}\b/.test(facts[k.key].unit || '') ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: facts[k.key].unit!.slice(0, 3), maximumFractionDigits: 0 }).format(Number(facts[k.key].value)) : facts[k.key].value,
     })).filter(Boolean) as Stat[];
     const stagesWithGuides = STAGES.map(s => ({ ...s, items: guides.filter(g => stageOf(g.slug) === s.id) })).filter(s => s.items.length);
     const summary = (text: string | null) => (text && !/^Complete 2026 guide to/.test(text) ? text : null);
@@ -65,7 +66,7 @@ export default async function CountryHub({ params }: { params: Promise<{ country
                     <CardGrid>
                         {programs.map(p => (
                             <SACard key={p.field} href={`/study-abroad/programs/${country}/${p.degree}/${p.field}`}
-                                title={`${p.degree.toUpperCase()} ${p.field!.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase())}`}
+                                title={`${degreeLabel(p.degree)} ${p.field!.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase())}`}
                                 figure={`${p.universities} universities`} figureNote="side by side" cta="Compare Programs →" />
                         ))}
                     </CardGrid>

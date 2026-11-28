@@ -8,6 +8,48 @@
       "quote": "I-901 SEVIS Fee F or M visa applicants (full payment) $350",
       "value": "$350",
       "checked_on": "2026-10-29"
+    },
+    {
+      "id": "uk-funds-max-months",
+      "fact_key": "uk.funds.max_months",
+      "url": "https://www.gov.uk/student-visa/money",
+      "quote": "per month (for up to 9 months) for courses outside London",
+      "value": "9",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "uk-funds-hold-days",
+      "fact_key": "uk.funds.hold_days",
+      "url": "https://www.gov.uk/student-visa/money",
+      "quote": "You must have this money for at least 28 days in a row.",
+      "value": "28",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "uk-funds-hold-window-days",
+      "fact_key": "uk.funds.hold_window_days",
+      "url": "https://www.gov.uk/student-visa/money",
+      "quote": "The end date of the 28-day period must be within 31 days of the date you apply for your visa.",
+      "value": "31",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "uk-funds-monthly-london-hc584",
+      "fact_key": "uk.funds.monthly_london_gbp",
+      "url": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
+      "quote": "APP ST8. In ST 12.3(a), for “£1529”, substitute “£1570”.",
+      "value": "1570",
+      "checked_on": "2026-11-28",
+      "note": "HC 584 says APP ST8 to APP ST10 take effect on 30 November 2026 for applications made on or after that date."
+    },
+    {
+      "id": "uk-funds-monthly-outside-london-hc584",
+      "fact_key": "uk.funds.monthly_outside_london_gbp",
+      "url": "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible",
+      "quote": "APP ST9. In ST 12.3(b), for “£1171”, substitute “£1203”.",
+      "value": "1203",
+      "checked_on": "2026-11-28",
+      "note": "HC 584 says APP ST8 to APP ST10 take effect on 30 November 2026 for applications made on or after that date."
     }
   ]
 }

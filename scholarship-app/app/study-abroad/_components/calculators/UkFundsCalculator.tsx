@@ -7,6 +7,8 @@ import { calculateUkFunds, type UkFundsRates } from '@/lib/study-abroad/uk-funds
 export interface UkFundsCalculatorProps {
   rates: UkFundsRates;
   checkedAt?: string | null;
+  // Where the starting GBP to INR rate came from (RBI), and whether it was read today or is the last saved one
+  fx?: { asOf: string; live: boolean; sourceUrl: string };
 }
 
 interface CustomWindow extends Window {
@@ -16,10 +18,13 @@ interface CustomWindow extends Window {
 const formatGBP = (amount: number) =>
   new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }).format(amount);
 
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+
 const formatINR = (amount: number) =>
   new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
 
-export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculatorProps) {
+export default function UkFundsCalculator({ rates, checkedAt, fx }: UkFundsCalculatorProps) {
   const [annualTuitionGbp, setAnnualTuitionGbp] = useState(34600);
   const [depositPaidGbp, setDepositPaidGbp] = useState(2000);
   const [courseMonths, setCourseMonths] = useState(12);
@@ -146,6 +151,11 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
             onChange={(e) => setGbpToInr(Math.max(0, parseFloat(e.target.value) || 0))}
             className="w-full px-3 py-2 border border-[#CBD5E1] rounded-md text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#006c49] font-medium text-sm"
           />
+          {fx && (
+            <p className="text-xs text-[#64748B] mt-1">
+              Starts at the <a href={fx.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-google-blue hover:underline">RBI rate</a> of {formatDate(fx.asOf)}{fx.live ? '' : ' (the latest we could read)'}. Type your bank&apos;s rate to change it.
+            </p>
+          )}
         </div>
       </div>
 
@@ -198,7 +208,7 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
           You must show <strong>{formatGBP(result.totalFundsGbp)}</strong> ({formatINR(result.totalFundsInr)}) in an eligible bank account or approved education loan letter. The balance cannot dip below this total on any day during the <strong>{result.holdDays}-day</strong> holding period, and the statement&apos;s closing date must be within <strong>{result.holdWindowDays} days</strong> of your online visa submission.
         </p>
         <p>
-          Dependants are not included in version 1 of this calculator. Under current UK rules, most master&apos;s students cannot bring dependants unless enrolled in a PhD or research-based postgraduate programme.
+          Dependants are not included in version 1 of this calculator. Under current UK rules, most master&apos;s students cannot bring dependants unless enrolled in a PhD or research-based postgraduate programme (<a href="https://www.gov.uk/student-visa/family-members" target="_blank" rel="noopener noreferrer" className="text-[#0645ad] hover:underline">GOV.UK</a>).
         </p>
       </div>
 
@@ -213,7 +223,7 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
             <strong>Living money:</strong> {formatGBP(rates.monthlyLondonGbp)}/month in London or {formatGBP(rates.monthlyOutsideLondonGbp)}/month outside London, capped at {rates.maxMonths} months. Courses under {rates.maxMonths} months use actual months rounded up. <em>Note: Per UK Home Office Statement of Changes HC 584, applications submitted on or after 30 November 2026 require £1,570/month (London) and £1,203/month (outside London).</em>
           </li>
           <li>
-            <strong>Health surcharge (IHS):</strong> {formatGBP(rates.ihsAnnualGbp)}/year, billed in 6-month blocks (minimum 1 year for Student visas).
+            <strong>Health surcharge (IHS):</strong> {formatGBP(rates.ihsAnnualGbp)} a year, charged on the length of your visa, not your course. The visa runs for the course plus 1 month before it and 4 months after a course of 12 months or longer (2 months after a course of 6 to 12 months). A 12-month course therefore gets about 17 months of visa and pays 1.5 years of surcharge.
           </li>
         </ul>
         <p className="text-xs text-[#64748B]">
@@ -221,6 +231,8 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
           <a href="https://www.gov.uk/student-visa/money" target="_blank" rel="noopener noreferrer" className="text-[#0645ad] hover:underline">GOV.UK Student visa money</a>
           {' · '}
           <a href="https://www.gov.uk/healthcare-immigration-application/how-much-pay" target="_blank" rel="noopener noreferrer" className="text-[#0645ad] hover:underline">GOV.UK Immigration Health Surcharge</a>
+          {' · '}
+          <a href="https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026/statement-of-changes-to-the-immigration-rules-hc-584-3-september-2026-accessible" target="_blank" rel="noopener noreferrer" className="text-[#0645ad] hover:underline">HC 584 (monthly amounts from 30 November 2026)</a>
         </p>
       </div>
 
@@ -228,7 +240,7 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
       <div className="mb-6 p-4 border border-[#E2E8F0] rounded-lg bg-white">
         <h4 className="text-sm font-bold text-[#0F172A] uppercase tracking-wide mb-1">Next step</h4>
         <p className="text-sm text-[#334155]">
-          Sending your tuition deposit or living funds from India? Check the 5% / 0.5% tax collected at source with our{' '}
+          Sending your tuition deposit or living funds from India? Check the tax collected at source (TCS) on your transfer with our{' '}
           <Link href="/study-abroad/tools/rbi-lrs-tcs-calculator" className="text-[#0645ad] font-semibold hover:underline">
             TCS on foreign remittance calculator →
           </Link>
@@ -253,7 +265,7 @@ export default function UkFundsCalculator({ rates, checkedAt }: UkFundsCalculato
         <div className="py-3 border-b border-[#F1F5F9]">
           <h5 className="font-bold text-[#0F172A] text-sm">Is the Immigration Health Surcharge part of the 28-day bank balance?</h5>
           <p className="text-sm text-[#64748B] mt-1 leading-relaxed">
-            No. You pay the Immigration Health Surcharge ({formatGBP(rates.ihsAnnualGbp)}/year) online as part of your visa application fee checkout, separately from the maintenance funds held in your account.
+            No. You pay the Immigration Health Surcharge ({formatGBP(rates.ihsAnnualGbp)} a year) online as part of your visa application, separately from the maintenance funds held in your account.
           </p>
         </div>
         <div className="py-3">

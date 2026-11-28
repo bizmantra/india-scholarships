@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { COUNTRIES, isCountry, getProgramCombos, getProgramsForCombo, getGuides, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
+import { COUNTRIES, isCountry, degreeLabel, getProgramCombos, getProgramsForCombo, getGuides, MIN_INDEXABLE_UNIVERSITIES } from '@/lib/study-abroad/data';
 import { SITE, money, pageTitle } from '@/lib/study-abroad/content';
 import ListingShell, { ListingSection } from '../../../../_components/ListingShell';
 import SACard, { CardGrid } from '../../../../_components/SACard';
@@ -11,17 +11,17 @@ export const revalidate = 86400;
 // Only combinations with real program records get a page; anything else is a 404
 export const dynamicParams = false;
 export async function generateStaticParams() {
-    return (await getProgramCombos()).map(({ country, degree, field }) => ({ country, degree, field }));
+    return (await getProgramCombos()).filter(c => isCountry(c.country)).map(({ country, degree, field }) => ({ country, degree, field }));
 }
 
-const DEGREES: Record<string, string> = { ms: "Master's (MS / MSc)" };
+const DEGREES: Record<string, string> = { ms: "Master's (MS / MSc)", master: "Master's (MSc)", mba: 'MBA' };
 const label = (field: string) => field.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase());
 
 export async function generateMetadata({ params }: { params: Promise<{ country: string; degree: string; field: string }> }): Promise<Metadata> {
     const { country, degree, field } = await params;
     if (!isCountry(country)) return {};
     const combo = (await getProgramCombos()).find(c => c.country === country && c.degree === degree && c.field === field);
-    const name = `${degree.toUpperCase()} in ${label(field)} in ${COUNTRIES[country].name}`;
+    const name = `${degreeLabel(degree)} in ${label(field)} in ${COUNTRIES[country].name}`;
     return {
         title: pageTitle(`${name}: Fees, Requirements & Deadlines Compared`),
         description: `Compare ${combo?.universities || ''} universities for ${name}: tuition, living costs, minimum GPA, IELTS, GRE and deadlines, from official program pages.`,
@@ -36,13 +36,13 @@ export default async function ProgramComparison({ params }: { params: Promise<{ 
     const [programs, loans] = await Promise.all([getProgramsForCombo(country, degree, field), getGuides('loan', country)]);
     if (!programs.length) notFound();
     const c = COUNTRIES[country];
-    const title = `${DEGREES[degree] || degree.toUpperCase()} in ${label(field)} in ${c.name}`;
+    const title = `${DEGREES[degree] || degreeLabel(degree)} in ${label(field)} in ${c.name}`;
     const tuitions = programs.map(p => p.tuition_per_year).filter((n): n is number => n != null);
     const unis = new Set(programs.map(p => p.university_slug)).size;
     const noTuition = tuitions.filter(t => t === 0).length;
     return (
         <ListingShell
-            crumbs={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: c.name, href: `/study-abroad/study-in/${country}` }, { label: `${degree.toUpperCase()} ${label(field)}` }]}
+            crumbs={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad' }, { label: c.name, href: `/study-abroad/study-in/${country}` }, { label: `${degreeLabel(degree)} ${label(field)}` }]}
             title={`${title} 2026`}
             intro={<>Compare <a href="#list" className="font-bold text-google-blue hover:underline">{programs.length} programs at {unis} universities</a>. Every figure comes from the program&apos;s own page; open a program to see its source and when it was last checked.</>}
             stats={[
@@ -56,7 +56,7 @@ export default async function ProgramComparison({ params }: { params: Promise<{ 
                 '@context': 'https://schema.org', '@type': 'ItemList', name: title, numberOfItems: programs.length,
                 itemListElement: programs.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: `${p.title}, ${p.university_name}`, url: `${SITE}/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}` })),
             }]}>
-            <ListingSection id="list" title={`${degree.toUpperCase()} ${label(field)} Programs`}>
+            <ListingSection id="list" title={`${degreeLabel(degree)} ${label(field)} Programs`}>
                 <CardGrid>
                     {programs.map(p => (
                         <SACard key={p.id} href={`/study-abroad/program-detail/${p.country}/${p.university_slug}/${p.slug}`}

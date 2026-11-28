@@ -5,6 +5,11 @@ import studyAbroadRedirects from "./lib/study-abroad/redirects.json";
 // Hand-maintained (not generated): old Study Abroad URLs Google found at the site root
 // (/universities/..., /visas/..., /loans/..., /study-in/...) and a few old /study-abroad/ paths.
 import studyAbroadRootRedirects from "./lib/study-abroad/redirects-root-paths.json";
+import { COUNTRIES } from "./lib/study-abroad/countries";
+
+// Countries that are not launched yet send their old hub URLs to /study-abroad. Built from the launched flag, so a
+// launched country (countries.ts) is served by its own pages without anyone editing this file.
+const hiddenCountries = [...Object.values(COUNTRIES).filter(c => !c.launched).map(c => c.slug), "global"].join("|");
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -473,8 +478,8 @@ const nextConfig: NextConfig = {
       ...studyAbroadRedirects,
       ...studyAbroadRootRedirects,
       // Study Abroad: countries without content yet, and old paths with no page of their own
-      { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)/:path*', destination: '/study-abroad', permanent: true },
-      { source: '/study-abroad/study-in/:country(uk|canada|australia|ireland|global)', destination: '/study-abroad', permanent: true },
+      { source: `/study-abroad/study-in/:country(${hiddenCountries})/:path*`, destination: '/study-abroad', permanent: true },
+      { source: `/study-abroad/study-in/:country(${hiddenCountries})`, destination: '/study-abroad', permanent: true },
       { source: '/study-abroad/study-in/:country(germany|usa)/costs', destination: '/study-abroad/study-in/:country', permanent: true },
       { source: '/study-abroad/scholarships', destination: '/scholarships/international', permanent: true },
       { source: '/study-abroad/universities', destination: '/study-abroad', permanent: true },
