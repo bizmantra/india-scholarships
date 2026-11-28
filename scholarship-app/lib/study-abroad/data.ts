@@ -79,6 +79,9 @@ export const getProgramCombos = () =>
 
 // ---------- Automatic link blocks (docs/study-abroad/templates/LINKING_RULES.md) ----------
 
+// Degree codes in sa_programs: Germany/USA rows use 'ms'; the UK rows use 'master' and 'mba'
+export const degreeLabel = (degree: string) => ({ ms: 'MS', master: 'MSc', mba: 'MBA' } as Record<string, string>)[degree] ?? degree.toUpperCase();
+
 export const fieldLabel = (field: string) => field.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase());
 
 /** Comparison pages (published, enough universities) for the degree + subject pairs in these programs. */
@@ -87,7 +90,7 @@ export async function getComparisonLinks(country: CountrySlug, programs: { degre
     if (!wanted.size) return [];
     return (await getProgramCombos())
         .filter(c => c.country === country && wanted.has(`${c.degree}/${c.field}`) && c.universities >= MIN_INDEXABLE_UNIVERSITIES)
-        .map(c => ({ href: `/study-abroad/programs/${c.country}/${c.degree}/${c.field}`, title: `${c.degree.toUpperCase()} in ${fieldLabel(c.field)} in ${COUNTRIES[c.country].name}`, universities: c.universities }));
+        .map(c => ({ href: `/study-abroad/programs/${c.country}/${c.degree}/${c.field}`, title: `${degreeLabel(c.degree)} in ${fieldLabel(c.field)} in ${COUNTRIES[c.country].name}`, universities: c.universities }));
 }
 
 /** 3–5 similar universities: same country, most subjects in common, then closest tuition, then name. */

@@ -1,0 +1,349 @@
+{
+  "agent": "content-editor",
+  "notes": "Publishes the 49 UK pages (2 guides, 12 universities, 35 courses). File and approve only after the pages themselves and every correction are approved, and after the 'UK pre-launch fixes' PR is merged and deployed (it keeps unlaunched countries out of the sitemap). UK stays hidden until the separate launch PR (launched: true) is merged. The Command Center publish gate checks every page again on approval.",
+  "changes": [
+    {
+      "table": "sa_guides",
+      "key": "uk-student-visa-guide",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_guides",
+      "key": "uk-total-cost-breakdown",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "coventry-university",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "newcastle-university",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "ucl",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-birmingham",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-edinburgh",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-glasgow",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-leeds",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-manchester",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-nottingham",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-sheffield",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-southampton",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_universities",
+      "key": "university-of-warwick",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_coventry-university-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_coventry-university-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_coventry-university-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_newcastle-university-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_newcastle-university-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_newcastle-university-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_ucl-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_ucl-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-birmingham-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-birmingham-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-birmingham-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-edinburgh-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-edinburgh-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-edinburgh-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-glasgow-computing-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-glasgow-data-science-ai",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-glasgow-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-leeds-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-leeds-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-leeds-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-manchester-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-manchester-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-manchester-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-nottingham-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-nottingham-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-nottingham-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-sheffield-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-sheffield-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-sheffield-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-southampton-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-southampton-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-southampton-mba",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-warwick-computer-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-warwick-data-science",
+      "fields": {
+        "status": "published"
+      }
+    },
+    {
+      "table": "sa_programs",
+      "key": "program_university-of-warwick-mba",
+      "fields": {
+        "status": "published"
+      }
+    }
+  ]
+}
