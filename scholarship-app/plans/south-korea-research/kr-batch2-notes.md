@@ -135,3 +135,10 @@ All use INR 0.069448 per KRW or INR 92.9139 per USD. They are my arithmetic, not
 | USD 80 | ₹7,433 |
 | USD 16,000 | ₹14.87 lakh |
 | USD 30,000 | ₹27.87 lakh |
+
+## Owner decisions applied 2026-11-28
+
+- `tuition_per_year` is left null on KAIST, SNU and Yonsei programmes. Pages show the official per-semester (and first-semester) fee only. A second semester is not assumed, so no yearly total is stored.
+- Korea University Global MBA stays without a tuition figure.
+- Missing application dates are written as "not yet published" (SNU Fall 2027, Yonsei Fall 2027, Korea University Fall 2027).
+- No further universities added.

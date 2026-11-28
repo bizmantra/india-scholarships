@@ -53,3 +53,7 @@ The tile formatter formats any 3-letter unit as currency with `en-IN`. The value
 - Remove `'south-korea'` from `UNLAUNCHED_COUNTRIES` in `scripts/lib/quality-rules.js` in the PR that sets `launched: true`. The `unlaunched_country_link` errors in the audit come from that list and are expected while hidden.
 - Add a live KRW read (see the exchange rate note).
 - Re-read every source in `kr-visa-facts.md` and `kr-batch2-notes.md`. Intake dates and fees change each cycle.
+
+## Live KRW/INR rate (added 2026-11-28, owner decision)
+
+The working rate is a live cross rate in code, not a hardcoded figure: RBI USD/INR divided by the Bank of Korea USD/KRW 15:30 close (ECOS series 731Y003, item 0000003). The reader is `lib/study-abroad/krw-rate.ts`, composed with `lib/study-abroad/rbi-rate.ts`. Fallback values, used only when a live read fails, are RBI ₹92.9139 per USD and Bank of Korea ₩1,337.9 per USD, both as of 27 November 2026. Guide prose still shows dated rupee snapshots at ₹0.0694 per won, and says the working rate should be read live.
