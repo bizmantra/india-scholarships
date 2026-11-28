@@ -287,16 +287,11 @@ export async function decide(ids: number[], action: 'approve' | 'reject', actor:
                 continue;
             }
 
-            // Status is forced to draft on insert, ignoring any status in payload
+            // Status is forced to draft on insert, ignoring any status in the payload, but only
+            // columns the table actually has are written (sa_facts has no status or created_at).
             const nowIso = new Date().toISOString().replace('T', ' ').slice(0, 19);
             const keyCol = (sa.TARGETS as Record<string, { key: string }>)[target.table].key;
-            const toInsert: Record<string, unknown> = {
-                ...rowData,
-                [keyCol]: target.key,
-                status: 'draft',
-                created_at: nowIso,
-                updated_at: nowIso,
-            };
+            const toInsert: Record<string, unknown> = sa.rowForNewInsert(target.table, target.key, rowData, nowIso);
 
             const cols = Object.keys(toInsert);
             const args = cols.map(c => sa.storedSaValue(target.table, c, toInsert[c]));
