@@ -2,6 +2,10 @@ import { revalidatePath } from 'next/cache';
 import { slugify } from '@/lib/utils';
 import { pagePath } from '@/scripts/lib/sa-inbox';
 
+// Sitemap files (app/sitemap.ts). They are cached, so a publish has to refresh them like any page.
+const SCHOLARSHIP_SITEMAP = '/sitemap/scholarships.xml';
+const STUDY_ABROAD_SITEMAP = '/sitemap/study-abroad.xml';
+
 const LOCALES = ['hi', 'bn', 'ta', 'te', 'or', 'kn'];
 
 // Listing pages that show deadlines, amounts or new entries
@@ -34,6 +38,8 @@ export function refreshScholarshipPages(items: { slug: string; state?: string | 
     if (paths.size === 0) return [];
     LISTING_PATHS.forEach(p => paths.add(p));
     for (const path of paths) revalidatePath(path);
+    // The sitemap is a cached copy too: without this, a new scholarship is missing from it until the next hourly refresh
+    revalidatePath(SCHOLARSHIP_SITEMAP);
     // State pages and the pages nested under them (/scholarships-in/<state>/<category>)
     if (hasState) revalidatePath('/scholarships-in/[state]', 'layout');
     return [...paths];
@@ -53,5 +59,6 @@ export function refreshStudyAbroadPages(items: { table: string; row: any }[]) {
     if (items.length === 0) return [];
     for (const path of pages) revalidatePath(path);
     revalidatePath('/study-abroad', 'layout');
+    revalidatePath(STUDY_ABROAD_SITEMAP);
     return [...pages, '/study-abroad (whole section)'];
 }

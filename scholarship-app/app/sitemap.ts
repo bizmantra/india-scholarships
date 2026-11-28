@@ -15,6 +15,14 @@ import { getAllArticles } from '@/lib/articles';
 import { getAllNews } from '@/lib/news';
 import { getAllPillars } from '@/lib/pillars';
 import { studyAbroadSitemap } from '@/lib/study-abroad/sitemap';
+import { scholarshipLastModified } from '@/lib/sitemap-dates';
+
+// These sitemaps are prerendered at build time, which froze them at the database as it was at deploy.
+// Scholarships published after the deploy were missing until the next one. Regenerate in the background at
+// most once an hour (the first request after that serves the old copy and triggers the rebuild at runtime,
+// where the live Turso database is read). lib/command-center/revalidate.ts also refreshes the
+// scholarships and study-abroad sitemaps the moment an Inbox approval publishes something.
+export const revalidate = 3600;
 
 export async function generateSitemaps() {
     return [
@@ -155,7 +163,8 @@ export default async function sitemap({ id }: { id: string }): Promise<MetadataR
         const scholarships = await getAllScholarships();
         return scholarships.map((s: any) => ({
             url: `${baseUrl}/scholarships/${s.slug}`,
-            lastModified: s.updated_at ? new Date(s.updated_at) : new Date(),
+            // No fake "now": the sitemap is regenerated hourly, and a lastmod that changes on every run is ignored by Google
+            lastModified: scholarshipLastModified(s),
             changeFrequency: 'weekly' as const,
             priority: 0.8,
         }));
