@@ -1,0 +1,48 @@
+{
+  "agent": "content-editor",
+  "notes": "University of British Columbia, drafted around the Master of Data Science (Vancouver). Built only from plans/canada-research/ca-batch2-notes.md section 1. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-british-columbia",
+      "source": "https://masterdatascience.ubc.ca/programs/vancouver",
+      "fields": {
+        "slug": "university-of-british-columbia",
+        "name": "University of British Columbia",
+        "country": "canada",
+        "city": "Vancouver, British Columbia",
+        "summary": "At UBC, the 10-month Master of Data Science costs CAD 59,767.92 in tuition. With IRCC's CAD 23,448 living-cost rule, plan to show CAD 83,215.92 before travel.",
+        "seo_title": "UBC for Indian Students: MDS Fees, Entry & 2027 Dates",
+        "meta_description": "UBC for Indian students: Master of Data Science at CAD 59,767.92, the study permit money to show, IELTS 7.0 if needed and a 31 January 2027 deadline.",
+        "tuition_per_year": 59768,
+        "tuition_currency": "CAD",
+        "body_md": "## At a glance\n\nThe University of British Columbia (UBC) has campuses in Vancouver and Kelowna. This page uses its Vancouver **Master of Data Science** to show real costs and entry rules.\n\nThe most important fact is the fee. International tuition for the 10-month programme is **CAD 59,767.92** (**₹39.01 lakh**). The study permit also needs living money, so the first year costs more than the fee alone.\n\n| | Master of Data Science (Vancouver) |\n|---|---|\n| Campus | Vancouver, on campus |\n| Length | 10 months full time |\n| Intake | September |\n| International tuition | **CAD 59,767.92** |\n| English test (IELTS), if needed | **7.0** overall, **6.5** in each part |\n| Application deadline for September 2027 | **31 January 2027** |\n\nUBC is a designated learning institution. IRCC's list shows it as a public institution. Its DLI number is O19330231062. UBC says applicants to its master's programmes do not need a PAL.\n\n## What it really costs\n\nThe study permit asks you to show enough money for tuition, living costs and travel. Read the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide) for the rules.\n\n| Item | Amount |\n|---|---|\n| International tuition | CAD 59,767.92 |\n| Living costs for 12 months (IRCC rule) | CAD 23,448 |\n| **Money to show before travel** | **CAD 83,215.92** |\n\nAt ₹65.27 per Canadian dollar this is about **₹54.32 lakh**. UBC also charges student fees, health-plan fees and an i-Med fee. It gives no amounts for them on the MDS page. Add your flights. UBC asks for a **CAD 3,000** deposit when you accept an offer, and credits it to tuition. Rents are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Getting in\n\nUBC asks for three prerequisite courses, a letter of intent, a CV and three recommendation letters. An English test is needed only if your last degree was taught in another language. The MDS pages give no minimum grade, so ask UBC. See the [programme page](/study-abroad/program-detail/canada/university-of-british-columbia/ubc-master-of-data-science) for the details.\n\n## Deadlines\n\nThe deadline for the September 2027 start is **31 January 2027**. UBC expects to decide within **8 to 12 weeks**. It does not allow deferred admission.\n\n## Popular programs for Indian students\n\n- [Master of Data Science (Vancouver)](/study-abroad/program-detail/canada/university-of-british-columbia/ubc-master-of-data-science): 10 months, tuition CAD 59,767.92, up to CAD 25,000 from the MDS International Scholarship.\n\n## Who it suits\n\n**A strong choice if** you have programming, statistics and calculus or linear algebra, and you want a short programme.\n\n**Think carefully if** you need to defer, or if you cannot show **CAD 83,215.92** for tuition and living costs. UBC's fees can change without notice.\n\n## Sources\n\n- [UBC Master of Data Science, Vancouver programme](https://masterdatascience.ubc.ca/programs/vancouver). Checked on 28 November 2026.\n- [Tuition and financial aid](https://masterdatascience.ubc.ca/admissions/tuition-and-financial-aid). Checked on 28 November 2026.\n- [Prerequisites](https://masterdatascience.ubc.ca/admissions/prerequisites). Checked on 28 November 2026.\n- [How to apply](https://masterdatascience.ubc.ca/admissions/how-apply). Checked on 28 November 2026.\n- [International students](https://masterdatascience.ubc.ca/admissions/international-students). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the UBC Master of Data Science cost for Indian students?",
+            "a": "International tuition is CAD 59,767.92, about ₹39.01 lakh at ₹65.27 per Canadian dollar. UBC adds student fees and health-plan fees. It says all fees can change without notice."
+          },
+          {
+            "q": "How much money must I show for a Canada study permit for the UBC MDS?",
+            "a": "Tuition of CAD 59,767.92 plus IRCC's CAD 23,448 for living costs is CAD 83,215.92, about ₹54.32 lakh. Add your flights. The programme is 10 months long, so tuition falls in one year."
+          },
+          {
+            "q": "Do I need IELTS for the UBC Master of Data Science?",
+            "a": "Only if your last degree is from a university where the official language of instruction was not English. If you need a test, Vancouver asks for IELTS 7.0 overall with 6.5 in each part."
+          },
+          {
+            "q": "What are the prerequisites for the UBC MDS?",
+            "a": "One programming course, one probability or statistics course, and one calculus or linear algebra course, each worth 3 credits. UBC does not count online courses such as Coursera."
+          },
+          {
+            "q": "What is the deadline for UBC MDS September 2027?",
+            "a": "31 January 2027. UBC expects to decide within 8 to 12 weeks. It does not allow deferred admission."
+          }
+        ],
+        "official_source": "https://masterdatascience.ubc.ca/programs/vancouver",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

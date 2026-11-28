@@ -1,0 +1,65 @@
+{
+  "agent": "content-editor",
+  "notes": "Waterloo Master of Data Science and Artificial Intelligence (co-op), September start, international. Built only from plans/canada-research/ca-batch2-notes.md section 2. Left out: a first-year fee (Waterloo does not split the 16 months by year), a September 2027 rate (not posted), rankings, salaries. tuition_per_year left empty for that reason. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_waterloo-mdsai-co-op",
+      "source": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data",
+      "fields": {
+        "id": "program_waterloo-mdsai-co-op",
+        "slug": "waterloo-mdsai-co-op",
+        "university_slug": "university-of-waterloo",
+        "country": "canada",
+        "degree": "master",
+        "field": "data-science",
+        "title": "Master of Data Science and Artificial Intelligence (Co-op)",
+        "tuition_currency": "CAD",
+        "ielts_min": 7.5,
+        "english_requirements": "If applicable: TOEFL 5 with 5 in writing and 5 in speaking, or IELTS 7.5 with 7.0 in writing and 7.0 in speaking.",
+        "summary": "Waterloo's 16-month MDSAI co-op costs CAD 6,272 per course for international students. It needs an honours degree at 78% or more. Applications close 15 January.",
+        "seo_title": "Waterloo MDSAI Co-op: Fees, Entry and Deadline",
+        "meta_description": "Waterloo Master of Data Science and AI (co-op) for Indian students: CAD 6,272 per course, 78% minimum, IELTS 7.5 if needed and a 15 January deadline.",
+        "gpa_min": "Honours bachelor's degree or equivalent with a minimum overall average of 78%",
+        "location": "Waterloo, Ontario",
+        "duration": "16 months full time (3 study terms and 1 co-op term)",
+        "language": "English",
+        "intakes": "September",
+        "application_portal": "University of Waterloo applicant portal",
+        "application_deadlines": {
+          "September start, applications close": "15 January"
+        },
+        "body_md": "## About this programme\n\nWant a data science master's with paid work terms? This page covers the fees, who can join and the dates for September 2027.\n\nThe Master of Data Science and Artificial Intelligence (MDSAI) co-op programme at Waterloo is full-time and taught on campus. Waterloo says it is designed to finish in **4 terms (16 months)**. That is three study terms of three courses each, plus one co-op term in the spring, from May to August. Waterloo calls the co-op placements paid.\n\n**The most important fact for you:** Waterloo charges by the course. Each course costs **CAD 6,272** (**₹4.09 lakh**) for international students, on the latest fee schedule.\n\nWaterloo's number on the IRCC list of schools is **O19305471522**. You enter it on your study permit application.\n\nFor the wider university, see our [University of Waterloo page](/study-abroad/universities/university-of-waterloo).\n\n## Can you get in?\n\n**Degree.** Waterloo asks for an honours bachelor's degree or equivalent in data science, computer science, statistics, mathematics or a related field. The minimum overall average is **78%**. Waterloo says this is only the minimum, and \"the actual admissions cut off is much higher\".\n\n**Experience.** You need senior-level experience in at least one of computer science or statistics. Waterloo also says it accepts a degree in a related field, such as maths or engineering. In that case you must show a strong background in computer science, statistics or maths through advanced courses.\n\n**Missing background.** Waterloo may admit you on probation. You would then take foundation courses in computer science (CS 600) and statistics (STAT 845). You need at least **78%** in the courses it names.\n\n**Documents.** Waterloo asks for these:\n\n- a resume\n- a statement of interest of up to 500 words\n- answers to programme-specific questions\n- your transcripts\n- three references, at least two of them academic\n\n**GRE.** Waterloo does not require GRE scores. It says scores can help your application.\n\n**English.** If you need to prove English, Waterloo lists these scores:\n\n| Test | Minimum |\n|---|---|\n| TOEFL | **5**, with **5** in writing and **5** in speaking |\n| IELTS | **7.5**, with **7.0** in writing and **7.0** in speaking |\n\nThe page says \"if applicable\". Ask Waterloo whether your degree needs a test.\n\n## What it costs\n\nWaterloo's fee schedule for international master's students (Winter 2027) lists the MDSAI at **CAD 6,272** per course. This is the programme's latest published rate. Waterloo has not posted a rate for a September 2027 start. It can change.\n\n| Item | Amount | In rupees |\n|---|---|---|\n| Tuition per course | CAD 6,272 | ₹4.09 lakh |\n| Tuition for 9 courses (3 study terms of 3 courses) | CAD 56,448 | ₹36.84 lakh |\n| Incidental fees per full-time term | CAD 1,014.11 | ₹66,191 |\n| Incidental fees for 3 study terms | CAD 3,042.33 | ₹1.99 lakh |\n| Co-op fee | CAD 836 | ₹54,566 |\n\nThe nine-course sum and the incidental-fee sum are ours. Together, tuition and incidental fees for the three study terms come to **CAD 59,490.33** (**₹38.83 lakh**). With the co-op fee that is **CAD 60,326.33** (**₹39.37 lakh**). This leaves out any fees in the work term, because the page does not list them.\n\nWaterloo says it assesses the co-op fee in your first study term and any remaining fees in each work term. Fees include HST where Waterloo says so.\n\nIRCC asks you to show your first year of tuition, plus **CAD 23,448** for living costs. Waterloo does not say how the 16 months split between years. Ask Waterloo for the amount due in your first 12 months. Then add the living costs and your flights. The study permit costs **CAD 150** and biometrics cost **CAD 85**. See the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Funding\n\nWaterloo says the programme is recognised by the Vector Institute. Its page says MDSAI students can apply for the Vector Scholarship in Artificial Intelligence, worth **CAD 17,500** (**₹11.42 lakh**), through a streamlined process. The dates on that page are for the 2026 intake. We have not found an official page that confirms the award for Indian students, so check with Waterloo before you plan on it.\n\n## Deadlines and intakes\n\nThe MDSAI co-op programme admits students only in the fall. Waterloo lists **15 January** as the deadline for a September start. The page does not name a year. Confirm that 15 January 2027 applies to the September 2027 start.\n\nWaterloo says it does not review applications until after the deadline. In most cases it reviews complete applications within about **8 to 10 weeks** of the deadline.\n\n## How to apply\n\n1. Check your degree against the 78% minimum and the senior-level requirement.\n2. Write your statement of interest of up to 500 words and pick three referees.\n3. Ask Waterloo whether your degree needs an English test.\n4. Apply through the Waterloo applicant portal. Apply at least one month before the deadline.\n5. Upload all documents. Waterloo says you have 2 extra weeks to upload documents if you applied before the deadline.\n6. After an offer, ask Waterloo for the tuition due in your first 12 months.\n7. Apply for your study permit. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide). Waterloo is a public school, so a master's student does not need a PAL.\n\n## After the programme\n\nThe programme includes one paid co-op term. From 1 April 2026, IRCC says eligible students no longer need a separate work permit for a co-op placement their programme requires. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide).\n\nIRCC allows a post-graduation work permit of up to 3 years for a master's degree. You must meet its rules, including language level **CLB 7**.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a strong computer science or statistics degree with well above 78%\n- you want paid work experience built into the programme\n- you can plan for tuition by the course and a 16-month stay\n\n**Think carefully if:**\n\n- your degree is not in a related field, because the committee wants advanced course grades\n- you want a January or May start, because the co-op programme admits only in the fall\n- you need a fixed total fee, because Waterloo charges by the course and may change the rate\n\n## Sources\n\n- [MDSAI co-op programme page](https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data). Checked on 28 November 2026.\n- [MDSAI tuition page](https://uwaterloo.ca/data-science/graduate-programs/master-data-science-and-artificial-intelligence/tuition). Checked on 28 November 2026.\n- [Master's and PhD tuition, Winter 2027, international students](https://uwaterloo.ca/finance/masters-and-phd-program-tuition-winter-2027-international). Checked on 28 November 2026.\n- [Data Science admission requirements](https://uwaterloo.ca/data-science/graduate-programs/admission-requirements). Checked on 28 November 2026.\n- [Data Science application deadlines](https://uwaterloo.ca/data-science/graduate-programs/application-deadlines). Checked on 28 November 2026.\n- [Vector Scholarship in Artificial Intelligence at Waterloo](https://uwaterloo.ca/data-science/vector-scholarship-artificial-intelligence). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the Waterloo MDSAI co-op cost for international students?",
+            "a": "Waterloo's latest schedule lists CAD 6,272 per course, or CAD 56,448 for nine courses by our sum. Incidental fees are CAD 1,014.11 per full-time term and the co-op fee is CAD 836."
+          },
+          {
+            "q": "What marks do I need for the Waterloo MDSAI?",
+            "a": "An honours bachelor's degree in a related field with at least 78% overall. Waterloo says the real cut-off is much higher because admission is competitive."
+          },
+          {
+            "q": "Is the GRE needed for the Waterloo MDSAI?",
+            "a": "No. Waterloo does not require GRE scores. It says scores can help your application."
+          },
+          {
+            "q": "What is the deadline for the MDSAI co-op?",
+            "a": "15 January for a September start. The co-op programme admits only in the fall. Confirm that 15 January 2027 applies to September 2027."
+          },
+          {
+            "q": "How long is the MDSAI co-op?",
+            "a": "Waterloo says 4 terms, or 16 months. That is three study terms with three courses each and one co-op term in the spring."
+          },
+          {
+            "q": "Do I need a PAL for Waterloo?",
+            "a": "No. Master's and doctoral students at public schools do not need a PAL. IRCC lists Waterloo as a public institution. You still need your letter of acceptance."
+          }
+        ],
+        "official_source": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "agent": "content-editor",
+  "notes": "Concordia Master of Applied Computer Science (Gina Cody School), international. Built only from plans/canada-research/ca-batch2-notes.md section 6. Left out: compulsory fees and a total (not listed), 2027-28 cohort rate (not posted), Concordia's exempt-country list (not readable), salaries. Deadlines carry no year on Concordia's page. tuition_per_year left empty. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_concordia-master-of-applied-computer-science",
+      "source": "https://www.concordia.ca/academics/graduate/computer-science-mcompsci-applied.html",
+      "fields": {
+        "id": "program_concordia-master-of-applied-computer-science",
+        "slug": "concordia-master-of-applied-computer-science",
+        "university_slug": "concordia-university",
+        "country": "canada",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Applied Computer Science",
+        "tuition_currency": "CAD",
+        "ielts_min": 6.5,
+        "english_requirements": "Gina Cody School: IELTS Academic 6.5 overall, or TOEFL iBT 4.5 overall with no section below 4.0 (from January 2026), or 85 with at least 20 in each part. Some applicants may be exempt.",
+        "summary": "Concordia's 45-credit Master of Applied Computer Science charges international students CAD 795 a credit for the 2026-27 cohort. The rate is fixed for your programme.",
+        "seo_title": "Concordia Master of Applied Computer Science: Fees & Entry",
+        "meta_description": "Concordia Master of Applied Computer Science for Indian students: CAD 795 a credit, 45 credits, IELTS 6.5, a CAQ and a 1 March deadline for fall entry.",
+        "gpa_min": "Concordia equivalent of a GPA of at least 3.00 on a scale of 4.30",
+        "location": "Montreal, Quebec",
+        "duration": "1 to 2 years full time, 45 credits",
+        "language": "English",
+        "intakes": "Fall, Winter, Summer",
+        "application_portal": "Concordia graduate online application",
+        "application_deadlines": {
+          "Fall start, international": "1 March",
+          "Winter start, international": "1 July",
+          "Summer start, international": "1 November"
+        },
+        "body_md": "## About this programme\n\nWant a computer science master's in Montreal that starts in fall, winter or summer? This page covers the fee, who can join and the dates.\n\nThe Master of Applied Computer Science (MApCompSc) at Concordia's Gina Cody School of Engineering and Computer Science is a **45-credit**, course-based programme. Concordia lists the length as **1 to 2 years**. It says the degree is full-time, with a normal length of two years. It has an optional co-op: a paid, full-time internship of four or eight months. It is for people who want to move their career toward computer applications in industry.\n\n**The most important fact for you:** Concordia charges per credit, and the rate is fixed for your cohort. For students who start in 2026-27, the rate is **CAD 795** a credit. Over 45 credits, that is **CAD 35,775** (**₹23.35 lakh**) in tuition. Compulsory fees are extra.\n\nConcordia is in Quebec. You need a CAQ before your study permit. Read the Quebec section below.\n\nConcordia's number on the IRCC list of schools is **O19359011007**. You enter it on your study permit application.\n\nFor the wider university, see our [Concordia University page](/study-abroad/universities/concordia-university).\n\n## Can you get in?\n\n**Degree.** Concordia asks for an undergraduate degree in computer science or a graduate diploma in computer science.\n\n**Grades.** For master's study, Concordia asks for high standing. It says this means honours, or the Concordia equivalent of a GPA of at least **3.00 on a scale of 4.30**. Concordia works out the equivalent from your marks.\n\n**English.** Concordia asks for a test unless you meet an exemption. The exemption needs three years of study in a country on Concordia's list, where English is the main language. We could not read that list, so check it for India. Concordia may still ask for a test. For the Gina Cody School of Engineering and Computer Science, the minimums are below.\n\n| Test | Minimum with no English courses |\n|---|---|\n| IELTS Academic | **6.5** overall |\n| TOEFL iBT (tests from January 2026) | **4.5** overall, no section below 4.0 |\n| TOEFL iBT (older scale) | **85**, with at least 20 in each part |\n\nLower scores can mean extra English courses. IELTS 6.0 with no part under 5.5 needs ENCS 5721 and 6721. An IELTS below 6.0 means no admission.\n\n## What it costs\n\nFor students who start in 2026-27, Concordia charges international students **CAD 795** per credit (**₹51,890** at the rate below). The programme has 45 credits, so tuition adds up to **CAD 35,775** (**₹23.35 lakh**). Concordia says this rate is fixed for the length of your programme, for your cohort year. The rate for the 2027-28 cohort was not posted when we checked.\n\nConcordia also charges compulsory fees per credit, per term or once. Its page does not list them for this programme, so we give no total. Use Concordia's tuition and fee estimator.\n\nFor your study permit, Quebec sets its own money rule. For one student, the amount for essential expenses for one year is **CAD 24,617** (**₹16.07 lakh**). The study permit costs **CAD 150** and biometrics cost **CAD 85**. IRCC asks you to show your first year of tuition. Ask Concordia how many credits you take in year one. See the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide).\n\nMontreal rents and bills are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Funding\n\nConcordia says funding packages are generally for thesis-based programmes. Course-based students may be eligible for donor awards, and Concordia tells them to ask their department. It lists no amount for this programme, so we give none.\n\n## Deadlines and intakes\n\nConcordia lists these deadlines for international students:\n\n| Start | Deadline |\n|---|---|\n| Fall | **1 March** |\n| Winter | **1 July** |\n| Summer | **1 November** |\n\nConcordia lists deadlines without a year. As of 28 November 2026, the next one for most readers is **1 March 2027** for the Fall 2027 start. Concordia gives priority to complete applications by the deadline. It may take later ones if there is space. It also tells international applicants to apply early, because of the wait to meet entry rules for Canada and Quebec.\n\n## How to apply\n\n1. Check your degree against Concordia's computer science requirement.\n2. Check your marks against the 3.00 on 4.30 equivalent.\n3. Check Concordia's list of exempt countries, or book an English test.\n4. Apply online by 1 March 2027 for Fall 2027.\n5. After an offer, apply for a CAQ and then your study permit. Concordia is in Quebec, so a CAQ comes first.\n6. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide). Concordia is a public school, so a master's student does not need a PAL.\n\n## After the programme\n\nIf you choose co-op, the internship is paid and lasts four or eight months. IRCC allows a post-graduation work permit of up to 3 years for a master's degree. You must meet its rules, including language level **CLB 7**. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide).\n\n## Who it suits\n\n**A strong choice if:**\n\n- you hold a computer science degree and want a course-based master's\n- you want a fixed per-credit rate for your whole programme\n- you can show Quebec's living amount and tuition for year one\n\n**Think carefully if:**\n\n- your degree is not in computer science, because Concordia asks for one\n- you need a full cost, because Concordia's page does not list compulsory fees\n- you cannot confirm the English exemption for India\n\n## Sources\n\n- [Concordia Master of Applied Computer Science](https://www.concordia.ca/academics/graduate/computer-science-mcompsci-applied.html). Checked on 28 November 2026.\n- [Concordia graduate tuition and fee rates](https://www.concordia.ca/students/financial/tuition-fees/rates/grad.html). Checked on 28 November 2026.\n- [Concordia graduate admissions calendar](https://www.concordia.ca/academics/graduate/calendar/current/admissions.html). Checked on 28 November 2026.\n- [Concordia English language proficiency](https://www.concordia.ca/gradstudies/future-students/how-to-apply/english-language-proficiency.html). Checked on 28 November 2026.\n- [Quebec government: financial resources for international students](https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the Concordia Master of Applied Computer Science cost?",
+            "a": "Concordia charges international students CAD 795 per credit for the 2026-27 cohort. For 45 credits that is CAD 35,775, about ₹23.35 lakh at ₹65.27 per Canadian dollar. Compulsory fees are extra."
+          },
+          {
+            "q": "Is Concordia's tuition fixed for the whole programme?",
+            "a": "Concordia says the rate for international students in course-based master's programmes is fixed for the length of the programme, for your cohort year. The 2027-28 rate was not posted."
+          },
+          {
+            "q": "What is the Concordia deadline for Fall 2027?",
+            "a": "Concordia lists 1 March for Fall for international students. The next Fall start is in 2027, so apply by 1 March 2027. Check the page for the year."
+          },
+          {
+            "q": "What IELTS score does Concordia need for computer science?",
+            "a": "For the Gina Cody School, IELTS 6.5 overall with no English courses. An IELTS of 6.0 with no part under 5.5 needs extra English courses. Below 6.0 means no admission."
+          },
+          {
+            "q": "What marks do I need for Concordia?",
+            "a": "For master's study, Concordia asks for high standing. It says this means honours, or the Concordia equivalent of a GPA of at least 3.00 on a scale of 4.30."
+          },
+          {
+            "q": "Do I need a CAQ for Concordia?",
+            "a": "Yes. Concordia is in Quebec, so you need a CAQ before your study permit. Quebec also sets its own living amount, which is CAD 24,617 for one student."
+          },
+          {
+            "q": "Does the Concordia MApCompSc have co-op?",
+            "a": "Yes, as an option. Concordia describes it as a paid, full-time internship of four or eight months."
+          }
+        ],
+        "official_source": "https://www.concordia.ca/academics/graduate/computer-science-mcompsci-applied.html",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

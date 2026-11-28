@@ -1,0 +1,43 @@
+{
+  "agent": "content-editor",
+  "notes": "University of Toronto, drafted around the MScAC (Computer Science concentration). Built only from plans/canada-research/ca-batch2-notes.md section 3. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-toronto",
+      "source": "https://mscac.utoronto.ca/apply/",
+      "fields": {
+        "slug": "university-of-toronto",
+        "name": "University of Toronto",
+        "country": "canada",
+        "city": "Toronto, Ontario",
+        "summary": "At U of T, the 16-month MScAC (Computer Science) is estimated at CAD 90,050 for international students. Fall 2027 applications close 1 December 2026.",
+        "seo_title": "University of Toronto for Indian Students: MScAC Fees & Entry",
+        "meta_description": "University of Toronto for Indian students: MScAC Computer Science at an estimated CAD 90,050, B+ standing, IELTS 7.0 if needed and a 1 December 2026 deadline.",
+        "tuition_currency": "CAD",
+        "body_md": "## At a glance\n\nThe University of Toronto has campuses in Toronto, Mississauga and Scarborough. This page uses its **Master of Science in Applied Computing (MScAC)** with the Computer Science concentration to show real costs and entry rules.\n\nThe most important fact is the fee. For the programme starting in September 2026, U of T estimates **CAD 90,050** (**₹58.78 lakh**) for the whole 16 months, for international students.\n\n| | MScAC (Computer Science) |\n|---|---|\n| Campus | Toronto |\n| Length | 16 months full time |\n| Internship | Eight months, paid |\n| Intake | Fall only |\n| Estimate for the whole programme | **CAD 90,050** (September 2026 start) |\n| Minimum standing | **B+** (U of T 77 to 79%) |\n| English test (IELTS), if needed | **7.0** overall, **6.5** in each part |\n| Application deadline for Fall 2027 | **1 December 2026** |\n\nU of T is a designated learning institution. IRCC's list shows it as a public institution. Its DLI number is O19332746152.\n\n## What it really costs\n\nThe study permit asks you to show enough money for tuition, living costs and travel. Read the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide) for the rules.\n\nU of T's estimate of **CAD 90,050** covers the whole 16 months and includes a **CAD 2,200** pre-program fee. The Fall 2027 fee was not posted when we checked. IRCC also asks for **CAD 23,448** for living costs (**₹15.30 lakh**) and your flights. U of T does not split the programme by year, so ask it for your first-year amount. Toronto rents are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Getting in\n\nU of T asks for a standing equal to at least **B+** in your final year. It asks for knowledge equal to three senior computer science courses, three letters of support and programme essay answers. See the [programme page](/study-abroad/program-detail/canada/university-of-toronto/toronto-mscac-computer-science) for the details.\n\n## Deadlines\n\nThe deadline for Fall 2027 is **1 December 2026** at 11:59 p.m. Eastern time. The programme has one intake. U of T decides between December and April.\n\n## Popular programs for Indian students\n\n- [Master of Science in Applied Computing, Computer Science](/study-abroad/program-detail/canada/university-of-toronto/toronto-mscac-computer-science): 16 months, eight-month paid internship, estimate CAD 90,050.\n\n## Who it suits\n\n**A strong choice if** you hold a strong computer science degree and want an internship inside the master's.\n\n**Think carefully if** you hold a three-year degree, or if you need a fixed fee. U of T posts fees each July and they can change.\n\n## Sources\n\n- [MScAC apply page](https://mscac.utoronto.ca/apply/). Checked on 28 November 2026.\n- [MScAC programme home](https://mscac.utoronto.ca/). Checked on 28 November 2026.\n- [School of Graduate Studies: English language proficiency](https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/). Checked on 28 November 2026.\n- [Ontario Graduate Scholarship at U of T](https://www.sgs.utoronto.ca/awards/ontario-graduate-scholarship/). Checked on 28 November 2026.\n- [U of T living costs in Toronto](https://www.studentlife.utoronto.ca/task/living-costs-in-toronto/). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the U of T MScAC cost for international students?",
+            "a": "U of T estimates CAD 90,050 for the whole 16-month programme starting September 2026, about ₹58.78 lakh at ₹65.27 per Canadian dollar. That includes a CAD 2,200 pre-program fee. The 2027 fee was not posted."
+          },
+          {
+            "q": "What marks do I need for the U of T MScAC?",
+            "a": "A standing equal to at least B+ (U of T 77 to 79%) in your final year of a four-year degree. Admission is competitive and the committee reviews your whole file."
+          },
+          {
+            "q": "What is the deadline for the MScAC for Fall 2027?",
+            "a": "1 December 2026 at 11:59 p.m. Eastern time. The programme has one intake, in the fall."
+          },
+          {
+            "q": "Do I need IELTS for U of T MScAC?",
+            "a": "Only if your degree was earned where the language of instruction and examination was not English. If you need it, U of T asks for IELTS 7.0 overall with 6.5 in each part, or TOEFL 93."
+          }
+        ],
+        "official_source": "https://mscac.utoronto.ca/apply/",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
