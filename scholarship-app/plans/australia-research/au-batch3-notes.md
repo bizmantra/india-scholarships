@@ -279,3 +279,245 @@ Fee, entry and English come from the rendered program pages (the entry tab text 
   - Source: —
   - Quote: "0.25 x 60,952 = 15,238"
   - Checked 28 November 2026. Read our sum.
+
+## Australian National University (ANU)
+
+Program data were read from the rendered 2027 program page. Closing dates and the application fee were read with a fetch tool. We did not file a scholarship for ANU.
+
+- **Fee, 2027, international:** AUD 57,640 a year
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "Annual indicative fee for international students $57,640.00"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Fee basis:** 48 units a year
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "The annual indicative fee for a program is based on the standard full-time enrolment load of 48 units per year"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **SA fee:** Payable; amount not given
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "All students are required to pay the Services and amenities fee"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **CRICOS:** 078940M
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "078940M"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Length:** 2 years full time, 96 units
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "LENGTH 2 year full-time MINIMUM 96 Units"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Accreditation:** ACS
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "The program is professionally accredited by the Australian Computer Society."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Audience:** Graduates without a computing background
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "targeted to graduates without a computing background"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Capstone:** Internship or TechLauncher
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "The program culminates in a capstone project: either completing an Internship or working in small groups to solve a clients problem via TechLauncher."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Exit award:** Graduate Diploma after 48 units
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "On completion of 48 units, students may exit with a Graduate Diploma of Computing."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Entry, degree route:** GPA 5.0/7.0
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Entry, work route:** GPA 4.0/7.0 plus 3 years
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "A Bachelor degree or international equivalent with a GPA of 4.0/7.0 and 3 years full-time equivalent years of professional experience at ANZSCO Skill Level 1 in a field related to the program."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **GPA calculation:** Higher of two calculations
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "The higher of the two calculations will be used as the basis for admission."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **Competitive entry:** No guarantee
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "meeting all admission requirements does not automatically guarantee entry"
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+- **English, IELTS:** 6.5 overall; 6.0 each part (unspecified programs)
+  - Source: https://policies.anu.edu.au/ppl/document/ANUP_000408
+  - Quote: "Overall score: 6.5 Reading: 6.0 Writing: 6.0 Speaking: 6.0 Listening: 6.0"
+  - Checked 28 November 2026. Read by curl, policy page text (Table 6, 'Minimum scores for unspecified programs').
+- **IELTS online not accepted:** Testing centre only
+  - Source: https://policies.anu.edu.au/ppl/document/ANUP_000408
+  - Quote: "All IELTS results must be completed at an IELTS testing centre, online test results are not accepted."
+  - Checked 28 November 2026. Read by curl, policy page text.
+- **Other accepted tests:** TOEFL iBT, PTE Academic, Cambridge C1
+  - Source: https://www.anu.edu.au/study/apply/english-language-requirements
+  - Quote: "Providing an acceptable English proficiency test. Here are some of the popular tests: International English Language Testing System (IELTS) TOEFL iBT Cambridge C1 Advanced Pearson Test of English (PTE) Academic"
+  - Checked 28 November 2026. Read by curl, page text.
+- **Semester 1 close:** 15 December 2026
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "Applications are now open and will close on the 15 December 2026."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly. The fetch labelled this block 'Semester 1, 2028' by mistake, because Semester 1, 2028 has its own block closing 15 December 2027; we read it as Semester 1, 2027.
+- **Semester 1 acceptance:** 15 January overseas
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "The acceptance deadline for Semester 1 is 15 January if you are overseas, and 31 January if you are in Australia at the time of accepting your offer."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Semester 2, 2027 close:** 15 May 2027
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "Applications are now open and will close on the 15 May 2027."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Semester 2 acceptance:** 30 June overseas
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "The acceptance deadline for Semester 2 is 30 June if you are overseas, and 10 July if you are in Australia at the time of accepting your offer."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Extra criteria:** Dates may vary
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "Application deadline for programs with additional selection criteria may vary."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Application fee:** AUD 150 per application
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "You must pay an application fee of AUD$150 upon submission of each application you make to the University."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Agents:** Can help; not required
+  - Source: https://study.anu.edu.au/apply/international-applications
+  - Quote: "Our educational agents around the world can help you apply to ANU. Find an agent near you."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the box could not read this page cleanly.
+- **Scholarships:** General statement only
+  - Source: https://programsandcourses.anu.edu.au/2027/program/7706xmcomp
+  - Quote: "ANU offers a wide range of scholarships to students to assist with the cost of their studies."
+  - Checked 28 November 2026. Read from the rendered program page, including hidden tab text (Playwright).
+
+## RMIT University
+
+Fees are in RMIT's 2027 international onshore fee PDF and on the course pages. The course pages were read with a fetch tool; the CRICOS code for MC208 is in the page's own HTML. RMIT gives no closing date on the course pages.
+
+- **MC208 fee, 2027, international:** AUD 47,040 a year
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Fees: : AU$47,040 (2027 annual)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 fee in the fee schedule:** AUD 47,040 a year
+  - Source: https://www.rmit.edu.au/content/dam/rmit/documents/staff-site/servicesandtools/finance/2027-inton-fees.pdf
+  - Quote: "MC208 MC208 Master of Information Technology 192 2.00 96 $ 47,040 $ 490.00"
+  - Checked 28 November 2026. Read by curl and pdftotext (PDF, 'International Onshore').
+- **MC267 fee in the fee schedule:** AUD 47,040 a year
+  - Source: https://www.rmit.edu.au/content/dam/rmit/documents/staff-site/servicesandtools/finance/2027-inton-fees.pdf
+  - Quote: "MC267 MC267 Master of Data Science 192 2.00 96 $ 47,040 $ 490.00"
+  - Checked 28 November 2026. Read by curl and pdftotext (PDF, 'International Onshore').
+- **Two-year total, 2027 start:** AUD 96,000
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "The total indicative tuition fee for 2027 commencement is AU$96,000."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **SSAF, 2027 maximum:** AUD 386
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "The student services and amenities fee (SSAF) ... the maximum fee for 2027 is $386."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result; SSAF wording copied from the fetch result.
+- **MC208 CRICOS:** 121298D
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "MC208P27 121298D"
+  - Checked 28 November 2026. Read from the course page's own HTML table.
+- **MC208 duration:** Full-time 2 years
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Duration: : Full-time 2 years"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 intakes:** February, July
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Next intake: : February, July"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 accreditation:** ACS Professional level
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "fully accredited at a Professional level by the Australian Computer Society"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 entry, degree:** Any discipline, GPA 2.0/4.0
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Successful completion of an Australian bachelor degree (or international equivalent) in any discipline with a GPA of at least 2.0 out of 4.0"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 entry, work:** 5 years relevant work
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "A minimum of 5 years of relevant work experience in programming"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 no prerequisites or selection task:** None
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "There are no prerequisite subjects required for entry into this qualification."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 English:** IELTS 6.5/6.0; TOEFL 79; PTE 58; Cambridge 176
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 TOEFL:** 79 with minimums
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC208 PTE:** 58, no band below 50
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Pearson Test of English (Academic) (PTE (A)): minimum score of 58 (with no communication band less than 50)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **At-home tests:** Not accepted
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "Note: RMIT does not accept scores from 'at-home' or 'online' testing."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **Full time only:** International visa holders
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
+  - Quote: "International student visa holders can only study full-time."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 fee, 2027, international:** AUD 47,040 a year
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "The annual tuition fee for 2027 is AU$47,040."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 CRICOS:** 121297E
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "CRICOS 121297E"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 accreditation:** ACS Professional level
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "fully accredited at a Professional level by the Australian Computer Society"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 entry, degree:** Related degree, GPA 2.0/4.0
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a GPA of at least 2.0 out of 4.0"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 entry, work:** 3 years relevant work
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "at least 3 years of relevant professional experience in computing, IT, data science, or a closely related field."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **AQF comparability:** Assessed
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF)."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **MC267 English:** Same as MC208
+  - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267
+  - Quote: "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
+- **Intake: semester 1:** Late February or early March
+  - Source: https://www.rmit.edu.au/study-with-us/international-students/intakes-in-australia-for-international-students
+  - Quote: "Semester 1 Late February or early March, depending on the year"
+  - Checked 28 November 2026. Read by curl, page text.
+- **Intake: semester 2:** Mid-July
+  - Source: https://www.rmit.edu.au/study-with-us/international-students/intakes-in-australia-for-international-students
+  - Quote: "Semester 2 Mid-July"
+  - Checked 28 November 2026. Read by curl, page text.
+- **Apply 4 weeks before:** Accept an offer at least 4 weeks before start
+  - Source: https://www.rmit.edu.au/study-with-us/international-students/intakes-in-australia-for-international-students
+  - Quote: "you should apply for your desired course and accept your offer a minimum of 4 weeks before your course’s start date"
+  - Checked 28 November 2026. Read by curl, page text.
+- **Future Leaders Scholarship value:** 20% off tuition for the program
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "The value of the scholarship is a 20% tuition fee reduction for the duration of the eligible program(s)* as outlined in your offer letter."
+  - Checked 28 November 2026. Read by curl, page text.
+- **FLP citizens:** India and five nearby countries
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "be a citizen of India, Sri Lanka, Bangladesh, Bhutan, Nepal or Pakistan"
+  - Checked 28 November 2026. Read by curl, page text.
+- **FLP intake:** Offer for 2026 intakes onwards
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "have an offer letter to commence from 2026 intakes onwards in one of the following programs at RMIT:"
+  - Checked 28 November 2026. Read by curl, page text.
+- **FLP no other scholarship:** No other RMIT or Australia Awards tuition scholarship
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "Applicants should not be in receipt of any other RMIT funded scholarship or Australia Awards scholarship covering tuition fees"
+  - Checked 28 November 2026. Read by curl, page text.
+- **FLP progress:** Must stay satisfactory
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "Should you not maintain a satisfactory academic progress"
+  - Checked 28 November 2026. Read by curl, page text.
+- **FLP no separate application text:** Eligibility check; offer letter states it
+  - Source: https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship
+  - Quote: "Check if your program is eligible to receive the scholarship"
+  - Checked 28 November 2026. Read by curl, page text.
+- **Derived: 20% of 47,040:** AUD 9,408 (our arithmetic)
+  - Source: —
+  - Quote: "0.20 x 47,040 = 9,408"
+  - Checked 28 November 2026. Read our sum.

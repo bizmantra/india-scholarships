@@ -1,0 +1,52 @@
+{
+  "agent": "content-editor",
+  "notes": "RMIT University profile for Australia batch 3. Built only from plans/australia-research/au-batch3-notes.md, section RMIT. Fees are the 2027 international onshore fees from RMIT's fee PDF and course pages. OSHC, closing dates and India marks conversion are not on pages read, so they are left out. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "rmit-university",
+      "source": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+      "fields": {
+        "slug": "rmit-university",
+        "name": "RMIT University",
+        "country": "australia",
+        "city": "Melbourne (City campus)",
+        "summary": "RMIT costs AUD 47,040 a year in 2027 for IT or data science. With visa living money, travel and the visa charge, plan on AUD 81,250 before health cover.",
+        "seo_title": "RMIT University for Indian Students: Fees and Entry 2027",
+        "meta_description": "RMIT University for Indian students: AUD 47,040 a year for 2027 in IT and data science, the visa money to show, IELTS 6.5 and a 20% Future Leaders Scholarship.",
+        "tuition_per_year": 47040,
+        "tuition_currency": "AUD",
+        "body_md": "## At a glance\n\nRMIT University is a public university in Melbourne, Victoria. Its City campus teaches both courses below. This page uses two master's courses to show real costs and entry rules.\n\nThe most important fact is the fee. For a student starting in 2027, each course costs **AUD 47,040** a year. RMIT also has a scholarship made for students from India.\n\n| | Master of Information Technology | Master of Data Science |\n|---|---|---|\n| Campus | City campus, on campus | City campus, on campus |\n| Length | 2 years full time | 2 years full time |\n| Intakes | February and July | February and July |\n| First-year fee, 2027 | **AUD 47,040** | **AUD 47,040** |\n| Fee for the whole course, 2027 start | **AUD 96,000** | **AUD 96,000** |\n| GPA needed (4-point scale) | **2.0** | **2.0** |\n| English test (IELTS) | **6.5** overall, no part below **6.0** | **6.5** overall, no part below **6.0** |\n| CRICOS course code | 121298D | 121297E |\n\nCRICOS is the Australian government list of courses that may teach overseas students. RMIT calls the whole-course figure a total indicative tuition fee.\n\n## What it really costs\n\nThe fee is only one part of the money. The Australian student visa asks you to show enough money for three things. They are your first-year course fee, 12 months of living costs and your travel. Read the [Australia proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the full rules.\n\nThe sums below use the Home Affairs figures: living costs of **AUD 29,710** and travel of **AUD 2,000**. The student visa charge is **AUD 2,500**.\n\n| Item | Master of Information Technology | Master of Data Science |\n|---|---|---|\n| First-year course fee, 2027 | AUD 47,040 | AUD 47,040 |\n| Living costs for 12 months (visa rule) | AUD 29,710 | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 | AUD 2,000 |\n| **Money to show for the visa** | **AUD 78,750** | **AUD 78,750** |\n| Student visa charge | AUD 2,500 | AUD 2,500 |\n| **Total before health cover** | **AUD 81,250** | **AUD 81,250** |\n\nAt ₹61.80 per AUD, the totals are **₹50.21 lakh** and **₹50.21 lakh**. The rate is the Reserve Bank of Australia rate for 27 November 2026. It changes every day, so use the [rupee transfer calculator](/study-abroad/tools/rbi-lrs-tcs-calculator) before you send money.\n\nTwo limits apply to these totals. RMIT also charges a student services and amenities fee, up to **AUD 386** in 2027. We also found no official price for health cover (OSHC).\n\n## Ways to reduce the cost\n\n**RMIT Future Leaders Scholarship.** RMIT made it for students from India and the subcontinent. It takes **20%** off tuition for the whole program. 20% of the first-year fee is **AUD 9,408**, which is our sum.\n\nTo qualify you must:\n\n- be a citizen of India, Sri Lanka, Bangladesh, Bhutan, Nepal or Pakistan\n- hold a student visa, or plan to apply for one before you start\n- hold an offer letter for an intake from 2026 onward in an eligible bachelor or master by coursework program\n\nYou must not be an existing student who starts another program at the same level. You must not hold another RMIT scholarship or an Australia Awards scholarship that covers tuition. The discount stops if your academic progress is not satisfactory. RMIT's page has a list of eligible programs. Check that your course is on it before you count on the discount.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Getting in\n\nThe Master of Information Technology takes a bachelor degree in any subject. The Master of Data Science takes a degree in computing, data science, AI or statistics. Both need a grade point average (GPA) of at least **2.0** out of **4.0**. A GPA is your average grade across your degree. RMIT also has a work route for each course. RMIT assesses international qualifications for how well they match Australian ones. We found no table that converts Indian marks.\n\n**English.** IELTS **6.5** overall with no part below **6.0**.\n\n## Deadlines\n\nRMIT's course pages give the intake months but no closing date. Semester 1 starts in late February or early March. Semester 2 starts in mid-July. RMIT says to apply and accept your offer at least **4 weeks** before the course starts. This leaves time for the visa.\n\n## Popular programs for Indian students\n\n- [Master of Information Technology at RMIT](/study-abroad/program-detail/australia/rmit-university/rmit-master-of-information-technology). Two years in Melbourne. Open to any background.\n- [Master of Data Science at RMIT](/study-abroad/program-detail/australia/rmit-university/rmit-master-of-data-science). Two years in Melbourne. For computing and statistics graduates.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you want a first-year fee under AUD 50,000\n- you can show AUD 78,750 for the visa\n- you are an Indian citizen and your course is on the scholarship list\n\n**Think carefully if:**\n\n- you want a published closing date, because RMIT gives none\n- your IELTS is below **6.5** overall or **6.0** in any part\n- you cannot cover a second year at a fee that may rise\n\n## Sources\n\nChecked on 28 November 2026:\n\n- [Master of Information Technology (MC208), RMIT University](https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208). Checked on 28 November 2026.\n- [Master of Data Science (MC267), RMIT University](https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267). Checked on 28 November 2026.\n- [2027 international onshore annual tuition fees, RMIT University (PDF)](https://www.rmit.edu.au/content/dam/rmit/documents/staff-site/servicesandtools/finance/2027-inton-fees.pdf). Checked on 28 November 2026.\n- [Intakes in Australia 2027 for international students, RMIT University](https://www.rmit.edu.au/study-with-us/international-students/intakes-in-australia-for-international-students). Checked on 28 November 2026.\n- [Future Leaders Scholarship, RMIT University](https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does a master's at RMIT cost for Indian students?",
+            "a": "For a 2027 start, both the Master of Information Technology and the Master of Data Science cost AUD 47,040 a year. RMIT lists the whole two-year tuition as AUD 96,000."
+          },
+          {
+            "q": "How much money must I show for the Australian student visa to study at RMIT?",
+            "a": "For either course the sum is AUD 78,750: the AUD 47,040 fee, AUD 29,710 living costs and AUD 2,000 travel. The visa charge is AUD 2,500 on top."
+          },
+          {
+            "q": "What marks do I need for a master's at RMIT?",
+            "a": "A bachelor degree with a GPA of at least 2.0 out of 4.0. For data science the degree must be in a related subject, or you need 3 years of relevant work."
+          },
+          {
+            "q": "What IELTS score does RMIT need for these master's courses?",
+            "a": "IELTS 6.5 overall with no part below 6.0. RMIT also accepts TOEFL iBT 79 overall or Pearson 58 with no part below 50."
+          },
+          {
+            "q": "Is there a scholarship for Indian students at RMIT?",
+            "a": "Yes. The RMIT Future Leaders Scholarship takes 20% off tuition for citizens of India and some nearby countries. Check that your program is on RMIT's eligible list."
+          },
+          {
+            "q": "What is the deadline for the 2027 intake at RMIT?",
+            "a": "RMIT gives no closing date. It says to apply and accept your offer at least 4 weeks before the course starts."
+          }
+        ],
+        "official_source": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

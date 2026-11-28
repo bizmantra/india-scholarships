@@ -1,0 +1,64 @@
+{
+  "agent": "content-editor",
+  "notes": "RMIT Master of Information Technology (MC208), 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section RMIT. Left out: India marks conversion to the 4-point scale, closing dates (none published), OSHC price, rankings, salary figures. The fee is in RMIT's 2027 fee PDF and on the course page. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_rmit-master-of-information-technology",
+      "source": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+      "fields": {
+        "id": "program_rmit-master-of-information-technology",
+        "slug": "rmit-master-of-information-technology",
+        "university_slug": "rmit-university",
+        "country": "australia",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Information Technology",
+        "tuition_per_year": 47040,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. TOEFL iBT 79 or Pearson 58 also accepted.",
+        "summary": "RMIT's 2-year Master of Information Technology takes any bachelor degree with a GPA of at least 2.0 out of 4.0. The 2027 fee is AUD 47,040 a year.",
+        "seo_title": "Master of IT at RMIT: Fees, Entry and 2027 Intakes",
+        "meta_description": "RMIT's Master of Information Technology for Indian students: AUD 47,040 a year for 2027, any bachelor degree, IELTS 6.5 and a 20% Future Leaders Scholarship.",
+        "gpa_min": "Bachelor degree with a GPA of at least 2.0 out of 4.0, as RMIT assesses it",
+        "tuition_currency": "AUD",
+        "location": "Melbourne (City campus)",
+        "duration": "2 years full time",
+        "language": "English",
+        "intakes": "February, July",
+        "application_portal": "RMIT international application",
+        "application_deadlines": {
+          "Semester 1, 2027": "Late February or early March start",
+          "Semester 2, 2027": "Mid-July start",
+          "Offer acceptance": "At least 4 weeks before the course starts"
+        },
+        "body_md": "## About this programme\n\nThe Master of Information Technology is a two-year, full-time course on RMIT's City campus in Melbourne. It starts in February or July. The CRICOS code is 121298D and the plan code is MC208P27.\n\nRMIT says you can come from any background. You can pick a specialisation such as big data analytics, artificial intelligence, security, or cloud and programming.\n\n**The most important fact for you:** RMIT sets a **low entry bar**. It asks for a bachelor degree in any subject with a GPA of at least **2.0 out of 4.0**. Five years of IT-type work can also qualify you.\n\nFor the wider university, see our [RMIT University page](/study-abroad/universities/rmit-university).\n\n## Can you get in?\n\nRMIT accepts one of two routes.\n\n| Route | What you need |\n|---|---|\n| Degree route | A bachelor degree in any discipline, or international equivalent, with a GPA of at least **2.0** out of **4.0** |\n| Work route | At least **5 years** of relevant work, such as programming, software engineering, system or business analysis, ICT management or network administration |\n\nA grade point average (GPA) is your average grade across your degree. RMIT does not require prerequisite subjects or a selection task for this course. RMIT assesses international qualifications for how well they match Australian ones. We found no table that converts Indian marks to the 4-point scale.\n\nInternational student visa holders can only study full time.\n\n**English.** IELTS is an English test. RMIT asks for IELTS (Academic) **6.5** overall with no part below **6.0**. It also accepts TOEFL iBT **79** overall. The part minimums are **13** in reading, **12** in listening, **18** in speaking and **21** in writing. For Pearson it asks **58** with no part below **50**. RMIT does not accept at-home or online test scores.\n\n## What it costs\n\nThe 2027 fee is **AUD 47,040** a year, from RMIT's fee schedule and the course page. RMIT says it is an indicative fee for a standard year of full-time study.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 47,040 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 78,750** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 81,250** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹50.21 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nRMIT also charges an annual student services and amenities fee. The 2027 maximum is **AUD 386**. It is not in the total above. RMIT lists the whole two-year tuition for a 2027 start as **AUD 96,000**.\n\n## Funding\n\n**RMIT Future Leaders Scholarship.** RMIT made it for students from India and the subcontinent. It takes **20%** off tuition for the whole program. 20% of the first-year fee is **AUD 9,408**, which is our sum.\n\nTo qualify you must:\n\n- be a citizen of India, Sri Lanka, Bangladesh, Bhutan, Nepal or Pakistan\n- hold a student visa, or plan to apply for one before you start\n- hold an offer letter for an intake from 2026 onward in an eligible bachelor or master by coursework program\n\nYou must not be an existing student who starts another program at the same level. You must not hold another RMIT scholarship or an Australia Awards scholarship that covers tuition. The discount stops if your academic progress is not satisfactory. RMIT's page has a list of eligible programs. Check that your course is on it before you count on the discount.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nRMIT's page gives the intake months. It does not give a closing date for this course.\n\n| Intake | Start |\n|---|---|\n| Semester 1, 2027 | Late February or early March |\n| Semester 2, 2027 | Mid-July |\n\nRMIT says to apply and accept your offer at least **4 weeks** before the course starts. This leaves time for the visa. We found no closing date on the pages we read.\n\n## How to apply\n\n1. Check your degree against the entry rules above.\n2. Collect your degree results and English test result.\n3. Apply to RMIT as an international student, for the intake you want.\n4. Accept your offer at least 4 weeks before the course starts, so the visa has time. RMIT gives this as its minimum.\n5. If you are from India, check the scholarship's list of eligible programs.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nRMIT says the Australian Computer Society fully accredits this course at Professional level. RMIT gives no salary or job figures on the page, so we give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a bachelor degree in any subject\n- you can show AUD 78,750 for the visa\n- you are a citizen of India and want the Future Leaders Scholarship\n\n**Think carefully if:**\n\n- you want a closing date, because RMIT's page gives none\n- your IELTS is below **6.5** overall or **6.0** in any part\n- your course is not on the scholarship's eligible list\n\n## Sources\n\n- [Master of Information Technology (MC208), RMIT University](https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208). Checked on 28 November 2026.\n- [Master of Data Science (MC267), RMIT University](https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267). Checked on 28 November 2026.\n- [2027 international onshore annual tuition fees, RMIT University (PDF)](https://www.rmit.edu.au/content/dam/rmit/documents/staff-site/servicesandtools/finance/2027-inton-fees.pdf). Checked on 28 November 2026.\n- [Intakes in Australia 2027 for international students, RMIT University](https://www.rmit.edu.au/study-with-us/international-students/intakes-in-australia-for-international-students). Checked on 28 November 2026.\n- [Future Leaders Scholarship, RMIT University](https://www.rmit.edu.au/scholarships/international-scholarships/future-leaders-scholarship). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the RMIT Master of Information Technology without an IT degree?",
+            "a": "Yes. RMIT takes a bachelor degree in any discipline with a GPA of at least 2.0 out of 4.0. It also accepts 5 years of relevant work."
+          },
+          {
+            "q": "How much does the RMIT Master of Information Technology cost for Indian students?",
+            "a": "The 2027 fee is AUD 47,040 a year. RMIT lists the whole two-year tuition for a 2027 start as AUD 96,000. With living costs, travel and the visa charge, the first year comes to AUD 81,250 before health cover."
+          },
+          {
+            "q": "What IELTS score does the RMIT Master of Information Technology need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. RMIT also accepts TOEFL iBT 79 overall or Pearson 58 with no part below 50."
+          },
+          {
+            "q": "Is there a scholarship for Indian students at RMIT?",
+            "a": "Yes. The RMIT Future Leaders Scholarship takes 20% off tuition for citizens of India and some nearby countries. Check that your program is on RMIT's eligible list."
+          },
+          {
+            "q": "What is the deadline for the RMIT Master of Information Technology in 2027?",
+            "a": "RMIT gives no closing date for the course. It says to apply and accept your offer at least 4 weeks before the course starts."
+          }
+        ],
+        "official_source": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

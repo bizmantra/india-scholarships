@@ -1,0 +1,67 @@
+{
+  "agent": "content-editor",
+  "notes": "ANU Master of Computing (7706XMCOMP), 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section ANU. Left out: whole-course fee, SA fee amount, OSHC price, India marks conversion, TOEFL and Pearson scores (garbled on the policy page), scholarships (none confirmed), rankings, salary figures. The Semester 1 label on the international page was ambiguous in the fetch; the 15 December 2026 close is read as Semester 1, 2027. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_anu-master-of-computing",
+      "source": "https://programsandcourses.anu.edu.au/2027/program/7706xmcomp",
+      "fields": {
+        "id": "program_anu-master-of-computing",
+        "slug": "anu-master-of-computing",
+        "university_slug": "australian-national-university",
+        "country": "australia",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Computing",
+        "tuition_per_year": 57640,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. ANU also accepts TOEFL iBT, Pearson PTE Academic and Cambridge C1 Advanced.",
+        "summary": "ANU's 2-year Master of Computing takes graduates with no computing background. You need a 5.0 GPA on a 7-point scale. The 2027 indicative fee is AUD 57,640 a year.",
+        "seo_title": "Master of Computing at ANU: Fees, Entry and 2027 Dates",
+        "meta_description": "ANU's Master of Computing for Indian students: AUD 57,640 a year for 2027, a 5.0 GPA on a 7-point scale, IELTS 6.5 and a 15 December 2026 closing date.",
+        "gpa_min": "Bachelor degree (or equivalent) with a GPA of 5.0 on a 7-point scale",
+        "tuition_currency": "AUD",
+        "location": "Canberra",
+        "duration": "2 years full time",
+        "language": "English",
+        "intakes": "Semester 1 and Semester 2 closing dates are on the ANU international page",
+        "application_portal": "ANU online application portal",
+        "application_deadlines": {
+          "Semester 1, 2027": "15 December 2026",
+          "Semester 2, 2027": "15 May 2027"
+        },
+        "body_md": "## About this programme\n\nThe Master of Computing is a two-year, full-time course taught in person in Canberra. It sits in the ANU College of Systems and Society. The program code is 7706XMCOMP and the CRICOS code is 078940M. The Australian Computer Society accredits it.\n\nANU says it is aimed at graduates without a computing background. Each student picks one specialisation: artificial intelligence, computer systems, computational foundations, data science, human-centred and creative computing, or software development. The course ends with a capstone, which is either an internship or a team project for a client.\n\n**The most important fact for you:** ANU ranks applicants. Meeting the entry rules does not guarantee a place. The rule is a **5.0** GPA on a 7-point scale, or **4.0** with 3 years of related work.\n\nFor the wider university, see our [Australian National University page](/study-abroad/universities/australian-national-university).\n\n## Can you get in?\n\nANU accepts one of two routes.\n\n| Route | What you need |\n|---|---|\n| Degree route | A bachelor degree or international equivalent with a GPA of at least **5.0** out of 7.0 |\n| Work route | A bachelor degree or equivalent with a GPA of **4.0** out of 7.0, plus 3 years of full-time work in a related field at ANZSCO Skill Level 1 |\n\nA grade point average (GPA) is your average grade across your degree. ANU converts every qualification to its 7-point scale. It works out the GPA twice: once with all grades, and once without the last semester. It uses the higher figure.\n\nANU says admission to most programs is competitive. Meeting every rule does not guarantee entry. ANU may rank you on your GPA, and then on other factors such as English level. We could not find a table that converts Indian marks to ANU's scale on the pages we read.\n\n**English.** IELTS is an English test. ANU's policy asks for IELTS **6.5** overall with no part below **6.0**. ANU also accepts TOEFL iBT, Pearson PTE Academic and Cambridge C1 Advanced. ANU does not accept online or at-home IELTS results.\n\n## What it costs\n\nANU lists an annual indicative fee for international students of **AUD 57,640** for 2027. ANU bases it on a standard load of 48 units a year. The course is 96 units, so it takes two years. ANU says fees vary with the courses you choose and are reviewed each year. It gives no whole-course fee, and this page gives none.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 57,640 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 89,350** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 91,850** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹56.76 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nAll ANU students also pay the Services and amenities fee. The program page does not give its amount, so we give none.\n\n## Funding\n\nANU's program page says it offers a wide range of scholarships. It also says eligibility depends on the scholarship. We did not confirm a scholarship for Indian students in this master's course, so we list none.\n\nCheck the ANU scholarships website before you apply. Do not count on a fee cut until you hold an offer letter that states one.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nANU's international page gives these closing dates.\n\n| Intake | Applications close |\n|---|---|\n| Semester 1, 2027 | **15 December 2026** |\n| Semester 2, 2027 | **15 May 2027** |\n\nANU says the closing date may differ for programs with extra selection criteria. If you are overseas, the acceptance deadline is **15 January** for Semester 1 and **30 June** for Semester 2. The Master of Computing page does not say which semesters it takes. Check this on the program page before you apply.\n\n## How to apply\n\n1. Check your GPA against the table above.\n2. Collect your transcripts, degree certificate and English test result.\n3. Apply through the ANU online portal. ANU says its agents around the world can help you, but it does not say you must use one.\n4. Pay the application fee of **AUD 150** for each application. You can apply for up to 3 programs.\n5. ANU may give a conditional offer if some documents are missing. You need all the requirements for a full offer.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nThe program page lists careers such as software developer, systems analyst and software architect. It gives no salary or job figures, so we give none. After 48 units you may leave with a Graduate Diploma of Computing.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you want a computing master's after a degree in another subject\n- you can show AUD 89,350 for the visa\n- you hold a **5.0** GPA on a 7-point scale, or a **4.0** with 3 years of related work\n\n**Think carefully if:**\n\n- your marks are close to the limit, because ANU ranks applicants\n- you cannot cover a second year at a fee that is not published\n- you need a scholarship, because we could not confirm one\n\n## Sources\n\n- [Master of Computing (7706XMCOMP), 2027, Australian National University](https://programsandcourses.anu.edu.au/2027/program/7706xmcomp). Checked on 28 November 2026.\n- [International undergraduate and postgraduate applications, ANU](https://study.anu.edu.au/apply/international-applications). Checked on 28 November 2026.\n- [English language admission requirements policy, ANU](https://policies.anu.edu.au/ppl/document/ANUP_000408) and [English language requirements, ANU](https://www.anu.edu.au/study/apply/english-language-requirements). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the ANU Master of Computing without a computing degree?",
+            "a": "Yes. ANU says the course targets graduates without a computing background. You need a bachelor degree with a GPA of at least 5.0 on a 7-point scale."
+          },
+          {
+            "q": "How much does the ANU Master of Computing cost for Indian students?",
+            "a": "ANU lists an annual indicative fee of AUD 57,640 for 2027. With living costs, travel and the visa charge, the first year comes to AUD 91,850 before health cover."
+          },
+          {
+            "q": "What GPA do I need for the ANU Master of Computing?",
+            "a": "A GPA of 5.0 on a 7-point scale, or 4.0 with 3 years of full-time related work. ANU ranks applicants, so meeting the rule does not guarantee a place."
+          },
+          {
+            "q": "What IELTS score does the ANU Master of Computing need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. ANU also accepts TOEFL iBT, Pearson PTE Academic and Cambridge C1 Advanced."
+          },
+          {
+            "q": "What is the deadline for the ANU Master of Computing in 2027?",
+            "a": "ANU's international page says Semester 1, 2027 applications close on 15 December 2026 and Semester 2, 2027 applications close on 15 May 2027."
+          },
+          {
+            "q": "Do I need an agent to apply to ANU from India?",
+            "a": "No. ANU says its agents can help you apply, but it does not say you must use one. You can apply through the online portal."
+          }
+        ],
+        "official_source": "https://programsandcourses.anu.edu.au/2027/program/7706xmcomp",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
