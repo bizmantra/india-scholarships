@@ -1,0 +1,64 @@
+{
+  "agent": "content-editor",
+  "notes": "Macquarie Master of Information Technology, 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section Macquarie. Left out: whole-course fee, SSAF amount, international closing dates (the page showed domestic dates only), India-specific entry (a country picker we could not drive), OSHC price, scholarships, rankings, salary figures. The international fee and CRICOS code were read after choosing 'international student' on the page; entry and English were read in the default view. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_macquarie-master-of-information-technology",
+      "source": "https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology",
+      "fields": {
+        "id": "program_macquarie-master-of-information-technology",
+        "slug": "macquarie-master-of-information-technology",
+        "university_slug": "macquarie-university",
+        "country": "australia",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Information Technology",
+        "tuition_per_year": 48900,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0.",
+        "summary": "Macquarie's 2-year Master of Information Technology is for graduates without an IT qualification. The 2027 fee is AUD 48,900 a year. Sessions start 22 February and 26 July 2027.",
+        "seo_title": "Master of IT at Macquarie: Fees, Entry and 2027 Intakes",
+        "meta_description": "Macquarie's Master of Information Technology for Indian students: AUD 48,900 a year for 2027, any bachelor degree, IELTS 6.5 and starts on 22 February or 26 July 2027.",
+        "gpa_min": "Bachelor degree (AQF level 7) or recognised equivalent",
+        "tuition_currency": "AUD",
+        "location": "Sydney (North Ryde)",
+        "duration": "2 years full time",
+        "language": "English",
+        "intakes": "Session 1 (February), Session 2 (July)",
+        "application_portal": "Macquarie University Applicant Portal",
+        "application_deadlines": {
+          "Session 1, 2027 start": "22 February 2027",
+          "Session 2, 2027 start": "26 July 2027",
+          "International closing dates": "Not read"
+        },
+        "body_md": "## About this programme\n\nThe Master of Information Technology is a two-year, full-time course taught on campus at North Ryde, in Sydney. The CRICOS code is 083790M. It has 160 credit points.\n\nMacquarie says it is designed for students without an IT qualification. You choose one specialisation: applied artificial intelligence, cyber security or information systems. You finish with a research project or an industry internship. The Australian Computer Society accredits all three specialisations.\n\n**The most important fact for you:** the entry rule is **short**. A bachelor degree (AQF level 7) or a recognised equivalent is the only academic condition on the page.\n\nFor the wider university, see our [Macquarie University page](/study-abroad/universities/macquarie-university).\n\n## Can you get in?\n\nMacquarie lists one entry point for this course.\n\n| Complete the course in | You need | Structure |\n|---|---|---|\n| 2 years full time | An AQF level 7 bachelor qualification or a recognised equivalent | Foundation zone and core zone, 160 credit points |\n\nAQF level 7 is the Australian level for a bachelor degree. The page says the course is for students without an IT qualification. It does not list a minimum average mark. We read this table in the page's default view. Pick your country on the page to see whether anything changes for Indian applicants.\n\nCredit for earlier study can shorten the course. You apply for it after you get an offer.\n\n**English.** IELTS is an English test. This course needs IELTS **6.5** overall, with **6.0** in reading, writing, listening and speaking. Macquarie also accepts other approved tests.\n\n## What it costs\n\nMacquarie lists an estimated annual fee for an international student of **AUD 48,900** for a 2027 start. Macquarie bases it on a standard full-time load. Macquarie says fees may increase each year. For a course longer than one year, you pay the fee that is current in the year you enrol. Macquarie gives no whole-course fee, and this page gives none.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 48,900 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 80,610** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 83,110** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹51.36 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nStudents also pay the Student Services and Amenities Fee. The page gives no amount, so we give none.\n\n## Funding\n\nMacquarie's course page lists scholarships for several groups. We could not confirm one for Indian students in this course, so we list none.\n\nCheck Macquarie's scholarship pages before you apply. Do not count on a fee cut until you hold an offer letter that states one.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nMacquarie gives these start dates for North Ryde.\n\n| Session | Start |\n|---|---|\n| Session 1, 2027 | **22 February 2027** |\n| Session 2, 2027 | **26 July 2027** |\n\nThe closing dates on the page we read were for domestic applicants. We could not read the international closing dates. Check them on the page before you plan your visa.\n\n## How to apply\n\n1. Check that your degree is a bachelor degree or recognised equivalent.\n2. Collect your transcripts and English test result.\n3. Choose your country on the course page, to see the international entry details and dates.\n4. Apply through the Macquarie Applicant Portal.\n5. Ask for credit for earlier study once you have an offer.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nMacquarie lists jobs such as data analyst, security analyst, systems analyst and software developer. It gives no salary figures on the page, so we give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a bachelor degree in a non-IT subject and want an IT master's\n- you can show AUD 80,610 for the visa\n- you want a choice of AI, cyber security or information systems\n\n**Think carefully if:**\n\n- you need a published international closing date, because we could not read it\n- your IELTS is below **6.5** overall or **6.0** in any part\n- you cannot cover a second year at a fee that may rise\n\n## Sources\n\n- [Master of Information Technology, Macquarie University](https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the Macquarie Master of Information Technology without an IT degree?",
+            "a": "Yes. Macquarie designed the course for students without an IT qualification. It asks for an AQF level 7 bachelor qualification or a recognised equivalent."
+          },
+          {
+            "q": "How much does the Macquarie Master of Information Technology cost for Indian students?",
+            "a": "Macquarie lists an estimated annual fee of AUD 48,900 for a 2027 start. With living costs, travel and the visa charge, the first year comes to AUD 83,110 before health cover."
+          },
+          {
+            "q": "What IELTS score does the Macquarie Master of Information Technology need?",
+            "a": "IELTS 6.5 overall, with 6.0 in reading, writing, listening and speaking."
+          },
+          {
+            "q": "When does the Macquarie Master of Information Technology start in 2027?",
+            "a": "Session 1 starts on 22 February 2027 and Session 2 starts on 26 July 2027, at North Ryde."
+          },
+          {
+            "q": "What is the deadline for the Macquarie Master of Information Technology in 2027?",
+            "a": "We could not read the international closing dates. The page showed dates for domestic applicants only. Check the dates on the page after you choose your country."
+          }
+        ],
+        "official_source": "https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

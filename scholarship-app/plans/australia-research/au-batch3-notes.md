@@ -42,6 +42,10 @@ Fee and entry data come from the course and handbook pages' embedded data, as fo
   - Source: https://handbook.monash.edu/2027/courses/C6001
   - Quote: "An Australian bachelor degree (or equivalent) not necessarily in IT, with at least a credit (60%) average."
   - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6001 entry level 2 length:** 72 points, 1.5 years
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "Entry level 2: 72 points to complete Duration: 1.5 years full-time, 3 years part-time"
+  - Checked 28 November 2026. Read from the handbook's embedded data.
 - **C6001 entry level 2:** Java, python, algorithms, architecture, OS, networks, databases
   - Source: https://handbook.monash.edu/2027/courses/C6001
   - Quote: "with completed studies in java and python programming, algorithms, computer architecture, operating systems and networks, and databases with at least a credit (60%) average."
@@ -227,6 +231,10 @@ Fee, entry and English come from the rendered program pages (the entry tab text 
   - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
   - Quote: "a bachelor's degree (or equivalent) in a relevant discipline (see below), ora bachelor's degree (or equivalent) which includes all of the relevant discipline content (see below), orto have successfully completed 3 years of study towards an approved qualification at an overseas partner institution, with a formal pathway to the Master of Data Science."
   - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
+- **5660 2-year length:** 32 units
+  - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
+  - Quote: "2-year degree (32 units of study)"
+  - Checked 28 November 2026. Read from the rendered page text, including hidden tab text (Playwright).
 - **5660 1.5-year entry:** 3 maths, 2 statistics, 4 computer science courses
   - Source: https://study.uq.edu.au/study-options/programs/master-data-science-5660
   - Quote: "with studies in at least 3 courses in mathematics, 2 courses in statistics or probability and 4 courses in computer sciences."
@@ -403,8 +411,8 @@ Fees are in RMIT's 2027 international onshore fee PDF and on the course pages. T
   - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
 - **SSAF, 2027 maximum:** AUD 386
   - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
-  - Quote: "The student services and amenities fee (SSAF) ... the maximum fee for 2027 is $386."
-  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result; SSAF wording copied from the fetch result.
+  - Quote: "the maximum fee for 2027 is $386"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the saved text is the fetch result.
 - **MC208 CRICOS:** 121298D
   - Source: https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208
   - Quote: "MC208P27 121298D"
@@ -521,3 +529,126 @@ Fees are in RMIT's 2027 international onshore fee PDF and on the course pages. T
   - Source: —
   - Quote: "0.20 x 47,040 = 9,408"
   - Checked 28 November 2026. Read our sum.
+
+## Macquarie University
+
+The international fee, CRICOS code and start dates were read after choosing 'international student' on the page. Entry and English were read in the default view. The country picker that would show India-specific details could not be driven from the box, so those are not used. International closing dates were not read.
+
+- **Fee, 2027, international:** AUD 48,900 estimated annual fee
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "International Fee-paying Estimated annual fee AUD $48,900"
+  - Checked 28 November 2026. Read with Playwright, after choosing 'international student' in the page's own selector.
+- **Fee basis:** Standard full-time load; may increase
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "The estimated annual fee displayed is based on a standard full-time study load. Fees may increase each year."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Fee for longer courses:** Fee current in the enrolment year
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "For courses longer than one year in duration, you'll pay the fee that is current for the year that you enrol."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **CRICOS:** 083790M
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "CRICOS CODE: 083790M"
+  - Checked 28 November 2026. Read with Playwright, after choosing 'international student' in the page's own selector.
+- **Duration:** 2 years full time
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Full time: 2 years"
+  - Checked 28 November 2026. Read with Playwright, after choosing 'international student' in the page's own selector.
+- **Start dates:** 22 Feb 2027, 26 Jul 2027
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "North Ryde: Session 1 (22 February 2027) Session 2 (26 July 2027)"
+  - Checked 28 November 2026. Read with Playwright, after choosing 'international student' in the page's own selector.
+- **Credit points:** 160
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Foundation Zone, Core zone (160 credit points)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Entry:** AQF level 7 bachelor or equivalent
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "AQF level 7 Bachelor qualification or recognised equivalent"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Audience:** Students without an IT qualification
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Study a degree specially designed for students without an IT qualification."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Specialisations:** AI, cyber security, information systems
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Study Applied Artificial Intelligence, Cyber Security or Information Systems and develop focused sought-after expertise."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Project or internship:** Research project or industry internship
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Complete a supervised research project or industry internship"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Accreditation:** ACS
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "The Master of Information Technology specialisations in Applied Artificial Intelligence, Cyber Security and Information Systems are professionally accredited by the Australian Computer Society (ACS)."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **English, IELTS:** 6.5 overall; 6 each part
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "| Overall | 6.5 | | Reading | 6 | | Writing | 6 | | Listening | 6 | | Speaking | 6 |"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **RPL:** Apply after the offer
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "You’ll need to apply for RPL once you receive your offer to study at Macquarie."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Closing dates were domestic:** Not used
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "New domestic applicants are required to apply directly through our Applicant Portal."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page; the closing-date table sat under this heading, so we did not use it.
+- **Jobs listed:** Data analyst, IT consultant and others
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Data analyst Data scientist End-user support and training officer IT consultant IT project manager"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **Scholarships:** General statement only
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "Macquarie University offers a variety of scholarships that recognise a range of factors"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+- **SSAF:** Payable; amount not given
+  - Source: https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology
+  - Quote: "You’re required to pay the Student Services and Amenities Fee (SSAF) to Macquarie University"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch), default (domestic) view of the page.
+
+## Scholarship records
+
+- **Scholarship records in australia-new-scholarships-batch3-2026-11-28.cjs:** UQ High Achievers (20%), UQ Excellence (25%), RMIT Future Leaders (20%), Monash Engineering International High Achievers (postgraduate)
+  - Source: see the UQ, RMIT and Monash sections above
+  - Quote: "Each fact in the file is quoted in the university sections above."
+  - Checked 28 November 2026. Read from those pages.
+- **Monash scholarship currency:** The India page writes $ with no currency
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "Postgraduate - $15,000 per 48 credit points, paid towards your tuition fees."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **Monash scholarship number:** 25 postgraduate awards a year
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "Postgraduate - 25 scholarships will be offered per year."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **Monash scholarship faculty:** Faculty of Engineering
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "| Faculty of Engineering. |"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+
+## Derived arithmetic (ours, not quoted from any page)
+
+Money to show = first-year fee + living costs AUD 29,710 + travel AUD 2,000 (Home Affairs figures in au-visa-facts.md). Total before health cover = money to show + visa charge AUD 2,500. INR = total x 61.80 (RBA rate, 27 November 2026), shown in lakh.
+
+| University | First-year fee | Money to show | Total before health cover | In lakh at 61.80 |
+|---|---|---|---|---|
+| Monash | AUD 57,540 | AUD 89,250 | AUD 91,750 | 56.70 |
+| UQ | AUD 60,952 | AUD 92,662 | AUD 95,162 | 58.81 |
+| ANU | AUD 57,640 | AUD 89,350 | AUD 91,850 | 56.76 |
+| RMIT | AUD 47,040 | AUD 78,750 | AUD 81,250 | 50.21 |
+| Macquarie | AUD 48,900 | AUD 80,610 | AUD 83,110 | 51.36 |
+
+## Universities tried and not drafted
+
+- **University of Sydney.** The Master of Information Technology page returned HTTP 500 to curl and rendered 279 characters in a browser. The fetch tool now shows the course as the Master of Computer Science with one marketing paragraph and no fee, entry or date data. Its fee page gives only a range for engineering and computer science. Skipped.
+- **UNSW.** The Master of Information Technology (8543) page shows only 2026 indicative fees: AUD 63,000 for the first year and AUD 130,500 for the whole course. There is no 2027 international fee. The English requirement sits in a widget we could not read. Held back until a 2027 fee can be read.
+- **UTS.** The course page URL we tried returned 404, and the batch 2 attempt showed only the domestic fee without an international switch. Skipped.
+- **Deakin.** The course page returned 403 to curl. The fetch tool shows the domestic view only (Commonwealth-supported fee). Trimester 1, 2027 applications close 7 February 2027 and IELTS is 6.5 with no band below 6.0, but the page shows no international fee, so we did not draft it.
+- **University of Adelaide.** The degree page is a shell with no fee, entry or date data for the course. Skipped.
+- **Macquarie** was drafted with gaps: the international closing dates and any India-specific entry detail sit behind a country picker we could not drive.
+
+## Owner flags
+
+- New domains added to data/study-abroad/official-domains.json: monash.edu, uq.edu.au, anu.edu.au, rmit.edu.au, mq.edu.au. The owner should approve these.
+- Monash's India page and the merit scholarship's own page disagree. The pages are quoted above. No merit scholarship record was written.
+- ANU's international page labelled the first closing-date block as Semester 1, 2028 in the fetch output. We read 15 December 2026 as Semester 1, 2027.
