@@ -16,6 +16,7 @@ export function generateStaticParams() { return LAUNCHED_COUNTRIES.map(country =
 const KEY_FACTS: Record<string, { key: string; tone: Stat['tone']; note: string }[]> = {
     germany: [{ key: 'germany.blocked_account.annual_eur', tone: 'blue', note: 'Blocked account per year' }, { key: 'germany.aps.fee_inr', tone: 'green', note: 'APS certificate fee' }, { key: 'germany.visa.national_fee_eur', tone: 'emerald', note: 'Student visa fee' }],
     usa: [{ key: 'usa.visa.sevis_i901_fee_usd', tone: 'blue', note: 'SEVIS I-901 fee' }, { key: 'usa.visa.f1_mrv_fee_usd', tone: 'green', note: 'F-1 visa fee' }, { key: 'usa.living.monthly_average_usd', tone: 'emerald', note: 'Average living cost per month' }],
+    australia: [{ key: 'australia.visa.student_500_fee_aud', tone: 'blue', note: 'Student visa (subclass 500) fee, from' }, { key: 'australia.funds.living_costs_student_aud', tone: 'green', note: 'Living costs to show for the visa, per year' }, { key: 'australia.work.student_hours_per_fortnight', tone: 'emerald', note: 'Work hours per fortnight in term' }],
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ country: string }> }): Promise<Metadata> {
@@ -38,9 +39,9 @@ export default async function CountryHub({ params }: { params: Promise<{ country
         getFacts(), getScholarshipsForCountry(country, SCHOLARSHIP_PICKS[country] ? 8 : 4), getProgramCombos(),
     ]);
     const programs = combos.filter(p => p.country === country && p.universities >= MIN_INDEXABLE_UNIVERSITIES);
-    const stats = KEY_FACTS[country].map(k => facts[k.key] && ({
+    const stats = (KEY_FACTS[country] ?? []).map(k => facts[k.key] && ({
         label: facts[k.key].label.replace(/ \(.*\)$/, ''), tone: k.tone, note: k.note,
-        value: /^[A-Z]{3}$/.test(facts[k.key].unit || '') ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: facts[k.key].unit!, maximumFractionDigits: 0 }).format(Number(facts[k.key].value)) : facts[k.key].value,
+        value: /^[A-Z]{3}$/.test(facts[k.key].unit || '') ? new Intl.NumberFormat('en-IN', { style: 'currency', currency: facts[k.key].unit!, maximumFractionDigits: 0 }).format(Number(facts[k.key].value.replace(/,/g, ''))) : facts[k.key].value,
     })).filter(Boolean) as Stat[];
     const stagesWithGuides = STAGES.map(s => ({ ...s, items: guides.filter(g => stageOf(g.slug) === s.id) })).filter(s => s.items.length);
     const summary = (text: string | null) => (text && !/^Complete 2026 guide to/.test(text) ? text : null);

@@ -17,5 +17,10 @@ The old dictionary also carried amounts (blocked account €11,904 and €992 a 
 | TCS (Tax Collected at Source) | A tax collected when money is sent abroad, which can be claimed back when you file your tax return. |
 | Collateral | An asset (house, gold, fixed deposit) pledged to a bank, usually to get a lower interest rate. |
 | Co-signer / Co-borrower | The parent or guardian who signs the loan with you and takes responsibility for repayment. |
+| CoE (Confirmation of Enrolment) | The official record from an Australian university that you are enrolled in a full-time course. You need it to apply for the Student visa. |
+| CRICOS | The Australian government list of courses and providers that are allowed to teach overseas students. |
+| OSHC (Overseas Student Health Cover) | Health insurance that international students in Australia must hold for their whole stay. |
+| ImmiAccount | The Australian Home Affairs online account where you fill in and pay for your visa application. |
+| Genuine Student requirement | A check that you are a real applicant who plans to study in Australia, based on four short written answers and your documents. |
 
 Note on Section 80E: the old rule said "100% of interest". Check the current Income Tax Act wording before claiming that.
