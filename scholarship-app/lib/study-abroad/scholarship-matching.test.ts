@@ -15,7 +15,8 @@ const UNIVERSITIES: MatchableUniversity[] = [
     { slug: 'heidelberg-university', name: 'Heidelberg University (Ruprecht-Karls-Universität Heidelberg)', country: 'germany' },
     { slug: 'uc-berkeley', name: 'University of California, Berkeley (UCB)', country: 'usa' },
     { slug: 'nyu-new-york-university', name: 'New York University (NYU Tandon / Courant)', country: 'usa' },
-    { slug: 'uk-oxford', name: 'University of Oxford', country: 'uk' as MatchableUniversity['country'] },
+    { slug: 'uk-oxford', name: 'University of Oxford', country: 'uk' },
+    { slug: 'ca-toronto', name: 'University of Toronto', country: 'canada' as MatchableUniversity['country'] },
 ];
 
 test('matches exact provider, phrase in title/provider, and explicit alias; never matches unlaunched country', () => {
@@ -49,7 +50,15 @@ test('matches exact provider, phrase in title/provider, and explicit alias; neve
         provider: 'University of Oxford',
         country_of_study: 'United Kingdom',
     };
-    assert.deepEqual(matchScholarshipToUniversities(oxfordSch, UNIVERSITIES), []);
+    assert.deepEqual(matchScholarshipToUniversities(oxfordSch, UNIVERSITIES).map(u => u.slug), ['uk-oxford']);
+
+    const torontoSch: MatchableScholarship = {
+        slug: 'lester-pearson-scholarship',
+        title: 'Lester B. Pearson International Scholarship',
+        provider: 'University of Toronto',
+        country_of_study: 'Canada',
+    };
+    assert.deepEqual(matchScholarshipToUniversities(torontoSch, UNIVERSITIES), []);
 });
 
 test('does not fuzzy-guess unrelated providers', () => {

@@ -4,7 +4,7 @@
 export const COUNTRIES = {
     germany: { slug: 'germany', name: 'Germany', currency: 'EUR', scholarshipCountry: 'Germany', launched: true },
     usa: { slug: 'usa', name: 'USA', currency: 'USD', scholarshipCountry: 'United States', launched: true },
-    uk: { slug: 'uk', name: 'UK', currency: 'GBP', scholarshipCountry: 'United Kingdom', launched: false },
+    uk: { slug: 'uk', name: 'UK', currency: 'GBP', scholarshipCountry: 'United Kingdom', launched: true },
     canada: { slug: 'canada', name: 'Canada', currency: 'CAD', scholarshipCountry: 'Canada', launched: false },
     australia: { slug: 'australia', name: 'Australia', currency: 'AUD', scholarshipCountry: 'Australia', launched: false },
     ireland: { slug: 'ireland', name: 'Ireland', currency: 'EUR', scholarshipCountry: 'Ireland', launched: false },
