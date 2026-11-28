@@ -11,7 +11,7 @@ import { bylineText, costLinks, NOT_PUBLISHED, publicValue, ScholarshipLinks } f
 export const revalidate = 86400;
 export const dynamicParams = false;
 export async function generateStaticParams() {
-    return (await getPrograms()).map(p => ({ country: p.country, university: p.university_slug, program: p.slug }));
+    return (await getPrograms()).filter(p => isCountry(p.country)).map(p => ({ country: p.country, university: p.university_slug, program: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ country: string; university: string; program: string }> }): Promise<Metadata> {

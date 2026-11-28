@@ -75,7 +75,9 @@ test('fetchPage returns null on a non-200 response or a network error', async ()
 
 test('run() on the committed registry: pass with a matching page, fail when the fee changed', async () => {
     const logs = [];
-    const good = await run({ fetchImpl: async () => new Response(page(entry.quote), { status: 200 }), log: m => logs.push(m) });
+    // A fake page that carries every quote in the committed registry, so the test does not depend on how many entries there are
+    const allQuotes = JSON.parse(readFileSync(new URL('../../data/study-abroad/source-checks.json', import.meta.url), 'utf8')).entries.map(e => e.quote).join(' ');
+    const good = await run({ fetchImpl: async () => new Response(page(allQuotes), { status: 200 }), log: m => logs.push(m) });
     assert.equal(good.code, 0);
     const changed = await run({ fetchImpl: async () => new Response(page('$385'), { status: 200 }), log: () => {} });
     assert.equal(changed.code, 1);

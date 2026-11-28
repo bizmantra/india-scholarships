@@ -19,6 +19,9 @@ Last updated: 2026-11-03. Merges #74-#101 since Oct 13 are not itemised below ye
 
 ## Merged to main
 
+**Nov 28**
+- UK pre-launch fixes (PR `fix/uk-prelaunch-blockers`): the UK funds proposal now uses supported actions and has 5 source-registry entries (3 gov.uk money-page facts, 2 HC 584 monthly rates); the calculator reads the GBP→INR rate live from the RBI page instead of a stored fact; calculator IHS now follows visa length (ST 25.3); hidden countries are filtered out of the sitemap, static params, hub and calculator page; the hub and planning helpers handle UK. UK stays hidden. Filing order and commands: `plans/uk-launch-runbook-2026-11-28.md` (`scripts/study-abroad/file-uk-launch.sh`). Launch itself is a separate PR.
+
 **Nov 5**
 - UK MSc Computer Science and Data Science course pages, 24 drafts for 12 universities (#135 batch 1: Birmingham, Coventry, Edinburgh, Glasgow; #139 batch 2: Leeds, Manchester, Newcastle, Nottingham; #140 batch 3: Sheffield, Southampton, UCL, Warwick). Research notes in `plans/uk-research/cs-ds/`, drafts `scripts/study-abroad/proposals/uk-course-*-{cs,ds}-2026-11-04.json`. Visa living money uses the HC 584 rates for applications from 30 November 2026 (£1,203 a month outside London, £10,827 for 9 months); #138 applied this to batch 1 and added fixes for the 4 live Birmingham and Coventry pages. Manchester DS has no tuition (2027 fee not published). #137 (an earlier batch 2) was replaced by #139 and #140.
 
