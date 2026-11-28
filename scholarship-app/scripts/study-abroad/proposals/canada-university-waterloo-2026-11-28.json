@@ -1,0 +1,43 @@
+{
+  "agent": "content-editor",
+  "notes": "University of Waterloo, drafted around the MDSAI co-op. Built only from plans/canada-research/ca-batch2-notes.md section 2. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "university-of-waterloo",
+      "source": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data",
+      "fields": {
+        "slug": "university-of-waterloo",
+        "name": "University of Waterloo",
+        "country": "canada",
+        "city": "Waterloo, Ontario",
+        "summary": "Waterloo charges CAD 6,272 per course for the MDSAI co-op, or CAD 56,448 for nine courses. It asks for 78% or more and has a 15 January deadline.",
+        "seo_title": "University of Waterloo for Indian Students: MDSAI Fees & Entry",
+        "meta_description": "University of Waterloo for Indian students: MDSAI co-op at CAD 6,272 per course, a 78% minimum, IELTS 7.5 if needed and a 15 January deadline for September.",
+        "tuition_currency": "CAD",
+        "body_md": "## At a glance\n\nThe University of Waterloo is in Waterloo, Ontario. This page uses its **Master of Data Science and Artificial Intelligence (MDSAI) co-op** to show real costs and entry rules.\n\nThe most important fact is that Waterloo charges by the course. The latest international rate is **CAD 6,272** per course, which is **₹4.09 lakh**. The co-op programme has nine courses.\n\n| | MDSAI co-op |\n|---|---|\n| Campus | Waterloo, on campus |\n| Length | 16 months full time, with one co-op term |\n| Intake | September only |\n| Tuition for 9 courses (our sum) | **CAD 56,448** |\n| Minimum average | **78%** overall |\n| English test, if needed | TOEFL **5**, IELTS **7.5** |\n| Application deadline | **15 January** for September |\n\nWaterloo is a designated learning institution. IRCC's list shows it as a public institution. Its DLI number is O19305471522.\n\n## What it really costs\n\nThe study permit asks you to show enough money for tuition, living costs and travel. Read the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide) for the rules.\n\nTuition for nine courses is **CAD 56,448** (**₹36.84 lakh**), by our sum of the latest rate. Incidental fees are **CAD 1,014.11** for each full-time term. The co-op fee is **CAD 836**. Waterloo has not posted a September 2027 rate.\n\nIRCC also asks for **CAD 23,448** for living costs (**₹15.30 lakh**) and your flights. Waterloo does not split the 16 months by year, so ask it for your first-year tuition. Rents are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Getting in\n\nWaterloo asks for an honours bachelor's degree in a related field with at least **78%**. The real cut-off is higher. It does not require the GRE. You need three references and a statement of up to 500 words. See the [programme page](/study-abroad/program-detail/canada/university-of-waterloo/waterloo-mdsai-co-op) for the details.\n\n## Deadlines\n\nThe co-op programme admits only in the fall. The deadline for a September start is **15 January**. Waterloo reviews complete applications within about **8 to 10 weeks** of the deadline.\n\n## Popular programs for Indian students\n\n- [Master of Data Science and Artificial Intelligence (Co-op)](/study-abroad/program-detail/canada/university-of-waterloo/waterloo-mdsai-co-op): 16 months, CAD 6,272 per course, one paid co-op term.\n\n## Who it suits\n\n**A strong choice if** you have a strong computer science or statistics degree and want a co-op term inside a master's.\n\n**Think carefully if** you need a January or May start, or a fixed fee. Waterloo charges by the course and may change the rate.\n\n## Sources\n\n- [MDSAI co-op programme page](https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data). Checked on 28 November 2026.\n- [MDSAI tuition page](https://uwaterloo.ca/data-science/graduate-programs/master-data-science-and-artificial-intelligence/tuition). Checked on 28 November 2026.\n- [Master's and PhD tuition, Winter 2027, international students](https://uwaterloo.ca/finance/masters-and-phd-program-tuition-winter-2027-international). Checked on 28 November 2026.\n- [Data Science admission requirements](https://uwaterloo.ca/data-science/graduate-programs/admission-requirements). Checked on 28 November 2026.\n- [Data Science application deadlines](https://uwaterloo.ca/data-science/graduate-programs/application-deadlines). Checked on 28 November 2026.\n- [Vector Scholarship in Artificial Intelligence at Waterloo](https://uwaterloo.ca/data-science/vector-scholarship-artificial-intelligence). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the Waterloo MDSAI co-op cost for international students?",
+            "a": "Waterloo's latest schedule lists CAD 6,272 per course, or CAD 56,448 for nine courses by our sum. Incidental fees are CAD 1,014.11 per full-time term and the co-op fee is CAD 836."
+          },
+          {
+            "q": "What marks do I need for the Waterloo MDSAI?",
+            "a": "An honours bachelor's degree in a related field with at least 78% overall. Waterloo says the real cut-off is much higher because admission is competitive."
+          },
+          {
+            "q": "Is the GRE needed for the Waterloo MDSAI?",
+            "a": "No. Waterloo does not require GRE scores. It says scores can help your application."
+          },
+          {
+            "q": "What is the deadline for the MDSAI co-op?",
+            "a": "15 January for a September start. The co-op programme admits only in the fall. Confirm that 15 January 2027 applies to September 2027."
+          }
+        ],
+        "official_source": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/data-science-and-artificial-intelligence-co-op-master-data",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

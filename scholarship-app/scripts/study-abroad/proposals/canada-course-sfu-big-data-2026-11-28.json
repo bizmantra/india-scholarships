@@ -1,0 +1,69 @@
+{
+  "agent": "content-editor",
+  "notes": "SFU Master of Science in Big Data, Fall 2027 start, international. Built only from plans/canada-research/ca-batch2-notes.md section 4. Left out: SFU's India credential rule (drop-down we could not read), a first-year fee, a Fall 2027 fee, campus, salaries. tuition_per_year left empty. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_sfu-master-of-science-big-data",
+      "source": "https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html",
+      "fields": {
+        "id": "program_sfu-master-of-science-big-data",
+        "slug": "sfu-master-of-science-big-data",
+        "university_slug": "simon-fraser-university",
+        "country": "canada",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Science in Big Data",
+        "tuition_currency": "CAD",
+        "ielts_min": 6.5,
+        "english_requirements": "University minimums: IELTS 6.5 overall with 6.0 in each section, TOEFL iBT 4.5 overall with 4.0 in each section, PTE 65, or Duolingo 125. The programme may ask for more.",
+        "summary": "SFU's Master of Science in Big Data has mandatory co-op and takes 16 to 20 months. International tuition is CAD 13,856.16 a term. Apply by 19 January 2027.",
+        "seo_title": "SFU Master of Science in Big Data: Fees, Entry, Fall 2027",
+        "meta_description": "SFU Master of Science in Big Data for Indian students: CAD 55,424.64 for four terms, a mandatory paid co-op, IELTS 6.5 and a 19 January 2027 deadline.",
+        "gpa_min": "GPA of at least 3.00 out of 4.33 (B), or 3.33 out of 4.33 on the last 60 credits, or the equivalent",
+        "location": "British Columbia",
+        "duration": "16 to 20 months full time, with mandatory co-op",
+        "language": "English",
+        "intakes": "Fall",
+        "application_portal": "Simon Fraser University graduate online application",
+        "application_deadlines": {
+          "Fall 2027 intake, apply by": "19 January 2027"
+        },
+        "body_md": "## About this programme\n\nWant a computer science master's built around big data and a paid co-op? This page covers the fee, who can join and the dates for Fall 2027.\n\nThe Master of Science in Big Data at Simon Fraser University (SFU) is a professional computer science programme. SFU says you finish in **16 to 20 months**. It has **mandatory co-op**, which SFU describes as a paid placement. You need at least 30 units. These are 15 credits of coursework, 12 credits of specialised lab work and 3 credits for co-op.\n\n**The most important fact for you:** SFU gives the full price. International tuition for 2026/27 is **CAD 13,856.16** a term, or **CAD 55,424.64** (**₹36.18 lakh**) for the four terms.\n\nSFU's number on the IRCC list of schools is **O18781994282**. You enter it on your study permit application.\n\nFor the wider university, see our [Simon Fraser University page](/study-abroad/universities/simon-fraser-university).\n\n## Can you get in?\n\n**Degree.** You need a bachelor's degree or equivalent in computer science or a related field. For Canadian degrees, SFU asks for a cumulative GPA of at least **3.00 out of 4.33** (a B). It also accepts **3.33 out of 4.33** on your last 60 credits. For degrees from outside Canada, SFU lists the academic standing it needs for each country. That list sits in a drop-down on SFU's site that we could not read. Check it for India before you apply.\n\n**Background.** SFU expects you to program in Java, Python and C++. It also expects knowledge of calculus, linear algebra, advanced statistics, data structures and algorithms, databases and operating systems.\n\n**Lower grades.** SFU may admit a student with lower formal qualifications in exceptional cases that show significant relevant professional experience. It says this is rare.\n\n**English.** SFU asks for a test unless your degree was taught and examined in English in a country where English is the main language. SFU keeps a list of accepted countries. We could not read it, so check whether yours counts. The university minimums are below. A programme may ask for more.\n\n| Test | University minimum |\n|---|---|\n| IELTS Academic | **6.5** overall, **6.0** in each section |\n| TOEFL iBT | **4.5** overall, **4.0** in each section (tests before 21 January 2026: **90**, with **20** in each part) |\n| Pearson PTE | **65** overall, **60** in each section |\n| Duolingo English Test | **125** overall, **105** in each section |\n\n## What it costs\n\nSFU lists 2026/27 tuition for international students at **CAD 13,856.16** per term (**₹9.04 lakh**). The total for the four terms is **CAD 55,424.64** (**₹36.18 lakh**). These are the latest published fees, not the Fall 2027 fees. SFU does not say whether fees change for 2027.\n\nSFU does not say how the four terms split between years. IRCC asks you to show your first year of tuition plus **CAD 23,448** for living costs (**₹15.30 lakh**). Ask SFU for the tuition due in your first 12 months. Then add your flights. The study permit costs **CAD 150** and biometrics cost **CAD 85**. See the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide).\n\nSFU's page lists no other fees, so we give none. Rents and bills are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Funding\n\nSFU offers multiple entrance scholarships of up to **CAD 15,000** (**₹9.79 lakh**) each year. Selection is based on academic and professional achievement. SFU says all successful applicants are considered, so there is no separate application. SFU lists bursaries and loans on its graduate funding pages.\n\n## Deadlines and intakes\n\nSFU is taking applications for the **Fall 2027** intake. The page says to apply by **19 January 2027**.\n\n## How to apply\n\n1. Check SFU's credential list for your degree, and check your GPA against 3.00 out of 4.33.\n2. Check your English route: a test, or an accepted country.\n3. Make sure you can program in Java, Python and C++, and know the maths listed above.\n4. Apply online by 19 January 2027.\n5. After an offer, ask SFU for the tuition due in your first 12 months.\n6. Apply for your study permit. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide). SFU is a public school, so a master's student does not need a PAL.\n\n## After the programme\n\nThe co-op placement is part of the programme. From 1 April 2026, IRCC says eligible students no longer need a separate work permit for a co-op placement their programme requires. IRCC allows a post-graduation work permit of up to 3 years for a master's degree. You must meet its rules, including language level **CLB 7**. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide).\n\n## Who it suits\n\n**A strong choice if:**\n\n- you hold a computer science degree and program in Java, Python and C++\n- you want a paid co-op placement built into the master's\n- you can show tuition and living costs for a 16 to 20 month stay\n\n**Think carefully if:**\n\n- your degree is outside computer science, because SFU asks for a related field\n- you cannot confirm SFU's rules for your Indian degree, which sit in a drop-down we could not read\n- you need the Fall 2027 fee, because SFU lists 2026/27 only\n\n## Sources\n\n- [SFU Master of Science in Big Data](https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html). Checked on 28 November 2026.\n- [SFU graduate admission requirements](https://www.sfu.ca/gradstudies/apply/applying/requirements.html). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the SFU Master of Science in Big Data cost for international students?",
+            "a": "SFU lists CAD 13,856.16 per term for 2026/27. The four terms come to CAD 55,424.64, about ₹36.18 lakh at ₹65.27 per Canadian dollar. SFU has not published the Fall 2027 fee."
+          },
+          {
+            "q": "What GPA do I need for the SFU Big Data master's?",
+            "a": "SFU asks for a bachelor's degree in computer science or a related field with a GPA of at least 3.00 out of 4.33, or 3.33 on the last 60 credits. For Indian degrees SFU lists its own rule by country."
+          },
+          {
+            "q": "What is the SFU Big Data deadline for Fall 2027?",
+            "a": "19 January 2027. SFU says applications are open for Fall 2027."
+          },
+          {
+            "q": "What IELTS score does SFU need?",
+            "a": "SFU's university minimum is IELTS 6.5 overall with 6.0 in each section. The programme may ask for more. You may not need a test if your degree was taught in English in an accepted country."
+          },
+          {
+            "q": "Is the SFU Big Data master's co-op paid?",
+            "a": "SFU says the programme has a mandatory co-op and describes the placement as paid. The programme takes 16 to 20 months."
+          },
+          {
+            "q": "Is there a scholarship for international students at SFU?",
+            "a": "Yes. SFU offers multiple entrance scholarships of up to CAD 15,000 each year. That is about ₹9.79 lakh. All successful applicants are considered."
+          },
+          {
+            "q": "Do I need a PAL for SFU?",
+            "a": "No. Master's and doctoral students at public schools do not need a PAL. IRCC lists SFU as a public institution. You still need your letter of acceptance."
+          }
+        ],
+        "official_source": "https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "agent": "content-editor",
+  "notes": "Simon Fraser University, drafted around the Master of Science in Big Data. Built only from plans/canada-research/ca-batch2-notes.md section 4. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "simon-fraser-university",
+      "source": "https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html",
+      "fields": {
+        "slug": "simon-fraser-university",
+        "name": "Simon Fraser University",
+        "country": "canada",
+        "city": "British Columbia",
+        "summary": "At SFU, the Master of Science in Big Data costs CAD 55,424.64 in tuition for four terms. It has a mandatory paid co-op. Apply by 19 January 2027.",
+        "seo_title": "SFU for Indian Students: Big Data Master's Fees & Entry",
+        "meta_description": "Simon Fraser University for Indian students: Master of Science in Big Data at CAD 55,424.64, a mandatory paid co-op, IELTS 6.5 and a 19 January 2027 deadline.",
+        "tuition_currency": "CAD",
+        "body_md": "## At a glance\n\nSimon Fraser University (SFU) is in British Columbia. This page uses its **Master of Science in Big Data** to show real costs and entry rules.\n\nThe most important fact is the fee. International tuition for 2026/27 is **CAD 13,856.16** a term. The four terms cost **CAD 55,424.64** (**₹36.18 lakh**).\n\n| | Master of Science in Big Data |\n|---|---|\n| Length | 16 to 20 months full time |\n| Co-op | Mandatory, paid |\n| Intake | Fall 2027 |\n| Tuition, four terms (2026/27) | **CAD 55,424.64** |\n| Minimum GPA | **3.00** out of 4.33 |\n| English test (IELTS) | **6.5** overall, **6.0** in each section |\n| Apply by | **19 January 2027** |\n\nSFU is a designated learning institution. IRCC's list shows it as a public institution. Its DLI number is O18781994282.\n\n## What it really costs\n\nThe study permit asks you to show enough money for tuition, living costs and travel. Read the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide) for the rules.\n\nFour terms of tuition cost **CAD 55,424.64** (**₹36.18 lakh**), at the 2026/27 rate. IRCC also asks for **CAD 23,448** for living costs (**₹15.30 lakh**) and your flights. SFU does not split the programme by year, so ask it for your first-year amount. Rents are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Getting in\n\nSFU asks for a computer science or related bachelor's degree with a GPA of at least **3.00 out of 4.33**. It lists a separate academic rule for each country, and we could not read India's. See the [programme page](/study-abroad/program-detail/canada/simon-fraser-university/sfu-master-of-science-big-data) for the details.\n\n## Deadlines\n\nSFU is taking applications for Fall 2027. Apply by **19 January 2027**.\n\n## Popular programs for Indian students\n\n- [Master of Science in Big Data](/study-abroad/program-detail/canada/simon-fraser-university/sfu-master-of-science-big-data): 16 to 20 months, mandatory co-op, tuition CAD 55,424.64 for four terms.\n\n## Who it suits\n\n**A strong choice if** you hold a computer science degree and want a co-op placement inside the master's.\n\n**Think carefully if** you cannot confirm SFU's rules for your Indian degree. Fees listed are for 2026/27.\n\n## Sources\n\n- [SFU Master of Science in Big Data](https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html). Checked on 28 November 2026.\n- [SFU graduate admission requirements](https://www.sfu.ca/gradstudies/apply/applying/requirements.html). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the SFU Master of Science in Big Data cost for international students?",
+            "a": "SFU lists CAD 13,856.16 per term for 2026/27. The four terms come to CAD 55,424.64, about ₹36.18 lakh at ₹65.27 per Canadian dollar. SFU has not published the Fall 2027 fee."
+          },
+          {
+            "q": "What GPA do I need for the SFU Big Data master's?",
+            "a": "SFU asks for a bachelor's degree in computer science or a related field with a GPA of at least 3.00 out of 4.33, or 3.33 on the last 60 credits. For Indian degrees SFU lists its own rule by country."
+          },
+          {
+            "q": "What is the SFU Big Data deadline for Fall 2027?",
+            "a": "19 January 2027. SFU says applications are open for Fall 2027."
+          },
+          {
+            "q": "What IELTS score does SFU need?",
+            "a": "SFU's university minimum is IELTS 6.5 overall with 6.0 in each section. The programme may ask for more. You may not need a test if your degree was taught in English in an accepted country."
+          }
+        ],
+        "official_source": "https://www.sfu.ca/fas/study/future-graduates/programs/master-big-data.html",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "agent": "content-editor",
+  "notes": "McGill University, drafted around the Master of Management in Analytics. Built only from plans/canada-research/ca-batch2-notes.md section 5. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_universities",
+      "key": "mcgill-university",
+      "source": "https://www.mcgill.ca/desautels/programs/mma/inperson/admissions",
+      "fields": {
+        "slug": "mcgill-university",
+        "name": "McGill University",
+        "country": "canada",
+        "city": "Montreal, Quebec",
+        "summary": "At McGill, the in-person Master of Management in Analytics is listed at CAD 79,020 in tuition. It starts in July 2027. The final international deadline is 15 January 2027.",
+        "seo_title": "McGill University for Indian Students: MMA Fees & Entry",
+        "meta_description": "McGill University for Indian students: Master of Management in Analytics at CAD 79,020, no GMAT needed, IELTS 6.5 and a 15 January 2027 international deadline.",
+        "tuition_currency": "CAD",
+        "body_md": "## At a glance\n\nMcGill University is in Montreal, Quebec. This page uses its **Master of Management in Analytics (MMA)** to show real costs and entry rules.\n\nThe most important fact is the fee. McGill lists tuition for the Summer 2027 in-person class at **CAD 79,020** (**₹51.58 lakh**) for international students.\n\n| | MMA (in person) |\n|---|---|\n| Campus | Montreal |\n| Length | 12 or 16 months full time |\n| Start | July 2027 |\n| Tuition (Summer 2027 class) | **CAD 79,020** |\n| Minimum CGPA | **3.0** out of 4.0 |\n| GMAT or GRE | Optional |\n| English test (IELTS) | **6.5** or greater |\n| Final deadline for international students | **15 January 2027** |\n\nMcGill is a designated learning institution. IRCC's list shows it as a public institution. Its DLI number is O19359011033. McGill is in Quebec, so you also need a CAQ.\n\n## What it really costs\n\nThe study permit asks you to show enough money for tuition, living costs and travel. Read the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide) for the rules.\n\nTuition for the MMA is **CAD 79,020** (**₹51.58 lakh**). For Quebec, the living amount for one student is **CAD 24,617** (**₹16.07 lakh**) per year, plus your flights. Montreal rents are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Getting in\n\nMcGill asks for a graduate CGPA of at least **3.0 out of 4.0**, two references and a one-page CV. It does not need the GMAT or GRE. See the [programme page](/study-abroad/program-detail/canada/mcgill-university/mcgill-master-of-management-in-analytics) for the details.\n\n## Deadlines\n\nFor July 2027, the first deadline is **15 November 2026**. The final deadline for international students is **15 January 2027**.\n\n## Popular programs for Indian students\n\n- [Master of Management in Analytics, in person](/study-abroad/program-detail/canada/mcgill-university/mcgill-master-of-management-in-analytics): 12 or 16 months, tuition CAD 79,020.\n\n## Who it suits\n\n**A strong choice if** you want analytics inside a business programme and have strong quantitative skills.\n\n**Think carefully if** your budget is tight. Tuition is high, and Quebec asks for a larger living amount.\n\n## Sources\n\n- [McGill MMA in-person: tuition and funding](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions/tuition-financial-aid). Checked on 28 November 2026.\n- [McGill MMA in-person: admissions](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions). Checked on 28 November 2026.\n- [McGill MMA in-person: FAQ](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions/mma-faq). Checked on 28 November 2026.\n- [McGill MMA in-person: overview](https://www.mcgill.ca/desautels/programs/mma/inperson). Checked on 28 November 2026.\n- [McGill English language proficiency](https://www.mcgill.ca/gradapplicants/how-apply/you-apply-mcgill/proficiency). Checked on 28 November 2026.\n- [Quebec government: financial resources for international students](https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the McGill MMA cost for international students?",
+            "a": "McGill lists CAD 79,020 in tuition for the Summer 2027 in-person class, about ₹51.58 lakh at ₹65.27 per Canadian dollar. It also lists a waiver of CAD 32,490 for Canadians and permanent residents. Other fees apply."
+          },
+          {
+            "q": "What is the McGill MMA deadline for July 2027?",
+            "a": "15 November 2026 is the first deadline. The final deadline for international students is 15 January 2027."
+          },
+          {
+            "q": "Is the GMAT needed for McGill MMA?",
+            "a": "No. McGill says the GMAT or GRE is optional. A score may improve your profile."
+          },
+          {
+            "q": "What IELTS score does McGill need?",
+            "a": "McGill asks for IELTS Academic 6.5 or greater. You may be exempt if you studied in English in a non-English-speaking country. Check McGill's English page."
+          }
+        ],
+        "official_source": "https://www.mcgill.ca/desautels/programs/mma/inperson/admissions",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "agent": "content-editor",
+  "notes": "University of Toronto MScAC, Computer Science concentration, Fall 2027 start, international. Built only from plans/canada-research/ca-batch2-notes.md section 3. Left out: a Fall 2027 fee (not posted; the page gives the September 2026 estimate for the whole programme), first-year split, salaries, acceptance rates. tuition_per_year left empty for that reason. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_toronto-mscac-computer-science",
+      "source": "https://mscac.utoronto.ca/apply/",
+      "fields": {
+        "id": "program_toronto-mscac-computer-science",
+        "slug": "toronto-mscac-computer-science",
+        "university_slug": "university-of-toronto",
+        "country": "canada",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Science in Applied Computing (Computer Science)",
+        "tuition_currency": "CAD",
+        "ielts_min": 7.0,
+        "english_requirements": "If your degree was not taught and examined in English: IELTS Academic 7.0 overall with 6.5 in each part, or TOEFL iBT 93 overall with 22 in writing and speaking.",
+        "summary": "Toronto's 16-month MScAC (Computer Science) includes an eight-month paid internship. U of T estimates CAD 90,050 for the whole programme. Fall 2027 applications close 1 December 2026.",
+        "seo_title": "U of T MScAC Computer Science: Fees, Entry, Fall 2027",
+        "meta_description": "U of T Master of Science in Applied Computing (Computer Science) for Indian students: CAD 90,050 estimate, B+ standing, IELTS 7.0, 1 December 2026 deadline.",
+        "gpa_min": "Standing equivalent to at least B+ (U of T 77 to 79%) in the final year",
+        "location": "Toronto, Ontario",
+        "duration": "16 months full time, including an eight-month paid internship",
+        "language": "English",
+        "intakes": "September",
+        "application_portal": "University of Toronto MScAC online application",
+        "application_deadlines": {
+          "Fall 2027 intake, applications close": "1 December 2026, 11:59 p.m. ET"
+        },
+        "body_md": "## About this programme\n\nWant a master's in computer science that includes a paid internship? This page covers the fee, who can join and the dates for Fall 2027.\n\nThe Master of Science in Applied Computing (MScAC) at the University of Toronto combines advanced study with an **eight-month paid research internship**. You finish in **16 months**. This page covers the **Computer Science concentration**. The programme also has concentrations in applied mathematics, artificial intelligence, AI in healthcare, data science and biological data science.\n\n**The most important fact for you:** the fee is large and covers the whole 16 months. For the programme starting in September 2026, U of T estimates **CAD 90,050** (**₹58.78 lakh**) for international students.\n\nU of T's number on the IRCC list of schools is **O19332746152**. You enter it on your study permit application.\n\nFor the wider university, see our [University of Toronto page](/study-abroad/universities/university-of-toronto).\n\n## Can you get in?\n\n**Degree.** You need an appropriate bachelor's degree for the concentration. For Computer Science, that means a bachelor's in computer science or a related discipline. U of T says you must show knowledge equal to at least three senior-level computer science courses. It names algorithms, operating systems and databases as the ideal ones.\n\n**Grades.** You need a standing equal to at least **B+** (U of T 77 to 79%) in your final year, which is two terms.\n\n**Four-year degree.** U of T says the admitting degree is the one it counts as equal to its own four-year undergraduate degree. It points you to its International Credentials Equivalencies Tool. Use it before you apply, especially if you hold a three-year degree.\n\n**Documents.** U of T asks for these:\n\n- transcripts for study from undergraduate level up\n- a resume of one to two pages\n- answers to programme essay questions\n- three letters of support from faculty or employers, ideally with two academic\n- GRE scores, \"if applicable\"\n\nWork and research experience is preferred but not required. The committee may invite you to an interview. It can be technical, non-technical or both. It reviews applications after the deadline and decides between December and April.\n\n**Concentration.** You must choose Computer Science on your application. U of T says admission to the programme does not mean automatic admission to the concentration.\n\n**English.** U of T asks for a test if your degree was earned where the language of instruction and examination was not English. If it was uniformly English, you may be exempt, but U of T may still ask for a letter from your university. If you need a test, the School of Graduate Studies lists these minimums:\n\n| Test | Minimum |\n|---|---|\n| IELTS Academic | **7.0** overall, **6.5** in each part |\n| TOEFL iBT | **93** overall, **22** in writing and speaking (new scale: **4.5** overall, **4.5** writing, **4.0** speaking) |\n\nU of T says some departments ask for more. Tests must be from the last 24 months.\n\n## What it costs\n\nFor the programme starting in September 2026, U of T estimates the fee for the **entire 16-month programme**. Tuition and fees are estimated at **CAD 90,050** (**₹58.78 lakh**) for international students. The estimate includes a **CAD 2,200** mandatory fee for pre-program activities. These take place from May to August before the programme.\n\nU of T says it posts the new fees in mid-July each year and that they can change. The fee for the Fall 2027 start was not posted when we checked.\n\nU of T does not split the 16 months by year. IRCC asks you to show your first year of tuition plus **CAD 23,448** for living costs (**₹15.30 lakh**). Ask U of T for the amount due in your first 12 months. Then add your flights. The study permit costs **CAD 150** and biometrics cost **CAD 85**. See the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide).\n\nU of T says it cannot guarantee pay for the internship. It says students have so far found paid internships that offset their tuition and fees. We give no salary figure. Toronto rents and bills are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Funding\n\nThe Ontario Graduate Scholarship (OGS) is worth **CAD 5,000** (**₹3.26 lakh**) a session. An award can run for two or three sessions, which is **CAD 10,000** or **CAD 15,000**. U of T says international students on a study permit can win a set number of OGS awards. You apply through your graduate unit, and each unit sets its own deadline. Units send only a limited number of international applications forward.\n\nU of T asks for at least an A- (or equal) in each of your last two years. MScAC may or may not nominate you, so ask the programme. Read the [U of T OGS page](https://www.sgs.utoronto.ca/awards/ontario-graduate-scholarship/). The MScAC page says Prodigy Finance and MPOWER have said they will consider loan applications from MScAC students. The programme has no formal agreement with either.\n\n## Deadlines and intakes\n\nFall 2027 applications are open. The deadline is **1 December 2026** at 11:59 p.m. Eastern time. The programme has one intake, in the fall. It does not accept applications for a winter or summer start.\n\nU of T begins reviewing after the deadline and sends interview invitations as early as it can. It makes decisions between December and April. It asks for official transcripts by 31 August if you get a conditional offer.\n\n## How to apply\n\n1. Use the International Credentials Equivalencies Tool to check your degree.\n2. Check your final-year grades against the B+ standing.\n3. Choose Computer Science as your concentration.\n4. Ask three referees, ideally two academic, to write letters of support.\n5. Write your programme essay answers and one-to-two-page resume.\n6. Apply online by 1 December 2026.\n7. If you get an interview, prepare to talk about the projects on your resume.\n8. After an offer, apply for your study permit. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide). U of T is a public school, so a master's student does not need a PAL.\n\n## After the programme\n\nIRCC allows a post-graduation work permit of up to 3 years for a master's degree. You must meet its rules, including language level **CLB 7**. The eight-month internship is part of the programme. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide) for the work rules.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you hold a strong computer science degree with at least B+ standing\n- you want paid work experience inside the master's\n- you can plan for about CAD 90,050 over 16 months, plus living costs\n\n**Think carefully if:**\n\n- you hold a three-year degree, because U of T checks the equal of its four-year degree\n- you need a fixed fee, because U of T posts fees each July and may change them\n- you want a winter or summer start, because there is only a fall intake\n\n## Sources\n\n- [MScAC apply page](https://mscac.utoronto.ca/apply/). Checked on 28 November 2026.\n- [MScAC programme home](https://mscac.utoronto.ca/). Checked on 28 November 2026.\n- [School of Graduate Studies: English language proficiency](https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/). Checked on 28 November 2026.\n- [Ontario Graduate Scholarship at U of T](https://www.sgs.utoronto.ca/awards/ontario-graduate-scholarship/). Checked on 28 November 2026.\n- [U of T living costs in Toronto](https://www.studentlife.utoronto.ca/task/living-costs-in-toronto/). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the U of T MScAC cost for international students?",
+            "a": "U of T estimates CAD 90,050 for the whole 16-month programme starting September 2026, about ₹58.78 lakh at ₹65.27 per Canadian dollar. That includes a CAD 2,200 pre-program fee. The 2027 fee was not posted."
+          },
+          {
+            "q": "What marks do I need for the U of T MScAC?",
+            "a": "A standing equal to at least B+ (U of T 77 to 79%) in your final year of a four-year degree. Admission is competitive and the committee reviews your whole file."
+          },
+          {
+            "q": "What is the deadline for the MScAC for Fall 2027?",
+            "a": "1 December 2026 at 11:59 p.m. Eastern time. The programme has one intake, in the fall."
+          },
+          {
+            "q": "Do I need IELTS for U of T MScAC?",
+            "a": "Only if your degree was earned where the language of instruction and examination was not English. If you need it, U of T asks for IELTS 7.0 overall with 6.5 in each part, or TOEFL 93."
+          },
+          {
+            "q": "How long is the MScAC?",
+            "a": "16 months. It includes an eight-month paid research internship."
+          },
+          {
+            "q": "Is there a scholarship for international students at U of T?",
+            "a": "The Ontario Graduate Scholarship is worth CAD 5,000 a session, about ₹3.26 lakh. International students on a study permit are eligible for a set number of awards. Apply through your graduate unit."
+          },
+          {
+            "q": "Do I need a PAL for U of T?",
+            "a": "No. Master's and doctoral students at public schools do not need a PAL. IRCC lists U of T as a public institution. You still need your letter of acceptance."
+          }
+        ],
+        "official_source": "https://mscac.utoronto.ca/apply/",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

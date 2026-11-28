@@ -1,0 +1,70 @@
+{
+  "agent": "content-editor",
+  "notes": "McGill Master of Management in Analytics (in-person), July 2027 start, international. Built only from plans/canada-research/ca-batch2-notes.md section 5. Left out: tuition split between the 12 and 16 month options (not stated), other fees, salaries, scholarship amount. McGill's own admissions page shows an older Quebec living-cost figure (CAD 15,078); we use quebec.ca's figure. tuition_per_year left empty. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_mcgill-master-of-management-in-analytics",
+      "source": "https://www.mcgill.ca/desautels/programs/mma/inperson/admissions",
+      "fields": {
+        "id": "program_mcgill-master-of-management-in-analytics",
+        "slug": "mcgill-master-of-management-in-analytics",
+        "university_slug": "mcgill-university",
+        "country": "canada",
+        "degree": "master",
+        "field": "data-science",
+        "title": "Master of Management in Analytics (in person)",
+        "tuition_currency": "CAD",
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS Academic 6.5 or greater, or TOEFL iBT 4.5 overall (6-point scale) or 86 overall (120-point scale). Some applicants with an English-taught degree may be exempt.",
+        "summary": "McGill's in-person MMA runs 12 or 16 months from July 2027 in Montreal. Tuition is listed at CAD 79,020. The final deadline for international students is 15 January 2027.",
+        "seo_title": "McGill Master of Management in Analytics: Fees & Entry",
+        "meta_description": "McGill Master of Management in Analytics for Indian students: CAD 79,020 tuition, no GMAT needed, IELTS 6.5 and a 15 January 2027 deadline for July 2027 entry.",
+        "gpa_min": "CGPA of 3.0 out of 4.0, or 3.2 out of 4.0 in the last two years of full-time study",
+        "location": "Montreal, Quebec",
+        "duration": "12 or 16 months full time",
+        "language": "English",
+        "intakes": "July",
+        "application_portal": "McGill graduate applicant portal",
+        "application_deadlines": {
+          "July 2027 intake, first deadline": "15 November 2026",
+          "July 2027 intake, final deadline for international students": "15 January 2027"
+        },
+        "body_md": "## About this programme\n\nWant a business analytics master's in Montreal that takes 12 to 16 months? This page covers the fee, who can join and the dates for July 2027.\n\nThe Master of Management in Analytics (MMA) at McGill's Desautels Faculty of Management is a full-time, in-person programme. McGill says you can finish in **12 or 16 months**. It starts in **July 2027**. It is for people who want analytics, AI and machine learning from a business view. McGill says it is open to people from any academic background with strong quantitative skills.\n\n**The most important fact for you:** the fee is high and the deadline is near. McGill lists tuition for the Summer 2027 in-person class at **CAD 79,020** (**₹51.58 lakh**) for international students. The final deadline for international students is **15 January 2027**.\n\nMcGill is in Quebec. Quebec has its own rules for study permits. You need a CAQ before your permit. Read the Quebec section below.\n\nMcGill's number on the IRCC list of schools is **O19359011033**. You enter it on your study permit application.\n\nFor the wider university, see our [McGill University page](/study-abroad/universities/mcgill-university).\n\n## Can you get in?\n\n**Degree.** McGill says the programme suits recent graduates in commerce, engineering, computer science, economics, arts or science with proven quantitative skills. You can apply in your final year, and admission is conditional on finishing your degree before the start. McGill says a three-year degree from outside Canada might also qualify. It only judges this after it gets your full application. Use its credentials tool first.\n\n**Grades.** McGill's graduate minimum is a CGPA of **3.0 out of 4.0**, or **3.2 out of 4.0** in your last two years of full-time study. Use McGill's grade-equivalency page to see how your marks convert.\n\n**Documents.** McGill asks for these:\n\n- transcripts from every university you attended\n- a CV of one page\n- answers to four short questions about your goals\n- a list of the quantitative and technology courses you took, including online ones\n- two references, with at least one academic\n\n**GMAT or GRE.** These are optional. McGill says a score may help your profile.\n\n**English.** McGill asks for a test if English is not your native language and you did not finish a degree in an English-speaking country. If you studied in English in a country where English is not the main language, you may be exempt. Check McGill's English page. Only tests taken at a test centre count.\n\n| Test | Minimum |\n|---|---|\n| IELTS Academic | **6.5** or greater |\n| TOEFL iBT (6-point scale) | **4.5** overall, with 4.5 in reading, listening and writing and 4.0 in speaking |\n| TOEFL iBT (120-point scale) | **86** overall, with **20** in each part |\n\n## What it costs\n\nMcGill lists tuition for the Summer 2027 in-person entering class at **CAD 79,020** (**₹51.58 lakh**) for international students. Canadians and permanent residents get a waiver of CAD 32,490. McGill says fees change every year and points to its tuition and fees calculator. Its page does not say whether the amount differs for the 12 and 16 month options, so ask McGill before you plan your funds.\n\nMcGill says the programme is not affected by the Quebec government's recent tuition increases.\n\nFor your study permit, Quebec sets its own money rule. For one student, the amount for essential expenses for one year is **CAD 24,617** (**₹16.07 lakh**). This is higher than IRCC's amount for the rest of Canada. McGill's own admissions page still shows an older figure of CAD 15,078. We use the Quebec government's figure because it is the official one. The application costs **CAD 143.82**. The study permit costs **CAD 150** and biometrics cost **CAD 85**. See the [proof of funds guide](/study-abroad/study-in/canada/canada-proof-of-funds-guide).\n\nMontreal rents and bills are in our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Funding\n\nMcGill says all MMA students are considered for merit-based entrance scholarships when accepted. It does not state an amount. You do not need a separate application. McGill also lists loan providers and mentions the McCall MacBain Scholarships on its page.\n\n## Deadlines and intakes\n\nFor the July 2027 start, McGill lists these dates:\n\n| Date | What it is |\n|---|---|\n| **15 November 2026** | First application deadline |\n| **15 January 2027** | Final deadline for international students |\n\nMcGill says you can expect a response within 6 to 8 weeks of a deadline. It can take longer. If it accepts you, you generally have two weeks to accept the offer.\n\n## How to apply\n\n1. Check your degree on McGill's credentials page, and check your marks against the 3.0 out of 4.0 minimum.\n2. Decide whether you need an English test. Book it early, because test centres send scores slowly.\n3. Write your four short answers, one-page CV, and course list.\n4. Ask two referees, at least one academic, to write references. They must send them before the deadline.\n5. Pay the CAD 143.82 fee and apply on the McGill applicant portal by 15 January 2027.\n6. After an offer, apply for a CAQ and then your study permit. McGill is in Quebec, so a CAQ comes first.\n7. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide). McGill is a public school, so a master's student does not need a PAL.\n\n## After the programme\n\nIRCC allows a post-graduation work permit of up to 3 years for a master's degree. You must meet its rules, including language level **CLB 7**. Read the [study permit guide](/study-abroad/visas/canada-student-visa-guide).\n\n## Who it suits\n\n**A strong choice if:**\n\n- you want analytics inside a business programme\n- you have strong quantitative skills from any degree\n- you can pay about CAD 79,020 in tuition and show Quebec's living amount\n\n**Think carefully if:**\n\n- you are close to the 15 January 2027 deadline and need an English test\n- your degree is three years long, because McGill decides only on a full application\n- you need a firm total, because McGill does not split fees by 12 or 16 months\n\n## Sources\n\n- [McGill MMA in-person: tuition and funding](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions/tuition-financial-aid). Checked on 28 November 2026.\n- [McGill MMA in-person: admissions](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions). Checked on 28 November 2026.\n- [McGill MMA in-person: FAQ](https://www.mcgill.ca/desautels/programs/mma/inperson/admissions/mma-faq). Checked on 28 November 2026.\n- [McGill MMA in-person: overview](https://www.mcgill.ca/desautels/programs/mma/inperson). Checked on 28 November 2026.\n- [McGill English language proficiency](https://www.mcgill.ca/gradapplicants/how-apply/you-apply-mcgill/proficiency). Checked on 28 November 2026.\n- [Quebec government: financial resources for international students](https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies). Checked on 28 November 2026.\n- [IRCC designated learning institutions list](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/prepare/designated-learning-institutions-list.html). Checked on 28 November 2026.\n- [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "How much does the McGill MMA cost for international students?",
+            "a": "McGill lists CAD 79,020 in tuition for the Summer 2027 in-person class, about ₹51.58 lakh at ₹65.27 per Canadian dollar. It also lists a waiver of CAD 32,490 for Canadians and permanent residents. Other fees apply."
+          },
+          {
+            "q": "What is the McGill MMA deadline for July 2027?",
+            "a": "15 November 2026 is the first deadline. The final deadline for international students is 15 January 2027."
+          },
+          {
+            "q": "Is the GMAT needed for McGill MMA?",
+            "a": "No. McGill says the GMAT or GRE is optional. A score may improve your profile."
+          },
+          {
+            "q": "What IELTS score does McGill need?",
+            "a": "McGill asks for IELTS Academic 6.5 or greater. You may be exempt if you studied in English in a non-English-speaking country. Check McGill's English page."
+          },
+          {
+            "q": "What GPA do I need for the McGill MMA?",
+            "a": "McGill's graduate minimum is a CGPA of 3.0 out of 4.0, or 3.2 out of 4.0 in the last two years of full-time study."
+          },
+          {
+            "q": "Do I need a CAQ for McGill?",
+            "a": "Yes. McGill says accepted international students must get a CAQ and a study permit before the programme starts."
+          },
+          {
+            "q": "Is there a scholarship for the McGill MMA?",
+            "a": "McGill considers all MMA students for merit-based entrance scholarships when accepted. It does not publish an amount on its page, and you do not apply separately."
+          }
+        ],
+        "official_source": "https://www.mcgill.ca/desautels/programs/mma/inperson/admissions",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
