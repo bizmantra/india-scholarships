@@ -50,6 +50,54 @@
       "value": "1203",
       "checked_on": "2026-11-28",
       "note": "HC 584 says APP ST8 to APP ST10 take effect on 30 November 2026 for applications made on or after that date."
+    },
+    {
+      "id": "canada-study-permit-fee",
+      "fact_key": "canada.visa.study_permit_fee_cad",
+      "url": "https://ircc.canada.ca/english/information/fees/fees.asp",
+      "quote": "Study permit (including extensions) – per person 150.00",
+      "value": "150",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "canada-biometrics-fee",
+      "fact_key": "canada.visa.biometrics_fee_cad",
+      "url": "https://ircc.canada.ca/english/information/fees/fees.asp",
+      "quote": "Biometrics – per individual 85.00",
+      "value": "85",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "canada-living-costs-single",
+      "fact_key": "canada.funds.living_costs_single_cad",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+      "quote": "Amount required per year (excluding tuition and transportation costs) (in CAN$) 1 $23,448",
+      "value": "23,448",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "canada-quebec-living-costs",
+      "fact_key": "canada.funds.living_costs_quebec_cad",
+      "url": "https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies",
+      "quote": "Amount of financial resources needed to cover essential expenses for one year. 1 $24,617",
+      "value": "24,617",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "canada-work-hours",
+      "fact_key": "canada.work.off_campus_hours_per_week",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/work-off-campus.html",
+      "quote": "up to 24 hours per week",
+      "value": "24",
+      "checked_on": "2026-11-28"
+    },
+    {
+      "id": "canada-pgwp-clb",
+      "fact_key": "canada.pgwp.language_clb_min",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html",
+      "quote": "minimum level of Canadian Language Benchmarks (CLB) 7 in English",
+      "value": "7",
+      "checked_on": "2026-11-28"
     }
   ]
 }

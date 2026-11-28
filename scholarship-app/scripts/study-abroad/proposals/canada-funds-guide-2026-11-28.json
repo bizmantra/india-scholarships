@@ -1,0 +1,46 @@
+{
+  "agent": "content-editor",
+  "notes": "Canada proof of funds guide (hidden country, draft). Figures in plans/canada-research/ca-visa-facts.md. Facts checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_guides",
+      "key": "canada-proof-of-funds-guide",
+      "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+      "fields": {
+        "slug": "canada-proof-of-funds-guide",
+        "kind": "guide",
+        "country": "canada",
+        "title": "Canada Proof of Funds for Indian Students: CAD 23,448 and GIC",
+        "summary": "How much money to show for a Canada study permit: CAD 23,448 for living costs, first-year tuition and travel. Includes the Quebec amount and what IRCC says about a GIC.",
+        "seo_title": "Canada Proof of Funds: CAD 23,448 Rule and GIC Explained",
+        "meta_description": "Canada proof of funds for a study permit: CAD 23,448 living costs from 1 Sept 2026, Quebec CAD 24,617, first-year tuition, travel and what IRCC says on a GIC.",
+        "body_md": "## The short answer\n\nFor a Canada study permit, IRCC asks you to show enough money for three things:\n\n- **Tuition:** your first year of tuition. If your programme is longer than a year, you must also say how you will pay for the rest.\n- **Living costs:** **CAD 23,448** for one person outside Quebec (**₹15.30 lakh**) if you apply on or after **1 September 2026**. In Quebec the amount is **CAD 24,617** (**₹16.07 lakh**).\n- **Travel:** the cost of getting to and from Canada. IRCC gives no amount for this. Get a fare quote.\n\nAdd them up. The living-cost part alone is about **₹15.30 lakh**. This is the minimum IRCC sets. It is not a budget. Our [cost of living guide](/study-abroad/study-in/canada/canada-cost-of-living) shows what students pay each month.\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Living costs by number of people\n\nIRCC publishes the amount for the first year. It excludes tuition and transport, and it is updated each year. These amounts are for all provinces and territories except Quebec, for applications on or after 1 September 2026.\n\n| People (including you) | Living costs for the year | In rupees |\n|---|---|---|\n| 1 | **CAD 23,448** | ₹15.30 lakh |\n| 2 | **CAD 29,192** | ₹19.05 lakh |\n| 3 | **CAD 35,888** | ₹23.42 lakh |\n| 4 | **CAD 43,572** | ₹28.44 lakh |\n| 5 | **CAD 49,419** | ₹32.26 lakh |\n| 6 | **CAD 55,736** | ₹36.38 lakh |\n| 7 | **CAD 62,054** | ₹40.50 lakh |\n\nFor each person above 7, add **CAD 6,318** (₹4,12,376). IRCC gives this example: if you and 2 family members come for a year, you need **CAD 35,888** for living costs.\n\nFor applications from 1 January 2025 to 31 August 2026, the amount for one person was **CAD 22,895**. The new amount is **CAD 553** higher. Recheck IRCC's page before you apply, because the figure changes every year.\n\n## Worked example\n\nThe only fee below is a real published fee. Your own fee is on your offer letter.\n\n| Part | Amount | In rupees |\n|---|---|---|\n| Tuition, UBC Master of Data Science (10 months) | **CAD 59,767.92** | ₹39.01 lakh |\n| Living costs, one person | **CAD 23,448** | ₹15.30 lakh |\n| **Sum before travel** | **CAD 83,215.92** | **₹54.32 lakh** |\n\nUBC's page says its fees can change without notice. Add your flights to Canada on top. See the [UBC programme page](/study-abroad/program-detail/canada/university-of-british-columbia/ubc-master-of-data-science) for the entry rules.\n\nFor a programme that runs longer than a year, we cannot say how much tuition falls in year one. Ask your university for its first-year amount. Then add the living costs and your travel.\n\n## What a GIC is, and whether you need one\n\nIRCC lists \"a guaranteed investment certificate from a Canadian financial institution\" as one document you can use as proof of funds. It sits in the \"Banking and other income\" list. IRCC also says the list is not complete, and you do not need to give all of the documents.\n\nSo a GIC is **one option, not a rule**. IRCC's current page gives no GIC amount, so we give none. Ask the bank how its GIC works before you buy one.\n\nThe Student Direct Stream, which India was part of, ended on **8 November 2024**. IRCC says the regular stream \"accepts Guaranteed Investment Certificates as proof of financial support\".\n\n## Other ways to prove you can pay\n\nIRCC gives these as examples of proof:\n\n- **Tuition and housing receipt:** proof that you paid the first year of tuition and housing. You still need proof of living and travel money.\n- **Education loan:** proof of a student or education loan from a bank.\n- **Scholarship:** proof of a scholarship. If it covers only tuition, show other money for living and travel.\n- **Bank statements:** statements for the past 6 months, including the month you applied or the month before. They must show where the money came from.\n- **Sponsor letter:** a letter from the person giving you money. It gives their job, their relationship to you, how many dependants they have and how much they will give. Add their photo ID or business registration.\n- **Other:** pay stubs, a Canadian bank account with money transferred in, pension papers or rental income proof.\n\nIf your country uses foreign exchange controls, IRCC says you must prove you will be allowed to export funds for all of your expenses.\n\n## Studying in Quebec\n\nQuebec sets its own minimum. For applications from **1 January 2026**, one person needs **CAD 24,617** (**₹16.07 lakh**) for basic needs. Quebec says transport is the round trip from your country, and tuition is separate. Quebec's page says each additional person above six adds **CAD 5,254**. Recheck after 1 January 2027, because the amount may change.\n\n## Check before you apply\n\n1. Ask your university for your first-year tuition and any deposit.\n2. Add **CAD 23,448** for living costs, or **CAD 24,617** in Quebec.\n3. Add a fare quote for your flights.\n4. Choose the proof you will use, and collect the papers early.\n5. Read the [study permit guide](/study-abroad/study-in/canada/canada-student-visa-guide) for the other documents.\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [Proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html), [End of the Student Direct Stream](https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/end-student-direct-stream-nigeria-student-express.html), [Quebec costs of studies](https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies), [UBC Master of Data Science tuition](https://masterdatascience.ubc.ca/admissions/tuition-and-financial-aid) and the [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/).\n",
+        "faq_json": [
+          {
+            "q": "How much money do I need to show for a Canada study permit?",
+            "a": "IRCC asks for first-year tuition, travel, and CAD 23,448 for living costs for one person outside Quebec. That living amount is about ₹15.30 lakh at ₹65.27 per Canadian dollar."
+          },
+          {
+            "q": "Do I have to buy a GIC for a Canada study permit?",
+            "a": "No. IRCC lists a guaranteed investment certificate as one example of proof of funds. You do not need to give every document on its list."
+          },
+          {
+            "q": "What is the living-cost amount for Quebec?",
+            "a": "Quebec asks for CAD 24,617 for one person for applications from 1 January 2026. That is about ₹16.07 lakh. Tuition and the round trip are extra."
+          },
+          {
+            "q": "Has the living-cost amount changed?",
+            "a": "Yes. For applications from 1 September 2026 the amount for one person is CAD 23,448. It was CAD 22,895 before that. IRCC updates it each year."
+          },
+          {
+            "q": "Can an education loan count as proof of funds?",
+            "a": "Yes. IRCC lists proof of a student or education loan from a bank as an example. If a scholarship or loan covers only tuition, show other money for living and travel."
+          }
+        ],
+        "official_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

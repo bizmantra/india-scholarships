@@ -1,0 +1,42 @@
+{
+  "agent": "content-editor",
+  "notes": "Canada cost of living guide (hidden country, draft). Figures in plans/canada-research/ca-visa-facts.md. Facts checked 2026-11-28. Not filed: for owner review.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_guides",
+      "key": "canada-cost-of-living",
+      "source": "https://www.educanada.ca/live-work-vivre-travailler/prepare-budget-preparer.aspx?lang=eng",
+      "fields": {
+        "slug": "canada-cost-of-living",
+        "kind": "guide",
+        "country": "canada",
+        "title": "Cost of Living in Canada for Indian Students: Monthly Budget",
+        "summary": "Monthly student costs in Canada from EduCanada and the University of Toronto, with rupee amounts and a comparison to the CAD 23,448 visa living-cost rule.",
+        "seo_title": "Cost of Living in Canada for Indian Students (CAD and INR)",
+        "meta_description": "Monthly cost of living in Canada for students: EduCanada budget, Toronto rent and bills in CAD and rupees, and how they compare with the CAD 23,448 visa amount.",
+        "body_md": "## The short answer\n\nCanada's government gives student budget ranges, and the University of Toronto publishes a city budget. Neither is a quote. Rent depends on the city and the home you choose.\n\n- **Government guide (EduCanada):** about **CAD 1,225** to **CAD 3,136** a month, which is **₹79,956** to **₹2,04,687**.\n- **Toronto (U of T, 2026):** about **CAD 2,025** to **CAD 3,830** a month, which is **₹1,32,172** to **₹2,49,984**.\n- **Visa rule:** IRCC asks you to show **CAD 23,448** for a year of living costs. That is about **CAD 1,954** a month (**₹1,27,538**).\n\nRupee amounts use **₹65.27 per Canadian dollar**, the Bank of Canada rate for 27 November 2026. Rates move every day and your bank will charge its own rate, so treat the rupee figures as a guide.\n\n## Monthly costs from EduCanada\n\nEduCanada is run by the Government of Canada. Its student budget page lists these ranges. It says all estimates are in Canadian dollars and are subject to change. The page was last changed on 20 May 2025.\n\n| Cost | Per month | In rupees |\n|---|---|---|\n| Housing and accommodation | **CAD 500 to CAD 2,000** | ₹32,635 to ₹1,30,540 |\n| Food and groceries | **CAD 240 to CAD 480** | ₹15,665 to ₹31,330 |\n| Utilities and cable | **CAD 100+** | ₹6,527+ |\n| Internet | **CAD 50 to CAD 100** | ₹3,264 to ₹6,527 |\n| Phone | **CAD 60+** | ₹3,916+ |\n| Health insurance | **CAD 75 to CAD 120** | ₹4,895 to ₹7,832 |\n| Entertainment | **CAD 120+** | ₹7,832+ |\n| Transport pass | **CAD 80 to CAD 156** | ₹5,222 to ₹10,182 |\n\nOur own sums, adding the low ends and the high ends, give **CAD 1,225** and **CAD 3,136** a month. Where EduCanada gives only a minimum, such as \"CAD 100+\", we used that minimum in both sums. Over 12 months that is **CAD 14,700** to **CAD 37,632**.\n\nEduCanada says to set aside about **25%** of your budget for housing. It says Canadian sales taxes run from about **5% to 15%**.\n\n## Health insurance\n\nEduCanada says each province decides if international students get public health cover. Where they do not, your school sells a medical plan. EduCanada says tuition for full-time students often includes insurance for dental, vision and drugs. Ask your university what is included.\n\n## Example city: Toronto\n\nThe University of Toronto lists typical monthly costs for one student in the Greater Toronto Area in 2026. The estimates cover its three campuses.\n\n| Cost | Per month | In rupees |\n|---|---|---|\n| Housing | **CAD 1,220 to CAD 2,700** | ₹79,629 to ₹1,76,229 |\n| Food and groceries | **CAD 350+** | ₹22,845+ |\n| Transport | **CAD 0 to CAD 150** | ₹0 to ₹9,791 |\n| Electricity (hydro) | **CAD 65+** | ₹4,243+ |\n| Home internet | **CAD 60 to CAD 115** | ₹3,916 to ₹7,506 |\n| Phone | **CAD 50 to CAD 100** | ₹3,264 to ₹6,527 |\n| Tenant's insurance | **CAD 30 to CAD 50** | ₹1,958 to ₹3,264 |\n| Clothing and shoes | **CAD 50 to CAD 100** | ₹3,264 to ₹6,527 |\n| Entertainment and other | **CAD 200** | ₹13,054 |\n\nAdding the low and high ends, we get **CAD 2,025** to **CAD 3,830** a month. We counted \"CAD 350+\" and \"CAD 65+\" at their minimum. U of T also lists **CAD 550** a semester for books and supplies, and a one-time **CAD 550** emergency fund.\n\n## How this compares with the visa amount\n\nIRCC's **CAD 23,448** works out to about **CAD 1,954** a month. EduCanada's low-end sum of **CAD 1,225** is below it, and the Toronto low-end sum of **CAD 2,025** is above it. Plan for the visa amount at the least. Then check your own city.\n\n## What the average tuition looks like\n\nEduCanada gives an average yearly tuition for international graduate students of **CAD 24,028**, from Statistics Canada, 2026. Professional master's programmes can cost more than this average. Our programme pages show each fee as the university publishes it.\n\n## City budgets we could not source\n\nWe found no official city budget page for Vancouver, Waterloo, Burnaby or Montreal that we could read. UBC's cost page is a calculator that needs you to enter details. Check each university's own student pages. Our [university pages](/study-abroad/study-in/canada) link to them.\n\n## Working part-time\n\nYou can work up to **24 hours a week** off campus while classes run. IRCC says to track your hours. Read the full rules in our [study permit guide](/study-abroad/study-in/canada/canada-student-visa-guide). Do not count on wages to meet the visa amount. IRCC asks you to prove you can pay \"without working in Canada\".\n\n## Sources\n\nOfficial pages, checked on 28 November 2026: [EduCanada student budget](https://www.educanada.ca/live-work-vivre-travailler/prepare-budget-preparer.aspx?lang=eng), [EduCanada cost of education](https://www.educanada.ca/programs-programmes/education_cost-cout_education.aspx?lang=eng), [U of T living costs in Toronto](https://www.studentlife.utoronto.ca/task/living-costs-in-toronto/), [IRCC proof of financial support](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html), [IRCC work off campus](https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/work-off-campus.html) and the [Bank of Canada exchange rates](https://www.bankofcanada.ca/rates/exchange/daily-exchange-rates/).\n",
+        "faq_json": [
+          {
+            "q": "How much does it cost to live in Canada as a student?",
+            "a": "EduCanada's student budget adds up to about CAD 1,225 to CAD 3,136 a month, or ₹79,956 to ₹2,04,687. Rent is the biggest part and depends on the city."
+          },
+          {
+            "q": "How much is rent for a student in Toronto?",
+            "a": "The University of Toronto lists housing at CAD 1,220 to CAD 2,700 a month for the Greater Toronto Area in 2026. That is ₹79,629 to ₹1,76,229 at ₹65.27 per Canadian dollar."
+          },
+          {
+            "q": "Is the visa living-cost amount enough to live on?",
+            "a": "It is the minimum IRCC sets, not a budget. CAD 23,448 a year is about CAD 1,954 a month. Your own costs depend on your city and your home."
+          },
+          {
+            "q": "Does tuition include health insurance in Canada?",
+            "a": "Often. EduCanada says tuition for full-time students often includes insurance. Some provinces cover international students, and some do not. Ask your university."
+          }
+        ],
+        "official_source": "https://www.educanada.ca/live-work-vivre-travailler/prepare-budget-preparer.aspx?lang=eng",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

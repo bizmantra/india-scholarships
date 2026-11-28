@@ -1,0 +1,108 @@
+{
+  "agent": "content-editor",
+  "notes": "Canada country facts (hub key facts and page figures). Hidden country, not filed. Quotes and dates are in plans/canada-research/ca-visa-facts.md. Values keep the comma form the official page uses. check-proposals.mjs cannot verify the canada.ca facts yet: see plans/canada-research/ca-batch1-notes.md.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.visa.study_permit_fee_cad",
+      "source": "https://ircc.canada.ca/english/information/fees/fees.asp",
+      "fields": {
+        "key": "canada.visa.study_permit_fee_cad",
+        "label": "Study permit application fee, per person",
+        "country": "canada",
+        "value": "150",
+        "unit": "CAD",
+        "official_source": "https://ircc.canada.ca/english/information/fees/fees.asp",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Biometrics are a separate CAD 85 per person. IRCC issues any visa or eTA with the permit at no extra fee."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.visa.biometrics_fee_cad",
+      "source": "https://ircc.canada.ca/english/information/fees/fees.asp",
+      "fields": {
+        "key": "canada.visa.biometrics_fee_cad",
+        "label": "Biometrics fee, per person",
+        "country": "canada",
+        "value": "85",
+        "unit": "CAD",
+        "official_source": "https://ircc.canada.ca/english/information/fees/fees.asp",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "CAD 170 maximum for a family of 2 or more applying at the same time. Needed once every 10 years."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.funds.living_costs_single_cad",
+      "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+      "fields": {
+        "key": "canada.funds.living_costs_single_cad",
+        "label": "Study permit living costs to show, one person, outside Quebec",
+        "country": "canada",
+        "value": "23,448",
+        "unit": "CAD",
+        "official_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "For applications on or after 1 September 2026. Excludes tuition and transport. IRCC updates the amount each year. Add first-year tuition and travel."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.funds.living_costs_quebec_cad",
+      "source": "https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies",
+      "fields": {
+        "key": "canada.funds.living_costs_quebec_cad",
+        "label": "Quebec living costs to show, one person",
+        "country": "canada",
+        "value": "24,617",
+        "unit": "CAD",
+        "official_source": "https://www.quebec.ca/en/education/study-quebec/required-conditions/costs-studies",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "For applications from 1 January 2026. Set by the Government of Quebec. Tuition and the round trip are extra. Recheck after 1 January 2027."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.work.off_campus_hours_per_week",
+      "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/work-off-campus.html",
+      "fields": {
+        "key": "canada.work.off_campus_hours_per_week",
+        "label": "Study permit work limit off campus while classes run",
+        "country": "canada",
+        "value": "24",
+        "unit": "hours per week",
+        "official_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/work-off-campus.html",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "Unlimited hours in breaks scheduled by the school. Needs the work condition on the permit and a SIN."
+      }
+    },
+    {
+      "create": true,
+      "table": "sa_facts",
+      "key": "canada.pgwp.language_clb_min",
+      "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html",
+      "fields": {
+        "key": "canada.pgwp.language_clb_min",
+        "label": "Post-graduation work permit language level for a master's degree",
+        "country": "canada",
+        "value": "7",
+        "unit": "CLB level",
+        "official_source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html",
+        "checked_at": "2026-11-28",
+        "recheck_after": "2027-02-26",
+        "notes": "CLB 7 in English (NCLC 7 in French) in all 4 language areas. No field of study rule for a master's degree."
+      }
+    }
+  ]
+}

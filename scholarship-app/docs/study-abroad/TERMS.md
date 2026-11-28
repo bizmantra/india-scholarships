@@ -17,5 +17,16 @@ The old dictionary also carried amounts (blocked account €11,904 and €992 a 
 | TCS (Tax Collected at Source) | A tax collected when money is sent abroad, which can be claimed back when you file your tax return. |
 | Collateral | An asset (house, gold, fixed deposit) pledged to a bank, usually to get a lower interest rate. |
 | Co-signer / Co-borrower | The parent or guardian who signs the loan with you and takes responsibility for repayment. |
+| Study permit | The Canadian document that lets you study at a designated learning institution. You apply for it online with IRCC. |
+| DLI (Designated Learning Institution) | A school approved by a Canadian province or territory to host international students. You need an LOA from one to apply. |
+| LOA (Letter of Acceptance) | The letter a Canadian school sends you when it accepts you. You cannot apply for a study permit without it. |
+| PAL / TAL (Provincial / Territorial Attestation Letter) | A letter from a province or territory that confirms there is a place for you under the cap. Master's students at public DLIs do not need one from 1 January 2026. |
+| CAQ (Quebec Acceptance Certificate) | The document the Government of Quebec issues. Quebec asks for it, and most students who are exempt from a PAL still need it. |
+| GIC (Guaranteed Investment Certificate) | A certificate from a Canadian financial institution. IRCC lists it as one accepted proof of funds, not a requirement. |
+| IRCC | Immigration, Refugees and Citizenship Canada, the government department that decides study permits. |
+| PGWP (Post-Graduation Work Permit) | A work permit for graduates of eligible Canadian schools. A master's graduate can get up to 3 years. |
+| CLB (Canadian Language Benchmarks) | The scale Canada uses to rate English language skill. A PGWP for a master's degree asks for CLB 7 in all four areas. |
+| SIN (Social Insurance Number) | A 9-digit number you need before you can work in Canada. |
+| Co-op | A programme with paid work terms between study terms. From 1 April 2026 eligible students no longer need a separate work permit for it. |
 
 Note on Section 80E: the old rule said "100% of interest". Check the current Income Tax Act wording before claiming that.
