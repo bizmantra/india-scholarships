@@ -1,0 +1,67 @@
+{
+  "agent": "content-editor",
+  "notes": "Melbourne Master of Information Technology (MC-IT), 2027 start, international. Built only from plans/australia-research/au-batch2-notes.md sections A, C, D, F, G. Left out: second-year fee, fees for the 1 and 1.5 year versions, OSHC price, rankings, salary figures. Fee and entry data come from the course page's own embedded data (the tabs); the 2026 fee is also in the visible top box. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_melbourne-master-of-information-technology",
+      "source": "https://study.unimelb.edu.au/find/courses/graduate/master-of-information-technology/",
+      "fields": {
+        "id": "program_melbourne-master-of-information-technology",
+        "slug": "melbourne-master-of-information-technology",
+        "university_slug": "university-of-melbourne",
+        "country": "australia",
+        "degree": "master",
+        "field": "computer-science",
+        "title": "Master of Information Technology",
+        "tuition_per_year": 68480,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. TOEFL iBT 81 or Pearson 64 also accepted.",
+        "summary": "Melbourne's 2-year Master of Information Technology takes any bachelor degree plus one programming subject. The 2027 first-year fee is AUD 68,480. Applications are due 2 January 2027.",
+        "seo_title": "Master of IT at Melbourne: Fees, Entry and 2027 Dates",
+        "meta_description": "Melbourne's Master of Information Technology for Indian students: AUD 68,480 first-year fee for 2027, a 65% WAM, IELTS 6.5 and a 2 January 2027 deadline.",
+        "gpa_min": "Bachelor degree (AQF7) with a weighted average mark of 65% or equivalent",
+        "tuition_currency": "AUD",
+        "location": "Melbourne (Parkville)",
+        "duration": "2 years full time (1 or 1.5 years with relevant prior qualifications)",
+        "language": "English",
+        "intakes": "March, July",
+        "application_portal": "University of Melbourne online application, through an authorised education agent for Indian applicants with prior tertiary study",
+        "application_deadlines": {
+          "Start of 2027 intake, international": "2 January 2027",
+          "July 2027 intake, international": "31 May 2027"
+        },
+        "body_md": "## About this programme\n\nThinking of a master's in IT at Melbourne? Here is what it costs, who can get in and the 2027 dates.\n\nThe Master of Information Technology is a two-year, full-time course at the Parkville campus in Melbourne. It starts in March or July. Its optional specialisations are artificial intelligence, cybersecurity, distributed computing and human-computer interaction. The Australian Computer Society accredits it.\n\n**The most important fact for you:** you do not need an IT degree for the two-year course. A bachelor degree in any subject works, if you have one programming subject. Shorter options are for IT graduates.\n\nFor the wider university, see our [University of Melbourne page](/study-abroad/universities/university-of-melbourne).\n\n## Can you get in?\n\nMelbourne has three versions of this course. Your degree decides which one you can join.\n\n| Version | Degree needed | Extra needs |\n|---|---|---|\n| 2 years (200 points) | Bachelor degree in any subject, weighted average mark (WAM) of **65%** or equivalent | One technical subject on computer programming, at any university year |\n| 1.5 years (150 points) | Bachelor degree with a major in computer science, IT, software engineering or a related subject, WAM **65%** or equivalent | None listed |\n| 1 year (100 points) | Four-year bachelor degree with that same kind of major, **65%** or equivalent | Advanced study in the area, or **2 years** of documented relevant work |\n\nA weighted average mark is your average mark over your degree. Melbourne says it picks students by prior academic performance and relevance of previous study.\n\n**Indian marks.** Melbourne's India page sends graduate applicants to its [grade conversion calculator](https://study.unimelb.edu.au/how-to-apply/graduate-coursework-study/grade-conversion-eligibility-calculator). The calculator gives an indicative score in your own university's grading scale. Melbourne says to use it as a guide only.\n\n**English.** IELTS is an English test. This course needs IELTS **6.5** overall, with no part below **6.0**. Melbourne also accepts TOEFL **81** and Pearson **64**.\n\n**Documents.** For the two-year version, send a detailed syllabus for each programming subject you took. If you rely on work experience, send a letter from your employer on letterhead. It must be an original or an original certified copy.\n\n## What it costs\n\nThe fee for a student starting in 2027 is **AUD 68,480** for the first year. The fee for the whole two-year course is **AUD 143,808**. The page gives no second-year fee and no fee for the shorter versions. This page gives none either.\n\nFor the Australian student visa you must show money for your first-year fee, 12 months of living costs and travel. Here is the worked sum.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 68,480 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 100,190** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 102,690** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) this is about **₹63.46 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules, and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\n## Funding\n\n**Melbourne International Graduate Scholarship.** It takes **20%** off your tuition for the whole course. India is on the list of eligible countries. You do not apply. Melbourne considers you when you apply for the course.\n\n**Melbourne International Excellence Scholarship (Graduate).** It also takes **20%** off tuition. Any international student with a master's offer can be considered.\n\nYou cannot hold one of these with another scholarship that gives a fee discount. Twenty per cent of the first-year fee is **AUD 13,696**, which is our sum. See our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\n| Intake | Applications due (international) |\n|---|---|\n| Start of 2027 | **2 January 2027** |\n| July 2027 | **31 May 2027** |\n\nThe course page says places are limited and you should apply early. It also says you cannot defer an offer for this course. If you cannot start, you can reapply for a later intake.\n\n## How to apply\n\n1. Check your marks with the grade conversion calculator, as a guide only.\n2. Choose an authorised education agent. Melbourne's India page says you must use one if you have already studied at a university in India. It says the agent costs you nothing.\n3. Collect your degree results, programming syllabi and English test result.\n4. Submit the application through the university's online application.\n5. Wait for the decision. The India page gives a typical wait of **4 to 8 weeks**.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nMelbourne lists these jobs for graduates: software engineer, data scientist, IT consultant, project manager and business intelligence consultant. It names employers such as Telstra, NAB, Suncorp and Accenture. It gives no salary figures, so we give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a bachelor degree in any subject and one programming subject\n- your marks meet the **65%** WAM or equivalent\n- you can show AUD 100,190 for the visa\n\n**Think carefully if:**\n\n- you want a shorter course, because its fee is not published on the page\n- your IELTS is below **6.5** overall or **6.0** in any part\n- you want a deferral, because the course does not allow one\n\n## Sources\n\n- [Master of Information Technology, University of Melbourne](https://study.unimelb.edu.au/find/courses/graduate/master-of-information-technology/). Checked on 28 November 2026.\n- [Information for students from India, University of Melbourne](https://study.unimelb.edu.au/connect-with-us/international/india). Checked on 28 November 2026.\n- [Melbourne International Graduate Scholarship](https://scholarships.unimelb.edu.au/awards/melbourne-international-graduate-scholarship), [Melbourne International Excellence Scholarship (Graduate)](https://scholarships.unimelb.edu.au/awards/melbourne-international-excellence-scholarship-graduate) and [eligible countries](https://scholarships.unimelb.edu.au/eligible-countries). Checked on 28 November 2026.\n- [Grade conversion eligibility calculator](https://study.unimelb.edu.au/how-to-apply/graduate-coursework-study/grade-conversion-eligibility-calculator). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the Melbourne Master of Information Technology without an IT degree?",
+            "a": "Yes. The two-year version takes a bachelor degree in any subject with a WAM of 65% or equivalent and one computer programming subject."
+          },
+          {
+            "q": "How much does the Melbourne Master of Information Technology cost for Indian students?",
+            "a": "For a 2027 start the first-year fee is AUD 68,480 and the whole two-year course costs AUD 143,808. With living costs, travel and the visa charge, the first year comes to AUD 102,690 before health cover."
+          },
+          {
+            "q": "What IELTS score does the Melbourne Master of Information Technology need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. The page also lists TOEFL 81 and Pearson 64."
+          },
+          {
+            "q": "What is the deadline for the Melbourne Master of Information Technology in 2027?",
+            "a": "International applications are due 2 January 2027 for the start of the year and 31 May 2027 for July. Apply early because places are limited."
+          },
+          {
+            "q": "Do I need an agent to apply to Melbourne from India?",
+            "a": "Yes, if you have already studied at a university in India. Melbourne's India page says you must apply through an authorised education agent, at no cost to you."
+          },
+          {
+            "q": "Can I defer a Master of Information Technology offer at Melbourne?",
+            "a": "No. The course page says deferrals are not permitted. You would have to reapply for a later intake."
+          }
+        ],
+        "official_source": "https://study.unimelb.edu.au/find/courses/graduate/master-of-information-technology/",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

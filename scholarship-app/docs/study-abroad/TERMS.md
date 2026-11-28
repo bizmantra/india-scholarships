@@ -22,5 +22,6 @@ The old dictionary also carried amounts (blocked account €11,904 and €992 a 
 | OSHC (Overseas Student Health Cover) | Health insurance that international students in Australia must hold for their whole stay. |
 | ImmiAccount | The Australian Home Affairs online account where you fill in and pay for your visa application. |
 | Genuine Student requirement | A check that you are a real applicant who plans to study in Australia, based on four short written answers and your documents. |
+| WAM (Weighted Average Mark) | Your average mark across a degree, as an Australian university calculates it. Many master's courses set a minimum WAM. |
 
 Note on Section 80E: the old rule said "100% of interest". Check the current Income Tax Act wording before claiming that.

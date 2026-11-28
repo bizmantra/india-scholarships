@@ -47,3 +47,40 @@ The guides do not need this check, so the hub is the only thing affected. Until 
 ## Not covered
 
 Top universities, top courses and scholarships (batch 2) are not drafted. They need one official page per university and per course, and a ranking source for "top".
+
+## Facts file blocked by the Home Affairs 403: two options and a recommendation
+
+The seven facts in `australia-facts-2026-11-28.json` cannot be filed today. `propose-changes.mjs` refuses a `sa_facts` value unless `data/study-abroad/source-checks.json` has an entry for it and the checker can find the quote on the live page. Home Affairs answers the checker's user agent with HTTP 403, and most of its text sits in a script block that the checker's text step drops. I changed neither.
+
+**Option A: fix the checker's fetch.**
+- What it takes: a narrow change in `scripts/lib/source-verify.mjs`. (1) Use a different user agent for `homeaffairs.gov.au` only. (2) Let a registry entry read the page's embedded JSON text, or keep quotes to the visible text. Then add seven registry entries and update the offline test "run() on the committed registry", which assumes every entry sits on one page.
+- Evidence it can work: from the box, a normal browser user agent got HTTP 200 and the two fee quotes were found.
+- Risks: it is untested from GitHub's servers, where the weekly check runs. Home Affairs may block those addresses even with a browser agent. Choosing a browser-like user agent for a government site is a policy call for the owner.
+- Gain: the facts are rechecked every week. The living-cost figure has been changed by law before (AUD 24,505 to AUD 29,710, item 5 in `au-visa-facts.md`), so it can go stale.
+
+**Option B: hand-approve.**
+- What it takes: the Inbox cannot carry these facts, because the source gate refuses them before they reach it. "Hand-approve" therefore means the owner writes the seven rows to `sa_facts` himself, in a one-off script or directly in the database, after reading the quotes in `au-visa-facts.md`.
+- Gain: no code change, and the hub tiles can be filled this week.
+- Risk: nothing rechecks those rows, so a changed fee stays on the hub until someone notices. The weekly job only checks registry entries.
+
+**Recommendation: A, in two steps.** Do not hold the rest of Australia for it. The guides, the university page, the course pages and the scholarships do not touch this gate and can be filed in the normal order. Keep Australia hidden. Before launch, test the Home Affairs fetch from a GitHub Actions run (a one-line workflow dispatch). If it passes, ship the narrow checker change and file the facts. If GitHub's addresses are blocked, use Option B for the seven rows and put a dated reminder on the recheck day (2027-02-26). The weekly source check then stays honest, because B is a one-time, owner-signed decision. It is not a quiet gap in the gate.
+
+## Batch 2 (added 2026-11-28)
+
+Files, all under `scripts/study-abroad/proposals/`:
+
+| File | Table | Page |
+|---|---|---|
+| `australia-university-melbourne-2026-11-28.json` | `sa_universities` | `/study-abroad/universities/university-of-melbourne` |
+| `australia-course-melbourne-mit-2026-11-28.json` | `sa_programs` | `/study-abroad/program-detail/australia/university-of-melbourne/melbourne-master-of-information-technology` |
+| `australia-course-melbourne-mds-2026-11-28.json` | `sa_programs` | `/study-abroad/program-detail/australia/university-of-melbourne/melbourne-master-of-data-science` |
+| `australia-new-scholarships-2026-11-28.cjs` | `agent_proposals` (new_scholarship), 3 records | Melbourne International Graduate Scholarship, Melbourne International Excellence Scholarship (Graduate), Australia Awards India |
+
+Research and quotes: `au-batch2-notes.md`. The `.cjs` was only run against a stub, never a database; it writes nothing without `--go`.
+
+Notes for the owner:
+- `official-domains.json` gains `unimelb.edu.au`, `australiaawardsindia.org` and `dfat.gov.au`.
+- The Melbourne course pages build their Fees and Entry tabs in the browser. I read the course data the page embeds. A weekly checker could not read these from the page text. The scholarship pages (scholarships.unimelb.edu.au) are plain text, so they are good registry candidates.
+- The scholarship records are rows in the main `scholarships` table, so approving them creates normal scholarship pages even though Australia is hidden (the UK records worked the same way). Australia Awards India has `app_type` and `application_mode` left empty because the page does not say how to apply while it is closed.
+- Both course pages use `field: computer-science` and `field: data-science`, which decide which comparison page they join.
+- Only one university is covered. It was chosen because its pages publish fees, entry rules and an India page, not because of a ranking.

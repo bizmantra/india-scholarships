@@ -1,0 +1,66 @@
+{
+  "agent": "content-editor",
+  "notes": "Melbourne Master of Data Science (MC-DATASC), March 2027 start, international. Built only from plans/australia-research/au-batch2-notes.md sections B, C, D, F, G. Left out: second-year fee, OSHC price, rankings, salary figures. Data comes from the course page's own embedded data (the tabs). Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_melbourne-master-of-data-science",
+      "source": "https://study.unimelb.edu.au/find/courses/graduate/master-of-data-science/",
+      "fields": {
+        "id": "program_melbourne-master-of-data-science",
+        "slug": "melbourne-master-of-data-science",
+        "university_slug": "university-of-melbourne",
+        "country": "australia",
+        "degree": "master",
+        "field": "data-science",
+        "title": "Master of Data Science",
+        "tuition_per_year": 61440,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. TOEFL iBT 81 or Pearson 64 also accepted.",
+        "summary": "Melbourne's 2-year Master of Data Science needs a programming subject, Calculus 2 and Linear Algebra. The 2027 first-year fee is AUD 61,440. Late applications close 2 January 2027.",
+        "seo_title": "Master of Data Science at Melbourne: Fees, Entry, 2027 Dates",
+        "meta_description": "Melbourne's Master of Data Science for Indian students: AUD 61,440 first-year fee for 2027, maths prerequisites, IELTS 6.5 and a 2 January 2027 deadline.",
+        "gpa_min": "Bachelor degree (AQF7) with a weighted average mark of 65% or equivalent",
+        "tuition_currency": "AUD",
+        "location": "Melbourne (Parkville)",
+        "duration": "2 years full time",
+        "language": "English",
+        "intakes": "March",
+        "application_portal": "University of Melbourne online application, through an authorised education agent for Indian applicants with prior tertiary study",
+        "application_deadlines": {
+          "March 2027 intake, international late applications accepted until": "2 January 2027"
+        },
+        "body_md": "## About this programme\n\nWant to study data science at Melbourne? This page covers the fee, who can join and the dates for 2027.\n\nThe Master of Data Science is a 200-point course over two years, taught on campus at Parkville. It starts in March. It mixes maths and statistics with computer science. There are four specialisations: foundational, statistical, computational, and computational and statistical. In the final year a capstone project applies the skills to a practical problem.\n\n**The most important fact for you:** the prerequisites are strict. You need a programming subject, Calculus 2 and Linear Algebra, or equivalents. If you lack them, Melbourne approves some online Coursera courses.\n\nFor the wider university, see our [University of Melbourne page](/study-abroad/universities/university-of-melbourne).\n\n## Can you get in?\n\n**Degree.** You need a bachelor degree in any subject. Your weighted average mark (WAM) must be **65%** or equivalent. The WAM is your average mark over the degree. Melbourne says it picks students by prior academic performance.\n\n**Prerequisite subjects.** Melbourne lists three:\n\n- a 12.5-point university subject on computer programming, at any year of study\n- MAST10006 Calculus 2, or equivalent\n- MAST10007 Linear Algebra, or equivalent\n\n**Missing a prerequisite?** The page lists approved Coursera courses. You must take each in Certificate Mode. Examples are Python for Everybody and Mathematics for Machine Learning: Linear Algebra.\n\n**Documents.** Send an official syllabus or subject description, in English, for each subject you say meets a prerequisite.\n\n**Indian marks.** Melbourne's India page sends graduate applicants to its [grade conversion calculator](https://study.unimelb.edu.au/how-to-apply/graduate-coursework-study/grade-conversion-eligibility-calculator). The calculator gives an indicative score in your own university's grading scale. Melbourne says to use it as a guide only.\n\n**English.** IELTS is an English test. You need IELTS **6.5** overall with no part below **6.0**. TOEFL **81** and Pearson **64** are also accepted.\n\n## What it costs\n\nFor a 2027 start, the first-year fee is **AUD 61,440**. The fee for the whole two-year course is **AUD 129,024**. The page does not give the second-year fee.\n\nThis is the worked first-year sum for the visa.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 61,440 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 93,150** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 95,650** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) this is about **₹59.11 lakh**. Health cover (OSHC) is extra. We found no official price, so it is not in the total. For the rules, read the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds).\n\n## Funding\n\nThe Melbourne International Graduate Scholarship gives **20%** off tuition for the whole course. India is on its eligible country list. The Melbourne International Excellence Scholarship (Graduate) also gives **20%**. You are considered when you apply.\n\nTwenty per cent of the first-year fee is **AUD 12,288**, which is our sum. The course page lists no scholarship of its own. See our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nThe course starts once a year, in March. For international applicants, **late applications for the 2027 start are accepted until 2 January 2027**. The page says to apply early to avoid visa delays.\n\nThe page also says the course has limited places and does not allow deferral. Melbourne says it aims to give an outcome within **6 to 8 weeks** of a complete application.\n\n## How to apply\n\n1. Check your prerequisites against the three subjects above.\n2. Use the grade conversion calculator for your marks, as a guide only.\n3. Choose an authorised education agent. Melbourne's India page says you must use one if you have already studied at a university in India. The agent costs you nothing.\n4. Gather your degree results, syllabi in English and English test result.\n5. Apply through the university's online application.\n6. After an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\nMelbourne says graduates work as data scientists, analysts, software engineers, data infrastructure engineers and statisticians. It gives no salary figures, so we give none. It lists a pathway into a research degree after the master's.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have studied programming, calculus and linear algebra\n- your marks meet the **65%** WAM or equivalent\n- you want a course that starts in March and ends with a capstone project\n\n**Think carefully if:**\n\n- you have not studied calculus or linear algebra, because you must make up the gap\n- your IELTS is below **6.5** overall or **6.0** in any part\n- you want a July start, because the course starts only in March\n\n## Sources\n\n- [Master of Data Science, University of Melbourne](https://study.unimelb.edu.au/find/courses/graduate/master-of-data-science/). Checked on 28 November 2026.\n- [Information for students from India, University of Melbourne](https://study.unimelb.edu.au/connect-with-us/international/india). Checked on 28 November 2026.\n- [Melbourne International Graduate Scholarship](https://scholarships.unimelb.edu.au/awards/melbourne-international-graduate-scholarship), [Melbourne International Excellence Scholarship (Graduate)](https://scholarships.unimelb.edu.au/awards/melbourne-international-excellence-scholarship-graduate) and [eligible countries](https://scholarships.unimelb.edu.au/eligible-countries). Checked on 28 November 2026.\n- [Grade conversion eligibility calculator](https://study.unimelb.edu.au/how-to-apply/graduate-coursework-study/grade-conversion-eligibility-calculator). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "What are the prerequisites for the Melbourne Master of Data Science?",
+            "a": "A bachelor degree in any subject with a WAM of 65% or equivalent, plus a programming subject, Calculus 2 and Linear Algebra, or equivalents."
+          },
+          {
+            "q": "How much does the Melbourne Master of Data Science cost for Indian students?",
+            "a": "For a 2027 start the first-year fee is AUD 61,440 and the whole two-year course costs AUD 129,024. With living costs, travel and the visa charge, the first year comes to AUD 95,650 before health cover."
+          },
+          {
+            "q": "What is the deadline for the Master of Data Science at Melbourne in 2027?",
+            "a": "International late applications for the March 2027 start are accepted until 2 January 2027. Melbourne advises applying early to avoid visa delays."
+          },
+          {
+            "q": "What if I have not studied calculus or linear algebra?",
+            "a": "Melbourne lists approved Coursera courses that can meet the prerequisites. You must take each one in Certificate Mode."
+          },
+          {
+            "q": "What IELTS score does the Melbourne Master of Data Science need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. The page also lists TOEFL 81 and Pearson 64."
+          },
+          {
+            "q": "Can I defer a Master of Data Science offer at Melbourne?",
+            "a": "No. The page says Melbourne does not permit deferral because places are limited. You would have to reapply."
+          }
+        ],
+        "official_source": "https://study.unimelb.edu.au/find/courses/graduate/master-of-data-science/",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}
