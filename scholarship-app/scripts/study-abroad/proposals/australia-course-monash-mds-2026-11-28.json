@@ -1,0 +1,62 @@
+{
+  "agent": "content-editor",
+  "notes": "Monash Master of Data Science (C6004), 2027, international. Built only from plans/australia-research/au-batch3-notes.md, section Monash. Left out: second-year fee, 1.5 year fee, OSHC price, domestic fees, Malaysia campus fees, rankings, salary figures. Fee from the page's embedded data; entry and English from the 2027 handbook embedded data. Draft for review; not filed.",
+  "changes": [
+    {
+      "create": true,
+      "table": "sa_programs",
+      "key": "program_monash-master-of-data-science",
+      "source": "https://www.monash.edu/study/courses/find-a-course/data-science-c6004",
+      "fields": {
+        "id": "program_monash-master-of-data-science",
+        "slug": "monash-master-of-data-science",
+        "university_slug": "monash-university",
+        "country": "australia",
+        "degree": "master",
+        "field": "data-science",
+        "title": "Master of Data Science",
+        "tuition_per_year": 57540,
+        "ielts_min": 6.5,
+        "english_requirements": "IELTS 6.5 overall with no band below 6.0. Pearson 58 or TOEFL iBT 79 also accepted.",
+        "summary": "Monash's Master of Data Science takes a bachelor degree with a 60% average. The 2027 fee is AUD 57,540 per full-time year. The 1.5 year route needs calculus and statistics.",
+        "seo_title": "Master of Data Science at Monash: Fees, Entry, 2027",
+        "meta_description": "Monash's Master of Data Science for Indian students: AUD 57,540 a year for 2027, a 60% credit average, IELTS 6.5 and February or July starts at Clayton.",
+        "gpa_min": "Bachelor degree (or equivalent) with at least a credit (60%) average",
+        "tuition_currency": "AUD",
+        "location": "Melbourne (Clayton)",
+        "duration": "2 years full time (1.5 years with a cognate degree)",
+        "language": "English",
+        "intakes": "February, July",
+        "application_portal": "Monash Online Application, applied for directly",
+        "application_deadlines": {
+          "International applicants": "No fixed date on the course page. Application dates vary by faculty; check with the faculty."
+        },
+        "body_md": "## About this programme\n\nThe Master of Data Science is taught on campus at the Clayton campus in Melbourne. The course page also lists a Malaysia campus. It starts in February or July. The course code is C6004 and the CRICOS code is 085349A.\n\nThe Australian Computer Society accredits it. The course page says this makes you eligible to become a member.\n\n**The most important fact for you:** the fee matches the IT course at **AUD 57,540** for a full-time year. The 1.5 year route needs maths: calculus, linear algebra, and probability and statistics.\n\nFor the wider university, see our [Monash University page](/study-abroad/universities/monash-university).\n\n## Can you get in?\n\nMonash has two entry levels. Your degree decides which one you can join.\n\n| Entry level | Degree needed | Length |\n|---|---|---|\n| Entry level 1 | An Australian bachelor degree (or equivalent), not necessarily in IT, with at least a credit (**60%**) average | 2 years full time, 96 credit points |\n| Entry level 2 | An Australian bachelor degree (or equivalent) in a cognate discipline relating to IT, or a business, engineering or science degree with an IT major. Studies must include python programming, databases, algorithms, computer architecture, operating systems and networks, and mathematics (calculus, linear algebra, probability and statistics). At least **60%** | 1.5 years full time, 72 credit points |\n\nA credit average is **60%**. Monash's India page lists the papers to send: semester-wise mark sheets, a degree certificate and your own statement of purpose. If your university gave one consolidated result, send a backlog summary or a no-backlog letter.\n\n**English.** IELTS is an English test. Monash calls its standard \"Level A\". It asks for IELTS **6.5** overall with no part below **6.0**. It also accepts Pearson **58** overall with no part below **50**. For TOEFL iBT it asks **79** overall. The part minimums are **21** in writing, **12** in listening, **13** in reading and **18** in speaking.\n\n## What it costs\n\nThe 2027 fee is **AUD 57,540** for each 48 credit points. Monash calls that a standard full-time course load for a year. This course is 96 credit points at entry level 1, so it takes two years. Monash gives no fee for later years or for the 1.5 year version, and this page gives none.\n\n| Item | Amount |\n|---|---|\n| First-year course fee, 2027 | AUD 57,540 |\n| Living costs for 12 months (visa rule) | AUD 29,710 |\n| Travel (visa rule) | AUD 2,000 |\n| **Money to show for the visa** | **AUD 89,250** |\n| Student visa charge | AUD 2,500 |\n| **Total before health cover** | **AUD 91,750** |\n\nAt ₹61.80 per AUD (Reserve Bank of Australia rate, 27 November 2026) the total is **₹56.70 lakh**. Health cover (OSHC) is extra and is not in the total, because we found no official price. Read the [student visa guide](/study-abroad/visas/australia-student-visa-guide) for the rules and the [proof of funds guide](/study-abroad/study-in/australia/australia-student-visa-proof-of-funds) for the evidence you need.\n\nMonash's page also lists domestic fees. They do not apply to Indian students, so we leave them out.\n\n## Funding\n\nMonash's own India page lists the scholarships below. None of them is for a master's course in IT or data science.\n\n- **Engineering International High Achievers Scholarship.** It pays **AUD 15,000** for each 48 credit points of a postgraduate course, towards tuition. There are **25** a year. It is for the Faculty of Engineering only.\n- **Monash International Merit Scholarship.** The India page lists it as up to **$50,000** with **31** places a year. The scholarship's own Monash page says it is for students with an undergraduate offer. Monash's two pages disagree. Ask Monash before you count on it.\n\nThe India page names three money records the visa accepts. They are a specified annual income, loans from financial institutions and a deposit.\n\nSee our [Australia scholarships page](/study-abroad/study-in/australia/scholarships).\n\n## Deadlines and intakes\n\nMonash gives no single closing date for this course. Its international page says application dates vary by faculty and generally open in early August. It says to check closing dates with the faculty. It also says an international student can apply for a place anytime throughout the year.\n\n| Intake | What Monash says |\n|---|---|\n| February (course page) | Semester one. The international page says March. Confirm the exact start with the faculty. |\n| July | Semester two. For mid-year entry, dates generally close in mid-June. |\n\nApply as early as you can, so there is time for the visa.\n\n## How to apply\n\n1. Check that your degree meets entry level 1 or 2 above.\n2. Collect your transcripts, passport copy, degree certificate, statement of purpose and English test result.\n3. Apply directly to Monash. Monash asks applicants from a short list of countries to use a registered agent. India is not on that list.\n4. Pay the applicant fee. Monash's India page lists **$100** and says there may be a waiver code.\n5. Wait for the decision. Monash's India page says an assessment usually takes **1 to 3 weeks**.\n6. When you have an offer, follow the [student visa guide](/study-abroad/visas/australia-student-visa-guide).\n\n## After the programme\n\n- The course page says the Australian Computer Society accredits it.\n- Monash's pages give no salary or job figures for it, so we give none.\n\n## Who it suits\n\n**A strong choice if:**\n\n- you have a bachelor degree in any subject with a **60%** average\n- you have studied maths and programming, if you want the shorter 1.5 year route\n- you can show AUD 89,250 for the visa\n\n**Think carefully if:**\n\n- you want a scholarship, because none on Monash's India page is for this course\n- you cannot pay a second year at a fee that is not published\n- your IELTS is below **6.5** overall or **6.0** in any part\n\n## Sources\n\n- [Master of Information Technology (C6001), Monash University](https://www.monash.edu/study/courses/find-a-course/information-technology-c6001) and its [2027 handbook entry](https://handbook.monash.edu/2027/courses/C6001). Checked on 28 November 2026.\n- [Master of Data Science (C6004), Monash University](https://www.monash.edu/study/courses/find-a-course/data-science-c6004) and its [2027 handbook entry](https://handbook.monash.edu/2027/courses/C6004). Checked on 28 November 2026.\n- [Apply for graduate coursework, international students, Monash University](https://www.monash.edu/admissions/apply/international-pg). Checked on 28 November 2026.\n- [Monash application process for India](https://www.monash.edu/india/study/monash-application-process) and [scholarships and finance options for India](https://www.monash.edu/india/study/scholarships-and-finance-options). Checked on 28 November 2026.\n- [Monash International Merit Scholarship](https://www.monash.edu/study/fees-scholarships/scholarships/find-a-scholarship/international-merit-5770). Checked on 28 November 2026.\n- [Student visa (subclass 500), Department of Home Affairs](https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500). Checked on 28 November 2026.\n- [Exchange rates, Reserve Bank of Australia](https://www.rba.gov.au/statistics/frequency/exchange-rates.html). Checked on 28 November 2026.\n\nFees and rules change. Always confirm on the university's own website before you pay or apply.\n",
+        "faq_json": [
+          {
+            "q": "Can I do the Monash Master of Data Science without a data science degree?",
+            "a": "Yes. Entry level 1 takes an Australian bachelor degree or equivalent, not necessarily in IT, with at least a credit (60%) average. It takes two years."
+          },
+          {
+            "q": "How much does the Monash Master of Data Science cost for Indian students?",
+            "a": "The 2027 fee is AUD 57,540 for each 48 credit points, which Monash calls a full-time year. With living costs, travel and the visa charge, the first year comes to AUD 91,750 before health cover."
+          },
+          {
+            "q": "What maths do I need for the shorter Monash data science route?",
+            "a": "Entry level 2 asks for mathematics including calculus, linear algebra, and probability and statistics. It also asks for python programming, databases, algorithms, computer architecture and operating systems and networks."
+          },
+          {
+            "q": "What IELTS score does the Monash Master of Data Science need?",
+            "a": "IELTS 6.5 overall with no part below 6.0. Monash also accepts Pearson 58 overall or TOEFL iBT 79 overall, with minimum part scores."
+          },
+          {
+            "q": "What is the deadline for the Monash Master of Data Science in 2027?",
+            "a": "The course page gives no fixed date. Monash says dates vary by faculty and to check with the faculty. An international student can apply anytime in the year."
+          }
+        ],
+        "official_source": "https://www.monash.edu/study/courses/find-a-course/data-science-c6004",
+        "checked_at": "2026-11-28"
+      }
+    }
+  ]
+}

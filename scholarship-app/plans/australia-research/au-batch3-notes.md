@@ -1,0 +1,140 @@
+# Australia research, batch 3 (hidden draft)
+
+Checked on 28 November 2026 (Asia/Calcutta). Every figure below has an official URL, an exact quote and the check date. The quotes were matched against the saved page text on the box. Where a page needed a fetch tool, the line says so. INR figures are our arithmetic at the RBA rate of 61.80 per AUD for 27 November 2026.
+
+## Monash University
+
+Fee and entry data come from the course and handbook pages' embedded data, as for Melbourne. The Monash India pages were read with a fetch tool.
+
+- **C6001 fee, 2027, international:** AUD 57,540
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: ""FeeInternationalFullFee": "A$57,540""
+  - Checked 28 November 2026. Read from the course page's embedded data layer (script block).
+- **Fee basis:** Per 48 credit points, a full-time year
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: "Fees are per 48 credit points which represents a standard full-time course load for a year."
+  - Checked 28 November 2026. Read on the course page.
+- **C6001 campus:** Clayton, full time
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: "On-campus at Clayton: Full time & part time"
+  - Checked 28 November 2026. Read on the course page.
+- **C6001 duration:** 1.5 or 2 years full time
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: "1.5 or 2 years full-time depending on prior qualifications."
+  - Checked 28 November 2026. Read on the course page.
+- **C6001 intakes:** February and July
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: "First Semester (February), Second Semester (July)"
+  - Checked 28 November 2026. Read on the course page.
+- **C6001 accreditation:** ACS
+  - Source: https://www.monash.edu/study/courses/find-a-course/information-technology-c6001
+  - Quote: "This course is accredited by the Australian Computer Society (ACS)."
+  - Checked 28 November 2026. Read on the course page.
+- **C6001 CRICOS:** 079055K
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "cricos_code = 079055K"
+  - Checked 28 November 2026. Read from the handbook page's embedded __NEXT_DATA__.
+- **C6001 credit points:** 96
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "credit_points = 96"
+  - Checked 28 November 2026. Read from the handbook page's embedded __NEXT_DATA__.
+- **C6001 entry:** Level 1: any bachelor at 60%. Level 2: cognate or IT major
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "An Australian bachelor degree (or equivalent) not necessarily in IT, with at least a credit (60%) average."
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6001 entry level 2:** Java, python, algorithms, architecture, OS, networks, databases
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "with completed studies in java and python programming, algorithms, computer architecture, operating systems and networks, and databases with at least a credit (60%) average."
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6001 foundation studies:** For students not in a cognate field
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "They are intended for students whose previous qualification is not in a cognate field."
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **English, Level A:** IELTS 6.5/6.0, Pearson 58/50, TOEFL 79 with minimums
+  - Source: https://handbook.monash.edu/2027/courses/C6001
+  - Quote: "Monash Level A, that is: IELTS (Academic): 6.5 overall (no band lower than 6.0); or Pearson Test of English (Academic): score of 58 overall with no band lower than 50; or TOEFL Internet-based test: score of 79 overall with minimum scores: Writing: 21, Listening: 12, Reading: 13 and Speaking: 18"
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6004 fee, 2027, international:** AUD 57,540
+  - Source: https://www.monash.edu/study/courses/find-a-course/data-science-c6004
+  - Quote: ""FeeInternationalFullFee": "A$57,540""
+  - Checked 28 November 2026. Read from the course page's embedded data layer.
+- **C6004 campus:** Clayton and Malaysia, full time
+  - Source: https://www.monash.edu/study/courses/find-a-course/data-science-c6004
+  - Quote: "On-campus at Clayton: Full time & part time"
+  - Checked 28 November 2026. Read on the course page.
+- **C6004 intakes:** February and July
+  - Source: https://www.monash.edu/study/courses/find-a-course/data-science-c6004
+  - Quote: "Semester One (February), Semester Two (July)"
+  - Checked 28 November 2026. Read on the course page.
+- **C6004 duration:** 1.5 or 2 years
+  - Source: https://www.monash.edu/study/courses/find-a-course/data-science-c6004
+  - Quote: "1.5 or 2 years full-time depending on prior qualifications."
+  - Checked 28 November 2026. Read on the course page.
+- **C6004 accreditation:** ACS
+  - Source: https://www.monash.edu/study/courses/find-a-course/data-science-c6004
+  - Quote: "This course is accredited by the Australian Computer Society (ACS)."
+  - Checked 28 November 2026. Read on the course page.
+- **C6004 CRICOS:** 085349A
+  - Source: https://handbook.monash.edu/2027/courses/C6004
+  - Quote: "cricos_code = 085349A"
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6004 entry level 2:** Maths plus IT studies at 60%
+  - Source: https://handbook.monash.edu/2027/courses/C6004
+  - Quote: "and mathematics (including calculus, linear algebra and probability and statistics) with at least a credit (60%) average."
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **C6004 English:** Same Level A
+  - Source: https://handbook.monash.edu/2027/courses/C6004
+  - Quote: "Monash Level A, that is: IELTS (Academic): 6.5 overall (no band lower than 6.0)"
+  - Checked 28 November 2026. Read from the handbook's embedded data.
+- **International graduate dates:** Vary by faculty; open early August
+  - Source: https://www.monash.edu/admissions/apply/international-pg
+  - Quote: "Application dates vary by faculty but generally open early August. For course-specific closing dates, please check with the faculty"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **Apply anytime, direct:** Apply directly to Monash
+  - Source: https://www.monash.edu/admissions/apply/international-pg
+  - Quote: "As an international student, you can apply for a place anytime throughout the year. Teaching starts:"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **Agent only for some countries:** India not listed
+  - Source: https://www.monash.edu/admissions/apply/international-pg
+  - Quote: "If you’re located in Crimea, Cuba, Donetsk, Iran, Luhansk, North Korea, Syria or South Sudan, you’ll need to apply for a course through a registered Monash agent"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); text copied from the fetch result.
+- **Mid-year dates:** Generally close mid-June
+  - Source: https://www.monash.edu/admissions/apply/international-pg
+  - Quote: "Application dates vary by faculty but generally close in mid-June. Contact the faculty offering the course for specific dates."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **Semester one start on the admissions page:** March
+  - Source: https://www.monash.edu/admissions/apply/international-pg
+  - Quote: "Semester one (March)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); the course pages say February.
+- **India: documents and fee:** Statement of purpose; fee
+  - Source: https://www.monash.edu/india/study/monash-application-process
+  - Quote: "j. $100 applicant fee (or a waiver code)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **India: statement of purpose:** Written by the student
+  - Source: https://www.monash.edu/india/study/monash-application-process
+  - Quote: "g. Statement of Purpose (Written by Student)"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **India: backlog letter:** If consolidated results
+  - Source: https://www.monash.edu/india/study/monash-application-process
+  - Quote: "b. In instance where institution has issued consolidated results please arrange - Backlog Summary / No backlog letter"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **India: assessment time:** 1 to 3 weeks
+  - Source: https://www.monash.edu/india/study/monash-application-process
+  - Quote: "An assessment usually takes 1 to 3 weeks."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **India: Engineering International High Achievers (postgraduate):** $15,000 per 48 credit points; 25 a year; Faculty of Engineering
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "Postgraduate - $15,000 per 48 credit points, paid towards your tuition fees."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch).
+- **India: Merit scholarship listed:** Up to $50,000, 31 a year (India page)
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "| Monash International Merit Scholarship | Up to $50,000 | 31 per year |"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); text copied from the fetch result.
+- **Merit scholarship's own page:** Undergraduate offer holders
+  - Source: https://www.monash.edu/study/fees-scholarships/scholarships/find-a-scholarship/international-merit-5770
+  - Quote: "International students from all countries who have received an undergraduate course offer from Monash will automatically be considered for the Monash International Merit Scholarship."
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); text copied from the fetch result. It conflicts with the India page.
+- **India: acceptable money records:** Income, loans, deposits
+  - Source: https://www.monash.edu/india/study/scholarships-and-finance-options
+  - Quote: "Types of financial records which are acceptable for assessing funds for student visa applications are:"
+  - Checked 28 November 2026. Read through a fetch tool (WebFetch); text copied from the fetch result.
